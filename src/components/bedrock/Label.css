@@ -1,0 +1,42 @@
+.outer-div {
+    background-color: rgb(145, 145, 145);
+    display: flex;
+    justify-content: flex-start; /* Aligns content at the top vertically */
+    align-items: flex-start; /* Aligns the inner-div at the top of outer-div */
+}
+
+.inner-div {
+    width: 100%;
+    height: calc(100% - 5px);
+    background-color: rgb(230, 232, 235);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: block; /* Allows fine control of positioning */
+}
+
+.prefix, .suffix, .center {
+    font-size: 30px;
+    color: black;
+    font-family: Minecraft;
+}
+
+.prefix, .suffix {
+    flex: 0 1 auto; /* Allows them to shrink or grow based on content */
+    white-space: nowrap; /* Prevents wrapping */
+    margin-left: 10px; /* Add space to avoid overlap */
+    margin-right: 10px;
+}
+
+.center {
+    flex: 1; /* Takes up the remaining space between prefix and suffix */
+    text-align: center;
+    position: absolute; /* Center the text relative to the parent */
+    left: 50%;
+    transform: translateX(-50%); /* Precisely center the text */
+}
+
+.spacer {
+    width: 50px;
+    height: 1px;
+}

@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Minecraft';
+    src: local('Minecraft'), url(../../../assets/fonts/minecraft/Minecraft-Normal.ttf) format('truetype');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */
+}
+
+@font-face {
+    font-family: 'Mojangles';
+    src: local('Mojangles'), url(../../../assets/fonts/mojangles/Mojangles.ttf) format('truetype');
+}
+
+.bedrock-text {
+    font-size: 18px;
+}
+
+.non-selectable {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}

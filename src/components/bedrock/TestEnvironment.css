@@ -1,0 +1,18 @@
+.resizable-div {
+    background-color: #add8e6; /* Light blue background */
+    position: relative;
+    overflow: hidden;
+    resize: both; /* Allow resizing */
+    border: 1px solid #000; /* Border for visual feedback */
+    padding: 10px;
+  }
+  
+  .resizable-div .resizer {
+    width: 10px;
+    height: 10px;
+    background: #000;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: se-resize;
+  }

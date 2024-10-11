@@ -1,0 +1,268 @@
+.bedrock-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 
+
+########################## First Layer
+
+*/
+
+.button-first-layer {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(30, 30, 30);
+    padding: 2.5px;
+    cursor: pointer;
+}
+
+[data-toggled="true"] .button-first-layer {
+    margin-top: 5px;
+    height: calc(100% - 5px);
+}
+
+/* 
+
+########################## Second Layer
+
+*/
+
+.button-second-layer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Button Types */
+
+[data-color="white"] .button-second-layer {
+    background-color: rgb(88, 88, 90);
+}
+
+[data-color="green"] .button-second-layer {
+    background-color: rgb(29, 77, 19);
+}
+
+[data-color="black"] .button-second-layer {
+    background-color: rgb(32,33, 33);
+}
+
+/* Button Types On Hover (For some reason only black one has different second layer lool) */ 
+
+[data-color="black"] .button-first-layer:hover .button-second-layer {
+    background-color: rgb(48, 49, 49);
+}
+
+/* 
+
+########################## Third Layer 
+
+*/
+
+.button-third-layer {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 5px);
+}
+
+[data-toggled="true"] .button-third-layer {
+    height: 100%;
+}
+
+/* Button Types */
+
+[data-color="white"] .button-third-layer {
+    background-color: rgb(208, 209, 212);
+}
+
+[data-color="green"] .button-third-layer {
+    background-color: rgb(60, 133, 39);
+}
+
+
+[data-color="black"] .button-third-layer {
+    background-color: rgb(47, 47, 48);
+}
+
+/* Button Types On Hover */
+
+[data-color="white"] .button-first-layer:hover .button-third-layer {
+    background-color: rgb(244, 246, 249);
+}
+
+[data-color="green"] .button-first-layer:hover .button-third-layer {
+    background-color: rgb(82, 165, 53);
+}
+
+[data-color="black"] .button-first-layer:hover .button-third-layer {
+    background-color: rgb(62, 62, 62);
+}
+
+/* 
+
+########################## Fourth Layer
+
+*/
+
+.button-fourth-layer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+
+/* Button Types */
+
+[data-color="white"] .button-fourth-layer {
+    border: 2.5px solid rgb(250, 250, 250);
+    border-bottom: 2.5px solid rgb(231, 231, 231);
+}
+
+[data-color="green"] .button-fourth-layer {
+    border: 2.5px solid rgb(99, 157, 82);
+    border-bottom: 2.5px solid rgb(79, 145, 60);
+}
+
+[data-color="black"] .button-fourth-layer {
+    border: 2.5px solid rgb(71, 71, 72);
+    border-bottom: 2.5px solid rgb(71, 71, 72);
+}
+
+/* Button Types On Hover */
+
+[data-color="white"] .button-first-layer:hover .button-fourth-layer {
+    border: 2.5px solid rgb(254, 254, 254);
+    border-bottom: 2.5px solid rgb(249, 250, 252);
+}
+
+[data-color="green"] .button-first-layer:hover .button-fourth-layer {
+    border: 2.5px solid rgb(117, 183, 93);
+    border-bottom: 2.5px solid rgb(99, 174, 73);
+}
+
+[data-color="black"] .button-first-layer:hover .button-fourth-layer {
+    border: 2.5px solid rgb(84, 84, 85);
+    border-bottom: 2.5px solid rgb(84, 84, 85);
+}
+
+/* 
+
+########################## Fifth Layer
+
+*/
+
+.button-fifth-layer {
+    position: relative;
+    width: 2.5px;
+    height: 2.5px;
+    top: -2.5px;
+}
+
+/* Button Types */
+
+[data-color="white"] .button-fifth-layer {
+    background-color: rgb(253, 253, 253);
+}
+
+[data-color="green"] .button-fifth-layer {
+    background-color: rgb(114, 167, 99);
+}
+
+[data-color="black"] .button-fifth-layer {
+    background-color: rgb(85, 85, 86);
+}
+
+/* Button Types On Hover */
+
+[data-color="white"] .button-first-layer:hover .button-fifth-layer {
+    background-color: rgb(254, 254, 255);
+}
+
+[data-color="green"] .button-first-layer:hover .button-fifth-layer {
+    background-color: rgb(130, 190, 109);
+}
+
+[data-color="black"] .button-first-layer:hover .button-fifth-layer {
+    background-color: rgb(97, 97, 98);
+}
+
+/* 
+
+########################## Sixth Layer
+
+*/
+
+.button-sixth-layer {
+    display: block;
+    position: relative;
+    width: 2.5px;
+    height: 2.5px;
+    left: calc(100% - 2.5px);
+    top: -5px;
+}
+
+/* Button Types */
+[data-color="white"] .button-sixth-layer {
+    background-color: rgb(253, 253, 253);
+}
+
+[data-color="green"] .button-sixth-layer {
+    background-color: rgb(114, 167, 99);
+}
+
+[data-color="black"] .button-sixth-layer {
+    background-color: rgb(85, 85, 86);
+}
+
+/* Button Types On Hover*/
+
+[data-color="white"] .button-first-layer:hover .button-sixth-layer {
+    background-color: rgb(254, 254, 255);
+}
+
+[data-color="green"] .button-first-layer:hover .button-sixth-layer {
+    background-color: rgb(130, 190, 109);
+}
+
+[data-color="black"] .button-first-layer:hover .button-sixth-layer {
+    background-color: rgb(97, 97, 98);
+}
+
+/* 
+
+########################## Text
+
+*/
+
+.text {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: pre-line;
+    font-family: "Mojangles";
+}
+
+/* Text Color Types */
+
+[data-color="white"] .text {
+    color: rgb(30, 30, 31);
+}
+
+[data-color="green"] .text {
+    color: white;
+}
+
+[data-color="black"] .text {
+    color: white;
+}
