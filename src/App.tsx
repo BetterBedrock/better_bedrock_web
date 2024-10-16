@@ -5,7 +5,7 @@ import ResizableDiv from "./components/bedrock/TestEnvironment";
 import SimpleButton from "./components/bedrock/SimpleButton";
 import BedrockText from "./components/bedrock/BedrockText";
 import Footer from "./components/bedrock/Footer";
-import { Button, ButtonType } from "./components/bedrock/Button";
+import Collapsible from "./components/bedrock/Collapsible";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
         </SimpleButton>
         <p>Some content inside the resizable div.</p>
         <Footer width="100%" height="58px"></Footer>
-        <Button type={ButtonType.default} height={"48px"} width={"450px"}></Button>
+        <Collapsible height={"48px"} width={"450px"}></Collapsible>
       </ResizableDiv>
     </div>
   );

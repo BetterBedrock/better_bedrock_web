@@ -6,8 +6,10 @@ interface ButtonProp {
   height?: number | string;
   width?: number | string;
   onTap?: () => void;
+  onChangeStateHandler?: (value: boolean) => void;
   type?: ButtonType;
   color?: ButtonColor;
+  toggleButton?: boolean;
   isClicked?: boolean;
 }
 
@@ -24,11 +26,30 @@ enum ButtonColor {
   black,
 }
 
-const Button: React.FC<ButtonProp> = ({ onTap, isClicked, type, height, width }) => {
+const Button: React.FC<ButtonProp> = ({
+  onTap,
+  isClicked,
+  type,
+  height,
+  width,
+  toggleButton,
+  onChangeStateHandler,
+}) => {
   const [isToggled, setIsToggled] = useState(false);
   const [isHeld, setIsHeld] = useState(false);
 
   let color: ButtonColor | undefined;
+
+  if (isClicked) setIsToggled(isClicked);
+
+  const handleSetIsToggled = (value: boolean) => {
+    if (isClicked !== undefined) {
+      return;
+    }
+
+    if (onChangeStateHandler) onChangeStateHandler(value);
+    setIsToggled(value);
+  };
 
   const handleMouseDown = () => {
     setIsHeld(true);
@@ -45,7 +66,7 @@ const Button: React.FC<ButtonProp> = ({ onTap, isClicked, type, height, width })
   const handleMouseLeave = () => {
     if (isHeld) {
       setIsHeld(false);
-      setIsToggled(false);
+      handleSetIsToggled(false);
     }
   };
 
@@ -90,7 +111,7 @@ const Button: React.FC<ButtonProp> = ({ onTap, isClicked, type, height, width })
           <div className="button-third-layer">
             <div className="button-fourth-layer">
               <div className="text non-selectable">
-                <BedrockText text="Tet"/>
+                <BedrockText text="Tet" />
               </div>
             </div>
             <div className="button-fifth-layer" />
