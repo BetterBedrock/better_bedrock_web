@@ -32,13 +32,13 @@ const Button: React.FC<ButtonProp> = ({ onTap, isClicked, type, height, width })
 
   const handleMouseDown = () => {
     setIsHeld(true);
-    setIsToggled(true);
+    handleSetIsToggled(!isToggled);
   };
 
   const handleMouseUp = () => {
     if (isHeld) {
       setIsHeld(false);
-      setIsToggled(false);
+      //handleSetIsToggled(false);
     }
   };
 
