@@ -73,8 +73,6 @@ const Button: React.FC<ButtonProp> = ({ onTap, isClicked, type, height, width })
       break;
   }
 
-  console.log(ButtonType[type!]);
-
   return (
     <div
       className="bedrock-button"
