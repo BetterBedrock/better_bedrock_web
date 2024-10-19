@@ -1,11 +1,14 @@
 .collapsible-frame {
     box-sizing: border-box;
-    background-color: rgb(47, 47, 48);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    background-color: rgb(47, 47, 48);
     border: 2.5px solid rgb(30, 30, 31);
-    border-top: none;
     padding: 0.5rem;
+}
+
+.collapsible-content >p:last-child{
+    width: 100%;
 }
 
 .collapsible-content >p:last-child{

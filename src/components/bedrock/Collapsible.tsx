@@ -32,7 +32,7 @@ const Collapsible: React.FC<CollapsibleProp> = ({
   const collapsibleElement = (
     <div
       className="collapsible-frame"
-      style={{ width: width }}>
+      style={{ maxWidth: width }}>
       <div className="collapsible-content">
         <BedrockText text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat aliquid ad adipisci nesciunt inventore, sequi natus maxime doloribus dolor quidem, ratione ipsum, expedita odio mollitia tempore? Ipsa labore nisi nostrum!"></BedrockText>
         <BedrockText text="TEST TEST TEST"></BedrockText>
