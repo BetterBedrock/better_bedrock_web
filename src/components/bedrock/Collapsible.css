@@ -5,4 +5,15 @@
     -webkit-box-sizing: border-box;
     border: 2.5px solid rgb(30, 30, 31);
     border-top: none;
+    padding: 0.5rem;
+}
+
+.collapsible-content >p:last-child{
+    padding-bottom: 0.5rem;
+}
+
+.collapsible-content > p {
+    color: white;
+    text-align: left;
+    padding-bottom: 1rem;
 }

@@ -7,14 +7,12 @@ interface CollapsibleProp {
   height?: number | string;
   width?: number | string;
   isOpen?: boolean;
-  collapsibleHeight?: number | string;
 }
 
 const Collapsible: React.FC<CollapsibleProp> = ({
   isOpen,
   height,
   width,
-  collapsibleHeight = "48px"
 }) => {
   const [isCollapsed, setCollapsed] = useState(false);
 
@@ -34,13 +32,16 @@ const Collapsible: React.FC<CollapsibleProp> = ({
   const collapsibleElement = (
     <div
       className="collapsible-frame"
-      style={{ height: collapsibleHeight, width: width }}>
-      <div className="collapsible-content"></div>
+      style={{ width: width }}>
+      <div className="collapsible-content">
+        <BedrockText text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat aliquid ad adipisci nesciunt inventore, sequi natus maxime doloribus dolor quidem, ratione ipsum, expedita odio mollitia tempore? Ipsa labore nisi nostrum!"></BedrockText>
+        <BedrockText text="TEST TEST TEST"></BedrockText>
+      </div>
     </div>
   );
 
   let collapsible = collapsibleElement
-  
+
   if (collapsible == null) collapsible = collapsibleElement;
 
   if (isCollapsed) {
