@@ -19,8 +19,8 @@ const Collapsible: React.FC<CollapsibleProp> = ({
   let button = (
     <Button
       type={ButtonType.alwaysBlack}
-      height={"48px"}
-      width={"450px"}
+      height={height}
+      width={width}
       toggleButton={true}
       onChangeStateHandler={(value: boolean) => {
         setCollapsed(value);
