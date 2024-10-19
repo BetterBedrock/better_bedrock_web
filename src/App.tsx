@@ -6,6 +6,7 @@ import SimpleButton from "./components/bedrock/SimpleButton";
 import BedrockText from "./components/bedrock/BedrockText";
 import Footer from "./components/bedrock/Footer";
 import Collapsible from "./components/bedrock/Collapsible";
+import { Button, ButtonType } from "./components/bedrock/Button";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           height="58px"
           suffix={
             <SimpleButton height="43px">
-              <BedrockText text="Hello" font="Mojangles"/>
+              <BedrockText text="Hello" font="Mojangles" />
             </SimpleButton>
           }
         />
@@ -28,7 +29,36 @@ function App() {
         </SimpleButton>
         <p>Some content inside the resizable div.</p>
         <Footer width="100%" height="58px"></Footer>
-        <Collapsible height={"48px"} width={"450px"}></Collapsible>
+        <br />
+        <Collapsible height={"48px"} width={"650px"} collapsibleHeight={"200px"}></Collapsible>
+        <br />
+        <Button
+          type={ButtonType.default}
+          height={"48px"}
+          width={"248px"}
+          toggleButton={true}
+        ></Button>
+        <br />
+        <Button
+          type={ButtonType.alwaysWhite}
+          height={"48px"}
+          width={"248px"}
+          toggleButton={true}
+        ></Button>
+        <br />
+        <Button
+          type={ButtonType.alwaysGreen}
+          height={"48px"}
+          width={"248px"}
+          toggleButton={true}
+        ></Button>
+        <br />
+        <Button
+          type={ButtonType.alwaysBlack}
+          height={"48px"}
+          width={"248px"}
+          toggleButton={true}
+        ></Button>
       </ResizableDiv>
     </div>
   );

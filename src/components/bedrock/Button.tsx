@@ -111,7 +111,7 @@ const Button: React.FC<ButtonProp> = ({
           <div className="button-third-layer">
             <div className="button-fourth-layer">
               <div className="text non-selectable">
-                <BedrockText text="Tet" />
+                <BedrockText text="example something idk" />
               </div>
             </div>
             <div className="button-fifth-layer" />
