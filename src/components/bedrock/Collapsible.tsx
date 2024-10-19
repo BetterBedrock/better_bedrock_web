@@ -7,18 +7,20 @@ interface CollapsibleProp {
   height?: number | string;
   width?: number | string;
   isOpen?: boolean;
+  collapsibleHeight?: number | string;
 }
 
 const Collapsible: React.FC<CollapsibleProp> = ({
   isOpen,
   height,
   width,
+  collapsibleHeight = "48px"
 }) => {
   const [isCollapsed, setCollapsed] = useState(false);
 
-  let button = (
+  const button = (
     <Button
-      type={ButtonType.alwaysBlack}
+      type={ButtonType.alwaysBlack} 
       height={height}
       width={width}
       toggleButton={true}
@@ -29,27 +31,19 @@ const Collapsible: React.FC<CollapsibleProp> = ({
     ></Button>
   );
 
-  let collapsible = (
+  const collapsibleElement = (
     <div
       className="collapsible-frame"
-      style={{ height: "48px", width: "450px" }}
-    >
+      style={{ height: collapsibleHeight, width: width }}>
       <div className="collapsible-content"></div>
     </div>
   );
 
-  if (collapsible == null) {
-    collapsible = (
-      <div
-        className="collapsible-frame"
-        style={{ height: "48px", width: "450px" }}
-      >
-        <div className="collapsible-content"></div>
-      </div>
-    );
-  }
+  let collapsible = collapsibleElement
+  
+  if (collapsible == null) collapsible = collapsibleElement;
 
-  if(isCollapsed) {
+  if (isCollapsed) {
     return (
       <div>
         {button}
