@@ -4,6 +4,7 @@
     -webkit-box-sizing: border-box;
     background-color: rgb(47, 47, 48);
     border: 2.5px solid rgb(30, 30, 31);
+    border-top: 0;
     padding: 0.5rem;
 }
 
