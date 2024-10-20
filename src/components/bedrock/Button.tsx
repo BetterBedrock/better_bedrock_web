@@ -11,6 +11,7 @@ interface ButtonProp {
   color?: ButtonColor;
   toggleButton?: boolean;
   isClicked?: boolean;
+  setClickedState?: boolean
 }
 
 enum ButtonType {
@@ -34,8 +35,9 @@ const Button: React.FC<ButtonProp> = ({
   width,
   toggleButton,
   onChangeStateHandler,
+  setClickedState = false
 }) => {
-  const [isToggled, setIsToggled] = useState(false);
+  const [isToggled, setIsToggled] = useState(setClickedState);
   const [isHeld, setIsHeld] = useState(false);
 
   let color: ButtonColor | undefined;

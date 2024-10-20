@@ -30,6 +30,8 @@ function App() {
         <p>Some content inside the resizable div.</p>
         <Footer width="100%" height="58px"></Footer>
         <br />
+        <Collapsible height={"48px"} width={"650px"} isOpen={true}></Collapsible>
+        <br />
         <Collapsible height={"48px"} width={"650px"}></Collapsible>
         <br />
         <Button

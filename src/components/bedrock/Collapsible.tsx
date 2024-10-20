@@ -14,10 +14,11 @@ const Collapsible: React.FC<CollapsibleProp> = ({
   height,
   width,
 }) => {
-  const [isCollapsed, setCollapsed] = useState(false);
+  const [isCollapsed, setCollapsed] = useState(isOpen);
 
   const button = (
     <Button
+      setClickedState={isCollapsed}
       type={ButtonType.alwaysBlack} 
       height={height}
       width={width}
