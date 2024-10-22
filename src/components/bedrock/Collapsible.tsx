@@ -17,9 +17,10 @@ const Collapsible: React.FC<CollapsibleProp> = ({
 }) => {
   const [isCollapsed, setCollapsed] = useState(false);
 
-  let button = (
+  const button = (
     <Button
       type={ButtonType.alwaysBlack}
+      setClickedState={isCollapsed}
       height={height}
       width={width}
       toggleButton={true}
@@ -30,7 +31,7 @@ const Collapsible: React.FC<CollapsibleProp> = ({
     ></Button>
   );
 
-  let collapsible = (
+  const collapsibleElement = (
     <div
       className="collapsible-frame"
       style={{ height: height, maxWidth: width }}
@@ -45,7 +46,7 @@ const Collapsible: React.FC<CollapsibleProp> = ({
     return (
       <div>
         {button}
-        {collapsible}
+        {collapsibleElement}
       </div>
     )
   }

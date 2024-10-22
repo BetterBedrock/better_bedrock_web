@@ -6,6 +6,7 @@ import SimpleButton from "./components/bedrock/SimpleButton";
 import BedrockText from "./components/bedrock/BedrockText";
 import Footer from "./components/bedrock/Footer";
 import Collapsible from "./components/bedrock/Collapsible";
+import { Button, ButtonType } from "./components/bedrock/Button";
 
 function App() {
   return (
@@ -31,6 +32,41 @@ function App() {
         <Collapsible height={"48px"} width={"450px"}>
           <BedrockText text="Witaj!" />
         </Collapsible>
+        <br />
+        <Collapsible
+          height={"48px"}
+          width={"650px"}
+        ></Collapsible>
+        <br />
+        <Collapsible height={"48px"} width={"650px"}></Collapsible>
+        <br />
+        <Button
+          type={ButtonType.default}
+          height={"48px"}
+          width={"248px"}
+          toggleButton={true}
+        ></Button>
+        <br />
+        <Button
+          type={ButtonType.alwaysWhite}
+          height={"48px"}
+          width={"248px"}
+          toggleButton={true}
+        ></Button>
+        <br />
+        <Button
+          type={ButtonType.alwaysGreen}
+          height={"48px"}
+          width={"248px"}
+          toggleButton={true}
+        ></Button>
+        <br />
+        <Button
+          type={ButtonType.alwaysBlack}
+          height={"48px"}
+          width={"248px"}
+          toggleButton={true}
+        ></Button>
       </ResizableDiv>
     </div>
   );
