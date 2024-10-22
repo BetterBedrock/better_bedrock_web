@@ -4,23 +4,24 @@ import BedrockText from "./BedrockText";
 import { Button, ButtonType } from "./Button";
 
 interface CollapsibleProp {
+  children?: ReactNode;
   height?: number | string;
   width?: number | string;
-  isOpen?: boolean;
 }
 
 const Collapsible: React.FC<CollapsibleProp> = ({
-  isOpen,
+  children,
   height,
   width,
+  
 }) => {
   const [isCollapsed, setCollapsed] = useState(false);
 
   let button = (
     <Button
       type={ButtonType.alwaysBlack}
-      height={"48px"}
-      width={"450px"}
+      height={height}
+      width={width}
       toggleButton={true}
       onChangeStateHandler={(value: boolean) => {
         setCollapsed(value);
@@ -32,22 +33,13 @@ const Collapsible: React.FC<CollapsibleProp> = ({
   let collapsible = (
     <div
       className="collapsible-frame"
-      style={{ height: "48px", width: "450px" }}
+      style={{ height: height, maxWidth: width }}
     >
-      <div className="collapsible-content"></div>
+      <div className="collapsible-content">
+        {children}
+      </div>
     </div>
   );
-
-  if (collapsible == null) {
-    collapsible = (
-      <div
-        className="collapsible-frame"
-        style={{ height: "48px", width: "450px" }}
-      >
-        <div className="collapsible-content"></div>
-      </div>
-    );
-  }
 
   if(isCollapsed) {
     return (
