@@ -17,7 +17,7 @@ function App() {
           height="58px"
           suffix={
             <SimpleButton height="43px">
-              <BedrockText text="Hello" font="Mojangles"/>
+              <BedrockText text="Hello" font="Mojangles" />
             </SimpleButton>
           }
         />
@@ -28,7 +28,9 @@ function App() {
         </SimpleButton>
         <p>Some content inside the resizable div.</p>
         <Footer width="100%" height="58px"></Footer>
-        <Collapsible height={"48px"} width={"450px"}></Collapsible>
+        <Collapsible height={"48px"} width={"450px"}>
+          <BedrockText text="Witaj!" />
+        </Collapsible>
       </ResizableDiv>
     </div>
   );
