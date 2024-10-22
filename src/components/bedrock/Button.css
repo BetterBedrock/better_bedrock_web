@@ -14,13 +14,13 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    border: 2.5px solid rgb(30, 30, 30);
+    border: var(--minecraftdepth) solid rgb(30, 30, 30);
     cursor: pointer;
 }
 
 [data-toggled="true"] .button-first-layer {
-    margin-top: 5px;
-    height: calc(100% - 5px);
+    margin-top: calc(var(--minecraftdepth) * 2);
+    height: calc(100% - calc(var(--minecraftdepth) * 2));
 }
 
 /* 
@@ -68,7 +68,7 @@
 .button-third-layer {
     position: relative;
     width: 100%;
-    height: calc(100% - 5px);
+    height: calc(100% - calc(var(--minecraftdepth) * 2));
 }
 
 [data-toggled="true"] .button-third-layer {
@@ -138,52 +138,52 @@
 /* Button Types */
 
 [data-color="white"] .button-fourth-layer {
-    border: 2.5px solid rgb(250, 250, 250);
-    border-bottom: 2.5px solid rgb(231, 231, 231);
+    border: var(--minecraftdepth) solid rgb(250, 250, 250);
+    border-bottom: var(--minecraftdepth) solid rgb(231, 231, 231);
 }
 
 [data-color="green"] .button-fourth-layer {
-    border: 2.5px solid rgb(99, 157, 82);
-    border-bottom: 2.5px solid rgb(79, 145, 60);
+    border: var(--minecraftdepth) solid rgb(99, 157, 82);
+    border-bottom: var(--minecraftdepth) solid rgb(79, 145, 60);
 }
 
 [data-color="black"] .button-fourth-layer {
-    border: 2.5px solid rgb(71, 71, 72);
-    border-bottom: 2.5px solid rgb(71, 71, 72);
+    border: var(--minecraftdepth) solid rgb(71, 71, 72);
+    border-bottom: var(--minecraftdepth) solid rgb(71, 71, 72);
 }
 
 /* Button Types On Click */
 
 [data-color="white"][data-toggled="true"] .button-fourth-layer {
-    border: 2.5px solid rgb(254, 254, 254);
-    border-bottom: 2.5px solid rgb(249, 250, 252);
+    border: var(--minecraftdepth) solid rgb(254, 254, 254);
+    border-bottom: var(--minecraftdepth) solid rgb(249, 250, 252);
 }
 
 [data-color="green"][data-toggled="true"] .button-fourth-layer {
-    border: 2.5px solid rgb(117, 183, 93);
-    border-bottom: 2.5px solid rgb(99, 174, 73);
+    border: var(--minecraftdepth) solid rgb(117, 183, 93);
+    border-bottom: var(--minecraftdepth) solid rgb(99, 174, 73);
 }
 
 [data-color="black"][data-toggled="true"] .button-fourth-layer {
-    border: 2.5px solid rgb(84, 84, 85);
-    border-bottom: 2.5px solid rgb(84, 84, 85);
+    border: var(--minecraftdepth) solid rgb(84, 84, 85);
+    border-bottom: var(--minecraftdepth) solid rgb(84, 84, 85);
 }
 
 /* Button Types On Hover */
 
 [data-color="white"] .button-first-layer:hover .button-fourth-layer {
-    border: 2.5px solid rgb(254, 254, 254);
-    border-bottom: 2.5px solid rgb(249, 250, 252);
+    border: var(--minecraftdepth) solid rgb(254, 254, 254);
+    border-bottom: var(--minecraftdepth) solid rgb(249, 250, 252);
 }
 
 [data-color="green"] .button-first-layer:hover .button-fourth-layer {
-    border: 2.5px solid rgb(117, 183, 93);
-    border-bottom: 2.5px solid rgb(99, 174, 73);
+    border: var(--minecraftdepth) solid rgb(117, 183, 93);
+    border-bottom: var(--minecraftdepth) solid rgb(99, 174, 73);
 }
 
 [data-color="black"] .button-first-layer:hover .button-fourth-layer {
-    border: 2.5px solid rgb(84, 84, 85);
-    border-bottom: 2.5px solid rgb(84, 84, 85);
+    border: var(--minecraftdepth) solid rgb(84, 84, 85);
+    border-bottom: var(--minecraftdepth) solid rgb(84, 84, 85);
 }
 
 /* 
@@ -194,9 +194,9 @@
 
 .button-fifth-layer {
     position: relative;
-    width: 2.5px;
-    height: 2.5px;
-    top: -2.5px;
+    width: var(--minecraftdepth);
+    height: var(--minecraftdepth);
+    top: calc(-1 * var(--minecraftdepth));
 }
 
 /* Button Types */
@@ -250,10 +250,10 @@
 .button-sixth-layer {
     display: block;
     position: relative;
-    width: 2.5px;
-    height: 2.5px;
-    left: calc(100% - 2.5px);
-    top: -5px;
+    width: var(--minecraftdepth);
+    height: var(--minecraftdepth);
+    left: calc(100% - var(--minecraftdepth));
+    top: calc(-1 * (var(--minecraftdepth) * 2));
 }
 
 /* Button Types */

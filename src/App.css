@@ -1,3 +1,7 @@
+:root {
+  --minecraftdepth: 2px;
+}
+
 .App {
   text-align: center;
 }
