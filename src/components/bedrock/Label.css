@@ -7,7 +7,7 @@
 
 .inner-div {
     width: 100%;
-    height: calc(100% - 5px);
+    height: calc(100% - calc(var(--minecraftdepth) * 2));
     background-color: rgb(230, 232, 235);
     display: flex;
     justify-content: space-between;

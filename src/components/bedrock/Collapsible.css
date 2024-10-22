@@ -3,7 +3,7 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     background-color: rgb(47, 47, 48);
-    border: 2.5px solid rgb(30, 30, 31);
+    border: var(--minecraftdepth) solid rgb(30, 30, 31);
     border-top: none;
 }
 

@@ -1,5 +1,5 @@
 .minecraft-button {
-  padding: 5px;
+  padding: calc(var(--minecraftdepth) * 2);
   background-color: #E6E8EB;
   /* BedrockColors.grey230232235 */
   overflow: none;
