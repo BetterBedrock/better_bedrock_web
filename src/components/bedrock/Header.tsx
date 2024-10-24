@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import Label from "./Label";
+import '../../App.css';
 
 interface HeaderProps {
   text: string;
@@ -16,19 +17,12 @@ const Header: React.FC<HeaderProps> = ({
   width,
   height,
 }) => {
+  const spacer = <div className="spacer" style={{width: `calc((${height} - (var(--minecraftdepth)*2)))`, height: `calc((${height} - (var(--minecraftdepth)*2)))`}}></div>
   return (
     <Label width={width} height={height} rotated>
-      {/* Prefix */}
-
-      {prefix ? prefix : <div className="spacer"></div>}
-
-      {/* Text */}
-
-      <p className="center" style={{fontFamily: 'MinecraftTen'}}>{text}</p>
-
-      {/* Suffix */}
-
-      {suffix ? suffix : <div className="spacer"></div>}
+      {prefix ? prefix : spacer}
+      <p className="header-text">{text}</p>
+      {suffix ? suffix : spacer}
     </Label>
   );
 };
