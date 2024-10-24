@@ -15,10 +15,11 @@
     position: block; /* Allows fine control of positioning */
 }
 
-.prefix, .suffix, .center {
-    font-size: 30px;
+.prefix, .suffix, .header-text{
+    font-family: "MinecraftTen";
+    margin: 0;
+    font-size: 2rem;
     color: black;
-    font-family: Minecraft;
 }
 
 .prefix, .suffix {
@@ -38,5 +39,5 @@
 
 .spacer {
     width: 50px;
-    height: 1px;
+    height: 50px;
 }
