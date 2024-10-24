@@ -10,6 +10,16 @@
     src: local('Mojangles'), url(../../../assets/fonts/mojangles/Mojangles.ttf) format('truetype');
 }
 
+@font-face {
+    font-family: 'MinecraftTen';
+    src: local('MinecraftTen'), url(../../../assets/fonts/minecraft/MinecraftTen.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'MinecraftFive';
+    src: local('MinecraftFive'), url(../../../assets/fonts/minecraft/MinecraftFive.ttf) format('truetype');
+}
+
 .bedrock-text {
     display: inline;
     font-size: 18px;
