@@ -29,7 +29,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Header
-          text="Test Environment"
+          text={percentage < 50 ? `Test Environment, ${percentage}` : `Siema Siema`}
           width="100%"
           height="58px"
           suffix={
