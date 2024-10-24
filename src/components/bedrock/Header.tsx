@@ -24,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({
 
       {/* Text */}
 
-      <p className="center">{text}</p>
+      <p className="center" style={{fontFamily: 'MinecraftTen'}}>{text}</p>
 
       {/* Suffix */}
 
