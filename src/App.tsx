@@ -54,38 +54,38 @@ function App() {
           ></LoadingBar>
           <BedrockText color={"white"} text={percentage.toString() + "%"}></BedrockText>
         </div>
-        <Collapsible height={"3rem"} width={"450px"}>
+        <Collapsible height={"4rem"} width={"450px"}>
           <BedrockText text="Witaj!" />
         </Collapsible>
         <br />
-        <Collapsible height={"3rem"} width={"650px"}></Collapsible>
+        <Collapsible height={"4rem"} width={"650px"}></Collapsible>
         <br />
-        <Collapsible height={"3rem"} width={"650px"}></Collapsible>
+        <Collapsible height={"4rem"} width={"650px"}></Collapsible>
         <br />
         <Button
           type={ButtonType.default}
-          height={"3rem"}
+          height={"4rem"}
           width={"248px"}
           toggleButton={true}
         ></Button>
         <br />
         <Button
           type={ButtonType.alwaysWhite}
-          height={"3rem"}
+          height={"4rem"}
           width={"248px"}
           toggleButton={true}
         ></Button>
         <br />
         <Button
           type={ButtonType.alwaysGreen}
-          height={"3rem"}
+          height={"4rem"}
           width={"248px"}
           toggleButton={true}
         ></Button>
         <br />
         <Button
           type={ButtonType.alwaysBlack}
-          height={"3rem"}
+          height={"4rem"}
           width={"248px"}
           toggleButton={true}
         ></Button>

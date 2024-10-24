@@ -17,7 +17,7 @@ const BedrockText: React.FC<BedrockTextProps> = ({
     }
 
     return (
-        <p className="bedrock-text non-selectable" style={{fontFamily: font, color: color, fontSize: "1rem"}}>
+        <p className="bedrock-text non-selectable" style={{fontFamily: font, color: color, fontSize: "1.4rem"}}>
             {text}
         </p>
     );
