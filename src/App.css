@@ -1,5 +1,6 @@
 :root {
-  --minecraftdepth: 2px;
+  /* --minecraftdepth: 2px;  */
+  --minecraftdepth: 0.15rem; 
 }
 
 .App {
