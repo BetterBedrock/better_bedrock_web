@@ -1,8 +1,12 @@
 .loadingbar-outer-layer {
+    max-width: 100%;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: calc(var(--minecraftdepth) * 2) var(--minecraftdepth);
     position: relative;
-    /* background-color: white; */
     border: var(--minecraftdepth) solid white;
-    padding: 1px;
     box-sizing: border-box;
 }
 

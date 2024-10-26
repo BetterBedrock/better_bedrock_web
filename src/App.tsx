@@ -33,7 +33,7 @@ function App() {
           width="100%"
           height="4rem"
           suffix={
-            <SimpleButton height="3rem">
+            <SimpleButton height="1rem">
               <BedrockText text="Hello" font="Mojangles" />
             </SimpleButton>
           }
@@ -54,43 +54,43 @@ function App() {
           ></LoadingBar>
           <BedrockText color={"white"} text={percentage.toString() + "%"}></BedrockText>
         </div>
-        <p>Some content inside the resizable div.</p>
-        <Footer width="100%" height="58px"></Footer>
-        <Collapsible height={"48px"} width={"450px"}>
+        <Collapsible height={"4rem"} width={"450px"}>
           <BedrockText text="Witaj!" />
         </Collapsible>
         <br />
-        <Collapsible height={"48px"} width={"650px"}></Collapsible>
+        <Collapsible height={"4rem"} width={"650px"}></Collapsible>
         <br />
-        <Collapsible height={"48px"} width={"650px"}></Collapsible>
+        <Collapsible height={"4rem"} width={"650px"}></Collapsible>
         <br />
         <Button
           type={ButtonType.default}
-          height={"48px"}
+          height={"4rem"}
           width={"248px"}
           toggleButton={true}
         ></Button>
         <br />
         <Button
           type={ButtonType.alwaysWhite}
-          height={"48px"}
+          height={"4rem"}
           width={"248px"}
           toggleButton={true}
         ></Button>
         <br />
         <Button
           type={ButtonType.alwaysGreen}
-          height={"48px"}
+          height={"4rem"}
           width={"248px"}
           toggleButton={true}
         ></Button>
         <br />
         <Button
           type={ButtonType.alwaysBlack}
-          height={"48px"}
+          height={"4rem"}
           width={"248px"}
           toggleButton={true}
         ></Button>
+        <br />
+        <Footer width="100%" height="58px"></Footer>
       </ResizableDiv>
     </div>
   );
