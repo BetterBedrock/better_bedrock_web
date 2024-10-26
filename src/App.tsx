@@ -31,9 +31,9 @@ function App() {
         <Header
           text={percentage < 50 ? `Test Environment, ${percentage}` : `Siema Siema`}
           width="100%"
-          height="58px"
+          height="4rem"
           suffix={
-            <SimpleButton height="43px">
+            <SimpleButton height="3rem">
               <BedrockText text="Hello" font="Mojangles" />
             </SimpleButton>
           }

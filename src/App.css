@@ -1,5 +1,7 @@
 :root {
-  --minecraftdepth: 2px;
+  /* DESKTOP SIZE, HD, QHD */
+  font-size: 20px;
+  --minecraftdepth: 4px; 
 }
 
 .App {
