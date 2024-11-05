@@ -1,18 +1,20 @@
 .outer-div {
     background-color: rgb(145, 145, 145);
     display: flex;
+    overflow: hidden;
     justify-content: flex-start; /* Aligns content at the top vertically */
     align-items: flex-start; /* Aligns the inner-div at the top of outer-div */
 }
 
 .inner-div {
+    position: relative;
     width: 100%;
     height: calc(100% - calc(var(--minecraftdepth) * 2));
     background-color: rgb(230, 232, 235);
-    display: flex;
+    /* padding: calc(var(--minecraftdepth) * 2); */
     justify-content: space-between;
     align-items: center;
-    position: block; /* Allows fine control of positioning */
+    overflow: hidden;
 }
 
 .prefix, .suffix, .header-text{
