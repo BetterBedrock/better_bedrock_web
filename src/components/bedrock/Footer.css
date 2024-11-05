@@ -1,4 +1,11 @@
 .footer-text {
+  position: relative;
   font-family: "Mojangles";
   font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: pre-line;
 }
