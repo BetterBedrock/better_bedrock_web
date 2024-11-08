@@ -1,0 +1,10 @@
+.circularProgressIndicator {
+    display: flex;
+    flex-wrap: wrap;
+    width: 140px;
+}
+
+.circularProgressIndicator-child {
+    width: 100%;
+    height: 100%;
+}
