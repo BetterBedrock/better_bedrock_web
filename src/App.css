@@ -2,6 +2,39 @@
   /* DESKTOP SIZE, HD, QHD */
   font-size: 20px;
   --minecraftdepth: 4px; 
+  
+  /* Minecraft Colors */
+  --sliderActive: rgb(60, 133, 39);
+  --selectionColor: rgba(60, 133, 39, 1);
+}
+
+/*** Works on common browsers ***/
+::selection {
+  background-color: var(--selectionColor);
+  color: #fff;
+}
+
+/*** Mozilla based browsers ***/
+::-moz-selection {
+  background-color: var(--selectionColor);
+  color: #fff;
+}
+
+/***For Other Browsers ***/
+::-o-selection {
+  background-color: var(--selectionColor);
+  color: #fff;
+}
+
+::-ms-selection {
+  background-color: var(--selectionColor);
+  color: #fff;
+}
+
+/*** For Webkit ***/
+::-webkit-selection {
+  background-color: var(--selectionColor);
+  color: #fff;
 }
 
 .App {
