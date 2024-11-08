@@ -1,28 +1,43 @@
 @font-face {
     font-family: 'Minecraft';
-    src: local('Minecraft'), url(../../../assets/fonts/minecraft/Minecraft-Normal.ttf) format('truetype');
+    src: local('Minecraft'), url(../../assets/fonts/minecraft/Minecraft-Normal.ttf) format('truetype');
     /* other formats include: 'woff2', 'truetype, 'opentype',
                               'embedded-opentype', and 'svg' */
 }
 
 @font-face {
     font-family: 'Mojangles';
-    src: local('Mojangles'), url(../../../assets/fonts/mojangles/Mojangles.ttf) format('truetype');
+    src: local('Mojangles'), url(../../assets/fonts/mojangles/Mojangles.ttf) format('truetype');
 }
 
 @font-face {
     font-family: 'MinecraftTen';
-    src: local('MinecraftTen'), url(../../../assets/fonts/minecraft/MinecraftTen.ttf) format('truetype');
+    src: local('MinecraftTen'), url(../../assets/fonts/minecraft/MinecraftTen.ttf) format('truetype');
 }
 
 @font-face {
     font-family: 'MinecraftFive';
-    src: local('MinecraftFive'), url(../../../assets/fonts/minecraft/MinecraftFive.ttf) format('truetype');
+    src: local('MinecraftFive'), url(../../assets/fonts/minecraft/MinecraftFive.ttf) format('truetype');
 }
 
 .bedrock-text {
-    display: inline;
-    font-size: 18px;
+    text-align: left;
+}
+
+.bedrock-text.p {
+    font-size: 1.4rem;
+}
+
+.bedrock-text.h3 {
+    font-size: 1.6rem;
+}
+
+.bedrock-text.h2 {
+    font-size: 1.8rem;
+}
+
+.bedrock-text.h1 {
+    font-size: 2rem;
 }
 
 .non-selectable {
