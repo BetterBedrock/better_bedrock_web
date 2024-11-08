@@ -7,6 +7,7 @@
     padding: calc(var(--minecraftdepth) * 2) var(--minecraftdepth);
     position: relative;
     border: var(--minecraftdepth) solid white;
+    padding: var(--minecraftdepth);
     box-sizing: border-box;
 }
 

@@ -1,6 +1,5 @@
 import React, { ReactNode, useState } from "react";
 import "./Collapsible.css";
-import BedrockText from "./BedrockText";
 import { Button, ButtonType } from "./Button";
 
 interface CollapsibleProp {

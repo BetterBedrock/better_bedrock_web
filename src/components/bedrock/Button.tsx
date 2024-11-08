@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import "./Button.css";
-import BedrockText from "./BedrockText";
+import { BedrockText, BedrockTextType } from "./BedrockText";
 
 interface ButtonProp {
   height?: number | string;
@@ -11,7 +11,7 @@ interface ButtonProp {
   color?: ButtonColor;
   toggleButton?: boolean;
   isClicked?: boolean;
-  setClickedState?: boolean
+  setClickedState?: boolean;
 }
 
 enum ButtonType {
@@ -35,7 +35,7 @@ const Button: React.FC<ButtonProp> = ({
   width,
   toggleButton,
   onChangeStateHandler,
-  setClickedState = false
+  setClickedState = false,
 }) => {
   const [isToggled, setIsToggled] = useState(setClickedState);
   const [isHeld, setIsHeld] = useState(false);
@@ -113,7 +113,7 @@ const Button: React.FC<ButtonProp> = ({
           <div className="button-third-layer">
             <div className="button-fourth-layer">
               <div className="text non-selectable">
-                <BedrockText text="example something idk" />
+                <BedrockText selectable={false} type={BedrockTextType.p} text="example something idk" />
               </div>
             </div>
             <div className="button-fifth-layer" />

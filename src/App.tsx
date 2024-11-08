@@ -3,11 +3,12 @@ import "./App.css";
 import Header from "./components/bedrock/Header";
 import ResizableDiv from "./components/bedrock/TestEnvironment";
 import SimpleButton from "./components/bedrock/SimpleButton";
-import BedrockText from "./components/bedrock/BedrockText";
+import { BedrockText, BedrockTextType } from "./components/bedrock/BedrockText";
 import Footer from "./components/bedrock/Footer";
 import Collapsible from "./components/bedrock/Collapsible";
 import { Button, ButtonType } from "./components/bedrock/Button";
 import LoadingBar from "./components/bedrock/LoadingBar";
+import CircularProgressIndicator from "./components/bedrock/CircularProgressIndicator";
 
 function App() {
   const [percentage, setPercentage] = useState(0);
@@ -29,22 +30,64 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Header
-          text={percentage < 50 ? `Test Environment, ${percentage}` : `Siema Siema`}
+          text={
+            percentage < 50 ? `Test Environment, ${percentage}` : `Siema Siema`
+          }
           width="100%"
           height="4rem"
           suffix={
             <SimpleButton height="1rem">
-              <BedrockText text="Hello" font="Mojangles" />
+              <BedrockText
+                selectable={false}
+                type={BedrockTextType.p}
+                text="Hello"
+                font="Mojangles"
+              />
             </SimpleButton>
           }
         />
       </header>
       <ResizableDiv>
-        <SimpleButton height="43px">
-          <BedrockText text="Witaj" />
-        </SimpleButton>
+        {/*
+          
+          TEXTS
+          
+          */}
+        <br />
+        <BedrockText
+          type={BedrockTextType.h1}
+          font="Minecraft"
+          text="Texts"
+        ></BedrockText>
+        <BedrockText
+          type={BedrockTextType.p}
+          text="This is a paragraph text."
+        />
+        <BedrockText
+          type={BedrockTextType.h3}
+          text="This is a Heading 3 text."
+        />
+        <BedrockText
+          type={BedrockTextType.h2}
+          text="This is a Heading 2 text."
+        />
+        <BedrockText
+          type={BedrockTextType.h1}
+          text="This is a Heading 1 text."
+        />
 
-        {/* LoadingBar that updates based on the state */}
+        {/*
+          
+          PROGRESS INDICATORS
+          
+          */}
+        <br />
+        <BedrockText
+          type={BedrockTextType.h1}
+          font="Minecraft"
+          text="Progress Indicators"
+        ></BedrockText>
+
         <div>
           <br></br>
           <LoadingBar
@@ -52,44 +95,92 @@ function App() {
             height="18px"
             percentage={percentage}
           ></LoadingBar>
-          <BedrockText color={"white"} text={percentage.toString() + "%"}></BedrockText>
+          <BedrockText
+            type={BedrockTextType.p}
+            color={"white"}
+            text={percentage.toString() + "%"}
+          ></BedrockText>
+          <CircularProgressIndicator
+            height="50px"
+            width="50px"
+          ></CircularProgressIndicator>
         </div>
+
+        {/*
+          
+          BUTTONS
+          
+          */}
+        <br />
+        <BedrockText
+          type={BedrockTextType.h1}
+          font="Minecraft"
+          text="BUTTONS"
+        ></BedrockText>
+
+        <SimpleButton height="43px">
+          <BedrockText
+            selectable={false}
+            type={BedrockTextType.p}
+            text="Witaj"
+          />
+        </SimpleButton>
+
+        <div style={{ height: "5px" }}></div>
+
         <Collapsible height={"4rem"} width={"450px"}>
-          <BedrockText text="Witaj!" />
+          <BedrockText
+            selectable={false}
+            type={BedrockTextType.p}
+            text="Witaj!"
+          />
         </Collapsible>
-        <br />
+        <div style={{ height: "5px" }}></div>
         <Collapsible height={"4rem"} width={"650px"}></Collapsible>
-        <br />
+        <div style={{ height: "5px" }}></div>
         <Collapsible height={"4rem"} width={"650px"}></Collapsible>
-        <br />
+        <div style={{ height: "5px" }}></div>
         <Button
           type={ButtonType.default}
           height={"4rem"}
           width={"248px"}
           toggleButton={true}
         ></Button>
-        <br />
+        <div style={{ height: "5px" }}></div>
         <Button
           type={ButtonType.alwaysWhite}
           height={"4rem"}
           width={"248px"}
           toggleButton={true}
         ></Button>
-        <br />
+        <div style={{ height: "5px" }}></div>
         <Button
           type={ButtonType.alwaysGreen}
           height={"4rem"}
           width={"248px"}
           toggleButton={true}
         ></Button>
-        <br />
+        <div style={{ height: "5px" }}></div>
         <Button
           type={ButtonType.alwaysBlack}
           height={"4rem"}
           width={"248px"}
           toggleButton={true}
         ></Button>
+        <div style={{ height: "5px" }}></div>
+
+        {/*
+          
+          LABEL USE, e.g.: Footer
+          
+          */}
         <br />
+        <BedrockText
+          type={BedrockTextType.h1}
+          font="Minecraft"
+          text="LABELS"
+        ></BedrockText>
+
         <Footer width="100%" height="58px"></Footer>
       </ResizableDiv>
     </div>
