@@ -40,6 +40,10 @@
     font-size: 2rem;
 }
 
+.bedrock-text.strong {
+    font-weight: bold;
+}
+
 .non-selectable {
     -webkit-user-select: none;
     /* Safari */
