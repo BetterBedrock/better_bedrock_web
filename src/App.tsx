@@ -9,6 +9,7 @@ import Collapsible from "./components/bedrock/Collapsible";
 import { Button, ButtonType } from "./components/bedrock/Button";
 import LoadingBar from "./components/bedrock/LoadingBar";
 import CircularProgressIndicator from "./components/bedrock/CircularProgressIndicator";
+import CreatorCard from "./components/bedrock/CreatorCard";
 
 function App() {
   const [percentage, setPercentage] = useState(0);
@@ -28,7 +29,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header>
         <Header
           text={
             percentage < 50 ? `Test Environment, ${percentage}` : `Siema Siema`
@@ -92,7 +93,7 @@ function App() {
           <br></br>
           <LoadingBar
             maxWidth="100%"
-            height="18px"
+            height="1.5rem"
             percentage={percentage}
           ></LoadingBar>
           <BedrockText
@@ -168,6 +169,20 @@ function App() {
           toggleButton={true}
         ></Button>
         <div style={{ height: "5px" }}></div>
+
+        {/*
+          
+          Creator Card
+          
+          */}
+        <br />
+        <BedrockText
+          type={BedrockTextType.h1}
+          font="Minecraft"
+          text="Creator Card"
+        ></BedrockText>
+
+        <CreatorCard></CreatorCard>
 
         {/*
           
