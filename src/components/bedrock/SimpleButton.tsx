@@ -1,5 +1,6 @@
-import React, { useState, useEffect, ReactNode } from 'react';
-import './SimpleButton.css'; // Import CSS styles
+import React, { useState, useEffect, ReactNode } from "react";
+import "./SimpleButton.css"; // Import CSS styles
+import bedrockClickSound from "../../assets/sounds/minecraft_click.mp3";
 
 // Define prop types for the component
 interface SimpleButtonProps {
@@ -8,6 +9,7 @@ interface SimpleButtonProps {
   children?: ReactNode; // Child can be any React component or element
   onTap?: () => void; // onTap is a function that takes no arguments and returns nothing
   isClicked?: boolean; // Optional prop to force the clicked state
+  playSound?: boolean;
 }
 
 const SimpleButton: React.FC<SimpleButtonProps> = ({
@@ -16,6 +18,7 @@ const SimpleButton: React.FC<SimpleButtonProps> = ({
   children,
   onTap,
   isClicked,
+  playSound = false,
 }) => {
   const [clicked, setClicked] = useState<boolean>(false);
 
@@ -25,10 +28,13 @@ const SimpleButton: React.FC<SimpleButtonProps> = ({
     }
   }, [isClicked]);
 
+  let audio = new Audio(bedrockClickSound);
+
   const handleClick = () => {
     if (clicked) return;
 
     setClicked(true);
+    if (playSound) audio.play();
     if (onTap) onTap();
 
     // Simulate delay to revert button click state
@@ -37,13 +43,11 @@ const SimpleButton: React.FC<SimpleButtonProps> = ({
 
   return (
     <div
-      className={`minecraft-button ${clicked ? 'clicked' : ''}`}
+      className={`minecraft-button ${clicked ? "clicked" : ""}`}
       style={{ height, width }}
       onClick={handleClick}
     >
-      <div className='minecraft-button-child'>
-        {children}
-      </div>
+      <div className="minecraft-button-child">{children}</div>
     </div>
   );
 };
