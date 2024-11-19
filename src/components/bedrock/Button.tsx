@@ -1,6 +1,8 @@
 import React, { ReactNode, useState } from "react";
 import "./Button.css";
 import { BedrockText, BedrockTextType } from "./BedrockText";
+import useAudio from "../../utils/SoundManager";
+import bedrockClickSound from "../../assets/sounds/minecraft_click.mp3";
 
 interface ButtonProp {
   height?: number | string;
@@ -12,6 +14,9 @@ interface ButtonProp {
   toggleButton?: boolean;
   isClicked?: boolean;
   setClickedState?: boolean;
+  playSound?: boolean;
+  textType?: BedrockTextType;
+  text: string;
 }
 
 enum ButtonType {
@@ -34,6 +39,9 @@ const Button: React.FC<ButtonProp> = ({
   height,
   width,
   toggleButton,
+  playSound = false,
+  textType,
+  text,
   onChangeStateHandler,
   setClickedState = false,
 }) => {
@@ -71,9 +79,11 @@ const Button: React.FC<ButtonProp> = ({
       handleSetIsToggled(false);
     }
   };
+  let audio = new Audio(bedrockClickSound);
 
   const handleClick = async () => {
-    if (isHeld && onTap) {
+    if (playSound) audio.play();
+    if (onTap) {
       onTap();
     }
   };
@@ -112,8 +122,12 @@ const Button: React.FC<ButtonProp> = ({
         <div className="button-second-layer">
           <div className="button-third-layer">
             <div className="button-fourth-layer">
-              <div className="text non-selectable">
-                <BedrockText selectable={false} type={BedrockTextType.p} text="example something idk" />
+              <div className="button-text">
+                <BedrockText
+                  selectable={false}
+                  type={textType ?? BedrockTextType.p1}
+                  text={text}
+                />
               </div>
             </div>
             <div className="button-fifth-layer" />
