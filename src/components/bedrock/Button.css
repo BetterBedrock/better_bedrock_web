@@ -304,7 +304,7 @@
 
 */
 
-.text {
+.button-text {
     position: relative;
     height: 100%;
     width: 100%;
@@ -317,16 +317,20 @@
     font-family: "Mojangles";
 }
 
+.button-text .bedrock-text {
+    text-align: center !important;
+}
+
 /* Text Color Types */
 
-[data-color="white"] .text {
+[data-color="white"] .button-text {
     color: rgb(30, 30, 31);
 }
 
-[data-color="green"] .text {
+[data-color="green"] .button-text {
     color: white;
 }
 
-[data-color="black"] .text {
+[data-color="black"] .button-text {
     color: white;
 }
