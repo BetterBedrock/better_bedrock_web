@@ -17,14 +17,12 @@ const CreatorCard: React.FC<CreatorCardProp> = () => {
         </div>
         <div className="creator-card-description">
           <BedrockText
-            text="Title"
-            type={BedrockTextType.p}
+            text="iDarkQ"
+            type={BedrockTextType.h2}
+            font="Minecraft"
             strong
           ></BedrockText>
-          <BedrockText
-            text="Description"
-            type={BedrockTextType.p}
-          ></BedrockText>
+          <BedrockText text="Mobile App ▪ Website ▪ Windows Client ▪ Mobile Client" type={BedrockTextType.p3}></BedrockText>
         </div>
       </div>
     </Label>
