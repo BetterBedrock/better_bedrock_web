@@ -3,7 +3,7 @@ import "./Label.css";
 
 interface LabelProps {
   children?: React.ReactNode;
-  height: string;
+  height?: string;
   width: string;
   rotated?: boolean,
 }

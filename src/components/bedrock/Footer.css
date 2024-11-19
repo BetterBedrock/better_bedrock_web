@@ -1,11 +1,14 @@
 .footer-text {
+  height: 100%;
   position: relative;
   font-family: "Mojangles";
-  font-size: 15px;
   display: flex;
+  justify-content: center; /* Align horizontal */
+  align-items: center; /* Align vertical */
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  word-wrap: break-word;
-  white-space: pre-line;
+  text-align: center;
+  vertical-align:middle;
+  margin: 0px;
+  padding: 0px 15px 0px 15px;
 }
