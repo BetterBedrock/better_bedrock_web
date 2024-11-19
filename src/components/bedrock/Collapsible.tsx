@@ -23,6 +23,7 @@ const Collapsible: React.FC<CollapsibleProp> = ({
       height={height}
       width={width}
       toggleButton={true}
+      text="Example collapsible"
       onChangeStateHandler={(value: boolean) => {
         setCollapsed(value);
         console.log("On Change State Handler: ", value);
