@@ -1,11 +1,14 @@
 import React, { ReactNode } from "react";
+import "../../App.css";
 import Label from "./Label";
-import '../../App.css';
+import { BedrockText, BedrockTextType } from "./BedrockText";
 
 interface HeaderProps {
   text: string;
   prefix?: ReactNode;
   suffix?: ReactNode;
+  textType?: BedrockTextType;
+  font?: string;
   height: string;
   width: string;
 }
@@ -14,15 +17,28 @@ const Header: React.FC<HeaderProps> = ({
   text,
   prefix,
   suffix,
-  width,
+  textType,
+  font,
   height,
+  width,
 }) => {
-  const spacer = <div className="spacer" style={{width: `calc((${height} - (var(--minecraftdepth)*2)))`, height: `calc((${height} - (var(--minecraftdepth)*2)))`}}></div>
   return (
-    <Label width={width} height={height} rotated>
-      {prefix ? prefix : spacer}
-      <p className="header-text">{text}</p>
-      {suffix ? suffix : spacer}
+    <Label width={width} height={height}>
+      <div className="header-container">
+        {/* Prefix */}
+        {prefix && <div className="prefix">{prefix}</div>}
+        {/* Center Text */}
+        <div className="center">
+          <BedrockText
+            text={text}
+            type={textType ?? BedrockTextType.h1}
+            textAlign="center"
+            font={font}
+          />
+        </div>
+        {/* Suffix */}
+        {suffix && <div className="suffix">{suffix}</div>}
+      </div>
     </Label>
   );
 };
