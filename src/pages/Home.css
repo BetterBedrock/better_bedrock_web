@@ -1,0 +1,125 @@
+#home-page-sections {
+    /* display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: column nowrap; */
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    height: calc(100vh - 58px);
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+.introduction {
+    scroll-behavior: smooth;
+    scroll-snap-align: center;
+    /* position: relative; */
+    text-align: center;
+    flex: none;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/images/crosshair_backgrounds/1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.about-betterbedrock {
+    scroll-snap-align: center;
+    /* position: relative; */
+    text-align: center;
+    scroll-snap-align: center;
+    flex: none;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/images/crosshair_backgrounds/2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.creators {
+    display: flex;
+    flex-direction: column; /* Stack child divs vertically */
+    overflow: hidden; /* Prevent overflowing content */
+
+    scroll-snap-align: center;
+    text-align: center;
+    flex: none;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/images/crosshair_backgrounds/3.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.creators-wrapper {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    /* Enables Flexbox layout */
+    gap: 10px;
+    /* Automatically adds space between elements */
+}
+
+.creators-wrapper>* {
+    float: left;
+    flex: 1;
+    /* Each element takes up equal space */
+    box-sizing: border-box;
+    /* Ensures padding/borders are included in the width */
+}
+
+.page-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    /* Stacks children vertically */
+    align-items: center;
+    /* Centers children horizontally */
+    justify-content: center;
+    /* Optional: Adds spacing between elements */
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    max-width: 50%;
+    height: 100%;
+    /* background-color: blueviolet; */
+}
+
+.page-content-wrapper .bedrock-text {
+    margin: 0;
+}
+
+.page-content-wrapper .page-element img {
+    margin: 40px;
+    height: 100px;
+}
+
+.page-content-wrapper .page-element img {
+    height: 100px;
+}
+
+.page-content-wrapper .page-element {
+    display: flex;
+    /* Enables flexbox for individual elements */
+    flex-direction: row;
+    /* Aligns multiple items in a row */
+    justify-content: center;
+    /* Centers row content horizontally */
+    align-items: center;
+    /* Adds spacing between elements in the row */
+    text-align: center;
+    /* Optional: Adds padding around content */
+    box-sizing: border-box;
+    /* Ensures padding doesn’t increase width/height */
+    width: 100%;
+    /* Optional: Makes element responsive */
+}
+
+.prefix img {
+    height: 100%;
+    padding-right: 5px;
+}
