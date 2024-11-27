@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import "../../App.css";
 import Label from "./Label";
 import { BedrockText, BedrockTextType } from "./BedrockText";
+import './Header.css'
 
 interface HeaderProps {
   text: string;
