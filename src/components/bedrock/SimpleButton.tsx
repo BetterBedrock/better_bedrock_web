@@ -43,7 +43,7 @@ const SimpleButton: React.FC<SimpleButtonProps> = ({
 
   return (
     <div
-      className={`minecraft-button ${clicked ? "clicked" : ""}`}
+      className={`minecraft-button non-selectable ${clicked ? "clicked" : ""}`}
       style={{ height, width }}
       onClick={handleClick}
     >

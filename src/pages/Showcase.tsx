@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import Header from ".././components/bedrock/Header";
 import ResizableDiv from ".././components/bedrock/TestEnvironment";
 import SimpleButton from ".././components/bedrock/SimpleButton";
-import { BedrockText, BedrockTextType } from ".././components/bedrock/BedrockText";
+import {
+  BedrockText,
+  BedrockTextType,
+} from ".././components/bedrock/BedrockText";
 import Footer from ".././components/bedrock/Footer";
 import Collapsible from ".././components/bedrock/Collapsible";
 import { Button, ButtonType } from ".././components/bedrock/Button";
 import LoadingBar from ".././components/bedrock/LoadingBar";
 import CircularProgressIndicator from ".././components/bedrock/CircularProgressIndicator";
 import CreatorCard from ".././components/bedrock/CreatorCard";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function Showcase() {
   const [percentage, setPercentage] = useState(0);
@@ -17,7 +20,7 @@ function Showcase() {
   const navigate = useNavigate(); // Hook to navigate programmatically
 
   const navigateAndroidClient = () => {
-    navigate('/client'); // Programmatically navigate to the /about route
+    navigate("/client"); // Programmatically navigate to the /about route
   };
 
   useEffect(() => {
@@ -190,7 +193,12 @@ function Showcase() {
         text="Creator Card"
       ></BedrockText>
 
-      <CreatorCard></CreatorCard>
+      <CreatorCard
+        width="100%"
+        height="100px"
+        name="iDarkQ"
+        description={["Hello world!", " Hee"]}
+      ></CreatorCard>
 
       {/*
           
@@ -227,7 +235,7 @@ function Showcase() {
         text="LABELS"
       ></BedrockText>
 
-      <Footer width="100%" height="58px"></Footer>
+      <Footer width="100%"></Footer>
     </div>
   );
 }

@@ -8,7 +8,6 @@ import "./AndroidClient.css";
 import Header from "../components/bedrock/Header";
 import BedrockBackground from "../assets/images/bedrock-background.webp";
 import SimpleButton from "../components/bedrock/SimpleButton";
-import bedrockClickSound from "../assets/sounds/minecraft_click.mp3";
 
 const AndroidClient: React.FC = () => {
   // State to track whether the menu is open
@@ -35,14 +34,9 @@ const AndroidClient: React.FC = () => {
     };
   }, []);
 
-  let audio = new Audio(bedrockClickSound);
-
   const handleMenu = (action: boolean) => {
     // Delay menu opening by 100ms
-    audio.play();
-    setTimeout(() => {
-      setIsMenuOpen(action);
-    }, 80);
+    setIsMenuOpen(action);
   };
 
   const sendDataToJava = () => {
@@ -64,7 +58,7 @@ const AndroidClient: React.FC = () => {
             type={ButtonType.alwaysGreen}
             width={"150px"}
             height={"58px"}
-            playSound={false}
+            playSound={true}
             onTap={() => handleMenu(true)} // Open the menu on button click
           />
         </div>
@@ -83,7 +77,7 @@ const AndroidClient: React.FC = () => {
                 <SimpleButton
                   width={"48px"}
                   height={"100%"}
-                  playSound={false}
+                  playSound={true}
                   onTap={() => {
                     handleMenu(false);
                   }}

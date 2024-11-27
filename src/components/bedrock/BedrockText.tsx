@@ -6,6 +6,7 @@ interface BedrockTextProps {
   font?: string;
   color?: string;
   textAlign?: "left" | "right" | "center" | "justify" | "start" | "end" | undefined;
+  margin?: string;
   selectable?: boolean;
   type: BedrockTextType;
   strong?: boolean;
@@ -27,7 +28,7 @@ const BedrockText: React.FC<BedrockTextProps> = ({
   type,
   textAlign,
   selectable = true,
-
+  margin,
   strong,
 }) => {
   if (font === undefined) {
@@ -42,7 +43,7 @@ const BedrockText: React.FC<BedrockTextProps> = ({
         (selectable === false ? "non-selectable " : "") +
         BedrockTextType[type]
       }
-      style={{ fontFamily: font, color: color, textAlign: textAlign}}
+      style={{ fontFamily: font, color: color, textAlign: textAlign, margin: margin}}
     >
       {text}
     </p>

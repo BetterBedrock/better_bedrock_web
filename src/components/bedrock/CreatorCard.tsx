@@ -3,11 +3,29 @@ import "./CreatorCard.css";
 import Label from "./Label";
 import { BedrockText, BedrockTextType } from "./BedrockText";
 
-interface CreatorCardProp {}
+interface CreatorCardProp {
+  name?: string;
+  description?: string[];
+  width: string;
+  height: string;
+}
 
-const CreatorCard: React.FC<CreatorCardProp> = () => {
+const CreatorCard: React.FC<CreatorCardProp> = ({
+  name,
+  description,
+  width,
+  height,
+}) => {
+  // const elements = description?.map((element) => {
+  //   if(description.indexOf(element) !== elements?.length) {
+  //     return element + " ▪ ";
+  //   }
+
+  //   return element;
+  // });
+
   return (
-    <Label height="100px" width="400px">
+    <Label height={height} width={width}>
       <div className="creator-card-content">
         <div className="creator-card-image">
           <img
@@ -17,12 +35,15 @@ const CreatorCard: React.FC<CreatorCardProp> = () => {
         </div>
         <div className="creator-card-description">
           <BedrockText
-            text="iDarkQ"
+            text={name ?? "iDarkQ"}
             type={BedrockTextType.h2}
             font="Minecraft"
             strong
           ></BedrockText>
-          <BedrockText text="Mobile App ▪ Website ▪ Windows Client ▪ Mobile Client" type={BedrockTextType.p3}></BedrockText>
+          <BedrockText
+            text={description?.join(" ▪ ") ?? ""}
+            type={BedrockTextType.p3}
+          ></BedrockText>
         </div>
       </div>
     </Label>

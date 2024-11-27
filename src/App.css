@@ -1,7 +1,7 @@
 :root {
   /* DESKTOP SIZE, HD, QHD */
   font-size: 20px;
-  --minecraftdepth: 4px; 
+  --minecraftdepth: 2.5px; 
   
   /* Minecraft Colors */
   --sliderActive: rgb(60, 133, 39);
