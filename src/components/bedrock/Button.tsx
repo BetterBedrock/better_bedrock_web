@@ -1,7 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import "./Button.css";
 import { BedrockText, BedrockTextType } from "./BedrockText";
-import useAudio from "../../utils/SoundManager";
 import bedrockClickSound from "../../assets/sounds/minecraft_click.mp3";
 
 interface ButtonProp {
@@ -17,6 +16,8 @@ interface ButtonProp {
   playSound?: boolean;
   textType?: BedrockTextType;
   text: string;
+  outlinePaddingLeft?: string;
+  outlinePaddingRight?: string;
 }
 
 enum ButtonType {
@@ -39,11 +40,13 @@ const Button: React.FC<ButtonProp> = ({
   height,
   width,
   toggleButton,
-  playSound = false,
+  playSound = true,
   textType,
   text,
   onChangeStateHandler,
   setClickedState = false,
+  outlinePaddingLeft = "var(--minecraftdepth)",
+  outlinePaddingRight = "var(--minecraftdepth)",
 }) => {
   const [isToggled, setIsToggled] = useState(setClickedState);
   const [isHeld, setIsHeld] = useState(false);
@@ -116,9 +119,9 @@ const Button: React.FC<ButtonProp> = ({
       data-toggled={isToggled ? "true" : "false"}
       data-type={ButtonType[type!]}
       data-color={ButtonColor[color!]}
-      style={{ height: height, maxWidth: width }}
+      style={{ height: height, width: width, maxWidth: width }}
     >
-      <div className="button-first-layer">
+      <div className="button-first-layer" style={{borderLeftWidth: outlinePaddingLeft, borderRightWidth: outlinePaddingRight}}>
         <div className="button-second-layer">
           <div className="button-third-layer">
             <div className="button-fourth-layer">
