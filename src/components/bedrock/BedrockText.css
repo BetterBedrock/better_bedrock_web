@@ -24,6 +24,11 @@
     text-align: left;
 }
 
+p.bedrock-text {
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
 .bedrock-text.p3 {
     font-size: 0.8rem;
 
