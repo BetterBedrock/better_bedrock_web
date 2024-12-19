@@ -1,0 +1,316 @@
+#home-page-sections {
+    /* display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: column nowrap; */
+    position: relative;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    width: 100%;
+    top: 58px;
+    height: calc(100vh - 58px);
+    min-height: 600px;
+}
+
+@media screen and (max-height: 500px) {
+    #home-page-sections {
+        scroll-snap-type: none;
+    }
+}
+
+#home-page-sections {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#home-page-sections::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+section {
+    height: calc(100% - 58px);
+    min-height: 600px;
+}
+
+.introduction {
+    scroll-behavior: smooth;
+    scroll-snap-align: center;
+    /* position: relative; */
+    text-align: center;
+    flex: none;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/images/crosshair_backgrounds/1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+
+.about-betterbedrock {
+    scroll-snap-align: center;
+    /* position: relative; */
+    text-align: center;
+    scroll-snap-align: center;
+    flex: none;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/images/crosshair_backgrounds/2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.creators {
+    display: flex;
+    flex-direction: column;
+    /* Stack child divs vertically */
+    overflow: hidden;
+    /* Prevent overflowing content */
+
+    scroll-snap-align: center;
+    text-align: center;
+    flex: none;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/images/crosshair_backgrounds/3.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.creators-wrapper {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.creators-wrapper>* {
+    float: left;
+    flex: 1;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 1350px) {
+    .creators-wrapper {
+        flex-direction: column;
+    }
+
+    .creators-wrapper .outer-div {
+        width: 100%;
+        height: 100px;
+    }
+
+    .creators-wrapper>* {
+        flex: unset;
+    }
+}
+
+.page-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    /* Stacks children vertically */
+    align-items: center;
+    /* Centers children horizontally */
+    justify-content: center;
+    /* Optional: Adds spacing between elements */
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    max-width: 50%;
+    height: 100%;
+    min-height: 600px;
+    min-width: 200px;
+    /* background-color: blueviolet; */
+}
+
+@media screen and (max-width: 1000px) {
+    .page-content-wrapper {
+        max-width: 60%;
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+    .page-content-wrapper {
+        max-width: 70%;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+    .page-content-wrapper {
+        max-width: 90%;
+    }
+
+}
+
+.page-content-wrapper .bedrock-text {
+    margin: 0;
+}
+
+.page-content-wrapper .page-element img {
+    margin: 40px;
+    height: 100px;
+}
+
+.page-content-wrapper .page-element img {
+    height: 100px;
+}
+
+.page-content-wrapper .page-element {
+    display: flex;
+    /* Enables flexbox for individual elements */
+    flex-direction: row;
+    /* Aligns multiple items in a row */
+    justify-content: center;
+    /* Centers row content horizontally */
+    align-items: center;
+    /* Adds spacing between elements in the row */
+    text-align: center;
+    /* Optional: Adds padding around content */
+    box-sizing: border-box;
+    /* Ensures padding doesn’t increase width/height */
+    width: 100%;
+    /* Optional: Makes element responsive */
+}
+
+.page-content-wrapper .page-element .buttons {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+    .page-content-wrapper .page-element .buttons {
+        flex-direction: column;
+    }
+}
+
+.prefix img {
+    height: 100%;
+    padding-right: 5px;
+}
+
+@media screen and (max-width: 500px) {
+    .about {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .about-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .about img {
+        height: 100%;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .about {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about:first-child {
+        margin-bottom: 20px;
+    }
+
+    .about-content {
+        margin-left: 20px;
+    }
+
+
+    .about-content:last-child {
+        margin-right: 20px;
+    }
+
+    .about-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about img {
+        box-sizing: border-box;
+        padding: 16px;
+        width: 50%;
+    }
+
+    .about img:first-child {
+        animation: imageOnHoverBack 0.25s ease-in-out forwards;
+    }
+
+
+    .about img:last-child {
+        animation: imageOnHoverBackLeft 0.25s ease-in-out forwards;
+    }
+
+
+    .about img:first-child:hover {
+        animation: imageOnHoverRight 0.25s ease-in-out forwards;
+    }
+
+    .about img:last-child:hover {
+        animation: imageOnHoverLeft 0.25s ease-in-out forwards;
+    }
+}
+
+@keyframes imageOnHoverRight {
+    from {
+        transform: unset;
+    }
+
+    to {
+        transform: rotate(2.5deg) scale(1.1, 1.1);
+    }
+}
+
+@keyframes imageOnHoverLeft {
+    from {
+        transform: unset;
+    }
+
+    to {
+        transform: rotate(-2.5deg) scale(1.1, 1.1);
+    }
+}
+
+@keyframes imageOnHoverBack {
+    from {
+        transform: rotate(2.5deg) scale(1.1, 1.1);
+    }
+
+    to {
+        transform: unset;
+    }
+}
+
+@keyframes imageOnHoverBackLeft {
+    from {
+        transform: rotate(-2.5deg) scale(1.1, 1.1);
+    }
+
+    to {
+        transform: unset;
+    }
+}

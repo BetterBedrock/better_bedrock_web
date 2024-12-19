@@ -1,6 +1,0 @@
-heaader {
-    position: fixed;
-    top: 0; /* Sticks to the top */
-    width: 100%; /* Spans the full width */
-    z-index: 1000; /* Ensure it's on top of other elements */
-}

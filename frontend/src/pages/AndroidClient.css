@@ -1,0 +1,55 @@
+.client-info {
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    top: 95%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.client-menu-button {
+    padding: 20px;
+    position: relative;
+
+
+}
+
+.client {
+    margin: 0;
+    position: absolute;
+    width: 80%;
+    max-height: 350px;
+    height: 70%;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: rgb(31, 30, 30);
+    padding: 5px;
+}
+
+.client-menu {
+    position: relative;
+}
+
+body {
+    /*background-color: var(--background-color)*/
+    /* background-color: gray; */
+}
+
+img {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    max-width:100%;
+    max-height:100%;
+    /*no blur*/
+}
+
+/* REMOVED WHILE WORKING ON SITE BECAUSE IT WAS CAUSING ISSUES WITH ICON NOT BEING CENTERED IN A SIMPLE BUTTON*/
+/* .bedrock-simple-button-child {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: block;
+} */
