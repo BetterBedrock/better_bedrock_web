@@ -10,7 +10,7 @@ const Slideshow: React.FC<SlideshowProps> = ({ children }) => {
   const items = Children.toArray(children);
   console.log(items[0])
 
-  // console.log([items])
+  console.log([items])
   // const items = ["Div #1", "Div #2", "Div #3"];
   const [activeIndex, setActiveIndex] = useState(0);
 
