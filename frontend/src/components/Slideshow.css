@@ -1,0 +1,48 @@
+.slideshow {
+    position: relative;
+    overflow: hidden;
+    height: 50%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+.slideshow-container {
+    position: relative;
+    height: 100%;
+    display: flex;
+}
+
+.slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slideshow-controller {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 32px;
+}
+
+.slideshow-box {
+    width: 16px;
+    height: 16px;
+    background-color: var(--white);
+}
+
+.slideshow-box.selected {
+    width: 16px;
+    height: 16px;
+    background-color: var(--grey);
+}

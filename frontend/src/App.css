@@ -1,0 +1,72 @@
+#root {
+  width: 100%;
+}
+
+/* Removing default ugly button styling (bedrock one > ) */
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+}
+
+ul {
+  
+}
+
+:root {
+  /* DESKTOP SIZE, HD, QHD */
+  font-size: 20px;
+  --minecraftdepth: 2.5px; 
+  
+  /* Minecraft Colors */
+  --black: rgb(30, 30, 30);
+  --grey: rgb(70, 70, 70);
+  --white: rgb(230, 232, 235);
+  --dirtyWhite: rgb(200, 200, 200);
+  --bedrockSimpleButtonClickOnFocusVisible: rgb(170, 170, 170);
+  --bedrockSimpleButtonClick: rgb(207, 208, 212);
+  --sliderActive: rgb(60, 133, 39);
+  --selectionColor: rgba(60, 133, 39, 1);
+}
+
+/*** Works on common browsers ***/
+::selection {
+  background-color: var(--selectionColor);
+  color: #fff;
+}
+
+/*** Mozilla based browsers ***/
+::-moz-selection {
+  background-color: var(--selectionColor);
+  color: #fff;
+}
+
+/***For Other Browsers ***/
+::-o-selection {
+  background-color: var(--selectionColor);
+  color: #fff;
+}
+
+::-ms-selection {
+  background-color: var(--selectionColor);
+  color: #fff;
+}
+
+/*** For Webkit ***/
+::-webkit-selection {
+  background-color: var(--selectionColor);
+  color: #fff;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  /*background-color: var(--background-color)*/
+  background-color: transparent;
+  /* /*background-color: #add8e6;* */
+}

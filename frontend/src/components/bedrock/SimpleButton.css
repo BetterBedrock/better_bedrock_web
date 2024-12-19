@@ -1,0 +1,36 @@
+.bedrock-simple-button {
+  padding: calc(var(--minecraftdepth) * 2);
+  background-color: #E6E8EB;
+  box-sizing: border-box;
+  font-family: "Mojangles";
+
+  overflow: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min-content;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.bedrock-simple-button:focus-visible {
+  outline: none;
+  background-color: var(--bedrockSimpleButtonClickOnFocusVisible);
+}
+
+.bedrock-simple-button.clicked {
+  background-color: var(--bedrockSimpleButtonClick);
+}
+
+.bedrock-simple-button-child {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
