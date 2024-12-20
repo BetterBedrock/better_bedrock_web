@@ -34,7 +34,7 @@ const Home: React.FC = () => {
         <BedrockText
           text="Mod Menu"
           type={BedrockTextType.h2}
-          font="Minecraft"
+          font="MinecraftTen"
           color="white"
           textAlign="center"
         ></BedrockText>
@@ -60,7 +60,7 @@ const Home: React.FC = () => {
         <BedrockText
           text="Custom UIS"
           type={BedrockTextType.h2}
-          font="Minecraft"
+          font="MinecraftTen"
           color="white"
           textAlign="center"
         ></BedrockText>
@@ -136,7 +136,7 @@ const Home: React.FC = () => {
               <BedrockText
                 text="Better Bedrock"
                 type={BedrockTextType.h1}
-                font="Minecraft"
+                font="MinecraftTen"
               />
             </>
           }
@@ -154,7 +154,7 @@ const Home: React.FC = () => {
                   type={BedrockTextType.h1}
                   text="Better Bedrock"
                   color="white"
-                  font="Minecraft"
+                  font="MinecraftTen"
                   margin="20px 0px 0px 0px"
                   textAlign="center"
                 ></BedrockText>
@@ -201,7 +201,7 @@ const Home: React.FC = () => {
             <BedrockText
               text="CREATORS"
               type={BedrockTextType.h2}
-              font="Minecraft"
+              font="MinecraftTen"
               color="white"
             ></BedrockText>
             <div className="creators-wrapper">

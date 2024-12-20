@@ -37,7 +37,7 @@ const CreatorCard: React.FC<CreatorCardProp> = ({
           <BedrockText
             text={name ?? "iDarkQ"}
             type={BedrockTextType.h2}
-            font="Minecraft"
+            font="MinecraftTen"
             strong
           ></BedrockText>
           <BedrockText

@@ -187,15 +187,27 @@ section {
     width: 100%;
 }
 
+#header-prefix img {
+    min-height: 44px;
+    height: calc(100% - (var(--minecraftdepth) * 2));
+    margin: var(--minecraftdepth);
+    margin-right: calc((var(--minecraftdepth) * 2));
+}
+
+#header-suffix {
+    height: calc(100% - calc(var(--minecraftdepth) * 2));
+}
+
+#header-suffix ul{
+    /* height: calc(100% - calc(var(--minecraftdepth) * 2)); */
+    margin-right: var(--minecraftdepth);    
+    gap: calc(var(--minecraftdepth) * 2);
+}
+
 @media screen and (max-width: 500px) {
     .page-content-wrapper .page-element .buttons {
         flex-direction: column;
     }
-}
-
-.prefix img {
-    height: 100%;
-    padding-right: 5px;
 }
 
 @media screen and (max-width: 500px) {
