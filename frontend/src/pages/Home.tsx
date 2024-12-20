@@ -24,10 +24,12 @@ const Home: React.FC = () => {
       {isSmallScreen ? (
         <></>
       ) : (
-        <img
-          alt=""
-          src={require("../assets/images/banners/mod_menu.png")}
-        ></img>
+        <div className="img-wrapper">
+          <img
+            alt=""
+            src={require("../assets/images/banners/mod_menu.png")}
+          ></img>
+        </div>
       )}
 
       <div className="about-content">
@@ -72,10 +74,12 @@ const Home: React.FC = () => {
           textAlign="center"
         ></BedrockText>
       </div>
-      <img
-        alt=""
-        src={require("../assets/images/banners/custom_uis.png")}
-      ></img>
+      <div className="img-wrapper">
+          <img
+            alt=""
+            src={require("../assets/images/banners/custom_uis.png")}
+          ></img>
+        </div>
     </div>,
   ];
 

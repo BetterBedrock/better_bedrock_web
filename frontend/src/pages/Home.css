@@ -199,7 +199,6 @@ section {
 }
 
 #header-suffix ul{
-    /* height: calc(100% - calc(var(--minecraftdepth) * 2)); */
     margin-right: var(--minecraftdepth);    
     gap: calc(var(--minecraftdepth) * 2);
 }
@@ -262,67 +261,23 @@ section {
         align-items: center;
     }
 
+    .about .img-wrapper {
+        width: 100%;
+        height: 100%;
+    }
+
     .about img {
+        padding: 2rem;
+        z-index: 10;
         box-sizing: border-box;
-        padding: 16px;
-        width: 50%;
+        transition: transform 0.25s ease;
     }
-
-    .about img:first-child {
-        animation: imageOnHoverBack 0.25s ease-in-out forwards;
-    }
-
-
-    .about img:last-child {
-        animation: imageOnHoverBackLeft 0.25s ease-in-out forwards;
-    }
-
 
     .about img:first-child:hover {
-        animation: imageOnHoverRight 0.25s ease-in-out forwards;
+        transform: rotate(2.5deg) scale(1.1, 1.1);
     }
 
     .about img:last-child:hover {
-        animation: imageOnHoverLeft 0.25s ease-in-out forwards;
-    }
-}
-
-@keyframes imageOnHoverRight {
-    from {
-        transform: unset;
-    }
-
-    to {
-        transform: rotate(2.5deg) scale(1.1, 1.1);
-    }
-}
-
-@keyframes imageOnHoverLeft {
-    from {
-        transform: unset;
-    }
-
-    to {
         transform: rotate(-2.5deg) scale(1.1, 1.1);
-    }
-}
-
-@keyframes imageOnHoverBack {
-    from {
-        transform: rotate(2.5deg) scale(1.1, 1.1);
-    }
-
-    to {
-        transform: unset;
-    }
-}
-
-@keyframes imageOnHoverBackLeft {
-    from {
-        transform: rotate(-2.5deg) scale(1.1, 1.1);
-    }
-
-    to {
-        transform: unset;
     }
 }
