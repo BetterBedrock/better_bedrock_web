@@ -266,18 +266,18 @@ section {
         height: 100%;
     }
 
-    .about img {
+    .about .img-wrapper {
         padding: 2rem;
         z-index: 10;
         box-sizing: border-box;
         transition: transform 0.25s ease;
     }
 
-    .about img:first-child:hover {
+    .about .img-wrapper:first-child:hover {
         transform: rotate(2.5deg) scale(1.1, 1.1);
     }
 
-    .about img:last-child:hover {
+    .about .img-wrapper:last-child:hover {
         transform: rotate(-2.5deg) scale(1.1, 1.1);
     }
 }
