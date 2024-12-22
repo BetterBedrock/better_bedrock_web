@@ -23,3 +23,9 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 package.json
+
+# frontend
+/frontend/node_modules
+
+# backend
+/backend/node_modules
