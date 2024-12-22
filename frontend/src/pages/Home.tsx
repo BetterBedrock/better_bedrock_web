@@ -27,7 +27,7 @@ const Home: React.FC = () => {
         <div className="img-wrapper">
           <img
             alt=""
-            src={require("../assets/images/banners/mod_menu.png")}
+            src={require("../assets/images/banners/custom_uis.png")}
           ></img>
         </div>
       )}
@@ -77,7 +77,7 @@ const Home: React.FC = () => {
       <div className="img-wrapper">
           <img
             alt=""
-            src={require("../assets/images/banners/custom_uis.png")}
+            src={require("../assets/images/banners/mod_menu.png")}
           ></img>
         </div>
     </div>,
