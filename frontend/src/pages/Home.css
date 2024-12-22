@@ -84,11 +84,11 @@ section {
 }
 
 .creators-wrapper {
-    margin-top: 10px;
+    margin-top: calc(var(--minecraftdepth) * 4);
+    gap: calc(var(--minecraftdepth) * 4);
     width: 100%;
     display: flex;
     flex-direction: row;
-    gap: 10px;
 }
 
 .creators-wrapper>* {
@@ -115,40 +115,15 @@ section {
 .page-content-wrapper {
     display: flex;
     flex-direction: column;
-    /* Stacks children vertically */
     align-items: center;
-    /* Centers children horizontally */
     justify-content: center;
-    /* Optional: Adds spacing between elements */
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
-    max-width: 50%;
+    max-width: clamp(50px, calc(var(--minecraftdepth) * 400), calc(100% - (var(--minecraftdepth) * 8)));
     height: 100%;
     min-height: 600px;
     min-width: 200px;
-    /* background-color: blueviolet; */
-}
-
-@media screen and (max-width: 1000px) {
-    .page-content-wrapper {
-        max-width: 60%;
-    }
-
-}
-
-@media screen and (max-width: 800px) {
-    .page-content-wrapper {
-        max-width: 70%;
-    }
-
-}
-
-@media screen and (max-width: 700px) {
-    .page-content-wrapper {
-        max-width: 90%;
-    }
-
 }
 
 .page-content-wrapper .bedrock-text {
