@@ -159,14 +159,14 @@ const Home: React.FC = () => {
                   text="Better Bedrock"
                   color="white"
                   font="MinecraftTen"
-                  margin="20px 0px 0px 0px"
+                  margin="calc(var(--minecraftdepth)* 6) 0px 0px 0px"
                   textAlign="center"
                 ></BedrockText>
                 <BedrockText
                   type={BedrockTextType.p1}
                   textAlign="center"
                   color="white"
-                  margin="0px 0px 20px"
+                  margin="0px 0px calc(var(--minecraftdepth)* 6)"
                   text="is the most powerful, customizable, useful and free Texture Pack available on the majority of platforms!"
                 ></BedrockText>
               </hgroup>
@@ -207,6 +207,13 @@ const Home: React.FC = () => {
               type={BedrockTextType.h2}
               font="MinecraftTen"
               color="white"
+            ></BedrockText>
+            <BedrockText
+              type={BedrockTextType.p1}
+              textAlign="center"
+              color="white"
+              margin="0px 0px calc(var(--minecraftdepth) * 4) 0px"
+              text="Meet the creators behind the Better Bedrock project! Initially created by AmBro, then extended by iDarkQ. See below the parts of the project they are responsible for!"
             ></BedrockText>
             <div className="creators-wrapper">
               <CreatorCard
