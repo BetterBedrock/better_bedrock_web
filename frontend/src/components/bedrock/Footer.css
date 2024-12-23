@@ -2,10 +2,7 @@
   height: 100%;
   width: 100%;
   position: relative;
-  font-family: "Mojangles";
   display: flex;
-  justify-content: center; /* Align horizontal */
-  align-items: center; /* Align vertical */
   justify-content: center;
   align-items: center;
   text-align: center;

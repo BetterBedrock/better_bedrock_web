@@ -13,8 +13,7 @@ const Footer: React.FC<FooterProps> = ({ width }) => {
       <Label width={width}>
         <div className="footer-text">
           <BedrockText
-            text="Copyright © Better Bedrock | All rights reserved | Not affiliated with
-        Mojang Studios"
+            text="Copyright © Better Bedrock | All rights reserved | Not affiliated with Mojang Studios"
             type={BedrockTextType.p1}
             textAlign="center"
           />
