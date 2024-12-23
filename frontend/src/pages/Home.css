@@ -88,27 +88,17 @@ section {
     gap: calc(var(--minecraftdepth) * 4);
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+}
+
+
+.creators-wrapper .outer-div {
+    width: 100%;
+    height: 100px;
 }
 
 .creators-wrapper>* {
-    flex: 1;
     box-sizing: border-box;
-}
-
-@media screen and (max-width: 768px) {
-    .creators-wrapper {
-        flex-direction: column;
-    }
-
-    .creators-wrapper .outer-div {
-        width: 100%;
-        height: 100px;
-    }
-
-    .creators-wrapper>* {
-        flex: unset;
-    }
 }
 
 .page-content-wrapper {

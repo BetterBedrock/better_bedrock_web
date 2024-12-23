@@ -42,7 +42,7 @@ const CreatorCard: React.FC<CreatorCardProp> = ({
           ></BedrockText>
           <BedrockText
             text={description?.join(" ▪ ") ?? ""}
-            type={BedrockTextType.p3}
+            type={BedrockTextType.p2}
           ></BedrockText>
         </div>
       </div>

@@ -208,7 +208,7 @@ const Home: React.FC = () => {
           <div className="page-content-wrapper">
             <BedrockText
               text="CREATORS"
-              type={BedrockTextType.h2}
+              type={BedrockTextType.h1}
               font="MinecraftTen"
               color="white"
             ></BedrockText>
