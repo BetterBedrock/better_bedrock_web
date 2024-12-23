@@ -75,11 +75,11 @@ const Home: React.FC = () => {
         ></BedrockText>
       </div>
       <div className="img-wrapper">
-          <img
-            alt=""
-            src={require("../assets/images/banners/mod_menu.png")}
-          ></img>
-        </div>
+        <img
+          alt=""
+          src={require("../assets/images/banners/mod_menu.png")}
+        ></img>
+      </div>
     </div>,
   ];
 
@@ -94,7 +94,8 @@ const Home: React.FC = () => {
             <>
               <li>
                 {" "}
-                <SimpleButton height={"100%"}>
+                <SimpleButton height={"100%"}
+                  onTap={() => naviagte("/")}>
                   <BedrockText
                     text="Home"
                     type={BedrockTextType.p1}
@@ -105,7 +106,7 @@ const Home: React.FC = () => {
               <li>
                 <SimpleButton
                   height={"100%"}
-                  onTap={() => naviagte("/showcase")}
+                  onTap={() => naviagte("/download")}
                 >
                   <BedrockText
                     text="Download"
@@ -115,7 +116,8 @@ const Home: React.FC = () => {
                 </SimpleButton>
               </li>
               <li>
-                <SimpleButton height={"100%"}>
+                <SimpleButton height={"100%"}
+                  onTap={() => naviagte("/showcase")}>
                   <BedrockText
                     text="Discord"
                     type={BedrockTextType.p1}
@@ -124,7 +126,8 @@ const Home: React.FC = () => {
                 </SimpleButton>
               </li>
               <li>
-                <SimpleButton height={"100%"}>
+                <SimpleButton height={"100%"}
+                  onTap={() => naviagte("/faq")}>
                   <BedrockText
                     text="FAQ"
                     type={BedrockTextType.p1}
@@ -159,14 +162,14 @@ const Home: React.FC = () => {
                   text="Better Bedrock"
                   color="white"
                   font="MinecraftTen"
-                  margin="calc(var(--minecraftdepth)* 6) 0px 0px 0px"
+                  margin="20px 0px 0px 0px"
                   textAlign="center"
                 ></BedrockText>
                 <BedrockText
                   type={BedrockTextType.p1}
                   textAlign="center"
                   color="white"
-                  margin="0px 0px calc(var(--minecraftdepth)* 6)"
+                  margin="0px 0px 20px"
                   text="is the most powerful, customizable, useful and free Texture Pack available on the majority of platforms!"
                 ></BedrockText>
               </hgroup>
@@ -174,6 +177,7 @@ const Home: React.FC = () => {
             <div className="page-element">
               <div className="buttons">
                 <Button
+                  font="MinecraftTen"
                   text="Download"
                   width={"100%"}
                   height={"48px"}
@@ -207,13 +211,6 @@ const Home: React.FC = () => {
               type={BedrockTextType.h2}
               font="MinecraftTen"
               color="white"
-            ></BedrockText>
-            <BedrockText
-              type={BedrockTextType.p1}
-              textAlign="center"
-              color="white"
-              margin="0px 0px calc(var(--minecraftdepth) * 4) 0px"
-              text="Meet the creators behind the Better Bedrock project! Initially created by AmBro, then extended by iDarkQ. See below the parts of the project they are responsible for!"
             ></BedrockText>
             <div className="creators-wrapper">
               <CreatorCard

@@ -21,6 +21,7 @@ interface ButtonProp {
   outlinePaddingLeft?: string;
   outlinePaddingRight?: string;
   tabIndex?: number;
+  font?: string;
 }
 
 enum ButtonType {
@@ -51,6 +52,7 @@ const Button: React.FC<ButtonProp> = ({
   outlinePaddingLeft = "var(--minecraftdepth)",
   outlinePaddingRight = "var(--minecraftdepth)",
   tabIndex,
+  font
 }) => {
   const [isToggled, setIsToggled] = useState(setClickedState);
   const [isHeld, setIsHeld] = useState(false);
@@ -127,12 +129,13 @@ const Button: React.FC<ButtonProp> = ({
       style={{ height: height, width: width, maxWidth: width }}
       tabIndex={tabIndex}
     >
-      <div className="button-first-layer" style={{borderLeftWidth: outlinePaddingLeft, borderRightWidth: outlinePaddingRight}}>
+      <div className="button-first-layer" style={{ borderLeftWidth: outlinePaddingLeft, borderRightWidth: outlinePaddingRight }}>
         <div className="button-second-layer">
           <div className="button-third-layer">
             <div className="button-fourth-layer">
               <div className="button-text">
                 <BedrockText
+                  font={font}
                   selectable={false}
                   type={textType ?? BedrockTextType.p1}
                   text={text}
