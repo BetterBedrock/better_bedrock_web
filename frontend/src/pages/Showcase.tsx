@@ -13,6 +13,7 @@ import LoadingBar from ".././components/bedrock/LoadingBar";
 import CircularProgressIndicator from ".././components/bedrock/CircularProgressIndicator";
 import CreatorCard from ".././components/bedrock/CreatorCard";
 import { useNavigate } from "react-router-dom";
+import DownloadCard from "../components/bedrock/DownloadCard";
 
 function Showcase() {
   const [percentage, setPercentage] = useState(0);
@@ -172,6 +173,14 @@ function Showcase() {
             name="iDarkQ"
             description={["Hello world!", " Hee"]}
           ></CreatorCard>
+        </LineBreak>
+
+        <LineBreak text="Download Card">
+          <DownloadCard
+            title="Texture Pack v7.4"
+            description="The Better Bedrock Texture Pack is a powerful, customizable, and free Texture Pack available on most platforms. Enhance your gameplay with multiple mods and adjustable options!"
+            downloadSize="1.2 MB"
+          ></DownloadCard>
         </LineBreak>
 
         <LineBreak text="Pages">
