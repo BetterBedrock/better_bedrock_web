@@ -157,6 +157,7 @@ section {
 }
 
 .page-content-wrapper .page-element .buttons {
+    gap: calc(var(--minecraftdepth) * 4);
     display: flex;
     flex-direction: row;
     width: 100%;
