@@ -217,7 +217,7 @@ section {
     }
 
     .about:first-child {
-        margin-bottom: 2rem;
+        margin-bottom: calc(var(--minecraftdepth) * 4);
     }
 
     .about-content {

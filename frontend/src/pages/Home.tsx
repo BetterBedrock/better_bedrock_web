@@ -35,14 +35,14 @@ const Home: React.FC = () => {
       <div className="about-content">
         <BedrockText
           text="Mod Menu"
-          type={BedrockTextType.h2}
+          type={BedrockTextType.h1}
           font="MinecraftTen"
           color="white"
           textAlign="center"
         ></BedrockText>
         <BedrockText
           text="Includes many adjustable modules and options to customize default HUD elements!"
-          type={BedrockTextType.p2}
+          type={BedrockTextType.p1}
           font="Mojangles"
           color="white"
           textAlign="center"
@@ -61,14 +61,14 @@ const Home: React.FC = () => {
       <div className="about-content">
         <BedrockText
           text="Custom UIS"
-          type={BedrockTextType.h2}
+          type={BedrockTextType.h1}
           font="MinecraftTen"
           color="white"
           textAlign="center"
         ></BedrockText>
         <BedrockText
           text="Most main screens have been rewritten to match new upcoming Minecraft UI, the OreUI."
-          type={BedrockTextType.p2}
+          type={BedrockTextType.p1}
           font="Mojangles"
           color="white"
           textAlign="center"
