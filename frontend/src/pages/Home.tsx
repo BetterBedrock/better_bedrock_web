@@ -75,11 +75,11 @@ const Home: React.FC = () => {
         ></BedrockText>
       </div>
       <div className="img-wrapper">
-          <img
-            alt=""
-            src={require("../assets/images/banners/mod_menu.png")}
-          ></img>
-        </div>
+        <img
+          alt=""
+          src={require("../assets/images/banners/mod_menu.png")}
+        ></img>
+      </div>
     </div>,
   ];
 
@@ -94,7 +94,8 @@ const Home: React.FC = () => {
             <>
               <li>
                 {" "}
-                <SimpleButton height={"100%"}>
+                <SimpleButton height={"100%"}
+                  onTap={() => naviagte("/")}>
                   <BedrockText
                     text="Home"
                     type={BedrockTextType.p1}
@@ -105,7 +106,7 @@ const Home: React.FC = () => {
               <li>
                 <SimpleButton
                   height={"100%"}
-                  onTap={() => naviagte("/showcase")}
+                  onTap={() => naviagte("/download")}
                 >
                   <BedrockText
                     text="Download"
@@ -115,7 +116,8 @@ const Home: React.FC = () => {
                 </SimpleButton>
               </li>
               <li>
-                <SimpleButton height={"100%"}>
+                <SimpleButton height={"100%"}
+                  onTap={() => naviagte("/showcase")}>
                   <BedrockText
                     text="Discord"
                     type={BedrockTextType.p1}
@@ -124,7 +126,8 @@ const Home: React.FC = () => {
                 </SimpleButton>
               </li>
               <li>
-                <SimpleButton height={"100%"}>
+                <SimpleButton height={"100%"}
+                  onTap={() => naviagte("/faq")}>
                   <BedrockText
                     text="FAQ"
                     type={BedrockTextType.p1}
