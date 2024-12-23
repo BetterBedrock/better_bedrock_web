@@ -84,7 +84,7 @@ section {
 }
 
 .creators-wrapper {
-    margin-top: calc(var(--minecraftdepth) * 4);
+    margin-top: calc(var(--minecraftdepth) * 6);
     gap: calc(var(--minecraftdepth) * 4);
     width: 100%;
     display: flex;
@@ -131,7 +131,7 @@ section {
 }
 
 .page-content-wrapper .page-element img {
-    margin: 40px;
+    margin-bottom: calc(var(--minecraftdepth) * 10);
     height: 100px;
 }
 
