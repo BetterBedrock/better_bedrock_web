@@ -217,7 +217,7 @@ const Home: React.FC = () => {
               textAlign="center"
               color="white"
               margin="0px 0px 0px"
-              text="Meet the creators of this project! Initially started by Ambro, from simple Texture Pack to currently advanced applications for mobile and desktop created by IDarkQ!"
+              text="Meet the creators of this project! Started by simple texture pack by Ambro has evolved into advanced mobile and desktop applications developed by IDarkQ."
             ></BedrockText>
             <div className="creators-wrapper">
               <CreatorCard
