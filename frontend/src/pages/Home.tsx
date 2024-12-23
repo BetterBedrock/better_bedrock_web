@@ -138,14 +138,14 @@ const Home: React.FC = () => {
             </>
           }
           prefix={
-            <>
+            <div onClick={() => naviagte("/")} className="header-prefix-wrapper">
               <img alt="" src={require("../assets/images/favicon.png")} />
               <BedrockText
                 text="Better Bedrock"
                 type={BedrockTextType.h1}
                 font="MinecraftTen"
               />
-            </>
+            </div>
           }
         ></Header>
       </header>

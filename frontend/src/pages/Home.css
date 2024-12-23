@@ -169,6 +169,15 @@ section {
     gap: calc(var(--minecraftdepth) * 2);
 }
 
+.header-prefix-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.header-prefix-wrapper:hover {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 500px) {
     .page-content-wrapper .page-element .buttons {
         flex-direction: column;
