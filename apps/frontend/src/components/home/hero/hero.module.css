@@ -1,0 +1,31 @@
+#wrapper {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../../assets/images/crosshair_backgrounds/1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#headers {
+    margin-bottom: 20px;
+}
+
+#actions {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#logo {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    /* height: 100%; */
+    width: auto;
+    max-height: 100px;
+}
+
+@media screen and (max-width: 500px) {
+    #actions {
+        flex-direction: column;
+    }
+}

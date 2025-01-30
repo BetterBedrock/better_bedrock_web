@@ -1,0 +1,19 @@
+
+
+.footer-text {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  font-family: "Mojangles";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  vertical-align:middle;
+  margin: 0px;
+  padding: 15px 15px 15px 15px;
+}
+
+.footer-text > * {
+  width: 100%;
+}

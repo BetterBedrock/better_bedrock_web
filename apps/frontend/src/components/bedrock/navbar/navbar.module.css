@@ -1,0 +1,113 @@
+#label_wrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+#suffix-expand-button {
+    display: none;
+    margin-left: auto;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#prefix, #suffix {
+    height: 100%;
+}
+
+#suffix .material-icons {
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+
+#suffix ul {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    gap: var(--padding-small);
+}
+
+#suffix ul li {
+    height: 100%;
+    width: 100%;
+}
+
+#expand_button {
+    display: none;
+}
+
+#container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: var(--minecraftdepth);
+    box-sizing: border-box;
+}
+
+#prefix p, #suffix p {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+#prefix img {
+    height: 100%;
+}
+
+#prefix {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: var(--padding-small);
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+    #suffix {
+        position: absolute;
+        flex-direction: column;
+    }
+
+    [data-expanded="true"] {
+        display: none;
+    }
+
+    #suffix ul {
+        flex-direction: column;
+        padding: 2.5px;
+    }
+
+    #suffix ul li, li .bedrock-simple-button {
+        width: 100%;
+    }
+
+    #expand_button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    #expand_button button {
+        aspect-ratio: 1/1;
+    }
+}

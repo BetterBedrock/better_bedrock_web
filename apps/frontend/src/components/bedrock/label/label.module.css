@@ -1,0 +1,20 @@
+.outer_div {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    background-color: rgb(145, 145, 145);
+    overflow: visible;
+    padding-bottom: calc(var(--minecraftdepth) * 2);
+}
+
+.inner_div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(230, 232, 235);
+    position: relative;
+
+    overflow: visible;
+    align-items: center;
+}

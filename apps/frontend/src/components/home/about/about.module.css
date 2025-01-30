@@ -1,0 +1,104 @@
+#wrapper {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/images/crosshair_backgrounds/2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media screen and (max-width: 500px) {
+    #content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+
+    #wrapper img {
+        height: 100%;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    #wrapper:first-child {
+        margin-bottom: 20px;
+    }
+
+    #content {
+        margin-left: 20px;
+    }
+
+    #content:last-child {
+        margin-right: 20px;
+    }
+
+    #content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #wrapper img {
+        box-sizing: border-box;
+        padding: 16px;
+        width: 50%;
+    }
+
+    #wrapper img:first-child {
+        animation: imageOnHoverBack 0.25s ease-in-out forwards;
+    }
+
+
+    #wrapper img:last-child {
+        animation: imageOnHoverBackLeft 0.25s ease-in-out forwards;
+    }
+
+
+    #wrapper img:first-child:hover {
+        animation: imageOnHoverRight 0.25s ease-in-out forwards;
+    }
+
+    #wrapper img:last-child:hover {
+        animation: imageOnHoverLeft 0.25s ease-in-out forwards;
+    }
+}
+
+@keyframes imageOnHoverRight {
+    from {
+        transform: unset;
+    }
+
+    to {
+        transform: rotate(2.5deg) scale(1.1, 1.1);
+    }
+}
+
+@keyframes imageOnHoverLeft {
+    from {
+        transform: unset;
+    }
+
+    to {
+        transform: rotate(-2.5deg) scale(1.1, 1.1);
+    }
+}
+
+@keyframes imageOnHoverBack {
+    from {
+        transform: rotate(2.5deg) scale(1.1, 1.1);
+    }
+
+    to {
+        transform: unset;
+    }
+}
+
+@keyframes imageOnHoverBackLeft {
+    from {
+        transform: rotate(-2.5deg) scale(1.1, 1.1);
+    }
+
+    to {
+        transform: unset;
+    }
+}

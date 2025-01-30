@@ -1,0 +1,34 @@
+.content {
+    width: 100%;
+    height: 100%;
+    padding: 7.5px;
+
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.card_image {
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.card_image img {
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.card_description {
+    margin-left: 7.5px;
+    width: 100%;
+}
+
+.card_description p {
+    display: flex;
+    flex-direction: column;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    box-sizing: border-box;
+}
