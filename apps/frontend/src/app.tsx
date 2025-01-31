@@ -1,5 +1,4 @@
-
-import { Routes, Route, BrowserRouter } from "react-router";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Home } from "pages/home/home";
 import { Layout } from "components/layout/layout";
 import Showcase from "pages/Showcase";
