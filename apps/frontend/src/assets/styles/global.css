@@ -10,6 +10,7 @@
 
 :root {
   --minecraftdepth: 2.5px;
+  --websiteSizing: clamp(50px, calc(var(--minecraftdepth) * 500), calc(100% - (var(--minecraftdepth) * 8)));
 
   /* Minecraft Colors */
   --black: rgb(30, 30, 30);
