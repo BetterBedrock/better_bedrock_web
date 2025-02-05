@@ -8,14 +8,14 @@ export const AboutCustomUis = () => (
     <div className={styles.content}>
       <BedrockText
         text="Custom UIS"
-        type={"h2"}
-        font="Minecraft"
+        type={"h1"}
+        font="MinecraftTen"
         color="white"
         textAlign="center"
       ></BedrockText>
       <BedrockText
         text="Most main screens have been rewritten to match new upcoming Minecraft UI, the OreUI."
-        type={"p2"}
+        type={"p"}
         font="Mojangles"
         color="white"
         textAlign="center"
