@@ -24,7 +24,7 @@ export const Navbar = () => {
         >
           <div id={styles.prefix}>
             <img alt="" src={FavIcon} />
-            <BedrockText text="Better Bedrock" type={"h1"} font="Minecraft" />
+            <BedrockText text="Better Bedrock" type={"h1"} font="MinecraftTen" />
           </div>
           <div id={styles.expand_button}>
             <SimpleButton height={"100%"} onTap={handleExpandNavbar}>

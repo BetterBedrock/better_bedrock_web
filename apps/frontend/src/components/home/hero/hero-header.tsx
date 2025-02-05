@@ -8,7 +8,7 @@ export const HeroHeader = () => (
       type={"h1"}
       text="Better Bedrock"
       color="white"
-      font="Minecraft"
+      font="MinecraftTen"
       textAlign="center"
     ></BedrockText>
     <BedrockText

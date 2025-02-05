@@ -78,7 +78,9 @@
     gap: var(--padding-small);
 }
 
-
+#prefix:hover {
+    cursor: pointer;
+}
 
 
 @media screen and (max-width: 600px) {

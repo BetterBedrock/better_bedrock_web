@@ -9,14 +9,14 @@ export const AboutModMenu = () => (
     <div className={styles.content}>
       <BedrockText
         text="Mod Menu"
-        type={"h2"}
-        font="Minecraft"
+        type={"h1"}
+        font="MinecraftTen"
         color="white"
         textAlign="center"
       ></BedrockText>
       <BedrockText
         text="Includes many adjustable modules and options to customize default HUD elements!"
-        type={"p2"}
+        type={"p"}
         font="Mojangles"
         color="white"
         textAlign="center"
