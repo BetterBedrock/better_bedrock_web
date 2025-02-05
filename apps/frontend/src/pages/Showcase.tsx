@@ -10,6 +10,7 @@ import { CreatorCard } from "../components/bedrock/creators-card/creators-card";
 import { useNavigate } from "react-router-dom";
 import { HeroHeader } from "components/home/hero/hero-header";
 import { Navbar } from "components/bedrock/navbar";
+import DownloadCard from "components/bedrock/download-card/download-card";
 
 function Showcase() {
   const [percentage, setPercentage] = useState(0);
@@ -165,6 +166,14 @@ function Showcase() {
             name="iDarkQ"
             description={["Hello world!", " Hee"]}
           ></CreatorCard>
+        </LineBreak>
+
+        <LineBreak text="Download Card">
+          <DownloadCard
+            title="Texture Pack v7.4"
+            description="The Better Bedrock Texture Pack is a powerful, customizable, and free Texture Pack available on most platforms. Enhance your gameplay with multiple mods and adjustable options!"
+            downloadSize="1.2 MB"
+          ></DownloadCard>
         </LineBreak>
 
         <LineBreak text="Pages">
