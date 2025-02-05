@@ -1,60 +1,68 @@
 import { useNavigate } from "react-router";
-import { BedrockText } from "../components/bedrock/text/bedrock-text";
-import { Button } from "../components/bedrock/button/button";
-import Footer from "../components/bedrock/Footer";
-import "./Downloads.css";
+import { BedrockText } from "../../components/bedrock/text/bedrock-text";
+import { Button } from "../../components/bedrock/button/button";
+import Footer from "../../components/bedrock/Footer";
+import styles from "./downloads.module.css";
+import DownloadCard from "components/bedrock/download-card/download-card";
 
-const Downloads = () => {
+export const Downloads = () => {
   const naviagte = useNavigate();
 
-  // TODO: Replace it with css
-  // const isSmallScreen = useMediaQuery({
-  //   query: "(max-width: 500px)",
-  // });
-  const isSmallScreen = false;
+  const itemWeightCalc = (itemWeight: number) => {
+    return itemWeight <= 0.1 ? "<0.0" : itemWeight.toFixed(1);
+  }
+
+  //todo: add proper layers to DownloadCard component, like on Button, maybe whole element into this Button component??!
 
   return (
     <>
-      <main id="downloads-page">
-        <section id="downloads">
-          <div className="downloads-content-wrapper">
+      <main id={styles.page_sections}>
+        <section id={styles.wrapper}>
+
+          <div className={styles.page_content_wrapper}>
             {DOWNLOAD_LIST.map((downloadCategory, categoryIndex) => (
               <>
-                <div className="download-element">
-                  <hgroup>
+                <div className={styles.download_element}>
+                  <div>
                     <BedrockText
                       type={"h1"}
                       text={downloadCategory.title}
                       color="white"
-                      font="Minecraft"
-                      margin="20px 0px 0px 0px"
+                      font="MinecraftTen"
                       textAlign="center"
                     ></BedrockText>
                     <BedrockText
                       type={"p"}
                       textAlign="center"
                       color="white"
-                      margin="0px 0px 20px"
+                      margin="0px 0px calc(var(--minecraftdepth) * 4)"
                       text={downloadCategory.description}
                     ></BedrockText>
-                  </hgroup>
-                  {downloadCategory.items.map((downloadItem, itemIndex) => (
-                    <Button
-                      text={downloadItem.title}
-                      width={"100%"}
-                      height={"48px"}
-                      type={
-                        downloadItem?.alwaysGreenButton
-                          ? "alwaysGreen"
-                          : "alwaysWhite"
-                      }
-                    ></Button>
-                  ))}
+                  </div>
+
+                  <div className={styles.download_items}>
+                    {downloadCategory.items.map((downloadItem, itemIndex) => (
+                      <DownloadCard
+                        title={downloadItem.title}
+                        description={downloadItem.description}
+                        downloadSize={`${itemWeightCalc(downloadItem.itemWeight)}MB`}
+                        textureType={
+                          downloadItem?.alwaysGreenButton
+                            ? "green"
+                            : "white"
+                        }
+                        // iconPath={"imageAssetUrl" in downloadItem ? `../../${downloadItem.imageAssetUrl}` : "../../assets/images/favicon.png"}  //download-card.tsx@28 line
+                      />
+
+                    ))}
+                  </div>
+
                 </div>
               </>
             ))}
           </div>
-          <Footer width="100%"></Footer>
+
+          <Footer />
         </section>
       </main>
     </>
@@ -337,5 +345,3 @@ export const DOWNLOAD_LIST = [
     ],
   },
 ];
-
-export default Downloads;

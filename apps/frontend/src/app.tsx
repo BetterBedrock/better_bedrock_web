@@ -1,8 +1,8 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Home } from "pages/home/home";
+import { Downloads } from "pages/downloads/downloads";
 import { Layout } from "components/layout/layout";
 import Showcase from "pages/Showcase";
-import Downloads from "pages/Downloads";
 import Faq from "pages/Faq";
 
 export const App = () => (
