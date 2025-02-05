@@ -3,10 +3,10 @@ import { Label } from "./label";
 import { BedrockText } from "./text/bedrock-text";
 
 interface FooterProps {
-  width: string;
+  width?: string;
 }
 
-const Footer: React.FC<FooterProps> = ({ width }) => {
+const Footer: React.FC<FooterProps> = ({ width = "100%" }) => {
   return (
     <footer>
       <Label width={width}>
