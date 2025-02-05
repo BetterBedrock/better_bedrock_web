@@ -1,0 +1,50 @@
+.download_card_content {
+  width: 100%;
+  height: 100%;
+  padding: 7.5px;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.download_card_outline {
+  border: var(--minecraftdepth) solid rgb(30, 30, 30);
+}
+
+.download_card_image {
+  display: flex;
+  position: relative;
+  height: 100%;
+  max-width: 89px;
+  min-width: 44px;
+}
+
+.download_card_image img {
+  max-width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.download_card_description {
+  margin-left: 7.5px;
+  width: 100%;
+}
+
+.download_card_description p {
+  display: flex;
+  flex-direction: column;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  box-sizing: border-box;
+}
+
+.download_card_title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.download_card_title p:nth-child(2) {
+  white-space: nowrap; 
+}
