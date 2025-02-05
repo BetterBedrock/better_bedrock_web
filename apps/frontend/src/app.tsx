@@ -3,6 +3,7 @@ import { Home } from "pages/home/home";
 import { Layout } from "components/layout/layout";
 import Showcase from "pages/Showcase";
 import Downloads from "pages/Downloads";
+import Faq from "pages/Faq";
 
 export const App = () => (
   <Layout>
@@ -11,6 +12,7 @@ export const App = () => (
         <Route index element={<Home />} />
         <Route path="showcase" element={<Showcase />} />
         <Route path="downloads" element={<Downloads />} />
+        <Route path="faq" element={<Faq />} />
         {/* <Route path="loading" element={<Loading />} />
       <Route path="downloads" element={<Downloads />} />
       <Route path="showcase" element={<Showcase />} />
