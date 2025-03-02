@@ -1,28 +1,15 @@
 .download_card_content {
   width: 100%;
-  height: 100%;
-  padding: 7.5px;
+  padding: 5px;
   box-sizing: border-box;
   position: relative;
   display: flex;
-  flex-direction: row;
+  align-items: flex-start;
 }
 
-.download_card_outline {
-  border: var(--minecraftdepth) solid rgb(30, 30, 30);
-}
-
-.download_card_image {
-  display: flex;
-  position: relative;
-  height: 100%;
-  max-width: 89px;
-  min-width: 44px;
-}
-
-.download_card_image img {
-  max-width: 100%;
-  height: 100%;
+.download_card_content img {
+  flex-shrink: 0;
+  width: clamp(1rem, 4.5rem, 6rem);
   aspect-ratio: 1 / 1;
 }
 

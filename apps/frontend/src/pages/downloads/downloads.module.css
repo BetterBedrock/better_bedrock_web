@@ -23,14 +23,14 @@
 }
 
 .page_content_wrapper {
-  gap: calc(var(--minecraftdepth) * 12);
+  gap: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   max-width: var(--websiteSizing);
-  margin: calc(var(--minecraftdepth) * 24) auto;
+  margin: 60px auto;
 }
 
 .download_items {
