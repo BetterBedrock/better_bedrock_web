@@ -7,7 +7,7 @@ export const CreatorsCard = () => (
       width="auto"
       height="100px"
       name="Ambro"
-      description={["Texture Pack", "Discord"]}
+      description={["Texture Pack", "Website", "Discord"]}
     ></CreatorCard>
     <CreatorCard
       width="auto"

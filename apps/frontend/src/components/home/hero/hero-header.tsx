@@ -15,7 +15,8 @@ export const HeroHeader = () => (
       type={"p"}
       textAlign="center"
       color="white"
-      text="is the most powerful, customizable, useful and free Texture Pack available on the majority of platforms!"
+      text="Is the most powerful, customizable, useful and free Texture Pack available on the majority of platforms!"
+      style={{marginTop: "2.5px"}}
     ></BedrockText>
   </div>
 );

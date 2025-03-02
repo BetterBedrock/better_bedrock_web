@@ -35,7 +35,7 @@
 
 .download_items {
   display: flex;
-  gap: calc(var(--minecraftdepth) * 2);;
+  gap: 7.5px;
   flex-direction: column;
   width: 100%;
 }

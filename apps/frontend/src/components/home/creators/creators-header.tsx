@@ -12,7 +12,7 @@ export const CreatorsHeader = () => (
       type={"p"}
       textAlign="center"
       color="white"
-      margin="0px 0px calc(var(--minecraftdepth) * 4) 0px"
+      margin="2.5px 0px 15px 0px"
       text="Meet the creators behind the Better Bedrock project! Initially created by AmBro, then extended by iDarkQ. See below the parts of the project they are responsible for!"
     ></BedrockText>
   </>

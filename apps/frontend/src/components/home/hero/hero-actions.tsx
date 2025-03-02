@@ -7,14 +7,14 @@ export const HeroActions = () => (
   <div className={homeStyles.page_element}>
     <div id={styles.actions}>
       <Button
-        text="Download"
+        text="Download Now"
         width={"100%"}
         height={"48px"}
         outlinePaddingRight="1.75px"
         type="alwaysGreen"
       ></Button>
       <Button
-        text="Discord"
+        text="Join Discord"
         width={"100%"}
         height={"48px"}
         outlinePaddingLeft="1.75px"

@@ -25,12 +25,11 @@ export const CreatorCard = ({
       <div className={styles.card_description}>
         <BedrockText
           text={name ?? "iDarkQ"}
-          type={"h1"}
+          type={"h2"}
           font="MinecraftTen"
-          strong
         ></BedrockText>
         <BedrockText
-          text={description?.join(" ▪ ") ?? ""}
+          text={description?.join(", ") ?? ""}
           type={"p"}
         ></BedrockText>
       </div>
