@@ -6,20 +6,24 @@ import useSound from "use-sound";
 
 import styles from "./button.module.css";
 
+export type ButtonType = "alwaysGreen" | "alwaysWhite" | "alwaysBlack";
+
 interface ButtonProp {
   height?: number | string;
   width?: number | string;
   onTap?: () => void;
   onChangeStateHandler?: (value: boolean) => void;
-  type?: "alwaysGreen" | "alwaysWhite" | "alwaysBlack";
+  type?: ButtonType;
   isClicked?: boolean;
   setClickedState?: boolean;
   playSound?: boolean;
-  textType?: "h1" | "h2" | "h3" | "p" | "p2" | "p3";
+  textType?: "h1" | "h2" | "h3" | "p" | "p2";
   text: string;
   outlinePaddingLeft?: string;
   outlinePaddingRight?: string;
   tabIndex?: number;
+  children?: ReactNode;
+  style?: React.CSSProperties
 }
 
 const Button = ({
@@ -36,6 +40,8 @@ const Button = ({
   outlinePaddingLeft = "var(--minecraftdepth)",
   outlinePaddingRight = "var(--minecraftdepth)",
   tabIndex,
+  children,
+  style
 }: ButtonProp) => {
   const [isToggled, setIsToggled] = useState(setClickedState);
   const [isHeld, setIsHeld] = useState(false);
@@ -88,7 +94,7 @@ const Button = ({
       onClick={handleClick}
       data-toggled={isToggled ? "true" : "false"}
       data-type={type}
-      style={{ height: height, width: width, maxWidth: width }}
+      style={{ height: height, width: width, maxWidth: width, ...style }}
       tabIndex={tabIndex}
     >
       <div
@@ -107,6 +113,9 @@ const Button = ({
                   type={textType ?? "p"}
                   text={text}
                 />
+                {children && (<div style={{ display: "flex", alignItems: "flex-start", width: "100%", height: "100%" }}>
+                  {children}
+                </div>)}
               </div>
             </div>
             <div className={styles.fifth_layer} />

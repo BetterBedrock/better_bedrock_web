@@ -23,7 +23,8 @@
 }
 
 [data-toggled="true"] .first_layer {
-    margin-top: calc(var(--minecraftdepth) * 2);
+    /* not sure if this is margin necessary, it breaks sizing like in /downloads lists */
+    /* margin-top: calc(var(--minecraftdepth) * 2); */
     height: calc(100% - calc(var(--minecraftdepth) * 2));
 }
 
