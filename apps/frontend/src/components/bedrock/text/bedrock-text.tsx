@@ -17,6 +17,7 @@ export interface BedrockTextProps {
   selectable?: boolean;
   strong?: boolean;
   type: "h1" | "h2" | "h3" | "p" | "p2";
+  style?: React.CSSProperties;
 }
 
 export const BedrockText = ({
@@ -28,6 +29,7 @@ export const BedrockText = ({
   selectable = true,
   strong = false,
   margin,
+  style
 }: BedrockTextProps) => {
   const Tag = type === "p2" ? "p" : type;
   const paragraphType = type === "p2" ? styles.p2 : "";
@@ -37,14 +39,14 @@ export const BedrockText = ({
         paragraphType,
         styles.text,
         selectable === false ? styles.non_selectable : "",
-        //to jakies rozjebane jest bo nie dziala XD
-        // strong && styles.strong
+        strong && styles.strong
       )}
       style={{
         fontFamily: font,
         color: color,
         textAlign: textAlign,
         margin: margin,
+        ...style
       }}
     >
       {text}

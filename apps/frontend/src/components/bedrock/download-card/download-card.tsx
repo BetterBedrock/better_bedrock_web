@@ -44,13 +44,13 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
               text={title ?? ""}
               type={"h2"}
               font="MinecraftTen"
-              strong
+              style={{ padding: "0 0.5rem 2.5px 0" }}
             />
             <BedrockText
               text={downloadSize ?? ""}
               type={"h2"}
               font="MinecraftTen"
-              strong
+              style={{ paddingBottom: "2.5px" }}
             />
           </div>
           <BedrockText
