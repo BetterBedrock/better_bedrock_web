@@ -96,7 +96,6 @@ function Showcase() {
         }}
       >
         <LineBreak text="Texts">
-          <BedrockText type={"p3"} text="This is a Paragraph 3 text." />
           <BedrockText type={"p2"} text="This is a Paragraph 2 text." />
           <BedrockText type={"p"} text="This is a Paragraph 1 text." />
           <BedrockText type={"h3"} text="This is a Heading 3 text." />
