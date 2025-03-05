@@ -7,7 +7,8 @@ import styles from "./home.module.css";
 export const Home = () => (
   <main id={styles.page_sections}>
     <Hero />
-    <About />
+    <About sectionIndex={0} />
+    <About sectionIndex={1} />
     <Creators />
   </main>
 );

@@ -49,7 +49,7 @@ export const Downloads = () => {
                       type={"p"}
                       textAlign="center"
                       color="white"
-                      margin="2.5px 0px 15px 0px"
+                      margin="0 0 1rem 0"
                       text={downloadCategory.description}
                     ></BedrockText>
                   </div>
@@ -68,13 +68,13 @@ export const Downloads = () => {
                     </div>)}
 
                   {(downloadCategory.title.toLowerCase() === "archived") && (
-                    <div style={{ width: "100%", display: "flex", flexDirection: "row", paddingTop: ((downloadCategory.title.toLowerCase() === "archived") && isArchivedVisible) ? "30px" : "" }}>
+                    <div style={{ width: "100%", display: "flex", flexDirection: "row", paddingTop: ((downloadCategory.title.toLowerCase() === "archived") && isArchivedVisible) ? "2rem" : "" }}>
 
                       <Button
                         text={isArchivedVisible ? "Hide archived versions" : "Display archived versions"}
                         type="alwaysGreen"
                         width={"100%"}
-                        height={"48px"}
+                        height={"4rem"}
                         onTap={() => { setIsArchivedVisible((prev) => !prev) }}
                         outlinePaddingRight="1.75px"
                       />

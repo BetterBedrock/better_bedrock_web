@@ -1,16 +1,16 @@
-import { HeroActions } from "./hero-actions";
+import { PageImageWrapper } from "components/bedrock/page-image-wrapper";
 import { HeroHeader } from "./hero-header";
-import { HeroLogo } from "./hero-logo";
+import { HeroTrailer } from "./hero-trailer";
+import { HeroBottomText } from "./hero-bottom-text";
 
 import styles from "./hero.module.css";
-import homeStyles from "pages/home/home.module.css";
 
 export const Hero = () => (
-  <section id={styles.wrapper}>
-    <div className={homeStyles.page_content_wrapper}>
-      <HeroLogo />
+  <PageImageWrapper backgroundUrl={require("../../../assets/images/crosshair_backgrounds/1.png")}>
+    <section id={styles.homeSection}>
       <HeroHeader />
-      <HeroActions />
-    </div>
-  </section>
+      <HeroTrailer />
+      <HeroBottomText />
+    </section>
+  </PageImageWrapper>
 );

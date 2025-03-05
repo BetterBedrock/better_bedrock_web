@@ -8,7 +8,6 @@ import LoadingBar from ".././components/bedrock/LoadingBar";
 import CircularProgressIndicator from ".././components/bedrock/CircularProgressIndicator";
 import { CreatorCard } from "../components/bedrock/creators-card/creators-card";
 import { useNavigate } from "react-router-dom";
-import { HeroHeader } from "components/home/hero/hero-header";
 import { Navbar } from "components/bedrock/navbar";
 import DownloadCard from "components/bedrock/download-card/download-card";
 

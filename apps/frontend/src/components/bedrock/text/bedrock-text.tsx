@@ -18,6 +18,7 @@ export interface BedrockTextProps {
   strong?: boolean;
   type: "h1" | "h2" | "h3" | "p" | "p2";
   style?: React.CSSProperties;
+  extraClassName?: string | string[];
 }
 
 export const BedrockText = ({
@@ -25,11 +26,12 @@ export const BedrockText = ({
   color,
   font = "Mojangles",
   type,
-  textAlign,
+  textAlign = "center",
   selectable = true,
   strong = false,
   margin,
-  style
+  style,
+  extraClassName = []
 }: BedrockTextProps) => {
   const Tag = type === "p2" ? "p" : type;
   const paragraphType = type === "p2" ? styles.p2 : "";
@@ -39,7 +41,8 @@ export const BedrockText = ({
         paragraphType,
         styles.text,
         selectable === false ? styles.non_selectable : "",
-        strong && styles.strong
+        strong && styles.strong,
+        ...(Array.isArray(extraClassName) ? extraClassName : [extraClassName])
       )}
       style={{
         fontFamily: font,

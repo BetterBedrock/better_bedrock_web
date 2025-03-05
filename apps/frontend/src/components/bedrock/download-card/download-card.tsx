@@ -10,6 +10,8 @@ interface DownloadCardProp {
   iconPath?: string;
   downloadSize?: string;
   buttonType?: ButtonType;
+  playSound?: boolean;
+  isClicked?: boolean;
 }
 
 const DownloadCard: React.FC<DownloadCardProp> = ({
@@ -18,6 +20,8 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
   iconPath,
   downloadSize,
   buttonType = "alwaysWhite",
+  playSound = true,
+  isClicked
 }) => {
   const [imageSrc, setImageSrc] = useState(defaultImage);
 
@@ -34,7 +38,9 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
       text=""
       width={"100%"}
       height={"100%"}
-      type={buttonType}>
+      type={buttonType}
+      playSound={playSound}
+      isClicked={isClicked}>
 
       <div className={styles.download_card_content}>
         <img alt="" src={imageSrc} />
@@ -44,17 +50,20 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
               text={title ?? ""}
               type={"h2"}
               font="MinecraftTen"
+              textAlign="left"
               style={{ padding: "0 0.5rem 0 0" }}
             />
             <BedrockText
               text={downloadSize ?? ""}
               type={"h2"}
               font="MinecraftTen"
+              textAlign="left"
             />
           </div>
           <BedrockText
             text={description ?? ""}
             type={"p"}
+            textAlign="left"
           />
         </div>
       </div>

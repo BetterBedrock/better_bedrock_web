@@ -23,19 +23,19 @@
 }
 
 .page_content_wrapper {
-  gap: 60px;
+  gap: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   max-width: var(--websiteSizing);
-  margin: 60px auto;
+  margin: 4rem auto;
 }
 
 .download_items {
   display: flex;
-  gap: 7.5px;
+  gap: 0.5rem;
   flex-direction: column;
   width: 100%;
 }
