@@ -2,7 +2,7 @@ import { useState, useEffect, ReactNode } from "react";
 import SimpleButton from "../components/bedrock/simple-button/simple-button";
 import { BedrockText } from "../components/bedrock/text/bedrock-text";
 import Footer from ".././components/bedrock/Footer";
-import Collapsible from ".././components/bedrock/Collapsible";
+import { Collapsible } from ".././components/bedrock/Collapsible";
 import { Button } from "../components/bedrock/button/button";
 import LoadingBar from ".././components/bedrock/LoadingBar";
 import CircularProgressIndicator from ".././components/bedrock/CircularProgressIndicator";
@@ -126,13 +126,13 @@ function Showcase() {
 
           <div style={{ height: "5px" }}></div>
 
-          <Collapsible height={"4rem"} width={"100%"}>
+          {/* <Collapsible height={"4rem"} width={"100%"}>
             <BedrockText selectable={false} type={"p"} text="Witaj!" />
           </Collapsible>
           <div style={{ height: "5px" }}></div>
           <Collapsible height={"4rem"} width={"100%"}></Collapsible>
           <div style={{ height: "5px" }}></div>
-          <Collapsible height={"4rem"} width={"100%"}></Collapsible>
+          <Collapsible height={"4rem"} width={"100%"}></Collapsible> */}
           <div style={{ height: "5px" }}></div>
           <Button
             type="alwaysWhite"

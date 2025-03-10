@@ -1,0 +1,21 @@
+.tabsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabsWrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 370px) {
+  .tabsWrapper {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

@@ -1,0 +1,60 @@
+      {/* <main id={styles.page_sections}>
+        <section id={styles.wrapper}>
+          <div id="downloads"></div>
+          <div className={styles.page_content_wrapper}>
+            {DOWNLOAD_LIST.map((downloadCategory, categoryIndex) => (
+              <>
+                <div className={styles.download_element}>
+                  <div>
+                    <BedrockText
+                      type={"h1"}
+                      text={downloadCategory.title}
+                      color="white"
+                      font="MinecraftTen"
+                      textAlign="center"
+                    ></BedrockText>
+                    <BedrockText
+                      type={"p"}
+                      textAlign="center"
+                      color="white"
+                      margin="0 0 1rem 0"
+                      text={downloadCategory.description}
+                    ></BedrockText>
+                  </div>
+
+                  {(((downloadCategory.title.toLowerCase() === "archived") && isArchivedVisible) || (downloadCategory.title.toLowerCase() !== "archived")) && (
+                    <div className={styles.download_items}>
+                      {downloadCategory.items.map((downloadItem, itemIndex) => (
+                        <DownloadCard
+                          title={downloadItem.title.toLowerCase()}
+                          description={downloadItem.description}
+                          downloadSize={`${itemWeightCalc(downloadItem.itemWeight)}MB`}
+                          buttonType={setButtonType(downloadItem.buttonType)}
+                          iconPath={downloadItem.imageAssetUrl ? `${downloadItem.imageAssetUrl}` : "assets/images/favicon.png"}
+                        />
+                      ))}
+                    </div>)}
+
+                  {(downloadCategory.title.toLowerCase() === "archived") && (
+                    <div style={{ width: "100%", display: "flex", flexDirection: "row", paddingTop: ((downloadCategory.title.toLowerCase() === "archived") && isArchivedVisible) ? "2rem" : "" }}>
+
+                      <Button
+                        text={isArchivedVisible ? "Hide archived versions" : "Display archived versions"}
+                        type="alwaysGreen"
+                        width={"100%"}
+                        height={"4rem"}
+                        onTap={() => { setIsArchivedVisible((prev) => !prev) }}
+                        outlinePaddingRight="1.75px"
+                      />
+
+                    </div>
+                  )}
+
+                </div>
+              </>
+            ))}
+          </div>
+
+          <Footer />
+        </section>
+      </main> */}

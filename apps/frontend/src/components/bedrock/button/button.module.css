@@ -1,38 +1,29 @@
-.wrapper {
+.buttonContainer {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    min-height: 3rem;
 }
 
-.wrapper:focus-visible {
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.button:focus-visible {
     outline: none;
 }
 
-/* 
-
-########################## First Layer
-
-*/
-
 .first_layer {
-    box-sizing: border-box;
     width: 100%;
     height: 100%;
-    border: var(--minecraftdepth) solid rgb(30, 30, 30);
     cursor: pointer;
+    border: var(--minecraftdepth) solid rgb(30, 30, 30);
 }
 
 [data-toggled="true"] .first_layer {
-    /* not sure if this is margin necessary, it breaks sizing like in /downloads lists */
-    /* margin-top: calc(var(--minecraftdepth) * 2); */
     height: calc(100% - calc(var(--minecraftdepth) * 2));
 }
-
-/* 
-
-########################## Second Layer
-
-*/
 
 .second_layer {
     position: relative;
@@ -63,12 +54,6 @@
 [data-type="alwaysBlack"] .first_layer:hover .second_layer, [data-type="alwaysBlack"].wrapper:focus-visible .second_layer {
     background-color: rgb(48, 49, 49);
 }
-
-/* 
-
-########################## Third Layer 
-
-*/
 
 .third_layer {
     position: relative;
@@ -123,12 +108,6 @@
     background-color: rgb(62, 62, 62);
 }
 
-/* 
-
-########################## Fourth Layer
-
-*/
-
 .fourth_layer {
     position: relative;
     width: 100%;
@@ -138,7 +117,6 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
-
 
 /* Button Types */
 
@@ -191,12 +169,6 @@
     border-bottom: var(--minecraftdepth) solid rgb(84, 84, 85);
 }
 
-/* 
-
-########################## Fifth Layer
-
-*/
-
 .fifth_layer {
     position: relative;
     width: var(--minecraftdepth);
@@ -245,12 +217,6 @@
 [data-type="alwaysBlack"] .first_layer:hover .fifth_layer, [data-type="alwaysBlack"].wrapper:focus-visible .fifth_layer {
     background-color: rgb(97, 97, 98);
 }
-
-/* 
-
-########################## Sixth Layer
-
-*/
 
 .sixth_layer {
     display: block;
@@ -302,12 +268,6 @@
 [data-type="alwaysBlack"] .first_layer:hover .sixth_layer, [data-type="alwaysBlack"].wrapper:focus-visible .sixth_layer {
     background-color: rgb(97, 97, 98);
 }
-
-/* 
-
-########################## Text
-
-*/
 
 .text {
     position: relative;

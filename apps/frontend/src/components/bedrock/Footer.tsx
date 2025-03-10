@@ -6,16 +6,14 @@ interface FooterProps {
   width?: string;
 }
 
-const Footer: React.FC<FooterProps> = ({ width = "100%" }) => {
+const Footer: React.FC<FooterProps> = ({ width = "auto" }) => {
   return (
-    <footer>
+    <footer id="footer">
       <Label width={width}>
         <div className="footer-text">
           <BedrockText
-            text="Copyright © Better Bedrock | All rights reserved | Not affiliated with
-        Mojang Studios"
+            text="Copyright © Better Bedrock | All rights reserved | Not affiliated with Mojang Studios"
             type={"p"}
-            textAlign="center"
           />
         </div>
       </Label>

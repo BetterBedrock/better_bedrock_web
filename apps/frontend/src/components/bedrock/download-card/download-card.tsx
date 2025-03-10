@@ -11,7 +11,8 @@ interface DownloadCardProp {
   downloadSize?: string;
   buttonType?: ButtonType;
   playSound?: boolean;
-  isClicked?: boolean;
+  lockClicking?: boolean;
+  height?: string
 }
 
 const DownloadCard: React.FC<DownloadCardProp> = ({
@@ -21,7 +22,8 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
   downloadSize,
   buttonType = "alwaysWhite",
   playSound = true,
-  isClicked
+  lockClicking,
+  height = "auto"
 }) => {
   const [imageSrc, setImageSrc] = useState(defaultImage);
 
@@ -37,10 +39,10 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
     <Button
       text=""
       width={"100%"}
-      height={"100%"}
+      height={height}
       type={buttonType}
-      playSound={playSound}
-      isClicked={isClicked}>
+      lockClicking={lockClicking}
+      playSound={playSound}>
 
       <div className={styles.download_card_content}>
         <img alt="" src={imageSrc} />

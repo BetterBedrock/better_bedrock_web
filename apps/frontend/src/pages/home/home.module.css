@@ -4,8 +4,13 @@
     scroll-behavior: smooth;
     overflow-y: scroll;
     width: 100%;
-    top: 58px;
+    top: 0;
+    /* calc 58px as header size */
     height: calc(100vh - 58px);
+}
+
+#page_sections > :nth-last-child(2) {
+    /* height: calc(100% - 58px); */
 }
 
 @media screen and (max-height: 500px) {

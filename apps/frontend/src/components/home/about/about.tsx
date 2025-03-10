@@ -1,8 +1,27 @@
-import styles from "./about.module.css";
-import homeStyles from "pages/home/home.module.css";
 import React from "react";
 import { AboutItems } from "./about-items";
-import { PageImageWrapper } from "components/bedrock/page-image-wrapper";
+import { DynamicPageItem } from "components/bedrock/page-container/dynamic-page-item";
+
+import styles from "./about.module.css";
+import homeStyles from "pages/home/home.module.css";
+
+interface AboutProp {
+  sectionIndex: 0 | 1;
+}
+
+export const About: React.FC<AboutProp> = ({ sectionIndex }) => {
+  const { elements, backgroundImage } = sectionData[sectionIndex] || sectionData[0];
+
+  return (
+    <DynamicPageItem backgroundUrl={backgroundImage}>
+      <div className={homeStyles.page_content_wrapper}>
+        <div className={styles.container}>
+          <AboutItems items={elements} direction={sectionIndex === 0 ? "left" : "right"} />
+        </div>
+      </div>
+    </DynamicPageItem>
+  );
+};
 
 const sectionData = [
   {
@@ -23,7 +42,7 @@ const sectionData = [
         image: require("../../../assets/images/banners/bb3.png")
       }
     ],
-    backgroundImage: require("../../../assets/images/crosshair_backgrounds/2.png")
+    backgroundImage: require("../../../assets/images/crosshair_backgrounds/8.png")
   },
   {
     elements: [
@@ -43,26 +62,6 @@ const sectionData = [
         image: require("../../../assets/images/banners/bb6.png")
       }
     ],
-    backgroundImage: require("../../../assets/images/crosshair_backgrounds/4.png")
+    backgroundImage: require("../../../assets/images/crosshair_backgrounds/1.png")
   }
 ];
-
-interface AboutProp {
-  sectionIndex: 0 | 1;
-}
-
-export const About: React.FC<AboutProp> = ({ sectionIndex }) => {
-  const { elements, backgroundImage } = sectionData[sectionIndex] || sectionData[0];
-
-  return (
-    <section>
-      <PageImageWrapper backgroundUrl={backgroundImage}>
-        <div className={homeStyles.page_content_wrapper}>
-          <div className={styles.container}>
-            <AboutItems items={elements} direction={sectionIndex === 0 ? "left" : "right"} />
-          </div>
-        </div>
-      </PageImageWrapper>
-    </section>
-  );
-};

@@ -3,7 +3,6 @@ import { useSound } from "use-sound";
 import bedrockClickSound from "assets/sounds/minecraft_click.mp3";
 
 import styles from "./simple-button.module.css";
-import clsx from "clsx";
 
 interface SimpleButtonProps {
   height?: number | string;
@@ -13,6 +12,7 @@ interface SimpleButtonProps {
   isClicked?: boolean;
   playSound?: boolean;
   tabIndex?: number;
+  style?: React.CSSProperties
 }
 
 const SimpleButton = ({
@@ -23,6 +23,7 @@ const SimpleButton = ({
   isClicked,
   playSound = false,
   tabIndex,
+  style
 }: SimpleButtonProps) => {
   const [clicked, setClicked] = useState<boolean>(false);
   const [playClickSound] = useSound(bedrockClickSound);
@@ -43,8 +44,8 @@ const SimpleButton = ({
 
   return (
     <button
+      style={{ height, width, ...style }}
       className={styles.wrapper}
-      style={{ height, width }}
       onClick={handleClick}
       tabIndex={tabIndex}
     >

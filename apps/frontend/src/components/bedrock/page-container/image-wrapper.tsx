@@ -1,17 +1,17 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
 interface PageImageWrapperProp {
-  backgroundUrl: string;
-  children: ReactNode;
+  backgroundUrl?: string;
   backgroundOpacity1?: number;
   backgroundOpacity2?: number;
+  children?: React.ReactNode;
 }
 
 export const PageImageWrapper: React.FC<PageImageWrapperProp> = ({
-  backgroundUrl,
-  children,
+  backgroundUrl = "",
   backgroundOpacity1 = 0.35,
-  backgroundOpacity2 = 0.75
+  backgroundOpacity2 = 0.8,
+  children
 }) => {
   return (
     <>
@@ -21,11 +21,13 @@ export const PageImageWrapper: React.FC<PageImageWrapperProp> = ({
         flexDirection: 'column',
         width: '100%',
         height: '100%',
+        zIndex: -10,
+        position: children ? undefined : "fixed", //for static and dynamic page container
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+      backgroundSize: 'cover',
       }}>
-        {children}
-      </div>
+      {children}
+    </div >
     </>
   )
 };

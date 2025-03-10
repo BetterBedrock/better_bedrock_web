@@ -1,7 +1,7 @@
 import { BedrockText } from "components/bedrock/text";
-import styles from "./creators.module.css";
+import styles from "./changelog.module.css";
 
-export const CreatorsTrailer = () => (
+export const ChangelogTrailer = () => (
   <div className={styles.videoContainer}>
     <BedrockText
       type={"h1"}
