@@ -33,7 +33,7 @@ const Button = ({
   isClicked,
   onChangeStateHandler,
   setInitialClickedState = false,
-  
+
   text,
   textType,
   type,
@@ -45,14 +45,14 @@ const Button = ({
   tabIndex,
   children,
   style,
-  
+
   playSound = true,
-  lockClicking = false 
+  lockClicking = false
 
 }: ButtonProp) => {
   const [isToggled, setIsToggled] = useState(setInitialClickedState);
   const [isHeld, setIsHeld] = useState(false);
-  const [playClickSound] = useSound(bedrockClickSound);
+  const [playClickSound] = useSound(bedrockClickSound, { volume: 0.25 });
 
   const onClick = async () => {
     handleMouseDown();

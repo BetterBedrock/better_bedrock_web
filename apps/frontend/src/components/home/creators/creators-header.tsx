@@ -22,6 +22,7 @@ export const CreatorsHeader = () => (
         {CREATORS.map((item) => {
           return (
             <DownloadCard
+              key={item.name}
               buttonType="alwaysGreen"
               title={item.name}
               description={item.description}
@@ -50,6 +51,7 @@ export const CreatorsHeader = () => (
         {HELPERS.map((item) => {
           return (
             <DownloadCard
+              key={item.name}
               title={item.name}
               playSound={false}
               lockClicking={true}

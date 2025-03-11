@@ -3,6 +3,7 @@ import { BedrockText } from "components/bedrock/text";
 import { Button } from "components/bedrock/button";
 import { useMediaQuery as useResponsiveMediaQuery } from "react-responsive";
 import styles from "./header.module.css";
+import { ButtonSeparator } from "components/bedrock/button-separator";
 
 interface HeaderProps {
   tabNames: string[];
@@ -32,20 +33,20 @@ export const Header: React.FC<HeaderProps> = ({ tabNames, activeTab, setActiveTa
         />
       </div>
       <div className={styles.tabsWrapper}>
-        {tabNames.map((text, index) => (
-          <Button
-            key={index}
-            tabIndex={index}
-            isClicked={activeTab === index}
-            onTap={() => setActiveTab(index)}
-            width={"100%"}
-            height={"auto"}
-            text={text}
-            type={"alwaysGreen"}
-            outlinePaddingLeft={!mediaMaxWidth && index !== 0 ? "1.75px" : undefined}
-            outlinePaddingRight={!mediaMaxWidth && index !== 2 ? "1.75px" : undefined}
-          />
-        ))}
+        <ButtonSeparator>
+          {tabNames.map((text, index) => (
+            <Button
+              key={index}
+              tabIndex={index}
+              isClicked={activeTab === index}
+              onTap={() => setActiveTab(index)}
+              width={"100%"}
+              height={"auto"}
+              text={text}
+              type={"alwaysGreen"}
+            />
+          ))}
+        </ButtonSeparator>
       </div>
     </div>
   );

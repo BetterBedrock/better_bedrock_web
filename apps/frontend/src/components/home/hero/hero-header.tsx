@@ -4,13 +4,15 @@ import { useMediaQuery } from "react-responsive";
 
 import LogoLines from "../../../assets/images/lines.png";
 import styles from "./hero.module.css";
+import { ButtonSeparator } from "components/bedrock/button-separator";
+import { useNavigate } from "react-router-dom";
 
 export const HeroHeader = () => {
-
+  const navigate = useNavigate();
   const mediaMaxWidth = useMediaQuery({ query: "(max-width: 768px)" });
+
   return (
     <div className={styles.headerContainer}>
-
       <div className={styles.headerLogoContainer}>
         <img id={styles.logo} alt="logo-lines" src={LogoLines} />
         <BedrockText
@@ -35,20 +37,22 @@ export const HeroHeader = () => {
         </div>
 
         <div className={styles.headerActions}>
-          <Button
-            text="Download Now"
-            width={"100%"}
-            outlinePaddingRight={mediaMaxWidth ? "" : "1.75px"}
-            type="alwaysGreen"
-          />
-          <Button
-            text="Join Discord"
-            width={"100%"}
-            outlinePaddingLeft={mediaMaxWidth ? "" : "1.75px"}
-            type="alwaysWhite"
-          />
+          <ButtonSeparator>
+            <Button
+              text="Download Now"
+              width={"100%"}
+              type="alwaysGreen"
+              onTap={() => { navigate("/downloads") }}
+            />
+            <Button
+              text="Join Discord"
+              width={"100%"}
+              type="alwaysWhite"
+              onTap={() => window.open("https://discord.gg/ZGK5WYXnEY", "_blank", "noopener,noreferrer")}
+            />
+          </ButtonSeparator>
         </div>
       </div>
-
-    </div>)
-}
+    </div>
+  );
+};

@@ -4,7 +4,7 @@ import { Button } from "../../components/bedrock/button/button";
 import Footer from "../../components/bedrock/Footer";
 import styles from "./downloads.module.css";
 import DownloadCard from "components/bedrock/download-card/download-card";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { StaticPage } from "components/bedrock/page-container/static-page";
 
 import downloadCardStyles from "../../components/bedrock/download-card/download-card.module.css";
@@ -37,7 +37,7 @@ export const Downloads = () => {
       <StaticPage backgroundUrl={require("../../assets/images/crosshair_backgrounds/6.png")}>
         <div className={styles.container}>
           {DOWNLOAD_LIST.map((downloadCategory, categoryIndex) => (
-            <>
+            <Fragment key={downloadCategory.title}>
               <div className={styles.downloadElement}>
                 <div>
                   <BedrockText
@@ -60,6 +60,7 @@ export const Downloads = () => {
                   <div className={styles.downloadItems}>
                     {downloadCategory.items.map((downloadItem, itemIndex) => (
                       <DownloadCard
+                        key={downloadItem.title}
                         title={downloadItem.title.toLowerCase()}
                         description={downloadItem.description}
                         downloadSize={`${itemWeightCalc(downloadItem.itemWeight)}MB`}
@@ -83,7 +84,7 @@ export const Downloads = () => {
                 )}
 
               </div>
-            </>
+            </Fragment>
           ))}
         </div>
       </StaticPage>
