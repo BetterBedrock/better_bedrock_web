@@ -1,23 +1,23 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Home } from "pages/home/home";
+import { Information } from "pages/information/information";
+import { Downloads } from "pages/downloads/downloads";
 import { Layout } from "components/layout/layout";
 import Showcase from "pages/Showcase";
-import Downloads from "pages/Downloads";
-import Faq from "pages/Faq";
 
 export const App = () => (
-  <Layout>
-    <BrowserRouter>
+  <BrowserRouter>
+    <Layout>
       <Routes>
         <Route index element={<Home />} />
         <Route path="showcase" element={<Showcase />} />
         <Route path="downloads" element={<Downloads />} />
-        <Route path="faq" element={<Faq />} />
+        <Route path="information" element={<Information />} />
         {/* <Route path="loading" element={<Loading />} />
       <Route path="downloads" element={<Downloads />} />
       <Route path="showcase" element={<Showcase />} />
       <Route path="client" element={<AndroidClient />} /> */}
       </Routes>
-    </BrowserRouter>
-  </Layout>
+    </Layout>
+  </BrowserRouter>
 );

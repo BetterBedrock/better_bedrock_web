@@ -3,19 +3,17 @@ import { Label } from "./label";
 import { BedrockText } from "./text/bedrock-text";
 
 interface FooterProps {
-  width: string;
+  width?: string;
 }
 
-const Footer: React.FC<FooterProps> = ({ width }) => {
+const Footer: React.FC<FooterProps> = ({ width = "auto" }) => {
   return (
-    <footer>
+    <footer id="footer">
       <Label width={width}>
         <div className="footer-text">
           <BedrockText
-            text="Copyright © Better Bedrock | All rights reserved | Not affiliated with
-        Mojang Studios"
+            text="Copyright © Better Bedrock | All rights reserved | Not affiliated with Mojang Studios"
             type={"p"}
-            textAlign="center"
           />
         </div>
       </Label>

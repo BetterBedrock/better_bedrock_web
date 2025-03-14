@@ -2,14 +2,14 @@ import { useState, useEffect, ReactNode } from "react";
 import SimpleButton from "../components/bedrock/simple-button/simple-button";
 import { BedrockText } from "../components/bedrock/text/bedrock-text";
 import Footer from ".././components/bedrock/Footer";
-import Collapsible from ".././components/bedrock/Collapsible";
+import { Collapsible } from ".././components/bedrock/Collapsible";
 import { Button } from "../components/bedrock/button/button";
 import LoadingBar from ".././components/bedrock/LoadingBar";
 import CircularProgressIndicator from ".././components/bedrock/CircularProgressIndicator";
 import { CreatorCard } from "../components/bedrock/creators-card/creators-card";
 import { useNavigate } from "react-router-dom";
-import { HeroHeader } from "components/home/hero/hero-header";
 import { Navbar } from "components/bedrock/navbar";
+import DownloadCard from "components/bedrock/download-card/download-card";
 
 function Showcase() {
   const [percentage, setPercentage] = useState(0);
@@ -95,7 +95,6 @@ function Showcase() {
         }}
       >
         <LineBreak text="Texts">
-          <BedrockText type={"p3"} text="This is a Paragraph 3 text." />
           <BedrockText type={"p2"} text="This is a Paragraph 2 text." />
           <BedrockText type={"p"} text="This is a Paragraph 1 text." />
           <BedrockText type={"h3"} text="This is a Heading 3 text." />
@@ -127,13 +126,13 @@ function Showcase() {
 
           <div style={{ height: "5px" }}></div>
 
-          <Collapsible height={"4rem"} width={"100%"}>
+          {/* <Collapsible height={"4rem"} width={"100%"}>
             <BedrockText selectable={false} type={"p"} text="Witaj!" />
           </Collapsible>
           <div style={{ height: "5px" }}></div>
           <Collapsible height={"4rem"} width={"100%"}></Collapsible>
           <div style={{ height: "5px" }}></div>
-          <Collapsible height={"4rem"} width={"100%"}></Collapsible>
+          <Collapsible height={"4rem"} width={"100%"}></Collapsible> */}
           <div style={{ height: "5px" }}></div>
           <Button
             type="alwaysWhite"
@@ -165,6 +164,14 @@ function Showcase() {
             name="iDarkQ"
             description={["Hello world!", " Hee"]}
           ></CreatorCard>
+        </LineBreak>
+
+        <LineBreak text="Download Card">
+          <DownloadCard
+            title="Texture Pack v7.4"
+            description="The Better Bedrock Texture Pack is a powerful, customizable, and free Texture Pack available on most platforms. Enhance your gameplay with multiple mods and adjustable options!"
+            downloadSize="1.2 MB"
+          ></DownloadCard>
         </LineBreak>
 
         <LineBreak text="Pages">

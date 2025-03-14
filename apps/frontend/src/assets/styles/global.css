@@ -10,6 +10,7 @@
 
 :root {
   --minecraftdepth: 2.5px;
+  --websiteSizing: clamp(50px, calc(var(--minecraftdepth) * 500), calc(100% - (var(--minecraftdepth) * 16)));
 
   /* Minecraft Colors */
   --black: rgb(30, 30, 30);
@@ -78,4 +79,33 @@ section {
   flex: none;
   width: 100%;
   height: 100%;
+}
+
+h1,h2,h3 {
+  font-weight: 400;
+}
+
+html {
+  font-size: 16px;
+}
+
+/* @media screen and (max-width: 1024px) { 
+} */
+
+@media screen and (max-width: 768px) { 
+  :root {
+    --websiteSizing: clamp(50px, calc(var(--minecraftdepth) * 500), calc(100% - (var(--minecraftdepth) * 12)));
+  }
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 425px) { 
+  :root {
+    --websiteSizing: clamp(50px, calc(var(--minecraftdepth) * 500), calc(100% - (var(--minecraftdepth) * 8)));
+  }
+  html {
+    font-size: 12px;
+  }
 }

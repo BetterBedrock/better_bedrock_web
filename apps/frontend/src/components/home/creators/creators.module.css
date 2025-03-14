@@ -1,35 +1,34 @@
-#wrapper {
-
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/images/crosshair_backgrounds/3.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+.headerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    width: 70%;
 }
 
-.cards_wrapper {
-    margin-top: 10px;
+.cardsContainerCreators {
     width: 100%;
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    padding-top: 1rem;
+    gap: 0.5rem;
 }
 
-.cards_wrapper>* {
-    float: left;
-    flex: 1;
-    box-sizing: border-box;
+.cardsContainerHelpers {
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
 }
 
-@media screen and (max-width: 1350px) {
-    .cards_wrapper {
+
+@media screen and (max-width: 1024px) {
+    .cardsContainerCreators {
         flex-direction: column;
     }
-
-    .cards_wrapper .outer_div {
+    .headerContainer {
         width: 100%;
-        height: 100px;
     }
-
-    .cards_wrapper>* {
-        flex: unset;
+    .cardsContainerHelpers {
+        grid-template-columns: 1fr;
     }
 }

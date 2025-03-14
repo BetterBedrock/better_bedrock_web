@@ -2,7 +2,6 @@
     display: flex;
     justify-content: start;
     align-items: start;
-    background-color: rgb(145, 145, 145);
     overflow: visible;
     padding-bottom: calc(var(--minecraftdepth) * 2);
 }
@@ -12,9 +11,24 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    background-color: rgb(230, 232, 235);
     position: relative;
 
     overflow: visible;
     align-items: center;
+}
+
+[inner-data-type="white"] {
+    background-color: rgb(230, 232, 235);
+}
+
+[inner-data-type="green"]  {
+    background-color:rgb(82, 165, 53);
+}
+
+[outer-data-type="white"] {
+    background-color: rgb(145, 145, 145);
+}
+
+[outer-data-type="green"]  {
+    background-color: rgb(29, 77, 19);
 }
