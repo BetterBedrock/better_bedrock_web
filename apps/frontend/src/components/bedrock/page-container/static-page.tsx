@@ -12,9 +12,10 @@ interface StaticPageProps {
   className?: string,
   backgroundUrl: string
   useChildrenPadding?: boolean
+  useFullHeight?: boolean
 }
 
-export const StaticPage: React.FC<StaticPageProps> = ({ children, style, calculateMinHeight = true, id, className, backgroundUrl, useChildrenPadding = true }) => {
+export const StaticPage: React.FC<StaticPageProps> = ({ children, style, calculateMinHeight = true, id, className, backgroundUrl, useChildrenPadding = true, useFullHeight = false }) => {
   const [minHeight, setMinHeight] = useState("0");
   const location = useLocation();
 
@@ -47,7 +48,7 @@ export const StaticPage: React.FC<StaticPageProps> = ({ children, style, calcula
         style={{ minHeight: minHeight ?? "100%", ...style }}
         className={`${className ?? ""} ${styles.pageContainer}`}>
         <div
-          className={styles.childrenContainer} style={{ padding: useChildrenPadding ? "4rem 0" : "" }} >
+          className={styles.childrenContainer} style={{ padding: useChildrenPadding ? "4rem 0" : "", height: useFullHeight ? "100vh" : "", maxHeight: useFullHeight ? minHeight : "" }} >
           {children}
         </div>
       </div>

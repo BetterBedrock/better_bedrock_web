@@ -108,7 +108,7 @@ const QUESTIONS: Questions = {
     description: "Mobile devices FAQ. If you still have questions, please check out our discord server!",
     items: [
       {
-        question: "Why I can't open Inventory Screen",
+        question: "Why can't I open Inventory Screen",
         answer: "This issue usually appears when pocket UI is used. We do not fully support this mode and we recommend using second one - the classic UI. To change it open sttings, navigate to video, scroll down until you see UI Profile option, then click and change to classic UI, problem should be resolved."
       },
     ],
