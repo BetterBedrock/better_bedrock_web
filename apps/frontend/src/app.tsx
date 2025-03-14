@@ -3,6 +3,7 @@ import { Home } from "pages/home/home";
 import { Information } from "pages/information/information";
 import { Downloads } from "pages/downloads/downloads";
 import { Invalid } from "pages/invalid/invalid";
+import { Discord } from "pages/discord/discord";
 import { Layout } from "components/layout/layout";
 import Showcase from "pages/Showcase";
 
@@ -14,6 +15,7 @@ export const App = () => (
         <Route path="downloads" element={<Downloads />} />
         <Route path="information" element={<Information />} />
         <Route path="showcase" element={<Showcase />} />
+        <Route path="discord" element={<Discord />} />
         <Route path="*" element={<Invalid />} />
       </Routes>
     </Layout>

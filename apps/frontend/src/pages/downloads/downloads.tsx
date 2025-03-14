@@ -34,7 +34,7 @@ export const Downloads = () => {
 
   return (
     <>
-      <StaticPage backgroundUrl={require("../../assets/images/crosshair_backgrounds/6.png")}>
+      <StaticPage backgroundUrl={require("../../assets/images/crosshair_backgrounds/6.png")} id="downloads">
         <div className={styles.container}>
           {DOWNLOAD_LIST.map((downloadCategory, categoryIndex) => (
             <Fragment key={downloadCategory.title}>

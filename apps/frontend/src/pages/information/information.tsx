@@ -12,7 +12,7 @@ export const Information = () => {
 
   return (
     <>
-      <StaticPage backgroundUrl={backgroundImg}>
+      <StaticPage backgroundUrl={backgroundImg} id="information">
         <div className={styles.container}>
 
           <Header tabNames={TAB_NAMES} activeTab={activeTab} setActiveTab={setActiveTab} />
