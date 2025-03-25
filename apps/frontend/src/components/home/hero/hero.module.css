@@ -9,7 +9,7 @@
     margin-left: auto;
     margin-right: auto;
     gap: 3rem;
-    padding: 10vh 0 2.5vh 0;
+    padding: 5vh 0 2.5vh 0;
 }
 
 .headerContainer {
@@ -48,7 +48,7 @@
 
 .headerDescription {
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 1rem;
 }
 
 .headerActions {

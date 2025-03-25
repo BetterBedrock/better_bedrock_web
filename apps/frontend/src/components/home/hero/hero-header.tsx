@@ -6,6 +6,8 @@ import LogoLines from "../../../assets/images/lines.png";
 import styles from "./hero.module.css";
 import { ButtonSeparator } from "components/bedrock/button-separator";
 import { useNavigate } from "react-router-dom";
+// import exampleVideo from "../../../assets/videos/WebBannerOC.mp4";
+import exampleVideo from "../../../assets/videos/WebBannerOC.mp4";
 
 export const HeroHeader = () => {
   const navigate = useNavigate();
@@ -52,6 +54,11 @@ export const HeroHeader = () => {
             />
           </ButtonSeparator>
         </div>
+
+        <div style={{ display: "flex", marginTop: "2rem", border: "var(--minecraftdepth) solid rgb(30, 30, 30)" }}>
+          <video src={exampleVideo} loop autoPlay muted style={{ width: "100%" }} />
+        </div>
+
       </div>
     </div>
   );
