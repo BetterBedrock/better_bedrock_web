@@ -1,17 +1,14 @@
 import { BedrockText } from "components/bedrock/text";
 import { Button } from "components/bedrock/button";
-import { useMediaQuery } from "react-responsive";
 
 import LogoLines from "../../../assets/images/lines.png";
 import styles from "./hero.module.css";
 import { ButtonSeparator } from "components/bedrock/button-separator";
 import { useNavigate } from "react-router-dom";
-// import exampleVideo from "../../../assets/videos/WebBannerOC.mp4";
 import exampleVideo from "../../../assets/videos/WebBannerOC.mp4";
 
 export const HeroHeader = () => {
   const navigate = useNavigate();
-  const mediaMaxWidth = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
     <div className={styles.headerContainer}>
