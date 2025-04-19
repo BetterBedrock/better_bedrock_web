@@ -126,6 +126,8 @@ export const DOWNLOADS_IDS = {
   murderDetectorV30: "murder_detector_v3.0.mcpack",
   murderDetectorV20: "murder_detector_v2.0.mcpack",
 
+  customSkyOverlayV1: "file_name.mcpack", //todo
+
   betterBedrockBetterFogs: "better_bedrock_better_fogs.mcpack",
   betterBedrockCleanGlass: "better_bedrock_clean_glass.mcpack",
   betterBedrockCleanWater: "better_bedrock_clean_water.mcpack",
@@ -178,6 +180,15 @@ export const DOWNLOAD_LIST: DownloadListProps[] = [
         scaleImage: true,
         itemWeight: 0.009,
         imageAssetUrl: "assets/images/downloads/murder_detector.png",
+        buttonType: "dark",
+      },
+      {
+        title: "Custom Sky Overlay",
+        description: "todo",
+        downloadId: DOWNLOADS_IDS.customSkyOverlayV1,
+        scaleImage: true,
+        itemWeight: 90.0,
+        imageAssetUrl: "assets/images/downloads/custom_sky_overlay.png",
         buttonType: "dark",
       },
     ],
