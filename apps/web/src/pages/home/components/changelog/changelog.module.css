@@ -1,0 +1,24 @@
+.background {
+    background-image: linear-gradient(rgba(0, 0, 0, .4)), url(~/assets/images/crosshair_backgrounds/14.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-block: var(--sectionsPadding);
+}
+
+.trailer {
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.resources {
+    width: 100%;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+}

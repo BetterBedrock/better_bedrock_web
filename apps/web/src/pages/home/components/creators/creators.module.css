@@ -1,0 +1,40 @@
+.background {
+    background-image: linear-gradient(rgba(0, 0, 0, .6)), url(~/assets/images/crosshair_backgrounds/10.png);
+    padding-block: var(--sectionsPadding);
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.cardsContainerCreators {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding-top: 1rem;
+    gap: 0.5rem;
+}
+
+.cardsContainerHelpers {
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .cardsContainerCreators {
+        flex-direction: column;
+    }
+
+    .headerContainer {
+        width: 100%;
+    }
+
+    .cardsContainerHelpers {
+        grid-template-columns: 1fr;
+    }
+}
