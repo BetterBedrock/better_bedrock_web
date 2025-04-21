@@ -1,0 +1,35 @@
+.heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
+
+.actions {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+}
+
+.title {
+    text-wrap: nowrap;
+    font-size: clamp(2rem, 8vw, 6rem);
+    line-height: clamp(2rem, 8vw, 6rem);
+}
+
+.logo {
+    top: 0.09rem;
+    position: relative;
+    max-height: calc(clamp(2rem, 10vw, 6.5rem) / 1.45);
+}
+
+.reversed {
+    transform: scaleX(-1);
+}
+
+.description {
+    width: 100%;
+    margin-bottom: 1rem;
+}

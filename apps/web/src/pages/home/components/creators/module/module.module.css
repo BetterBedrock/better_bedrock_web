@@ -1,0 +1,13 @@
+.cardsContainerCreators {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding-top: 1rem;
+    gap: 0.5rem;
+}
+
+@media screen and (max-width: 1024px) {
+    .cardsContainerCreators {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,18 @@
+.background {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-block: var(--sectionsPadding);
+}
+
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    .about {
+        flex-direction: column !important;
+    }
+}

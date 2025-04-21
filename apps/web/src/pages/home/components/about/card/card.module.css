@@ -1,0 +1,44 @@
+@media screen and (min-width: 768px) {
+    .hoverLeft:hover {
+        transform: rotate(2.5deg) scale(1.05, 1.05);
+    }
+
+    .hoverRight:hover {
+        transform: rotate(-2.5deg) scale(1.05, 1.05);
+    }
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    margin: 0 2rem;
+    width: 100%;
+    transform: unset;
+    transition: transform 0.25s ease;
+}
+
+.image :global(img) {
+    width: 100%;
+    transform: unset;
+    transition: transform 0.25s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        margin: 0;
+    }
+    
+    .image {
+        margin: 0;
+    }
+}
+
+.content {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+}

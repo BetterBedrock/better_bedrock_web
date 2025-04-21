@@ -1,0 +1,5 @@
+import { BedrockText } from "~/components/bedrock/text";
+
+export const TrailerTitle = () => (
+  <BedrockText type="h1" color="white" text="Latest changelog video" font="MinecraftTen" />
+);
