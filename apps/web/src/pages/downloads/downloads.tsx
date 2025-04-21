@@ -3,12 +3,15 @@ import { Button } from "../../components/bedrock/button/button";
 import Footer from "../../components/bedrock/Footer";
 import styles from "./downloads.module.css";
 import DownloadCard from "~/components/bedrock/download-card/download-card";
-import { Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { StaticPage } from "~/components/bedrock/page-container/static-page";
-
+import exampleVideo from "../../assets/videos/WebBannerOC.mp4";
+import { ButtonSeparator } from "../../components/bedrock/button-separator";
+import { GridCard } from "../../components/bedrock/grid-card/grid-card";
 import backgroundImage from "~/assets/images/crosshair_backgrounds/6.png";
 
-export const Downloads = () => {
+export const Downloads: React.FC = () => {
+  const [activeTab, setActiveTab] = useState(0);
   const [isArchivedVisible, setIsArchivedVisible] = useState(false);
 
   const itemWeightCalc = (itemWeight: number) => {
@@ -32,10 +35,137 @@ export const Downloads = () => {
     <>
       <StaticPage backgroundUrl={backgroundImage} id="downloads">
         <div className={styles.container}>
-          {DOWNLOAD_LIST.map((downloadCategory) => (
+
+          {/* header */}
+          <div className={styles.headerContainer}>
+            <div>
+              <BedrockText
+                style={{ opacity: 0.5 }}
+                text={"Looking for partnership? Dm me on discord @axmbro"}
+                type={"p"}
+                textAlign="center"
+                color="white"
+              />
+              <div style={{ display: "flex", justifyContent: "center", paddingTop: "0.5rem" }}>
+                <video src={exampleVideo} loop autoPlay muted className={styles.adVideo} />
+              </div>
+            </div>
+
+            {/* tabs */}
+            <div className={styles.tabsWrapper}>
+              <ButtonSeparator>
+                {TAB_NAMES.map((text, index) => (
+                  <Button
+                    key={index}
+                    tabIndex={index}
+                    isClicked={activeTab === index}
+                    onTap={() => setActiveTab(index)}
+                    width={"100%"}
+                    height={"auto"}
+                    text={text}
+                    type={"alwaysBlack"}
+                  />
+                ))}
+              </ButtonSeparator>
+            </div>
+          </div>
+
+          {/* todo: split into sections but not this way */}
+          {activeTab === 1 && (
+            <div>
+              <div style={{ width: "100%" }}>
+                <BedrockText
+                  type={"h1"}
+                  text={"Better Bedrock Themes"}
+                  color="white"
+                  font="MinecraftTen"
+                  textAlign="center"
+                ></BedrockText>
+                <BedrockText
+                  type={"p"}
+                  textAlign="center"
+                  color="white"
+                  margin="0 0 1rem 0"
+                  text={"Here is list of fan made themes that you can use with Better Bedrock. If you want to create your own theme, check out our tutorial!"}
+                ></BedrockText>
+              </div>
+              <div style={{ width: "100%", display: "flex", flexDirection: "row", paddingBottom: "2rem" }}>
+                <ButtonSeparator>
+                  {/* todo */}
+                  <Button
+                    text={"Submit YOUR custom theme"}
+                    type="alwaysGreen"
+                    width={"100%"}
+                  />
+                  <Button
+                    text="Watch theme creation tutorial"
+                    width={"100%"}
+                    type="alwaysWhite"
+                    onTap={() => window.open("https://youtu.be/GRQahMrdEoY", "_blank", "noopener,noreferrer")}
+                  />
+                </ButtonSeparator>
+              </div>
+              <div className={styles.gridCardsContainer}>
+                {THEMES_LIST.map((theme) => (
+                  <Fragment key={theme.title}>
+                    <GridCard
+                      useCustomThumbnail={true}
+                      title={theme.title}
+                      description={theme.description}
+                      customThumbnailImageUrl={theme.imageAssetUrl}
+                    // link={tutorial.link}
+                    />
+                  </Fragment>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === 2 && (
+            <div style={{ width: "100%" }}>
+              <div style={{ width: "100%" }}>
+                <BedrockText
+                  type={"h1"}
+                  text={"Side Projects"}
+                  color="white"
+                  font="MinecraftTen"
+                  textAlign="center"
+                ></BedrockText>
+                <BedrockText
+                  type={"p"}
+                  textAlign="center"
+                  color="white"
+                  margin="0 0 1rem 0"
+                  text={"Side projects extend your gameplay in many more ways. It offers new possibilities with extra content!"}
+                ></BedrockText>
+              </div>
+              <div style={{ width: "100%", display: "flex", flexDirection: "row", paddingBottom: "2rem" }}>
+                <Button
+                  text={"Submit YOUR project"}
+                  type="alwaysGreen"
+                  width={"100%"}
+                />
+              </div>
+              <div className={styles.gridCardsContainer}>
+                {SIDE_PROJECTS_LIST.map((theme) => (
+                  <Fragment key={theme.title}>
+                    <GridCard
+                      useCustomThumbnail={true}
+                      title={theme.title}
+                      description={theme.description}
+                      customThumbnailImageUrl={theme.imageAssetUrl}
+                    // link={tutorial.link}
+                    />
+                  </Fragment>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === 0 && (DOWNLOAD_LIST.map((downloadCategory, categoryIndex) => (
             <Fragment key={downloadCategory.title}>
               <div className={styles.downloadElement}>
-                <div>
+                <div style={{ width: "100%" }}>
                   <BedrockText
                     type={"h1"}
                     text={downloadCategory.title}
@@ -59,35 +189,78 @@ export const Downloads = () => {
                         key={downloadItem.title}
                         title={downloadItem.title.toLowerCase()}
                         description={downloadItem.description}
-                        downloadSize={`${itemWeightCalc(downloadItem.itemWeight)}MB`}
+                        downloadSize={`${calcItemWeight(downloadItem.itemWeight)}MB`}
                         buttonType={setButtonType(downloadItem.buttonType)}
-                        iconPath={downloadItem.imageAssetUrl ? `${downloadItem.imageAssetUrl}` : "~/assets/images/favicon.png"}
+                        iconPath={(downloadCategory.title.toLowerCase() === "extensions") ? "assets/images/logo2.png" : "assets/images/favicon.png"}
                       />
                     ))}
                   </div>)}
 
                 {(downloadCategory.title.toLowerCase() === "archived") && (
                   <div style={{ width: "100%", display: "flex", flexDirection: "row", paddingTop: ((downloadCategory.title.toLowerCase() === "archived") && isArchivedVisible) ? "2rem" : "" }}>
-
                     <Button
                       text={isArchivedVisible ? "Close archived versions" : "Open archived versions"}
                       type="alwaysGreen"
                       width={"100%"}
                       onTap={() => { setIsArchivedVisible((prev) => !prev) }}
                     />
-
                   </div>
                 )}
 
               </div>
             </Fragment>
-          ))}
+          )))}
         </div>
       </StaticPage>
       <Footer />
     </>
   );
 };
+
+const setButtonType = (buttonType: string) => {
+  switch (buttonType) {
+    case "green":
+      return "alwaysGreen";
+    case "white":
+      return "alwaysWhite";
+    case "dark":
+      return "alwaysBlack";
+    default:
+      return "alwaysGreen";
+  }
+};
+
+const calcItemWeight = (itemWeight: number) => {
+  return itemWeight <= 0.1 ? "<0.0" : itemWeight.toFixed(1);
+}
+
+const TAB_NAMES: string[] = ["Main", "Themes", "Side Projects"];
+
+const THEMES_LIST = [
+  {
+    title: "Blue UI",
+    description: "Creator: @ayaanthe0ne",
+    imageAssetUrl: require("assets/images/themes_thumbnails/01mKBfz.png"),
+  },
+  {
+    title: "Red UI",
+    description: "Creator: @Deleted User#0000",
+    imageAssetUrl: require("assets/images/themes_thumbnails/red.png"),
+  }
+]
+
+const SIDE_PROJECTS_LIST = [
+  {
+    title: "Murder Detector+ v3.2",
+    description: "Creator: @axmbro",
+    imageAssetUrl: require("assets/images/side_projects_thumbnails/murde-detector.png"),
+  },
+  {
+    title: "Custom Sky Overlay",
+    description: "Creator: @axmbro",
+    imageAssetUrl: require("assets/images/side_projects_thumbnails/sky-overlay.png"),
+  }
+]
 
 export const DOWNLOADS_IDS = {
   betterBedrockClientV74: "better_bedrock_texture_pack_v7.4.mcpack",
@@ -165,30 +338,30 @@ export const DOWNLOAD_LIST: DownloadListProps[] = [
       }
     ],
   },
-  {
-    title: "Side Projects",
-    description: "Side projects extend your gameplay in many more ways. It offers new possibilities with extra content!",
-    items: [
-      {
-        title: "Murder Detector+ v3.2",
-        description: "Highlights both roles, murderer and sheriff giving you unfair advantage. Use at your own risk!",
-        downloadId: DOWNLOADS_IDS.murderDetectorV32,
-        scaleImage: true,
-        itemWeight: 0.009,
-        imageAssetUrl: "~/assets/images/downloads/murder_detector.png",
-        buttonType: "dark",
-      },
-      {
-        title: "Custom Sky Overlay",
-        description: "todo",
-        downloadId: DOWNLOADS_IDS.customSkyOverlayV1,
-        scaleImage: true,
-        itemWeight: 90.0,
-        imageAssetUrl: "~/assets/images/downloads/custom_sky_overlay.png",
-        buttonType: "dark",
-      },
-    ],
-  },
+  // {
+  //   title: "Side Projects",
+  //   description: "Side projects extend your gameplay in many more ways. It offers new possibilities with extra content!",
+  //   items: [
+  //     {
+  //       title: "Murder Detector+ v3.2",
+  //       description: "Highlights both roles, murderer and sheriff giving you unfair advantage. Use at your own risk!",
+  //       downloadId: DOWNLOADS_IDS.murderDetectorV32,
+  //       scaleImage: true,
+  //       itemWeight: 0.009,
+  //       imageAssetUrl: "assets/images/downloads/murder_detector.png",
+  //       buttonType: "dark",
+  //     },
+  //     {
+  //       title: "Custom Sky Overlay",
+  //       description: "todo",
+  //       downloadId: DOWNLOADS_IDS.customSkyOverlayV1,
+  //       scaleImage: true,
+  //       itemWeight: 90.0,
+  //       imageAssetUrl: "assets/images/downloads/custom_sky_overlay.png",
+  //       buttonType: "dark",
+  //     },
+  //   ],
+  // },
   {
     title: "Extensions",
     description: "Extra packs that enhance your gameplay even further. Make sure to put packs above main textrue pack!",

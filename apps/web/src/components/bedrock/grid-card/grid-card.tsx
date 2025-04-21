@@ -9,27 +9,35 @@ interface GridCardProps {
   description?: string
   link?: string,
   index?: string | number,
+  useCustomThumbnail?: boolean,
+  customThumbnailImageUrl?: string,
 }
 
-export const GridCard: React.FC<GridCardProps> = ({ title, description, link = "https://www.youtube.com", index }) => {
+export const GridCard: React.FC<GridCardProps> = ({ title, description, link = "https://www.youtube.com", index, useCustomThumbnail = false, customThumbnailImageUrl }) => {
   return (
     <div className={styles.container}>
-      <a href={link} rel="noopener noreferrer" target="_blank">
-        <div>
-          <img src={tutorialThumbnail} alt="" />
-          {index && (
-            <div className={styles.imgWrapper}>
-              < BedrockText
-                text={(index && `#${index}`) || ""}
-                type={"h1"}
-                font="MinecraftTen"
-                textAlign="left"
-                color="white"
-                style={{ position: "absolute" }}
-              />
-            </div>)}
+      {useCustomThumbnail && (
+        <div className={styles.thumbnailWrapper}>
+          {customThumbnailImageUrl && <img src={customThumbnailImageUrl} alt="" />}
         </div>
-      </a>
+      )}
+      {!useCustomThumbnail && (
+        <a href={link} rel="noopener noreferrer" target="_blank">
+          <div>
+            <img src={require("../../../assets/images/tutorial_thumbnails/thumbnail-placeholder.png")} alt="" />
+            {index && (
+              <div className={styles.imgWrapper}>
+                < BedrockText
+                  text={(index && `#${index}`) || ""}
+                  type={"h1"}
+                  font="MinecraftTen"
+                  textAlign="left"
+                  color="white"
+                  style={{ position: "absolute" }}
+                />
+              </div>)}
+          </div>
+        </a>)}
       <div className={styles.texts}>
         < BedrockText
           text={title || ""}

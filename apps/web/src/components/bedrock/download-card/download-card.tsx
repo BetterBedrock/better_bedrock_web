@@ -45,7 +45,7 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
       playSound={playSound}>
 
       <div className={styles.download_card_content}>
-        <img alt="" src={imageSrc} />
+        <img alt="" src={imageSrc} style={{imageRendering: "pixelated"}} />
         <div className={styles.download_card_description}>
           <div className={styles.download_card_title}>
             <BedrockText
