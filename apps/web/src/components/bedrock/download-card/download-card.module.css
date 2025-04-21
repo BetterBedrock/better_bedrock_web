@@ -28,7 +28,6 @@
 
 .download_card_title {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
 }
 
