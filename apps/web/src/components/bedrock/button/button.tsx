@@ -129,7 +129,7 @@ const Button = ({
                     selectable={false}
                     type={textType ?? "p"}
                     text={text}
-                    style={{ padding: "0.5rem" }}
+                    style={{ padding: "0.5rem 1rem" }}
                   />}
                   {children && (
                     <div style={{ display: "flex", alignItems: "flex-start", width: "100%", height: "100%" }}>

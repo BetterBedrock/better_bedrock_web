@@ -6,15 +6,17 @@ import React, { Fragment, useState } from "react";
 import { StaticPage } from "~/components/bedrock/page-container/static-page";
 import exampleVideo from "../../assets/videos/WebBannerOC.mp4";
 import { ButtonSeparator } from "../../components/bedrock/button-separator";
-import { GridCard } from "../../components/bedrock/grid-card/grid-card";
-import backgroundImage from "~/assets/images/crosshair_backgrounds/6.png";
-import redThemeThumbnail from "../../assets/images/themes_thumbnails/red.png";
-import blueThemeThumbnail from "../../assets/images/themes_thumbnails/01mKBfz.png";
+import backgroundImage from "~/assets/images/crosshair_backgrounds/15.png";
+import redThemeThumbnail from "../../assets/images/themes_files/red_ui/1.png";
+import blueThemeThumbnail from "../../assets/images/themes_files/blue_ui/1.png";
+import cherryThemeThumbnail from "../../assets/images/themes_files/cherry_theme/1.png";
 import murderDetectorThumbnail from "../../assets/images/side_projects_thumbnails/murde-detector.png";
 import skyOverlayThumbnail from "../../assets/images/side_projects_thumbnails/sky-overlay.png";
+import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-download-card";
 
 export const Downloads: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [communityTab, setCommunityTab] = useState(0);
   const [isArchivedVisible, setIsArchivedVisible] = useState(false);
 
   return (
@@ -31,7 +33,7 @@ export const Downloads: React.FC = () => {
               textAlign="center"
               color="white"
             />
-            <div style={{ display: "flex", justifyContent: "center", paddingTop: "0.5rem" }}>
+            <div className={styles.adVideoWrapper}>
               <video src={exampleVideo} loop autoPlay muted className={styles.adVideo} />
             </div>
           </div>
@@ -57,11 +59,11 @@ export const Downloads: React.FC = () => {
 
         {/* todo: split into sections but not this way */}
         {activeTab === 1 && (
-          <div>
-            <div style={{ width: "100%" }}>
+          <div style={{ width: "100%" }}>
+            <div>
               <BedrockText
                 type={"h1"}
-                text={"Better Bedrock Themes"}
+                text={"Community Creations"}
                 color="white"
                 font="MinecraftTen"
                 textAlign="center"
@@ -71,33 +73,50 @@ export const Downloads: React.FC = () => {
                 textAlign="center"
                 color="white"
                 margin="0 0 1rem 0"
-                text={"Here is list of fan made themes that you can use with Better Bedrock. If you want to create your own theme, check out our tutorial!"}
+                text={"todo"}
               ></BedrockText>
             </div>
-            <div style={{ width: "100%", display: "flex", flexDirection: "row", paddingBottom: "2rem" }}>
+            <div style={{ width: "100%", display: "flex", flexDirection: "row" }}>
               <ButtonSeparator>
-                {/* todo */}
+                {COMMUNITY_TAB_NAMES.map((text, index) => (
+                  <Button
+                    key={index}
+                    tabIndex={index}
+                    isClicked={communityTab === index}
+                    onTap={() => setCommunityTab(index)}
+                    width={"100%"}
+                    height={"auto"}
+                    text={text}
+                    type={"alwaysBlack"}
+                  />
+                ))}
+              </ButtonSeparator>
+            </div>
+            {communityTab === 0 && (<div style={{ width: "100%", display: "flex", flexDirection: "row", padding: "1rem 0 2rem 0" }}>
+              <ButtonSeparator
+              // style={{justifyContent: "flex-end"}}
+              >
                 <Button
                   text={"Submit YOUR custom theme"}
                   type="alwaysGreen"
-                  width={"100%"}
+                  width={"auto"}
                 />
                 <Button
                   text="Watch theme creation tutorial"
-                  width={"100%"}
+                  width={"auto"}
                   type="alwaysWhite"
                   onTap={() => window.open("https://youtu.be/GRQahMrdEoY", "_blank", "noopener,noreferrer")}
                 />
               </ButtonSeparator>
-            </div>
+            </div>)}
             <div className={styles.gridCardsContainer}>
-              {THEMES_LIST.map((theme) => (
+
+              {communityTab === 0 && THEMES_LIST.map((theme) => (
                 <Fragment key={theme.title}>
-                  <GridCard
-                    useCustomThumbnail={true}
+                  <GridDownloadCard
                     title={theme.title}
                     description={theme.description}
-                    customThumbnailImageUrl={theme.imageAssetUrl}
+                    thumbnailImageUrl={theme.imageAssetUrl}
                   // link={tutorial.link}
                   />
                 </Fragment>
@@ -121,7 +140,7 @@ export const Downloads: React.FC = () => {
                 textAlign="center"
                 color="white"
                 margin="0 0 1rem 0"
-                text={"Side projects extend your gameplay in many more ways. It offers new possibilities with extra content!"}
+                text={"todo"}
               ></BedrockText>
             </div>
             <div style={{ width: "100%", display: "flex", flexDirection: "row", paddingBottom: "2rem" }}>
@@ -134,11 +153,10 @@ export const Downloads: React.FC = () => {
             <div className={styles.gridCardsContainer}>
               {SIDE_PROJECTS_LIST.map((theme) => (
                 <Fragment key={theme.title}>
-                  <GridCard
-                    useCustomThumbnail={true}
+                  <GridDownloadCard
                     title={theme.title}
                     description={theme.description}
-                    customThumbnailImageUrl={theme.imageAssetUrl}
+                    thumbnailImageUrl={theme.imageAssetUrl}
                   // link={tutorial.link}
                   />
                 </Fragment>
@@ -196,7 +214,7 @@ export const Downloads: React.FC = () => {
           </Fragment>
         )))}
       </div>
-    </StaticPage>
+    </StaticPage >
   );
 };
 
@@ -217,18 +235,24 @@ const calcItemWeight = (itemWeight: number) => {
   return itemWeight <= 0.1 ? "<0.0" : itemWeight.toFixed(1);
 }
 
-const TAB_NAMES: string[] = ["Main", "Themes", "Side Projects"];
+const TAB_NAMES: string[] = ["Main", "Community", "Side Projects"];
+const COMMUNITY_TAB_NAMES: string[] = ["Themes", "Configs"];
 
 const THEMES_LIST = [
   {
     title: "Blue UI",
-    description: "Creator: @ayaanthe0ne",
+    description: "@ayaanthe0ne",
     imageAssetUrl: blueThemeThumbnail,
   },
   {
     title: "Red UI",
-    description: "Creator: @Deleted User#0000",
+    description: "@Deleted User#0000",
     imageAssetUrl: redThemeThumbnail,
+  },
+  {
+    title: "Montezu's Theme",
+    description: "@montezu_22",
+    imageAssetUrl: cherryThemeThumbnail,
   }
 ]
 
