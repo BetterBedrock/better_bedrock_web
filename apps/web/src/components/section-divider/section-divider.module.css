@@ -1,0 +1,35 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    overflow: visible;
+    background: fixed;
+
+    /* Mask Gradient: Fade out edges */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+
+.row {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.block {
+    flex-shrink: 0;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    aspect-ratio: 1/1;
+    box-shadow: 1px;
+    transform: translateZ(-10px);
+    filter: brightness(30%);
+    transform: scale(1);
+    z-index: 1;
+    top: 0;
+    position: absolute;
+
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
