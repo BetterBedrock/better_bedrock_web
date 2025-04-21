@@ -29,7 +29,7 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
 
   useEffect(() => {
     if (iconPath) {
-      import(`../../../${iconPath}`)
+      import(/* @vite-ignore */ `../../../${iconPath}`)
         .then((image) => setImageSrc(image.default))
         .catch(() => setImageSrc(defaultImage));
     }

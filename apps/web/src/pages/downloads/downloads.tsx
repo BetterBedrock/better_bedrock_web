@@ -1,6 +1,5 @@
 import { BedrockText } from "../../components/bedrock/text/bedrock-text";
 import { Button } from "../../components/bedrock/button/button";
-import Footer from "../../components/bedrock/Footer";
 import styles from "./downloads.module.css";
 import DownloadCard from "~/components/bedrock/download-card/download-card";
 import React, { Fragment, useState } from "react";
@@ -19,188 +18,185 @@ export const Downloads: React.FC = () => {
   const [isArchivedVisible, setIsArchivedVisible] = useState(false);
 
   return (
-    <>
-      <StaticPage backgroundUrl={backgroundImage} id="downloads">
-        <div className={styles.container}>
+    <StaticPage backgroundUrl={backgroundImage} id="downloads">
+      <div className={styles.container}>
 
-          {/* header */}
-          <div className={styles.headerContainer}>
-            <div>
-              <BedrockText
-                style={{ opacity: 0.5 }}
-                text={"Looking for partnership? Dm me on discord @axmbro"}
-                type={"p"}
-                textAlign="center"
-                color="white"
-              />
-              <div style={{ display: "flex", justifyContent: "center", paddingTop: "0.5rem" }}>
-                <video src={exampleVideo} loop autoPlay muted className={styles.adVideo} />
-              </div>
-            </div>
-
-            {/* tabs */}
-            <div className={styles.tabsWrapper}>
-              <ButtonSeparator>
-                {TAB_NAMES.map((text, index) => (
-                  <Button
-                    key={index}
-                    tabIndex={index}
-                    isClicked={activeTab === index}
-                    onTap={() => setActiveTab(index)}
-                    width={"100%"}
-                    height={"auto"}
-                    text={text}
-                    type={"alwaysBlack"}
-                  />
-                ))}
-              </ButtonSeparator>
+        {/* header */}
+        <div className={styles.headerContainer}>
+          <div>
+            <BedrockText
+              style={{ opacity: 0.5 }}
+              text={"Looking for partnership? Dm me on discord @axmbro"}
+              type={"p"}
+              textAlign="center"
+              color="white"
+            />
+            <div style={{ display: "flex", justifyContent: "center", paddingTop: "0.5rem" }}>
+              <video src={exampleVideo} loop autoPlay muted className={styles.adVideo} />
             </div>
           </div>
 
-          {/* todo: split into sections but not this way */}
-          {activeTab === 1 && (
-            <div>
-              <div style={{ width: "100%" }}>
-                <BedrockText
-                  type={"h1"}
-                  text={"Better Bedrock Themes"}
-                  color="white"
-                  font="MinecraftTen"
-                  textAlign="center"
-                ></BedrockText>
-                <BedrockText
-                  type={"p"}
-                  textAlign="center"
-                  color="white"
-                  margin="0 0 1rem 0"
-                  text={"Here is list of fan made themes that you can use with Better Bedrock. If you want to create your own theme, check out our tutorial!"}
-                ></BedrockText>
-              </div>
-              <div style={{ width: "100%", display: "flex", flexDirection: "row", paddingBottom: "2rem" }}>
-                <ButtonSeparator>
-                  {/* todo */}
-                  <Button
-                    text={"Submit YOUR custom theme"}
-                    type="alwaysGreen"
-                    width={"100%"}
-                  />
-                  <Button
-                    text="Watch theme creation tutorial"
-                    width={"100%"}
-                    type="alwaysWhite"
-                    onTap={() => window.open("https://youtu.be/GRQahMrdEoY", "_blank", "noopener,noreferrer")}
-                  />
-                </ButtonSeparator>
-              </div>
-              <div className={styles.gridCardsContainer}>
-                {THEMES_LIST.map((theme) => (
-                  <Fragment key={theme.title}>
-                    <GridCard
-                      useCustomThumbnail={true}
-                      title={theme.title}
-                      description={theme.description}
-                      customThumbnailImageUrl={theme.imageAssetUrl}
-                    // link={tutorial.link}
-                    />
-                  </Fragment>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {activeTab === 2 && (
-            <div style={{ width: "100%" }}>
-              <div style={{ width: "100%" }}>
-                <BedrockText
-                  type={"h1"}
-                  text={"Side Projects"}
-                  color="white"
-                  font="MinecraftTen"
-                  textAlign="center"
-                ></BedrockText>
-                <BedrockText
-                  type={"p"}
-                  textAlign="center"
-                  color="white"
-                  margin="0 0 1rem 0"
-                  text={"Side projects extend your gameplay in many more ways. It offers new possibilities with extra content!"}
-                ></BedrockText>
-              </div>
-              <div style={{ width: "100%", display: "flex", flexDirection: "row", paddingBottom: "2rem" }}>
+          {/* tabs */}
+          <div className={styles.tabsWrapper}>
+            <ButtonSeparator>
+              {TAB_NAMES.map((text, index) => (
                 <Button
-                  text={"Submit YOUR project"}
+                  key={index}
+                  tabIndex={index}
+                  isClicked={activeTab === index}
+                  onTap={() => setActiveTab(index)}
+                  width={"100%"}
+                  height={"auto"}
+                  text={text}
+                  type={"alwaysBlack"}
+                />
+              ))}
+            </ButtonSeparator>
+          </div>
+        </div>
+
+        {/* todo: split into sections but not this way */}
+        {activeTab === 1 && (
+          <div>
+            <div style={{ width: "100%" }}>
+              <BedrockText
+                type={"h1"}
+                text={"Better Bedrock Themes"}
+                color="white"
+                font="MinecraftTen"
+                textAlign="center"
+              ></BedrockText>
+              <BedrockText
+                type={"p"}
+                textAlign="center"
+                color="white"
+                margin="0 0 1rem 0"
+                text={"Here is list of fan made themes that you can use with Better Bedrock. If you want to create your own theme, check out our tutorial!"}
+              ></BedrockText>
+            </div>
+            <div style={{ width: "100%", display: "flex", flexDirection: "row", paddingBottom: "2rem" }}>
+              <ButtonSeparator>
+                {/* todo */}
+                <Button
+                  text={"Submit YOUR custom theme"}
                   type="alwaysGreen"
                   width={"100%"}
                 />
-              </div>
-              <div className={styles.gridCardsContainer}>
-                {SIDE_PROJECTS_LIST.map((theme) => (
-                  <Fragment key={theme.title}>
-                    <GridCard
-                      useCustomThumbnail={true}
-                      title={theme.title}
-                      description={theme.description}
-                      customThumbnailImageUrl={theme.imageAssetUrl}
-                    // link={tutorial.link}
-                    />
-                  </Fragment>
-                ))}
-              </div>
+                <Button
+                  text="Watch theme creation tutorial"
+                  width={"100%"}
+                  type="alwaysWhite"
+                  onTap={() => window.open("https://youtu.be/GRQahMrdEoY", "_blank", "noopener,noreferrer")}
+                />
+              </ButtonSeparator>
             </div>
-          )}
+            <div className={styles.gridCardsContainer}>
+              {THEMES_LIST.map((theme) => (
+                <Fragment key={theme.title}>
+                  <GridCard
+                    useCustomThumbnail={true}
+                    title={theme.title}
+                    description={theme.description}
+                    customThumbnailImageUrl={theme.imageAssetUrl}
+                  // link={tutorial.link}
+                  />
+                </Fragment>
+              ))}
+            </div>
+          </div>
+        )}
 
-          {activeTab === 0 && (DOWNLOAD_LIST.map((downloadCategory) => (
-            <Fragment key={downloadCategory.title}>
-              <div className={styles.downloadElement}>
-                <div style={{ width: "100%" }}>
-                  <BedrockText
-                    type={"h1"}
-                    text={downloadCategory.title}
-                    color="white"
-                    font="MinecraftTen"
-                    textAlign="center"
-                  ></BedrockText>
-                  <BedrockText
-                    type={"p"}
-                    textAlign="center"
-                    color="white"
-                    margin="0 0 1rem 0"
-                    text={downloadCategory.description}
-                  ></BedrockText>
-                </div>
+        {activeTab === 2 && (
+          <div style={{ width: "100%" }}>
+            <div style={{ width: "100%" }}>
+              <BedrockText
+                type={"h1"}
+                text={"Side Projects"}
+                color="white"
+                font="MinecraftTen"
+                textAlign="center"
+              ></BedrockText>
+              <BedrockText
+                type={"p"}
+                textAlign="center"
+                color="white"
+                margin="0 0 1rem 0"
+                text={"Side projects extend your gameplay in many more ways. It offers new possibilities with extra content!"}
+              ></BedrockText>
+            </div>
+            <div style={{ width: "100%", display: "flex", flexDirection: "row", paddingBottom: "2rem" }}>
+              <Button
+                text={"Submit YOUR project"}
+                type="alwaysGreen"
+                width={"100%"}
+              />
+            </div>
+            <div className={styles.gridCardsContainer}>
+              {SIDE_PROJECTS_LIST.map((theme) => (
+                <Fragment key={theme.title}>
+                  <GridCard
+                    useCustomThumbnail={true}
+                    title={theme.title}
+                    description={theme.description}
+                    customThumbnailImageUrl={theme.imageAssetUrl}
+                  // link={tutorial.link}
+                  />
+                </Fragment>
+              ))}
+            </div>
+          </div>
+        )}
 
-                {(((downloadCategory.title.toLowerCase() === "archived") && isArchivedVisible) || (downloadCategory.title.toLowerCase() !== "archived")) && (
-                  <div className={styles.downloadItems}>
-                    {downloadCategory.items.map((downloadItem, _itemIndex) => (
-                      <DownloadCard
-                        key={downloadItem.title}
-                        title={downloadItem.title.toLowerCase()}
-                        description={downloadItem.description}
-                        downloadSize={`${calcItemWeight(downloadItem.itemWeight)}MB`}
-                        buttonType={setButtonType(downloadItem.buttonType)}
-                        iconPath={(downloadCategory.title.toLowerCase() === "extensions") ? "assets/images/logo2.png" : "assets/images/favicon.png"}
-                      />
-                    ))}
-                  </div>)}
-
-                {(downloadCategory.title.toLowerCase() === "archived") && (
-                  <div style={{ width: "100%", display: "flex", flexDirection: "row", paddingTop: ((downloadCategory.title.toLowerCase() === "archived") && isArchivedVisible) ? "2rem" : "" }}>
-                    <Button
-                      text={isArchivedVisible ? "Close archived versions" : "Open archived versions"}
-                      type="alwaysGreen"
-                      width={"100%"}
-                      onTap={() => { setIsArchivedVisible((prev) => !prev) }}
-                    />
-                  </div>
-                )}
-
+        {activeTab === 0 && (DOWNLOAD_LIST.map((downloadCategory) => (
+          <Fragment key={downloadCategory.title}>
+            <div className={styles.downloadElement}>
+              <div style={{ width: "100%" }}>
+                <BedrockText
+                  type={"h1"}
+                  text={downloadCategory.title}
+                  color="white"
+                  font="MinecraftTen"
+                  textAlign="center"
+                ></BedrockText>
+                <BedrockText
+                  type={"p"}
+                  textAlign="center"
+                  color="white"
+                  margin="0 0 1rem 0"
+                  text={downloadCategory.description}
+                ></BedrockText>
               </div>
-            </Fragment>
-          )))}
-        </div>
-      </StaticPage>
-      <Footer />
-    </>
+
+              {(((downloadCategory.title.toLowerCase() === "archived") && isArchivedVisible) || (downloadCategory.title.toLowerCase() !== "archived")) && (
+                <div className={styles.downloadItems}>
+                  {downloadCategory.items.map((downloadItem, _itemIndex) => (
+                    <DownloadCard
+                      key={downloadItem.title}
+                      title={downloadItem.title.toLowerCase()}
+                      description={downloadItem.description}
+                      downloadSize={`${calcItemWeight(downloadItem.itemWeight)}MB`}
+                      buttonType={setButtonType(downloadItem.buttonType)}
+                      iconPath={(downloadCategory.title.toLowerCase() === "extensions") ? "assets/images/logo2.png" : "assets/images/favicon.png"}
+                    />
+                  ))}
+                </div>)}
+
+              {(downloadCategory.title.toLowerCase() === "archived") && (
+                <div style={{ width: "100%", display: "flex", flexDirection: "row", paddingTop: ((downloadCategory.title.toLowerCase() === "archived") && isArchivedVisible) ? "2rem" : "" }}>
+                  <Button
+                    text={isArchivedVisible ? "Close archived versions" : "Open archived versions"}
+                    type="alwaysGreen"
+                    width={"100%"}
+                    onTap={() => { setIsArchivedVisible((prev) => !prev) }}
+                  />
+                </div>
+              )}
+
+            </div>
+          </Fragment>
+        )))}
+      </div>
+    </StaticPage>
   );
 };
 

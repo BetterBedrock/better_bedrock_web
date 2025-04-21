@@ -10,7 +10,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    padding: 7.5vh 0 2.5vh 0;
 }
 
 .trailer {
@@ -21,8 +21,3 @@
     align-items: center;
     padding-bottom: 5vh;
 }
-
-/* //TODO: Pozdbyc sie czy nie?  */
-/* .bottomTextContainer {
-    opacity: 0.33;
-} */
