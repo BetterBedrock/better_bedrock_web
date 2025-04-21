@@ -9,27 +9,14 @@ import exampleVideo from "../../assets/videos/WebBannerOC.mp4";
 import { ButtonSeparator } from "../../components/bedrock/button-separator";
 import { GridCard } from "../../components/bedrock/grid-card/grid-card";
 import backgroundImage from "~/assets/images/crosshair_backgrounds/6.png";
+import redThemeThumbnail from "../../assets/images/themes_thumbnails/red.png";
+import blueThemeThumbnail from "../../assets/images/themes_thumbnails/01mKBfz.png";
+import murderDetectorThumbnail from "../../assets/images/side_projects_thumbnails/murde-detector.png";
+import skyOverlayThumbnail from "../../assets/images/side_projects_thumbnails/sky-overlay.png";
 
 export const Downloads: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isArchivedVisible, setIsArchivedVisible] = useState(false);
-
-  const itemWeightCalc = (itemWeight: number) => {
-    return itemWeight <= 0.1 ? "<0.0" : itemWeight.toFixed(1);
-  }
-
-  const setButtonType = (buttonType: string) => {
-    switch (buttonType) {
-      case "green":
-        return "alwaysGreen";
-      case "white":
-        return "alwaysWhite";
-      case "dark":
-        return "alwaysBlack";
-      default:
-        return "alwaysGreen";
-    }
-  };
 
   return (
     <>
@@ -162,7 +149,7 @@ export const Downloads: React.FC = () => {
             </div>
           )}
 
-          {activeTab === 0 && (DOWNLOAD_LIST.map((downloadCategory, categoryIndex) => (
+          {activeTab === 0 && (DOWNLOAD_LIST.map((downloadCategory) => (
             <Fragment key={downloadCategory.title}>
               <div className={styles.downloadElement}>
                 <div style={{ width: "100%" }}>
@@ -240,12 +227,12 @@ const THEMES_LIST = [
   {
     title: "Blue UI",
     description: "Creator: @ayaanthe0ne",
-    imageAssetUrl: require("assets/images/themes_thumbnails/01mKBfz.png"),
+    imageAssetUrl: blueThemeThumbnail,
   },
   {
     title: "Red UI",
     description: "Creator: @Deleted User#0000",
-    imageAssetUrl: require("assets/images/themes_thumbnails/red.png"),
+    imageAssetUrl: redThemeThumbnail,
   }
 ]
 
@@ -253,12 +240,12 @@ const SIDE_PROJECTS_LIST = [
   {
     title: "Murder Detector+ v3.2",
     description: "Creator: @axmbro",
-    imageAssetUrl: require("assets/images/side_projects_thumbnails/murde-detector.png"),
+    imageAssetUrl: murderDetectorThumbnail,
   },
   {
     title: "Custom Sky Overlay",
     description: "Creator: @axmbro",
-    imageAssetUrl: require("assets/images/side_projects_thumbnails/sky-overlay.png"),
+    imageAssetUrl: skyOverlayThumbnail,
   }
 ]
 

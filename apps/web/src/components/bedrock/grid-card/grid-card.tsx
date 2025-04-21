@@ -24,7 +24,7 @@ export const GridCard: React.FC<GridCardProps> = ({ title, description, link = "
       {!useCustomThumbnail && (
         <a href={link} rel="noopener noreferrer" target="_blank">
           <div>
-            <img src={require("../../../assets/images/tutorial_thumbnails/thumbnail-placeholder.png")} alt="" />
+            <img src={tutorialThumbnail} alt="" />
             {index && (
               <div className={styles.imgWrapper}>
                 < BedrockText
