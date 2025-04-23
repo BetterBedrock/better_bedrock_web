@@ -429,7 +429,7 @@ export const DOWNLOAD_LIST: DownloadListProps[] = [
   },
   {
     title: "Archived",
-    description: "If you want to try older versions and enjoy old-school Better Bedrock B) then you have that possibility! However, these packs or software, which are currently deprecated, may not be stable.",
+    description: "If you want to try older versions and enjoy old-school Better Bedrock B) then you have that possibility! Note that these packs, and software, are deprecated, and may not be stable.",
     items: [
       {
         title: "Mobile App 1.1.1",

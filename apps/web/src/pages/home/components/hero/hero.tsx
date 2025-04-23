@@ -5,6 +5,5 @@ export const Hero = () => (
   <Section className={styles.background}>
     <HeroHeader />
     <HeroTrailer />
-    {/* <HeroBottomText /> */}
   </Section>
 );

@@ -1,16 +1,19 @@
 export interface CreatorsListElement {
     name: string;
-    description: string;
+    description?: string;
+    creator?: boolean;
 }
 
 export const CREATORS = [
     {
         name: "AxmBro",
-        description: "Texture Pack, Website, Discord"
+        description: "Texture Pack, Website, Discord",
+        creator: true,
     },
     {
         name: "iDarkQ",
-        description: "Texture Pack, Website, Discord"
+        description: "Texture Pack, Website, Discord",
+        creator: true,
     }
 ]
 

@@ -17,7 +17,6 @@
 .first_layer {
     width: 100%;
     height: 100%;
-    cursor: pointer;
     border: var(--minecraftdepth) solid rgb(30, 30, 30);
 }
 
@@ -51,7 +50,8 @@
 
 /* Button Types On Hover (For some reason only black one has different second layer lool) */
 
-[data-type="alwaysBlack"] .first_layer:hover .second_layer, [data-type="alwaysBlack"].wrapper:focus-visible .second_layer {
+[data-type="alwaysBlack"] .first_layer:hover .second_layer,
+[data-type="alwaysBlack"].wrapper:focus-visible .second_layer {
     background-color: rgb(48, 49, 49);
 }
 
@@ -96,15 +96,18 @@
 
 /* Button Types On Hover */
 
-[data-type="alwaysWhite"] .first_layer:hover .third_layer, [data-type="alwaysWhite"].wrapper:focus-visible .third_layer {
+[data-type="alwaysWhite"] .first_layer:hover .third_layer,
+[data-type="alwaysWhite"].wrapper:focus-visible .third_layer {
     background-color: rgb(244, 246, 249);
 }
 
-[data-type="alwaysGreen"] .first_layer:hover .third_layer, [data-type="alwaysGreen"].wrapper:focus-visible .third_layer {
+[data-type="alwaysGreen"] .first_layer:hover .third_layer,
+[data-type="alwaysGreen"].wrapper:focus-visible .third_layer {
     background-color: rgb(82, 165, 53);
 }
 
-[data-type="alwaysBlack"] .first_layer:hover .third_layer, [data-type="alwaysBlack"].wrapper:focus-visible .third_layer {
+[data-type="alwaysBlack"] .first_layer:hover .third_layer,
+[data-type="alwaysBlack"].wrapper:focus-visible .third_layer {
     background-color: rgb(62, 62, 62);
 }
 
@@ -154,17 +157,20 @@
 
 /* Button Types On Hover */
 
-[data-type="alwaysWhite"] .first_layer:hover .fourth_layer, [data-type="alwaysWhite"].wrapper:focus-visible .fourth_layer {
+[data-type="alwaysWhite"] .first_layer:hover .fourth_layer,
+[data-type="alwaysWhite"].wrapper:focus-visible .fourth_layer {
     border: var(--minecraftdepth) solid rgb(254, 254, 254);
     border-bottom: var(--minecraftdepth) solid rgb(249, 250, 252);
 }
 
-[data-type="alwaysGreen"] .first_layer:hover .fourth_layer, [data-type="alwaysGreen"].wrapper:focus-visible .fourth_layer {
+[data-type="alwaysGreen"] .first_layer:hover .fourth_layer,
+[data-type="alwaysGreen"].wrapper:focus-visible .fourth_layer {
     border: var(--minecraftdepth) solid rgb(117, 183, 93);
     border-bottom: var(--minecraftdepth) solid rgb(99, 174, 73);
 }
 
-[data-type="alwaysBlack"] .first_layer:hover .fourth_layer, [data-type="alwaysBlack"].wrapper:focus-visible .fourth_layer {
+[data-type="alwaysBlack"] .first_layer:hover .fourth_layer,
+[data-type="alwaysBlack"].wrapper:focus-visible .fourth_layer {
     border: var(--minecraftdepth) solid rgb(84, 84, 85);
     border-bottom: var(--minecraftdepth) solid rgb(84, 84, 85);
 }
@@ -206,15 +212,18 @@
 
 /* Button Types On Hover */
 
-[data-type="alwaysWhite"] .first_layer:hover .fifth_layer, [data-type="alwaysWhite"].wrapper:focus-visible .fifth_layer {
+[data-type="alwaysWhite"] .first_layer:hover .fifth_layer,
+[data-type="alwaysWhite"].wrapper:focus-visible .fifth_layer {
     background-color: rgb(254, 254, 255);
 }
 
-[data-type="alwaysGreen"] .first_layer:hover .fifth_layer, [data-type="alwaysGreen"].wrapper:focus-visible .fifth_layer {
+[data-type="alwaysGreen"] .first_layer:hover .fifth_layer,
+[data-type="alwaysGreen"].wrapper:focus-visible .fifth_layer {
     background-color: rgb(130, 190, 109);
 }
 
-[data-type="alwaysBlack"] .first_layer:hover .fifth_layer, [data-type="alwaysBlack"].wrapper:focus-visible .fifth_layer {
+[data-type="alwaysBlack"] .first_layer:hover .fifth_layer,
+[data-type="alwaysBlack"].wrapper:focus-visible .fifth_layer {
     background-color: rgb(97, 97, 98);
 }
 
@@ -257,15 +266,18 @@
 
 /* Button Types On Hover*/
 
-[data-type="alwaysWhite"] .first_layer:hover .sixth_layer, [data-type="alwaysWhite"].wrapper:focus-visible .sixth_layer {
+[data-type="alwaysWhite"] .first_layer:hover .sixth_layer,
+[data-type="alwaysWhite"].wrapper:focus-visible .sixth_layer {
     background-color: rgb(254, 254, 255);
 }
 
-[data-type="alwaysGreen"] .first_layer:hover .sixth_layer, [data-type="alwaysGreen"].wrapper:focus-visible .sixth_layer {
+[data-type="alwaysGreen"] .first_layer:hover .sixth_layer,
+[data-type="alwaysGreen"].wrapper:focus-visible .sixth_layer {
     background-color: rgb(130, 190, 109);
 }
 
-[data-type="alwaysBlack"] .first_layer:hover .sixth_layer, [data-type="alwaysBlack"].wrapper:focus-visible .sixth_layer {
+[data-type="alwaysBlack"] .first_layer:hover .sixth_layer,
+[data-type="alwaysBlack"].wrapper:focus-visible .sixth_layer {
     background-color: rgb(97, 97, 98);
 }
 
@@ -298,4 +310,8 @@
 
 [data-type="alwaysBlack"] .text {
     color: white;
+}
+
+.lock {
+    cursor:default !important;
 }
