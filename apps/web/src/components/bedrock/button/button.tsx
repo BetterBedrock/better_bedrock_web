@@ -1,14 +1,15 @@
-import { ReactNode, useState } from "react";
+import { HTMLAttributes, ReactNode, useState } from "react";
 
 import { BedrockText } from "~/components/bedrock/text/bedrock-text";
 import bedrockClickSound from "~/assets/sounds/minecraft_click.mp3";
 import useSound from "use-sound";
 
 import styles from "./button.module.css";
+import clsx from "clsx";
 
 export type ButtonType = "alwaysGreen" | "alwaysWhite" | "alwaysBlack";
 
-interface ButtonProp {
+interface ButtonProp extends HTMLAttributes<HTMLDivElement> {
   height?: number | string;
   textPadding?: number | string;
   width?: number | string;
@@ -19,13 +20,14 @@ interface ButtonProp {
   setInitialClickedState?: boolean;
   playSound?: boolean;
   textType?: "h1" | "h2" | "h3" | "p" | "p2";
-  text: string;
+  text?: string;
   outlinePaddingLeft?: string;
   outlinePaddingRight?: string;
   tabIndex?: number;
   children?: ReactNode;
-  style?: React.CSSProperties
-  lockClicking?: boolean
+  style?: React.CSSProperties;
+  lockClicking?: boolean;
+  className?: string;
 }
 
 const Button = ({
@@ -47,8 +49,11 @@ const Button = ({
   style,
 
   playSound = true,
-  lockClicking = false
+  lockClicking = false,
 
+  className,
+
+  ...props
 }: ButtonProp) => {
   const [isToggled, setIsToggled] = useState(setInitialClickedState);
   const [isHeld, setIsHeld] = useState(false);
@@ -72,7 +77,6 @@ const Button = ({
     setIsToggled(value);
   };
 
-
   const handleMouseDown = () => {
     if (lockClicking) return;
     setIsHeld(true);
@@ -92,19 +96,12 @@ const Button = ({
     }
   };
 
-  // useEffect(() => {
-  //   if (isClicked !== undefined) {
-  //     setIsToggled(isClicked);
-  //   }
-  // }, [isClicked]);
-
-  //alternative for useEffect that triggers unnecessary and buggy re-render
   const toggledState = isClicked !== undefined ? isClicked : isToggled;
 
   return (
-    <div style={{ height: height, width: width, ...style, }} className={styles.buttonContainer}>
+    <div style={{ height: height, width: width, ...style }} className={clsx(styles.buttonContainer, className)} {...props}>
       <button
-        className={styles.button}
+        className={clsx(styles.button, lockClicking && styles.lock)}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
@@ -119,22 +116,32 @@ const Button = ({
           style={{
             borderLeftWidth: outlinePaddingLeft,
             borderRightWidth: outlinePaddingRight,
-          }}>
+          }}
+        >
           <div className={styles.second_layer}>
             <div className={styles.third_layer}>
               <div className={styles.fourth_layer}>
-
                 <div className={styles.text} style={{ padding: textPadding }}>
-                  {text && <BedrockText
-                    selectable={false}
-                    type={textType ?? "p"}
-                    text={text}
-                    style={{ padding: "0.5rem 1rem" }}
-                  />}
+                  {text && (
+                    <BedrockText
+                      selectable={false}
+                      type={textType ?? "p"}
+                      text={text}
+                      style={{ padding: "0.5rem 1rem" }}
+                    />
+                  )}
                   {children && (
-                    <div style={{ display: "flex", alignItems: "flex-start", width: "100%", height: "100%" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "flex-start",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
                       {children}
-                    </div>)}
+                    </div>
+                  )}
                 </div>
               </div>
 

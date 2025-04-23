@@ -1,0 +1,45 @@
+@use "~/assets/styles/global.scss" as g;
+
+$title-height: clamp(2rem, 8vw, 6rem);
+
+@mixin flex-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.heading {
+  @include flex-container();
+  gap: g.$padding-xxsm;
+  height: $title-height;
+}
+
+.actions {
+  @include flex-container();
+
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.title {
+  text-wrap: nowrap;
+  font-size: $title-height;
+  line-height: $title-height;
+}
+
+.logo {
+  position: relative;
+  top: 0.09rem;
+  height: 75%;
+}
+
+.reversed {
+  transform: scaleX(-1);
+}
+
+.description {
+  margin-bottom: g.$padding-sm;
+}

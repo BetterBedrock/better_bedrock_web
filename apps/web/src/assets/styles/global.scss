@@ -1,3 +1,5 @@
+@import '~/utils';
+
 *,
 *::before,
 *::after {
@@ -39,8 +41,8 @@
 }
 
 button,
-input[type="submit"],
-input[type="reset"] {
+input[type='submit'],
+input[type='reset'] {
   background: none;
   color: inherit;
   border: none;
@@ -124,4 +126,20 @@ section {
   html {
     font-size: 12px;
   }
+}
+
+.noSelect {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+.noDrag {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
