@@ -1,3 +1,5 @@
+@import '~/utils';
+
 *,
 *::before,
 *::after {
@@ -10,7 +12,7 @@
 
 :root {
   --minecraftdepth: 2.5px;
-  --sectionsPadding: 10rem; 
+  --sectionsPadding: 10rem;
 
   /* Minecraft Colors */
   --black: rgb(30, 30, 30);
@@ -27,7 +29,6 @@
   --padding-medium: 5px;
   --padding-large: 7.5px;
   --padding-xlarge: 10px;
-
 }
 
 ::selection,
@@ -79,19 +80,19 @@ section {
   width: 60%;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: $breakpoint-laptopL) {
   section {
     width: 60%;
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: $breakpoint-laptop) {
   section {
     width: 85%;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $breakpoint-tablet) {
   section {
     width: 90%;
   }
@@ -101,4 +102,20 @@ h1,
 h2,
 h3 {
   font-weight: 400;
+}
+
+.noSelect {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+.noDrag {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }

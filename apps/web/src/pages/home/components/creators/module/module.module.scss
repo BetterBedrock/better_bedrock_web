@@ -1,0 +1,72 @@
+@use "~/assets/styles/global" as g;
+
+$card-min-width: 150px;
+
+@mixin flex-container(
+  $direction: row,
+  $justify: flex-start,
+  $align: stretch,
+  $wrap: nowrap
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+@mixin below-laptop {
+  @media (max-width: g.$breakpoint-tablet) {
+    @content;
+  }
+}
+
+.card {
+  flex: 1 1 $card-min-width;
+  @media (max-width: g.$breakpoint-tablet) {
+    flex: 0 0;
+  }
+}
+
+.list {
+  @include flex-container(row, flex-start, stretch, wrap);
+  width: 100%;
+  gap: g.$padding-xsm;
+  padding-top: g.$padding-sm;
+
+  @include below-laptop {
+    flex-direction: column;
+  }
+}
+
+.content {
+  @include flex-container(row, flex-start, flex-start);
+  width: 100%;
+  padding: g.$padding-xxsm;
+  box-sizing: border-box;
+  position: relative;
+
+  img {
+    flex-shrink: 0;
+    width: clamp(1rem, 4.5rem, 6rem);
+    aspect-ratio: 1 / 1;
+    image-rendering: pixelated;
+  }
+}
+
+.title {
+  @include flex-container(row, space-between, center);
+
+  p:nth-child(2) {
+    white-space: nowrap;
+  }
+}
+
+.description {
+  padding-inline-start: g.$padding-xsm;
+  width: 100%;
+
+  p {
+    margin: 0;
+  }
+}

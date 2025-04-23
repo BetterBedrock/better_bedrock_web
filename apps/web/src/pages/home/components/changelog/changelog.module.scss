@@ -1,9 +1,12 @@
+@use "~/assets/styles/global" as g;
+
 .background {
-    background-image: linear-gradient(rgba(0, 0, 0, .4)), url(~/assets/images/crosshair_backgrounds/14.png);
+    @include g.page-background(
+        g.$background-linear-gradient,
+        "~/assets/images/crosshair_backgrounds/14.png",
+        (top, bottom)
+      );
     background-position: right center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-block: var(--sectionsPadding);
 }
 
 .trailer {
@@ -20,5 +23,5 @@
 .actions {
     display: flex;
     flex-direction: row;
-    margin-top: 1rem;
+    margin-top: g.$padding-sm;
 }
