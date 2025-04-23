@@ -1,5 +1,6 @@
 import React, { useState, useRef, useLayoutEffect } from "react";
 import { styles } from ".";
+import clsx from "clsx";
 
 interface SectionDividerProps {
   image: string;
@@ -129,7 +130,7 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
                   width: blockSize,
                   height: blockSize,
                 }}
-                className={styles.block}
+                className={clsx(styles.block, "noDrag", "noSelect")}
               />
             ) : null,
           )}
