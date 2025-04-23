@@ -1,0 +1,63 @@
+.container {
+  /* padding: 1rem; */
+  width: 100%;
+  height: 100%;
+  background-color: rgb(47, 47, 48);
+  border: var(--minecraftdepth) solid rgb(30, 30, 31);
+}
+
+.container > a {
+  display: flex;
+  border-bottom: var(--minecraftdepth) solid rgb(30, 30, 31);
+
+}
+
+.container > a > div {
+  width: 100%;
+}
+
+.container > a > div > img {
+  display: flex;
+  background-color: gray;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.imgWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  transform: translate(0%, -100%);
+}
+
+.imgWrapper:hover > h1 {
+  color: rgb(83, 216, 34) !important
+}
+
+.texts {
+  padding: 0.5rem 1rem 1rem 1rem;
+}
+
+.thumbnailWrapper {
+  display: flex;
+  border-bottom: var(--minecraftdepth) solid rgb(30, 30, 31);
+}
+
+.thumbnailWrapper img {
+  display: flex;
+  background-color: gray;
+  width: 100%;
+  aspect-ratio: 16 / 9;  
+}
+
+.cardTitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardTitle p:nth-child(2) {
+  white-space: nowrap; 
+}

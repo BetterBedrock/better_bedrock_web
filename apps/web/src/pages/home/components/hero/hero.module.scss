@@ -28,3 +28,32 @@ $header-height: 50vh;
   @include flex-container();
   padding-bottom: $trailer-padding;
 }
+
+// zmienic jedynie paddingna
+
+// padding: 7.5vh 0 2.5vh 0;
+// zamiast 50vh
+
+// .background {
+//   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(~/assets/images/crosshair_backgrounds/9.png);
+
+//   padding-bottom: var(--sectionsPadding);
+// }
+
+// .header {
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 7.5vh 0 2.5vh 0;
+// }
+
+// .trailer {
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   padding-bottom: 5vh;
+// }

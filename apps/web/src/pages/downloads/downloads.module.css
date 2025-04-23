@@ -1,8 +1,14 @@
+.background {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)),
+    url(~/assets/images/crosshair_backgrounds/9.png);
+  padding-bottom: var(--sectionsPadding);
+}
+
 .headerContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
-
   gap: 2rem;
 }
 
@@ -30,10 +36,20 @@
   width: 100%;
 }
 
-.adVideo {
+.adVideoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem auto 0 auto;
   width: 100%;
   border: var(--minecraftdepth) solid rgb(30, 30, 30);
 }
+
+.adVideo {
+  width: 100%;
+  aspect-ratio: 16 / 2;
+}
+
 .tabsWrapper {
   width: 100%;
   display: flex;
@@ -54,7 +70,7 @@
 }
 
 @media (min-width: 1024px) {
-  .adVideo {
-    width: 75%;
+  .adVideoWrapper {
+    width: 80%;
   }
 }

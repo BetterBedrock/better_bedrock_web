@@ -18,10 +18,10 @@ interface Cell {
 
 export const SectionDivider: React.FC<SectionDividerProps> = ({
   image,
-  rows = 6,
-  fullCenterRows = 2,
-  blockSize = 80,
-  edgeProbability = 0.3,
+  rows = 3,
+  fullCenterRows = 1,
+  blockSize = 140,
+  edgeProbability = 0.5,
   overlap,
 }) => {
   const totalHeight = rows * blockSize;

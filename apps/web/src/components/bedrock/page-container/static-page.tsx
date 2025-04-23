@@ -49,7 +49,9 @@ export const StaticPage: React.FC<StaticPageProps> = ({ children, style, calcula
         className={`${className ?? ""} ${styles.pageContainer}`}>
         <div
           className={styles.childrenContainer} style={{ padding: useChildrenPadding ? "4rem 0" : "", height: useFullHeight ? "100vh" : "", maxHeight: useFullHeight ? minHeight : "" }} >
-          {children}
+          <section>
+            {children}
+          </section>
         </div>
       </div>
     </div>
