@@ -11,9 +11,7 @@ export const HeroActions = () => {
         text="Download Now"
         width="100%"
         type="alwaysGreen"
-        onTap={() => {
-          navigate(Routes.DOWNLOADS);
-        }}
+        onTap={() => navigate(Routes.DOWNLOADS)}
       />
       <Button
         text="Join Discord"
