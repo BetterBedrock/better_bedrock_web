@@ -11,7 +11,7 @@ export const COMMUNITY_TAB_NAMES: string[] = ["Themes", "Configs"];
 export const THEMES_LIST = [
     {
         title: "Blue UI",
-        description: "Creator: @ayaanthe0ne",
+        description: "@ayaanthe0ne",
         imageAssetUrl: blueThemeThumbnail,
     },
     {
