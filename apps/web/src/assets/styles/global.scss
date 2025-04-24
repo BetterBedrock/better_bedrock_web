@@ -78,6 +78,7 @@ section {
   text-align: center;
   flex: none;
   width: 60%;
+  max-width: $breakpoint-laptopL;
 }
 
 @media screen and (max-width: $breakpoint-laptopL) {
