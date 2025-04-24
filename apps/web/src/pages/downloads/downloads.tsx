@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Section } from "~/components/section";
 import { DownlaodsAd } from "~/pages/downloads/downloads-ad";
 import { DownloadsTabsList } from "~/pages/downloads/downloads-tabs-list";
-import { DownloadsThemes } from "~/pages/downloads/downloads-themes";
+import { DownloadsCommunity } from "~/pages/downloads/downloads-community";
 import { DownloadsSideProjects } from "~/pages/downloads/downloads-side-projects";
 import { DownloadsMain } from "~/pages/downloads/downloads-main";
 
@@ -20,7 +20,7 @@ export const Downloads = () => {
 
       {activeTab === 0 && <DownloadsMain />}
 
-      {activeTab === 1 && <DownloadsThemes />}
+      {activeTab === 1 && <DownloadsCommunity />}
 
       {activeTab === 2 && <DownloadsSideProjects />}
     </Section>

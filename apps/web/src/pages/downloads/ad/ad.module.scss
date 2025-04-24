@@ -6,8 +6,9 @@
 
 .video {
   width: 100%;
+  aspect-ratio: 16/2;
   border: g.$minecraftdepth solid rgb(30, 30, 30);
   @media (min-width: g.$breakpoint-laptop) {
-    width: 75%;
+    width: 80%;
   }
 }

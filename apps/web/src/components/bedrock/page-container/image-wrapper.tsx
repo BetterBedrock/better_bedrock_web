@@ -9,8 +9,8 @@ interface PageImageWrapperProp {
 
 export const PageImageWrapper: React.FC<PageImageWrapperProp> = ({
   backgroundUrl = "",
-  backgroundOpacity1 = 0.4,
-  backgroundOpacity2 = 1,
+  backgroundOpacity1 = 0.35,
+  backgroundOpacity2 = 0.85,
   children
 }) => {
   return (

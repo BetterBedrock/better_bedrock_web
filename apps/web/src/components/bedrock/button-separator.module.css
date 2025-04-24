@@ -1,5 +1,5 @@
 .divider {
   width: 0;
   border-right: var(--minecraftdepth) rgb(30,30,30) solid;
-  height: 100%;
+  height: auto;
 }

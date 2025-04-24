@@ -1,10 +1,12 @@
-import redThemeThumbnail from "../../assets/images/themes_thumbnails/red.png";
-import blueThemeThumbnail from "../../assets/images/themes_thumbnails/01mKBfz.png";
-import murderDetectorThumbnail from "../../assets/images/side_projects_thumbnails/murde-detector.png";
-import skyOverlayThumbnail from "../../assets/images/side_projects_thumbnails/sky-overlay.png";
+import redThemeThumbnail from "~/assets/images/themes_thumbnails/red.png";
+import blueThemeThumbnail from "~/assets/images/themes_thumbnails/01mKBfz.png";
+import murderDetectorThumbnail from "~/assets/images/side_projects_thumbnails/murde-detector.png";
+import skyOverlayThumbnail from "~/assets/images/side_projects_thumbnails/sky-overlay.png";
+import cherryThemeThumbnail from "~/assets/images/themes_files/cherry_theme/1.png";
 import logo2 from "~/assets/images/logo2.png";
 
 export const TAB_NAMES: string[] = ["Main", "Themes", "Side Projects"];
+export const COMMUNITY_TAB_NAMES: string[] = ["Themes", "Configs"];
 
 export const THEMES_LIST = [
     {
@@ -14,20 +16,25 @@ export const THEMES_LIST = [
     },
     {
         title: "Red UI",
-        description: "Creator: @Deleted User#0000",
+        description: "@Deleted User#0000",
         imageAssetUrl: redThemeThumbnail,
     },
+    {
+        title: "Montezu's Theme",
+        description: "@montezu_22",
+        imageAssetUrl: cherryThemeThumbnail,
+    }
 ];
 
 export const SIDE_PROJECTS_LIST = [
     {
         title: "Murder Detector+ v3.2",
-        description: "Creator: @axmbro",
+        description: "@axmbro",
         imageAssetUrl: murderDetectorThumbnail,
     },
     {
         title: "Custom Sky Overlay",
-        description: "Creator: @axmbro",
+        description: "@axmbro",
         imageAssetUrl: skyOverlayThumbnail,
     },
 ];
