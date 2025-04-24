@@ -4,12 +4,18 @@
     background-repeat: no-repeat, no-repeat;
 }
 
+.fixed {
+    background-attachment: fixed;
+}
+
 .section {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     height: 100%;
+    /* TODO: Replace 64 with header + footer heights */
+    min-height: calc(100vh - (64px * 2));
     min-width: 200px;
     margin-left: auto;
     margin-right: auto;
