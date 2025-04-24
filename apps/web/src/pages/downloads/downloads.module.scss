@@ -1,0 +1,30 @@
+@use "~/assets/styles/global" as g;
+
+.background {
+  @include g.page-background(
+    g.$background-linear-gradient,
+    "~/assets/images/crosshair_backgrounds/6.png"
+  );
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 2rem;
+}
+
+.tabs {
+  width: 100%;
+  display: flex;
+}
+
+.category {
+  width: 100%;
+}
+
+.description {
+  padding-bottom: g.$padding-sm;
+}

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BedrockText } from "../text/bedrock-text";
 import styles from "./download-card.module.css";
-import defaultImage from "../../../assets/images/example_head.png";
 import { Button, ButtonType } from "../button";
 
 interface DownloadCardProp {
@@ -25,15 +24,6 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
   lockClicking,
   height = "auto"
 }) => {
-  const [imageSrc, setImageSrc] = useState(defaultImage);
-
-  useEffect(() => {
-    if (iconPath) {
-      import(/* @vite-ignore */ `../../../${iconPath}`)
-        .then((image) => setImageSrc(image.default))
-        .catch(() => setImageSrc(defaultImage));
-    }
-  }, [iconPath]);
 
   return (
     <Button
@@ -45,7 +35,7 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
       playSound={playSound}>
 
       <div className={styles.download_card_content}>
-        <img alt="" src={imageSrc} style={{imageRendering: "pixelated"}} />
+        <img alt="" src={iconPath} style={{imageRendering: "pixelated"}} />
         <div className={styles.download_card_description}>
           <div className={styles.download_card_title}>
             <BedrockText

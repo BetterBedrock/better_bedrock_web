@@ -1,0 +1,14 @@
+@use "~/assets/styles/global.scss" as g;
+
+.label {
+  opacity: 0.5;
+}
+
+.video {
+  width: 100%;
+  aspect-ratio: 16/2;
+  border: g.$minecraftdepth solid rgb(30, 30, 30);
+  @media (min-width: g.$breakpoint-laptop) {
+    width: 80%;
+  }
+}

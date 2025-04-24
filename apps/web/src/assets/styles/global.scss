@@ -52,41 +52,23 @@ input[type='reset'] {
 }
 
 @font-face {
-  font-family: "Minecraft";
-  src:
-    local("Minecraft"),
-    url(~/assets/fonts/minecraft/Minecraft-Normal.ttf) format("truetype");
+  font-family: 'Minecraft';
+  src: local('Minecraft'), url(~/assets/fonts/minecraft/Minecraft-Normal.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: "Mojangles";
-  src:
-    local("Mojangles"),
-    url(~/assets/fonts/mojangles/Mojangles.ttf) format("truetype");
+  font-family: 'Mojangles';
+  src: local('Mojangles'), url(~/assets/fonts/mojangles/Mojangles.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: "MinecraftTen";
-  src:
-    local("MinecraftTen"),
-    url(~/assets/fonts/minecraft/MinecraftTen.ttf) format("truetype");
+  font-family: 'MinecraftTen';
+  src: local('MinecraftTen'), url(~/assets/fonts/minecraft/MinecraftTen.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: "MinecraftFive";
-  src:
-    local("MinecraftFive"),
-    url(~/assets/fonts/minecraft/MinecraftFive.ttf) format("truetype");
-}
-
-h1,
-h2,
-h3 {
-  font-weight: 400;
-}
-
-html {
-  font-size: 16px;
+  font-family: 'MinecraftFive';
+  src: local('MinecraftFive'), url(~/assets/fonts/minecraft/MinecraftFive.ttf) format('truetype');
 }
 
 section {
@@ -95,37 +77,32 @@ section {
   overflow: hidden;
   text-align: center;
   flex: none;
-  width: 62rem;
+  width: 60%;
+  max-width: $breakpoint-laptopL;
 }
 
-@media screen and (max-width: calc(1024px)) {
+@media screen and (max-width: $breakpoint-laptopL) {
   section {
-    width: 46rem;
-  }
-}
-
-@media screen and (max-width: calc(768px)) {
-  section {
-    width: 38rem;
-  }
-  html {
-    font-size: 14px;
+    width: 60%;
   }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: $breakpoint-laptop) {
   section {
-    width: calc(100% - 2rem);
+    width: 85%;
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: $breakpoint-tablet) {
   section {
-    width: calc(100% - 1rem);
+    width: 90%;
   }
-  html {
-    font-size: 12px;
-  }
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 400;
 }
 
 .noSelect {

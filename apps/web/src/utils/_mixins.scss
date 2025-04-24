@@ -1,21 +1,17 @@
 @use "variables" as g;
 
-@mixin page-background($background, $img-url, $sides: (top bottom)) {
+@mixin page-background($background, $img-url, $sides: null) {
   background-image: $background, url(#{$img-url});
   background-repeat: no-repeat;
   background-size: cover;
 
-  @if type-of($sides) == 'list' {
-    @each $side in $sides {
-      padding-#{$side}: g.$sectionsPadding;
-    }
-  }
-  @else {
-    @if $sides == top or $sides == bottom {
+  @if $sides {
+    @if type-of($sides) == "list" {
+      @each $side in $sides {
+        padding-#{$side}: g.$sectionsPadding;
+      }
+    } @else if $sides == top or $sides == bottom {
       padding-#{$sides}: g.$sectionsPadding;
-    }
-    @else {
-      @warn "Invalid side `#{$sides}`, expected 'top', 'bottom', or '(top bottom)'.";
     }
   }
 }
