@@ -22,6 +22,10 @@ async function bootstrap() {
         jsonDocumentUrl: "documentation/json",
     });
 
+    app.useStaticAssets(join(__dirname, "..", "static"), {
+        prefix: "/static",
+    });
+
     app.useGlobalPipes(
         new ValidationPipe({
             whitelist: true,
@@ -32,4 +36,5 @@ async function bootstrap() {
 
     await app.listen(process.env.PORT ?? 8084);
 }
+
 bootstrap();
