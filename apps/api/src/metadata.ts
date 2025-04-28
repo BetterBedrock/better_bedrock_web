@@ -1,0 +1,5 @@
+/* eslint-disable */
+export default async () => {
+    const t = {};
+    return { "@nestjs/swagger": { "models": [[import("./download/dto/generate-download.dto"), { "GenerateDownloadDto": { file: { required: true, type: () => String, description: "Name of the file user wants to generate download for", example: "better-bedrock.txt" } } }], [import("./download/dto/verify-download.dto"), { "VerifyDownloadDto": { hash: { required: true, type: () => String, description: "Hash generated to go through the ads on linkvertise", example: "XtvYC1IqiGH06GcJdzWfggAos9XPS0WQZkclYWoXqV6nq4ar4u0OG9bNfuKfuguJ", minLength: 64, maxLength: 64 } } }]], "controllers": [[import("./download/download.controller"), { "DownloadController": { "download": {}, "verify": { type: String }, "generate": { type: String } } }], [import("./content/content.controller"), { "ContentController": { "downloads": { type: [Object] }, "sideProjects": { type: [Object] }, "themes": { type: [Object] } } }]] } };
+};
