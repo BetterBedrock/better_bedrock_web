@@ -1,5 +1,5 @@
-import redThemeThumbnail from "~/assets/images/themes_thumbnails/red.png";
-import blueThemeThumbnail from "~/assets/images/themes_thumbnails/01mKBfz.png";
+import redThemeThumbnail from "~/assets/images/themes_files/red_ui/1.png";
+import blueThemeThumbnail from "~/assets/images/themes_files/blue_ui/1.png";
 import murderDetectorThumbnail from "~/assets/images/side_projects_thumbnails/murde-detector.png";
 import skyOverlayThumbnail from "~/assets/images/side_projects_thumbnails/sky-overlay.png";
 import cherryThemeThumbnail from "~/assets/images/themes_files/cherry_theme/1.png";
