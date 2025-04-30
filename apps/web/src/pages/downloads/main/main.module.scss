@@ -1,3 +1,5 @@
+@use "~/assets/styles/global.scss" as g;
+
 .items {
   display: flex;
   gap: g.$padding-xsm;
