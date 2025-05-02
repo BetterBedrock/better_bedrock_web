@@ -126,42 +126,57 @@ export class DownloadController {
     })
     @ApiBadGatewayResponse({ description: "Failed to verify with Linkvertise gateway." })
     @ApiServiceUnavailableResponse({ description: "Linkvertise service unavailable." })
-        const url = `https://publisher.linkvertise.com/api/v1/anti_bypassing?token=${this.linkvertiseApiKey}&hash=${query.hash}`;
+    async verify(
+        @Ip() ip: string,
+        @Query() query: VerifyDownloadDto,
+    ): Promise<DownloadsItemDto | undefined> {
+        const download = await this.downloadService.download({ ipAddress: ip });
 
-        try {
-            const response$ = this.http.post(
-                url,
-                {}, // no body
-                {
-                    headers: {
-                        "Access-Control-Allow-Origin": "*",
-                        "Access-Control-Allow-Methods": "POST",
-                        "Access-Control-Allow-Headers": "Content-Type, Authorization",
-                    },
-                },
-            );
-            const { data, status } = await lastValueFrom(response$);
-
-            if (status !== 200 || !data.success) {
-                throw new HttpException("Linkvertise verification failed", HttpStatus.BAD_GATEWAY);
-            }
-        } catch (err) {
-            if (err instanceof HttpException) {
-                throw err;
-            }
-
-            throw new HttpException(
-                "Linkvertise servers are currently down, please wait before next request.",
-                HttpStatus.SERVICE_UNAVAILABLE,
-            );
+        if (!download) {
+            throw new NotFoundException(`Download for your device could not be found.`);
         }
 
-        await this.downloadService.updateDownload({
-            where: { ipAddress: ip },
-            data: { verified: true },
-        });
+        const url = `https://publisher.linkvertise.com/api/v1/anti_bypassing?token=${this.linkvertiseApiKey}&hash=${query.hash}`;
 
-        return "Verified successfully";
+        if (!download.verified) {
+            try {
+                const response$ = this.http.post(
+                    url,
+                    {}, // no body
+                    {
+                        headers: {
+                            "Access-Control-Allow-Origin": "*",
+                            "Access-Control-Allow-Methods": "POST",
+                            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+                        },
+                    },
+                );
+                const { data, status } = await lastValueFrom(response$);
+
+                if (status !== 200 || !data.status) {
+                    throw new HttpException(
+                        "Linkvertise verification failed",
+                        HttpStatus.BAD_GATEWAY,
+                    );
+                }
+            } catch (err) {
+                if (err instanceof HttpException) {
+                    throw err;
+                }
+
+                throw new HttpException(
+                    "Linkvertise servers are currently down, please wait before next request.",
+                    HttpStatus.SERVICE_UNAVAILABLE,
+                );
+            }
+
+            await this.downloadService.updateDownload({
+                where: { ipAddress: ip },
+                data: { verified: true },
+            });
+        }
+
+        return this.findDownloadItemById(download.file);
     }
 
     @Post("generate")
