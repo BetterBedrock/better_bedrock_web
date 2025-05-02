@@ -188,6 +188,7 @@ export class DownloadController {
     })
     @ApiCreatedResponse({ description: "Download record created." })
     @ApiNotFoundResponse({ description: "Requested file not found." })
+    async generate(@Ip() ip, @Query() query: GenerateDownloadDto) {
         this.findDownloadItemById(query.file);
 
         await this.downloadService.deleteDownload({ ipAddress: ip });
@@ -203,8 +204,6 @@ export class DownloadController {
                 totalDownloads: analytics.totalDownloads++,
             });
         }
-
-        return `Generating download ${ip} for this file: ` + query.file;
     }
 
     findDownloadItemById(downloadId: string): DownloadsItemDto | undefined {
