@@ -7,18 +7,33 @@ import {
     NotFoundException,
     Post,
     Query,
+    Res,
     StreamableFile,
 } from "@nestjs/common";
-import { ApiResponse } from "@nestjs/swagger";
-import { createReadStream } from "fs";
+import {
+    ApiBadGatewayResponse,
+    ApiCreatedResponse,
+    ApiNotFoundResponse,
+    ApiOkResponse,
+    ApiProduces,
+    ApiQuery,
+    ApiServiceUnavailableResponse,
+    ApiTags,
+    ApiUnauthorizedResponse,
+} from "@nestjs/swagger";
 import { AnalyticsService } from "src/analytics/analytics.service";
+import { Response } from "express";
 import { DownloadService } from "src/download/download.service";
 import { GenerateDownloadDto } from "src/download/dto/generate-download.dto";
 import { HttpService } from "@nestjs/axios";
 import { lastValueFrom } from "rxjs";
 import { VerifyDownloadDto } from "src/download/dto/verify-download.dto";
-import { DOWNLOADS_LIST, DownloadsItemProps } from "src/content/constants/content-downloads";
+import { DOWNLOADS_LIST } from "src/content/constants/content-downloads";
+import { DownloadsItemDto } from "src/content/dto/downloads.dto";
+import { createReadStream, promises as fs } from "fs";
+import { join } from "path";
 
+@ApiTags("download")
 @Controller("download")
 export class DownloadController {
     private readonly linkvertiseApiKey = process.env.LINKVERTISE_API_KEY;
@@ -30,7 +45,13 @@ export class DownloadController {
     ) {}
 
     @Get()
-    async download(@Ip() ip): Promise<StreamableFile> {
+    @ApiOkResponse({
+        description: "Binary file stream",
+        schema: { type: "string", format: "binary" },
+    })
+    @ApiProduces("application/octet-stream")
+    @ApiUnauthorizedResponse({ description: "Not verified for download." })
+    @ApiNotFoundResponse({ description: "File not found or does not exist on server." })
         const download = await this.downloadService.download({ ipAddress: ip });
         if (!download?.verified) {
             throw new HttpException(
@@ -70,7 +91,19 @@ export class DownloadController {
     }
 
     @Post("verify")
-    async verify(@Ip() ip: string, @Query() query: VerifyDownloadDto): Promise<string> {
+    @ApiQuery({
+        name: "hash",
+        type: "string",
+        description: "Linkvertise anti-bypass hash",
+        required: true,
+    })
+    @ApiOkResponse({ type: DownloadsItemDto, description: "Download verified successfully." })
+    @ApiUnauthorizedResponse({ description: "Linkvertise verification failed or not verified." })
+    @ApiNotFoundResponse({
+        description: "Download record not found for this IP or file not found.",
+    })
+    @ApiBadGatewayResponse({ description: "Failed to verify with Linkvertise gateway." })
+    @ApiServiceUnavailableResponse({ description: "Linkvertise service unavailable." })
         const url = `https://publisher.linkvertise.com/api/v1/anti_bypassing?token=${this.linkvertiseApiKey}&hash=${query.hash}`;
 
         try {
@@ -109,10 +142,15 @@ export class DownloadController {
         return "Verified successfully";
     }
 
-    @ApiResponse({ status: 201, description: "The record has been successfully created." })
-    @ApiResponse({ status: 403, description: "Forbidden." })
     @Post("generate")
-    async generate(@Ip() ip, @Query() query: GenerateDownloadDto): Promise<string> {
+    @ApiQuery({
+        name: "file",
+        type: "string",
+        description: "Download ID to generate",
+        required: true,
+    })
+    @ApiCreatedResponse({ description: "Download record created." })
+    @ApiNotFoundResponse({ description: "Requested file not found." })
         this.findDownloadItemById(query.file);
 
         await this.downloadService.deleteDownload({ ipAddress: ip });
@@ -132,7 +170,7 @@ export class DownloadController {
         return `Generating download ${ip} for this file: ` + query.file;
     }
 
-    findDownloadItemById(downloadId: string): DownloadsItemProps | undefined {
+    findDownloadItemById(downloadId: string): DownloadsItemDto | undefined {
         for (const section of DOWNLOADS_LIST) {
             const match = section.items.find((item) => item.downloadId === downloadId);
             if (match) {
