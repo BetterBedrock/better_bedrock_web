@@ -1,5 +1,5 @@
 
-import { ReactComponent as CircularProgressIndicatorSVG } from '~/assets/svgs/circularProgressIndicator.svg';
+import CircularProgressIndicatorSVG from '~/assets/svgs/circularProgressIndicator.svg';
 import "./CircularProgressIndicator.css";
 
 interface CircularProgressIndicatorProp {
@@ -13,7 +13,7 @@ const CircularProgressIndicator: React.FC<
 
   return (
     <div className="circularProgressIndicator" style={{width: width, height: height}}>
-      <CircularProgressIndicatorSVG className="circularProgressIndicator-child"/>
+      <img src={CircularProgressIndicatorSVG} className="circularProgressIndicator-child"/>
     </div>
   );
 };
