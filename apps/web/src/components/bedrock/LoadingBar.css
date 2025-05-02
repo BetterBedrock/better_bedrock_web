@@ -15,7 +15,6 @@
     position: relative;
     width: 100%;
     height: 100%;
-    border: var(--minecraftdepth) solid transparent;
     box-sizing: border-box;
     background-color: white;
 }
