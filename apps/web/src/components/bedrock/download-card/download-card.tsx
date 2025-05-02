@@ -11,7 +11,8 @@ interface DownloadCardProp {
   buttonType?: ButtonType;
   playSound?: boolean;
   lockClicking?: boolean;
-  height?: string
+  height?: string;
+  onClick?: () => Promise<void>;
 }
 
 const DownloadCard: React.FC<DownloadCardProp> = ({
@@ -22,7 +23,8 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
   buttonType = "alwaysWhite",
   playSound = true,
   lockClicking,
-  height = "auto"
+  height = "auto",
+  onClick,
 }) => {
 
   return (
@@ -32,7 +34,8 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
       height={height}
       type={buttonType}
       lockClicking={lockClicking}
-      playSound={playSound}>
+      playSound={playSound}
+      onClick={onClick}>
 
       <div className={styles.download_card_content}>
         <img alt="" src={iconPath} style={{imageRendering: "pixelated"}} />
