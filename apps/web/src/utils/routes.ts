@@ -1,5 +1,6 @@
 export enum Routes {
     HOME = "/",
     DOWNLOADS = "/downloads",
-    INFORMATION = "/information"
+    INFORMATION = "/information",
+    FETCH = "/fetch"
 }
