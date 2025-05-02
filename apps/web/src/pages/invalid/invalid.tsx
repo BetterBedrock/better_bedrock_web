@@ -1,15 +1,9 @@
-import Footer from "../../components/bedrock/Footer";
-import { StaticPage } from "~/components/bedrock/page-container/static-page";
-import backgroundImg from "../../assets/images/crosshair_backgrounds/1.png";
-import { Header } from "../../components/invalid/header"
+import { Hero } from "~/pages/invalid/components/hero";
 
 export const Invalid = () => {
   return (
-    <>
-      <StaticPage backgroundUrl={backgroundImg} useFullHeight={true}>
-        <Header />
-      </StaticPage >
-      <Footer />
-    </>
+    <main>
+      <Hero />
+    </main>
   );
 };
