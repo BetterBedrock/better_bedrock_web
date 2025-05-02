@@ -7,7 +7,6 @@ import { useEffect } from "react";
 export const Discord = () => {
   useEffect(() => {
     window.location.href = "https://discord.gg/ZGK5WYXnEY";
-    // window.open("https://discord.gg/ZGK5WYXnEY", "_blank", "noopener,noreferrer")
   }, []);
 
   return (

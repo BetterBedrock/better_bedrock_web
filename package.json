@@ -5,7 +5,8 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "generate:api": "npx openapi-typescript ./apps/web/src/lib/api/api.json -o ./apps/web/src/lib/api/schema.ts"
   },
   "devDependencies": {
     "prettier": "^3.2.5",

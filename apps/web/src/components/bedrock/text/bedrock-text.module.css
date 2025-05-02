@@ -45,3 +45,8 @@ h1 {
     -ms-user-select: none;
     user-select: none;
 }
+
+.underline {
+    cursor: pointer;
+    text-decoration: underline;
+}

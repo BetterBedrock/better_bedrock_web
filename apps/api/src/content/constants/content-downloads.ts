@@ -1,3 +1,5 @@
+import { DownloadsListDto } from "src/content/dto/downloads.dto";
+
 const DOWNLOADS_IDS = {
     betterBedrockClientV74: "better_bedrock_texture_pack_v7.4.mcpack",
     betterBedrockClientV73: "better_bedrock_texture_pack_v7.3.mcpack",
@@ -44,22 +46,7 @@ const DOWNLOADS_IDS = {
     betterBedrockParticleLimiter: "better_bedrock_particle_limiter.mcpack",
 };
 
-export interface DownloadsItemProps {
-    title: string;
-    description: string;
-    downloadId: string;
-    buttonType: "alwaysWhite" | "alwaysBlack" | "alwaysGreen";
-    itemWeight: number;
-    imageAssetUrl: string;
-}
-
-export interface DownloadsListProps {
-    title: string;
-    description: string;
-    items: DownloadsItemProps[];
-}
-
-export const DOWNLOADS_LIST: DownloadsListProps[] = [
+export const DOWNLOADS_LIST: DownloadsListDto[] = [
     {
         title: "Featured",
         description:
@@ -71,7 +58,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV74,
                 buttonType: "alwaysGreen",
                 itemWeight: 10.1,
-                imageAssetUrl: "/static/images/logo",
+                imageAssetUrl: "/static/images/favicon.png",
             },
         ],
     },
@@ -86,7 +73,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockDarkUI,
                 itemWeight: 0.011,
                 buttonType: "alwaysWhite",
-                imageAssetUrl: "/static/images/logo2",
+                imageAssetUrl: "/static/images/logo2.png",
             },
             {
                 title: "Dark Mode",
@@ -94,7 +81,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockDarkMode,
                 itemWeight: 4.69,
                 buttonType: "alwaysWhite",
-                imageAssetUrl: "/static/images/logo2",
+                imageAssetUrl: "/static/images/logo2.png",
             },
             {
                 title: "Better Fogs",
@@ -102,7 +89,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockBetterFogs,
                 itemWeight: 0.01,
                 buttonType: "alwaysWhite",
-                imageAssetUrl: "/static/images/logo2",
+                imageAssetUrl: "/static/images/logo2.png",
             },
             {
                 title: "Waypoints",
@@ -111,7 +98,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockWaypoints,
                 itemWeight: 0.015,
                 buttonType: "alwaysWhite",
-                imageAssetUrl: "/static/images/logo2",
+                imageAssetUrl: "/static/images/logo2.png",
             },
             {
                 title: "Particle Limiter",
@@ -119,7 +106,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockParticleLimiter,
                 itemWeight: 0.109,
                 buttonType: "alwaysWhite",
-                imageAssetUrl: "/static/images/logo2",
+                imageAssetUrl: "/static/images/logo2.png",
             },
             {
                 title: "Low Fire",
@@ -127,7 +114,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockLowFire,
                 itemWeight: 0.014,
                 buttonType: "alwaysWhite",
-                imageAssetUrl: "/static/images/logo2",
+                imageAssetUrl: "/static/images/logo2.png",
             },
             {
                 title: "Full Grass",
@@ -135,7 +122,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockFullGrass,
                 itemWeight: 0.002,
                 buttonType: "alwaysWhite",
-                imageAssetUrl: "/static/images/logo2",
+                imageAssetUrl: "/static/images/logo2.png",
             },
             {
                 title: "Clean Glass",
@@ -144,7 +131,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockCleanGlass,
                 itemWeight: 0.011,
                 buttonType: "alwaysWhite",
-                imageAssetUrl: "/static/images/logo2",
+                imageAssetUrl: "/static/images/logo2.png",
             },
             {
                 title: "Clean Water",
@@ -152,7 +139,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockCleanWater,
                 itemWeight: 0.002,
                 buttonType: "alwaysWhite",
-                imageAssetUrl: "/static/images/logo2",
+                imageAssetUrl: "/static/images/logo2.png",
             },
         ],
     },
@@ -168,7 +155,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockApp,
                 itemWeight: 27.74,
                 buttonType: "alwaysBlack",
-                imageAssetUrl: "/static/images/logo",
+                imageAssetUrl: "/static/images/favicon.png",
             },
             {
                 title: "Client V1",
@@ -177,7 +164,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockWindowsClientV1,
                 itemWeight: 32.07,
                 buttonType: "alwaysBlack",
-                imageAssetUrl: "/static/images/logo",
+                imageAssetUrl: "/static/images/favicon.png",
             },
             {
                 title: "Better Bedrock V6",
@@ -185,7 +172,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV6,
                 itemWeight: 2.71,
                 buttonType: "alwaysBlack",
-                imageAssetUrl: "/static/images/logo",
+                imageAssetUrl: "/static/images/favicon.png",
             },
             {
                 title: "Better Bedrock V5",
@@ -193,7 +180,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV5,
                 itemWeight: 17.8,
                 buttonType: "alwaysBlack",
-                imageAssetUrl: "/static/images/logo",
+                imageAssetUrl: "/static/images/favicon.png",
             },
             {
                 title: "Better Bedrock V5 Error Fix V2.0",
@@ -201,7 +188,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV5ErrorFix,
                 itemWeight: 0.483,
                 buttonType: "alwaysBlack",
-                imageAssetUrl: "/static/images/logo",
+                imageAssetUrl: "/static/images/favicon.png",
             },
             {
                 title: "Better Bedrock V5 Patch V1.2",
@@ -209,7 +196,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV5Patch,
                 itemWeight: 0.483,
                 buttonType: "alwaysBlack",
-                imageAssetUrl: "/static/images/logo",
+                imageAssetUrl: "/static/images/favicon.png",
             },
             {
                 title: "Better Bedrock V5 Config",
@@ -217,7 +204,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV5Config,
                 itemWeight: 0.471,
                 buttonType: "alwaysBlack",
-                imageAssetUrl: "/static/images/logo",
+                imageAssetUrl: "/static/images/favicon.png",
             },
             {
                 title: "Better Bedrock V4 Patch",
@@ -225,7 +212,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV4Patch,
                 itemWeight: 0.486,
                 buttonType: "alwaysBlack",
-                imageAssetUrl: "/static/images/logo",
+                imageAssetUrl: "/static/images/favicon.png",
             },
             {
                 title: "Better Bedrock V4 Lite",
@@ -233,7 +220,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV4Lite,
                 itemWeight: 49.23,
                 buttonType: "alwaysBlack",
-                imageAssetUrl: "/static/images/logo",
+                imageAssetUrl: "/static/images/favicon.png",
             },
             {
                 title: "Better Bedrock V4",
@@ -241,7 +228,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV4,
                 itemWeight: 49.42,
                 buttonType: "alwaysBlack",
-                imageAssetUrl: "/static/images/logo",
+                imageAssetUrl: "/static/images/favicon.png",
             },
             {
                 title: "Better Bedrock V3",
@@ -249,7 +236,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV3,
                 itemWeight: 6.86,
                 buttonType: "alwaysBlack",
-                imageAssetUrl: "/static/images/logo",
+                imageAssetUrl: "/static/images/favicon.png",
             },
             {
                 title: "Better Bedrock V2",
@@ -257,7 +244,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV2,
                 itemWeight: 4.45,
                 buttonType: "alwaysBlack",
-                imageAssetUrl: "/static/images/logo",
+                imageAssetUrl: "/static/images/favicon.png",
             },
             {
                 title: "Better Bedrock V1",
@@ -265,7 +252,7 @@ export const DOWNLOADS_LIST: DownloadsListProps[] = [
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV1,
                 itemWeight: 20.14,
                 buttonType: "alwaysBlack",
-                imageAssetUrl: "/static/images/logo",
+                imageAssetUrl: "/static/images/favicon.png",
             },
         ],
     },

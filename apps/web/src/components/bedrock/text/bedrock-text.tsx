@@ -5,20 +5,14 @@ export interface BedrockTextProps {
   text: string;
   font?: string;
   color?: string;
-  textAlign?:
-  | "left"
-  | "right"
-  | "center"
-  | "justify"
-  | "start"
-  | "end"
-  | undefined;
+  textAlign?: "left" | "right" | "center" | "justify" | "start" | "end" | undefined;
   margin?: string;
   selectable?: boolean;
   strong?: boolean;
   type: "h1" | "h2" | "h3" | "p" | "p2";
   style?: React.CSSProperties;
   extraClassName?: string | string[];
+  onClick?: () => void;
 }
 
 export const BedrockText = ({
@@ -31,7 +25,8 @@ export const BedrockText = ({
   strong = false,
   margin,
   style,
-  extraClassName = []
+  onClick,
+  extraClassName = [],
 }: BedrockTextProps) => {
   const Tag = type === "p2" ? "p" : type;
   const paragraphType = type === "p2" ? styles.p2 : "";
@@ -41,16 +36,18 @@ export const BedrockText = ({
         paragraphType,
         styles.text,
         selectable === false ? styles.non_selectable : "",
+        onClick && styles.underline,
         strong && styles.strong,
-        ...(Array.isArray(extraClassName) ? extraClassName : [extraClassName])
+        ...(Array.isArray(extraClassName) ? extraClassName : [extraClassName]),
       )}
       style={{
         fontFamily: font,
         color: color,
         textAlign: textAlign,
         margin: margin,
-        ...style
+        ...style,
       }}
+      onClick={onClick}
     >
       {text}
     </Tag>

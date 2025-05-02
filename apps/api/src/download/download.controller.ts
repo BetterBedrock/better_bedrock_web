@@ -7,18 +7,33 @@ import {
     NotFoundException,
     Post,
     Query,
+    Res,
     StreamableFile,
 } from "@nestjs/common";
-import { ApiResponse } from "@nestjs/swagger";
-import { createReadStream } from "fs";
+import {
+    ApiBadGatewayResponse,
+    ApiCreatedResponse,
+    ApiNotFoundResponse,
+    ApiOkResponse,
+    ApiProduces,
+    ApiQuery,
+    ApiServiceUnavailableResponse,
+    ApiTags,
+    ApiUnauthorizedResponse,
+} from "@nestjs/swagger";
 import { AnalyticsService } from "src/analytics/analytics.service";
+import { Response } from "express";
 import { DownloadService } from "src/download/download.service";
 import { GenerateDownloadDto } from "src/download/dto/generate-download.dto";
 import { HttpService } from "@nestjs/axios";
 import { lastValueFrom } from "rxjs";
 import { VerifyDownloadDto } from "src/download/dto/verify-download.dto";
-import { DOWNLOADS_LIST, DownloadsItemProps } from "src/content/constants/content-downloads";
+import { DOWNLOADS_LIST } from "src/content/constants/content-downloads";
+import { DownloadsItemDto } from "src/content/dto/downloads.dto";
+import { createReadStream, promises as fs } from "fs";
+import { join } from "path";
 
+@ApiTags("download")
 @Controller("download")
 export class DownloadController {
     private readonly linkvertiseApiKey = process.env.LINKVERTISE_API_KEY;
@@ -30,7 +45,14 @@ export class DownloadController {
     ) {}
 
     @Get()
-    async download(@Ip() ip): Promise<StreamableFile> {
+    @ApiOkResponse({
+        description: "Binary file stream",
+        schema: { type: "string", format: "binary" },
+    })
+    @ApiProduces("application/octet-stream")
+    @ApiUnauthorizedResponse({ description: "Not verified for download." })
+    @ApiNotFoundResponse({ description: "File not found or does not exist on server." })
+    async download(@Ip() ip, @Res({ passthrough: true }) res: Response): Promise<StreamableFile> {
         const download = await this.downloadService.download({ ipAddress: ip });
         if (!download?.verified) {
             throw new HttpException(
@@ -64,55 +86,109 @@ export class DownloadController {
             });
         }
 
+        const filePath = join(
+            __dirname,
+            "../..",
+            "src/assets/downloads",
+            registryElement.downloadId,
+        );
+
+        let stat;
+        try {
+            stat = await fs.stat(filePath);
+        } catch (_) {
+            throw new HttpException("File not found.", HttpStatus.NOT_FOUND);
+        }
+        const fileSize = stat.size;
+
         const fileStream = createReadStream(`src/assets/downloads/${registryElement.downloadId}`);
 
+        res.setHeader("Access-Control-Expose-Headers", "Content-Disposition, Content-Length");
+        res.set({
+            "Content-Type": "application/octet-stream",
+            "Content-Disposition": `attachment; filename="${download.file}"`,
+            "Content-Length": fileSize.toString(),
+        });
         return new StreamableFile(fileStream);
     }
 
     @Post("verify")
-    async verify(@Ip() ip: string, @Query() query: VerifyDownloadDto): Promise<string> {
-        const url = `https://publisher.linkvertise.com/api/v1/anti_bypassing?token=${this.linkvertiseApiKey}&hash=${query.hash}`;
+    @ApiQuery({
+        name: "hash",
+        type: "string",
+        description: "Linkvertise anti-bypass hash",
+        required: true,
+    })
+    @ApiOkResponse({ type: DownloadsItemDto, description: "Download verified successfully." })
+    @ApiUnauthorizedResponse({ description: "Linkvertise verification failed or not verified." })
+    @ApiNotFoundResponse({
+        description: "Download record not found for this IP or file not found.",
+    })
+    @ApiBadGatewayResponse({ description: "Failed to verify with Linkvertise gateway." })
+    @ApiServiceUnavailableResponse({ description: "Linkvertise service unavailable." })
+    async verify(
+        @Ip() ip: string,
+        @Query() query: VerifyDownloadDto,
+    ): Promise<DownloadsItemDto | undefined> {
+        const download = await this.downloadService.download({ ipAddress: ip });
 
-        try {
-            const response$ = this.http.post(
-                url,
-                {}, // no body
-                {
-                    headers: {
-                        "Access-Control-Allow-Origin": "*",
-                        "Access-Control-Allow-Methods": "POST",
-                        "Access-Control-Allow-Headers": "Content-Type, Authorization",
-                    },
-                },
-            );
-            const { data, status } = await lastValueFrom(response$);
-
-            if (status !== 200 || !data.success) {
-                throw new HttpException("Linkvertise verification failed", HttpStatus.BAD_GATEWAY);
-            }
-        } catch (err) {
-            if (err instanceof HttpException) {
-                throw err;
-            }
-
-            throw new HttpException(
-                "Linkvertise servers are currently down, please wait before next request.",
-                HttpStatus.SERVICE_UNAVAILABLE,
-            );
+        if (!download) {
+            throw new NotFoundException(`Download for your device could not be found.`);
         }
 
-        await this.downloadService.updateDownload({
-            where: { ipAddress: ip },
-            data: { verified: true },
-        });
+        const url = `https://publisher.linkvertise.com/api/v1/anti_bypassing?token=${this.linkvertiseApiKey}&hash=${query.hash}`;
 
-        return "Verified successfully";
+        if (!download.verified) {
+            try {
+                const response$ = this.http.post(
+                    url,
+                    {}, // no body
+                    {
+                        headers: {
+                            "Access-Control-Allow-Origin": "*",
+                            "Access-Control-Allow-Methods": "POST",
+                            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+                        },
+                    },
+                );
+                const { data, status } = await lastValueFrom(response$);
+
+                if (status !== 200 || !data.status) {
+                    throw new HttpException(
+                        "Linkvertise verification failed",
+                        HttpStatus.BAD_GATEWAY,
+                    );
+                }
+            } catch (err) {
+                if (err instanceof HttpException) {
+                    throw err;
+                }
+
+                throw new HttpException(
+                    "Linkvertise servers are currently down, please wait before next request.",
+                    HttpStatus.SERVICE_UNAVAILABLE,
+                );
+            }
+
+            await this.downloadService.updateDownload({
+                where: { ipAddress: ip },
+                data: { verified: true },
+            });
+        }
+
+        return this.findDownloadItemById(download.file);
     }
 
-    @ApiResponse({ status: 201, description: "The record has been successfully created." })
-    @ApiResponse({ status: 403, description: "Forbidden." })
     @Post("generate")
-    async generate(@Ip() ip, @Query() query: GenerateDownloadDto): Promise<string> {
+    @ApiQuery({
+        name: "file",
+        type: "string",
+        description: "Download ID to generate",
+        required: true,
+    })
+    @ApiCreatedResponse({ description: "Download record created." })
+    @ApiNotFoundResponse({ description: "Requested file not found." })
+    async generate(@Ip() ip, @Query() query: GenerateDownloadDto) {
         this.findDownloadItemById(query.file);
 
         await this.downloadService.deleteDownload({ ipAddress: ip });
@@ -128,11 +204,9 @@ export class DownloadController {
                 totalDownloads: analytics.totalDownloads++,
             });
         }
-
-        return `Generating download ${ip} for this file: ` + query.file;
     }
 
-    findDownloadItemById(downloadId: string): DownloadsItemProps | undefined {
+    findDownloadItemById(downloadId: string): DownloadsItemDto | undefined {
         for (const section of DOWNLOADS_LIST) {
             const match = section.items.find((item) => item.downloadId === downloadId);
             if (match) {

@@ -1,10 +1,6 @@
-export interface ThemesListProps {
-    title: string;
-    description: string;
-    imageAssetUrl?: string;
-}
+import { ThemeDto } from "src/content/dto/theme.dto";
 
-export const THEMES_LIST: ThemesListProps[] = [
+export const THEMES_LIST: ThemeDto[] = [
     {
         title: "Blue UI",
         description: "@ayaanthe0ne",

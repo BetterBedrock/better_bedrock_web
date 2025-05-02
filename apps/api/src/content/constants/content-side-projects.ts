@@ -1,10 +1,6 @@
-export interface SideProjectsListProps {
-    title: string;
-    description: string;
-    imageAssetUrl?: string;
-}
+import { SideProjectDto } from "src/content/dto/side-projects.dto";
 
-export const SIDE_PROJECTS_LIST: SideProjectsListProps[] = [
+export const SIDE_PROJECTS_LIST: SideProjectDto[] = [
     {
         title: "Murder Detector+ v3.2",
         description: "@axmbro",

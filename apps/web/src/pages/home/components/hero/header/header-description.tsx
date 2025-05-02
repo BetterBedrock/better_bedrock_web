@@ -7,7 +7,7 @@ export const HeroDescription = () => (
       type={"p"}
       textAlign="center"
       color="white"
-      text="Is the most powerful, customizable, useful and free Texture Pack available on the majority of platforms!"
+      text="Is the most powerful, customizable, useful and free Texture Pack available on all platforms!"
     />
   </div>
 );
