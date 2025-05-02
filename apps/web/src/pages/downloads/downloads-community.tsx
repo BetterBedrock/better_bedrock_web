@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "~/components/bedrock/button";
 import { ButtonSeparator } from "~/components/bedrock/button-separator";
 import { BedrockText } from "~/components/bedrock/text";
+import { CommunityConfigs } from "~/pages/downloads/community";
 import { CommunityThemes } from "~/pages/downloads/community/community-themes";
 import { COMMUNITY_TAB_NAMES } from "~/pages/downloads/downloads-data";
 
@@ -12,19 +13,19 @@ export const DownloadsCommunity = () => {
     <>
       <div>
         <BedrockText
-          type={"h1"}
-          text={"Community Creations"}
+          type="h1"
+          text="Community Creations"
           color="white"
           font="MinecraftTen"
           textAlign="center"
-        ></BedrockText>
+        />
         <BedrockText
-          type={"p"}
+          type="p"
           textAlign="center"
           color="white"
           margin="0 0 1rem 0"
-          text={"todo"}
-        ></BedrockText>
+          text="Explore a variety of themes and configs made by the community of Better Bedrock users."
+        />
       </div>
       <div style={{ width: "100%", display: "flex", flexDirection: "row" }}>
         <ButtonSeparator>
@@ -42,26 +43,8 @@ export const DownloadsCommunity = () => {
           ))}
         </ButtonSeparator>
       </div>
-      {communityTab === 0 && (
-        <div
-          style={{ width: "100%", display: "flex", flexDirection: "row", padding: "1rem 0 2rem 0" }}
-        >
-          <ButtonSeparator
-          // style={{justifyContent: "flex-end"}}
-          >
-            <Button text={"Submit YOUR custom theme"} type="alwaysGreen" width={"auto"} />
-            <Button
-              text="Watch theme creation tutorial"
-              width={"auto"}
-              type="alwaysWhite"
-              onTap={() =>
-                window.open("https://youtu.be/GRQahMrdEoY", "_blank", "noopener,noreferrer")
-              }
-            />
-          </ButtonSeparator>
-        </div>
-      )}
-      <CommunityThemes />
+      {communityTab === 0 && <CommunityThemes />}
+      {communityTab === 1 && <CommunityConfigs />}
     </>
   );
 };
