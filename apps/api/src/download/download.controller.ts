@@ -52,6 +52,7 @@ export class DownloadController {
     @ApiProduces("application/octet-stream")
     @ApiUnauthorizedResponse({ description: "Not verified for download." })
     @ApiNotFoundResponse({ description: "File not found or does not exist on server." })
+    async download(@Ip() ip, @Res({ passthrough: true }) res: Response): Promise<StreamableFile> {
         const download = await this.downloadService.download({ ipAddress: ip });
         if (!download?.verified) {
             throw new HttpException(
@@ -85,8 +86,29 @@ export class DownloadController {
             });
         }
 
+        const filePath = join(
+            __dirname,
+            "../..",
+            "src/assets/downloads",
+            registryElement.downloadId,
+        );
+
+        let stat;
+        try {
+            stat = await fs.stat(filePath);
+        } catch (_) {
+            throw new HttpException("File not found.", HttpStatus.NOT_FOUND);
+        }
+        const fileSize = stat.size;
+
         const fileStream = createReadStream(`src/assets/downloads/${registryElement.downloadId}`);
 
+        res.setHeader("Access-Control-Expose-Headers", "Content-Disposition, Content-Length");
+        res.set({
+            "Content-Type": "application/octet-stream",
+            "Content-Disposition": `attachment; filename="${download.file}"`,
+            "Content-Length": fileSize.toString(),
+        });
         return new StreamableFile(fileStream);
     }
 
