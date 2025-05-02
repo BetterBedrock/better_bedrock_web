@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "openapi-fetch": "^0.13.5",
     "react": "latest",
     "react-dom": "latest",
     "react-responsive": "^10.0.1",
@@ -23,7 +24,9 @@
     "@types/react-dom": "latest",
     "@types/react-router-dom": "latest",
     "@vitejs/plugin-react": "^4.4.1",
-    "typescript": "latest",
+    "openapi-typescript": "^7.6.1",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.31.1",
     "vite": "^6.3.2",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-react": "^4.0.1",
