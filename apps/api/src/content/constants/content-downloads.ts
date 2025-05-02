@@ -1,3 +1,5 @@
+import { DownloadsListDto } from "src/content/dto/downloads.dto";
+
 const DOWNLOADS_IDS = {
     betterBedrockClientV74: "better_bedrock_texture_pack_v7.4.mcpack",
     betterBedrockClientV73: "better_bedrock_texture_pack_v7.3.mcpack",
@@ -44,22 +46,7 @@ const DOWNLOADS_IDS = {
     betterBedrockParticleLimiter: "better_bedrock_particle_limiter.mcpack",
 };
 
-export interface DownloadsItemProps {
-    title: string;
-    description: string;
-    downloadId: string;
-    buttonType: "alwaysWhite" | "alwaysBlack" | "alwaysGreen";
-    itemWeight: number;
-    imageAssetUrl: string;
-}
-
-export interface DownloadsListProps {
-    title: string;
-    description: string;
-    items: DownloadsItemProps[];
-}
-
-export const DOWNLOADS_LIST: DownloadsListProps[] = [
+export const DOWNLOADS_LIST: DownloadsListDto[] = [
     {
         title: "Featured",
         description:
