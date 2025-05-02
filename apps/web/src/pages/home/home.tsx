@@ -4,7 +4,6 @@ import { Changelog } from "./components/changelog";
 import { Creators } from "./components/creators";
 import { Hero } from "./components/hero";
 
-// import dirtImage from "~/assets/images/dirt.png";
 import sand from "~/assets/images/sand.png";
 import stone from "~/assets/images/stone.png";
 import deepslate from "~/assets/images/deepslate.png";
