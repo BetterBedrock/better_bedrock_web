@@ -1,0 +1,13 @@
+.notification {
+  pointer-events: auto;
+  animation: fade-in 0.25s ease;
+}
+
+@keyframes fade-in {
+  from {
+    transform: translateX(500px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
