@@ -1,7 +1,6 @@
-import Footer from "../../components/bedrock/Footer";
-import { StaticPage } from "~/components/bedrock/page-container/static-page";
-import backgroundImg from "~/assets/images/crosshair_backgrounds/4.png";
-import { Header } from "../../components/discord/header"
+import { Section } from "~/components/section";
+import { Hero } from "./components/hero";
+import { styles } from ".";
 import { useEffect } from "react";
 
 export const Discord = () => {
@@ -10,11 +9,8 @@ export const Discord = () => {
   }, []);
 
   return (
-    <>
-      <StaticPage backgroundUrl={backgroundImg} useFullHeight={true}>
-        <Header />
-      </StaticPage >
-      <Footer />
-    </>
+    <Section className={styles.background} fixed>
+      <Hero />
+    </Section>
   );
 };
