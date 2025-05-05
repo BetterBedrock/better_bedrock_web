@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { MainArchiveButton, MainItemsList } from "./main";
-import { styles, DownloadsHeading } from ".";
+import { MainArchiveButton, MainItemsList, styles } from ".";
 import { useContent } from "~/providers/content";
 import CircularProgressIndicator from "~/components/bedrock/CircularProgressIndicator";
+import { Heading } from "~/pages/downloads/components/heading";
 
-export const DownloadsMain = () => {
+export const Main = () => {
   const { downloads, fetched } = useContent();
   const [showArchived, setShowArchived] = useState(false);
 
@@ -20,7 +20,7 @@ export const DownloadsMain = () => {
     <>
       {visibleCategories.map((category) => (
         <div className={styles.category}>
-          <DownloadsHeading title={category.title} description={category.description} />
+          <Heading title={category.title} description={category.description} />
           <MainItemsList category={category} />
         </div>
       ))}

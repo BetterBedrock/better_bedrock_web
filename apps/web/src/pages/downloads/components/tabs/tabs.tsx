@@ -1,13 +1,14 @@
 import { Button } from "~/components/bedrock/button";
 import { ButtonSeparator } from "~/components/bedrock/button-separator";
-import { styles, TAB_NAMES } from ".";
+import { TAB_NAMES } from "../..";
+import { styles } from ".";
 
-interface DownloadsTabsListProps {
+interface TabsProps {
   activeTab: number;
   setActiveTab: (tab: number) => void;
 }
 
-export const DownloadsTabsList = ({ activeTab, setActiveTab }: DownloadsTabsListProps) => (
+export const Tabs = ({ activeTab, setActiveTab }: TabsProps) => (
   <div className={styles.tabs}>
     <ButtonSeparator>
       {TAB_NAMES.map((text, index) => (

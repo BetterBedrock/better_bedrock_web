@@ -1,12 +1,12 @@
 import { BedrockText } from "~/components/bedrock/text";
 import { styles } from ".";
 
-interface DownloadsHeadingProps {
+interface HeadingProps {
   title: string;
   description: string;
 }
 
-export const DownloadsHeading = ({ title, description }: DownloadsHeadingProps) => (
+export const Heading = ({ title, description }: HeadingProps) => (
   <>
     <BedrockText type="h1" text={title} color="white" font="MinecraftTen" textAlign="center" />
     <BedrockText

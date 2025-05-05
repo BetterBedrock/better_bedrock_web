@@ -2,11 +2,10 @@ import { useState } from "react";
 import { Button } from "~/components/bedrock/button";
 import { ButtonSeparator } from "~/components/bedrock/button-separator";
 import { BedrockText } from "~/components/bedrock/text";
-import { CommunityConfigs } from "~/pages/downloads/community";
-import { CommunityThemes } from "~/pages/downloads/community/community-themes";
+import { CommunityConfigs, CommunityThemes } from "~/pages/downloads/components/community";
 import { COMMUNITY_TAB_NAMES } from "~/pages/downloads/downloads-data";
 
-export const DownloadsCommunity = () => {
+export const Community = () => {
   const [communityTab, setCommunityTab] = useState(0);
 
   return (

@@ -2,11 +2,11 @@ import {
   SideProjectsActions,
   SideProjectsHeading,
   SideProjectsList,
-} from "./side-projects";
+} from ".";
 
 import { styles } from ".";
 
-export const DownloadsSideProjects = () => (
+export const SideProjects = () => (
   <div className={styles.category}>
     <SideProjectsHeading />
     <SideProjectsActions />

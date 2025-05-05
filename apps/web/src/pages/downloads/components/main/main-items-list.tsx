@@ -1,8 +1,8 @@
 import DownloadCard from "~/components/bedrock/download-card/download-card";
-import { DownloadListProps } from "../";
 import { styles } from ".";
 import logo from "~/assets/images/favicon.png";
 import { useContent } from "~/providers/content";
+import { DownloadListProps } from "~/pages/downloads";
 
 const calcItemWeight = (itemWeight: number) => {
   return itemWeight <= 0.1 ? "<0.0" : itemWeight.toFixed(1);
