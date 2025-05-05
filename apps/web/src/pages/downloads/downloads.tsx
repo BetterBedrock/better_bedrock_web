@@ -2,27 +2,29 @@ import styles from "./downloads.module.scss";
 import { useState } from "react";
 
 import { Section } from "~/components/section";
-import { DownlaodsAd } from "~/pages/downloads/downloads-ad";
-import { DownloadsTabsList } from "~/pages/downloads/downloads-tabs-list";
-import { DownloadsCommunity } from "~/pages/downloads/downloads-community";
-import { DownloadsSideProjects } from "~/pages/downloads/downloads-side-projects";
-import { DownloadsMain } from "~/pages/downloads/downloads-main";
+import { Ad } from "~/pages/downloads/components/ad";
+import { Tabs } from "~/pages/downloads/components/tabs";
+import { Community } from "~/pages/downloads/components/community/community";
+import { SideProjects } from "~/pages/downloads/components/side-projects";
+import { Main } from "~/pages/downloads/components/main";
 
 export const Downloads = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <Section className={styles.background} fixed>
-      <div className={styles.header}>
-        <DownlaodsAd />
-        <DownloadsTabsList activeTab={activeTab} setActiveTab={setActiveTab} />
-      </div>
+    <main>
+      <Section className={styles.background} fixed>
+        <div className={styles.header}>
+          <Ad />
+          <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+        </div>
 
-      {activeTab === 0 && <DownloadsMain />}
+        {activeTab === 0 && <Main />}
 
-      {activeTab === 1 && <DownloadsCommunity />}
+        {activeTab === 1 && <Community />}
 
-      {activeTab === 2 && <DownloadsSideProjects />}
-    </Section>
+        {activeTab === 2 && <SideProjects />}
+      </Section>
+    </main>
   );
 };

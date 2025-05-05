@@ -1,0 +1,18 @@
+@use "~/assets/styles/global" as g;
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-xsm;
+}
+
+
+.heading {
+  padding-bottom: g.$padding-sm;
+}

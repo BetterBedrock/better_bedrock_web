@@ -1,5 +1,4 @@
 import { BedrockText } from "~/components/bedrock/text";
-import { Section } from "~/components/section";
 import { styles } from ".";
 import LoadingBar from "~/components/bedrock/LoadingBar";
 import { useLocation } from "react-router-dom";
@@ -28,52 +27,37 @@ export const Hero = () => {
 
   if (!hash) {
     return (
-      <Section className={styles.background}>
-        <div style={{ width: "100%" }}>
-          <BedrockText type="h1" text="ERROR" color="white" font="MinecraftTen" />
-          <BedrockText type="p" color="white" text="No file to download" />
-        </div>
-      </Section>
+      <div style={{ width: "100%" }}>
+        <BedrockText type="h1" text="ERROR" color="white" font="MinecraftTen" />
+        <BedrockText type="p" color="white" text="No file to download" />
+      </div>
     );
   }
 
   if (!downloadItem) {
     return (
-      <Section className={styles.background}>
-        <div className={styles.hero}>
-          <CircularProgressIndicator width="50px" height="50px" />
-        </div>
-      </Section>
+      <div className={styles.hero}>
+        <CircularProgressIndicator width="50px" height="50px" />
+      </div>
     );
   }
 
   return (
-    <Section className={styles.background}>
-      <div className={styles.hero}>
-        <div>
-          <div className={styles.header}>
-            <BedrockText type="h1" text="DOWNLOADING" color="white" font="MinecraftTen" />
-          </div>
-          <BedrockText type="p" color="white" text={downloadItem.title} />
+    <div className={styles.hero}>
+      <div>
+        <div className={styles.header}>
+          <BedrockText type="h1" text="DOWNLOADING" color="white" font="MinecraftTen" />
         </div>
-        <LoadingBar maxWidth="100%" height="20px" percentage={downloadProgress} />
-        <BedrockText
-          type="p"
-          color="white"
-          extraClassName={styles.label}
-          text="Download did not start? Click here!"
-          onClick={download}
-        />
-        {/* <Button
-          width="100%"
-          height="50px"
-          type="alwaysWhite"
-          text="Download"
-          onClick={() => {
-            download();
-          }} */}
-        {/* /> */}
+        <BedrockText type="p" color="white" text={downloadItem.title} />
       </div>
-    </Section>
+      <LoadingBar maxWidth="100%" height="20px" percentage={downloadProgress} />
+      <BedrockText
+        type="p"
+        color="white"
+        extraClassName={styles.label}
+        text="Download did not start? Click here!"
+        onClick={download}
+      />
+    </div>
   );
 };
