@@ -16,7 +16,8 @@
     "react-responsive": "^10.0.1",
     "react-router-dom": "latest",
     "sass": "^1.87.0",
-    "use-sound": "latest"
+    "use-sound": "latest",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",
