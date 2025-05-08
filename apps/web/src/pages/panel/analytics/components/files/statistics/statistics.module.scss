@@ -1,0 +1,15 @@
+@use "~/assets/styles/global.scss" as g;
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  width: 100%;
+  justify-content: start;
+  align-items: start;
+  gap: g.$padding-xsm;
+}
+
+.card {
+  width: 100%;
+}
