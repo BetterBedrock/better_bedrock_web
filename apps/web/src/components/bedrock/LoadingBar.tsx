@@ -9,7 +9,7 @@ interface LoadingBarProps {
 const LoadingBar: React.FC<LoadingBarProps> = ({ maxWidth, height, percentage }) => {
   return (
     <div className="loadingbar-outer-layer" style={{ width: maxWidth, height: height }}>
-      <div className="loadingbar-inner-layer" style={{ width: `${percentage}%` }}></div>
+      <div className="loadingbar-inner-layer" style={{ width: `${percentage}%` }} />
     </div>
   );
 };
