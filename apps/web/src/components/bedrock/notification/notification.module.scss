@@ -1,4 +1,11 @@
-.notification {
+@use "~/assets/styles/global.scss" as g;
+
+$half: g.$minecraftdepth;
+$pixel: calc(g.$minecraftdepth * 2);
+
+.wrapper {
+  width: 400px;
+  height: auto;
   pointer-events: auto;
   animation: fade-in 0.25s ease;
 }
@@ -10,4 +17,154 @@
   to {
     transform: translateX(0px);
   }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+
+.icon {
+  height: auto;
+  width: 25px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.close {
+  height: auto;
+  width: 25px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.heading {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.outer {
+  background-color: #555555;
+  padding: 5px;
+}
+
+.inner {
+  padding: 10px;
+  gap: 10px;
+  height: 100%;
+  width: 100%;
+  background-color: #212121;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: start;
+}
+
+/* SHAPES */
+/* Generated with https://pixelcorners.lukeb.co.uk/ */
+.outerShape {
+  clip-path: polygon(
+    0px calc(100% - $pixel),
+    $half calc(100% - $pixel),
+    $half calc(100% - $half),
+    $pixel calc(100% - $half),
+    $pixel 100%,
+    calc(100% - $pixel) 100%,
+    calc(100% - $pixel) calc(100% - $half),
+    calc(100% - $half) calc(100% - $half),
+    calc(100% - $half) calc(100% - $pixel),
+    100% calc(100% - $pixel),
+    100% $pixel,
+    calc(100% - $half) $pixel,
+    calc(100% - $half) $half,
+    calc(100% - $pixel) $half,
+    calc(100% - $pixel) 0px,
+    $pixel 0px,
+    $pixel $half,
+    $half $half,
+    $half $pixel,
+    0px $pixel
+  );
+  position: relative;
+}
+.outerShape {
+  border: $half solid transparent;
+}
+
+.outerShape::after {
+  content: "";
+  position: absolute;
+  clip-path: polygon(
+    0px calc(100% - $pixel),
+    $half calc(100% - $pixel),
+    $half calc(100% - $half),
+    $pixel calc(100% - $half),
+    $pixel 100%,
+    calc(100% - $pixel) 100%,
+    calc(100% - $pixel) calc(100% - $half),
+    calc(100% - $half) calc(100% - $half),
+    calc(100% - $half) calc(100% - $pixel),
+    100% calc(100% - $pixel),
+    100% $pixel,
+    calc(100% - $half) $pixel,
+    calc(100% - $half) $half,
+    calc(100% - $pixel) $half,
+    calc(100% - $pixel) 0px,
+    $pixel 0px,
+    $pixel $half,
+    $half $half,
+    $half $pixel,
+    0px $pixel,
+    0px 50%,
+    $half 50%,
+    $half $pixel,
+    $pixel $pixel,
+    $pixel $half,
+    calc(100% - $pixel) $half,
+    calc(100% - $pixel) $pixel,
+    calc(100% - $half) $pixel,
+    calc(100% - $half) calc(100% - $pixel),
+    calc(100% - $pixel) calc(100% - $pixel),
+    calc(100% - $pixel) calc(100% - $half),
+    $pixel calc(100% - $half),
+    $pixel calc(100% - $pixel),
+    $half calc(100% - $pixel),
+    $half 50%,
+    0px 50%
+  );
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: black; /*old blue*/
+  display: block;
+  pointer-events: none;
+}
+.outerShape::after {
+  margin: -$half;
+}
+
+.innerShape {
+  clip-path: polygon(
+    0px calc(100% - $half),
+    $half calc(100% - $half),
+    $half 100%,
+    calc(100% - $half) 100%,
+    calc(100% - $half) calc(100% - $half),
+    100% calc(100% - $half),
+    100% $half,
+    calc(100% - $half) $half,
+    calc(100% - $half) 0px,
+    $half 0px,
+    $half $half,
+    0px $half
+  );
 }
