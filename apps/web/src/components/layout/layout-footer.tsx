@@ -1,3 +1,3 @@
-import Footer from "~/components/bedrock/Footer";
+import { Footer } from "~/components/bedrock/footer";
 
 export const LayoutFooter = () => <Footer />;
