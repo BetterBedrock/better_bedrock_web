@@ -1,0 +1,11 @@
+@use "~/assets/styles/global.scss" as g;
+
+.statistics {
+    width:100%;
+    height:100%;
+    align-items:start;
+    justify-content: start;
+
+    padding: g.$padding-xsm;
+    gap: g.$padding-xsm;
+}
