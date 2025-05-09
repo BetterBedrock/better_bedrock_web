@@ -1,0 +1,97 @@
+@use "~/assets/styles/global" as g;
+
+.wrapper {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.heading {
+  text-wrap: nowrap;
+  overflow: hidden;
+  font-size: clamp(30px, 4vw, 2.5rem);
+}
+
+.item {
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+
+  align-items: center;
+  justify-content: start;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+}
+
+.button {
+  height: 100%;
+  padding: 0 0.5rem;
+  @media (max-width: 1000px) {
+    display: none;
+  }
+}
+
+.menuButton {
+  display: none !important;
+  margin-left: auto;
+
+  @media (max-width: 1000px) {
+    display: flex !important;
+  }
+}
+
+.nav {
+  @media (max-width: 1000px) {
+    display: none;
+  }
+}
+
+.label {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  padding: g.$padding-xsm;
+  justify-content: space-between;
+
+  &.expanded {
+    @media (max-width: 1000px) {
+      .wrapper {
+        position: fixed;
+      }
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      justify-content: start;
+
+      .text {
+        font-size: 2.5rem !important;
+      }
+
+      .item {
+        width: 100%;
+        justify-content: start;
+
+        height: auto;
+      }
+
+      .button {
+        display: flex;
+        height: auto;
+        padding: g.$padding-xsm;
+      }
+
+      .nav {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

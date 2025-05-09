@@ -1,118 +1,86 @@
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
+import { BedrockText } from "~/components/bedrock/text";
 import { Label } from "../label";
-import { BedrockText } from "../text/bedrock-text";
-import { useMediaQuery } from "react-responsive";
-
-import SimpleButton from "../simple-button/simple-button";
 import FavIcon from "~/assets/images/favicon.png";
+import SimpleButton from "~/components/bedrock/simple-button/simple-button";
 
-import styles from "./navbar.module.css";
-import { useNavigate } from "react-router-dom";
+import styles from "./navbar.module.scss";
+import clsx from "clsx";
 
 export const Navbar = () => {
   const [expandedNavbar, setExpandedNavbar] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleExpandNavbar = () => {
-    setExpandedNavbar((prev) => !prev);
+    setExpandedNavbar(prev => !prev);
   };
 
-  const navButtons = ["Home", "Downloads", "Information", "Discord"];
-  const navRoutes = ["/", "/downloads", "/information", "/discord"];
-
-  const minWidth = useMediaQuery({ query: "(max-width: 700px)" });
-  const minWidthNav = useMediaQuery({ query: "(max-width: 350px)" });
-  const minWidthNav2 = useMediaQuery({ query: "(max-width: 230px)" });
+  // Determine which nav items to show
+  const isPanelSection = location.pathname === "/panel" || location.pathname.startsWith("/panel/");
+  const navItems = isPanelSection
+    ? [
+        { name: "Dashboard", path: "/panel" },
+        { name: "Analytics", path: "/panel/analytics" },
+      ]
+    : [
+        { name: "Home", path: "/" },
+        { name: "Downloads", path: "/downloads" },
+        { name: "Information", path: "/information" },
+        { name: "Discord", path: "/discord" },
+      ];
 
   return (
-    <header className={styles.label_wrapper} id="navbar">
-      <Label height={minWidth ? "auto" : "4rem"}>
-        <div id={styles.containerColumn} style={{ height: minWidth ? "auto" : "100%" }}>
-          {/* logo with text */}
-          <div id={styles.containerRow}>
-            <div
-              style={{ display: "flex", alignItems: "center", gap: "1rem" }}
-              onClick={() => {
-                navigate(navRoutes[0]);
-              }}
-            >
-              <div id={styles.prefix}>
-                <img alt="logo" src={FavIcon} />
-                {!minWidthNav && (
-                  <BedrockText
-                    text="Better Bedrock"
-                    type={"h1"}
-                    font="MinecraftTen"
-                    style={{ fontSize: "clamp(30px, 4vw, 2.5rem)" }}
-                  />
-                )}
-              </div>
-              {minWidthNav && !minWidthNav2 && (
-                <BedrockText text="Better Bedrock" type={"h1"} font="MinecraftTen" />
-              )}
-            </div>
-
-            {/* menu button on the rigth */}
-            {minWidth && (
-              <div id={styles.menuButton}>
-                <SimpleButton height={"100%"} onTap={handleExpandNavbar}>
-                  <div className="material-icons">menu</div>
-                </SimpleButton>
-              </div>
-            )}
-
-            {/* desktop nav buttons */}
-            {!minWidth && (
-              <nav id={styles.suffix}>
-                {navButtons.map((item, index) => {
-                  const isActive = location.pathname === navRoutes[index];
-                  return (
-                    <SimpleButton
-                      height={"100%"}
-                      style={{
-                        padding: "0 0.5rem",
-                        backgroundColor: isActive ? "var(--bedrock-simple-button-click)" : "",
-                      }}
-                      onTap={() => {
-                        navigate(navRoutes[index]);
-                      }}
-                      key={item}
-                    >
-                      <BedrockText text={item} type={"p"} />
-                    </SimpleButton>
-                  );
-                })}
-              </nav>
-            )}
-          </div>
-
-          {/* mobile nav buttons */}
-          {minWidth && expandedNavbar && (
-            <nav className={styles.menuContainer}>
-              {navButtons.map((item, index) => {
-                const isActive = location.pathname === navRoutes[index];
-                return (
-                  <SimpleButton
-                    height={"auto"}
-                    width={"100%"}
-                    style={{
-                      padding: "0.5rem 0",
-                      backgroundColor: isActive ? "var(--bedrock-simple-button-click)" : "",
-                    }}
-                    onTap={() => {
-                      navigate(navRoutes[index]);
-                      setExpandedNavbar(false);
-                    }}
-                    key={item}
-                  >
-                    <BedrockText text={item} type={"p"} />
-                  </SimpleButton>
-                );
-              })}
-            </nav>
-          )}
+    <header className={styles.wrapper}>
+      <Label
+        extraClassName={clsx(styles.label, expandedNavbar && styles.expanded)}
+      >
+        <div className={styles.item}>
+          <img alt="logo" src={FavIcon} className={styles.image} />
+          <BedrockText
+            text="Better Bedrock"
+            type="h1"
+            font="MinecraftTen"
+            extraClassName={styles.heading}
+          />
+          <SimpleButton
+            height="100%"
+            onTap={handleExpandNavbar}
+            className={styles.menuButton}
+          >
+            <div className="material-icons">menu</div>
+          </SimpleButton>
         </div>
+
+        <nav className={clsx(styles.item, styles.nav)}>
+          {navItems.map(({ name, path }) => {
+            const isActive = location.pathname === path;
+            return (
+              <SimpleButton
+                key={name}
+                width="100%"
+                style={{
+                  backgroundColor: isActive
+                    ? "var(--bedrock-simple-button-click)"
+                    : "",
+                }}
+                className={styles.button}
+                onTap={() => {
+                  navigate(path);
+                  handleExpandNavbar();
+                }}
+              >
+                <BedrockText
+                  text={name}
+                  type="p"
+                  extraClassName={styles.text}
+                />
+              </SimpleButton>
+            );
+          })}
+        </nav>
       </Label>
     </header>
   );
