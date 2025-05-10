@@ -1,7 +1,7 @@
 @use "~/assets/styles/global" as g;
 
 $trailer-padding: 5vh;
-$header-height: 50vh;
+$header-height: 65vh;
 
 @mixin flex-container {
   width: 100%;
@@ -15,7 +15,8 @@ $header-height: 50vh;
   @include g.page-background(
     g.$background-linear-gradient,
     "~/assets/images/crosshair_backgrounds/9.png",
-    (bottom)
+    (bottom),
+    g.$sectionsDividerPadding
   );
 }
 
@@ -26,5 +27,4 @@ $header-height: 50vh;
 
 .trailer {
   @include flex-container();
-  padding-bottom: $trailer-padding;
 }
