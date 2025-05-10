@@ -5,9 +5,11 @@ import { useLocation } from "react-router-dom";
 import { useContent } from "~/providers/content";
 import { useEffect } from "react";
 import CircularProgressIndicator from "~/components/bedrock/CircularProgressIndicator";
+import { useNotification } from "~/providers/notification";
 
 export const Hero = () => {
   const { verifyDownload, download, downloadProgress, downloadItem, downloading } = useContent();
+  const { sendNotification } = useNotification();
 
   const { search } = useLocation();
   const query = new URLSearchParams(search);
@@ -17,6 +19,14 @@ export const Hero = () => {
     if (hash) {
       verifyDownload(hash);
     }
+
+    if (!hash) {
+      sendNotification({
+        title: "No Hash",
+        label: "You are missing hash in your link",
+        type: "error",
+      });
+    }
   }, []);
 
   useEffect(() => {
@@ -25,16 +35,7 @@ export const Hero = () => {
     }
   }, [downloadItem]);
 
-  if (!hash) {
-    return (
-      <div style={{ width: "100%" }}>
-        <BedrockText type="h1" text="ERROR" color="white" font="MinecraftTen" />
-        <BedrockText type="p" color="white" text="No file to download" />
-      </div>
-    );
-  }
-
-  if (!downloadItem) {
+  if (!downloadItem || !hash) {
     return (
       <div className={styles.hero}>
         <CircularProgressIndicator width="50px" height="50px" />
