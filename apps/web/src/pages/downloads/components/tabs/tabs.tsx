@@ -2,27 +2,36 @@ import { Button } from "~/components/bedrock/button";
 import { ButtonSeparator } from "~/components/bedrock/button-separator";
 import { TAB_NAMES } from "../..";
 import { styles } from ".";
+import { useContent } from "~/providers/content";
 
 interface TabsProps {
   activeTab: number;
   setActiveTab: (tab: number) => void;
 }
 
-export const Tabs = ({ activeTab, setActiveTab }: TabsProps) => (
-  <div className={styles.tabs}>
-    <ButtonSeparator>
-      {TAB_NAMES.map((text, index) => (
-        <Button
-          key={index}
-          tabIndex={index}
-          isClicked={activeTab === index}
-          onTap={() => setActiveTab(index)}
-          width="100%"
-          height="auto"
-          text={text}
-          type="alwaysBlack"
-        />
-      ))}
-    </ButtonSeparator>
-  </div>
-);
+export const Tabs = ({ activeTab, setActiveTab }: TabsProps) => {
+  const { downloads } = useContent();
+
+  if (downloads.length < 1) {
+    return <></>;
+  }
+
+  return (
+    <div className={styles.tabs}>
+      <ButtonSeparator>
+        {TAB_NAMES.map((text, index) => (
+          <Button
+            key={index}
+            tabIndex={index}
+            isClicked={activeTab === index}
+            onTap={() => setActiveTab(index)}
+            width="100%"
+            height="auto"
+            text={text}
+            type="alwaysBlack"
+          />
+        ))}
+      </ButtonSeparator>
+    </div>
+  );
+};
