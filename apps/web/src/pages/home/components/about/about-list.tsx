@@ -10,7 +10,7 @@ export const AboutList = ({ items, direction = "left" }: AboutListProps) => {
   return (
     <>
       {items.map((item, index) => (
-        <AboutCard direction={direction} item={item} index={index} />
+        <AboutCard key={index} direction={direction} item={item} index={index} />
       ))}
     </>
   );
