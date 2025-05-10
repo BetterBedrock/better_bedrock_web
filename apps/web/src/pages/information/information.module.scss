@@ -3,6 +3,7 @@
 .background {
   @include g.page-background(
     g.$background-linear-gradient,
-    "~/assets/images/crosshair_backgrounds/11.png"
+    "~/assets/images/crosshair_backgrounds/11.png",
+    (top, bottom)
   );
 }

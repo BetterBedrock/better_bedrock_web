@@ -9,7 +9,7 @@ export const Discord = () => {
   }, []);
 
   return (
-    <Section className={styles.background} fixed>
+    <Section className={styles.background} fixed center>
       <Hero />
     </Section>
   );

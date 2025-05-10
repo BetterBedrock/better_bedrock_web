@@ -4,5 +4,6 @@
   @include g.page-background(
     g.$background-linear-gradient,
     "~/assets/images/crosshair_backgrounds/1.png",
+    (top, bottom)
   );
 }

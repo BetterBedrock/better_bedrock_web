@@ -4,7 +4,7 @@ import { styles } from ".";
 
 export const Invalid = () => (
   <main>
-    <Section className={styles.background} fixed>
+    <Section className={styles.background} fixed center>
       <Hero />
     </Section>
   </main>
