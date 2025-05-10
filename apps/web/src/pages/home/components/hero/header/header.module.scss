@@ -1,6 +1,6 @@
 @use "~/assets/styles/global.scss" as g;
 
-$title-height: clamp(2rem, 8vw, 6rem);
+$title-height: clamp(2.5em, 8vw, 6em);
 
 @mixin flex-container {
   display: inline-flex;
@@ -13,6 +13,10 @@ $title-height: clamp(2rem, 8vw, 6rem);
   @include flex-container();
   gap: g.$padding-xxsm;
   height: $title-height;
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    height: auto;
+  }
 }
 
 .actions {
@@ -28,12 +32,21 @@ $title-height: clamp(2rem, 8vw, 6rem);
   text-wrap: nowrap;
   font-size: $title-height;
   line-height: $title-height;
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    text-wrap: wrap;
+    line-height: 2.5rem;
+  }
 }
 
 .logo {
   position: relative;
   top: 0.09rem;
   height: 75%;
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    display: none;
+  }
 }
 
 .reversed {
