@@ -12,6 +12,7 @@ export const About = ({ sectionIndex }: AboutProps) => {
     <Section
       className={styles.background}
       style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7)), url(${backgroundImage})` }}
+      center
     >
       <AboutList items={elements} direction={sectionIndex === 0 ? "left" : "right"} />
     </Section>

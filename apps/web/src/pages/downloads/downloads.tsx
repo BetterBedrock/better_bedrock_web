@@ -13,7 +13,7 @@ export const Downloads = () => {
 
   return (
     <main>
-      <Section className={styles.background} fixed>
+      <Section className={styles.background} fixed center>
         <div className={styles.header}>
           <Ad />
           <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
