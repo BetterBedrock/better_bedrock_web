@@ -4,7 +4,7 @@ import { Button } from "~/components/bedrock/button";
 
 export const Hero = () => {
   return (
-    <div>
+    <main>
       <BedrockText type={"h1"} text="Discord Redirect" color="white" font="MinecraftTen" />
       <BedrockText
         type="p"
@@ -21,6 +21,6 @@ export const Hero = () => {
         style={{ paddingTop: "1rem" }}
         onTap={() => window.open("https://discord.gg/ZGK5WYXnEY", "_blank", "noopener,noreferrer")}
       />
-    </div>
+    </main>
   );
 };

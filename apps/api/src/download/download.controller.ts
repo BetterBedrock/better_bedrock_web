@@ -120,7 +120,6 @@ export class DownloadController {
         required: true,
     })
     @ApiOkResponse({ type: DownloadsItemDto, description: "Download verified successfully." })
-    @ApiUnauthorizedResponse({ description: "Linkvertise verification failed or not verified." })
     @ApiNotFoundResponse({
         description: "Download record not found for this IP or file not found.",
     })
@@ -155,7 +154,7 @@ export class DownloadController {
 
                 if (status !== 200 || !data.status) {
                     throw new HttpException(
-                        "Linkvertise verification failed",
+                        "Failed to verify with Linkvertise gateway.",
                         HttpStatus.BAD_GATEWAY,
                     );
                 }
@@ -165,7 +164,7 @@ export class DownloadController {
                 }
 
                 throw new HttpException(
-                    "Linkvertise servers are currently down, please wait before next request.",
+                    "Linkvertise service unavailable.",
                     HttpStatus.SERVICE_UNAVAILABLE,
                 );
             }

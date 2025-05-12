@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { DownloadItemProps, DownloadListProps } from "~/pages/downloads";
+import { NotificationType, useNotification } from "~/providers/notification";
 import { $api } from "~/services/api-client";
 
 interface ContentContextProps {
@@ -20,13 +21,13 @@ interface ContentProviderProps {
 const ContentContext = createContext<ContentContextProps | undefined>(undefined);
 
 export const ContentProvider = ({ children }: ContentProviderProps) => {
+  const { sendNotification } = useNotification();
+
   const [fetched, setFetched] = useState<boolean>(false);
   const [downloading, setDownloading] = useState<boolean>(false);
   const [downloads, setDownloads] = useState<DownloadListProps[]>([]);
   const [downloadProgress, setDownloadProgress] = useState(0);
   const [downloadItem, setDownloadItem] = useState<DownloadItemProps | undefined>(undefined);
-
-  // … existing fetchDownloads, generateDownload, verifyDownload …
 
   const download = async () => {
     if (downloading) {
@@ -34,16 +35,42 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
     }
     setDownloading(true);
     setDownloadProgress(0);
-    // 1. Kick off the generation/verification if needed…
+
     const downloadUrl = "http://localhost:8084/download";
 
-    // 2. Fetch with streaming:
     const response = await fetch(downloadUrl);
+
     if (!response.ok || !response.body) {
-      console.error("Network error");
+      let title = "";
+      let label = "";
+      let type = "" as NotificationType;
+      switch (response.status) {
+        case 401:
+          title = "Download Not Verified";
+          label =
+            "Your download has not been verified. Please make sure you went through the process correctly";
+          type = "error";
+          break;
+        case 404:
+          title = "File Not Found";
+          label = "The file you are trying to download does not exist on our server";
+          type = "error";
+          break;
+        default:
+          title = "Error While Downloading";
+          label = "Please report this issue to us on our discord";
+          type = "error";
+          break;
+      }
+
+      sendNotification({
+        title,
+        label,
+        type,
+      });
       return;
     }
-    // Total size from headers:
+
     const contentLength = response.headers.get("Content-Length");
     const total = contentLength ? parseInt(contentLength, 10) : NaN;
 
@@ -51,7 +78,6 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
     const chunks: Uint8Array[] = [];
     let loaded = 0;
 
-    // 3. Read the stream:
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
@@ -65,7 +91,6 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
       }
     }
 
-    // 4. Assemble the blob and trigger download:
     const blob = new Blob(chunks);
     const disposition = response.headers.get("Content-Disposition") || "";
     const filenameMatch = /filename\*=UTF-8''([^;]+)|filename="([^"]+)"/.exec(disposition);
@@ -81,7 +106,6 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
     a.remove();
     URL.revokeObjectURL(url);
 
-    // 5. Done
     setDownloadProgress(100);
     setDownloading(false);
   };
@@ -92,6 +116,11 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
 
     if (error) {
       console.log(error);
+      sendNotification({
+        title: "Failed Fetching",
+        label: "Could not fetch downloads from our server",
+        type: "error",
+      });
       return;
     }
 
@@ -99,7 +128,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
   };
 
   const generateDownload = async (file: string) => {
-    const { error } = await $api.POST("/download/generate", {
+    const { error, response } = await $api.POST("/download/generate", {
       params: {
         query: {
           file,
@@ -108,13 +137,33 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
     });
 
     if (error) {
-      console.log(error);
-      return;
+      let title = "";
+      let label = "";
+      let type = "" as NotificationType;
+      switch (response.status) {
+        case 404:
+          title = "File Not Found";
+          label = "The file you are trying to download does not exist on our server";
+          type = "error";
+          break;
+        default:
+          title = "Error While Downloading";
+          label = "Please report this issue to us on our discord";
+          type = "error";
+          break;
+      }
+
+      sendNotification({
+        title,
+        label,
+        type,
+      });
+      throw Error(error);
     }
   };
 
   const verifyDownload = async (hash: string): Promise<DownloadItemProps> => {
-    const { data, error } = await $api.POST("/download/verify", {
+    const { data, error, response } = await $api.POST("/download/verify", {
       params: {
         query: {
           hash,
@@ -123,6 +172,42 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
     });
 
     if (error) {
+      let title = "";
+      let label = "";
+      let type = "" as NotificationType;
+      switch (response.status) {
+        case 400:
+          title = "Bad Hash";
+          label = "Provided hash in the link is incorrect";
+          type = "error";
+          break;
+        case 404:
+          title = "Download Not Found";
+          label = "Record of your download does not exist";
+          type = "error";
+          break;
+        case 502:
+          title = "Linkvertise Error";
+          label = "The hash is invalid. Please go through the download process again.";
+          type = "error";
+          break;
+        case 503:
+          title = "Linkvertise Error";
+          label = "Currently Linkvertise service is unavailable";
+          type = "error";
+          break;
+        default:
+          title = "Error While Downloading";
+          label = "Please report this issue to us on our discord.";
+          type = "error";
+          break;
+      }
+
+      sendNotification({
+        title,
+        label,
+        type,
+      });
       throw Error(error);
     }
 

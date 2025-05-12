@@ -4,7 +4,8 @@
     @include g.page-background(
         g.$background-linear-gradient,
         "~/assets/images/crosshair_backgrounds/14.png",
-        (top, bottom)
+        (top, bottom),
+        g.$sectionsDividerPadding
       );
     background-position: right center;
 }

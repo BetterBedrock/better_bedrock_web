@@ -1,0 +1,13 @@
+@use "~/assets/styles/global" as g;
+
+.input {
+    background-color: #313233;
+    border: g.$minecraftdepth solid #1e1e1f;
+    outline: none;
+    color: white;
+    padding: g.$padding-xsm;
+    caret-color: var(--selection-color);
+    caret-shape: 1px;
+    font-family: Mojangles;
+    font-size: 1.25rem;
+}

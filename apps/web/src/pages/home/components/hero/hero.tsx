@@ -2,7 +2,7 @@ import { Section } from "~/components/section";
 import { HeroHeader, HeroTrailer, styles } from ".";
 
 export const Hero = () => (
-  <Section className={styles.background}>
+  <Section className={styles.background} center>
     <HeroHeader />
     <HeroTrailer />
   </Section>

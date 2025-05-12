@@ -1,4 +1,4 @@
-export * from "./community-themes";
-export * from "./community-configs";
+export * from "./community-actions";
+export * from "./community-list";
 export * from "./community";
 export { default as styles } from "./community.module.scss";

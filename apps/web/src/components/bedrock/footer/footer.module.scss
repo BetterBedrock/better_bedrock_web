@@ -1,0 +1,15 @@
+@use "~/assets/styles/global.scss" as g;
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+.text > * {
+  padding: g.$padding-sm g.$padding-xsm;
+  width: 100%;
+}
