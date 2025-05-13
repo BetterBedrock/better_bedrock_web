@@ -1,0 +1,24 @@
+.indicator {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.svg {
+    width: 100%;
+    height: 100%;
+}
+
+.small {
+    width: 24px;
+    height: 24px;
+}
+
+.medium {
+    width: 48px;
+    height: 48px;
+}
+
+.large {
+    width: 72px;
+    height: 72px;
+}
