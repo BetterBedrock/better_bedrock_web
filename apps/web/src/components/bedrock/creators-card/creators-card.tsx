@@ -19,8 +19,8 @@ export const CreatorCard = ({
 }: CreatorCardProp) => (
   <Label height={height} width={width}>
     <div className={styles.content}>
-      <div className={styles.card_image}>
-        <img alt="" src={ExampleHead}></img>
+      <div className={styles.image}>
+        <img alt="Minecraft Profile Head" src={ExampleHead} />
       </div>
       <div className={styles.card_description}>
         <BedrockText
