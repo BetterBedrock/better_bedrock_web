@@ -1,6 +1,8 @@
+@use "~/assets/styles/global.scss" as g;
+
 .wrapper {
-  padding: calc(var(--minecraftdepth) * 2);
-  background-color: #E6E8EB;
+  padding: calc(g.$minecraftdepth * 2);
+  background-color: #e6e8eb;
   box-sizing: border-box;
   font-family: "Mojangles";
 
@@ -18,15 +20,27 @@
   /* IE 10 and IE 11 */
   user-select: none;
   /* Standard syntax */
+
+  :focus-visible {
+    outline: none;
+    background-color: var(--bedrock-simple-button-click-on-focus-visible);
+  }
+
+  :active {
+    background-color: var(--bedrock-simple-button-click);
+  }
 }
 
-.wrapper:focus-visible {
-  outline: none;
-  background-color: var(--bedrock-simple-button-click-on-focus-visible);
-}
+.transparent {
+  background-color: transparent;
 
-.wrapper:active {
-  background-color: var(--bedrock-simple-button-click);
+  :focus-visible {
+    opacity: 0.8;
+  }
+
+  :active {
+    opacity: 0.5;
+  }
 }
 
 .child {

@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { BedrockText } from "~/components/bedrock/text";
 import { Label } from "../label";
 import FavIcon from "~/assets/images/favicon.png";
-import SimpleButton from "~/components/bedrock/simple-button/simple-button";
+import { SimpleButton } from "~/components/bedrock/simple-button/simple-button";
 
 import styles from "./navbar.module.scss";
 import clsx from "clsx";
