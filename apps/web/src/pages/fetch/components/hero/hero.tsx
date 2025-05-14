@@ -1,4 +1,4 @@
-import { BedrockText } from "~/components/bedrock/text";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { styles } from ".";
 import LoadingBar from "~/components/bedrock/LoadingBar";
 import { useLocation } from "react-router-dom";

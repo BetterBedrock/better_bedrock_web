@@ -1,5 +1,5 @@
 import { Label } from "../label";
-import { BedrockText } from "../text/bedrock-text";
+import { BedrockText } from "../bedrock-text/bedrock-text";
 import { styles } from ".";
 
 export const Footer = () => (

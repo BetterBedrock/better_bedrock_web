@@ -1,5 +1,5 @@
 import React from "react";
-import { BedrockText } from "../text/bedrock-text";
+import { BedrockText } from "../bedrock-text/bedrock-text";
 
 import styles from "./grid-card.module.css";
 import tutorialThumbnail from "~/assets/images/tutorial_thumbnails/thumbnail-placeholder.png";

@@ -1,6 +1,6 @@
 import { HTMLAttributes, ReactNode, useState } from "react";
 
-import { BedrockText } from "~/components/bedrock/text/bedrock-text";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 import bedrockClickSound from "~/assets/sounds/minecraft_click.mp3";
 import useSound from "use-sound";
 
