@@ -16,17 +16,23 @@ export const Hero = () => {
   const hash = query.get("hash");
 
   useEffect(() => {
-    if (hash) {
-      verifyDownload(hash);
-    }
+    const handleLoad = () => {
+      if (hash) {
+        verifyDownload(hash);
+      } else {
+        sendNotification({
+          title: "No Hash",
+          label: "You are missing hash in your link",
+          type: "error",
+        });
+      }
+    };
 
-    if (!hash) {
-      sendNotification({
-        title: "No Hash",
-        label: "You are missing hash in your link",
-        type: "error",
-      });
-    }
+    window.addEventListener("load", handleLoad);
+
+    return () => {
+      window.removeEventListener("load", handleLoad);
+    };
   }, []);
 
   useEffect(() => {
