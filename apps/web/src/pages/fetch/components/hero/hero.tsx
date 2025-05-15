@@ -4,7 +4,7 @@ import { LoadingBar } from "~/components/bedrock/loading-bar/loading-bar";
 import { useLocation } from "react-router-dom";
 import { useContent } from "~/providers/content";
 import { useEffect } from "react";
-import CircularProgressIndicator from "~/components/bedrock/CircularProgressIndicator";
+import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator/circular-progress-indicator";
 import { useNotification } from "~/providers/notification";
 
 export const Hero = () => {
@@ -44,7 +44,7 @@ export const Hero = () => {
   if (!downloadItem || !hash) {
     return (
       <div className={styles.hero}>
-        <CircularProgressIndicator width="50px" height="50px" />
+        <CircularProgressIndicator size="medium" />
       </div>
     );
   }
