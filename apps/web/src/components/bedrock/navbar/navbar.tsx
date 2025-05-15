@@ -15,7 +15,7 @@ export const Navbar = () => {
   const location = useLocation();
 
   const handleExpandNavbar = () => {
-    setExpandedNavbar(prev => !prev);
+    setExpandedNavbar((prev) => !prev);
   };
 
   // Determine which nav items to show
@@ -34,9 +34,7 @@ export const Navbar = () => {
 
   return (
     <header className={styles.wrapper}>
-      <Label
-        extraClassName={clsx(styles.label, expandedNavbar && styles.expanded)}
-      >
+      <Label extraClassName={clsx(styles.label, expandedNavbar && styles.expanded)}>
         <div className={styles.item}>
           <img alt="logo" src={FavIcon} className={styles.image} />
           <BedrockText
@@ -45,11 +43,7 @@ export const Navbar = () => {
             font="MinecraftTen"
             extraClassName={styles.heading}
           />
-          <SimpleButton
-            height="100%"
-            onTap={handleExpandNavbar}
-            className={styles.menuButton}
-          >
+          <SimpleButton height="100%" onTap={handleExpandNavbar} className={styles.menuButton}>
             <div className="material-icons">menu</div>
           </SimpleButton>
         </div>
@@ -62,9 +56,7 @@ export const Navbar = () => {
                 key={name}
                 width="100%"
                 style={{
-                  backgroundColor: isActive
-                    ? "var(--bedrock-simple-button-click)"
-                    : "",
+                  backgroundColor: isActive ? "var(--bedrock-simple-button-click)" : "",
                 }}
                 className={styles.button}
                 onTap={() => {
@@ -72,11 +64,7 @@ export const Navbar = () => {
                   handleExpandNavbar();
                 }}
               >
-                <BedrockText
-                  text={name}
-                  type="p"
-                  extraClassName={styles.text}
-                />
+                <BedrockText text={name} type="p" extraClassName={styles.text} />
               </SimpleButton>
             );
           })}
