@@ -1,6 +1,6 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { styles } from ".";
-import LoadingBar from "~/components/bedrock/LoadingBar";
+import { LoadingBar } from "~/components/bedrock/loading-bar/loading-bar";
 import { useLocation } from "react-router-dom";
 import { useContent } from "~/providers/content";
 import { useEffect } from "react";
@@ -57,7 +57,7 @@ export const Hero = () => {
         </div>
         <BedrockText type="p" color="white" text={downloadItem.title} />
       </div>
-      <LoadingBar maxWidth="100%" height="20px" percentage={downloadProgress} />
+      <LoadingBar className={styles.loadingBar} percentage={downloadProgress} />
       <BedrockText
         type="p"
         color="white"
