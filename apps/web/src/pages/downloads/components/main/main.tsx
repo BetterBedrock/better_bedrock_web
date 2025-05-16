@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MainArchiveButton, MainItemsList, styles } from ".";
 import { useContent } from "~/providers/content";
-import CircularProgressIndicator from "~/components/bedrock/CircularProgressIndicator";
+import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 import { Heading } from "~/pages/downloads/components/heading";
 
 export const Main = () => {
@@ -14,7 +14,7 @@ export const Main = () => {
     : downloads.filter((c) => c.title !== "Archived");
 
   if (!fetched) {
-    return <CircularProgressIndicator width="50px" height="50px" />;
+    return <CircularProgressIndicator size="medium" />;
   }
   return (
     <>
