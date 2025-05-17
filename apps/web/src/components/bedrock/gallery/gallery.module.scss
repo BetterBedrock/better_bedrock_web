@@ -1,0 +1,49 @@
+@use "~/assets/styles/global.scss" as g;
+
+.gallery {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(47, 47, 48);
+  padding: g.$padding-sm;
+  gap: g.$padding-sm;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    flex-direction: column;
+  }
+}
+
+.hero {
+  height: 100%;
+  width: 80%;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    width: 100%;
+    height: 80%;
+  }
+}
+
+.images {
+  display: flex;
+  width: 20%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: g.$padding-xsm;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    width: auto;
+    height: 20%;
+    flex-direction: row;
+  }
+}
+
+.preview {
+  aspect-ratio: 16 / 9;
+  width:100%;
+}
+
+.arrow {
+  width: 32px;
+  height: 32px;
+}
