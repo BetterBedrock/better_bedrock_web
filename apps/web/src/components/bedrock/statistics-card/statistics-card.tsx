@@ -1,5 +1,5 @@
 import { Label } from "~/components/bedrock/label";
-import { BedrockText } from "~/components/bedrock/text";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { styles } from ".";
 import { HTMLAttributes } from "react";
 

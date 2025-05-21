@@ -1,5 +1,5 @@
 import { styles } from ".";
-import { BedrockText } from "~/components/bedrock/text";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 import {
   Notification as BaseNotification,
   NotificationTypes,

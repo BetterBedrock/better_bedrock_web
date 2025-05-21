@@ -1,4 +1,4 @@
-import { BedrockText } from "~/components/bedrock/text";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { styles } from ".";
 
 export const AdLabel = () => (

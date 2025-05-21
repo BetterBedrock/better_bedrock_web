@@ -1,4 +1,4 @@
-import { BedrockText } from "~/components/bedrock/text";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 
 export const HeroDescription = () => (
   <BedrockText

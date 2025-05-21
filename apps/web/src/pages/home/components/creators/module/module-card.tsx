@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { styles } from ".";
 import defaultImage from "~/assets/images/example_head.png";
 import { Button } from "~/components/bedrock/button";
-import { BedrockText } from "~/components/bedrock/text";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 
 interface ModuleCardProp {
   title: string;

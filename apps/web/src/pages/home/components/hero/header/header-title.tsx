@@ -1,7 +1,7 @@
 import LogoLines from "~/assets/images/lines.png";
 import { styles } from ".";
 import clsx from "clsx";
-import { BedrockText } from "~/components/bedrock/text";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 
 export const HeroTitle = () => (
   <div className={styles.heading}>

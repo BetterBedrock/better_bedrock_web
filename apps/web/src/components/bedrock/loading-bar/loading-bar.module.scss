@@ -1,17 +1,19 @@
-.loadingbar-outer-layer {
-    max-width: 100%;
+@use "~/assets/styles/global.scss" as g;
+
+.outer {
+    width: 100%;
     height: 18px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: calc(var(--minecraftdepth) * 2) var(--minecraftdepth);
+    padding: calc(g.$minecraftdepth * 2) g.$minecraftdepth;
     position: relative;
-    border: var(--minecraftdepth) solid white;
-    padding: var(--minecraftdepth);
+    border: g.$minecraftdepth solid white;
+    padding: g.$minecraftdepth;
     box-sizing: border-box;
 }
 
-.loadingbar-inner-layer {
+.inner {
     position: relative;
     width: 100%;
     height: 100%;

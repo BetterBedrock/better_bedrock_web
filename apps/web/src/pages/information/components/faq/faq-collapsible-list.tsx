@@ -1,4 +1,4 @@
-import { Collapsible } from "~/components/bedrock/Collapsible";
+import { Collapsible } from "~/components/bedrock/collapsible";
 import { FAQSection } from "~/pages/information/components/faq/faq-data";
 import { styles } from ".";
 

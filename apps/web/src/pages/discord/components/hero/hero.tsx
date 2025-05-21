@@ -1,5 +1,5 @@
 import React from "react";
-import { BedrockText } from "~/components/bedrock/text";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
 
 export const Hero = () => {

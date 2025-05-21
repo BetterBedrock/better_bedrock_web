@@ -1,11 +1,11 @@
-import { useState, useEffect, ReactNode } from "react";
+import { useState, useEffect, ReactNode, HTMLAttributes } from "react";
 import { useSound } from "use-sound";
 import bedrockClickSound from "~/assets/sounds/minecraft_click.mp3";
 
 import { styles } from ".";
 import clsx from "clsx";
 
-interface SimpleButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+interface SimpleButtonProps extends HTMLAttributes<HTMLButtonElement> {
   height?: number | string;
   width?: number | string;
   children?: ReactNode;
@@ -15,9 +15,10 @@ interface SimpleButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   tabIndex?: number;
   style?: React.CSSProperties;
   className?: string;
+  transparent?: boolean;
 }
 
-const SimpleButton = ({
+export const SimpleButton = ({
   height,
   width,
   children,
@@ -25,6 +26,7 @@ const SimpleButton = ({
   isClicked,
   playSound = false,
   tabIndex,
+  transparent = false,
   style,
   className,
   ...props
@@ -39,8 +41,6 @@ const SimpleButton = ({
   }, [isClicked]);
 
   const handleClick = () => {
-    // if (clicked) return;
-
     setClicked(true);
     if (playSound) playClickSound();
     if (onTap) onTap();
@@ -49,7 +49,7 @@ const SimpleButton = ({
   return (
     <button
       style={{ height, width, ...style }}
-      className={clsx(styles.wrapper, className && className)}
+      className={clsx(styles.wrapper, transparent && styles.transparent, className && className)}
       onClick={handleClick}
       tabIndex={tabIndex}
       {...props}
@@ -58,5 +58,3 @@ const SimpleButton = ({
     </button>
   );
 };
-
-export default SimpleButton;

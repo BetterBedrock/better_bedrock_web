@@ -1,5 +1,5 @@
 import React from "react";
-import { BedrockText } from "../text/bedrock-text";
+import { BedrockText } from "../bedrock-text/bedrock-text";
 import styles from "./download-card.module.css";
 import { Button, ButtonType } from "../button";
 
