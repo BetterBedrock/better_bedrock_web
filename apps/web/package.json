@@ -17,7 +17,8 @@
     "react-router-dom": "latest",
     "sass": "^1.87.0",
     "use-sound": "latest",
-    "uuid": "^11.1.0"
+    "uuid": "^11.1.0",
+    "@better-bedrock/constants": "*"
   },
   "devDependencies": {
     "@types/node": "^20",
