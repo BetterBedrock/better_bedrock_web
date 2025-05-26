@@ -1,5 +1,4 @@
 import { Button } from "~/components/bedrock/button";
-import { ButtonSeparator } from "~/components/bedrock/button-separator";
 import { TAB_NAMES } from "../..";
 import { styles } from ".";
 import { useContent } from "~/providers/content";
@@ -11,9 +10,9 @@ interface TabsProps {
 }
 
 export const Tabs = ({ activeTab, setActiveTab }: TabsProps) => {
-  const { downloads } = useContent();
+  const { fetched } = useContent();
 
-  if (downloads.length < 1) {
+  if (!fetched) {
     return <></>;
   }
 
