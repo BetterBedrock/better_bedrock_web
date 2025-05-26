@@ -1,6 +1,6 @@
 @use "~/assets/styles/global.scss" as g;
 
-$title-height: clamp(2.5em, 8vw, 6em);
+$title-height: clamp(2.7em, 7vw, 6em);
 
 @mixin flex-container {
   display: inline-flex;
