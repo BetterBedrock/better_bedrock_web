@@ -53,6 +53,7 @@
   padding: 0 g.$padding-md;
 
   @media (max-width: g.$breakpoint-tablet) {
+    padding-top: g.$padding-sm;
     margin: 0;
   }
 }
