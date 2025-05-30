@@ -1,17 +1,65 @@
-import { GridCard } from "~/components/bedrock/grid-card/grid-card";
-import { SIDE_PROJECTS_LIST } from "~/pages/downloads/downloads-data";
 import { styles } from ".";
+import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-download-card";
+import { Gallery } from "~/components/bedrock/gallery";
+import { useState } from "react";
+import { DownloadsItemDto } from "@better-bedrock/constants/downloads.dto";
+import { Button } from "~/components/bedrock/button";
+import { ButtonGroup } from "~/components/button-group/button-group";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 
-export const SideProjectsList = () => (
-  <div className={styles.projects}>
-    {SIDE_PROJECTS_LIST.map((project) => (
-      <GridCard
-        useCustomThumbnail={true}
-        title={project.title}
-        description={project.description}
-        customThumbnailImageUrl={project.imageAssetUrl}
-        // link={tutorial.link}
+interface SideProjectsListProps {
+  items: DownloadsItemDto[];
+}
+
+export const SideProjectsList = ({ items }: SideProjectsListProps) => {
+  const [showPreview, setShowPreview] = useState(false);
+
+  const [selectedDownlolad, setSelectedDownload] = useState<string | undefined>();
+
+  return (
+    <div className={styles.list}>
+      <Gallery
+        images={(
+          (items.find((item) => item.downloadId === selectedDownlolad)?.imageAssetUrl ??
+            []) as string[]
+        ).map((image) => `http://localhost:8084${image}`)}
+        show={showPreview}
+        onClose={() => {
+          setShowPreview((prev) => !prev);
+        }}
       />
-    ))}
-  </div>
-);
+      {items.map((item) => (
+        <GridDownloadCard
+          key={item.downloadId}
+          title={item.title}
+          description={
+            <BedrockText text={item.description} type={"p"} textAlign="left" color="white" />
+          }
+          thumbnail={<img src={`http://localhost:8084${item.imageAssetUrl[0]}`} alt={""} />}
+          actions={
+            <ButtonGroup>
+              <Button
+                // style={{ margin: "5px" }}
+                text="Download"
+                width={"100%"}
+                height={"auto"}
+                type="alwaysGreen"
+              />
+              <Button
+                // style={{ margin: "5px" }}
+                text="Preview"
+                width={"100%"}
+                height={"auto"}
+                type="alwaysWhite"
+                onClick={() => {
+                  setSelectedDownload(item.downloadId);
+                  setShowPreview(true);
+                }}
+              />
+            </ButtonGroup>
+          }
+        />
+      ))}
+    </div>
+  );
+};
