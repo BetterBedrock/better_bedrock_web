@@ -1,66 +1,64 @@
 import React from "react";
 import { BedrockText } from "../bedrock-text/bedrock-text";
+import styles from "./grid-download-card.module.scss";
+import clsx from "clsx";
 
-import styles from "./grid-download-card.module.css";
-import { Button } from "../button/button";
-import { ButtonSeparator } from "../button-separator";
+// The Button and ButtonSeparator components will now be passed in via the `actions` prop.
 
 interface GridDownloadCardProps {
-  title?: string,
+  title?: string;
   downloadSize?: string;
-  description?: string
-  thumbnailImageUrl?: string,
+  thumbnail?: React.ReactNode;
+  /** Allows passing custom components, not just strings */
+  description?: React.ReactNode;
+  /** Accepts any React node to render in the footer, like buttons */
+  actions?: React.ReactNode;
+  /** Allows for adding custom CSS classes for further styling */
+  className?: string;
 }
 
-export const GridDownloadCard: React.FC<GridDownloadCardProps> = ({ title, downloadSize, description, thumbnailImageUrl }) => {
+export const GridDownloadCard: React.FC<GridDownloadCardProps> = ({
+  title,
+  downloadSize,
+  description,
+  thumbnail,
+  actions,
+  className,
+}) => {
   return (
-    <div className={styles.container}>
-      <div className={styles.thumbnailWrapper}>
-        {thumbnailImageUrl && <img src={thumbnailImageUrl} alt="" />}
-      </div>
+    <div className={clsx(styles.container, className)}>
+      {thumbnail && <div className={styles.thumbnailWrapper}>{thumbnail}</div>}
+
       <div className={styles.texts}>
         <div className={styles.cardTitle}>
           <BedrockText
             text={title ?? ""}
-            type={"h2"}
+            type="h2"
             font="MinecraftTen"
             textAlign="left"
             color="white"
             style={{ padding: "0 0.5rem 0 0" }}
           />
           <BedrockText
-            text={downloadSize ?? "4.2MB"}
-            type={"h2"}
+            text={downloadSize ?? ""}
+            type={"h3"}
             font="MinecraftTen"
             color="white"
             textAlign="left"
+            extraClassName={styles.downloadSize}
           />
         </div>
-        <BedrockText
-          text={description ?? ""}
-          type={"p"}
-          textAlign="left"
-          color="white"
-        />
+        {/* Renders the description, which can now be any React node */}
+        {description}
       </div>
-      <GridDownloadCardDivider />
-      <ButtonSeparator
-        style={{ padding: "5px", width: "100%" }}>
-        <Button
-          // style={{ margin: "5px" }}
-          text="Download"
-          width={"100%"}
-          height={"auto"}
-          type="alwaysGreen"
-        />
-        <Button
-          // style={{ margin: "5px" }}
-          text="Preview"
-          width={"100%"}
-          height={"auto"}
-          type="alwaysWhite"
-        />
-      </ButtonSeparator>
+
+      {/* If actions are provided, a divider is shown and they are rendered */}
+      {actions && (
+        <>
+          <GridDownloadCardDivider />
+          <div className={styles.actions}>{actions}</div>
+        </>
+      )}
     </div>
   );
 };
