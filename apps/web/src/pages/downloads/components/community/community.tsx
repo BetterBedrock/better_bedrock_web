@@ -14,24 +14,13 @@ export const Community = () => {
 
   return (
     <>
-      <div>
-        <BedrockText
-          type="h1"
-          text="Community Creations"
-          color="white"
-          font="MinecraftTen"
-          textAlign="center"
-        />
-        <BedrockText
-          type="p"
-          textAlign="center"
-          color="white"
-          margin="0 0 1rem 0"
-          text="Explore a variety of themes and configs made by the community of Better Bedrock users."
-        />
-        <CommunityActions />
-        <CommunityList />
-      </div>
+      {communityDownloads.map((category, index) => (
+        <div key={index}>
+          <Heading title={category.title} description={category.description} />
+          <CommunityActions buttons={category.buttons!} />
+          <CommunityList items={category.items} />
+        </div>
+      ))}
     </>
   );
 };
