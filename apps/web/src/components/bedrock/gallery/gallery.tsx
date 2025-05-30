@@ -1,45 +1,117 @@
 import { styles } from ".";
-import ArrowUp from "~/assets/images/w_up_arrow.png";
-import ArrowDown from "~/assets/images/w_down_arrow.png";
-import { useState } from "react";
+import ArrowLeft from "~/assets/images/w_left_arrow.png";
+import ArrowRight from "~/assets/images/w_right_arrow.png";
+import { useState, useEffect } from "react";
+import clsx from "clsx";
+import Exit from "~/assets/images/exit.png";
 
 interface GalleryProps {
   images: string[];
+  onClose?: () => void;
+  fullscreen?: boolean;
+  show?: boolean;
 }
 
-export const Gallery = ({ images }: GalleryProps) => {
-  if (images.length === 0) {
-    return <></>;
+export const Gallery = ({ images, fullscreen, show, onClose }: GalleryProps) => {
+  const limit = 4;
+  const [startingIndex, setStartingIndex] = useState(0);
+  const [selectedImage, setSelecteedImage] = useState(0);
+  // Preload
+
+  useEffect(() => {
+    images.forEach((imageSrc) => {
+      const img = new Image();
+      img.src = imageSrc; // Preload
+    });
+  }, [images]);
+
+  if (!show) {
+    return null;
   }
 
-  const limit = 4;
-  const [startingIndex, setStatingIndex] = useState<number>(0);
+  if (!images.length) return null;
 
   const moveBack = () => {
-    setStatingIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : images.length - 1));
+    setStartingIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  const moveFoward = () => {
-    setStatingIndex((prevIndex) => (prevIndex < images.length - 1 ? prevIndex + 1 : 0));
+  const moveForward = () => {
+    setStartingIndex((prev) => (prev + 1) % images.length);
   };
 
-  const displayedImages = images.slice(startingIndex, startingIndex + limit);
-  const isOverflow = images.length > limit;
+  const displayedImages =
+    images.length <= limit
+      ? images
+      : Array.from({ length: limit }, (_, i) => images[(startingIndex + i) % images.length]);
 
   return (
-    <div className={styles.gallery}>
-      <img className={styles.hero} src={images[0]} />
+    <div className={clsx(styles.gallery, fullscreen && styles.fullscreen)}>
+      {fullscreen && (
+        <button onClick={onClose}>
+          <img alt="Close" src={Exit} className={styles.close} />
+        </button>
+      )}
+      <div className={styles.hero}>
+        <img
+          key={`hero-${selectedImage}`}
+          height="100%"
+          width="100%"
+          src={images[selectedImage]}
+          alt="Main display"
+        />
+      </div>
+
       <div className={styles.images}>
-        {isOverflow && <img src={ArrowUp} onClick={moveBack} className={styles.arrow} />}
-        {displayedImages.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            className={styles.preview}
-            alt={`Gallery image ${index + 1}`}
-          />
-        ))}
-        {isOverflow && <img src={ArrowDown} onClick={moveFoward} className={styles.arrow} />}
+        {images.length > limit && (
+          <div className={styles.arrow}>
+            <img
+              key="arrow-left"
+              height="100%"
+              width="100%"
+              src={ArrowLeft}
+              onClick={moveBack}
+              alt="Scroll left"
+            />
+          </div>
+        )}
+
+        {displayedImages.map((imageSrc, index) => {
+          // Calculate the original index for more stable alt text if needed,
+          // but imageSrc is best for the key.
+          const originalImageGlobalIndex = (startingIndex + index) % images.length;
+          return (
+            <button
+              className={clsx(
+                styles.preview,
+                originalImageGlobalIndex === selectedImage && styles.selected,
+              )}
+              onClick={() => {
+                setSelecteedImage(originalImageGlobalIndex);
+              }}
+              // --- KEY CHANGE IS HERE ---
+              // Use the image source itself as the key, assuming URLs are unique.
+              // This allows React to recognize existing image elements even when their position changes.
+              key={imageSrc}
+              // If imageSrc might not be unique, you'd ideally have an array of objects
+              // with a unique ID for each image, e.g., key={image.id}
+            >
+              <img src={imageSrc} alt={`Gallery image ${originalImageGlobalIndex + 1}`} />
+            </button>
+          );
+        })}
+
+        {images.length > limit && (
+          <div className={styles.arrow}>
+            <img
+              key="arrow-right"
+              height="100%"
+              width="100%"
+              src={ArrowRight}
+              onClick={moveForward}
+              alt="Scroll right" // Changed alt for clarity
+            />
+          </div>
+        )}
       </div>
     </div>
   );
