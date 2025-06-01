@@ -1,0 +1,11 @@
+@use "~/assets/styles/global.scss" as g;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-xsm;
+}
+
+.actions {
+  padding-top: g.$padding-sm;
+}
