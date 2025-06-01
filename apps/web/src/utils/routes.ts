@@ -5,5 +5,7 @@ export enum Routes {
     PANEL_ANALYTICS = "/panel/analytics",
     INFORMATION = "/information",
     FETCH = "/fetch",
-    PREVIEW = "/preview"
+    PREVIEW = "/preview",
+    CHECKOUT_CANCEL = "/checkout/cancel",
+    CHECKOUT_SUCCESS = "/checkout/success",
 }
