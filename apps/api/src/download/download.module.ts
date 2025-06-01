@@ -4,6 +4,7 @@ import { DownloadController } from "src/download/download.controller";
 import { DownloadService } from "src/download/download.service";
 import { PrismaService } from "src/prisma.service";
 import { HttpModule } from "@nestjs/axios";
+import { VoucherService } from "src/voucher/voucher.service";
 
 @Module({
     imports: [
@@ -13,6 +14,6 @@ import { HttpModule } from "@nestjs/axios";
         }),
     ],
     controllers: [DownloadController],
-    providers: [PrismaService, AnalyticsService, DownloadService],
+    providers: [PrismaService, AnalyticsService, DownloadService, VoucherService],
 })
 export class DownloadModule {}
