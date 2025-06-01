@@ -32,6 +32,8 @@ import { DOWNLOADS_LIST } from "src/content/constants/content-downloads";
 import { createReadStream, promises as fs } from "fs";
 import { join } from "path";
 import { DownloadsItemDto } from "@better-bedrock/constants/downloads.dto";
+import { COMMUNITY_LIST } from "src/content/constants/content-community";
+import { SIDE_PROJECTS_LIST } from "src/content/constants/content-side-projects";
 
 @ApiTags("download")
 @Controller("download")
@@ -206,7 +208,7 @@ export class DownloadController {
     }
 
     findDownloadItemById(downloadId: string): DownloadsItemDto | undefined {
-        for (const section of DOWNLOADS_LIST) {
+        for (const section of [...DOWNLOADS_LIST, ...COMMUNITY_LIST, ...SIDE_PROJECTS_LIST]) {
             const match = section.items.find((item) => item.downloadId === downloadId);
             if (match) {
                 return match;
