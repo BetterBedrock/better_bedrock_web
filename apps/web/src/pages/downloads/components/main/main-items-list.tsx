@@ -18,25 +18,8 @@ export const openInNewTab = (url: string): void => {
 };
 
 export const MainItemsList = ({ category }: MainItemsList) => {
-  const { generateDownload } = useContent();
-
-  const openLinkvertise = () => {
-    const currentUrl = new URL(window.location.origin);
-    const segments = currentUrl.pathname.split("/").filter(Boolean);
-    segments.push("fetch");
-    currentUrl.pathname = "/" + segments.join("/");
-
-    const linkvertiseId = import.meta.env.VITE_LINKVERTISE_ID;
-    const baseUrl = `https://link-to.net/${linkvertiseId}/${Math.random() * 1000}/dynamic/`;
-
-    const encodedUri = currentUrl.toString();
-    const base64Encoded = btoa(encodedUri)
-
-    const href = `${baseUrl}?r=${base64Encoded}`;
-    const finalUri = new URL(href);
-
-    window.open(finalUri.toString(), "_blank");
-  };
+  const navigate = useNavigate();
+  const { generateDownload, openLinkvertise } = useContent();
 
   return (
     <div className={styles.items}>
