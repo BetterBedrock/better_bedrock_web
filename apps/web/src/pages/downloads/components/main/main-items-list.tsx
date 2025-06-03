@@ -3,6 +3,7 @@ import { styles } from ".";
 import logo from "~/assets/images/favicon.png";
 import { useContent } from "~/providers/content";
 import { DownloadListProps } from "~/pages/downloads";
+import { baseUrl } from "~/utils/url";
 
 const calcItemWeight = (itemWeight: number) => {
   return itemWeight <= 0.1 ? "<0.0" : itemWeight.toFixed(1);
@@ -30,9 +31,7 @@ export const MainItemsList = ({ category }: MainItemsList) => {
           description={downloadItem.description}
           downloadSize={`${calcItemWeight(downloadItem.itemWeight)}MB`}
           buttonType={downloadItem.buttonType}
-          iconPath={
-            downloadItem.imageAssetUrl ? `http://localhost:8084${downloadItem.imageAssetUrl}` : logo
-          }
+          iconPath={downloadItem.imageAssetUrl ? `${baseUrl}${downloadItem.imageAssetUrl}` : logo}
           onClick={async () => {
             await generateDownload(downloadItem.downloadId);
             openLinkvertise();
