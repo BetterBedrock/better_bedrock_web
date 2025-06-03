@@ -3,6 +3,8 @@ import { styles } from ".";
 import logo from "~/assets/images/favicon.png";
 import { useContent } from "~/providers/content";
 import { DownloadListProps } from "~/pages/downloads";
+import { useNavigate } from "react-router-dom";
+import { Routes } from "~/utils/routes";
 import { baseUrl } from "~/utils/url";
 
 const calcItemWeight = (itemWeight: number) => {
@@ -33,6 +35,10 @@ export const MainItemsList = ({ category }: MainItemsList) => {
           buttonType={downloadItem.buttonType}
           iconPath={downloadItem.imageAssetUrl ? `${baseUrl}${downloadItem.imageAssetUrl}` : logo}
           onClick={async () => {
+            if (category.title === "Featured") {
+              navigate(Routes.LATEST);
+              return;
+            }
             await generateDownload(downloadItem.downloadId);
             openLinkvertise();
           }}
