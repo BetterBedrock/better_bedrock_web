@@ -3,6 +3,7 @@ import { DownloadItemProps } from "~/pages/downloads";
 import { NotificationType, useNotification } from "~/providers/notification";
 import { $api } from "~/services/api-client";
 import { DownloadsDto } from "@better-bedrock/constants/downloads.dto";
+import { baseUrl } from "~/utils/url";
 
 interface ContentContextProps {
   fetched: boolean;
@@ -37,7 +38,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
     setDownloading(true);
     setDownloadProgress(0);
 
-    const downloadUrl = "http://localhost:8084/download";
+    const downloadUrl = `${baseUrl}/download`;
 
     const response = await fetch(downloadUrl);
 
