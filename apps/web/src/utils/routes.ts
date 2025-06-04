@@ -6,6 +6,7 @@ export enum Routes {
     INFORMATION = "/information",
     FETCH = "/fetch",
     PREVIEW = "/preview",
+    LATEST = "/latest",
     CHECKOUT_CANCEL = "/checkout/cancel",
     CHECKOUT_SUCCESS = "/checkout/success",
 }
