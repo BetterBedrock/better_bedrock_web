@@ -21,13 +21,15 @@ model Download {
 }
 
 model Voucher {
-  id            String   @id @default(cuid())
-  checkoutId    String   @unique
-  code          String   @unique
-  createdAt     DateTime @default(now())
-  expiresAt     DateTime
-  maxDownloads  Int      @default(1)
-  downloadCount Int      @default(0)
+  id                       String   @id @default(cuid())
+  email                    String
+  checkoutId               String   @unique
+  code                     String   @unique
+  createdAt                DateTime @default(now())
+  expiresAt                DateTime
+  maxDownloads             Int      @default(1)
+  downloadCount            Int      @default(0)
+  betterBedrockContentOnly Boolean  @default(false)
 }
 
 model Analytics {
