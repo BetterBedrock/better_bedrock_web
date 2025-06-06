@@ -9,6 +9,9 @@
     "./downloads.dto": {
       "types": "./src/dto/downloads.dto.ts",
       "default": "./dist/downloads.dto.js"
+    "./voucher.dto": {
+      "types": "./src/dto/voucher.dto.ts",
+      "default": "./dist/voucher.dto.js"
     }
   },
   "devDependencies": {
