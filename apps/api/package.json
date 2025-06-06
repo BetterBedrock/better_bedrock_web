@@ -7,7 +7,7 @@
     "scripts": {
         "build": "nest build",
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-        "dev": "concurrently \"nest start -b swc --watch\" \"npx ts-node ./src/generate-metadata.ts\"",
+        "dev": "nest start -b swc --watch",
         "start": "nest start -- -b swc",
         "start:debug": "nest start --debug --watch",
         "start:prod": "node dist/main",
@@ -26,6 +26,7 @@
         "@nestjs/platform-express": "^11.0.1",
         "@nestjs/serve-static": "^5.0.3",
         "@nestjs/swagger": "^11.1.4",
+        "@nestjs/throttler": "^6.4.0",
         "@prisma/client": "^6.6.0",
         "axios": "^1.9.0",
         "class-transformer": "^0.5.1",
@@ -37,6 +38,7 @@
         "reflect-metadata": "^0.2.2",
         "rxjs": "^7.8.1",
         "stripe": "^18.2.1",
+        "tsx": "^4.20.3",
         "zod": "^3.24.3"
     },
     "devDependencies": {
