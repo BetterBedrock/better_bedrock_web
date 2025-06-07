@@ -131,61 +131,99 @@ export class DownloadController {
     }
 
     @Post("verify")
-    @ApiQuery({
-        name: "hash",
-        type: "string",
-        description: "Linkvertise anti-bypass hash",
-        required: true,
-    })
-    @ApiOkResponse({ type: DownloadsItemDto, description: "Download verified successfully." })
+    @ApiOkResponse({ type: DownloadsItemDto, description: "Download verified successfully" })
     @ApiNotFoundResponse({
-        description: "Download record not found for this IP or file not found.",
+        description: "Download record not found for this IP or file not found",
     })
-    @ApiBadGatewayResponse({ description: "Failed to verify with Linkvertise gateway." })
-    @ApiServiceUnavailableResponse({ description: "Linkvertise service unavailable." })
+    @ApiGoneResponse({ description: "The voucher has either expired or already been used" })
+    @ApiForbiddenResponse({
+        description: "This voucher allows you to download only better bedrock content",
+    })
+    @ApiUnauthorizedResponse({ description: "The voucher does not exist" })
+    @ApiBadGatewayResponse({ description: "Failed to verify with Linkvertise gateway" })
+    @ApiServiceUnavailableResponse({ description: "Linkvertise service unavailable" })
     async verify(
         @Ip() ip: string,
         @Query() query: VerifyDownloadDto,
     ): Promise<DownloadsItemDto | undefined> {
         const download = await this.downloadService.download({ ipAddress: ip });
-
+        const voucher = await this.voucherService.getVoucher({ code: query.code });
         if (!download) {
             throw new NotFoundException(`Download for your device could not be found.`);
         }
 
+        const file = this.findDownloadItemById(download.file);
+
         const url = `https://publisher.linkvertise.com/api/v1/anti_bypassing?token=${this.linkvertiseApiKey}&hash=${query.hash}`;
 
         if (!download.verified) {
-            try {
-                const response$ = this.http.post(
-                    url,
-                    {}, // no body
-                    {
-                        headers: {
-                            "Access-Control-Allow-Origin": "*",
-                            "Access-Control-Allow-Methods": "POST",
-                            "Access-Control-Allow-Headers": "Content-Type, Authorization",
-                        },
-                    },
-                );
-                const { data, status } = await lastValueFrom(response$);
+            if (query.code && !voucher) {
+                throw new UnauthorizedException("The voucher does not exist");
+            }
 
-                if (status !== 200 || !data.status) {
-                    throw new HttpException(
-                        "Failed to verify with Linkvertise gateway.",
-                        HttpStatus.BAD_GATEWAY,
+            if (voucher) {
+                if (
+                    voucher.downloadCount >= voucher.maxDownloads ||
+                    voucher.expiresAt.getTime() <= Date.now()
+                ) {
+                    throw new GoneException("The voucher has either expired or already been used.");
+                }
+
+                if (
+                    voucher.betterBedrockContentOnly &&
+                    DOWNLOADS_LIST.flatMap((map) => map.items).find(
+                        (item) => item.downloadId === file!.downloadId,
+                    )
+                ) {
+                    throw new ForbiddenException(
+                        "This voucher allows you to download only better bedrock content",
                     );
                 }
-            } catch (err) {
-                if (err instanceof HttpException) {
-                    throw err;
-                }
-
-                throw new HttpException(
-                    "Linkvertise service unavailable.",
-                    HttpStatus.SERVICE_UNAVAILABLE,
-                );
             }
+
+            if (!voucher) {
+                try {
+                    const response$ = this.http.post(
+                        url,
+                        {}, // no body
+                        {
+                            headers: {
+                                "Access-Control-Allow-Origin": "*",
+                                "Access-Control-Allow-Methods": "POST",
+                                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+                            },
+                        },
+                    );
+                    const { data, status } = await lastValueFrom(response$);
+
+                    if (status !== 200 || !data.status) {
+                        throw new HttpException(
+                            "Failed to verify with Linkvertise gateway.",
+                            HttpStatus.BAD_GATEWAY,
+                        );
+                    }
+                } catch (err) {
+                    if (err instanceof HttpException) {
+                        throw err;
+                    }
+
+                    throw new HttpException(
+                        "Linkvertise service unavailable.",
+                        HttpStatus.SERVICE_UNAVAILABLE,
+                    );
+                }
+            }
+
+            Logger.error("Download verified: ");
+
+            await this.voucherService.updateVoucher({
+                where: { code: query.code },
+                data: {
+                    downloadCount: {
+                        increment: 1,
+                    },
+                },
+            });
 
             await this.downloadService.updateDownload({
                 where: { ipAddress: ip },
