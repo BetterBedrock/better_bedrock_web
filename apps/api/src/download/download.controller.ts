@@ -244,20 +244,36 @@ export class DownloadController {
     @ApiCreatedResponse({ description: "Download record created." })
     @ApiNotFoundResponse({ description: "Requested file not found." })
     async generate(@Ip() ip, @Query() query: GenerateDownloadDto) {
-        this.findDownloadItemById(query.file);
+        try {
+            this.findDownloadItemById(query.file);
+            const download = await this.downloadService.download({ ipAddress: ip });
 
-        await this.downloadService.deleteDownload({ ipAddress: ip });
-        await this.downloadService.createDownload({
-            ipAddress: ip,
-            file: query.file,
-        });
+            if (download != null) {
+                try {
+                    await this.downloadService.deleteDownload({ ipAddress: ip });
+                } catch (_) {
+                    /* empty */
+                }
+            }
 
-        // Update analytics
-        const analytics = await this.analyticsService.analytics();
-        if (analytics) {
-            await this.analyticsService.updateAnalytics({
-                totalDownloads: analytics.totalDownloads++,
-            });
+            try {
+                await this.downloadService.createDownload({
+                    ipAddress: ip,
+                    file: query.file,
+                });
+            } catch (_) {
+                /* empty */
+            }
+
+            // Update analytics
+            const analytics = await this.analyticsService.analytics();
+            if (analytics) {
+                await this.analyticsService.updateAnalytics({
+                    totalDownloads: analytics.totalDownloads++,
+                });
+            }
+        } catch (err) {
+            throw new HttpException("Error occured during download generation: " + err, 500);
         }
     }
 
