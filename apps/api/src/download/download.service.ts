@@ -9,7 +9,7 @@ export class DownloadService {
     async download(
         downloadWhereUniqueInput: Prisma.DownloadWhereUniqueInput,
     ): Promise<Download | null> {
-        return this.prisma.download.findUnique({
+        return await this.prisma.download.findUnique({
             where: downloadWhereUniqueInput,
         });
     }
@@ -22,7 +22,7 @@ export class DownloadService {
         orderBy?: Prisma.DownloadOrderByWithRelationInput;
     }): Promise<Download[]> {
         const { skip, take, cursor, where, orderBy } = params;
-        return this.prisma.download.findMany({
+        return await this.prisma.download.findMany({
             skip,
             take,
             cursor,
@@ -32,7 +32,7 @@ export class DownloadService {
     }
 
     async createDownload(data: Prisma.DownloadCreateInput): Promise<Download> {
-        return this.prisma.download.create({
+        return await this.prisma.download.create({
             data,
         });
     }
@@ -42,14 +42,14 @@ export class DownloadService {
         data: Prisma.DownloadUpdateInput;
     }): Promise<Download> {
         const { where, data } = params;
-        return this.prisma.download.update({
+        return await this.prisma.download.update({
             data,
             where,
         });
     }
 
     async deleteDownload(where: Prisma.DownloadWhereUniqueInput): Promise<Download> {
-        return this.prisma.download.delete({
+        return await this.prisma.download.delete({
             where,
         });
     }
