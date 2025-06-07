@@ -1,18 +1,24 @@
 import {
     Controller,
+    ForbiddenException,
     Get,
+    GoneException,
     HttpException,
     HttpStatus,
     Ip,
+    Logger,
     NotFoundException,
     Post,
     Query,
     Res,
     StreamableFile,
+    UnauthorizedException,
 } from "@nestjs/common";
 import {
     ApiBadGatewayResponse,
     ApiCreatedResponse,
+    ApiForbiddenResponse,
+    ApiGoneResponse,
     ApiNotFoundResponse,
     ApiOkResponse,
     ApiProduces,
@@ -34,6 +40,8 @@ import { join } from "path";
 import { DownloadsItemDto } from "@better-bedrock/constants/downloads.dto";
 import { COMMUNITY_LIST } from "src/content/constants/content-community";
 import { SIDE_PROJECTS_LIST } from "src/content/constants/content-side-projects";
+import { VoucherService } from "src/voucher/voucher.service";
+import { SkipThrottle } from "@nestjs/throttler";
 
 @ApiTags("download")
 @Controller("download")
@@ -44,18 +52,26 @@ export class DownloadController {
         private readonly http: HttpService,
         private downloadService: DownloadService,
         private analyticsService: AnalyticsService,
+        private readonly voucherService: VoucherService,
     ) {}
 
     @Get()
+    @SkipThrottle()
     @ApiOkResponse({
         description: "Binary file stream",
         schema: { type: "string", format: "binary" },
     })
     @ApiProduces("application/octet-stream")
-    @ApiUnauthorizedResponse({ description: "Not verified for download." })
-    @ApiNotFoundResponse({ description: "File not found or does not exist on server." })
+    @ApiUnauthorizedResponse({ description: "Not verified for download" })
+    @ApiNotFoundResponse({ description: "File not found or does not exist on the server" })
     async download(@Ip() ip, @Res({ passthrough: true }) res: Response): Promise<StreamableFile> {
         const download = await this.downloadService.download({ ipAddress: ip });
+        //TODO: Add try check
+
+        if (!download) {
+            throw new NotFoundException(`Download for your device could not be found.`);
+        }
+
         if (!download?.verified) {
             throw new HttpException(
                 "You have not verified your download yet.",
