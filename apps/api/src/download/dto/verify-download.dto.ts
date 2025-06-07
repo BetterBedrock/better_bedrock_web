@@ -1,4 +1,4 @@
-import { IsString, Length } from "class-validator";
+import { IsOptional, IsString, Length } from "class-validator";
 
 export class VerifyDownloadDto {
     /**
@@ -7,5 +7,10 @@ export class VerifyDownloadDto {
      */
     @IsString()
     @Length(64, 64)
+    @IsOptional()
     hash: string;
+
+    @IsString()
+    @IsOptional()
+    code: string;
 }
