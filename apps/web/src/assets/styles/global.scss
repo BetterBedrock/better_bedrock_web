@@ -102,10 +102,44 @@ section {
   }
 }
 
-h1,
-h2,
+a {
+  color: var(--selection-color);
+}
+
+p, ul, li {
+  font-family: "Mojangles";
+  text-align: left;
+  font-size: 1.25rem;
+  letter-spacing: 0.3px;
+  line-height: 1.2em;
+  color: white;
+}
+
 h3 {
+  font-family: "Minecraft";
   font-weight: 400;
+  font-size: 1.25rem;
+  letter-spacing: -0.015em;
+  line-height: 1.25rem;
+  color: white;
+}
+
+h2 {
+  font-family: "Minecraft";
+  font-weight: 400;
+  font-size: 1.75rem;
+  letter-spacing: -0.015em;
+  line-height: 1.75rem;
+  color: white;
+}
+
+h1 {
+  font-family: "Minecraft";
+  font-weight: 400;
+  font-size: 2.5rem;
+  letter-spacing: -0.015em;
+  line-height: 2.5rem;
+  color: white;
 }
 
 .noSelect {
