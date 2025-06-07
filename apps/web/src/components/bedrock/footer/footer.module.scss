@@ -1,15 +1,22 @@
 @use "~/assets/styles/global.scss" as g;
 
-.text {
+.footer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   width: 100%;
   margin: 0;
+  padding: g.$padding-sm g.$padding-xsm;
+  gap: g.$padding-xsm;
 }
 
-.text > * {
-  padding: g.$padding-sm g.$padding-xsm;
+.text {
   width: 100%;
+}
+
+.links {
+  display: inline-flex;
+  gap: g.$padding-xsm;
 }
