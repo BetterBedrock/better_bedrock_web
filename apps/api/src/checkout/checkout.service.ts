@@ -1,25 +1,28 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Logger } from "@nestjs/common";
+import { CreateCheckoutSessionDto } from "src/checkout/dto/create-checkout-session.dto";
 import Stripe from "stripe";
 
 @Injectable()
 export class CheckoutService {
     private stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "");
 
-    async createCheckoutSession() {
+    async createCheckoutSession(query: CreateCheckoutSessionDto) {
         const baseUrl =
             process.env.DEBUG === "true"
-                ? process.env.FRONTEND_URL
-                : process.env.LOCAL_FRONTEND_URL;
+                ? process.env.LOCAL_FRONTEND_URL
+                : process.env.FRONTEND_URL;
+
+        Logger.error("Creating checkout session with base URL:", baseUrl);
 
         const session = await this.stripe.checkout.sessions.create({
             line_items: [
                 {
-                    price: "price_1RYVyQQKPqpU2QRop44SCri8",
+                    price: query.priceId,
                     quantity: 1,
                 },
             ],
             mode: "payment",
-            success_url: `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+            success_url: `${baseUrl}/checkout/success?checkoutId={CHECKOUT_SESSION_ID}`,
             cancel_url: `${baseUrl}/checkout/cancel`,
         });
         return session.id;
@@ -30,8 +33,8 @@ export class CheckoutService {
         return this.stripe.webhooks.constructEvent(rawBody, signature, endpointSecret);
     }
 
-    async retriveSession(sessionId: string) {
-        return this.stripe.checkout.sessions.retrieve(sessionId, {
+    async retriveSession(checkoutId: string) {
+        return await this.stripe.checkout.sessions.retrieve(checkoutId, {
             expand: ["line_items.data.price.product", "customer"],
         });
     }
