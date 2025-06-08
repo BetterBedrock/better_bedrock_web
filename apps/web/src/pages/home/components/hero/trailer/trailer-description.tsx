@@ -5,6 +5,6 @@ export const TrailerDescription = () => (
     type="p"
     textAlign="center"
     color="white"
-    text="Watch the trailer for more detailed and explained information!"
+    text="Watch the showcase for more details about our latest Texture Pack!"
   />
 );
