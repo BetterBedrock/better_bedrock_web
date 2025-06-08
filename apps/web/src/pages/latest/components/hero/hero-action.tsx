@@ -1,17 +1,33 @@
-import { useNavigate } from "react-router-dom";
+import { DownloadsItemDto } from "@better-bedrock/constants/downloads.dto";
+import { useState } from "react";
 import { Button } from "~/components/bedrock/button";
-import { Routes } from "~/utils/routes";
+import { HeroPopup } from "~/pages/preview/components/hero/hero-popup";
+import { useContent } from "~/providers/content";
 
 export const HeroAction = () => {
-  const navigate = useNavigate();
+  const { downloads } = useContent();
+  const [downloadItem, setDownloadItem] = useState<DownloadsItemDto | null>(null);
+
+  const featuredCategory = downloads?.main.find((category) => category.title === "Featured");
+
+  if (!downloads || !featuredCategory || featuredCategory.items.length <= 0) {
+    return <></>;
+  }
+
+  const featuredItem = featuredCategory.items[0];
 
   return (
-    <Button
-      text="Download Latest Better Bedrock Texture Pack"
-      width="100%"
-      height="auto"
-      type="alwaysGreen"
-      onTap={() => navigate(Routes.HOME)}
-    />
+    <>
+      {downloadItem && (
+        <HeroPopup onClose={() => setDownloadItem(null)} downloadItem={downloadItem} />
+      )}
+      <Button
+        text="Download Latest Better Bedrock Texture Pack"
+        width="100%"
+        height="auto"
+        type="alwaysGreen"
+        onTap={() => setDownloadItem(featuredItem)}
+      />
+    </>
   );
 };
