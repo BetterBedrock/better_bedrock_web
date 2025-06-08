@@ -1,15 +1,35 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
+import { useCheckout } from "~/providers/checkout";
 import { Routes } from "~/utils/routes";
 
 export const Hero = () => {
   const navigate = useNavigate();
-  
+  const [__, setCookie] = useCookies(["voucher"]);
+  const [searchParams, _] = useSearchParams();
+  const { activateVoucher } = useCheckout();
+
+  useEffect(() => {
+    activateVoucher(searchParams.get("checkoutId") || "").then((voucher) => {
+      if (voucher === null) {
+        return;
+      }
+
+      setCookie("voucher", voucher);
+    });
+  }, []);
+
   return (
     <main>
-      <BedrockText type="h1" text="Payment Finished Successfuly" color="white" font="MinecraftTen" />
+      <BedrockText
+        type="h1"
+        text="Payment Finished Successfuly"
+        color="white"
+        font="MinecraftTen"
+      />
       <BedrockText
         type="p"
         color="white"
