@@ -1,0 +1,18 @@
+@use "~/assets/styles/global.scss" as g;
+
+.container {
+  background-color: rgb(47, 47, 48);
+  border: g.$minecraftdepth solid rgb(30, 30, 31);
+}
+
+.top {
+  background-color: rgb(31, 31, 32);
+  width: 100%;
+  height: g.$minecraftdepth;
+}
+
+.bottom {
+  background-color: rgb(60, 61, 62);
+  width: 100%;
+  height: g.$minecraftdepth;
+}

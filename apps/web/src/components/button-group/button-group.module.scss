@@ -1,0 +1,53 @@
+@use "~/assets/styles/global.scss" as g;
+
+.buttonGroup {
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+/* --- Children Behavior (No change here) --- */
+.buttonGroup > :global(*) {
+  position: relative;
+  z-index: 1;
+}
+.buttonGroup > :global(*:hover),
+.buttonGroup > :global(*:focus-within) {
+  z-index: 2;
+}
+
+/* --- Base Direction Styles --- */
+
+/* Horizontal is the default for 'responsive' */
+.buttonGroup[data-direction="horizontal"],
+.buttonGroup[data-direction="responsive"] {
+  flex-direction: row;
+}
+
+.buttonGroup[data-direction="horizontal"] > :global(*:not(:first-child)),
+.buttonGroup[data-direction="responsive"] > :global(*:not(:first-child)) {
+  margin-left: calc(-1 * var(--minecraftdepth));
+}
+
+.buttonGroup[data-direction="vertical"] {
+  flex-direction: column;
+}
+
+.buttonGroup[data-direction="vertical"] > :global(*:not(:first-child)) {
+  margin-top: calc(-1 * var(--minecraftdepth));
+}
+
+/* --- THE RESPONSIVE MAGIC (Media Query) --- */
+@media (max-width: g.$breakpoint-mobileL) {
+  /* Target only the responsive version */
+  .buttonGroup[data-direction="responsive"] {
+    flex-direction: column;
+  }
+
+  .buttonGroup[data-direction="responsive"] > :global(*:not(:first-child)) {
+    /* Reset the horizontal margin */
+    margin-left: 0;
+    /* Apply the vertical margin */
+    margin-top: calc(-1 * var(--minecraftdepth));
+  }
+}

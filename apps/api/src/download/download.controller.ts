@@ -29,9 +29,9 @@ import { HttpService } from "@nestjs/axios";
 import { lastValueFrom } from "rxjs";
 import { VerifyDownloadDto } from "src/download/dto/verify-download.dto";
 import { DOWNLOADS_LIST } from "src/content/constants/content-downloads";
-import { DownloadsItemDto } from "src/content/dto/downloads.dto";
 import { createReadStream, promises as fs } from "fs";
 import { join } from "path";
+import { DownloadsItemDto } from "@better-bedrock/constants/downloads.dto";
 
 @ApiTags("download")
 @Controller("download")

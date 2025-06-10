@@ -8,14 +8,16 @@ export const Main = () => {
   const { downloads, fetched } = useContent();
   const [showArchived, setShowArchived] = useState(false);
 
-  const archivedCategory = downloads.find((c) => c.title === "Archived");
-  const visibleCategories = showArchived
-    ? downloads
-    : downloads.filter((c) => c.title !== "Archived");
-
   if (!fetched) {
     return <CircularProgressIndicator size="medium" />;
   }
+
+  const mainDownloads = downloads!.main;
+  const archivedCategory = mainDownloads.find((c) => c.title === "Archived");
+  const visibleCategories = showArchived
+    ? mainDownloads
+    : mainDownloads.filter((c) => c.title !== "Archived");
+
   return (
     <>
       {visibleCategories.map((category) => (

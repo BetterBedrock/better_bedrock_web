@@ -25,7 +25,7 @@ export const App = () => (
             <Route path="discord" element={<Discord />} />
             <Route path="fetch" element={<Fetch />} />
             <Route path="login" element={<Login />} />
-            <Route path="preview" element={<Preview />} />
+            <Route path="preview/:file" element={<Preview />} />
             <Route path="panel">
               <Route index element={<Dashboard />} />
               <Route path="analytics" element={<Analytics />} />

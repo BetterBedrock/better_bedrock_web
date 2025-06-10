@@ -1,8 +1,8 @@
 import { Button } from "~/components/bedrock/button";
-import { ButtonSeparator } from "~/components/bedrock/button-separator";
 import { TAB_NAMES } from "../..";
 import { styles } from ".";
 import { useContent } from "~/providers/content";
+import { ButtonGroup } from "~/components/button-group/button-group";
 
 interface TabsProps {
   activeTab: number;
@@ -10,15 +10,15 @@ interface TabsProps {
 }
 
 export const Tabs = ({ activeTab, setActiveTab }: TabsProps) => {
-  const { downloads } = useContent();
+  const { fetched } = useContent();
 
-  if (downloads.length < 1) {
+  if (!fetched) {
     return <></>;
   }
 
   return (
     <div className={styles.tabs}>
-      <ButtonSeparator>
+      <ButtonGroup>
         {TAB_NAMES.map((text, index) => (
           <Button
             key={index}
@@ -31,7 +31,7 @@ export const Tabs = ({ activeTab, setActiveTab }: TabsProps) => {
             type="alwaysBlack"
           />
         ))}
-      </ButtonSeparator>
+      </ButtonGroup>
     </div>
   );
 };

@@ -1,14 +1,15 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { DownloadItemProps, DownloadListProps } from "~/pages/downloads";
+import { DownloadItemProps } from "~/pages/downloads";
 import { NotificationType, useNotification } from "~/providers/notification";
 import { $api } from "~/services/api-client";
+import { DownloadsDto } from "@better-bedrock/constants/downloads.dto";
 
 interface ContentContextProps {
   fetched: boolean;
   downloading: boolean;
   downloadProgress: number;
   downloadItem: DownloadItemProps | undefined;
-  downloads: DownloadListProps[];
+  downloads: DownloadsDto | undefined;
   generateDownload: (file: string) => Promise<void>;
   verifyDownload: (hash: string) => Promise<DownloadItemProps>;
   download: () => Promise<void>;
@@ -25,7 +26,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
 
   const [fetched, setFetched] = useState<boolean>(false);
   const [downloading, setDownloading] = useState<boolean>(false);
-  const [downloads, setDownloads] = useState<DownloadListProps[]>([]);
+  const [downloads, setDownloads] = useState<DownloadsDto | undefined>();
   const [downloadProgress, setDownloadProgress] = useState(0);
   const [downloadItem, setDownloadItem] = useState<DownloadItemProps | undefined>(undefined);
 
@@ -124,7 +125,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
       return;
     }
 
-    setDownloads(data as unknown as DownloadListProps[]);
+    setDownloads(data as unknown as DownloadsDto);
   };
 
   const generateDownload = async (file: string) => {

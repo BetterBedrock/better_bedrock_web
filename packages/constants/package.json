@@ -1,0 +1,21 @@
+{
+  "name": "@better-bedrock/constants",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    "./downloads.dto": {
+      "types": "./src/dto/downloads.dto.ts",
+      "default": "./dist/downloads.dto.js"
+    }
+  },
+  "devDependencies": {
+    "typescript": "latest"
+  },
+  "version": "1.0.0",
+  "dependencies": {
+    "class-validator": "^0.14.2"
+  }
+}

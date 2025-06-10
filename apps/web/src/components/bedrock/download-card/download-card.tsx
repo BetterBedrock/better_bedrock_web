@@ -50,7 +50,7 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
             />
             <BedrockText
               text={downloadSize ?? ""}
-              type={"h2"}
+              type={"h3"}
               font="MinecraftTen"
               textAlign="left"
             />

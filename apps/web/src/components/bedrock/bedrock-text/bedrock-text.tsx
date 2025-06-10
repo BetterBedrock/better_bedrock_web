@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import styles from "./bedrock-text.module.css";
+import { styles } from ".";
 
 export interface BedrockTextProps {
   text: string;

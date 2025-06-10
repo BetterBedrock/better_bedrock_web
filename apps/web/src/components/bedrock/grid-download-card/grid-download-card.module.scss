@@ -1,3 +1,5 @@
+@use "~/assets/styles/global.scss" as g;
+
 .container {
   /* padding: 1rem; */
   width: 100%;
@@ -37,8 +39,8 @@
   color: rgb(83, 216, 34) !important
 }
 
-.texts {
-  padding: 0.5rem 1rem 1rem 1rem;
+.texts, .actions {
+  padding: g.$padding-xsm;
 }
 
 .thumbnailWrapper {
@@ -48,7 +50,6 @@
 
 .thumbnailWrapper img {
   display: flex;
-  background-color: gray;
   width: 100%;
   aspect-ratio: 16 / 9;  
 }
@@ -60,4 +61,8 @@
 
 .cardTitle p:nth-child(2) {
   white-space: nowrap; 
+}
+
+.downloadSize {
+  // background-color: rgb(31,31,32);
 }
