@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@better-bedrock/constants": "*",
+    "@stripe/react-stripe-js": "^3.7.0",
+    "@stripe/stripe-js": "^7.3.1",
     "clsx": "^2.1.1",
     "openapi-fetch": "^0.13.5",
     "react": "latest",
@@ -17,8 +20,7 @@
     "react-router-dom": "latest",
     "sass": "^1.87.0",
     "use-sound": "latest",
-    "uuid": "^11.1.0",
-    "@better-bedrock/constants": "*"
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",

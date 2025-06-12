@@ -8,6 +8,7 @@ $pixel: calc(g.$minecraftdepth * 2);
   height: auto;
   pointer-events: auto;
   animation: fade-in 0.25s ease;
+  z-index: 103;
 }
 
 @keyframes fade-in {

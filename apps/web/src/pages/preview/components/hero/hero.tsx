@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
@@ -5,10 +6,13 @@ import { CircularProgressIndicator } from "~/components/bedrock/circular-progres
 // import { Card } from "~/components/bedrock/card";
 import { Gallery } from "~/components/bedrock/gallery/gallery";
 import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-download-card";
+import { HeroPopup } from "~/pages/preview/components/hero/hero-popup";
 import { useContent } from "~/providers/content";
 import { Routes } from "~/utils/routes";
+import { baseUrl } from "~/utils/url";
 
 export const Hero = () => {
+  const [showPopup, setShowPopup] = useState(false);
   const { downloads, fetched } = useContent();
   const params = useParams();
   const navigate = useNavigate();
@@ -33,12 +37,13 @@ export const Hero = () => {
   }
   return (
     <div style={{ width: "100%" }}>
+      {showPopup && <HeroPopup onClose={() => setShowPopup(false)} downloadItem={download} />}
       <GridDownloadCard
         title={download.title}
         downloadSize={`${download.itemWeight} MB`}
         thumbnail={
           <Gallery
-            images={download.imageAssetUrl.map((image) => `http://localhost:8084${image}`)}
+            images={download.imageAssetUrl.map((image) => `${baseUrl}${image}`)}
             show={true}
             fullscreen={false}
           />
@@ -50,9 +55,14 @@ export const Hero = () => {
             <BedrockText text={download.description} type={"p"} textAlign="left" color="white" />
           </>
         }
-        actions={<Button text="Download" type="alwaysGreen" />}
-      >
-      </GridDownloadCard>
+        actions={
+          <Button
+            text="Download"
+            type="alwaysGreen"
+            onClick={() => setShowPopup((prev) => !prev)}
+          />
+        }
+      ></GridDownloadCard>
     </div>
   );
 };

@@ -1,0 +1,9 @@
+@use "~/assets/styles/global" as g;
+
+.background {
+  @include g.page-background(
+    g.$background-linear-gradient,
+    "~/assets/images/crosshair_backgrounds/8.png",
+    (top, bottom)
+  );
+}

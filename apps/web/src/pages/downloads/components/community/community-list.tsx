@@ -6,6 +6,7 @@ import { ButtonGroup } from "~/components/button-group/button-group";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "~/utils/routes";
+import { baseUrl } from "~/utils/url";
 
 interface CommunityListProps {
   items: DownloadsItemDto[];
@@ -24,7 +25,7 @@ export const CommunityList = ({ items }: CommunityListProps) => {
           description={
             <BedrockText text={`@${item.creator}`} type={"p"} textAlign="left" color="white" />
           }
-          thumbnail={<img src={`http://localhost:8084${item.imageAssetUrl[0]}`} alt={""} />}
+          thumbnail={<img src={`${baseUrl}${item.imageAssetUrl[0]}`} alt={""} />}
           actions={
             <ButtonGroup>
               <Button

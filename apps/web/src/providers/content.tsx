@@ -3,6 +3,7 @@ import { DownloadItemProps } from "~/pages/downloads";
 import { NotificationType, useNotification } from "~/providers/notification";
 import { $api } from "~/services/api-client";
 import { DownloadsDto } from "@better-bedrock/constants/downloads.dto";
+import { baseUrl } from "~/utils/url";
 
 interface ContentContextProps {
   fetched: boolean;
@@ -13,6 +14,7 @@ interface ContentContextProps {
   generateDownload: (file: string) => Promise<void>;
   verifyDownload: (hash: string) => Promise<DownloadItemProps>;
   download: () => Promise<void>;
+  openLinkvertise: () => void;
 }
 
 interface ContentProviderProps {
@@ -37,7 +39,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
     setDownloading(true);
     setDownloadProgress(0);
 
-    const downloadUrl = "http://localhost:8084/download";
+    const downloadUrl = `${baseUrl}/download`;
 
     const response = await fetch(downloadUrl);
 
@@ -217,6 +219,24 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
     return downloadItem;
   };
 
+  const openLinkvertise = () => {
+    const currentUrl = new URL(window.location.origin);
+    const segments = currentUrl.pathname.split("/").filter(Boolean);
+    segments.push("fetch");
+    currentUrl.pathname = "/" + segments.join("/");
+
+    const linkvertiseId = import.meta.env.VITE_LINKVERTISE_ID;
+    const baseUrl = `https://link-to.net/${linkvertiseId}/${Math.random() * 1000}/dynamic/`;
+
+    const encodedUri = currentUrl.toString();
+    const base64Encoded = btoa(encodedUri);
+
+    const href = `${baseUrl}?r=${base64Encoded}`;
+    const finalUri = new URL(href);
+
+    window.open(finalUri.toString(), "_blank");
+  };
+
   useEffect(() => {
     fetchDownloads();
   }, []);
@@ -232,6 +252,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
         generateDownload,
         verifyDownload,
         downloadItem,
+        openLinkvertise,
       }}
     >
       {children}

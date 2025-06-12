@@ -6,6 +6,7 @@ import { DownloadsItemDto } from "@better-bedrock/constants/downloads.dto";
 import { Button } from "~/components/bedrock/button";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
+import { baseUrl } from "~/utils/url";
 
 interface SideProjectsListProps {
   items: DownloadsItemDto[];
@@ -22,7 +23,7 @@ export const SideProjectsList = ({ items }: SideProjectsListProps) => {
         images={(
           (items.find((item) => item.downloadId === selectedDownlolad)?.imageAssetUrl ??
             []) as string[]
-        ).map((image) => `http://localhost:8084${image}`)}
+        ).map((image) => `${baseUrl}${image}`)}
         show={showPreview}
         onClose={() => {
           setShowPreview((prev) => !prev);
@@ -35,7 +36,7 @@ export const SideProjectsList = ({ items }: SideProjectsListProps) => {
           description={
             <BedrockText text={item.description} type={"p"} textAlign="left" color="white" />
           }
-          thumbnail={<img src={`http://localhost:8084${item.imageAssetUrl[0]}`} alt={""} />}
+          thumbnail={<img src={`${baseUrl}${item.imageAssetUrl[0]}`} alt={""} />}
           actions={
             <ButtonGroup>
               <Button

@@ -68,32 +68,16 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/content/side-projects": {
+    "/checkout/create": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: operations["ContentController_sideProjects"];
+        get?: never;
         put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/content/themes": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["ContentController_themes"];
-        put?: never;
-        post?: never;
+        post: operations["CheckoutController_create"];
         delete?: never;
         options?: never;
         head?: never;
@@ -112,11 +96,8 @@ export interface components {
             itemWeight: number;
             imageAssetUrl: string;
         };
-        DownloadsListDto: {
-            title: string;
-            description: string;
-            items: components["schemas"]["DownloadsItemDto"][];
-        };
+        DownloadsDto: Record<string, never>;
+        CreateCheckoutSessionDto: Record<string, never>;
     };
     responses: never;
     parameters: never;
@@ -135,6 +116,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
+            /** @description Binary file stream */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -143,12 +125,26 @@ export interface operations {
                     "application/octet-stream": string;
                 };
             };
+            /** @description Not verified for download. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description File not found or does not exist on server. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
     };
     DownloadController_verify: {
         parameters: {
             query: {
-                /** @description Hash generated to go through the ads on linkvertise */
+                /** @description Linkvertise anti-bypass hash */
                 hash: string;
             };
             header?: never;
@@ -157,7 +153,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description The record has been successfully created. */
+            /** @description Download verified successfully. */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -166,8 +162,22 @@ export interface operations {
                     "application/json": components["schemas"]["DownloadsItemDto"];
                 };
             };
-            /** @description Forbidden. */
-            403: {
+            /** @description Download record not found for this IP or file not found. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Failed to verify with Linkvertise gateway. */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Linkvertise service unavailable. */
+            503: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -178,7 +188,7 @@ export interface operations {
     DownloadController_generate: {
         parameters: {
             query: {
-                /** @description Name of the file user wants to generate download for */
+                /** @description Download ID to generate */
                 file: string;
             };
             header?: never;
@@ -187,15 +197,15 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description The record has been successfully created. */
+            /** @description Download record created. */
             201: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Forbidden. */
-            403: {
+            /** @description Requested file not found. */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -212,17 +222,18 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            201: {
+            /** @description List of available downloads */
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["DownloadsListDto"];
+                    "application/json": components["schemas"]["DownloadsDto"];
                 };
             };
         };
     };
-    ContentController_sideProjects: {
+    CheckoutController_create: {
         parameters: {
             query?: never;
             header?: never;
@@ -231,31 +242,13 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
+            /** @description Create a checkout session */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": Record<string, never>[];
-                };
-            };
-        };
-    };
-    ContentController_themes: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": Record<string, never>[];
+                    "application/json": components["schemas"]["CreateCheckoutSessionDto"];
                 };
             };
         };

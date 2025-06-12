@@ -20,6 +20,16 @@ model Download {
   verified  Boolean  @default(false)
 }
 
+model Voucher {
+  id            String   @id @default(cuid())
+  checkoutId    String   @unique
+  code          String   @unique
+  createdAt     DateTime @default(now())
+  expiresAt     DateTime
+  maxDownloads  Int      @default(1)
+  downloadCount Int      @default(0)
+}
+
 model Analytics {
   id                String @id @default(cuid())
   totalDownloads    Int    @default(0)

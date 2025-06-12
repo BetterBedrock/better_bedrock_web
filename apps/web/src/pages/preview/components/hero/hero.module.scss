@@ -1,13 +1,34 @@
 @use "~/assets/styles/global.scss" as g;
 
 .actions {
-    padding-top: g.$padding-sm;
+  padding-top: g.$padding-sm;
 }
 
 .label {
-    padding: 0.5rem;
+  padding: 0.5rem;
 }
 
 .author {
-    width:100%;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+}
+
+.part {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: g.$padding-sm;
+  gap: g.$padding-xxsm;
+}
+
+.button {
+  width: 100%;
+}
+
+.checkout {
+    width: 100%;
+    height: 300px;
 }

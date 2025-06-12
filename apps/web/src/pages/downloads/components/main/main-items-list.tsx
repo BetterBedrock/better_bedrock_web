@@ -3,6 +3,9 @@ import { styles } from ".";
 import logo from "~/assets/images/favicon.png";
 import { useContent } from "~/providers/content";
 import { DownloadListProps } from "~/pages/downloads";
+import { useNavigate } from "react-router-dom";
+import { Routes } from "~/utils/routes";
+import { baseUrl } from "~/utils/url";
 
 const calcItemWeight = (itemWeight: number) => {
   return itemWeight <= 0.1 ? "<0.0" : itemWeight.toFixed(1);
@@ -18,25 +21,8 @@ export const openInNewTab = (url: string): void => {
 };
 
 export const MainItemsList = ({ category }: MainItemsList) => {
-  const { generateDownload } = useContent();
-
-  const openLinkvertise = () => {
-    const currentUrl = new URL(window.location.origin);
-    const segments = currentUrl.pathname.split("/").filter(Boolean);
-    segments.push("fetch");
-    currentUrl.pathname = "/" + segments.join("/");
-
-    const linkvertiseId = import.meta.env.VITE_LINKVERTISE_ID;
-    const baseUrl = `https://link-to.net/${linkvertiseId}/${Math.random() * 1000}/dynamic/`;
-
-    const encodedUri = currentUrl.toString();
-    const base64Encoded = btoa(encodedUri)
-
-    const href = `${baseUrl}?r=${base64Encoded}`;
-    const finalUri = new URL(href);
-
-    window.open(finalUri.toString(), "_blank");
-  };
+  const navigate = useNavigate();
+  const { generateDownload, openLinkvertise } = useContent();
 
   return (
     <div className={styles.items}>
@@ -47,10 +33,12 @@ export const MainItemsList = ({ category }: MainItemsList) => {
           description={downloadItem.description}
           downloadSize={`${calcItemWeight(downloadItem.itemWeight)}MB`}
           buttonType={downloadItem.buttonType}
-          iconPath={
-            downloadItem.imageAssetUrl ? `http://localhost:8084${downloadItem.imageAssetUrl}` : logo
-          }
+          iconPath={downloadItem.imageAssetUrl ? `${baseUrl}${downloadItem.imageAssetUrl}` : logo}
           onClick={async () => {
+            if (category.title === "Featured") {
+              navigate(Routes.LATEST);
+              return;
+            }
             await generateDownload(downloadItem.downloadId);
             openLinkvertise();
           }}

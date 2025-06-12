@@ -5,9 +5,35 @@ import { ValidationPipe } from "@nestjs/common";
 import metadata from "./metadata";
 import { join } from "path";
 import { NestExpressApplication } from "@nestjs/platform-express";
+import helmet from "helmet";
 
 async function bootstrap() {
-    const app = await NestFactory.create<NestExpressApplication>(AppModule);
+    const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+        rawBody: true,
+    });
+
+    app.use(
+        helmet.contentSecurityPolicy({
+            directives: {
+                defaultSrc: ["'self'"],
+                scriptSrc: [
+                    "'self'",
+                    "https'://js.stripe.com'",
+                    "'unsafe-inline'", // Required by some Stripe elements
+                ],
+                scriptSrcElem: [
+                    "'self'",
+                    "https://js.stripe.com",
+                    "blob:", // Allow blob URLs for scripts
+                ],
+                styleSrc: ["'self'", "https://js.stripe.com", "'unsafe-inline'"],
+                frameSrc: ["'self'", "https://js.stripe.com", "https://hooks.stripe.com"],
+                connectSrc: ["'self'", "https://api.stripe.com", "https://m.stripe.network"],
+                imgSrc: ["'self'", "data:", "https://*.stripe.com"],
+                fontSrc: ["'self'", "data:"],
+            },
+        }),
+    );
 
     const config = new DocumentBuilder()
         .setTitle("Better Bedrock API")
