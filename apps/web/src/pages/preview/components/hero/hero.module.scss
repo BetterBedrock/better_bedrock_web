@@ -29,6 +29,16 @@
 }
 
 .checkout {
-    width: 100%;
-    height: 300px;
+  width: 100%;
+  height: 300px;
+}
+
+.voucher {
+  width: 100%;
+  display: inline-flex;
+  gap: g.$padding-xsm;
+}
+
+.input {
+  width: 100%;
 }

@@ -12,7 +12,7 @@ export const COMMUNITY_LIST: DownloadsListDto[] = [
                 notification: {
                     title: "Texturepack submission",
                     description:
-                        "Please submit your texturepack to our Discord server on #submissions.",
+                        "Please submit your texturepack on our Discord server on #submissions",
                     type: "info",
                 },
             },

@@ -34,6 +34,8 @@ This is an open-source repository for **Better Bedrock** Project. It contains fr
 *   🔍 Zod
 *   🧱 Ore-UI
 *   🌐 Turborepo & Yarn
+*   💲 Stripe
+*   📧 Mailersend
 
 🏁 Getting Started
 ------------------

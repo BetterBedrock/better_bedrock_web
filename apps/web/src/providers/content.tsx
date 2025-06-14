@@ -4,6 +4,7 @@ import { NotificationType, useNotification } from "~/providers/notification";
 import { $api } from "~/services/api-client";
 import { DownloadsDto } from "@better-bedrock/constants/downloads.dto";
 import { baseUrl } from "~/utils/url";
+import { VerificationException } from "~/exception/verification-exception";
 
 interface ContentContextProps {
   fetched: boolean;
@@ -12,8 +13,8 @@ interface ContentContextProps {
   downloadItem: DownloadItemProps | undefined;
   downloads: DownloadsDto | undefined;
   generateDownload: (file: string) => Promise<void>;
-  verifyDownload: (hash: string) => Promise<DownloadItemProps>;
-  download: () => Promise<void>;
+  verifyDownload: (hash: string, code: string) => Promise<DownloadItemProps>;
+  download: (code?: string) => Promise<void>;
   openLinkvertise: () => void;
 }
 
@@ -33,9 +34,6 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
   const [downloadItem, setDownloadItem] = useState<DownloadItemProps | undefined>(undefined);
 
   const download = async () => {
-    if (downloading) {
-      return;
-    }
     setDownloading(true);
     setDownloadProgress(0);
 
@@ -71,6 +69,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
         label,
         type,
       });
+      setDownloading(false);
       return;
     }
 
@@ -150,7 +149,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
           type = "error";
           break;
         default:
-          title = "Error While Downloading";
+          title = "Error While Generating";
           label = "Please report this issue to us on our discord";
           type = "error";
           break;
@@ -165,11 +164,12 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
     }
   };
 
-  const verifyDownload = async (hash: string): Promise<DownloadItemProps> => {
+  const verifyDownload = async (hash: string, code: string): Promise<DownloadItemProps> => {
     const { data, error, response } = await $api.POST("/download/verify", {
       params: {
         query: {
           hash,
+          code,
         },
       },
     });
@@ -184,9 +184,24 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
           label = "Provided hash in the link is incorrect";
           type = "error";
           break;
+        case 401:
+          title = "Non-existent Voucher";
+          label = "Provided voucher does not exist";
+          type = "error";
+          break;
+        case 403:
+          title = "Bad Voucher Level";
+          label = "This voucher allows you to download only better bedrock content";
+          type = "error";
+          break;
         case 404:
           title = "Download Not Found";
           label = "Record of your download does not exist";
+          type = "error";
+          break;
+        case 410:
+          title = "Invalid Voucher";
+          label = "The voucher has either expired or already been used.";
           type = "error";
           break;
         case 502:
@@ -200,7 +215,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
           type = "error";
           break;
         default:
-          title = "Error While Downloading";
+          title = "Error While Verifying";
           label = "Please report this issue to us on our discord.";
           type = "error";
           break;
@@ -211,11 +226,12 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
         label,
         type,
       });
-      throw Error(error);
+      throw new VerificationException(error, response.status);
     }
 
     const downloadItem = data as unknown as DownloadItemProps;
     setDownloadItem(downloadItem);
+    // setDownloadProgress(0);
     return downloadItem;
   };
 

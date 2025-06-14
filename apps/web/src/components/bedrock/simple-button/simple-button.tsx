@@ -1,11 +1,19 @@
-import { useState, useEffect, ReactNode, HTMLAttributes } from "react";
+import {
+  useState,
+  useEffect,
+  ReactNode,
+  CSSProperties,
+  ButtonHTMLAttributes,
+  AnchorHTMLAttributes,
+} from "react";
+import { Link, LinkProps } from "react-router-dom";
 import { useSound } from "use-sound";
 import bedrockClickSound from "~/assets/sounds/minecraft_click.mp3";
 
 import { styles } from ".";
 import clsx from "clsx";
 
-interface SimpleButtonProps extends HTMLAttributes<HTMLButtonElement> {
+type CommonProps = {
   height?: number | string;
   width?: number | string;
   children?: ReactNode;
@@ -13,10 +21,17 @@ interface SimpleButtonProps extends HTMLAttributes<HTMLButtonElement> {
   isClicked?: boolean;
   playSound?: boolean;
   tabIndex?: number;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   className?: string;
   transparent?: boolean;
-}
+  link?: string;
+  isExternalLink?: boolean;
+};
+
+// Extend native props based on target element
+type ButtonOnlyProps = ButtonHTMLAttributes<HTMLButtonElement> & CommonProps;
+type AnchorOnlyProps = AnchorHTMLAttributes<HTMLAnchorElement> & CommonProps;
+type SimpleButtonProps = ButtonOnlyProps | AnchorOnlyProps;
 
 export const SimpleButton = ({
   height,
@@ -29,6 +44,8 @@ export const SimpleButton = ({
   transparent = false,
   style,
   className,
+  link,
+  isExternalLink = false,
   ...props
 }: SimpleButtonProps) => {
   const [_, setClicked] = useState<boolean>(false);
@@ -46,15 +63,58 @@ export const SimpleButton = ({
     if (onTap) onTap();
   };
 
+  const commonStyle = {
+    height,
+    width,
+    ...style,
+  };
+
+  const commonClassName = clsx(styles.wrapper, transparent && styles.transparent, className);
+
+  const child = <div className={styles.child}>{children}</div>;
+
+  if (link) {
+    if (isExternalLink) {
+      return (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={commonClassName}
+          style={commonStyle}
+          onClick={handleClick}
+          tabIndex={tabIndex}
+          {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
+        >
+          {child}
+        </a>
+      );
+    } else {
+      return (
+        <Link
+          className={commonClassName}
+          style={commonStyle}
+          onClick={handleClick}
+          tabIndex={tabIndex}
+          {...(props as LinkProps)}
+          to={link}
+        >
+          {child}
+        </Link>
+      );
+    }
+  }
+
   return (
     <button
-      style={{ height, width, ...style }}
-      className={clsx(styles.wrapper, transparent && styles.transparent, className && className)}
+      type="button"
+      className={commonClassName}
+      style={commonStyle}
       onClick={handleClick}
       tabIndex={tabIndex}
-      {...props}
+      {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
     >
-      <div className={styles.child}>{children}</div>
+      {child}
     </button>
   );
 };

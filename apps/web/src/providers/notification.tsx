@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import Caution from "~/assets/images/glyphs/Caution.png";
 import Error from "~/assets/images/glyphs/ErrorGlyph.png";
 import Info from "~/assets/images/glyphs/blue_info_glyph.png";
-import Success from "~/assets/images/glyphs/update.png";
+import Success from "~/assets/images/glyphs/confirm.png";
 
 interface NotificationContextProps {
   notificationQueue: Notification[];

@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "app/generated/prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Download {
+  ipAddress String   @id
+  createdAt DateTime @default(now())
+  file      String
+  verified  Boolean  @default(false)
+}
+
+model Voucher {
+  id                       String   @id @default(cuid())
+  email                    String
+  checkoutId               String   @unique
+  code                     String   @unique
+  createdAt                DateTime @default(now())
+  expiresAt                DateTime
+  maxDownloads             Int      @default(1)
+  downloadCount            Int      @default(0)
+  betterBedrockContentOnly Boolean  @default(false)
+}
+
+model Analytics {
+  id                String @id @default(cuid())
+  totalDownloads    Int    @default(0)
+  verifiedDownloads Int    @default(0)
+  downloadsToday    Int    @default(0)
+  downloadsThisWeek Int    @default(0)
+
+  // store per-file counters in JSON
+  fileCounts Json @default("{}")
+}

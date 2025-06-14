@@ -59,6 +59,7 @@ export const Navbar = () => {
                   backgroundColor: isActive ? "var(--bedrock-simple-button-click)" : "",
                 }}
                 className={styles.button}
+                link={path}
                 onTap={() => {
                   navigate(path);
                   handleExpandNavbar();
