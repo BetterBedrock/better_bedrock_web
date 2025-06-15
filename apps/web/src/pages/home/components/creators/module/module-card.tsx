@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { styles } from ".";
 import defaultImage from "~/assets/images/example_head.png";
 import { Button } from "~/components/bedrock/button";
@@ -7,20 +6,10 @@ import { BedrockText } from "~/components/bedrock/bedrock-text";
 interface ModuleCardProp {
   title: string;
   description: string;
-  iconPath?: string;
   creator?: boolean;
 }
 
-export const ModuleCard = ({ title, description, iconPath, creator }: ModuleCardProp) => {
-  const [imageSrc, setImageSrc] = useState(defaultImage);
-
-  useEffect(() => {
-    if (iconPath) {
-      import(`../../../${iconPath}`)
-        .then((image) => setImageSrc(image.default))
-        .catch(() => setImageSrc(defaultImage));
-    }
-  }, [iconPath]);
+export const ModuleCard = ({ title, description, creator }: ModuleCardProp) => {
 
   return (
     <Button
@@ -32,7 +21,7 @@ export const ModuleCard = ({ title, description, iconPath, creator }: ModuleCard
       className={styles.card}
     >
       <div className={styles.content}>
-        <img alt="Minecraft Profile Picture" src={imageSrc} />
+        <img alt="Minecraft Profile Picture" src={defaultImage} />
         <div className={styles.description}>
           <div className={styles.title}>
             <BedrockText
