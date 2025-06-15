@@ -6,7 +6,6 @@ import {
     HttpException,
     HttpStatus,
     Ip,
-    Logger,
     NotFoundException,
     Post,
     Query,
@@ -147,14 +146,15 @@ export class DownloadController {
         @Query() query: VerifyDownloadDto,
     ): Promise<DownloadsItemDto | undefined> {
         const download = await this.downloadService.download({ ipAddress: ip });
-        const voucher = await this.voucherService.getVoucher({ code: query.code });
+        const voucher = query.code
+            ? await this.voucherService.getVoucher({ code: query.code })
+            : null;
+
         if (!download) {
             throw new NotFoundException(`Download for your device could not be found.`);
         }
 
         const file = this.findDownloadItemById(download.file);
-
-        const url = `https://publisher.linkvertise.com/api/v1/anti_bypassing?token=${this.linkvertiseApiKey}&hash=${query.hash}`;
 
         if (!download.verified) {
             if (query.code && !voucher) {
@@ -182,6 +182,8 @@ export class DownloadController {
             }
 
             if (!voucher) {
+                const url = `https://publisher.linkvertise.com/api/v1/anti_bypassing?token=${this.linkvertiseApiKey}&hash=${query.hash}`;
+
                 try {
                     const response$ = this.http.post(
                         url,
@@ -213,8 +215,6 @@ export class DownloadController {
                     );
                 }
             }
-
-            Logger.error("Download verified: ");
 
             await this.voucherService.updateVoucher({
                 where: { code: query.code },

@@ -157,16 +157,10 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
   };
 
   return (
-    <Popup onClose={onClose}>
+    <Popup onClose={onClose} title="Download Method">
       <div className={styles.container}>
         <div className={styles.part}>
-          <BedrockText
-            text="Download Method"
-            type="h2"
-            color="white"
-            font="Minecraft"
-            textAlign="left"
-          />
+
           {/* <BedrockText text="Choose your download method you will use to download selected content" type="p" color="white" textAlign="left" /> */}
           <ButtonGroup>
             {categories!.map((category, index) => (
@@ -203,7 +197,8 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
                   key={index}
                   buttonType={item.priceOption.featured ? "alwaysGreen" : "alwaysWhite"}
                   price={`${item.priceOption.price}$`}
-                  description={item.priceOption.label}
+                  label={item.priceOption.label}
+                  title={item.priceOption.title}
                   onClick={() => purchase(item.priceId)}
                 />
               ))}
@@ -214,9 +209,10 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
           <DownloadMethodCard
             buttonType="alwaysWhite"
             price="Free"
-            description="Download After Watching Ads"
+            title="Download After Watching Ads"
             onClick={download}
           />
+          <BedrockText text="Payments Processed By Stripe" type="p2" color="white"/>
         </div>
       </div>
     </Popup>

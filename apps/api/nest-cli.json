@@ -10,7 +10,8 @@
                 "options": {
                     "classValidatorShim": true,
                     "introspectComments": true,
-                    "skipAutoHttpCode": true
+                    "skipAutoHttpCode": true,
+                    "dtoFileNameSuffix": [".dto.ts", ".model.ts"]
                 }
             }
         ]

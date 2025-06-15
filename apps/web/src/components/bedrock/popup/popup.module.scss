@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
   max-height: 100%;
-  overflow:auto;
+  overflow: auto;
 }
 
 .body {
@@ -38,6 +38,12 @@
 }
 
 .close {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  right:g.$padding-xsm;
+
   height: g.$exit-button-size;
   width: g.$exit-button-size;
   image-rendering: pixelated;
@@ -48,7 +54,13 @@
 }
 
 .header {
-  padding: g.$padding-sm 0 0 g.$padding-sm;
+  position: relative;
+  padding: g.$padding-xsm;
   display: flex;
   width: 100%;
+  border: g.$minecraftdepth solid rgb(86, 87, 89);
+  background-color: #48494b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

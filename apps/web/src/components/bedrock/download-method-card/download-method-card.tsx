@@ -4,7 +4,8 @@ import styles from "./download-method-card.module.css";
 import { Button, ButtonType } from "../button";
 
 interface DownloadMethodCardProp {
-  description?: string;
+  label?: string;
+  title?: string;
   price?: string;
   buttonType?: ButtonType;
   playSound?: boolean;
@@ -14,7 +15,8 @@ interface DownloadMethodCardProp {
 }
 
 export const DownloadMethodCard = ({
-  description,
+  label,
+  title,
   price,
   buttonType = "alwaysWhite",
   playSound = true,
@@ -41,7 +43,10 @@ export const DownloadMethodCard = ({
           extraClassName={styles.price}
         />
         <div className={styles.download_card_description}>
-          <BedrockText text={description ?? ""} type={"p"} textAlign="left" />
+          <strong>
+            <BedrockText text={title ?? ""} type={"p"} textAlign="left" />
+          </strong>
+          <BedrockText text={label ?? ""} type={"p2"} textAlign="left" />
         </div>
       </div>
     </Button>
