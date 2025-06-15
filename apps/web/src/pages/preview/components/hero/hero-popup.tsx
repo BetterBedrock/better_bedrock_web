@@ -157,16 +157,10 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
   };
 
   return (
-    <Popup onClose={onClose}>
+    <Popup onClose={onClose} title="Download Method">
       <div className={styles.container}>
         <div className={styles.part}>
-          <BedrockText
-            text="Download Method"
-            type="h2"
-            color="white"
-            font="Minecraft"
-            textAlign="left"
-          />
+
           {/* <BedrockText text="Choose your download method you will use to download selected content" type="p" color="white" textAlign="left" /> */}
           <ButtonGroup>
             {categories!.map((category, index) => (
