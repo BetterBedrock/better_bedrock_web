@@ -19,10 +19,17 @@ export class PriceOptionDto {
 
     /**
      * Description of the pricing option
-     * @example 'Get 50 Ad Free Downloads For One Week (Better Bedrock Content Only)'
+     * @example 'For One Week (Better Bedrock Content Only)'
      */
     @IsString()
     label: string;
+
+    /**
+     * A title for the DownloadMethodCard
+     * @example 'Get 50 Ad Free Downloads'
+     */
+    @IsString()
+    title: string;
 
     /**
      * Whether this option is featured
