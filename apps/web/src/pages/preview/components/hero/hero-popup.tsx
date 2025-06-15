@@ -197,7 +197,8 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
                   key={index}
                   buttonType={item.priceOption.featured ? "alwaysGreen" : "alwaysWhite"}
                   price={`${item.priceOption.price}$`}
-                  description={item.priceOption.label}
+                  label={item.priceOption.label}
+                  title={item.priceOption.title}
                   onClick={() => purchase(item.priceId)}
                 />
               ))}
@@ -208,9 +209,10 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
           <DownloadMethodCard
             buttonType="alwaysWhite"
             price="Free"
-            description="Download After Watching Ads"
+            title="Download After Watching Ads"
             onClick={download}
           />
+          <BedrockText text="Payments Processed By Stripe" type="p2" color="white"/>
         </div>
       </div>
     </Popup>
