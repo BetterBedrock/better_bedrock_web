@@ -1,4 +1,5 @@
-@import "~/utils";
+@forward "~/utils";
+@use "~/utils" as *;
 
 *,
 *::before,
