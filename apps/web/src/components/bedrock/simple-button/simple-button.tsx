@@ -24,8 +24,6 @@ type CommonProps = {
   style?: CSSProperties;
   className?: string;
   transparent?: boolean;
-  link?: string;
-  isExternalLink?: boolean;
 };
 
 // Extend native props based on target element
@@ -44,8 +42,6 @@ export const SimpleButton = ({
   transparent = false,
   style,
   className,
-  link,
-  isExternalLink = false,
   ...props
 }: SimpleButtonProps) => {
   const [_, setClicked] = useState<boolean>(false);
@@ -72,38 +68,6 @@ export const SimpleButton = ({
   const commonClassName = clsx(styles.wrapper, transparent && styles.transparent, className);
 
   const child = <div className={styles.child}>{children}</div>;
-
-  if (link) {
-    if (isExternalLink) {
-      return (
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={commonClassName}
-          style={commonStyle}
-          onClick={handleClick}
-          tabIndex={tabIndex}
-          {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
-        >
-          {child}
-        </a>
-      );
-    } else {
-      return (
-        <Link
-          className={commonClassName}
-          style={commonStyle}
-          onClick={handleClick}
-          tabIndex={tabIndex}
-          {...(props as LinkProps)}
-          to={link}
-        >
-          {child}
-        </Link>
-      );
-    }
-  }
 
   return (
     <button
