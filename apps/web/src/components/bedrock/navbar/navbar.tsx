@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Label } from "../label";
@@ -8,10 +8,10 @@ import { SimpleButton } from "~/components/bedrock/simple-button/simple-button";
 
 import styles from "./navbar.module.scss";
 import clsx from "clsx";
+import { Link } from "~/components/link";
 
 export const Navbar = () => {
   const [expandedNavbar, setExpandedNavbar] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
 
   const handleExpandNavbar = () => {
@@ -52,21 +52,21 @@ export const Navbar = () => {
           {navItems.map(({ name, path }) => {
             const isActive = location.pathname === path;
             return (
-              <SimpleButton
-                key={name}
-                width="100%"
-                style={{
-                  backgroundColor: isActive ? "var(--bedrock-simple-button-click)" : "",
-                }}
-                className={styles.button}
-                link={path}
-                onTap={() => {
-                  navigate(path);
-                  handleExpandNavbar();
-                }}
-              >
-                <BedrockText text={name} type="p" extraClassName={styles.text} />
-              </SimpleButton>
+              <Link link={path}>
+                <SimpleButton
+                  key={name}
+                  width="100%"
+                  style={{
+                    backgroundColor: isActive ? "var(--bedrock-simple-button-click)" : "",
+                  }}
+                  className={styles.button}
+                  onTap={() => {
+                    handleExpandNavbar();
+                  }}
+                >
+                  <BedrockText text={name} type="p" extraClassName={styles.text} />
+                </SimpleButton>
+              </Link>
             );
           })}
         </nav>
