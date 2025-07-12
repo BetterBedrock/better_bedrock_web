@@ -14,8 +14,6 @@ export interface BedrockTextProps {
   style?: React.CSSProperties;
   extraClassName?: string | string[];
   onClick?: () => void;
-  link?: string;
-  isExternalLink?: boolean; // NEW: to differentiate link types
 }
 
 export const BedrockText = ({
@@ -30,25 +28,9 @@ export const BedrockText = ({
   style,
   onClick,
   extraClassName = [],
-  link,
-  isExternalLink = false,
 }: BedrockTextProps) => {
   const Tag = type === "p2" ? "p" : type;
   const paragraphType = type === "p2" ? styles.p2 : "";
-
-  const content = link ? (
-    isExternalLink ? (
-      <a href={link} className={styles.link} target="_blank" rel="noopener noreferrer">
-        {text}
-      </a>
-    ) : (
-      <Link to={link} className={styles.link}>
-        {text}
-      </Link>
-    )
-  ) : (
-    text
-  );
 
   return (
     <Tag
@@ -69,7 +51,7 @@ export const BedrockText = ({
       }}
       onClick={onClick}
     >
-      {content}
+      {text}
     </Tag>
   );
 };
