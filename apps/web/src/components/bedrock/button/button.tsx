@@ -68,7 +68,6 @@ const Button = ({
   };
 
   const handleSetIsToggled = (value: boolean) => {
-    // was (isClicked !== undefined) but changed due collapsible component to prevent unchecking when collapsible is open and usefeect from bottom
     if (isClicked === true) {
       return;
     }
@@ -106,7 +105,6 @@ const Button = ({
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
         onClick={onClick}
-        // data-toggled={isToggled ? "true" : "false"}
         data-toggled={toggledState}
         data-type={type}
         tabIndex={tabIndex}
