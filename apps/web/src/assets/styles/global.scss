@@ -107,13 +107,23 @@ a {
   color: var(--selection-color);
 }
 
-p, ul, li {
+p,
+ul,
+li {
   font-family: "Mojangles";
   text-align: left;
   font-size: 1.25rem;
   letter-spacing: 0.3px;
   line-height: 1.2em;
   color: white;
+
+  @media (max-width: $breakpoint-laptop) {
+    font-size: 1.125rem;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 1rem;
+  }
 }
 
 h3 {
@@ -123,6 +133,16 @@ h3 {
   letter-spacing: -0.015em;
   line-height: 1.25rem;
   color: white;
+
+  @media (max-width: $breakpoint-laptop) {
+    font-size: 1.125rem;
+    line-height: 1.2rem;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 1rem;
+    line-height: 1.1rem;
+  }
 }
 
 h2 {
@@ -132,6 +152,16 @@ h2 {
   letter-spacing: -0.015em;
   line-height: 1.75rem;
   color: white;
+
+  @media (max-width: $breakpoint-laptop) {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 1.25rem;
+    line-height: 1.3rem;
+  }
 }
 
 h1 {
@@ -141,6 +171,16 @@ h1 {
   letter-spacing: -0.015em;
   line-height: 2.5rem;
   color: white;
+
+  @media (max-width: $breakpoint-laptop) {
+    font-size: 2rem;
+    line-height: 2.2rem;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 1.75rem;
+    line-height: 2rem;
+  }
 }
 
 .noSelect {
