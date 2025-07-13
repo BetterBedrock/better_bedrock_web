@@ -44,32 +44,31 @@ export const Navbar = () => {
             extraClassName={styles.heading}
           />
           <SimpleButton height="100%" onTap={handleExpandNavbar} className={styles.menuButton}>
-            <div className="material-icons">menu</div>
+            <div className={clsx("material-icons", styles.menu)}>menu</div>
           </SimpleButton>
         </div>
 
-        <nav className={clsx(styles.item, styles.nav)}>
+        <div className={clsx(styles.item, styles.links)}>
           {navItems.map(({ name, path }) => {
             const isActive = location.pathname === path;
             return (
-              <Link link={path}>
-                <SimpleButton
-                  key={name}
-                  width="100%"
-                  style={{
-                    backgroundColor: isActive ? "var(--bedrock-simple-button-click)" : "",
-                  }}
-                  className={styles.button}
-                  onTap={() => {
-                    handleExpandNavbar();
-                  }}
-                >
-                  <BedrockText text={name} type="p" extraClassName={styles.text} />
-                </SimpleButton>
-              </Link>
+              <nav className={styles.nav}>
+                <Link link={path} hideStyles={true}>
+                  <SimpleButton
+                    key={name}
+                    width="100%"
+                    className={clsx(styles.button, isActive && styles.active)}
+                    onTap={() => {
+                      handleExpandNavbar();
+                    }}
+                  >
+                    <BedrockText text={name} type="p" extraClassName={styles.text} />
+                  </SimpleButton>
+                </Link>
+              </nav>
             );
           })}
-        </nav>
+        </div>
       </Label>
     </header>
   );
