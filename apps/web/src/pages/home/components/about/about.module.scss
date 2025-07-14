@@ -5,6 +5,10 @@
   padding-block: g.$sectionsDividerPadding;
 }
 
+.inner {
+  padding-block: g.$padding-sm;
+}
+
 .about {
   display: flex;
   justify-content: center;
