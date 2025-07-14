@@ -29,20 +29,18 @@ export const CommunityList = ({ items }: CommunityListProps) => {
           actions={
             <ButtonGroup>
               <Button
-                // style={{ margin: "5px" }}
+                onClick={() => setDownload(item)}
                 text="Download"
-                width={"100%"}
-                height={"auto"}
+                width="100%"
+                height="auto"
                 type="alwaysGreen"
               />
               <Button
                 text="Preview"
-                width={"100%"}
-                height={"auto"}
+                width="100%"
+                height="auto"
                 type="alwaysWhite"
-                onClick={() => {
-                  navigate(`${Routes.PREVIEW}/${item.downloadId}`);
-                }}
+                onClick={() => navigate(`${Routes.PREVIEW}/${item.downloadId}`)}
               />
             </ButtonGroup>
           }

@@ -6,12 +6,7 @@ interface AboutListProps {
   items: AboutSectionElement[];
 }
 
-export const AboutList = ({ items, direction = "left" }: AboutListProps) => {
-  return (
-    <>
-      {items.map((item, index) => (
-        <AboutCard key={index} direction={direction} item={item} index={index} />
-      ))}
-    </>
-  );
-};
+export const AboutList = ({ items, direction = "left" }: AboutListProps) =>
+  items.map((item, index) => (
+    <AboutCard key={index} direction={direction} item={item} index={index} />
+  ));

@@ -17,10 +17,10 @@ export const HeaderTabs = ({ activeTab, setActiveTab }: HeaderTabsProps) => (
           tabIndex={index}
           isClicked={activeTab === index}
           onTap={() => setActiveTab(index)}
-          width={"100%"}
-          height={"auto"}
+          width="100%"
+          height="auto"
           text={text}
-          type={"alwaysGreen"}
+          type="alwaysGreen"
         />
       ))}
     </ButtonSeparator>

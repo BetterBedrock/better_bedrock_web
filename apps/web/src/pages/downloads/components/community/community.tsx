@@ -12,15 +12,11 @@ export const Community = () => {
 
   const communityDownloads = downloads!.community;
 
-  return (
-    <>
-      {communityDownloads.map((category, index) => (
-        <div key={index}>
-          <Heading title={category.title} description={category.description} />
-          <CommunityActions buttons={category.buttons!} />
-          <CommunityList items={category.items} />
-        </div>
-      ))}
-    </>
-  );
+  return communityDownloads.map((category, index) => (
+    <div key={index}>
+      <Heading title={category.title} description={category.description} />
+      <CommunityActions buttons={category.buttons!} />
+      <CommunityList items={category.items} />
+    </div>
+  ));
 };

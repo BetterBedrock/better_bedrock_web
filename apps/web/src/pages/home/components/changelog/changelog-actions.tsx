@@ -9,16 +9,15 @@ export const ChangelogActions = () => {
     <div className={styles.actions}>
       <Button
         text="Information Page"
-        width={"100%"}
-        height={"auto"}
+        width="100%"
+        height="auto"
         type="alwaysGreen"
         onTap={() => navigate(Routes.INFORMATION)}
       />
       <Button
         text="Join Discord"
-        width={"100%"}
-        height={"auto"}
-        outlinePaddingLeft="0"
+        width="100%"
+        height="auto"
         type="alwaysWhite"
         onTap={() => window.open("https://discord.gg/ZGK5WYXnEY", "_blank", "noopener,noreferrer")}
       />
