@@ -4,6 +4,7 @@ import {
   TutorialVideosTitle,
   TutorialVideosDescription,
   TutorialVideosGrid,
+  styles,
 } from ".";
 
 export interface TutorialVideosProps {
@@ -20,8 +21,10 @@ export const TutorialVideos = ({ activeTab, section }: TutorialVideosProps) => {
 
   return (
     <div>
-      <TutorialVideosTitle section={sectionType} />
-      <TutorialVideosDescription description={data.description ?? "No description available."} />
+      <div className={styles.heading}>
+        <TutorialVideosTitle section={sectionType} />
+        <TutorialVideosDescription description={data.description ?? "No description available."} />
+      </div>
       <TutorialVideosGrid section={data} />
     </div>
   );
