@@ -7,6 +7,8 @@ import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "~/utils/routes";
 import { baseUrl } from "~/utils/url";
+import { useState } from "react";
+import { HeroPopup } from "~/pages/preview/components/hero/hero-popup";
 
 interface CommunityListProps {
   items: DownloadsItemDto[];
@@ -14,9 +16,11 @@ interface CommunityListProps {
 
 export const CommunityList = ({ items }: CommunityListProps) => {
   const navigate = useNavigate();
+  const [download, setDownload] = useState<DownloadsItemDto | null>(null);
 
   return (
     <div className={styles.list}>
+      {download && <HeroPopup onClose={() => setDownload(null)} downloadItem={download} />}
       {items.map((item) => (
         <GridDownloadCard
           key={item.downloadId}
