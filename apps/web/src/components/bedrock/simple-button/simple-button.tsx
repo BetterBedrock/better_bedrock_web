@@ -6,7 +6,6 @@ import {
   ButtonHTMLAttributes,
   AnchorHTMLAttributes,
 } from "react";
-import { Link, LinkProps } from "react-router-dom";
 import { useSound } from "use-sound";
 import bedrockClickSound from "~/assets/sounds/minecraft_click.mp3";
 

@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Caution from "~/assets/images/glyphs/Caution.png";
 import Error from "~/assets/images/glyphs/ErrorGlyph.png";
@@ -40,17 +40,26 @@ export const NotificationTypes = {
 
 export type NotificationType = keyof typeof NotificationTypes;
 
+enum NotificationTime {
+  short = 1500,
+  medium = 3000,
+  long = 5000,
+  inifinte = -1,
+}
+
+type NotificationTimeStrings = keyof typeof NotificationTime;
+
 export interface Notification {
   id?: string;
   title: string;
   type: NotificationType;
   label: string;
-  time: "short" | "medium" | "long" | "infinite";
+  time: NotificationTimeStrings;
 }
 
 type NotificationInput = Omit<Notification, "id" | "time" | "type"> & {
   id?: string;
-  time?: "short" | "medium" | "long" | "infinite";
+  time?: NotificationTimeStrings;
   type?: NotificationType;
 };
 
@@ -58,13 +67,14 @@ const NotificationContext = createContext<NotificationContextProps | undefined>(
 
 export const NotificationProvider = ({ children }: NotificationProviderProps) => {
   const [notificationQueue, setNotificationQueue] = useState<Notification[]>([]);
+  const timers = useRef<Map<string, ReturnType<typeof setTimeout>>>(new Map());
 
   const sendNotification = ({
     title,
     label,
     id = uuidv4(),
     type = "info",
-    time = "short",
+    time = "medium",
   }: NotificationInput) => {
     setNotificationQueue((prev) => [
       ...prev,
@@ -76,10 +86,20 @@ export const NotificationProvider = ({ children }: NotificationProviderProps) =>
         time,
       },
     ]);
+
+    const duration = NotificationTime[time];
+    if (duration === -1) return;
+
+    const timeoutId = setTimeout(() => {
+      closeNotification(id);
+      timers.current.delete(id);
+    }, duration);
+
+    timers.current.set(id, timeoutId);
   };
 
   const closeNotification = (id: string) => {
-    setNotificationQueue((prev) => [...prev.filter((notification) => notification.id !== id)]);
+    setNotificationQueue((prev) => prev.filter((notification) => notification.id !== id));
   };
 
   return (

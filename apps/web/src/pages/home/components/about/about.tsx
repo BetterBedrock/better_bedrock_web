@@ -11,6 +11,7 @@ export const About = ({ sectionIndex }: AboutProps) => {
   return (
     <Section
       className={styles.background}
+      extraClassName={styles.inner}
       style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7)), url(${backgroundImage})` }}
       center
     >

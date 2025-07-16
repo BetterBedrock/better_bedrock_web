@@ -1,4 +1,4 @@
-@use "~/assets/styles/global.scss" as g;
+@use "~/utils/_variables" as g;
 
 .grid {
   gap: g.$padding-sm;
@@ -15,4 +15,8 @@
     grid-template-columns: repeat(1, 1fr);
     gap: g.$padding-xsm;
   }
+}
+
+.heading {
+  padding-bottom: g.$padding-sm;
 }

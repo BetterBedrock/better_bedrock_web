@@ -1,4 +1,4 @@
-@use "~/assets/styles/global" as g;
+@use "~/utils/_variables" as g;
 
 .description {
   padding-bottom: g.$padding-sm;

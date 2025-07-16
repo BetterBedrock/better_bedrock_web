@@ -1,8 +1,12 @@
-@use "~/assets/styles/global" as g;
+@use "~/utils/_variables" as g;
 
 .background {
   background-position: center center;
   padding-block: g.$sectionsDividerPadding;
+}
+
+.inner {
+  padding-block: g.$padding-sm;
 }
 
 .about {

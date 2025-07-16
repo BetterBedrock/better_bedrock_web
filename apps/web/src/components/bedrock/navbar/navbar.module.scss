@@ -1,4 +1,4 @@
-@use "~/assets/styles/global" as g;
+@use "~/utils/_variables" as g;
 
 .wrapper {
   position: sticky;
@@ -11,7 +11,10 @@
 .heading {
   text-wrap: nowrap;
   overflow: hidden;
-  font-size: clamp(30px, 4vw, 2.5rem);
+
+  @media (max-width: g.$breakpoint-mobileM) {
+    display: none;
+  }
 }
 
 .item {
@@ -28,14 +31,26 @@
   }
 }
 
+.text {
+  padding: 0.5rem;
+}
+
 .button {
   height: 100%;
-  padding: 0 0.5rem;
   color: unset;
+  padding: 0;
   text-decoration: none;
   @media (max-width: 1000px) {
     display: none;
   }
+}
+
+.active {
+  background-color: var(--bedrock-simple-button-click);
+}
+
+.menu {
+  padding: 0.25rem;
 }
 
 .menuButton {
@@ -47,7 +62,7 @@
   }
 }
 
-.nav {
+.links {
   @media (max-width: 1000px) {
     display: none;
   }
@@ -65,13 +80,19 @@
       .wrapper {
         position: fixed;
       }
+
       flex-direction: column;
       height: 100vh;
       overflow: hidden;
       justify-content: start;
 
+      .nav {
+        width: 100%;
+      }
+
       .text {
-        font-size: 2.5rem !important;
+        width: 100%;
+        font-size: 2rem !important;
       }
 
       .item {
@@ -84,10 +105,9 @@
       .button {
         display: flex;
         height: auto;
-        padding: g.$padding-xsm;
       }
 
-      .nav {
+      .links {
         display: flex !important;
         flex-direction: column;
         justify-content: center;

@@ -1,5 +1,5 @@
 import { Button } from "~/components/bedrock/button";
-import { ButtonSeparator } from "~/components/bedrock/button-separator";
+import { ButtonGroup } from "~/components/button-group/button-group";
 
 interface HeaderTabsProps {
   activeTab: number;
@@ -10,19 +10,19 @@ const TAB_NAMES: string[] = ["General", "Mobile Devices", "PC/Other Devices"];
 
 export const HeaderTabs = ({ activeTab, setActiveTab }: HeaderTabsProps) => (
   <div>
-    <ButtonSeparator>
+    <ButtonGroup>
       {TAB_NAMES.map((text, index) => (
         <Button
           key={index}
           tabIndex={index}
           isClicked={activeTab === index}
           onTap={() => setActiveTab(index)}
-          width={"100%"}
-          height={"auto"}
+          width="100%"
+          height="auto"
           text={text}
-          type={"alwaysGreen"}
+          type="alwaysGreen"
         />
       ))}
-    </ButtonSeparator>
+    </ButtonGroup>
   </div>
 );

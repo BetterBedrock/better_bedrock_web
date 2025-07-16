@@ -7,10 +7,11 @@ interface SectionProps extends HTMLAttributes<HTMLDivElement> {
   fixed?: boolean;
   center?: boolean;
   className?: string;
+  extraClassName?: string;
 }
 
-export const Section = ({ children, fixed, center, className, ...props }: SectionProps) => (
+export const Section = ({ children, fixed, center, className, extraClassName, ...props }: SectionProps) => (
   <div className={clsx(styles.wrapper, fixed && styles.fixed, className && className)} {...props}>
-    <section className={clsx(styles.section, center && styles.center)}>{children}</section>
+    <section className={clsx(styles.section, center && styles.center, extraClassName && extraClassName)}>{children}</section>
   </div>
 );

@@ -1,10 +1,15 @@
-@use "~/assets/styles/global.scss" as g;
+@use "~/utils/_variables" as g;
 
 .items {
   display: flex;
-  gap: g.$padding-xsm;
   flex-direction: column;
   width: 100%;
+
+  gap: g.$padding-xsm;
+
+  @media (max-width: g.$breakpoint-laptop) {
+    gap: g.$padding-xxsm;
+  }
 }
 
 .category {

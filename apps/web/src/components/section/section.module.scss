@@ -1,3 +1,5 @@
+@use "~/utils/_variables" as g;
+
 .wrapper {
   background-position:
     0% 0%,
@@ -26,5 +28,8 @@
   margin-left: auto;
   margin-right: auto;
   gap: 3rem;
-//   padding: 5vh 0 2.5vh 0;
+
+  @media (max-width: g.$breakpoint-laptop) {
+    gap: 2rem;
+  }
 }
