@@ -9,7 +9,7 @@
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "dev": "nest start -b swc --watch",
         "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-        "gen:swagger:watch": "tsx watch --include \"src/**/*.ts\" --include \"../packages/constants/src/**/*.ts\" --ignore \"src/metadata.ts\" ./src/generate-metadata.ts"
+        "generate:swagger": "tsx watch ./src/generate-metadata.ts"
     },
     "dependencies": {
         "@nestjs/axios": "^4.0.0",
