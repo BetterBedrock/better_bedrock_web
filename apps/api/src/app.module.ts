@@ -4,12 +4,11 @@ import { ContentModule } from "./content/content.module";
 import { CheckoutModule } from "./checkout/checkout.module";
 import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler";
 import { APP_GUARD } from "@nestjs/core";
+import { VoucherModule } from "src/voucher/voucher.module";
+import { AuthModule } from "src/auth/auth.module";
 
 @Module({
     imports: [
-        DownloadModule,
-        ContentModule,
-        CheckoutModule,
         ThrottlerModule.forRoot({
             throttlers: [
                 {
@@ -18,6 +17,11 @@ import { APP_GUARD } from "@nestjs/core";
                 },
             ],
         }),
+        DownloadModule,
+        ContentModule,
+        CheckoutModule,
+        VoucherModule,
+        AuthModule,
     ],
     providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })
