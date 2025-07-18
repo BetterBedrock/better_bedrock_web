@@ -141,6 +141,7 @@ export class DownloadController {
     @ApiUnauthorizedResponse({ description: "The voucher does not exist" })
     @ApiBadGatewayResponse({ description: "Failed to verify with Linkvertise gateway" })
     @ApiServiceUnavailableResponse({ description: "Linkvertise service unavailable" })
+    @ApiForbiddenResponse({ description: "Voucher is blocked" })
     async verify(
         @Ip() ip: string,
         @Query() query: VerifyDownloadDto,
@@ -162,6 +163,9 @@ export class DownloadController {
             }
 
             if (voucher) {
+                if (voucher.blocked) {
+                    throw new ForbiddenException("Voucher is blocked");
+                }
                 if (
                     voucher.downloadCount >= voucher.maxDownloads ||
                     voucher.expiresAt.getTime() <= Date.now()
@@ -249,21 +253,13 @@ export class DownloadController {
             const download = await this.downloadService.download({ ipAddress: ip });
 
             if (download != null) {
-                try {
-                    await this.downloadService.deleteDownload({ ipAddress: ip });
-                } catch (_) {
-                    /* empty */
-                }
+                await this.downloadService.deleteDownload({ ipAddress: ip });
             }
 
-            try {
-                await this.downloadService.createDownload({
-                    ipAddress: ip,
-                    file: query.file,
-                });
-            } catch (_) {
-                /* empty */
-            }
+            await this.downloadService.createDownload({
+                ipAddress: ip,
+                file: query.file,
+            });
 
             // Update analytics
             const analytics = await this.analyticsService.analytics();
