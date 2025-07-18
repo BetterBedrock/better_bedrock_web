@@ -1,4 +1,4 @@
-import { DownloadsListDto } from "@better-bedrock/constants/downloads.dto";
+import { DownloadsListDto } from "src/download/dto/downloads-list.dto";
 
 export const COMMUNITY_LIST: DownloadsListDto[] = [
     {
@@ -7,7 +7,7 @@ export const COMMUNITY_LIST: DownloadsListDto[] = [
             "Explore a variety of themes and configs made by the community of Better Bedrock users.",
         buttons: [
             {
-                type: "alwaysGreen",
+                type: "alwaysBlack",
                 text: "Submit YOUR texturepack",
                 notification: {
                     title: "Texturepack submission",

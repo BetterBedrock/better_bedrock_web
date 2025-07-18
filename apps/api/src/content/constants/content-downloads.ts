@@ -1,4 +1,4 @@
-import { DownloadsListDto } from "@better-bedrock/constants/downloads.dto";
+import { DownloadsListDto } from "src/download/dto/downloads-list.dto";
 
 const DOWNLOADS_IDS = {
     betterBedrockClientV74: "better_bedrock_texture_pack_v7.4.mcpack",

@@ -25,10 +25,10 @@ import {
 } from "@nestjs/swagger";
 import { CreateCheckoutSessionDto } from "src/checkout/dto/create-checkout-session.dto";
 import { CHECKOUT_OFFERS } from "src/checkout/constants/checkout-offers";
-import { CheckoutOffersDto } from "@better-bedrock/constants/checkout.dto";
-import { VoucherDto } from "@better-bedrock/constants/voucher.dto";
 import { CreateCheckoutSessionResponseDto } from "src/checkout/dto/create-checkout-session-response.dto";
 import { obscureEmail } from "src/utils/string";
+import { CheckoutOffersDto } from "src/checkout/dto/checkout-offers.dto";
+import { VoucherDto } from "src/voucher/dto/voucher.dto";
 
 @ApiTags("checkout")
 @Controller("checkout")

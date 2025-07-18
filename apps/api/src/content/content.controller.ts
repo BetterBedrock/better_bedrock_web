@@ -3,7 +3,7 @@ import { ApiTags, ApiOkResponse } from "@nestjs/swagger";
 import { DOWNLOADS_LIST } from "src/content/constants/content-downloads";
 import { SIDE_PROJECTS_LIST } from "src/content/constants/content-side-projects";
 import { COMMUNITY_LIST } from "src/content/constants/content-community";
-import { DownloadsDto } from "@better-bedrock/constants/downloads.dto";
+import { DownloadsDto } from "src/download/dto/downloads.dto";
 
 @ApiTags("content")
 @Controller("content")

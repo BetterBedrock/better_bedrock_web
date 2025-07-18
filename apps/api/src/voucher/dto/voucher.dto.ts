@@ -1,4 +1,4 @@
-import { IsBoolean, IsDate, IsEmail, IsInt, IsString, Min } from "class-validator";
+import { IsBoolean, IsDate, IsEmail, IsInt, IsOptional, IsString, Min } from "class-validator";
 import { Type } from "class-transformer";
 import "reflect-metadata";
 
@@ -22,7 +22,8 @@ export class VoucherDto {
      * @example "chk_1234567890abcdef"
      */
     @IsString()
-    checkoutId: string;
+    @IsOptional()
+    checkoutId?: string | null;
 
     /**
      * Unique voucher code
@@ -69,4 +70,11 @@ export class VoucherDto {
      */
     @IsBoolean()
     betterBedrockContentOnly: boolean;
+
+    /**
+     * Determins whether voucher is blocked
+     * @example false
+     */
+    @IsBoolean()
+    blocked: boolean;
 }

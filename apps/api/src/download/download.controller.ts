@@ -36,11 +36,11 @@ import { VerifyDownloadDto } from "src/download/dto/verify-download.dto";
 import { DOWNLOADS_LIST } from "src/content/constants/content-downloads";
 import { createReadStream, promises as fs } from "fs";
 import { join } from "path";
-import { DownloadsItemDto } from "@better-bedrock/constants/downloads.dto";
 import { COMMUNITY_LIST } from "src/content/constants/content-community";
 import { SIDE_PROJECTS_LIST } from "src/content/constants/content-side-projects";
 import { VoucherService } from "src/voucher/voucher.service";
 import { SkipThrottle } from "@nestjs/throttler";
+import { DownloadsItemDto } from "src/download/dto/downloads-item.dto";
 
 @ApiTags("download")
 @Controller("download")
