@@ -1,0 +1,8 @@
+@use "~/utils" as g;
+
+.background {
+  @include g.page-background(
+    g.$background-linear-gradient,
+    "~/assets/images/crosshair_backgrounds/3.png"
+  );
+}
