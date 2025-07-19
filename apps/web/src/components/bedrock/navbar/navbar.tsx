@@ -9,10 +9,13 @@ import { SimpleButton } from "~/components/bedrock/simple-button/simple-button";
 import styles from "./navbar.module.scss";
 import clsx from "clsx";
 import { Link } from "~/components/link";
+import { Routes } from "~/utils/routes";
+import { useAuth } from "~/providers/auth";
 
 export const Navbar = () => {
   const [expandedNavbar, setExpandedNavbar] = useState(false);
   const location = useLocation();
+  const { authenticated } = useAuth();
 
   const handleExpandNavbar = () => {
     setExpandedNavbar((prev) => !prev);
@@ -20,29 +23,33 @@ export const Navbar = () => {
 
   // Determine which nav items to show
   const isPanelSection = location.pathname === "/panel" || location.pathname.startsWith("/panel/");
-  const navItems = isPanelSection
-    ? [
-        { name: "Dashboard", path: "/panel" },
-        { name: "Analytics", path: "/panel/analytics" },
-      ]
-    : [
-        { name: "Home", path: "/" },
-        { name: "Downloads", path: "/downloads" },
-        { name: "Information", path: "/information" },
-        { name: "Discord", path: "/discord" },
-      ];
+  const navItems =
+    isPanelSection && authenticated
+      ? [
+          { name: "Dashboard", path: "/panel" },
+          { name: "Analytics", path: "/panel/analytics" },
+          { name: "Voucher", path: "/panel/voucher" },
+        ]
+      : [
+          { name: "Home", path: "/" },
+          { name: "Downloads", path: "/downloads" },
+          { name: "Information", path: "/information" },
+          { name: "Discord", path: "/discord" },
+        ];
 
   return (
     <header className={styles.wrapper}>
       <Label extraClassName={clsx(styles.label, expandedNavbar && styles.expanded)}>
-        <div className={styles.item}>
-          <img alt="logo" src={FavIcon} className={styles.image} />
-          <BedrockText
-            text="Better Bedrock"
-            type="h1"
-            font="MinecraftTen"
-            extraClassName={styles.heading}
-          />
+        <div className={clsx(styles.item, styles.mobile)}>
+          <Link className={clsx(styles.item)} link={Routes.HOME} hideStyles>
+            <img alt="logo" src={FavIcon} className={styles.image} />
+            <BedrockText
+              text="Better Bedrock"
+              type="h1"
+              font="MinecraftTen"
+              extraClassName={styles.heading}
+            />
+          </Link>
           <SimpleButton height="100%" onTap={handleExpandNavbar} className={styles.menuButton}>
             <div className={clsx("material-icons", styles.menu)}>menu</div>
           </SimpleButton>
