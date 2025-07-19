@@ -3,6 +3,8 @@ export enum Routes {
     DOWNLOADS = "/downloads",
     PANEL = "/panel",
     PANEL_ANALYTICS = "/panel/analytics",
+    PANEL_VOUCHER = "/panel/voucher",
+    LOGIN = "/login",
     INFORMATION = "/information",
     FETCH = "/fetch",
     PREVIEW = "/preview",
