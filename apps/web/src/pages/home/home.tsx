@@ -7,7 +7,6 @@ import { Hero } from "./components/hero";
 import sand from "~/assets/images/sand.png";
 import water from "~/assets/images/water.png";
 import stone from "~/assets/images/stone.png";
-// import deepslate from "~/assets/images/deepslate.png";
 import netherrack from "~/assets/images/netherrack.png";
 
 export const Home = () => (
