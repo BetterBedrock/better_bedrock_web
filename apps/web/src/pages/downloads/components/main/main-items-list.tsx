@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { Routes } from "~/utils/routes";
 import { baseUrl } from "~/utils/url";
 import { HeroPopup } from "~/pages/preview/components/hero/hero-popup";
-import { DownloadsItemDto, DownloadsListDto } from "@better-bedrock/constants/downloads.dto";
 import { useState } from "react";
+import { DownloadsItemDto, DownloadsListDto } from "~/lib/api";
 
 const calcItemWeight = (itemWeight: number) => {
   return itemWeight <= 0.1 ? "<0.0" : itemWeight.toFixed(1);

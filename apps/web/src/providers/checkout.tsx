@@ -1,8 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { $api } from "~/services/api-client";
-import { CheckoutOffersDto } from "@better-bedrock/constants/checkout.dto";
-import { VoucherDto } from "@better-bedrock/constants/voucher.dto";
-import { NotificationType, useNotification } from "~/providers/notification";
+import { useNotification } from "~/providers/notification";
+import { VoucherDto, CheckoutOffersDto, CheckoutApi, Configuration } from "~/lib/api";
 
 interface CheckoutContextProps {
   createSession: (priceId: string) => Promise<{ checkoutId: string } | undefined>;

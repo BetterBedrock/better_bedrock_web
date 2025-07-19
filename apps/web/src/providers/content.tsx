@@ -2,9 +2,9 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 import { DownloadItemProps } from "~/pages/downloads";
 import { NotificationType, useNotification } from "~/providers/notification";
 import { $api } from "~/services/api-client";
-import { DownloadsDto } from "@better-bedrock/constants/downloads.dto";
 import { baseUrl } from "~/utils/url";
 import { VerificationException } from "~/exception/verification-exception";
+import { DownloadsDto } from "~/lib/api";
 
 interface ContentContextProps {
   fetched: boolean;
