@@ -40,7 +40,7 @@
   color: unset;
   padding: 0;
   text-decoration: none;
-  @media (max-width: 1000px) {
+  @media (max-width: g.$breakpoint-tablet) {
     display: none;
   }
 }
@@ -57,13 +57,13 @@
   display: none !important;
   margin-left: auto;
 
-  @media (max-width: 1000px) {
+  @media (max-width: g.$breakpoint-tablet) {
     display: flex !important;
   }
 }
 
 .links {
-  @media (max-width: 1000px) {
+  @media (max-width: g.$breakpoint-tablet) {
     display: none;
   }
 }
