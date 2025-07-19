@@ -17,6 +17,7 @@
     "react": "latest",
     "react-cookie": "^8.0.1",
     "react-dom": "latest",
+    "react-hook-form": "^7.60.0",
     "react-markdown": "^10.1.0",
     "react-responsive": "^10.0.1",
     "react-router-dom": "7.6.2",
