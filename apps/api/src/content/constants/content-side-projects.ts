@@ -1,4 +1,4 @@
-import { DownloadsListDto } from "@better-bedrock/constants/downloads.dto";
+import { DownloadsListDto } from "src/download/dto/downloads-list.dto";
 
 export const SIDE_PROJECTS_LIST: DownloadsListDto[] = [
     {

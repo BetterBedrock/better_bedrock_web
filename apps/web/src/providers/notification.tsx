@@ -4,11 +4,13 @@ import Caution from "~/assets/images/glyphs/Caution.png";
 import Error from "~/assets/images/glyphs/ErrorGlyph.png";
 import Info from "~/assets/images/glyphs/blue_info_glyph.png";
 import Success from "~/assets/images/glyphs/confirm.png";
+import { AxiosError } from "axios";
 
 interface NotificationContextProps {
   notificationQueue: Notification[];
   sendNotification: (notification: NotificationInput) => void;
   closeNotification: (id: string) => void;
+  throwError: (err: unknown, message: string) => void;
 }
 
 interface NotificationProviderProps {
@@ -69,6 +71,24 @@ export const NotificationProvider = ({ children }: NotificationProviderProps) =>
   const [notificationQueue, setNotificationQueue] = useState<Notification[]>([]);
   const timers = useRef<Map<string, ReturnType<typeof setTimeout>>>(new Map());
 
+  const throwError = (err: unknown, message: string): void => {
+    console.log({ err });
+    if (err instanceof AxiosError) {
+      sendNotification({
+        title: "Unexpected problem",
+        label: err.response?.data?.message?.message ?? err.response?.data?.message ?? message,
+        type: "error",
+      });
+      return;
+    }
+
+    sendNotification({
+      title: "Unexpected problem",
+      label: message,
+      type: "error",
+    });
+  };
+
   const sendNotification = ({
     title,
     label,
@@ -104,7 +124,7 @@ export const NotificationProvider = ({ children }: NotificationProviderProps) =>
 
   return (
     <NotificationContext.Provider
-      value={{ notificationQueue, closeNotification, sendNotification }}
+      value={{ notificationQueue, throwError, closeNotification, sendNotification }}
     >
       {children}
     </NotificationContext.Provider>

@@ -1,4 +1,4 @@
-import { Injectable, Logger } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { CreateCheckoutSessionDto } from "src/checkout/dto/create-checkout-session.dto";
 import Stripe from "stripe";
 
@@ -11,8 +11,6 @@ export class CheckoutService {
             process.env.DEBUG === "true"
                 ? process.env.LOCAL_FRONTEND_URL
                 : process.env.FRONTEND_URL;
-
-        Logger.error("Creating checkout session with base URL:", baseUrl);
 
         const session = await this.stripe.checkout.sessions.create({
             line_items: [

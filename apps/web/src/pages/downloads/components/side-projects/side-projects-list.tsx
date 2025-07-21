@@ -2,11 +2,11 @@ import { styles } from ".";
 import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-download-card";
 import { Gallery } from "~/components/bedrock/gallery";
 import { useState } from "react";
-import { DownloadsItemDto } from "@better-bedrock/constants/downloads.dto";
 import { Button } from "~/components/bedrock/button";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { baseUrl } from "~/utils/url";
+import { DownloadsItemDto } from "~/lib/api";
 
 interface SideProjectsListProps {
   items: DownloadsItemDto[];

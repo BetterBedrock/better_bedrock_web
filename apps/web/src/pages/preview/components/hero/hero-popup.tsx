@@ -7,16 +7,14 @@ import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { useEffect, useState } from "react";
 import { DownloadMethodCard } from "~/components/bedrock/download-method-card/download-method-card";
 import { useContent } from "~/providers/content";
-import { DownloadsItemDto } from "@better-bedrock/constants/downloads.dto";
 import { useCheckout } from "~/providers/checkout";
-// import { PaymentElement } from "@stripe/reacyt-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "~/utils/routes";
 import { useNotification } from "~/providers/notification";
-import { VoucherDto } from "@better-bedrock/constants/voucher.dto";
 import { Input } from "~/components/bedrock/input";
+import { DownloadsItemDto, VoucherDto } from "~/lib/api";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 

@@ -2,10 +2,10 @@ import { Button } from "~/components/bedrock/button";
 import { ButtonSeparator } from "~/components/bedrock/button-separator";
 import { styles } from ".";
 import { useNotification } from "~/providers/notification";
-import { DownloadButtonDto } from "@better-bedrock/constants/downloads.dto";
+import { DownloadsButtonDto } from "~/lib/api";
 
 interface CommunityActionsProps {
-  buttons: DownloadButtonDto[];
+  buttons: DownloadsButtonDto[];
 }
 
 export const CommunityActions = ({ buttons }: CommunityActionsProps) => {

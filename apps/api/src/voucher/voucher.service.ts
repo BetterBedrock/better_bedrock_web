@@ -14,9 +14,13 @@ export class VoucherService {
     }
 
     async getVoucher(where: Prisma.VoucherWhereUniqueInput) {
-        return await this.prisma.voucher.findUnique({
+        return await this.prisma.voucher.findFirst({
             where: where,
         });
+    }
+
+    async getVouchers() {
+        return await this.prisma.voucher.findMany();
     }
 
     async updateVoucher(params: {

@@ -9,7 +9,7 @@ import { useNotification } from "~/providers/notification";
 import { useCookies } from "react-cookie";
 import { VerificationException } from "~/exception/verification-exception";
 import { Routes } from "~/utils/routes";
-import { VoucherDto } from "@better-bedrock/constants/voucher.dto";
+import { VoucherDto } from "~/lib/api";
 
 export const Hero = () => {
   const [cookie, _, removeCookie] = useCookies(["voucher"]);

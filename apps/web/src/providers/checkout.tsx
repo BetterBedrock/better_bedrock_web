@@ -1,8 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { $api } from "~/services/api-client";
-import { CheckoutOffersDto } from "@better-bedrock/constants/checkout.dto";
-import { VoucherDto } from "@better-bedrock/constants/voucher.dto";
-import { NotificationType, useNotification } from "~/providers/notification";
+import { useNotification } from "~/providers/notification";
+import { VoucherDto, CheckoutOffersDto, CheckoutApi, Configuration } from "~/lib/api";
 
 interface CheckoutContextProps {
   createSession: (priceId: string) => Promise<{ checkoutId: string } | undefined>;
@@ -18,85 +16,42 @@ interface CheckoutProviderProps {
 const CheckoutContext = createContext<CheckoutContextProps | undefined>(undefined);
 
 export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
-  const { sendNotification } = useNotification();
   const [offers, setOffers] = useState<CheckoutOffersDto | undefined>(undefined);
+  const { throwError } = useNotification();
 
-  //TODO: Send notifications when something  does not work
+  const config = new Configuration({
+    basePath: import.meta.env.VITE_LOCAL_BACKEND_URL,
+  });
+
+  const checkoutApi = new CheckoutApi(config);
+
   const fetchCheckoutOffers = async () => {
-    const { data, error } = await $api.GET("/checkout/offers");
+    try {
+      const { data } = await checkoutApi.checkoutControllerOffers();
 
-    if (error) {
-      throw error;
+      setOffers(data);
+    } catch (err) {
+      throwError(err, "Failed to fetch offers");
     }
-
-    setOffers(data);
   };
 
   const createSession = async (priceId: string) => {
-    const { data, error } = await $api.POST("/checkout/create", {
-      params: {
-        query: {
-          priceId,
-        },
-      },
-    });
-
-    if (error) {
-      throw error;
+    try {
+      const { data } = await checkoutApi.checkoutControllerCreate(priceId);
+      return data;
+    } catch (err) {
+      throwError(err, "Failed to create checkout session");
     }
-
-    return data;
   };
 
   const activateVoucher = async (checkoutId?: string, code?: string) => {
-    const { data, error, response } = await $api.GET("/checkout/activate", {
-      params: {
-        query: {
-          checkoutId,
-          code,
-        },
-      },
-    });
-    if (error) {
-      let title = "";
-      let label = "";
-      let type = "" as NotificationType;
-      switch (response.status) {
-        case 400:
-          title = "Missing Code";
-          label = "You need to provide either checkoutId or voucher code";
-          type = "error";
-          break;
-        case 404:
-          title = "Voucher not found";
-          label = "Given voucher code does not exist";
-          type = "error";
-          break;
-        case 502:
-          title = "Activation was unsuccessful";
-          label = "There was an error on our side and activiation did not succeed";
-          type = "error";
-          break;
-        default:
-          title = "Error While Activating";
-          label = "Please report this issue to us on our discord";
-          type = "error";
-          break;
-      }
-
-      sendNotification({
-        title,
-        label,
-        type,
-      });
-      throw Error(error);
+    try {
+      const { data } = await checkoutApi.checkoutControllerActivate(checkoutId, code);
+      
+      return data;
+    } catch (err) {
+      throwError(err, "Failed to activate voucher");
     }
-
-    return {
-      ...data,
-      createdAt: new Date(data!.createdAt),
-      expiresAt: new Date(data!.expiresAt),
-    } as VoucherDto;
   };
 
   useEffect(() => {

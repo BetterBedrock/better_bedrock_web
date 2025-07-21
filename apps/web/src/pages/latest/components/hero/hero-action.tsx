@@ -1,6 +1,6 @@
-import { DownloadsItemDto } from "@better-bedrock/constants/downloads.dto";
 import { useState } from "react";
 import { Button } from "~/components/bedrock/button";
+import { DownloadsItemDto } from "~/lib/api";
 import { HeroPopup } from "~/pages/preview/components/hero/hero-popup";
 import { useContent } from "~/providers/content";
 

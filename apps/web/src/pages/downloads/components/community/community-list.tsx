@@ -1,6 +1,5 @@
 import { styles } from ".";
 import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-download-card";
-import { DownloadsItemDto } from "@better-bedrock/constants/downloads.dto";
 import { Button } from "~/components/bedrock/button";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
@@ -9,6 +8,7 @@ import { Routes } from "~/utils/routes";
 import { baseUrl } from "~/utils/url";
 import { useState } from "react";
 import { HeroPopup } from "~/pages/preview/components/hero/hero-popup";
+import { DownloadsItemDto } from "~/lib/api";
 
 interface CommunityListProps {
   items: DownloadsItemDto[];

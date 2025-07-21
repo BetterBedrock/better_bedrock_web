@@ -11,6 +11,7 @@ import {
     BadGatewayException,
     NotFoundException,
     BadRequestException,
+    ForbiddenException,
 } from "@nestjs/common";
 import { CheckoutService } from "src/checkout/checkout.service";
 import { ActivateVoucherDto } from "src/checkout/dto/activate-voucher.dto";
@@ -19,16 +20,17 @@ import Stripe from "stripe";
 import {
     ApiBadGatewayResponse,
     ApiBadRequestResponse,
+    ApiForbiddenResponse,
     ApiNotFoundResponse,
     ApiOkResponse,
     ApiTags,
 } from "@nestjs/swagger";
 import { CreateCheckoutSessionDto } from "src/checkout/dto/create-checkout-session.dto";
 import { CHECKOUT_OFFERS } from "src/checkout/constants/checkout-offers";
-import { CheckoutOffersDto } from "@better-bedrock/constants/checkout.dto";
-import { VoucherDto } from "@better-bedrock/constants/voucher.dto";
 import { CreateCheckoutSessionResponseDto } from "src/checkout/dto/create-checkout-session-response.dto";
 import { obscureEmail } from "src/utils/string";
+import { CheckoutOffersDto } from "src/checkout/dto/checkout-offers.dto";
+import { VoucherDto } from "src/voucher/dto/voucher.dto";
 
 @ApiTags("checkout")
 @Controller("checkout")
@@ -77,19 +79,23 @@ export class CheckoutController {
     @ApiNotFoundResponse({ description: "Voucher not found" })
     @ApiBadRequestResponse({ description: "You need to provide either checkoutId or voucher code" })
     @ApiBadGatewayResponse({ description: "Activation was unsuccessful" })
+    @ApiForbiddenResponse({ description: "Voucher is blocked" })
     async activate(@Query() query: ActivateVoucherDto) {
         if (!query.checkoutId && !query.code) {
             throw new BadRequestException("You need to provide either checkoutId or voucher code");
         }
 
         try {
-            Logger.debug({ checkoutId: query.checkoutId, code: query.code });
             const voucher = await this.voucherService.getVoucher({
-                checkoutId: query.checkoutId,
+                checkoutId: query.checkoutId == "" ? undefined : query.checkoutId,
                 code: query.code,
             });
             if (!voucher) {
                 throw new NotFoundException("Voucher not found");
+            }
+
+            if (voucher.blocked) {
+                throw new ForbiddenException("Voucher is blocked");
             }
 
             voucher.email = obscureEmail(voucher.email);
@@ -126,7 +132,6 @@ export class CheckoutController {
                 const priceId = item!.price!.id;
                 const ids = CHECKOUT_OFFERS.offers.flatMap((offer) => offer.items);
                 const product = ids.find((item) => item.priceId === priceId);
-                Logger.error("test 3");
 
                 if (!product) {
                     Logger.error(

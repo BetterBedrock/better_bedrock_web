@@ -18,36 +18,69 @@ import { Cancel } from "~/pages/checkout/cancel";
 import { Success } from "~/pages/checkout/success";
 import { CookiesProvider } from "react-cookie";
 import { PrivacyPolicy } from "~/pages/privacy-policy";
+import { ScrollToTop } from "~/components/scroll-to-top";
+import { Voucher } from "~/pages/panel/voucher";
+import { PanelWrapper } from "~/pages/panel";
+import { ProtectedRoute } from "~/components/protected-route/protected-route";
+import { AuthProvider } from "~/providers/auth";
 
 export const App = () => (
   <CookiesProvider>
     <NotificationProvider>
       <CheckoutProvider>
         <ContentProvider>
-          <BrowserRouter>
-            <Layout>
-              <Routes>
-                <Route index element={<Home />} />
-                <Route path="downloads" element={<Downloads />} />
-                <Route path="information" element={<Information />} />
-                <Route path="discord" element={<Discord />} />
-                <Route path="fetch" element={<Fetch />} />
-                <Route path="login" element={<Login />} />
-                <Route path="preview/:file" element={<Preview />} />
-                <Route path="panel">
-                  <Route index element={<Dashboard />} />
-                  <Route path="analytics" element={<Analytics />} />
-                </Route>
-                <Route path="*" element={<Invalid />} />
-                <Route path="latest" element={<Latest />} />
-                <Route path="privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="checkout">
-                  <Route path="cancel" element={<Cancel />} />
-                  <Route path="success" element={<Success />} />
-                </Route>
-              </Routes>
-            </Layout>
-          </BrowserRouter>
+          <AuthProvider>
+            <BrowserRouter>
+              <ScrollToTop>
+                <Layout>
+                  <Routes>
+                    <Route index element={<Home />} />
+                    <Route path="downloads" element={<Downloads />} />
+                    <Route path="information" element={<Information />} />
+                    <Route path="discord" element={<Discord />} />
+                    <Route path="fetch" element={<Fetch />} />
+                    <Route path="preview/:file" element={<Preview />} />
+                    <Route path="login" element={<Login />} />
+
+                    <Route path="panel" element={<PanelWrapper />}>
+                      <Route
+                        index
+                        element={
+                          <ProtectedRoute>
+                            <Dashboard />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="analytics"
+                        element={
+                          <ProtectedRoute>
+                            <Analytics />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="voucher"
+                        element={
+                          <ProtectedRoute>
+                            <Voucher />
+                          </ProtectedRoute>
+                        }
+                      />
+                    </Route>
+
+                    <Route path="*" element={<Invalid />} />
+                    <Route path="latest" element={<Latest />} />
+                    <Route path="privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="checkout">
+                      <Route path="cancel" element={<Cancel />} />
+                      <Route path="success" element={<Success />} />
+                    </Route>
+                  </Routes>
+                </Layout>
+              </ScrollToTop>
+            </BrowserRouter>
+          </AuthProvider>
         </ContentProvider>
       </CheckoutProvider>
     </NotificationProvider>

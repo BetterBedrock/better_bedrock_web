@@ -40,6 +40,7 @@ async function bootstrap() {
         .setDescription("The API used for handling downloads from Better Bedrock site")
         .setVersion("1.0")
         .addTag("download")
+        .addBearerAuth()
         .build();
     const documentFactory = () => SwaggerModule.createDocument(app, config);
 
@@ -55,7 +56,6 @@ async function bootstrap() {
     app.useGlobalPipes(
         new ValidationPipe({
             whitelist: true,
-            forbidNonWhitelisted: true,
             transform: true,
         }),
     );
