@@ -1,69 +1,66 @@
-import { HTMLAttributes, ReactNode, useState } from "react";
-
-import { BedrockText } from "~/components/bedrock/bedrock-text";
+import { styles } from ".";
+import { HTMLAttributes, ReactNode, useEffect, useState } from "react";
+import clsx from "clsx";
 import bedrockClickSound from "~/assets/sounds/minecraft_click.mp3";
 import useSound from "use-sound";
 
-import styles from "./button.module.css";
-import clsx from "clsx";
+import WhiteUnchecked from "~/assets/ui/buttons/white/unchecked.png";
+import WhiteUncheckedHover from "~/assets/ui/buttons/white/unchecked_hover.png";
+import WhiteChecked from "~/assets/ui/buttons/white/checked.png";
+import WhiteCheckedHover from "~/assets/ui/buttons/white/checked_hover.png";
 
-export type ButtonType = "alwaysGreen" | "alwaysWhite" | "alwaysBlack";
+import GreenUnchecked from "~/assets/ui/buttons/green/unchecked.png";
+import GreenUncheckedHover from "~/assets/ui/buttons/green/unchecked_hover.png";
+import GreenChecked from "~/assets/ui/buttons/green/checked.png";
+import GreenCheckedHover from "~/assets/ui/buttons/green/checked_hover.png";
 
-interface ButtonProp extends HTMLAttributes<HTMLDivElement> {
-  height?: number | string;
-  textPadding?: number | string;
-  width?: number | string;
-  onTap?: () => void;
-  onChangeStateHandler?: (value: boolean) => void;
+import DarkUnchecked from "~/assets/ui/buttons/dark/unchecked.png";
+import DarkUncheckedHover from "~/assets/ui/buttons/dark/unchecked_hover.png";
+import DarkChecked from "~/assets/ui/buttons/dark/checked.png";
+import DarkCheckedHover from "~/assets/ui/buttons/dark/checked_hover.png";
+
+export type ButtonType = "green" | "white" | "dark";
+
+interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
-  isClicked?: boolean;
-  setInitialClickedState?: boolean;
-  playSound?: boolean;
-  textType?: "h1" | "h2" | "h3" | "p" | "p2";
-  text?: string;
-  outlinePaddingLeft?: string;
-  outlinePaddingRight?: string;
-  tabIndex?: number;
+  width?: string;
+  height?: string;
   children?: ReactNode;
-  style?: React.CSSProperties;
+
+  playSound?: boolean;
+  center?: boolean;
   lockClicking?: boolean;
-  className?: string;
+  isClicked?: boolean;
 }
 
-const Button = ({
-  onTap,
-  isClicked,
-  onChangeStateHandler,
-  setInitialClickedState = false,
-
-  text,
-  textType,
-  type,
-  height = "100%",
-  textPadding,
+export const Button = ({
   width,
-  outlinePaddingLeft = "var(--minecraftdepth)",
-  outlinePaddingRight = "var(--minecraftdepth)",
-  tabIndex,
+  height,
   children,
-  style,
-
   playSound = true,
+  type = "green",
+  center = false,
   lockClicking = false,
-
-  className,
-
+  isClicked,
+  onClick,
   ...props
-}: ButtonProp) => {
-  const [isToggled, setIsToggled] = useState(setInitialClickedState);
+}: ButtonProps) => {
+  const [hover, setHover] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  const [preload, setPreload] = useState(false);
   const [isHeld, setIsHeld] = useState(false);
+
   const [playClickSound] = useSound(bedrockClickSound, { volume: 0.25 });
 
-  const onClick = async () => {
-    handleMouseDown();
+  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (lockClicking) return;
+
+    setIsHeld(true);
+    handleSetIsToggled(false);
+
     if (playSound) playClickSound();
-    if (onTap) {
-      onTap();
+    if (onClick) {
+      onClick(e);
     }
   };
 
@@ -72,85 +69,124 @@ const Button = ({
       return;
     }
 
-    if (onChangeStateHandler) onChangeStateHandler(value);
-    setIsToggled(value);
+    setClicked(value);
   };
 
-  const handleMouseDown = () => {
+  const handlePointerDown = () => {
     if (lockClicking) return;
     setIsHeld(true);
-    handleSetIsToggled(!isToggled);
+    setHover(true);
+    handleSetIsToggled(!clicked);
   };
 
   const handleMouseUp = () => {
+    if (lockClicking) return;
     if (isHeld) {
       setIsHeld(false);
     }
   };
 
-  const handleMouseLeave = () => {
+  const handleTouchEnd = () => {
+    if (lockClicking) return;
+    setHover(false);
+
     if (isHeld) {
       setIsHeld(false);
       handleSetIsToggled(false);
     }
   };
 
-  const toggledState = isClicked !== undefined ? isClicked : isToggled;
+  const handleLeave = () => {
+    setHover(false);
+    if (isHeld && !lockClicking) {
+      setIsHeld(false);
+      handleSetIsToggled(false);
+    }
+  };
+
+  const handleEnter = () => {
+    setHover(true);
+  };
+
+  // Select images based on button type
+  let unchecked, uncheckedHover, checked, checkedHover;
+  switch (type) {
+    case "green":
+      unchecked = GreenUnchecked;
+      uncheckedHover = GreenUncheckedHover;
+      checked = GreenChecked;
+      checkedHover = GreenCheckedHover;
+      break;
+    case "dark":
+      unchecked = DarkUnchecked;
+      uncheckedHover = DarkUncheckedHover;
+      checked = DarkChecked;
+      checkedHover = DarkCheckedHover;
+      break;
+    case "white":
+    default:
+      unchecked = WhiteUnchecked;
+      uncheckedHover = WhiteUncheckedHover;
+      checked = WhiteChecked;
+      checkedHover = WhiteCheckedHover;
+      break;
+  }
+
+  let hovering = hover ? uncheckedHover : unchecked;
+  const finalClicked = isClicked !== undefined ? isClicked : clicked;
+  if (finalClicked) {
+    hovering = hover ? checkedHover : checked;
+  }
+
+  useEffect(() => {
+    if (preload) return;
+
+    const images = [unchecked, uncheckedHover, checked, checkedHover];
+    const imageRefs = images.map((src) => {
+      const img = new window.Image();
+      img.src = src;
+      return img;
+    });
+
+    setPreload(true);
+
+    return () => {
+      imageRefs.forEach((img) => {
+        img.src = "";
+      });
+    };
+  }, [unchecked, uncheckedHover, checked, checkedHover]);
 
   return (
-    <div style={{ height: height, width: width, ...style }} className={clsx(styles.buttonContainer, className)} {...props}>
-      <button
-        className={clsx(styles.button, lockClicking && styles.lock)}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseLeave}
-        onClick={onClick}
-        data-toggled={toggledState}
-        data-type={type}
-        tabIndex={tabIndex}
+    <button
+      className={clsx(styles.wrapper, finalClicked && styles.selected)}
+      type="button"
+      onMouseEnter={handleEnter}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleLeave}
+      onClick={handleClick}
+      onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleLeave}
+      onTouchMove={handleEnter}
+      onBlur={handleLeave}
+      onPointerLeave={handleLeave}
+      onPointerUp={handleLeave}
+      onPointerDown={handlePointerDown}
+      style={{ width, height }}
+      {...props}
+    >
+      <div
+        style={{ borderImage: `url(${hovering})` }}
+        className={clsx(
+          styles.button,
+          finalClicked && styles.clicked,
+          center && styles.center,
+          lockClicking && styles.lock,
+        )}
       >
-        <div
-          className={styles.first_layer}
-          style={{
-            borderLeftWidth: outlinePaddingLeft,
-            borderRightWidth: outlinePaddingRight,
-          }}
-        >
-          <div className={styles.second_layer}>
-            <div className={styles.third_layer}>
-              <div className={styles.fourth_layer}>
-                <div className={styles.text} style={{ padding: textPadding }}>
-                  {text && (
-                    <BedrockText
-                      selectable={false}
-                      type={textType ?? "p"}
-                      text={text}
-                      style={{ padding: "0.5rem 1rem" }}
-                    />
-                  )}
-                  {children && (
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "flex-start",
-                        width: "100%",
-                        height: "100%",
-                      }}
-                    >
-                      {children}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div className={styles.fifth_layer} />
-              <div className={styles.sixth_layer} />
-            </div>
-          </div>
-        </div>
-      </button>
-    </div>
+        {children}
+        {/* <BedrockText type="p" text="Test" color="white" selectable={false} /> */}
+      </div>
+    </button>
   );
 };
-
-export { Button };
