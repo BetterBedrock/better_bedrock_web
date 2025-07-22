@@ -3,9 +3,9 @@ import { IsEnum } from "class-validator";
 import { DownloadsNotificationDto } from "src/download/dto/downloads-notification.dto";
 
 export const DownloadsButtonType = {
-    alwaysWhite: "alwaysWhite",
-    alwaysBlack: "alwaysBlack",
-    alwaysGreen: "alwaysGreen",
+    white: "white",
+    dark: "dark",
+    green: "green",
 } as const;
 
 export type DownloadsButtonType = (typeof DownloadsButtonType)[keyof typeof DownloadsButtonType];
@@ -14,7 +14,7 @@ export class DownloadsButtonDto {
     @ApiProperty({
         enum: DownloadsButtonType,
         enumName: "DownloadsButtonType",
-        example: DownloadsButtonType.alwaysBlack,
+        example: DownloadsButtonType.dark,
     })
     @IsEnum(DownloadsButtonType)
     type: DownloadsButtonType;

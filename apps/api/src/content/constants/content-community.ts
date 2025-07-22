@@ -7,7 +7,7 @@ export const COMMUNITY_LIST: DownloadsListDto[] = [
             "Explore a variety of themes and configs made by the community of Better Bedrock users.",
         buttons: [
             {
-                type: "alwaysBlack",
+                type: "green",
                 text: "Submit YOUR texturepack",
                 notification: {
                     title: "Texturepack submission",
@@ -17,7 +17,7 @@ export const COMMUNITY_LIST: DownloadsListDto[] = [
                 },
             },
             {
-                type: "alwaysWhite",
+                type: "white",
                 text: "Watch theme creation tutorial",
                 link: "https://updateitlater.com",
             },
@@ -35,7 +35,7 @@ export const COMMUNITY_LIST: DownloadsListDto[] = [
                     "/static/images/themes/blue_ui/5.png",
                 ],
                 downloadId: "blue_ui.mcpack",
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 itemWeight: 0,
             },
             {
@@ -50,7 +50,7 @@ export const COMMUNITY_LIST: DownloadsListDto[] = [
                     "/static/images/themes/red_ui/5.png",
                 ],
                 downloadId: "red_ui.mcpack",
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 itemWeight: 0,
             },
             {
@@ -65,7 +65,7 @@ export const COMMUNITY_LIST: DownloadsListDto[] = [
                     "/static/images/themes/cherry_theme/5.png",
                 ],
                 downloadId: "cherry_ui.mcpack",
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 itemWeight: 0,
             },
         ],
