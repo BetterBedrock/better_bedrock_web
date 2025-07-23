@@ -4,7 +4,11 @@ import { useContent } from "~/providers/content";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 import { Heading } from "~/pages/downloads/components/heading";
 
-export const Main = () => {
+interface TabsProps {
+  setActiveTab: (tab: number) => void;
+}
+
+export const Main = ({ setActiveTab }: TabsProps) => {
   const { downloads, fetched } = useContent();
   const [showArchived, setShowArchived] = useState(false);
 
@@ -28,7 +32,7 @@ export const Main = () => {
       ))}
 
       {archivedCategory && (
-        <MainArchiveButton showArchived={showArchived} setShowArchived={setShowArchived} />
+        <MainArchiveButton showArchived={showArchived} setShowArchived={setShowArchived} setActiveTab={setActiveTab}/>
       )}
     </>
   );

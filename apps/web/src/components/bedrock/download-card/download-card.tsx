@@ -13,6 +13,8 @@ interface DownloadCardProp {
   lockClicking?: boolean;
   height?: string;
   onClick?: () => Promise<void>;
+  tags?: string[];
+  titleColor?: string
 }
 
 const DownloadCard: React.FC<DownloadCardProp> = ({
@@ -25,6 +27,8 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
   lockClicking,
   height = "auto",
   onClick,
+  tags,
+  titleColor
 }) => {
 
   return (
@@ -38,10 +42,11 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
       onClick={onClick}>
 
       <div className={styles.download_card_content}>
-        <img alt="" src={iconPath} style={{imageRendering: "pixelated"}} />
+        <img alt="" src={iconPath} style={{ imageRendering: "pixelated" }} />
         <div className={styles.download_card_description}>
           <div className={styles.download_card_title}>
             <BedrockText
+              color={titleColor ?? "unset"}
               text={title ?? ""}
               type={"h2"}
               font="MinecraftTen"
@@ -60,6 +65,15 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
             type={"p"}
             textAlign="left"
           />
+          {tags && tags.length > 0 && (
+            <div className={styles.TagsContainer}>
+              {tags.map((tag) => (
+                <p key={tag} className={styles.Tag}>
+                  {tag}
+                </p>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

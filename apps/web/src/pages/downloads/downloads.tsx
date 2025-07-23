@@ -19,7 +19,7 @@ export const Downloads = () => {
           <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
 
-        {activeTab === 0 && <Main />}
+        {activeTab === 0 && <Main setActiveTab={setActiveTab}/>}
 
         {activeTab === 1 && <Community />}
 

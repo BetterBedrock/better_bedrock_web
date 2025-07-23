@@ -1,8 +1,8 @@
 import { Button } from "~/components/bedrock/button";
-import { ButtonSeparator } from "~/components/bedrock/button-separator";
 import { styles } from ".";
 import { useNotification } from "~/providers/notification";
 import { DownloadsButtonDto } from "~/lib/api";
+import { ButtonGroup } from "~/components/button-group/button-group";
 
 interface SideProjectsActionsProps {
   buttons: DownloadsButtonDto[];
@@ -17,6 +17,7 @@ export const SideProjectsActions = ({ buttons }: SideProjectsActionsProps) => {
       text={button.text}
       type={button.type}
       width="100%"
+      height={"auto"}
       onClick={() => {
         if (button.link) {
           window.open(button.link, "_blank", "noopener,noreferrer");
@@ -38,7 +39,7 @@ export const SideProjectsActions = ({ buttons }: SideProjectsActionsProps) => {
       {buttonList.length < 2 ? (
         buttonList
       ) : (
-        <ButtonSeparator className={styles.actions}>{...buttonList}</ButtonSeparator>
+        <ButtonGroup className={styles.actions}>{...buttonList}</ButtonGroup>
       )}
     </>
   );
