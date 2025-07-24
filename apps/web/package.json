@@ -10,6 +10,7 @@
     "generate:api": "openapi-generator-cli generate -g typescript-axios -i ./src/lib/api/api.json -o ./src/lib/api --skip-validate-spec"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.0",
     "@stripe/react-stripe-js": "^3.7.0",
     "@stripe/stripe-js": "^7.3.1",
     "clsx": "^2.1.1",
