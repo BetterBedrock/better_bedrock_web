@@ -1,3 +1,4 @@
+@use "sass:math";
 @use "~/utils/_variables" as g;
 
 .buttonGroup {
@@ -22,7 +23,7 @@
 
 .buttonGroup[data-direction="horizontal"] > :global(*:not(:first-child)),
 .buttonGroup[data-direction="responsive"] > :global(*:not(:first-child)) {
-  margin-left: calc(-1 * var(--minecraftdepth));
+  margin-left: calc(-1 * g.$minecraftdepth);
 }
 
 .buttonGroup[data-direction="vertical"] {
@@ -30,7 +31,7 @@
 }
 
 .buttonGroup[data-direction="vertical"] > :global(*:not(:first-child)) {
-  margin-top: calc(-1 * var(--minecraftdepth));
+  margin-top: calc(-1 * math.floor(g.$minecraftdepth));
 }
 
 @media (max-width: g.$breakpoint-mobileL) {
@@ -40,6 +41,6 @@
 
   .buttonGroup[data-direction="responsive"] > :global(*:not(:first-child)) {
     margin-left: 0;
-    margin-top: calc(-1 * var(--minecraftdepth));
+    margin-top: calc(-1 * math.floor(g.$minecraftdepth));
   }
 }
