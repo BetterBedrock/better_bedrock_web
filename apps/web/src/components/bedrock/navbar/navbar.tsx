@@ -17,8 +17,8 @@ export const Navbar = () => {
   const location = useLocation();
   const { authenticated } = useAuth();
 
-  const handleExpandNavbar = () => {
-    setExpandedNavbar((prev) => !prev);
+  const handleExpandNavbar = (value?: boolean) => {
+    setExpandedNavbar((prev) => (value !== undefined ? value : !prev));
   };
 
   // Determine which nav items to show
@@ -32,7 +32,7 @@ export const Navbar = () => {
         ]
       : [
           { name: "Home", path: "/" },
-          { name: "Downloads", path: "/downloads" },
+          { name: "Downloads", path: "/downloads/main" },
           { name: "Information", path: "/information" },
           { name: "Discord", path: "/discord" },
         ];
@@ -66,7 +66,7 @@ export const Navbar = () => {
                     width="100%"
                     className={clsx(styles.button, isActive && styles.active)}
                     onTap={() => {
-                      handleExpandNavbar();
+                      handleExpandNavbar(false);
                     }}
                   >
                     <BedrockText text={name} type="p" extraClassName={styles.text} />
