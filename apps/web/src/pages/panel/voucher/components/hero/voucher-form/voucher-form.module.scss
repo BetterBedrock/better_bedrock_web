@@ -26,3 +26,7 @@
   padding: g.$padding-sm;
   gap: g.$padding-xxsm;
 }
+
+.error {
+  color: g.$color-red !important;
+}

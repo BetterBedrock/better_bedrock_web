@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
-import { Button } from "~/components/bedrock/button";
 import { Input } from "~/components/bedrock/input";
 import { Popup } from "~/components/bedrock/popup";
 import { VoucherDto } from "~/lib/api";
 import { styles } from ".";
 import { CardDivider } from "~/components/bedrock/card";
+import { Button } from "~/components/bedrock/button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import z from "zod";
 
 interface VoucherFormProps {
   open: boolean;
@@ -14,9 +16,29 @@ interface VoucherFormProps {
   onClose: () => void;
   onSubmit: (voucher: VoucherDto) => void;
 }
+const schema = z.object({
+  id: z.string(),
+  checkoutId: z.string().nullable().optional(),
+  email: z.string().email(),
+  code: z.string(),
+  expiresAt: z.string(),
+  createdAt: z.string(),
+  maxDownloads: z.number().min(0),
+  downloadCount: z.number().min(0),
+  betterBedrockContentOnly: z.boolean().default(false),
+  blocked: z.boolean().default(false),
+});
 
 export const VoucherForm = ({ open, onClose, voucher, onSubmit }: VoucherFormProps) => {
-  const { handleSubmit, register, reset } = useForm({ defaultValues: voucher || {} });
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: voucher,
+    resolver: zodResolver(schema),
+  });
 
   const onClickSubmit = handleSubmit(onSubmit);
 
@@ -63,12 +85,23 @@ export const VoucherForm = ({ open, onClose, voucher, onSubmit }: VoucherFormPro
                   placeholder={field.placeholder}
                   {...register(field.name, field.type === "number" ? { valueAsNumber: true } : {})}
                 />
+                {errors[field.name] && (
+                  <BedrockText
+                    type="p2"
+                    extraClassName={styles.error}
+                    text={errors[field.name]?.message as string}
+                    textAlign="start"
+                  />
+                )}
               </div>
             ))}
           </div>
+
           <CardDivider />
           <div className={styles.part}>
-            <Button text="Confirm" type="alwaysGreen" onClick={onClickSubmit} />
+            <Button type="green" onClick={onClickSubmit} center>
+              <BedrockText color="white" type="p" text="Confirm" />
+            </Button>
           </div>
         </form>
       </Popup>
