@@ -1,7 +1,7 @@
 import { styles } from ".";
 import defaultImage from "~/assets/images/example_head.png";
-import { Button } from "~/components/bedrock/button";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
+import { Button } from "~/components/bedrock/button";
 
 interface ModuleCardProp {
   title: string;
@@ -10,12 +10,11 @@ interface ModuleCardProp {
 }
 
 export const ModuleCard = ({ title, description, creator }: ModuleCardProp) => {
-
   return (
     <Button
       width="auto"
       height="auto"
-      type={creator ? "alwaysGreen" : "alwaysWhite"}
+      type={creator ? "green" : "white"}
       lockClicking={true}
       playSound={false}
       className={styles.card}
@@ -29,10 +28,16 @@ export const ModuleCard = ({ title, description, creator }: ModuleCardProp) => {
               type="h2"
               font="MinecraftTen"
               textAlign="left"
+              color={creator ? "white" : "black"}
               style={{ padding: "0 0.5rem 0 0" }}
             />
           </div>
-          <BedrockText text={description} type="p" textAlign="left" />
+          <BedrockText
+            text={description}
+            color={creator ? "white" : "black"}
+            type="p"
+            textAlign="left"
+          />
         </div>
       </div>
     </Button>

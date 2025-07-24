@@ -1,3 +1,4 @@
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
 import { ButtonGroup } from "~/components/button-group/button-group";
 
@@ -16,12 +17,14 @@ export const HeaderTabs = ({ activeTab, setActiveTab }: HeaderTabsProps) => (
           key={index}
           tabIndex={index}
           isClicked={activeTab === index}
-          onTap={() => setActiveTab(index)}
+          onClick={() => setActiveTab(index)}
           width="100%"
           height="auto"
-          text={text}
-          type="alwaysGreen"
-        />
+          type="green"
+          center
+        >
+          <BedrockText text={text} color="white" type="p" />
+        </Button>
       ))}
     </ButtonGroup>
   </div>

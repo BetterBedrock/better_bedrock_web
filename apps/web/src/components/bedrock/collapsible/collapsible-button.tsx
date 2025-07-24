@@ -1,6 +1,6 @@
-import { Button } from "~/components/bedrock/button";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { styles } from ".";
+import { Button } from "~/components/bedrock/button";
 
 interface CollapsibleButtonProps {
   indexTextRef?: string | number;
@@ -16,22 +16,23 @@ export const CollapsibleButton = ({
   indexTextRef,
 }: CollapsibleButtonProps) => (
   <Button
-    type="alwaysBlack"
+    type="dark"
     isClicked={isCollapsed}
     width="100%"
-    // text=""
-    onTap={() => setCollapsed((prev) => !prev)}
+    onClick={() => setCollapsed((prev) => !prev)}
   >
     <div className={styles.button}>
-      <div style={{ display: "flex" }}> {/* Is this div even needed? */}
+      <div style={{ display: "flex" }}>
+        {/* Is this div even needed? */}
         <BedrockText
           type="p"
           text={indexTextRef ? `${indexTextRef}. ${headerText}` : headerText}
           textAlign="left"
+          color="white"
           extraClassName={styles.buttonText}
         />
       </div>
-      <BedrockText type="p" text={isCollapsed ? "-" : "+"} />
+      <BedrockText type="p" text={isCollapsed ? "-" : "+"} color="white" />
     </div>
   </Button>
 );

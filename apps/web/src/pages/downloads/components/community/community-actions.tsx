@@ -1,8 +1,9 @@
-import { Button } from "~/components/bedrock/button";
-import { ButtonSeparator } from "~/components/bedrock/button-separator";
 import { styles } from ".";
 import { useNotification } from "~/providers/notification";
 import { DownloadsButtonDto } from "~/lib/api";
+import { ButtonGroup } from "~/components/button-group/button-group";
+import { Button } from "~/components/bedrock/button";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 
 interface CommunityActionsProps {
   buttons: DownloadsButtonDto[];
@@ -13,8 +14,6 @@ export const CommunityActions = ({ buttons }: CommunityActionsProps) => {
 
   const buttonList = buttons?.map((button) => (
     <Button
-      outlinePaddingRight="0"
-      text={button.text}
       type={button.type}
       width="100%"
       onClick={() => {
@@ -30,7 +29,14 @@ export const CommunityActions = ({ buttons }: CommunityActionsProps) => {
           });
         }
       }}
-    />
+      center
+    >
+      <BedrockText
+        text={button.text}
+        type="p"
+        color={button.type === "white" ? "black" : "white"}
+      />
+    </Button>
   ));
 
   return (
@@ -38,7 +44,7 @@ export const CommunityActions = ({ buttons }: CommunityActionsProps) => {
       {buttonList.length < 2 ? (
         buttonList
       ) : (
-        <ButtonSeparator className={styles.actions}>{...buttonList}</ButtonSeparator>
+        <ButtonGroup className={styles.actions}>{...buttonList}</ButtonGroup>
       )}
     </>
   );

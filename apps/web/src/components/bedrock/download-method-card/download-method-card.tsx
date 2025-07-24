@@ -1,7 +1,7 @@
 import React from "react";
 import { BedrockText } from "../bedrock-text/bedrock-text";
 import styles from "./download-method-card.module.css";
-import { Button, ButtonType } from "../button";
+import { ButtonType, Button } from "~/components/bedrock/button";
 
 interface DownloadMethodCardProp {
   label?: string;
@@ -18,7 +18,7 @@ export const DownloadMethodCard = ({
   label,
   title,
   price,
-  buttonType = "alwaysWhite",
+  buttonType = "white",
   playSound = true,
   lockClicking,
   height = "auto",
@@ -26,8 +26,7 @@ export const DownloadMethodCard = ({
 }: DownloadMethodCardProp) => {
   return (
     <Button
-      text=""
-      width={"100%"}
+      width="100%"
       height={height}
       type={buttonType}
       lockClicking={lockClicking}
@@ -41,12 +40,23 @@ export const DownloadMethodCard = ({
           font="MinecraftTen"
           textAlign="left"
           extraClassName={styles.price}
+          color={buttonType === "white" ? "black" : "white"}
         />
         <div className={styles.download_card_description}>
           <strong>
-            <BedrockText text={title ?? ""} type={"p"} textAlign="left" />
+            <BedrockText
+              text={title ?? ""}
+              type={"p"}
+              textAlign="left"
+              color={buttonType === "white" ? "black" : "white"}
+            />
           </strong>
-          <BedrockText text={label ?? ""} type={"p2"} textAlign="left" />
+          <BedrockText
+            text={label ?? ""}
+            type={"p2"}
+            textAlign="left"
+            color={buttonType === "white" ? "black" : "white"}
+          />
         </div>
       </div>
     </Button>

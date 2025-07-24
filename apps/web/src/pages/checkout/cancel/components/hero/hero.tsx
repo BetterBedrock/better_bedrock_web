@@ -1,8 +1,8 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
 import { Routes } from "~/utils/routes";
+import { styles } from ".";
 
 export const Hero = () => {
   const navigate = useNavigate();
@@ -17,15 +17,16 @@ export const Hero = () => {
         }
       />
       <Button
-        text="Return to Home"
         width="100%"
-        height="auto"
-        type="alwaysGreen"
-        style={{ paddingTop: "1rem" }}
-        onTap={() => {
-          navigate(Routes.HOME)
+        type="green"
+        onClick={() => {
+          navigate(Routes.HOME);
         }}
-      />
+        className={styles.return}
+        center
+      >
+        <BedrockText text="Return to Home" type="p" color="white" />
+      </Button>
     </main>
   );
 };

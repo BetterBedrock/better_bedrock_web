@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from "~/components/bedrock/button";
 import { Routes } from "~/utils/routes";
 import { styles } from ".";
 import { useAuth } from "~/providers/auth";
 import { useEffect } from "react";
+import { Button } from "~/components/bedrock/button";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 
 interface HeroActionsProps {
   password: string;
@@ -24,6 +25,8 @@ export const HeroActions = ({ password }: HeroActionsProps) => {
   }, [authenticated]);
 
   return (
-    <Button text="Login" type="alwaysGreen" onClick={handleClick} className={styles.actions} />
+    <Button type="green" onClick={handleClick} className={styles.actions} center>
+      <BedrockText color="white" text="Login" type="p" />
+    </Button>
   );
 };

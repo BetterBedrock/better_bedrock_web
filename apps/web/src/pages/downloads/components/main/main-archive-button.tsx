@@ -1,3 +1,4 @@
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
 
 interface MainArchiveButtonProps {
@@ -7,9 +8,16 @@ interface MainArchiveButtonProps {
 
 export const MainArchiveButton = ({ showArchived, setShowArchived }: MainArchiveButtonProps) => (
   <Button
-    text={showArchived ? "Close archived versions" : "Open archived versions"}
-    type="alwaysGreen"
+    type="green"
     width="100%"
-    onTap={() => setShowArchived((prev) => !prev)}
-  />
+    height="auto"
+    onClick={() => setShowArchived((prev) => !prev)}
+    center
+  >
+    <BedrockText
+      type="p"
+      color="white"
+      text={showArchived ? "Close archived versions" : "Open archived versions"}
+    />
+  </Button>
 );

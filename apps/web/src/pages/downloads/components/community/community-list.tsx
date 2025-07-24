@@ -1,6 +1,5 @@
 import { styles } from ".";
 import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-download-card";
-import { Button } from "~/components/bedrock/button";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +8,7 @@ import { baseUrl } from "~/utils/url";
 import { useState } from "react";
 import { HeroPopup } from "~/pages/preview/components/hero/hero-popup";
 import { DownloadsItemDto } from "~/lib/api";
+import { Button } from "~/components/bedrock/button";
 
 interface CommunityListProps {
   items: DownloadsItemDto[];
@@ -34,18 +34,22 @@ export const CommunityList = ({ items }: CommunityListProps) => {
             <ButtonGroup>
               <Button
                 onClick={() => setDownload(item)}
-                text="Download"
                 width="100%"
                 height="auto"
-                type="alwaysGreen"
-              />
+                type="green"
+                center
+              >
+                <BedrockText color="white" text="Download" type="p" />
+              </Button>
               <Button
-                text="Preview"
                 width="100%"
                 height="auto"
-                type="alwaysWhite"
+                type="white"
+                center
                 onClick={() => navigate(`${Routes.PREVIEW}/${item.downloadId}`)}
-              />
+              >
+                <BedrockText color="black" text="Preview" type="p" />
+              </Button>
             </ButtonGroup>
           }
         />

@@ -1,28 +1,33 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from "~/components/bedrock/button";
-import { ButtonSeparator } from "~/components/bedrock/button-separator";
 import { Routes } from "~/utils/routes";
 import { styles } from ".";
+import { ButtonGroup } from "~/components/button-group/button-group";
+import { Button } from "~/components/bedrock/button";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 
 export const HeroActions = () => {
   const navigate = useNavigate();
 
   return (
-    <ButtonSeparator className={styles.actions}>
+    <ButtonGroup className={styles.actions}>
       <Button
-        text="Home Page"
         width="100%"
         height="auto"
-        type="alwaysGreen"
+        type="green"
         onTap={() => navigate(Routes.HOME)}
-      />
+        center
+      >
+        <BedrockText color="white" type="p" text="Home Page" />
+      </Button>
       <Button
-        text="Information Page"
         width="100%"
         height="auto"
-        type="alwaysWhite"
+        type="white"
         onTap={() => navigate(Routes.INFORMATION)}
-      />
-    </ButtonSeparator>
+        center
+      >
+        <BedrockText color="white" type="p" text="Information Page" />
+      </Button>
+    </ButtonGroup>
   );
 };

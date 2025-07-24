@@ -1,7 +1,7 @@
 import React from "react";
 import { BedrockText } from "../bedrock-text/bedrock-text";
 import styles from "./download-card.module.css";
-import { Button, ButtonType } from "../button";
+import { ButtonType, Button } from "~/components/bedrock/button";
 
 interface DownloadCardProp {
   title?: string;
@@ -20,25 +20,23 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
   description,
   iconPath,
   downloadSize,
-  buttonType = "alwaysWhite",
+  buttonType = "white",
   playSound = true,
   lockClicking,
   height = "auto",
   onClick,
 }) => {
-
   return (
     <Button
-      text=""
-      width={"100%"}
+      width="100%"
       height={height}
-      type={buttonType}
+      type={buttonType as ButtonType}
       lockClicking={lockClicking}
       playSound={playSound}
-      onClick={onClick}>
-
+      onClick={onClick}
+    >
       <div className={styles.download_card_content}>
-        <img alt="" src={iconPath} style={{imageRendering: "pixelated"}} />
+        <img alt="" src={iconPath} style={{ imageRendering: "pixelated" }} />
         <div className={styles.download_card_description}>
           <div className={styles.download_card_title}>
             <BedrockText
@@ -46,6 +44,7 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
               type={"h2"}
               font="MinecraftTen"
               textAlign="left"
+              color={buttonType === "white" ? "black" : "white"}
               style={{ padding: "0 0.5rem 0 0" }}
             />
             <BedrockText
@@ -53,16 +52,17 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
               type={"h3"}
               font="MinecraftTen"
               textAlign="left"
+              color={buttonType === "white" ? "black" : "white"}
             />
           </div>
           <BedrockText
             text={description ?? ""}
-            type={"p"}
+            type="p"
             textAlign="left"
+            color={buttonType === "white" ? "black" : "white"}
           />
         </div>
       </div>
-
     </Button>
   );
 };

@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
-import { Button } from "~/components/bedrock/button";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
-// import { Card } from "~/components/bedrock/card";
 import { Gallery } from "~/components/bedrock/gallery/gallery";
 import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-download-card";
+import { Button } from "~/components/bedrock/button";
 import { HeroPopup } from "~/pages/preview/components/hero/hero-popup";
 import { useContent } from "~/providers/content";
 import { Routes } from "~/utils/routes";
@@ -56,11 +55,9 @@ export const Hero = () => {
           </>
         }
         actions={
-          <Button
-            text="Download"
-            type="alwaysGreen"
-            onClick={() => setShowPopup((prev) => !prev)}
-          />
+          <Button type="green" onClick={() => setShowPopup((prev) => !prev)}>
+            <BedrockText text="Download" type="p" color="white" />
+          </Button>
         }
       ></GridDownloadCard>
     </div>

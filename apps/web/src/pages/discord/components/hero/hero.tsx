@@ -14,13 +14,14 @@ export const Hero = () => {
         }
       />
       <Button
-        text="Join Discord"
         width="100%"
         height="auto"
-        type="alwaysGreen"
-        style={{ paddingTop: "1rem" }}
-        onTap={() => window.open("https://discord.gg/ZGK5WYXnEY", "_blank", "noopener,noreferrer")}
-      />
+        type="green"
+        center
+        onClick={() => window.open("https://discord.gg/ZGK5WYXnEY", "_blank", "noopener,noreferrer")}
+      >
+        <BedrockText type="p" color="white" text="Join Discord" />
+      </Button>
     </main>
   );
 };

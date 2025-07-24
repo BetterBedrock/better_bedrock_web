@@ -34,12 +34,9 @@ export const Statistics = () => {
           setOpen(false);
         }}
       />
-      <Button
-        onClick={handleCreateVoucherClick}
-        className={styles.button}
-        type="alwaysGreen"
-        text="Create Voucher"
-      />
+      <Button onClick={handleCreateVoucherClick} className={styles.button} type="green" center>
+        <BedrockText color="white" type="p" text="Create Voucher" />
+      </Button>
       {vouchers.map((voucher) => (
         <VoucherCard
           voucher={voucher}
