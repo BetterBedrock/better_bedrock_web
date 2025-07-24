@@ -3,10 +3,10 @@
 
 ## Enum
 
-* `AlwaysWhite` (value: `'alwaysWhite'`)
+* `White` (value: `'white'`)
 
-* `AlwaysBlack` (value: `'alwaysBlack'`)
+* `Dark` (value: `'dark'`)
 
-* `AlwaysGreen` (value: `'alwaysGreen'`)
+* `Green` (value: `'green'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

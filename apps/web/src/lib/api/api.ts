@@ -176,9 +176,9 @@ export interface DownloadsButtonDto {
  */
 
 export const DownloadsButtonType = {
-    AlwaysWhite: 'alwaysWhite',
-    AlwaysBlack: 'alwaysBlack',
-    AlwaysGreen: 'alwaysGreen'
+    White: 'white',
+    Dark: 'dark',
+    Green: 'green'
 } as const;
 
 export type DownloadsButtonType = typeof DownloadsButtonType[keyof typeof DownloadsButtonType];
