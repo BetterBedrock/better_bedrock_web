@@ -7,8 +7,8 @@ import { useNotification } from "~/providers/notification";
 interface VoucherContextProps {
   vouchers: VoucherDto[];
   fetchVouchers: () => Promise<void>;
-  createVoucher: (voucher: CreateVoucher) => Promise<void>;
-  updateVoucher: (id: string, voucher: UpdateVoucher) => Promise<void>;
+  createVoucher: (voucher: CreateVoucher) => Promise<VoucherDto | undefined>;
+  updateVoucher: (id: string, voucher: UpdateVoucher) => Promise<VoucherDto | undefined>;
 }
 
 interface VoucherProviderProps {
@@ -42,9 +42,16 @@ export const VoucherProvider = ({ children }: VoucherProviderProps) => {
 
   const createVoucher = async (voucher: CreateVoucher) => {
     try {
+      if (vouchers.find((v) => v.code === voucher.code)) {
+        throwError(null, "Voucher with this code already exists");
+        return;
+      }
+
       const { data } = await voucherApi.voucherControllerCreate(voucher);
 
       setVouchers((prev) => [...prev, data]);
+
+      return data;
     } catch (err) {
       throwError(err, "Failed to create voucher");
     }
@@ -52,6 +59,11 @@ export const VoucherProvider = ({ children }: VoucherProviderProps) => {
 
   const updateVoucher = async (id: string, voucher: UpdateVoucher) => {
     try {
+      if (vouchers.find((v) => v.code === voucher.code && id !== v.id)) {
+        throwError(null, "Voucher with this code already exists");
+        return;
+      }
+
       const { data } = await voucherApi.voucherControllerUpdate(id, voucher);
 
       setVouchers((prev) =>
@@ -64,6 +76,8 @@ export const VoucherProvider = ({ children }: VoucherProviderProps) => {
             : v,
         ),
       );
+
+      return data;
     } catch (err) {
       throwError(err, "Failed to create voucher");
     }
