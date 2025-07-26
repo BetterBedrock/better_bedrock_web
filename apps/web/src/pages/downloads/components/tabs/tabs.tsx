@@ -4,7 +4,7 @@ import { styles } from ".";
 import { useContent } from "~/providers/content";
 import { ButtonGroup } from "~/components/button-group/button-group";
 
-interface TabsProps {
+export interface TabsProps {
   activeTab: number;
   setActiveTab: (tab: number) => void;
 }

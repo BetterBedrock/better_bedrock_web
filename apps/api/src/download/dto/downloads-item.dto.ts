@@ -18,4 +18,7 @@ export class DownloadsItemDto {
 
     itemWeight: number;
     imageAssetUrl: string[];
+
+    tags?: string[];
+    titleColor?: string;
 }
