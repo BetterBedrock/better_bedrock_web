@@ -1,6 +1,6 @@
 @use "~/utils/_variables" as g;
 
-.projects {
+.list {
   gap: g.$padding-sm;
   width: 100%;
   display: grid;
@@ -11,6 +11,6 @@
   }
 }
 
-.action {
-  padding-bottom: g.$padding-sm;
+.actions {
+    padding-bottom: g.$padding-sm;
 }
