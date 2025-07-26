@@ -35,7 +35,9 @@ export const App = () => (
                 <Layout>
                   <Routes>
                     <Route index element={<Home />} />
-                    <Route path="downloads" element={<Downloads />} />
+                    <Route path="downloads">
+                      <Route path=":category" element={<Downloads />} />
+                    </Route>
                     <Route path="information" element={<Information />} />
                     <Route path="discord" element={<Discord />} />
                     <Route path="fetch" element={<Fetch />} />
