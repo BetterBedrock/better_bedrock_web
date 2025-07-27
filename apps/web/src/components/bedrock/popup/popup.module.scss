@@ -21,19 +21,19 @@
   height: auto;
   min-height: 300px;
 
-  width: 60%;
+  width: 50%;
   max-width: g.$breakpoint-laptopL;
 
   @media (max-width: g.$breakpoint-laptopL) {
-    width: 60%;
+    width: 55%;
   }
 
   @media (max-width: g.$breakpoint-laptop) {
-    width: 85%;
+    width: 80%;
   }
 
   @media (max-width: g.$breakpoint-tablet) {
-    width: 90%;
+    width: 85%;
   }
 }
 

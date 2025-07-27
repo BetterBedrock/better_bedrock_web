@@ -15,7 +15,7 @@ interface DownloadMethodCardProp {
 }
 
 export const DownloadMethodCard = ({
-  label,
+  // label,
   title,
   price,
   buttonType = "alwaysWhite",
@@ -43,10 +43,7 @@ export const DownloadMethodCard = ({
           extraClassName={styles.price}
         />
         <div className={styles.download_card_description}>
-          <strong>
-            <BedrockText text={title ?? ""} type={"p"} textAlign="left" />
-          </strong>
-          <BedrockText text={label ?? ""} type={"p2"} textAlign="left" />
+          <BedrockText text={title ?? ""} type={"p"} textAlign="left" />
         </div>
       </div>
     </Button>

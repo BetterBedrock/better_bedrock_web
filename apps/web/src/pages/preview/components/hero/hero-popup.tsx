@@ -157,9 +157,7 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
   return (
     <Popup onClose={onClose} title="Download Method">
       <div className={styles.container}>
-        <div className={styles.part}>
-
-          {/* <BedrockText text="Choose your download method you will use to download selected content" type="p" color="white" textAlign="left" /> */}
+        <div className={styles.part} style={{ paddingBottom: 0 }}>
           <ButtonGroup>
             {categories!.map((category, index) => (
               <Button
@@ -180,37 +178,62 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
               onKeyDown={handleKeyDown}
               onChange={(e) => setVoucherCode(e.target.value)}
             />
-            <Button text="Apply" type="alwaysBlack" onClick={useVoucher} />
+            <Button text="Apply" type="alwaysWhite" onClick={useVoucher} />
           </div>
         </div>
-        <CardDivider />
-        {/* <PaymentElement /> */}
-        {/* {selectedTimeframe === "week" ? weekPrices : monthPrices} */}
         <div className={styles.part}>
-          <ButtonGroup direction="vertical">
+          {categories?.[1]?.items.slice(1, 2).map((item, index) => (
+            <DownloadMethodCard
+              key={index}
+              buttonType={"alwaysGreen"}
+              price={`${item.priceOption.price}$`}
+              label={item.priceOption.label}
+              title={`${item.priceOption.title} (Recommended, monthly)`}
+              onClick={() => purchase(item.priceId)}
+            />
+          ))}
+        </div>
+        <CardDivider />
+        <div className={styles.part}>
+          {categories && (
+            <BedrockText
+              textAlign={"left"}
+              color={"white"}
+              text={`Selected Plan: ${selectedTimeframe === categories[0]?.title ? "Per Week" : "Per Month"}`}
+              type="p2"
+              style={{ paddingBottom: "0.5rem" }}
+            />
+          )}
+          <ButtonGroup direction="vertical" className={styles.buttonGroup}>
             {categories
               ?.find((category) => category.title === selectedTimeframe)
               ?.items.map((item, index) => (
                 <DownloadMethodCard
                   key={index}
-                  buttonType={item.priceOption.featured ? "alwaysGreen" : "alwaysWhite"}
+                  buttonType={item.priceOption.featured ? "alwaysGreen" : "alwaysWhite"} // instead of green make it gold - use latest 9slice buttons 
                   price={`${item.priceOption.price}$`}
                   label={item.priceOption.label}
                   title={item.priceOption.title}
                   onClick={() => purchase(item.priceId)}
                 />
               ))}
+            <DownloadMethodCard
+              buttonType="alwaysWhite"
+              price="Free"
+              title="Download After Watching Ads"
+              onClick={download}
+            />
           </ButtonGroup>
         </div>
         <CardDivider />
         <div className={styles.part}>
-          <DownloadMethodCard
-            buttonType="alwaysWhite"
-            price="Free"
-            title="Download After Watching Ads"
-            onClick={download}
-          />
-          <BedrockText text="Payments Processed By Stripe" type="p2" color="white"/>
+          <BedrockText textAlign={"left"} color={"white"} text="* Only Better Bedrock Content - Main Texture Pack, All 9 extensions, Archives" type="p2" />
+          <BedrockText textAlign={"left"} color={"white"} text="* Everything On The Site - Main Texture Pack, All 9 extensions, Archives, Community & Side Projects packs. " type="p2" />
+          <BedrockText textAlign={"left"} color={"gray"} text="* Payments are processed by Stripe" type="p2" />
+          <BedrockText textAlign={"left"} color={"gray"} text="* Free download is option, however results in 60m cooldown. To ensure a smooth experience, we are informing you here." type="p2" />
+          <BedrockText textAlign={"left"} color={"gray"} text="* To get your Discord VIP role, contact us on Discord. We suggest opening a ticket. Thank YOU for the support!" type="p2" />
+          <BedrockText textAlign={"left"} color={"gray"} text="* Purchasing the weekly plan grants a limit of 50 uses, while the monthly plan provides a limit of 300 uses." type="p2" />
+          <BedrockText textAlign={"left"} color={"gray"} text="* Publicly sharing voucher codes may result in the code being banned and loss of access." type="p2" />
         </div>
       </div>
     </Popup>

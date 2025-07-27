@@ -21,7 +21,6 @@
   flex-direction: column;
   width: 100%;
   padding: g.$padding-sm;
-  gap: g.$padding-xxsm;
 }
 
 .button {
@@ -34,6 +33,7 @@
 }
 
 .voucher {
+  padding-top: 1rem;
   width: 100%;
   display: inline-flex;
   gap: g.$padding-xsm;
@@ -41,4 +41,8 @@
 
 .input {
   width: 100%;
+}
+
+.buttonGroup {
+  gap: 0.5rem;
 }

@@ -38,7 +38,8 @@ export const Hero = () => {
   return (
     <div style={{ width: "100%" }}>
       {showPopup && <HeroPopup onClose={() => setShowPopup(false)} downloadItem={download} />}
-      <GridDownloadCard
+      <GridDownloadCard 
+        useTopDivider={true}
         title={download.title}
         downloadSize={`${download.itemWeight} MB`}
         thumbnail={

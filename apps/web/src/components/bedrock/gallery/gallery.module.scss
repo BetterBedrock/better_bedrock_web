@@ -19,6 +19,10 @@
   }
 }
 
+// .gallery button image {
+//   border: solid red 1px;
+// }
+
 .fullscreen {
   position: fixed;
   top: 0;
@@ -38,58 +42,76 @@
 
   img {
     aspect-ratio: 16 / 9;
-    object-fit: contain;
+    border: var(--minecraftdepth) solid rgb(30, 30, 31);
   }
 }
 
 .images {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   flex-direction: row;
   width: 100%;
+  height: 5rem;
   gap: g.$padding-xsm;
-
   white-space: nowrap;
 }
 
 .preview {
+  display: flex;
+  cursor: auto;
   // flex-basis: calc( (100% - (g.$padding-xsm * (LIMIT_VAR - 1)) ) / LIMIT_VAR ); // If you want them to divide space
-  width: 120px; // Or a fixed width for thumbnails
+  // width: 120px; // Or a fixed width for thumbnails
   height: 100%; // Take full height of .images container
   aspect-ratio: 16/9; // Enforce aspect ratio for the container itself
   overflow: hidden;
-
+  filter: brightness(0.6);
   background-color: #444; // Placeholder background
 
   img {
     display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover; // 'cover' might look better for thumbnails to fill space
-    // aspect-ratio: 16/9; // Already on the container, can be removed from img if container enforces it
+    // height: 100%;
   }
+}
+
+.preview:hover {
+  cursor: pointer;
+  filter: brightness(1);
 }
 
 .selected {
-  border: 1.6px solid rgb(255, 196, 43);
+  filter: brightness(1);
+}
+
+.selected:hover {
+  cursor: auto;
 }
 
 .arrow {
-  aspect-ratio: 1/1;
-  height: 32px; // This is good, keeps them fixed
-  width: 32px;
-  flex-shrink: 0; // Prevent arrows from shrinking
-  // Ensure arrows align nicely
+  filter: brightness(0.6);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  border: var(--minecraftdepth) solid white;
+  height: 100%;
 
   img {
-    height: 100%;
-    width: 100%;
+    image-rendering: pixelated;
+    aspect-ratio: 1/1;
+    height: 32px;
+    width: 32px;
     object-fit: contain; // Good for icon-like images
   }
+}
+
+.arrow:hover {
+  cursor: pointer;
+  filter: brightness(1);
+}
+
+.imageIndex {
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 0.125rem 0.125rem 0.125rem 0.25rem;
+  position: absolute;
 }

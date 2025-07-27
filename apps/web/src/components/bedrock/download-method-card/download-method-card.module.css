@@ -4,7 +4,7 @@
   box-sizing: border-box;
   position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .price {
@@ -13,7 +13,7 @@
 }
 
 .download_card_description {
-  margin-left: 7.5px;
+  margin-left: 0.75rem;
   width: 100%;
 }
 
