@@ -39,6 +39,8 @@ export const MainItemsList = ({ category }: MainItemsList) => {
             downloadSize={`${calcItemWeight(downloadItem.itemWeight)}MB`}
             buttonType={downloadItem.buttonType}
             iconPath={downloadItem.imageAssetUrl ? `${baseUrl}${downloadItem.imageAssetUrl}` : logo}
+            tags={downloadItem.tags}
+            titleColor={downloadItem.titleColor}
             onClick={async () => {
               if (category.title === "Featured") {
                 navigate(Routes.LATEST);

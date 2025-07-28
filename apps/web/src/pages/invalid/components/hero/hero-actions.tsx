@@ -10,6 +10,7 @@ export const HeroActions = () => {
 
   return (
     <ButtonGroup className={styles.actions}>
+    <ButtonGroup className={styles.actions}>
       <Button
         width="100%"
         height="auto"

@@ -1,9 +1,11 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
+import { ButtonGroup } from "~/components/button-group/button-group";
 
 interface MainArchiveButtonProps {
   showArchived: boolean;
   setShowArchived: React.Dispatch<React.SetStateAction<boolean>>;
+  setActiveTab: (tab: number) => void;
 }
 
 export const MainArchiveButton = ({ showArchived, setShowArchived }: MainArchiveButtonProps) => (

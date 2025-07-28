@@ -16,6 +16,7 @@ export const CommunityActions = ({ buttons }: CommunityActionsProps) => {
     <Button
       type={button.type}
       width="100%"
+      height={"auto"}
       onClick={() => {
         if (button.link) {
           window.open(button.link, "_blank", "noopener,noreferrer");
@@ -44,6 +45,7 @@ export const CommunityActions = ({ buttons }: CommunityActionsProps) => {
       {buttonList.length < 2 ? (
         buttonList
       ) : (
+        <ButtonGroup className={styles.actions}>{...buttonList}</ButtonGroup>
         <ButtonGroup className={styles.actions}>{...buttonList}</ButtonGroup>
       )}
     </>
