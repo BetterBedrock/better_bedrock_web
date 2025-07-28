@@ -100,6 +100,12 @@ export interface CreateVoucher {
      */
     'email': string;
     /**
+     * Unique checkout session ID associated with the voucher
+     * @type {string}
+     * @memberof CreateVoucher
+     */
+    'checkoutId'?: string | null;
+    /**
      * Unique voucher code
      * @type {string}
      * @memberof CreateVoucher
@@ -257,6 +263,18 @@ export interface DownloadsItemDto {
      * @memberof DownloadsItemDto
      */
     'imageAssetUrl': Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof DownloadsItemDto
+     */
+    'tags'?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof DownloadsItemDto
+     */
+    'titleColor'?: string;
 }
 
 

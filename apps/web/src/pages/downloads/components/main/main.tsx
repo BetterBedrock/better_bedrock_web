@@ -3,9 +3,10 @@ import { MainArchiveButton, MainItemsList, styles } from ".";
 import { useContent } from "~/providers/content";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 import { Heading } from "~/pages/downloads/components/heading";
+import { DownloadsDto } from "~/lib/api";
 
 interface TabsProps {
-  setActiveTab: (tab: number) => void;
+  setActiveTab: (tab: keyof DownloadsDto) => void;
 }
 
 export const Main = ({ setActiveTab }: TabsProps) => {

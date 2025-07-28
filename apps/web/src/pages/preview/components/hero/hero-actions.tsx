@@ -10,12 +10,11 @@ export const HeroActions = () => {
 
   return (
     <ButtonGroup className={styles.actions}>
-    <ButtonGroup className={styles.actions}>
       <Button
         width="100%"
         height="auto"
         type="green"
-        onTap={() => navigate(Routes.HOME)}
+        onClick={() => navigate(Routes.HOME)}
         center
       >
         <BedrockText color="white" type="p" text="Home Page" />
@@ -24,7 +23,7 @@ export const HeroActions = () => {
         width="100%"
         height="auto"
         type="white"
-        onTap={() => navigate(Routes.INFORMATION)}
+        onClick={() => navigate(Routes.INFORMATION)}
         center
       >
         <BedrockText color="white" type="p" text="Information Page" />

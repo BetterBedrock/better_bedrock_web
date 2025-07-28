@@ -27,6 +27,10 @@ export const Downloads = () => {
     }
   }, [downloads]);
 
+  const handleSetActiveTab = (tab: string) => {
+    navigate(Routes.DOWNLOADS + "/" + tab);
+  };
+
   return (
     <main>
       <Section className={styles.background} fixed>
@@ -34,13 +38,11 @@ export const Downloads = () => {
           <Ad />
           <Tabs
             activeTab={category!}
-            setActiveTab={(c) => {
-              navigate(Routes.DOWNLOADS + "/" + c);
-            }}
+            setActiveTab={handleSetActiveTab}
           />
         </div>
 
-        {category === "main" && <Main />}
+        {category === "main" && <Main setActiveTab={handleSetActiveTab} />}
 
         {category === "community" && <Community />}
 

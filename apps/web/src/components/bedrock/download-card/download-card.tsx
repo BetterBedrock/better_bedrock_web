@@ -14,7 +14,7 @@ interface DownloadCardProp {
   height?: string;
   onClick?: () => Promise<void>;
   tags?: string[];
-  titleColor?: string
+  titleColor?: string;
 }
 
 const DownloadCard: React.FC<DownloadCardProp> = ({
@@ -28,7 +28,7 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
   height = "auto",
   onClick,
   tags,
-  titleColor
+  titleColor,
 }) => {
   return (
     <Button
@@ -44,12 +44,11 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
         <div className={styles.download_card_description}>
           <div className={styles.download_card_title}>
             <BedrockText
-              color={titleColor ?? "unset"}
+              color={titleColor ? titleColor : buttonType === "white" ? "black" : "white"}
               text={title ?? ""}
               type={"h2"}
               font="MinecraftTen"
               textAlign="left"
-              color={buttonType === "white" ? "black" : "white"}
               style={{ padding: "0 0.5rem 0 0" }}
             />
             <BedrockText

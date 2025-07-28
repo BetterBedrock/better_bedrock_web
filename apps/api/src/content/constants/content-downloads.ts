@@ -77,7 +77,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                     "Adds ability to create vertical beams around world to improve positioning",
                 downloadId: DOWNLOADS_IDS.betterBedrockWaypoints,
                 itemWeight: 0.04,
-                buttonType: "black",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo2.png"],
             },
             {
@@ -88,7 +88,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Changes all fogs to make them unlimited and better for visibility",
                 downloadId: DOWNLOADS_IDS.betterBedrockBetterFogs,
                 itemWeight: 0.02,
-                buttonType: "black",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo2.png"],
             },
             {
@@ -99,7 +99,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Changes most BB textures to darker ones",
                 downloadId: DOWNLOADS_IDS.betterBedrockDarkUI,
                 itemWeight: 0.001,
-                buttonType: "black",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo2.png"],
             },
             {
@@ -110,7 +110,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Changes water textures to make them more clean and visible",
                 downloadId: DOWNLOADS_IDS.betterBedrockCleanWater,
                 itemWeight: 0.01,
-                buttonType: "black",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo2.png"],
             },
             {
@@ -121,7 +121,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Darker alternative to the vanilla textures",
                 downloadId: DOWNLOADS_IDS.betterBedrockDarkMode,
                 itemWeight: 1.2,
-                buttonType: "black",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo3.png"],
             },
             {
@@ -132,7 +132,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Adds ability to limit particles by 3 options: Disabled, Minimal, All",
                 downloadId: DOWNLOADS_IDS.betterBedrockParticleLimiter,
                 itemWeight: 0.13,
-                buttonType: "black",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo3.png"],
             },
             {
@@ -143,7 +143,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Adds lower fire texture on HUD to improve visibility",
                 downloadId: DOWNLOADS_IDS.betterBedrockLowFire,
                 itemWeight: 0.23,
-                buttonType: "black",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo3.png"],
             },
             {
@@ -154,7 +154,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Changes grass textures to make them look connected",
                 downloadId: DOWNLOADS_IDS.betterBedrockFullGrass,
                 itemWeight: 0.01,
-                buttonType: "black",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo3.png"],
             },
             {
@@ -166,7 +166,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                     "Changes glass textures to make them look connected and less distracting",
                 downloadId: DOWNLOADS_IDS.betterBedrockCleanGlass,
                 itemWeight: 0.001,
-                buttonType: "black",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo3.png"],
             },
         ],

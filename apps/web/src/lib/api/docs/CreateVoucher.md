@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **email** | **string** | Email associated with the voucher | [default to undefined]
+**checkoutId** | **string** | Unique checkout session ID associated with the voucher | [optional] [default to undefined]
 **code** | **string** | Unique voucher code | [default to undefined]
 **expiresAt** | **string** | Expiry date of the voucher | [default to undefined]
 **maxDownloads** | **number** | Maximum number of times the voucher can be downloaded | [default to undefined]
@@ -20,6 +21,7 @@ import { CreateVoucher } from './api';
 
 const instance: CreateVoucher = {
     email,
+    checkoutId,
     code,
     expiresAt,
     maxDownloads,
