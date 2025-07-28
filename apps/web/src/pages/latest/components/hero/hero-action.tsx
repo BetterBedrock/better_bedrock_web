@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
 import { DownloadsItemDto } from "~/lib/api";
 import { HeroPopup } from "~/pages/preview/components/hero/hero-popup";
@@ -22,12 +23,14 @@ export const HeroAction = () => {
         <HeroPopup onClose={() => setDownloadItem(null)} downloadItem={downloadItem} />
       )}
       <Button
-        text="Download Latest Better Bedrock Texture Pack"
         width="100%"
         height="auto"
-        type="alwaysGreen"
+        type="green"
         onTap={() => setDownloadItem(featuredItem)}
-      />
+        center
+      >
+        <BedrockText text="Download Latest Better Bedrock Texture Pack" type="p" color="white" />
+      </Button>
     </>
   );
 };

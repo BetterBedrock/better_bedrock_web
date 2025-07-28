@@ -14,16 +14,12 @@ export const SideProjects = () => {
 
   const sideProjectsDownloads = downloads!.sideProjects;
 
-  return (
-    <>
-      {sideProjectsDownloads.map((category, index) => (
-        <div key={index} className={styles.category}>
-          <Heading title={category.title} description={category.description} />
+  return sideProjectsDownloads.map((category, index) => (
+    <div key={index} className={styles.category}>
+      <Heading title={category.title} description={category.description} />
 
-          <SideProjectsActions buttons={category.buttons!} />
-          <SideProjectsList items={category.items} />
-        </div>
-      ))}
-    </>
-  );
+      <SideProjectsActions buttons={category.buttons!} />
+      <SideProjectsList items={category.items} />
+    </div>
+  ));
 };

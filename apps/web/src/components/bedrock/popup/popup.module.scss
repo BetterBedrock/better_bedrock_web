@@ -10,7 +10,8 @@
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: g.$padding-lg 0;
+  align-items: start;
   max-height: 100%;
   overflow: auto;
 }
@@ -42,7 +43,7 @@
   top: 50%;
   transform: translateY(-50%);
 
-  right:g.$padding-xsm;
+  right: g.$padding-xsm;
 
   height: g.$exit-button-size;
   width: g.$exit-button-size;

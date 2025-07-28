@@ -1,4 +1,3 @@
-import { Button } from "~/components/bedrock/button";
 import { Popup } from "~/components/bedrock/popup";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { styles } from ".";
@@ -15,6 +14,7 @@ import { Routes } from "~/utils/routes";
 import { useNotification } from "~/providers/notification";
 import { Input } from "~/components/bedrock/input";
 import { DownloadsItemDto, VoucherDto } from "~/lib/api";
+import { Button } from "~/components/bedrock/button";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
@@ -158,18 +158,19 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
     <Popup onClose={onClose} title="Download Method">
       <div className={styles.container}>
         <div className={styles.part}>
-
           {/* <BedrockText text="Choose your download method you will use to download selected content" type="p" color="white" textAlign="left" /> */}
           <ButtonGroup>
             {categories!.map((category, index) => (
               <Button
                 key={index}
-                type="alwaysBlack"
-                text={category.title}
+                type="dark"
                 className={styles.button}
                 isClicked={selectedTimeframe === category.title}
                 onClick={() => setSelectedTimeframe(category.title)}
-              />
+                center
+              >
+                <BedrockText color="white" type="p" text={category.title} />
+              </Button>
             ))}
           </ButtonGroup>
           <div className={styles.voucher}>
@@ -180,7 +181,9 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
               onKeyDown={handleKeyDown}
               onChange={(e) => setVoucherCode(e.target.value)}
             />
-            <Button text="Apply" type="alwaysBlack" onClick={useVoucher} />
+            <Button type="dark" onClick={useVoucher} center>
+              <BedrockText color="white" type="p" text="Apply" />
+            </Button>
           </div>
         </div>
         <CardDivider />
@@ -193,7 +196,7 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
               ?.items.map((item, index) => (
                 <DownloadMethodCard
                   key={index}
-                  buttonType={item.priceOption.featured ? "alwaysGreen" : "alwaysWhite"}
+                  buttonType={item.priceOption.featured ? "green" : "white"}
                   price={`${item.priceOption.price}$`}
                   label={item.priceOption.label}
                   title={item.priceOption.title}
@@ -205,12 +208,12 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
         <CardDivider />
         <div className={styles.part}>
           <DownloadMethodCard
-            buttonType="alwaysWhite"
+            buttonType="white"
             price="Free"
             title="Download After Watching Ads"
             onClick={download}
           />
-          <BedrockText text="Payments Processed By Stripe" type="p2" color="white"/>
+          <BedrockText text="Payments Processed By Stripe" type="p2" color="white" />
         </div>
       </div>
     </Popup>

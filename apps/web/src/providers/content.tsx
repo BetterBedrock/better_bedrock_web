@@ -1,19 +1,18 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { DownloadItemProps } from "~/pages/downloads";
 import { NotificationType, useNotification } from "~/providers/notification";
 import { $api } from "~/services/api-client";
 import { baseUrl } from "~/utils/url";
 import { VerificationException } from "~/exception/verification-exception";
-import { DownloadsDto } from "~/lib/api";
+import { DownloadsDto, DownloadsItemDto } from "~/lib/api";
 
 interface ContentContextProps {
   fetched: boolean;
   downloading: boolean;
   downloadProgress: number;
-  downloadItem: DownloadItemProps | undefined;
+  downloadItem: DownloadsItemDto | undefined;
   downloads: DownloadsDto | undefined;
   generateDownload: (file: string) => Promise<void>;
-  verifyDownload: (hash: string, code: string) => Promise<DownloadItemProps>;
+  verifyDownload: (hash: string, code: string) => Promise<DownloadsItemDto>;
   download: (code?: string) => Promise<void>;
   openLinkvertise: () => void;
 }
@@ -31,7 +30,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
   const [downloading, setDownloading] = useState<boolean>(false);
   const [downloads, setDownloads] = useState<DownloadsDto | undefined>();
   const [downloadProgress, setDownloadProgress] = useState(0);
-  const [downloadItem, setDownloadItem] = useState<DownloadItemProps | undefined>(undefined);
+  const [downloadItem, setDownloadItem] = useState<DownloadsItemDto | undefined>(undefined);
 
   const download = async () => {
     setDownloading(true);
@@ -164,7 +163,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
     }
   };
 
-  const verifyDownload = async (hash: string, code: string): Promise<DownloadItemProps> => {
+  const verifyDownload = async (hash: string, code: string): Promise<DownloadsItemDto> => {
     const { data, error, response } = await $api.POST("/download/verify", {
       params: {
         query: {
@@ -229,7 +228,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
       throw new VerificationException(error, response.status);
     }
 
-    const downloadItem = data as unknown as DownloadItemProps;
+    const downloadItem = data as unknown as DownloadsItemDto;
     setDownloadItem(downloadItem);
     // setDownloadProgress(0);
     return downloadItem;

@@ -11,7 +11,7 @@ export class DownloadsItemDto {
     @ApiProperty({
         enum: DownloadsButtonType,
         enumName: "DownloadsButtonType",
-        example: DownloadsButtonType.alwaysBlack,
+        example: DownloadsButtonType.dark,
     })
     @IsEnum(DownloadsButtonType)
     buttonType: DownloadsButtonType;

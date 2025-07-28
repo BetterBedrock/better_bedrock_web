@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **downloadId** | **string** |  | [default to undefined]
 **itemWeight** | **number** |  | [default to undefined]
 **imageAssetUrl** | **Array&lt;string&gt;** |  | [default to undefined]
+**tags** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
+**titleColor** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -26,6 +28,8 @@ const instance: DownloadsItemDto = {
     downloadId,
     itemWeight,
     imageAssetUrl,
+    tags,
+    titleColor,
 };
 ```
 

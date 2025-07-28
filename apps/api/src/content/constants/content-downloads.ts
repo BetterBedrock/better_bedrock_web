@@ -57,7 +57,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 creator: "axmbro",
                 description: "Enhance your gameplay with multiple mods and adjustable options!",
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV74,
-                buttonType: "alwaysGreen",
+                buttonType: "green",
                 itemWeight: 10.1,
                 imageAssetUrl: ["/static/images/favicon.png"],
             },
@@ -77,7 +77,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                     "Adds ability to create vertical beams around world to improve positioning",
                 downloadId: DOWNLOADS_IDS.betterBedrockWaypoints,
                 itemWeight: 0.04,
-                buttonType: "alwaysBlack",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo2.png"],
             },
             {
@@ -88,7 +88,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Changes all fogs to make them unlimited and better for visibility",
                 downloadId: DOWNLOADS_IDS.betterBedrockBetterFogs,
                 itemWeight: 0.02,
-                buttonType: "alwaysBlack",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo2.png"],
             },
             {
@@ -99,7 +99,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Changes most BB textures to darker ones",
                 downloadId: DOWNLOADS_IDS.betterBedrockDarkUI,
                 itemWeight: 0.001,
-                buttonType: "alwaysBlack",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo2.png"],
             },
             {
@@ -110,7 +110,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Changes water textures to make them more clean and visible",
                 downloadId: DOWNLOADS_IDS.betterBedrockCleanWater,
                 itemWeight: 0.01,
-                buttonType: "alwaysBlack",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo2.png"],
             },
             {
@@ -121,7 +121,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Darker alternative to the vanilla textures",
                 downloadId: DOWNLOADS_IDS.betterBedrockDarkMode,
                 itemWeight: 1.2,
-                buttonType: "alwaysBlack",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo3.png"],
             },
             {
@@ -132,7 +132,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Adds ability to limit particles by 3 options: Disabled, Minimal, All",
                 downloadId: DOWNLOADS_IDS.betterBedrockParticleLimiter,
                 itemWeight: 0.13,
-                buttonType: "alwaysBlack",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo3.png"],
             },
             {
@@ -143,7 +143,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Adds lower fire texture on HUD to improve visibility",
                 downloadId: DOWNLOADS_IDS.betterBedrockLowFire,
                 itemWeight: 0.23,
-                buttonType: "alwaysBlack",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo3.png"],
             },
             {
@@ -154,7 +154,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Changes grass textures to make them look connected",
                 downloadId: DOWNLOADS_IDS.betterBedrockFullGrass,
                 itemWeight: 0.01,
-                buttonType: "alwaysBlack",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo3.png"],
             },
             {
@@ -166,7 +166,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                     "Changes glass textures to make them look connected and less distracting",
                 downloadId: DOWNLOADS_IDS.betterBedrockCleanGlass,
                 itemWeight: 0.001,
-                buttonType: "alwaysBlack",
+                buttonType: "dark",
                 imageAssetUrl: ["/static/images/logo3.png"],
             },
         ],
@@ -182,7 +182,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Archived and discontinued.",
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV6, //TODO
                 itemWeight: 2.71, //TODO
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 imageAssetUrl: ["/static/images/favicon.png"],
             },
             {
@@ -192,7 +192,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                     "Our mobile app allows you to edit and save config and cape without any 3rd party applications.",
                 downloadId: DOWNLOADS_IDS.betterBedrockApp,
                 itemWeight: 27.74,
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 imageAssetUrl: ["/static/images/favicon.png"],
             },
             {
@@ -202,7 +202,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                     "Our Minecraft client for Windows 10/11. This client includes modules such as Zoom, FreeLook, No Hurt Cam, and more!",
                 downloadId: DOWNLOADS_IDS.betterBedrockWindowsClientV1,
                 itemWeight: 32.07,
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 imageAssetUrl: ["/static/images/favicon.png"],
             },
             {
@@ -211,7 +211,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Archived and discontinued.",
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV6,
                 itemWeight: 2.71,
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 imageAssetUrl: ["/static/images/favicon.png"],
             },
             {
@@ -220,7 +220,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Archived and discontinued.",
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV5,
                 itemWeight: 17.8,
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 imageAssetUrl: ["/static/images/favicon.png"],
             },
             {
@@ -229,7 +229,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Archived and discontinued.",
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV5ErrorFix,
                 itemWeight: 0.483,
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 imageAssetUrl: ["/static/images/favicon.png"],
             },
             {
@@ -238,7 +238,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Archived and discontinued.",
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV5Patch,
                 itemWeight: 0.483,
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 imageAssetUrl: ["/static/images/favicon.png"],
             },
             {
@@ -247,7 +247,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Archived and discontinued.",
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV5Config,
                 itemWeight: 0.471,
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 imageAssetUrl: ["/static/images/favicon.png"],
             },
             {
@@ -256,7 +256,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Archived and discontinued.",
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV4Patch,
                 itemWeight: 0.486,
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 imageAssetUrl: ["/static/images/favicon.png"],
             },
             {
@@ -265,7 +265,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Archived and discontinued.",
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV4Lite,
                 itemWeight: 49.23,
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 imageAssetUrl: ["/static/images/favicon.png"],
             },
             {
@@ -274,7 +274,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Archived and discontinued.",
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV4,
                 itemWeight: 49.42,
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 imageAssetUrl: ["/static/images/favicon.png"],
             },
             {
@@ -283,7 +283,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Archived and discontinued.",
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV3,
                 itemWeight: 6.86,
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 imageAssetUrl: ["/static/images/favicon.png"],
             },
             {
@@ -292,7 +292,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Archived and discontinued.",
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV2,
                 itemWeight: 4.45,
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 imageAssetUrl: ["/static/images/favicon.png"],
             },
             {
@@ -301,7 +301,7 @@ export const DOWNLOADS_LIST: DownloadsListDto[] = [
                 description: "Archived and discontinued.",
                 downloadId: DOWNLOADS_IDS.betterBedrockClientV1,
                 itemWeight: 20.14,
-                buttonType: "alwaysWhite",
+                buttonType: "white",
                 imageAssetUrl: ["/static/images/favicon.png"],
             },
         ],
