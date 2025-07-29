@@ -24,7 +24,7 @@ interface ContentProviderProps {
 const ContentContext = createContext<ContentContextProps | undefined>(undefined);
 
 export const ContentProvider = ({ children }: ContentProviderProps) => {
-  const { sendNotification } = useNotification();
+  const { sendNotification, throwError } = useNotification();
 
   const [fetched, setFetched] = useState<boolean>(false);
   const [downloading, setDownloading] = useState<boolean>(false);
@@ -112,20 +112,24 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
   };
 
   const fetchDownloads = async () => {
-    const { data, error } = await $api.GET("/content/downloads");
-    setFetched(true);
+    try {
+      const { data, error } = await $api.GET("/content/downloads");
+      setFetched(true);
 
-    if (error) {
-      console.log(error);
-      sendNotification({
-        title: "Failed Fetching",
-        label: "Could not fetch downloads from our server",
-        type: "error",
-      });
-      return;
+      if (error) {
+        console.log(error);
+        sendNotification({
+          title: "Failed Fetching",
+          label: "Could not fetch downloads from our server",
+          type: "error",
+        });
+        return;
+      }
+
+      setDownloads(data as unknown as DownloadsDto);
+    } catch (err) {
+      throwError(err, "Failed to fetch downloads");
     }
-
-    setDownloads(data as unknown as DownloadsDto);
   };
 
   const generateDownload = async (file: string) => {
