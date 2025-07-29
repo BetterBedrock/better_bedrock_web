@@ -193,27 +193,46 @@ export type DownloadsButtonType = typeof DownloadsButtonType[keyof typeof Downlo
 /**
  * 
  * @export
+ * @interface DownloadsCategoryDto
+ */
+export interface DownloadsCategoryDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof DownloadsCategoryDto
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DownloadsCategoryDto
+     */
+    'name': string;
+    /**
+     * 
+     * @type {Array<DownloadsListDto>}
+     * @memberof DownloadsCategoryDto
+     */
+    'lists': Array<DownloadsListDto>;
+}
+/**
+ * 
+ * @export
  * @interface DownloadsDto
  */
 export interface DownloadsDto {
     /**
      * 
-     * @type {Array<DownloadsListDto>}
+     * @type {string}
      * @memberof DownloadsDto
      */
-    'main': Array<DownloadsListDto>;
+    'default': string;
     /**
      * 
-     * @type {Array<DownloadsListDto>}
+     * @type {Array<DownloadsCategoryDto>}
      * @memberof DownloadsDto
      */
-    'community': Array<DownloadsListDto>;
-    /**
-     * 
-     * @type {Array<DownloadsListDto>}
-     * @memberof DownloadsDto
-     */
-    'sideProjects': Array<DownloadsListDto>;
+    'categories': Array<DownloadsCategoryDto>;
 }
 /**
  * 
