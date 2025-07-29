@@ -4,6 +4,7 @@ import ArrowRight from "~/assets/images/w_right_arrow.png";
 import { useState, useEffect } from "react";
 import clsx from "clsx";
 import Exit from "~/assets/images/exit.png";
+import { useMediaQuery } from "react-responsive"; // Add this import for media queries
 
 interface GalleryProps {
   images: string[];
@@ -13,7 +14,12 @@ interface GalleryProps {
 }
 
 export const Gallery = ({ images, fullscreen, show, onClose }: GalleryProps) => {
-  const limit = 4;
+  const isLaptop = useMediaQuery({ query: "(max-width: 1440px)" }); // Add query for laptop screens
+  const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const isMobileSmall = useMediaQuery({ query: "(max-width: 480px)" }); // Adjust query for small mobile screens
+
+  const limit = isMobileSmall ? 1 : isMobile ? 2 : isTablet ? 3 : isLaptop ? 4 : 5; // Adjust limit based on screen size
   const [startingIndex, setStartingIndex] = useState(0);
   const [selectedImage, setSelecteedImage] = useState(0);
   // Preload
@@ -96,6 +102,7 @@ export const Gallery = ({ images, fullscreen, show, onClose }: GalleryProps) => 
               // with a unique ID for each image, e.g., key={image.id}
             >
               <img src={imageSrc} alt={`Gallery image ${originalImageGlobalIndex + 1}`} />
+              <p className={clsx(styles.imageIndex)}>{' '}{originalImageGlobalIndex + 1}.</p> {/* Display index */}
             </button>
           );
         })}

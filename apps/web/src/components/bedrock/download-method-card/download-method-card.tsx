@@ -15,7 +15,7 @@ interface DownloadMethodCardProp {
 }
 
 export const DownloadMethodCard = ({
-  label,
+  // label,
   title,
   price,
   buttonType = "white",
@@ -43,20 +43,7 @@ export const DownloadMethodCard = ({
           color={buttonType === "white" ? "black" : "white"}
         />
         <div className={styles.download_card_description}>
-          <strong>
-            <BedrockText
-              text={title ?? ""}
-              type={"p"}
-              textAlign="left"
-              color={buttonType === "white" ? "black" : "white"}
-            />
-          </strong>
-          <BedrockText
-            text={label ?? ""}
-            type={"p2"}
-            textAlign="left"
-            color={buttonType === "white" ? "black" : "white"}
-          />
+          <BedrockText text={title ?? ""} type={"p"} textAlign="left" />
         </div>
       </div>
     </Button>
