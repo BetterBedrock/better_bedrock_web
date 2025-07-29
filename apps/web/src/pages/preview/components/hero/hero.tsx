@@ -26,7 +26,8 @@ export const Hero = () => {
     return null;
   }
 
-  const download = [...downloads.main, ...downloads.community, ...downloads.sideProjects]
+  const download = downloads.categories
+    .flatMap((category) => category.lists)
     .flatMap((list) => list.items)
     .find((item) => item.downloadId === downloadId);
 
