@@ -57,7 +57,7 @@ export const Hero = () => {
           </>
         }
         actions={
-          <Button type="green" onClick={() => setShowPopup((prev) => !prev)}>
+          <Button width="100%" type="green" onClick={() => setShowPopup((prev) => !prev)} center>
             <BedrockText text="Download" type="p" color="white" />
           </Button>
         }

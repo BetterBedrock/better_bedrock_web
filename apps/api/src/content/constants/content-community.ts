@@ -1,10 +1,10 @@
 import { DownloadsCategoryDto } from "src/download/dto/downloads-category.dto";
 
 // todo: update theme files on server
-export const COMMUNITY_LIST: DownloadsCategoryDto[] = {
+export const COMMUNITY_LIST: DownloadsCategoryDto = {
     id: "community",
     name: "Community",
-    lsits: [
+    lists: [
         {
             title: "Community",
             description:
@@ -313,6 +313,6 @@ export const COMMUNITY_LIST: DownloadsCategoryDto[] = {
                     itemWeight: 0,
                 },
             ],
-        }
-    ]
-}
+        },
+    ],
+};
