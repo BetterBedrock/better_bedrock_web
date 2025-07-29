@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setAuthenticated(true);
     } catch (err) {
       setAuthenticated(false);
-      throwError(err, "Failed to fetch offers");
+      throwError(err, "Failed to authenticate");
     }
     setFetched(true);
   };
