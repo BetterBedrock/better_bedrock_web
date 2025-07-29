@@ -32,7 +32,7 @@ export const Navbar = () => {
         ]
       : [
           { name: "Home", path: "/" },
-          { name: "Downloads", path: "/downloads/main" },
+          { name: "Downloads", path: "/downloads/:main" },
           { name: "Information", path: "/information" },
           { name: "Discord", path: "/discord" },
         ];
@@ -57,10 +57,17 @@ export const Navbar = () => {
 
         <div className={clsx(styles.item, styles.links)}>
           {navItems.map(({ name, path }) => {
-            const isActive = location.pathname === path;
+            const navPaths = path.split("/");
+            const locationPaths = location.pathname.split("/");
+            const finalNavPath = navPaths
+              .map((p, index) => (p.startsWith(":") ? (locationPaths[index] ?? p.replace(":", "")) : p))
+              .join("/");
+
+            const isActive = location.pathname === finalNavPath;
+
             return (
-              <nav className={styles.nav}>
-                <Link link={path} hideStyles={true}>
+              <nav key={path} className={styles.nav}>
+                <Link link={finalNavPath} hideStyles={true}>
                   <SimpleButton
                     key={name}
                     width="100%"
