@@ -5,20 +5,25 @@ import { ButtonGroup } from "~/components/button-group/button-group";
 import { Button } from "~/components/bedrock/button";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 
-interface CommunityActionsProps {
-  buttons: DownloadsButtonDto[];
+interface MainActionsProps {
+  buttons?: DownloadsButtonDto[];
 }
 
-export const CommunityActions = ({ buttons }: CommunityActionsProps) => {
+export const MainActions = ({ buttons }: MainActionsProps) => {
   const { sendNotification } = useNotification();
+
+  if (!buttons || buttons.length < 1) {
+    return;
+  }
 
   return (
     <ButtonGroup className={styles.actions}>
-      {buttons?.map((button) => (
+      {buttons?.map((button, index) => (
         <Button
+          key={index}
           type={button.type}
           width="100%"
-          height={"auto"}
+          height="auto"
           onClick={() => {
             if (button.link) {
               window.open(button.link, "_blank", "noopener,noreferrer");
