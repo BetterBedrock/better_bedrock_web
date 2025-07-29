@@ -33,14 +33,12 @@ import { GenerateDownloadDto } from "src/download/dto/generate-download.dto";
 import { HttpService } from "@nestjs/axios";
 import { lastValueFrom } from "rxjs";
 import { VerifyDownloadDto } from "src/download/dto/verify-download.dto";
-import { DOWNLOADS_LIST } from "src/content/constants/content-downloads";
 import { createReadStream, promises as fs } from "fs";
 import { join } from "path";
-import { COMMUNITY_LIST } from "src/content/constants/content-community";
-import { SIDE_PROJECTS_LIST } from "src/content/constants/content-side-projects";
 import { VoucherService } from "src/voucher/voucher.service";
 import { SkipThrottle } from "@nestjs/throttler";
 import { DownloadsItemDto } from "src/download/dto/downloads-item.dto";
+import { CONTENT } from "src/content/constants/content";
 
 @ApiTags("download")
 @Controller("download")
@@ -175,7 +173,7 @@ export class DownloadController {
 
                 if (
                     voucher.betterBedrockContentOnly &&
-                    DOWNLOADS_LIST.flatMap((map) => map.items).find(
+                    CONTENT.flatMap((map) => map.items).find(
                         (item) => item.downloadId === file!.downloadId,
                     )
                 ) {
@@ -274,7 +272,7 @@ export class DownloadController {
     }
 
     findDownloadItemById(downloadId: string): DownloadsItemDto | undefined {
-        for (const section of [...DOWNLOADS_LIST, ...COMMUNITY_LIST, ...SIDE_PROJECTS_LIST]) {
+        for (const section of CONTENT) {
             const match = section.items.find((item) => item.downloadId === downloadId);
             if (match) {
                 return match;

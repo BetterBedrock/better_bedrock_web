@@ -5,9 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**main** | [**Array&lt;DownloadsListDto&gt;**](DownloadsListDto.md) |  | [default to undefined]
-**community** | [**Array&lt;DownloadsListDto&gt;**](DownloadsListDto.md) |  | [default to undefined]
-**sideProjects** | [**Array&lt;DownloadsListDto&gt;**](DownloadsListDto.md) |  | [default to undefined]
+**_default** | **string** |  | [default to undefined]
+**categories** | [**Array&lt;DownloadsCategoryDto&gt;**](DownloadsCategoryDto.md) |  | [default to undefined]
 
 ## Example
 
@@ -15,9 +14,8 @@ Name | Type | Description | Notes
 import { DownloadsDto } from './api';
 
 const instance: DownloadsDto = {
-    main,
-    community,
-    sideProjects,
+    _default,
+    categories,
 };
 ```
 

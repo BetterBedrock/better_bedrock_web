@@ -1,40 +1,53 @@
 import { useState } from "react";
-import { MainArchiveButton, MainItemsList, styles } from ".";
+import { MainActions, MainArchiveButton, MainItemsList, styles } from ".";
 import { useContent } from "~/providers/content";
-import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 import { Heading } from "~/pages/downloads/components/heading";
-import { DownloadsDto } from "~/lib/api";
+import { Tabs } from "~/pages/downloads/components/tabs";
+import { useNavigate, useParams } from "react-router-dom";
+import { Routes } from "~/utils/routes";
 
-interface TabsProps {
-  setActiveTab: (tab: keyof DownloadsDto) => void;
-}
-
-export const Main = ({ setActiveTab }: TabsProps) => {
+export const Main = () => {
   const { downloads, fetched } = useContent();
   const [showArchived, setShowArchived] = useState(false);
+  const navigate = useNavigate();
+  const { category } = useParams();
 
   if (!fetched) {
-    return <CircularProgressIndicator size="medium" />;
+    return;
   }
 
-  const mainDownloads = downloads!.main;
-  const archivedCategory = mainDownloads.find((c) => c.title === "Archived");
+  const categoryDownloads = downloads!.categories.find((c) => c.id === category)!;
+
+  const archivedCategory = categoryDownloads.lists.find((c) => c.title === "Archived");
   const visibleCategories = showArchived
-    ? mainDownloads
-    : mainDownloads.filter((c) => c.title !== "Archived");
+    ? categoryDownloads.lists
+    : categoryDownloads.lists.filter((c) => c.title !== "Archived");
+
+  const handleSetActiveTab = (tab: string) => {
+    navigate(Routes.DOWNLOADS + "/" + tab);
+  };
 
   return (
     <>
       {visibleCategories.map((category) => (
-        <div className={styles.category}>
+        <div key={category.title} className={styles.category}>
           <Heading title={category.title} description={category.description} />
-          <MainItemsList category={category} />
+          <MainActions buttons={category.buttons} />
+          <MainItemsList categoryId={categoryDownloads.id} category={category} />
         </div>
       ))}
 
-      {archivedCategory && (
-        <MainArchiveButton showArchived={showArchived} setShowArchived={setShowArchived} setActiveTab={setActiveTab}/>
-      )}
+      <div className={styles.footer}>
+        {archivedCategory && (
+          <MainArchiveButton
+            showArchived={showArchived}
+            setShowArchived={setShowArchived}
+            setActiveTab={handleSetActiveTab}
+          />
+        )}
+
+        <Tabs activeTab={category!} setActiveTab={handleSetActiveTab} />
+      </div>
     </>
   );
 };

@@ -1,18 +1,17 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
 import { ButtonGroup } from "~/components/button-group/button-group";
-import { DownloadsDto } from "~/lib/api";
 
 interface MainArchiveButtonProps {
   showArchived: boolean;
   setShowArchived: React.Dispatch<React.SetStateAction<boolean>>;
-  setActiveTab: (tab: keyof DownloadsDto) => void;
+  setActiveTab: (tab: string) => void;
 }
 
 export const MainArchiveButton = ({
   showArchived,
   setShowArchived,
-  setActiveTab,
+  // setActiveTab,
 }: MainArchiveButtonProps) => (
   <ButtonGroup>
     <Button
@@ -28,11 +27,11 @@ export const MainArchiveButton = ({
         text={showArchived ? "Close archived versions" : "Open archived versions"}
       />
     </Button>
-    <Button type="white" width="100%" height="auto" onClick={() => setActiveTab("community")} center>
+    {/* <Button type="white" width="100%" height="auto" onClick={() => setActiveTab("community")} center>
       <BedrockText type="p" color="black" text="Navigate to Community" />
     </Button>
     <Button type="white" width="100%" height="auto" onClick={() => setActiveTab("sideProjects")} center>
       <BedrockText type="p" color="black" text="Navigate to Side Projects" />
-    </Button>
+    </Button> */}
   </ButtonGroup>
 );

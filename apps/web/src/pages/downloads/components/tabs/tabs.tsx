@@ -1,4 +1,3 @@
-import { TAB_NAMES } from "../..";
 import { styles } from ".";
 import { useContent } from "~/providers/content";
 import { ButtonGroup } from "~/components/button-group/button-group";
@@ -11,7 +10,7 @@ interface TabsProps {
 }
 
 export const Tabs = ({ activeTab, setActiveTab }: TabsProps) => {
-  const { fetched } = useContent();
+  const { downloads, fetched } = useContent();
 
   if (!fetched) {
     return <></>;
@@ -20,18 +19,17 @@ export const Tabs = ({ activeTab, setActiveTab }: TabsProps) => {
   return (
     <div className={styles.tabs}>
       <ButtonGroup>
-        {Object.entries(TAB_NAMES).map(([index, type]) => (
+        {downloads?.categories.map((category, index) => (
           <Button
             key={index}
-            // tabIndex={index}
-            isClicked={activeTab === index}
-            onClick={() => setActiveTab(index)}
+            isClicked={activeTab === category.id}
+            onClick={() => setActiveTab(category.id)}
             width="100%"
             height="auto"
             type="dark"
             center
           >
-            <BedrockText color="white" type="p" text={type} />
+            <BedrockText color="white" type="p" text={category.name} />
           </Button>
         ))}
       </ButtonGroup>

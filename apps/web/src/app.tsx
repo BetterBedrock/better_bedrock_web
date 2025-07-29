@@ -23,6 +23,7 @@ import { Voucher } from "~/pages/panel/voucher";
 import { PanelWrapper } from "~/pages/panel";
 import { ProtectedRoute } from "~/components/protected-route/protected-route";
 import { AuthProvider } from "~/providers/auth";
+import { Main } from "~/pages/downloads/components/main";
 
 export const App = () => (
   <CookiesProvider>
@@ -35,8 +36,11 @@ export const App = () => (
                 <Layout>
                   <Routes>
                     <Route index element={<Home />} />
-                    <Route path="downloads">
-                      <Route path=":category" element={<Downloads />} />
+                    <Route path="downloads" element={<Downloads />}>
+                      <Route
+                        path=":category"
+                        element={<Main />}
+                      />
                     </Route>
                     <Route path="information" element={<Information />} />
                     <Route path="discord" element={<Discord />} />
