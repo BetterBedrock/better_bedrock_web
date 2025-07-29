@@ -1,7 +1,6 @@
-import { DownloadsListDto } from "src/download/dto/downloads-list.dto";
+import { DownloadsCategoryDto } from "src/download/dto/downloads-category.dto";
 
 export class DownloadsDto {
-    main: DownloadsListDto[];
-    community: DownloadsListDto[];
-    sideProjects: DownloadsListDto[];
+    default: string;
+    categories: DownloadsCategoryDto[];
 }
