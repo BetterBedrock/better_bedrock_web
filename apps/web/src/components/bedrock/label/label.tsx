@@ -7,7 +7,7 @@ interface LabelProps extends HTMLAttributes<HTMLDivElement> {
   height?: string;
   width?: string;
   minHeight?: string;
-  type?: "green" | "white";
+  type?: "green" | "white" | "dark";
   className?: string;
   extraClassName?: string;
 }

@@ -21,14 +21,22 @@
     background-color: rgb(230, 232, 235);
 }
 
-[inner-data-type="green"]  {
-    background-color:rgb(82, 165, 53);
+[inner-data-type="green"] {
+    background-color: rgb(82, 165, 53);
+}
+
+[inner-data-type="dark"] {
+    background-color: #313233;
 }
 
 [outer-data-type="white"] {
     background-color: rgb(145, 145, 145);
 }
 
-[outer-data-type="green"]  {
+[outer-data-type="green"] {
     background-color: rgb(29, 77, 19);
+}
+
+[outer-data-type="dark"] {
+    background-color: #1e1e1f;
 }
