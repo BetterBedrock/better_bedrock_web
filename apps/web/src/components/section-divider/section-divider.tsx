@@ -9,11 +9,36 @@ interface SectionDividerProps {
   blockSize?: number;
   edgeProbability?: number;
   overlap?: number;
+  seed?: string;
 }
 
 interface Cell {
   x: number;
   render: boolean;
+}
+
+const hashString = (str: string): number => {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash
+  }
+  return Math.abs(hash);
+};
+
+class SeededRandom {
+  private seed: number;
+
+  constructor(seed: number) {
+    this.seed = seed % 2147483647;
+    if (this.seed <= 0) this.seed += 2147483646;
+  }
+
+  next(): number {
+    this.seed = (this.seed * 16807) % 2147483647;
+    return (this.seed - 1) / 2147483646;
+  }
 }
 
 export const SectionDivider: React.FC<SectionDividerProps> = ({
@@ -23,15 +48,25 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
   blockSize = 140,
   edgeProbability = 0.5,
   overlap,
+  seed,
 }) => {
   const totalHeight = rows * blockSize;
   const overlapOffset = overlap ?? totalHeight / 3;
   const containerRef = useRef<HTMLDivElement>(null);
   const [grid, setGrid] = useState<Cell[][]>([]);
+  
+  const seedRef = useRef<string | null>(null);
+  if (seedRef.current === null) {
+    seedRef.current = seed || Date.now().toString();
+  }
 
   const generateGrid = () => {
     const width = containerRef.current?.offsetWidth || 0;
     const cols = Math.ceil(width / blockSize);
+
+    const seedValue = `${seedRef.current}-${image}-${rows}-${fullCenterRows}-${blockSize}-${edgeProbability}-${cols}`;
+    const hashedSeed = hashString(seedValue);
+    const rng = new SeededRandom(hashedSeed);
 
     // calculate full center rows
     const startFull = Math.floor((rows - fullCenterRows!) / 2);
@@ -55,7 +90,7 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
       const inner = r + 1;
       const prob = 1 - (d / maxDistAbove) * (1 - edgeProbability!);
       newGrid[r].forEach((cell, c) => {
-        if (newGrid[inner][c].render && Math.random() < prob) {
+        if (newGrid[inner][c].render && rng.next() < prob) {
           cell.render = true;
         }
       });
@@ -67,7 +102,7 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
       const inner = r - 1;
       const prob = 1 - (d / maxDistBelow) * (1 - edgeProbability!);
       newGrid[r].forEach((cell, c) => {
-        if (newGrid[inner][c].render && Math.random() < prob) {
+        if (newGrid[inner][c].render && rng.next() < prob) {
           cell.render = true;
         }
       });
@@ -97,6 +132,15 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
 
   useLayoutEffect(() => {
     generateGrid();
+
+    const handleResize = () => {
+      generateGrid();
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, [rows, fullCenterRows, blockSize, edgeProbability]);
 
   return (
@@ -107,7 +151,7 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
         width: "100%",
         height: totalHeight,
         overflow: "hidden",
-        margin: `-${overlapOffset}px 0 -${overlapOffset}px`,
+        margin: `${-overlapOffset}px 0 ${-overlapOffset}px`,
       }}
       className={styles.wrapper}
     >
