@@ -10,7 +10,7 @@ export const Information = () => {
 
   return (
     <main>
-      <Section className={styles.background} fixed>
+      <Section className={styles.background} extraClassName={styles.padding} fixed>
         <Header activeTab={activeTab} setActiveTab={setActiveTab} />
         <FAQ activeTab={activeTab} />
         <TutorialVideos activeTab={activeTab} />

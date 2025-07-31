@@ -3,8 +3,10 @@
 .background {
   @include g.page-background(
     linear-gradient(rgba(0, 0, 0, 0.6)),
-    "~/assets/images/crosshair_backgrounds/10.png",
-    (top, bottom),
-    g.$sectionsDividerPadding
+    "~/assets/images/crosshair_backgrounds/10.png"
   );
+}
+
+.padding {
+  @include g.section-padding((top, bottom), g.$sectionsDividerPadding);
 }

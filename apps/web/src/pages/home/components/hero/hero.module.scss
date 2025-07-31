@@ -14,10 +14,12 @@ $header-height: 65vh;
 .background {
   @include g.page-background(
     g.$background-linear-gradient,
-    "~/assets/images/crosshair_backgrounds/9.png",
-    (bottom),
-    g.$sectionsDividerPadding
+    "~/assets/images/crosshair_backgrounds/9.png"
   );
+}
+
+.padding {
+  @include g.section-padding(bottom, g.$sectionsDividerPadding);
 }
 
 .header {

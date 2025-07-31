@@ -3,11 +3,13 @@
 .background {
     @include g.page-background(
         g.$background-linear-gradient,
-        "~/assets/images/crosshair_backgrounds/14.png",
-        (top, bottom),
-        g.$sectionsDividerPadding
+        "~/assets/images/crosshair_backgrounds/14.png"
       );
     background-position: right center;
+}
+
+.padding {
+  @include g.section-padding((top, bottom), g.$sectionsDividerPadding);
 }
 
 .trailer {
