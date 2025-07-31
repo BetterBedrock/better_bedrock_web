@@ -1,30 +1,33 @@
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Input } from "~/components/bedrock/input";
 import { Popup } from "~/components/bedrock/popup";
-import { VoucherDto } from "~/lib/api";
+import { CreateVoucher, VoucherDto } from "~/lib/api";
 import { styles } from ".";
 import { CardDivider } from "~/components/bedrock/card";
 import { Button } from "~/components/bedrock/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
+import { InputSwitch } from "~/components/bedrock/input/input-switch";
+import dayjs from "dayjs";
+import { INPUT_FORMAT } from "~/utils/date";
 
 interface VoucherFormProps {
   open: boolean;
   voucher?: VoucherDto;
   onClose: () => void;
-  onSubmit: (voucher: VoucherDto) => void;
+  onSubmit: (voucher: CreateVoucher) => void;
 }
 const schema = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   checkoutId: z.string().nullable().optional(),
   email: z.string().email(),
   code: z.string(),
   expiresAt: z.string(),
-  createdAt: z.string(),
-  maxDownloads: z.number().min(0),
-  downloadCount: z.number().min(0),
+  createdAt: z.string().optional(),
+  maxDownloads: z.coerce.number().min(0),
+  downloadCount: z.coerce.number().min(0),
   betterBedrockContentOnly: z.boolean().default(false),
   blocked: z.boolean().default(false),
 });
@@ -32,8 +35,8 @@ const schema = z.object({
 export const VoucherForm = ({ open, onClose, voucher, onSubmit }: VoucherFormProps) => {
   const {
     handleSubmit,
-    register,
     reset,
+    control,
     formState: { errors },
   } = useForm({
     defaultValues: voucher,
@@ -43,8 +46,19 @@ export const VoucherForm = ({ open, onClose, voucher, onSubmit }: VoucherFormPro
   const onClickSubmit = handleSubmit(onSubmit);
 
   useEffect(() => {
-    reset(voucher || {});
+    if (voucher) {
+      reset({
+        ...voucher,
+        expiresAt: dayjs(voucher.expiresAt).format(INPUT_FORMAT),
+      });
+    } else {
+      reset({});
+    }
   }, [voucher, reset]);
+
+  useEffect(() => {
+    console.log("Form errors:", errors);
+  }, [errors]);
 
   const fields: Array<{
     name: keyof VoucherDto;
@@ -76,20 +90,55 @@ export const VoucherForm = ({ open, onClose, voucher, onSubmit }: VoucherFormPro
       <Popup title={voucher ? "Edit Voucher" : "Create Voucher"} onClose={onClose}>
         <form onSubmit={onClickSubmit} className={styles.form}>
           <div className={styles.part}>
-            {fields.map((field) => (
-              <div className={styles.field} key={field.name}>
-                <BedrockText textAlign="start" text={field.label} type="p" color="white" />
-                <Input
-                  className={styles.input}
-                  type={field.type}
-                  placeholder={field.placeholder}
-                  {...register(field.name, field.type === "number" ? { valueAsNumber: true } : {})}
+            {fields.map(({ name, label, type, placeholder }) => (
+              <div className={styles.field} key={name}>
+                <BedrockText textAlign="start" text={label} type="p" color="white" />
+                <Controller
+                  name={name}
+                  control={control}
+                  render={({ field }) => {
+                    if (
+                      type === "checkbox" &&
+                      (typeof field.value === "undefined" || typeof field.value === "boolean")
+                    ) {
+                      return (
+                        <InputSwitch
+                          type="checkbox"
+                          className={styles.input}
+                          placeholder={placeholder}
+                          checked={!!field.value}
+                          onChange={(e) => field.onChange(e.target.checked)}
+                          onBlur={field.onBlur}
+                        />
+                      );
+                    }
+
+                    if (
+                      typeof field.value === "string" ||
+                      typeof field.value === "undefined" ||
+                      typeof field.value === "number"
+                    ) {
+                      return (
+                        <Input
+                          type={type}
+                          placeholder={placeholder}
+                          className={styles.input}
+                          value={field.value ?? ""}
+                          onChange={field.onChange}
+                          onBlur={field.onBlur}
+                        />
+                      );
+                    }
+
+                    return <></>;
+                  }}
                 />
-                {errors[field.name] && (
+
+                {errors[name] && (
                   <BedrockText
                     type="p2"
                     extraClassName={styles.error}
-                    text={errors[field.name]?.message as string}
+                    text={errors[name]?.message as string}
                     textAlign="start"
                   />
                 )}
@@ -99,7 +148,7 @@ export const VoucherForm = ({ open, onClose, voucher, onSubmit }: VoucherFormPro
 
           <CardDivider />
           <div className={styles.part}>
-            <Button type="green" onClick={onClickSubmit} center>
+            <Button buttonType="submit" type="green" center>
               <BedrockText color="white" type="p" text="Confirm" />
             </Button>
           </div>
