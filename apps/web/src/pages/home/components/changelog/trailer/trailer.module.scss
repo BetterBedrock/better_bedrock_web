@@ -5,12 +5,4 @@
   aspect-ratio: 16 / 9;
   background-color: rgb(41, 41, 41);
   margin-top: g.$padding-sm;
-
-  @media (max-width: g.$breakpoint-laptop) {
-    width: clamp(50px, 75vh, 90%);
-  }
-
-  @media (max-width: g.$breakpoint-tablet) {
-    width: 100%;
-  }
 }
