@@ -9,13 +9,12 @@ export const HeroAction = () => {
   const { downloads } = useContent();
   const [downloadItem, setDownloadItem] = useState<DownloadsItemDto | null>(null);
 
-  const featuredCategory = downloads?.main.find((category) => category.title === "Featured");
+  const featuredCategory = downloads?.categories.flatMap((category) => category.lists).flatMap((list) => list.items);
+  const featuredItem = featuredCategory?.find((item) => item.downloadId === downloads?.featured);
 
-  if (!downloads || !featuredCategory || featuredCategory.items.length <= 0) {
+  if (!downloads || !featuredItem) {
     return <></>;
   }
-
-  const featuredItem = featuredCategory.items[0];
 
   return (
     <>
@@ -26,7 +25,7 @@ export const HeroAction = () => {
         width="100%"
         height="auto"
         type="green"
-        onTap={() => setDownloadItem(featuredItem)}
+        onClick={() => setDownloadItem(featuredItem)}
         center
       >
         <BedrockText text="Download Latest Better Bedrock Texture Pack" type="p" color="white" />
