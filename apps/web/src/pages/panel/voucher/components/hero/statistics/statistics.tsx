@@ -10,7 +10,7 @@ import { BedrockText } from "~/components/bedrock/bedrock-text";
 export const Statistics = () => {
   const [open, setOpen] = useState(false);
   const [voucher, setVoucher] = useState<VoucherDto | undefined>();
-  const { vouchers, createVoucher, updateVoucher } = useVoucher();
+  const { vouchers, updateVoucher, createVoucher } = useVoucher();
 
   const handleCreateVoucherClick = () => {
     setVoucher(undefined);
@@ -41,6 +41,7 @@ export const Statistics = () => {
       </Button>
       {vouchers.map((voucher) => (
         <VoucherCard
+          key={voucher.id}
           voucher={voucher}
           onClick={async () => {
             setVoucher(voucher);
