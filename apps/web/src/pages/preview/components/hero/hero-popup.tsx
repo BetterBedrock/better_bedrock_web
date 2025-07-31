@@ -29,10 +29,10 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
   const [cookie, setVoucher] = useCookies(["voucher"]);
   const [voucherCode, setVoucherCode] = useState<string>("");
   const [selectedTimeframe, setSelectedTimeframe] = useState<string | undefined>(undefined);
-  const { generateDownload, openLinkvertise, downloads } = useContent();
+  const { generateDownload, openLinkvertise } = useContent();
   const { createSession, offers, activateVoucher } = useCheckout();
 
-  const isBetterBedrockItem = downloads?.main.flatMap((list) => list.items).includes(downloadItem);
+  const isBetterBedrockItem = downloadItem.betterBedrockContent;
 
   const useVoucher = async () => {
     const voucher = await activateVoucher(undefined, voucherCode);
@@ -163,7 +163,8 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
               <Button
                 key={index}
                 type="dark"
-                className={styles.button}
+                width="100%"
+                height="auto"
                 isClicked={selectedTimeframe === category.title}
                 onClick={() => setSelectedTimeframe(category.title)}
                 center

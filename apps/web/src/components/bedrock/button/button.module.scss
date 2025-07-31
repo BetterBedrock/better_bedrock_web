@@ -33,7 +33,7 @@
 }
 
 .clicked {
-  height: calc(100% - g.$minecraftdepth * 2);
+  margin-top: calc(g.$minecraftdepth * 2);
 
   padding-bottom: g.$padding-xxsm;
   border-image-slice: 2 2 2 2 fill !important;

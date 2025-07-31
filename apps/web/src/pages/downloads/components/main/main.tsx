@@ -11,12 +11,11 @@ export const Main = () => {
   const [showArchived, setShowArchived] = useState(false);
   const navigate = useNavigate();
   const { category } = useParams();
+  const categoryDownloads = downloads!.categories.find((c) => c.id === category)!;
 
-  if (!fetched) {
+  if (!fetched || !categoryDownloads) {
     return;
   }
-
-  const categoryDownloads = downloads!.categories.find((c) => c.id === category)!;
 
   const archivedCategory = categoryDownloads.lists.find((c) => c.title === "Archived");
   const visibleCategories = showArchived

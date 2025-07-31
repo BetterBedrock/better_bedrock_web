@@ -1,11 +1,14 @@
 @use "variables" as g;
 @use "sass:meta";
 
-@mixin page-background($background, $img-url, $sides: null, $padding: g.$sectionsPadding) {
+@mixin page-background($background, $img-url) {
   background-image: $background, url(#{$img-url});
   background-repeat: no-repeat;
   background-size: cover;
+}
 
+
+@mixin section-padding($sides: null, $padding: g.$sectionsPadding) {
   @if $sides {
     @if meta.type-of($sides) == "list" {
       @each $side in $sides {

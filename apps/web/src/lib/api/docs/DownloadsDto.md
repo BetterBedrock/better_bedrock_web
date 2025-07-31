@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_default** | **string** |  | [default to undefined]
+**featured** | **string** |  | [default to undefined]
 **categories** | [**Array&lt;DownloadsCategoryDto&gt;**](DownloadsCategoryDto.md) |  | [default to undefined]
 
 ## Example
@@ -15,6 +16,7 @@ import { DownloadsDto } from './api';
 
 const instance: DownloadsDto = {
     _default,
+    featured,
     categories,
 };
 ```

@@ -1,0 +1,1 @@
+export const INPUT_FORMAT = "YYYY-MM-DDTHH:mm";

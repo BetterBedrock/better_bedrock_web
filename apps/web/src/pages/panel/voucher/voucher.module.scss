@@ -6,3 +6,7 @@
     "~/assets/images/crosshair_backgrounds/6.png"
   );
 }
+
+.padding {
+  @include g.section-padding((top, bottom));
+}

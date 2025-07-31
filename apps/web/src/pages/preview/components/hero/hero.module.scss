@@ -4,6 +4,10 @@
   padding-top: g.$padding-sm;
 }
 
+.action {
+  width: 100%;
+}
+
 .label {
   padding: 0.5rem;
 }
@@ -21,10 +25,7 @@
   flex-direction: column;
   width: 100%;
   padding: g.$padding-sm;
-}
-
-.button {
-  width: 100%;
+  gap: g.$padding-xsm;
 }
 
 .checkout {

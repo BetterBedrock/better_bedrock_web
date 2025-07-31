@@ -4,7 +4,7 @@ import { styles } from ".";
 
 export const Fetch = () => (
   <main>
-    <Section className={styles.background} center fixed>
+    <Section className={styles.background} extraClassName={styles.padding} center fixed>
       <Hero />
     </Section>
   </main>

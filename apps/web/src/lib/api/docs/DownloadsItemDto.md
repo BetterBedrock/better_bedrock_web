@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **imageAssetUrl** | **Array&lt;string&gt;** |  | [default to undefined]
 **tags** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
 **titleColor** | **string** |  | [optional] [default to undefined]
+**betterBedrockContent** | **boolean** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -30,6 +31,7 @@ const instance: DownloadsItemDto = {
     imageAssetUrl,
     tags,
     titleColor,
+    betterBedrockContent,
 };
 ```
 

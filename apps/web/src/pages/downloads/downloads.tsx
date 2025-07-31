@@ -4,8 +4,6 @@ import { useEffect } from "react";
 import { Section } from "~/components/section";
 import { Ad } from "~/pages/downloads/components/ad";
 import { Tabs } from "~/pages/downloads/components/tabs";
-// import { Community } from "~/pages/downloads/components/community/community";
-// import { SideProjects } from "~/pages/downloads/components/side-projects";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { useContent } from "~/providers/content";
 import { Routes } from "~/utils/routes";
@@ -39,7 +37,7 @@ export const Downloads = () => {
     <main>
       <Section
         className={styles.background}
-        extraClassName={styles.section}
+        extraClassName={styles.padding}
         fixed
         center={showLoading}
       >

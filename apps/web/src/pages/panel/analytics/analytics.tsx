@@ -5,7 +5,7 @@ import { Files } from "./components/files";
 
 export const Analytics = () => (
   <main>
-    <Section className={styles.background} fixed center>
+    <Section className={styles.background} extraClassName={styles.padding} fixed center>
       <Hero />
       <Files />
     </Section>

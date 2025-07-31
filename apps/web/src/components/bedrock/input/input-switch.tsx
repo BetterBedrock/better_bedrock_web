@@ -11,22 +11,20 @@ import ToggleOn from "~/assets/ui/toggle/on.png";
 import ToggleOnHover from "~/assets/ui/toggle/on_hover.png";
 
 interface InputSwitchProps extends InputHTMLAttributes<HTMLInputElement> {
-  value?: string;
+  checked?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
 }
 
-export const InputSwitch = ({ value, onChange, className, ...props }: InputSwitchProps) => {
-  console.log({ props });
+export const InputSwitch = ({ checked, onChange, className, ...props }: InputSwitchProps) => {
   const [hover, setHover] = useState(false);
   const [playClickSound] = useSound(bedrockClickSound, { volume: 0.25 });
 
   const handleClick = () => {
     playClickSound();
     if (onChange) {
-      // Create a synthetic event for react-hook-form
       const event = {
-        target: { checked: !value, type: "checkbox", name: props.name },
+        target: { checked: !checked, type: "checkbox", name: props.name },
       } as React.ChangeEvent<HTMLInputElement>;
       onChange(event);
     }
@@ -36,13 +34,13 @@ export const InputSwitch = ({ value, onChange, className, ...props }: InputSwitc
   const handleLeave = () => setHover(false);
 
   let hovering = hover ? ToggleOffHover : ToggleOff;
-  if (value) {
+  if (checked) {
     hovering = hover ? ToggleOnHover : ToggleOn;
   }
 
   return (
     <div
-      className={clsx(className, styles.switch, value && styles.on)}
+      className={clsx(className, styles.switch, checked && styles.on)}
       onClick={handleClick}
       onMouseLeave={handleLeave}
       onMouseEnter={handleEnter}

@@ -1,6 +1,6 @@
 import { DownloadsCategoryDto } from "src/download/dto/downloads-category.dto";
 
-const DOWNLOADS_IDS = {
+export const DOWNLOADS_IDS = {
     betterBedrockClientV74: "better_bedrock_texture_pack_v7.4.mcpack",
     betterBedrockClientV73: "better_bedrock_texture_pack_v7.3.mcpack",
     betterBedrockClientV72: "better_bedrock_texture_pack_v7.2.mcpack",
@@ -62,6 +62,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockClientV74,
                     buttonType: "green",
                     itemWeight: 10.1,
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
             ],
@@ -81,6 +82,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockWaypoints,
                     itemWeight: 0.04,
                     buttonType: "dark",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo2.png"],
                 },
                 {
@@ -93,6 +95,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockBetterFogs,
                     itemWeight: 0.02,
                     buttonType: "dark",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo2.png"],
                 },
                 {
@@ -104,6 +107,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockDarkUI,
                     itemWeight: 0.001,
                     buttonType: "dark",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo2.png"],
                 },
                 {
@@ -115,6 +119,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockCleanWater,
                     itemWeight: 0.01,
                     buttonType: "dark",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo2.png"],
                 },
                 {
@@ -126,6 +131,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockDarkMode,
                     itemWeight: 1.2,
                     buttonType: "dark",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo3.png"],
                 },
                 {
@@ -138,6 +144,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockParticleLimiter,
                     itemWeight: 0.13,
                     buttonType: "dark",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo3.png"],
                 },
                 {
@@ -149,6 +156,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockLowFire,
                     itemWeight: 0.23,
                     buttonType: "dark",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo3.png"],
                 },
                 {
@@ -160,6 +168,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockFullGrass,
                     itemWeight: 0.01,
                     buttonType: "dark",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo3.png"],
                 },
                 {
@@ -172,6 +181,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockCleanGlass,
                     itemWeight: 0.001,
                     buttonType: "dark",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo3.png"],
                 },
             ],
@@ -188,6 +198,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockClientV6, //TODO
                     itemWeight: 2.71, //TODO
                     buttonType: "white",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
                 {
@@ -198,6 +209,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockApp,
                     itemWeight: 27.74,
                     buttonType: "white",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
                 {
@@ -208,6 +220,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockWindowsClientV1,
                     itemWeight: 32.07,
                     buttonType: "white",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
                 {
@@ -217,6 +230,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockClientV6,
                     itemWeight: 2.71,
                     buttonType: "white",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
                 {
@@ -226,6 +240,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockClientV5,
                     itemWeight: 17.8,
                     buttonType: "white",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
                 {
@@ -235,6 +250,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockClientV5ErrorFix,
                     itemWeight: 0.483,
                     buttonType: "white",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
                 {
@@ -244,6 +260,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockClientV5Patch,
                     itemWeight: 0.483,
                     buttonType: "white",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
                 {
@@ -253,6 +270,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockClientV5Config,
                     itemWeight: 0.471,
                     buttonType: "white",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
                 {
@@ -262,6 +280,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockClientV4Patch,
                     itemWeight: 0.486,
                     buttonType: "white",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
                 {
@@ -271,6 +290,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockClientV4Lite,
                     itemWeight: 49.23,
                     buttonType: "white",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
                 {
@@ -280,6 +300,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockClientV4,
                     itemWeight: 49.42,
                     buttonType: "white",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
                 {
@@ -289,6 +310,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockClientV3,
                     itemWeight: 6.86,
                     buttonType: "white",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
                 {
@@ -298,6 +320,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockClientV2,
                     itemWeight: 4.45,
                     buttonType: "white",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
                 {
@@ -307,6 +330,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     downloadId: DOWNLOADS_IDS.betterBedrockClientV1,
                     itemWeight: 20.14,
                     buttonType: "white",
+                    betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
             ],

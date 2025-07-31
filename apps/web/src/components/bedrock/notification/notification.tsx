@@ -27,7 +27,7 @@ export const Notification = ({ notification }: NotificationProps) => {
           <img alt={`${notification.type} notification`} src={icon} className={styles.icon} />
         </div>
 
-        <div className={styles.column}>
+        <div className={clsx(styles.column, styles.content)}>
           <div className={styles.heading}>
             <BedrockText text={notification.title} type="p" color={color} textAlign="left" />
             <img alt="Close" src={Exit} className={styles.close} onClick={handleExit} />

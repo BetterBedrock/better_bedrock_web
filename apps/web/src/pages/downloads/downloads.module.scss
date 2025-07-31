@@ -7,9 +7,8 @@
   );
 }
 
-.section {
-  padding-top: g.$sectionsPadding; // TODO: fix paddings in sections
-  padding-bottom: g.$sectionsPadding;
+.padding {
+  @include g.section-padding((top, bottom));
 }
 
 .header {

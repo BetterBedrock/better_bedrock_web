@@ -9,6 +9,7 @@ import { HeroPopup } from "~/pages/preview/components/hero/hero-popup";
 import { useContent } from "~/providers/content";
 import { Routes } from "~/utils/routes";
 import { baseUrl } from "~/utils/url";
+import { styles } from ".";
 
 export const Hero = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -57,7 +58,7 @@ export const Hero = () => {
           </>
         }
         actions={
-          <Button width="100%" type="green" onClick={() => setShowPopup((prev) => !prev)} center>
+          <Button className={styles.action} width="100%" type="green" onClick={() => setShowPopup((prev) => !prev)} center>
             <BedrockText text="Download" type="p" color="white" />
           </Button>
         }
