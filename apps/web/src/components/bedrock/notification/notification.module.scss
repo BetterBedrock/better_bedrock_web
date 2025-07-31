@@ -27,6 +27,10 @@ $pixel: calc(g.$minecraftdepth * 2);
   justify-content: start;
 }
 
+.content {
+  width: 100%;
+}
+
 .icon {
   height: auto;
   width: 25px;
