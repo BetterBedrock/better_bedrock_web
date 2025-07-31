@@ -20,7 +20,7 @@ export const Popup = ({ children, onClose, className, title }: PopupProps) => (
       <div className={styles.header}>
         <img alt="Close" src={Exit} className={styles.close} onClick={onClose} />
         {title && (
-          <BedrockText text={title} font="Minecraft" type="h2" color="white" textAlign="center" />
+          <BedrockText text={title} font="MinecraftTen" type="h2" color="white" textAlign="center" />
         )}
       </div>
       {children}

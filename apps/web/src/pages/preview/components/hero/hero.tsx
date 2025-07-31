@@ -39,7 +39,8 @@ export const Hero = () => {
   return (
     <div style={{ width: "100%" }}>
       {showPopup && <HeroPopup onClose={() => setShowPopup(false)} downloadItem={download} />}
-      <GridDownloadCard
+      <GridDownloadCard 
+        useTopDivider={true}
         title={download.title}
         downloadSize={`${download.itemWeight} MB`}
         thumbnail={
@@ -57,7 +58,7 @@ export const Hero = () => {
           </>
         }
         actions={
-          <Button className={styles.action} type="green" onClick={() => setShowPopup((prev) => !prev)} center>
+          <Button className={styles.action} width="100%" type="green" onClick={() => setShowPopup((prev) => !prev)} center>
             <BedrockText text="Download" type="p" color="white" />
           </Button>
         }

@@ -1,11 +1,35 @@
 @use "~/utils/_variables" as g;
 
 .wrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: g.$padding-xsm;
+}
+
+.wrapper .subSection > p {
+  padding-bottom: 1rem;
 }
 
 .actions {
-  padding-top: g.$padding-sm;
+  padding-bottom: 4.5rem;
+  width: 100%;
+  display: flex;
+ 
+  @media (max-width: 425px) {
+    flex-direction: column;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 4.5rem;
+}
+
+.subSection {
+  width: 100%;
+
 }

@@ -3,14 +3,14 @@ import { CheckoutOffersDto } from "src/checkout/dto/checkout-offers.dto";
 export const CHECKOUT_OFFERS: CheckoutOffersDto = {
     offers: [
         {
-            title: "Week",
+            title: "Weekly",
             items: [
                 {
                     priceId: "price_1RYVyQQKPqpU2QRop44SCri8",
                     priceOption: {
                         price: 1,
-                        label: "One Week • Better Bedrock Content Only",
-                        title: "Get 50 Ad Free Downloads",
+                        label: "",
+                        title: "Only Better Bedrock Content",
                         featured: false,
                         maxDownloads: 50,
                         expiresAt: 7,
@@ -21,8 +21,8 @@ export const CHECKOUT_OFFERS: CheckoutOffersDto = {
                     priceId: "price_1RZZ7iQKPqpU2QRofx62IzDd",
                     priceOption: {
                         price: 2,
-                        label: "One Week • Everything On The Site",
-                        title: "Get 50 Ad Free Downloads",
+                        label: "",
+                        title: "Everything On The Site",
                         featured: false,
                         maxDownloads: 50,
                         expiresAt: 7,
@@ -33,8 +33,8 @@ export const CHECKOUT_OFFERS: CheckoutOffersDto = {
                     priceId: "price_1RZZ8vQKPqpU2QRo9P4CgfTg",
                     priceOption: {
                         price: 5,
-                        label: "Forever Discord VIP Rank • One Week • Better Bedrock Content Only",
-                        title: "Get 50 Ad Free Downloads",
+                        label: "",
+                        title: "Everything On The Site • Permanent Discord VIP role",
                         featured: true,
                         maxDownloads: 50,
                         expiresAt: 7,
@@ -44,14 +44,14 @@ export const CHECKOUT_OFFERS: CheckoutOffersDto = {
             ],
         },
         {
-            title: "Month",
+            title: "Monthly",
             items: [
                 {
                     priceId: "price_1RZZ9cQKPqpU2QRoVuq7xh7J",
                     priceOption: {
                         price: 3,
-                        label: "One Month • Better Bedrock Content Only",
-                        title: "Get 300 Ad Free Downloads",
+                        label: "",
+                        title: "Only Better Bedrock Content",
                         featured: false,
                         maxDownloads: 300,
                         expiresAt: 30,
@@ -62,8 +62,8 @@ export const CHECKOUT_OFFERS: CheckoutOffersDto = {
                     priceId: "price_1RZZBDQKPqpU2QRoa4GnIPKc",
                     priceOption: {
                         price: 5,
-                        label: "One Month • Everything On The Site",
-                        title: "Get 300 Ad Free Downloads",
+                        label: "",
+                        title: "Everything On The Site",
                         featured: false,
                         maxDownloads: 300,
                         expiresAt: 30,
@@ -74,8 +74,8 @@ export const CHECKOUT_OFFERS: CheckoutOffersDto = {
                     priceId: "price_1RZZDAQKPqpU2QRoyHXD6wrr",
                     priceOption: {
                         price: 10,
-                        label: "Forever Discord VIP Rank • One Month • Everything On The Site ",
-                        title: "Get 300 Ad Free Downloads",
+                        label: "",
+                        title: "Everything On The Site • Permanent Discord VIP role",
                         featured: true,
                         maxDownloads: 300,
                         expiresAt: 30,

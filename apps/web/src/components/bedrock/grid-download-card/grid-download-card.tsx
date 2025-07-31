@@ -15,6 +15,7 @@ interface GridDownloadCardProps {
   actions?: React.ReactNode;
   /** Allows for adding custom CSS classes for further styling */
   className?: string;
+  useTopDivider?: boolean;
 }
 
 export const GridDownloadCard: React.FC<GridDownloadCardProps> = ({
@@ -24,11 +25,13 @@ export const GridDownloadCard: React.FC<GridDownloadCardProps> = ({
   thumbnail,
   actions,
   className,
+  useTopDivider = false
 }) => {
   return (
     <div className={clsx(styles.container, className)}>
       {thumbnail && <div className={styles.thumbnailWrapper}>{thumbnail}</div>}
 
+      {useTopDivider && <GridDownloadCardDivider />}
       <div className={styles.texts}>
         <div className={styles.cardTitle}>
           <BedrockText
