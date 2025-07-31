@@ -25,23 +25,27 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
   width?: string;
   height?: string;
+  className?: string;
   children?: ReactNode;
 
   playSound?: boolean;
   center?: boolean;
   lockClicking?: boolean;
   isClicked?: boolean;
+  buttonType?: "button" | "reset" | "submit" | undefined;
 }
 
 export const Button = ({
   width,
   height,
   children,
+  className,
   playSound = true,
   type = "green",
   center = false,
   lockClicking = false,
   isClicked,
+  buttonType,
   onClick,
   ...props
 }: ButtonProps) => {
@@ -159,8 +163,8 @@ export const Button = ({
 
   return (
     <button
-      className={clsx(styles.wrapper, finalClicked && styles.selected)}
-      type="button"
+      className={clsx(styles.wrapper, finalClicked && styles.selected, className && className)}
+      type={buttonType}
       onMouseEnter={handleEnter}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleLeave}
