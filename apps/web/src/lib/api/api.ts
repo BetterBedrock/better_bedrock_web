@@ -229,6 +229,12 @@ export interface DownloadsDto {
     'default': string;
     /**
      * 
+     * @type {string}
+     * @memberof DownloadsDto
+     */
+    'featured': string;
+    /**
+     * 
      * @type {Array<DownloadsCategoryDto>}
      * @memberof DownloadsDto
      */
@@ -294,6 +300,12 @@ export interface DownloadsItemDto {
      * @memberof DownloadsItemDto
      */
     'titleColor'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DownloadsItemDto
+     */
+    'betterBedrockContent'?: boolean;
 }
 
 
