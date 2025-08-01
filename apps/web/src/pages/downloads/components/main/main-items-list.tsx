@@ -48,6 +48,11 @@ export const MainItemsList = ({ category, categoryId }: MainItemsList) => {
               tags={item.tags}
               titleColor={item.titleColor}
               onClick={async () => {
+                if (item.richDescription) {
+                  navigate(`${Routes.PREVIEW}/${item.downloadId}`);
+                  return;
+                }
+                
                 if (category.title === "Featured") {
                   navigate(Routes.LATEST);
                   return;
