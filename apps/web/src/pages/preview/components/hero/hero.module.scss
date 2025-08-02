@@ -1,5 +1,12 @@
 @use "~/utils/_variables" as g;
 
+.preview {
+  width: 100%;
+  gap: g.$padding-xl;
+  display:flex;
+  flex-direction: column;
+}
+
 .actions {
   padding-top: g.$padding-sm;
 }
@@ -46,4 +53,8 @@
 
 .buttonGroup {
   gap: 0.5rem;
+}
+
+.description {
+  padding-bottom: g.$padding-sm;
 }
