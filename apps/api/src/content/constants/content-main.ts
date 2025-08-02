@@ -1,6 +1,8 @@
 import { DownloadsCategoryDto } from "src/download/dto/downloads-category.dto";
 
 export const DOWNLOADS_IDS = {
+    betterBedrockClientV80: "better_bedrock_texture_pack_v8.0.mcpack",
+
     betterBedrockClientV74: "better_bedrock_texture_pack_v7.4.mcpack",
     betterBedrockClientV73: "better_bedrock_texture_pack_v7.3.mcpack",
     betterBedrockClientV72: "better_bedrock_texture_pack_v7.2.mcpack",
@@ -41,7 +43,6 @@ export const DOWNLOADS_IDS = {
     betterBedrockDarkUI: "better_bedrock_dark_ui.mcpack",
     betterBedrockFullGrass: "better_bedrock_full_grass.mcpack",
     betterBedrockLowFire: "better_bedrock_low_fire.mcpack",
-    betterBedrockBetterBlocks: "better_bedrock_better_blocks.mcpack",
     betterBedrockWaypoints: "better_bedrock_waypoints.mcpack",
     betterBedrockParticleLimiter: "better_bedrock_particle_limiter.mcpack",
 };
@@ -59,9 +60,9 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     title: "Better Bedrock v8.0",
                     creator: "axmbro",
                     description: "Enhance your gameplay with multiple mods and adjustable options!",
-                    downloadId: DOWNLOADS_IDS.betterBedrockClientV74,
+                    downloadId: DOWNLOADS_IDS.betterBedrockClientV80,
                     buttonType: "green",
-                    itemWeight: 10.1,
+                    itemWeight: 11.5,
                     betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                 },
@@ -192,16 +193,6 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                 "If you want to try older versions and enjoy old-school Better Bedrock B) then you have that possibility! Note that these packs, and software, are deprecated, and may not be stable. We also save main content, so you cannot find here older extension packs.",
             items: [
                 {
-                    title: "Better Bedrock v7.4",
-                    creator: "axmbro",
-                    description: "Archived and discontinued.",
-                    downloadId: DOWNLOADS_IDS.betterBedrockClientV6, //TODO
-                    itemWeight: 2.71, //TODO
-                    buttonType: "white",
-                    betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
-                },
-                {
                     title: "Mobile App 1.1.1",
                     creator: "iDarkQ",
                     description:
@@ -219,6 +210,16 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                         "Our Minecraft client for Windows 10/11. This client includes modules such as Zoom, FreeLook, No Hurt Cam, and more!",
                     downloadId: DOWNLOADS_IDS.betterBedrockWindowsClientV1,
                     itemWeight: 32.07,
+                    buttonType: "white",
+                    betterBedrockContent: true,
+                    imageAssetUrl: ["/static/images/favicon.png"],
+                },
+                {
+                    title: "Better Bedrock v7.4",
+                    creator: "axmbro",
+                    description: "Archived and discontinued.",
+                    downloadId: DOWNLOADS_IDS.betterBedrockClientV74,
+                    itemWeight: 10.1,
                     buttonType: "white",
                     betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],

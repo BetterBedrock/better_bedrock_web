@@ -1,5 +1,10 @@
 import { DownloadsCategoryDto } from "src/download/dto/downloads-category.dto";
 
+export const SIDE_PROJECTS_DOWNLOADS_IDS = {
+    murderDetector: "murder_detector.mcpack",
+    customSkyOverlay: "custom_sky_overlay.mcpack",
+};
+
 export const SIDE_PROJECTS_LIST: DownloadsCategoryDto = {
     id: "sideProjects",
     name: "Side Projects",
@@ -26,7 +31,7 @@ export const SIDE_PROJECTS_LIST: DownloadsCategoryDto = {
                     creator: "axmbro",
                     description: "Todo;",
                     imageAssetUrl: ["/static/images/side_projects/murder-detector.png"],
-                    downloadId: "murder_detector.mcpack",
+                    downloadId: SIDE_PROJECTS_DOWNLOADS_IDS.murderDetector,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -35,7 +40,7 @@ export const SIDE_PROJECTS_LIST: DownloadsCategoryDto = {
                     creator: "axmbro",
                     description: "Todo;",
                     imageAssetUrl: ["/static/images/side_projects/sky-overlay.png"],
-                    downloadId: "custom_sky_overlay.mcpack",
+                    downloadId: SIDE_PROJECTS_DOWNLOADS_IDS.customSkyOverlay,
                     buttonType: "white",
                     itemWeight: 0,
                 },
