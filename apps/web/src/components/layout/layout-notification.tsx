@@ -7,8 +7,8 @@ export const LayoutNotification = () => {
 
   return (
     <div className={styles.notifications}>
-      {notificationQueue.map((notification) => (
-        <Notification notification={notification} />
+      {notificationQueue.map((notification, index) => (
+        <Notification key={index} notification={notification} />
       ))}
     </div>
   );
