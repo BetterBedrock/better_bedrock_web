@@ -11,7 +11,7 @@ export const Main = () => {
   const [showArchived, setShowArchived] = useState(false);
   const navigate = useNavigate();
   const { category } = useParams();
-  const categoryDownloads = downloads!.categories.find((c) => c.id === category)!;
+  const categoryDownloads = downloads?.categories.find((c) => c.id === category);
 
   if (!fetched || !categoryDownloads) {
     return;
