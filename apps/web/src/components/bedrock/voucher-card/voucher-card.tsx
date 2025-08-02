@@ -2,11 +2,10 @@ import React from "react";
 import { BedrockText } from "../bedrock-text/bedrock-text";
 import styles from "./voucher-card.module.css";
 import { VoucherDto } from "~/lib/api";
-import { ButtonType, Button } from "~/components/bedrock/button";
+import { Button } from "~/components/bedrock/button";
 
 interface VoucherCardProps {
   voucher: VoucherDto,
-  buttonType?: ButtonType;
   playSound?: boolean;
   lockClicking?: boolean;
   height?: string;
@@ -15,7 +14,6 @@ interface VoucherCardProps {
 
 export const VoucherCard = ({
   voucher,
-  buttonType = "white",
   playSound = true,
   lockClicking,
   height = "auto",
@@ -25,7 +23,7 @@ export const VoucherCard = ({
     <Button
       width="100%"
       height={height}
-      type={buttonType}
+      type="white"
       lockClicking={lockClicking}
       playSound={playSound}
       onClick={onClick}
