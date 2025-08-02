@@ -3,6 +3,11 @@
 .collapsible {
   display: flex;
   flex-direction: column;
+
+  &.floating {
+    position: relative;
+    display: inline-block;
+  }
 }
 
 .frame {
@@ -12,7 +17,13 @@
   background-color: rgb(47, 47, 48);
   border: g.$minecraftdepth solid rgb(30, 30, 31);
   border-top: none;
-  max-width: 100%;
+  width: 100%;
+
+  &.floating {
+    z-index: 1;
+    position: absolute;
+    display: block;
+  }
 }
 
 .content {
@@ -38,9 +49,9 @@
 }
 
 .contentText {
-    word-break: break-word; /* Does this even exist? */
+  word-break: break-word; /* Does this even exist? */
 }
 
 .buttonText {
-    padding: g.$padding-xsm;
+  padding: g.$padding-xsm;
 }
