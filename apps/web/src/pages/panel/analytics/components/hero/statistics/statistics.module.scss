@@ -2,24 +2,22 @@
 
 .list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   justify-content: start;
   align-items: start;
-  gap: g.$padding-xsm;
+  gap: g.$padding-sm;
+
+  @media (max-width: g.$breakpoint-laptop) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
 }
 
 .card {
   flex: 1;
-  flex-basis: 250px;
-}
-
-.label {
-  padding: g.$padding-sm;
 }
 
 .data {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  gap: g.$padding-sm;
 }
