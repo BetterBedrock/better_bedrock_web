@@ -27,7 +27,7 @@ export const Hero = () => {
     const timer = setTimeout(async () => {
       if (hash || cookie.voucher) {
         try {
-          await verifyDownload(hash!, (cookie.voucher as VoucherDto).code);
+          await verifyDownload(hash ?? undefined, (cookie.voucher as VoucherDto)?.code);
           setVerified(true);
         } catch (err) {
           if (err instanceof VerificationException) {
@@ -36,6 +36,8 @@ export const Hero = () => {
               navigate(Routes.HOME);
             }
           }
+
+          console.log(err);
         }
       } else {
         sendNotification({
