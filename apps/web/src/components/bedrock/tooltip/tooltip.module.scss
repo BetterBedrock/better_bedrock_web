@@ -6,6 +6,7 @@
 }
 
 .tooltip .text {
+  visibility: hidden;
   max-width: 300px;
   min-width: 50px;
   white-space: nowrap;
@@ -23,9 +24,6 @@
   border-image-width: 10px 10px 10px 10px;
   border-image-source: url("~/assets/ui/tooltip/purple_border.png");
   padding: calc((g.$minecraftdepth * 2) + g.$padding-xxsm + 1px);
-  /* or use outline trick */
-  outline: 4px solid transparent;
-  outline-offset: -4px;
 
   transition:
     opacity 0.25s ease,
@@ -34,8 +32,31 @@
 }
 
 .tooltip:hover .text {
+  visibility:visible;
   transition:
     opacity 0.25s ease,
     transform 0.25s ease;
   opacity: 1;
+}
+
+
+.tooltipWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltipBox {
+  max-width: 300px;
+  min-width: 50px;
+  white-space: nowrap;
+  padding: calc((g.$minecraftdepth * 2) + g.$padding-xxsm + 1px);
+  image-rendering: pixelated;
+  border-image-slice: 4 4 4 4 fill;
+  border-image-width: 10px 10px 10px 10px;
+  border-image-source: url("~/assets/ui/tooltip/purple_border.png");
+}
+
+.tooltipText {
+  /* reset any height/overflow so text can size naturally */
+  line-height: 1.2;
 }
