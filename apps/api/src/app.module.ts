@@ -6,6 +6,7 @@ import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler";
 import { APP_GUARD } from "@nestjs/core";
 import { VoucherModule } from "src/voucher/voucher.module";
 import { AuthModule } from "src/auth/auth.module";
+import { AnalyticsModule } from "src/analytics/analytics.module";
 
 @Module({
     imports: [
@@ -13,7 +14,7 @@ import { AuthModule } from "src/auth/auth.module";
             throttlers: [
                 {
                     ttl: 60000,
-                    limit: 30,
+                    limit: 50,
                 },
             ],
         }),
@@ -22,6 +23,7 @@ import { AuthModule } from "src/auth/auth.module";
         CheckoutModule,
         VoucherModule,
         AuthModule,
+        AnalyticsModule,
     ],
     providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })

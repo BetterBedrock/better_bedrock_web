@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **downloadId** | **string** |  | [default to undefined]
 **itemWeight** | **number** |  | [default to undefined]
 **imageAssetUrl** | **Array&lt;string&gt;** |  | [default to undefined]
+**richDescription** | [**Array&lt;DownloadsRichDescriptionDto&gt;**](DownloadsRichDescriptionDto.md) |  | [optional] [default to undefined]
 **tags** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
 **titleColor** | **string** |  | [optional] [default to undefined]
 **betterBedrockContent** | **boolean** |  | [optional] [default to undefined]
@@ -29,6 +30,7 @@ const instance: DownloadsItemDto = {
     downloadId,
     itemWeight,
     imageAssetUrl,
+    richDescription,
     tags,
     titleColor,
     betterBedrockContent,

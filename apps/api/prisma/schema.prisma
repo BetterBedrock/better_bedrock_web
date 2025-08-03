@@ -33,13 +33,17 @@ model Voucher {
   blocked                  Boolean  @default(false)
 }
 
-model Analytics {
-  id                String @id @default(cuid())
-  totalDownloads    Int    @default(0)
-  verifiedDownloads Int    @default(0)
-  downloadsToday    Int    @default(0)
-  downloadsThisWeek Int    @default(0)
+enum AnalyticsType {
+  file
+  general
+}
 
-  // store per-file counters in JSON
-  fileCounts Json @default("{}")
+model Analytics {
+  id    String        @id @default(cuid())
+  type  AnalyticsType
+  name  String
+  date  DateTime      @default(now()) @db.Date
+  value Int        @default(0)
+
+  @@unique([name, date, type])
 }

@@ -1,8 +1,11 @@
 import { Outlet } from "react-router-dom";
+import { AnalyticsProvider } from "~/providers/analytics";
 import { VoucherProvider } from "~/providers/voucher";
 
 export const PanelWrapper = () => (
-  <VoucherProvider>
-    <Outlet />
-  </VoucherProvider>
+  <AnalyticsProvider>
+    <VoucherProvider>
+      <Outlet />
+    </VoucherProvider>
+  </AnalyticsProvider>
 );

@@ -1,11 +1,25 @@
+// import { StatisticsCard } from "~/components/bedrock/statistics-card";
 import { StatisticsCard } from "~/components/bedrock/statistics-card";
 import { styles } from ".";
+import { useAnalytics } from "~/providers/analytics";
 
-export const Statistics = () => (
-  <div className={styles.list}>
-    <StatisticsCard name="better_bedrock_app.apk" data="27411" className={styles.card} />
-    <StatisticsCard name="better_bedrock_v7.mcpack" data="37654" className={styles.card} />
-    <StatisticsCard name="better_bedrock_v6.mcpack" data="85932" className={styles.card} />
-    <StatisticsCard name="better_bedrock_v5.mcpack" data="23109" className={styles.card} />
-  </div>
-);
+export const Statistics = () => {
+  const { analytics } = useAnalytics();
+
+  const categories = analytics.filter((value) => value.type === "file").map((value) => value.name);
+
+  const data = categories.reduce((acc: { [key: string]: typeof analytics }, category) => {
+    acc[category] = analytics.filter((a) => a.name === category);
+    return acc;
+  }, {});
+
+  return (
+    <div className={styles.data}>
+      <div className={styles.list}>
+        {Object.keys(data).map((name) => (
+          <StatisticsCard name={name} data={data[name]} className={styles.card} />
+        ))}
+      </div>
+    </div>
+  );
+};

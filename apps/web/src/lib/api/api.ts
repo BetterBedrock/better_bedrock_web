@@ -26,6 +26,77 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  * 
  * @export
+ * @interface AnalyticsDto
+ */
+export interface AnalyticsDto {
+    /**
+     * 
+     * @type {AnalyticsType}
+     * @memberof AnalyticsDto
+     */
+    'type': AnalyticsType;
+    /**
+     * 
+     * @type {AnalyticsNames}
+     * @memberof AnalyticsDto
+     */
+    'name': AnalyticsNames;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnalyticsDto
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnalyticsDto
+     */
+    'date': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof AnalyticsDto
+     */
+    'value': number;
+}
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const AnalyticsNames = {
+    BoughtVouchers: 'Bought Vouchers',
+    Visits: 'Visits',
+    TotalDownloads: 'Total Downloads',
+    VoucherDownloads: 'Voucher Downloads',
+    AdDownloads: 'Ad Downloads',
+    GeneratedDownloads: 'Generated Downloads'
+} as const;
+
+export type AnalyticsNames = typeof AnalyticsNames[keyof typeof AnalyticsNames];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const AnalyticsType = {
+    File: 'file',
+    General: 'general'
+} as const;
+
+export type AnalyticsType = typeof AnalyticsType[keyof typeof AnalyticsType];
+
+
+/**
+ * 
+ * @export
  * @interface CheckoutOffersDto
  */
 export interface CheckoutOffersDto {
@@ -290,6 +361,12 @@ export interface DownloadsItemDto {
     'imageAssetUrl': Array<string>;
     /**
      * 
+     * @type {Array<DownloadsRichDescriptionDto>}
+     * @memberof DownloadsItemDto
+     */
+    'richDescription'?: Array<DownloadsRichDescriptionDto>;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof DownloadsItemDto
      */
@@ -383,6 +460,25 @@ export const DownloadsNotificationType = {
 export type DownloadsNotificationType = typeof DownloadsNotificationType[keyof typeof DownloadsNotificationType];
 
 
+/**
+ * 
+ * @export
+ * @interface DownloadsRichDescriptionDto
+ */
+export interface DownloadsRichDescriptionDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof DownloadsRichDescriptionDto
+     */
+    'name': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof DownloadsRichDescriptionDto
+     */
+    'images': Array<string>;
+}
 /**
  * 
  * @export
@@ -554,6 +650,107 @@ export interface VoucherDto {
      */
     'blocked': boolean;
 }
+
+/**
+ * AnalyticsApi - axios parameter creator
+ * @export
+ */
+export const AnalyticsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        analyticsControllerAnalytics: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/analytics`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * AnalyticsApi - functional programming interface
+ * @export
+ */
+export const AnalyticsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = AnalyticsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async analyticsControllerAnalytics(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AnalyticsDto>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.analyticsControllerAnalytics(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AnalyticsApi.analyticsControllerAnalytics']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * AnalyticsApi - factory interface
+ * @export
+ */
+export const AnalyticsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = AnalyticsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        analyticsControllerAnalytics(options?: RawAxiosRequestConfig): AxiosPromise<Array<AnalyticsDto>> {
+            return localVarFp.analyticsControllerAnalytics(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * AnalyticsApi - object-oriented interface
+ * @export
+ * @class AnalyticsApi
+ * @extends {BaseAPI}
+ */
+export class AnalyticsApi extends BaseAPI {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AnalyticsApi
+     */
+    public analyticsControllerAnalytics(options?: RawAxiosRequestConfig) {
+        return AnalyticsApiFp(this.configuration).analyticsControllerAnalytics(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
 
 /**
  * AuthApi - axios parameter creator
@@ -1132,16 +1329,12 @@ export const DownloadApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @param {string} hash Hash generated to go through the ads on linkvertise
-         * @param {string} code 
+         * @param {string} [hash] Hash generated to go through the ads on linkvertise
+         * @param {string} [code] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        downloadControllerVerify: async (hash: string, code: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'hash' is not null or undefined
-            assertParamExists('downloadControllerVerify', 'hash', hash)
-            // verify required parameter 'code' is not null or undefined
-            assertParamExists('downloadControllerVerify', 'code', code)
+        downloadControllerVerify: async (hash?: string, code?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/download/verify`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1208,12 +1401,12 @@ export const DownloadApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} hash Hash generated to go through the ads on linkvertise
-         * @param {string} code 
+         * @param {string} [hash] Hash generated to go through the ads on linkvertise
+         * @param {string} [code] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async downloadControllerVerify(hash: string, code: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DownloadsItemDto>> {
+        async downloadControllerVerify(hash?: string, code?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DownloadsItemDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.downloadControllerVerify(hash, code, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DownloadApi.downloadControllerVerify']?.[localVarOperationServerIndex]?.url;
@@ -1248,12 +1441,12 @@ export const DownloadApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @param {string} hash Hash generated to go through the ads on linkvertise
-         * @param {string} code 
+         * @param {string} [hash] Hash generated to go through the ads on linkvertise
+         * @param {string} [code] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        downloadControllerVerify(hash: string, code: string, options?: RawAxiosRequestConfig): AxiosPromise<DownloadsItemDto> {
+        downloadControllerVerify(hash?: string, code?: string, options?: RawAxiosRequestConfig): AxiosPromise<DownloadsItemDto> {
             return localVarFp.downloadControllerVerify(hash, code, options).then((request) => request(axios, basePath));
         },
     };
@@ -1289,13 +1482,13 @@ export class DownloadApi extends BaseAPI {
 
     /**
      * 
-     * @param {string} hash Hash generated to go through the ads on linkvertise
-     * @param {string} code 
+     * @param {string} [hash] Hash generated to go through the ads on linkvertise
+     * @param {string} [code] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DownloadApi
      */
-    public downloadControllerVerify(hash: string, code: string, options?: RawAxiosRequestConfig) {
+    public downloadControllerVerify(hash?: string, code?: string, options?: RawAxiosRequestConfig) {
         return DownloadApiFp(this.configuration).downloadControllerVerify(hash, code, options).then((request) => request(this.axios, this.basePath));
     }
 }

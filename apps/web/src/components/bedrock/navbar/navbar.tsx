@@ -39,7 +39,7 @@ export const Navbar = () => {
 
   return (
     <header className={styles.wrapper}>
-      <Label extraClassName={clsx(styles.label, expandedNavbar && styles.expanded)}>
+      <Label className={clsx(styles.label, expandedNavbar && styles.expanded)}>
         <div className={clsx(styles.item, styles.mobile)}>
           <Link className={clsx(styles.item)} link={Routes.HOME} hideStyles>
             <img alt="logo" src={FavIcon} className={styles.image} />

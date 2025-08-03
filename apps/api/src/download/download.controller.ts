@@ -39,6 +39,7 @@ import { VoucherService } from "src/voucher/voucher.service";
 import { SkipThrottle } from "@nestjs/throttler";
 import { DownloadsItemDto } from "src/download/dto/downloads-item.dto";
 import { CONTENT } from "src/content/constants/content";
+import { AnalyticsNames } from "src/analytics/constants/analytics-names";
 
 @ApiTags("download")
 @Controller("download")
@@ -85,21 +86,8 @@ export class DownloadController {
             );
         }
 
-        // Update analytics
-        const analytics = await this.analyticsService.analytics();
-        if (analytics) {
-            const filesCount = (analytics.fileCounts as Record<string, number>) || {};
-
-            filesCount[download.file] = (filesCount[download.file] ?? 0) + 1;
-
-            analytics.verifiedDownloads++;
-            analytics.fileCounts = filesCount;
-
-            await this.analyticsService.updateAnalytics({
-                totalDownloads: analytics.totalDownloads,
-                fileCounts: analytics.fileCounts,
-            });
-        }
+        await this.analyticsService.incrementAnalytics(download.file, "file");
+        await this.analyticsService.incrementAnalytics(AnalyticsNames.totalDownloads, "general");
 
         const filePath = join(
             __dirname,
@@ -181,6 +169,20 @@ export class DownloadController {
                         "This voucher allows you to download only better bedrock content",
                     );
                 }
+
+                await this.voucherService.updateVoucher({
+                    where: { code: query.code },
+                    data: {
+                        downloadCount: {
+                            increment: 1,
+                        },
+                    },
+                });
+
+                await this.analyticsService.incrementAnalytics(
+                    AnalyticsNames.voucherDownloads,
+                    "general",
+                );
             }
 
             if (!voucher) {
@@ -216,16 +218,12 @@ export class DownloadController {
                         HttpStatus.SERVICE_UNAVAILABLE,
                     );
                 }
-            }
 
-            await this.voucherService.updateVoucher({
-                where: { code: query.code },
-                data: {
-                    downloadCount: {
-                        increment: 1,
-                    },
-                },
-            });
+                await this.analyticsService.incrementAnalytics(
+                    AnalyticsNames.adDownloads,
+                    "general",
+                );
+            }
 
             await this.downloadService.updateDownload({
                 where: { ipAddress: ip },
@@ -259,13 +257,10 @@ export class DownloadController {
                 file: query.file,
             });
 
-            // Update analytics
-            const analytics = await this.analyticsService.analytics();
-            if (analytics) {
-                await this.analyticsService.updateAnalytics({
-                    totalDownloads: analytics.totalDownloads++,
-                });
-            }
+            await this.analyticsService.incrementAnalytics(
+                AnalyticsNames.generatedDownloads,
+                "general",
+            );
         } catch (err) {
             throw new HttpException("Error occured during download generation: " + err, 500);
         }

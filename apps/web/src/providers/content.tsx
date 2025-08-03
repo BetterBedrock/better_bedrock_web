@@ -2,8 +2,7 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 import { NotificationType, useNotification } from "~/providers/notification";
 import { $api } from "~/services/api-client";
 import { baseUrl } from "~/utils/url";
-import { VerificationException } from "~/exception/verification-exception";
-import { DownloadsDto, DownloadsItemDto } from "~/lib/api";
+import { Configuration, DownloadApi, DownloadsDto, DownloadsItemDto } from "~/lib/api";
 
 interface ContentContextProps {
   fetched: boolean;
@@ -12,7 +11,7 @@ interface ContentContextProps {
   downloadItem: DownloadsItemDto | undefined;
   downloads: DownloadsDto | undefined;
   generateDownload: (file: string) => Promise<void>;
-  verifyDownload: (hash: string, code: string) => Promise<DownloadsItemDto>;
+  verifyDownload: (hash?: string, code?: string) => Promise<DownloadsItemDto | undefined>;
   download: (code?: string) => Promise<void>;
   openLinkvertise: () => void;
 }
@@ -31,6 +30,10 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
   const [downloads, setDownloads] = useState<DownloadsDto | undefined>();
   const [downloadProgress, setDownloadProgress] = useState(0);
   const [downloadItem, setDownloadItem] = useState<DownloadsItemDto | undefined>(undefined);
+
+  const config = new Configuration({ basePath: baseUrl });
+
+  const downloadApi = new DownloadApi(config);
 
   const download = async () => {
     setDownloading(true);
@@ -167,75 +170,16 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
     }
   };
 
-  const verifyDownload = async (hash: string, code: string): Promise<DownloadsItemDto> => {
-    const { data, error, response } = await $api.POST("/download/verify", {
-      params: {
-        query: {
-          hash,
-          code,
-        },
-      },
-    });
+  const verifyDownload = async (hash?: string, code?: string): Promise<DownloadsItemDto | undefined> => {
+    try {
+      const { data } = await downloadApi.downloadControllerVerify(hash, code);
+      const downloadItem = data as unknown as DownloadsItemDto;
+      setDownloadItem(downloadItem);
 
-    if (error) {
-      let title = "";
-      let label = "";
-      let type = "" as NotificationType;
-      switch (response.status) {
-        case 400:
-          title = "Bad Hash";
-          label = "Provided hash in the link is incorrect";
-          type = "error";
-          break;
-        case 401:
-          title = "Non-existent Voucher";
-          label = "Provided voucher does not exist";
-          type = "error";
-          break;
-        case 403:
-          title = "Bad Voucher Level";
-          label = "This voucher allows you to download only better bedrock content";
-          type = "error";
-          break;
-        case 404:
-          title = "Download Not Found";
-          label = "Record of your download does not exist";
-          type = "error";
-          break;
-        case 410:
-          title = "Invalid Voucher";
-          label = "The voucher has either expired or already been used.";
-          type = "error";
-          break;
-        case 502:
-          title = "Linkvertise Error";
-          label = "The hash is invalid. Please go through the download process again.";
-          type = "error";
-          break;
-        case 503:
-          title = "Linkvertise Error";
-          label = "Currently Linkvertise service is unavailable";
-          type = "error";
-          break;
-        default:
-          title = "Error While Verifying";
-          label = "Please report this issue to us on our discord.";
-          type = "error";
-          break;
-      }
-
-      sendNotification({
-        title,
-        label,
-        type,
-      });
-      throw new VerificationException(error, response.status);
+      return downloadItem;
+    } catch (err) {
+      throwError(err, "Failed to verify download");
     }
-
-    const downloadItem = data as unknown as DownloadsItemDto;
-    setDownloadItem(downloadItem);
-    // setDownloadProgress(0);
-    return downloadItem;
   };
 
   const openLinkvertise = () => {
