@@ -30,17 +30,17 @@ export const Tooltip = ({ children, className, text }: TooltipProps) => {
 
   return (
     <div
-      className={clsx(styles.tooltipWrapper, className)}
+      className={clsx(styles.tooltip, className)}
       onMouseEnter={() => setVisible(true)}
       onMouseLeave={() => setVisible(false)}
       onMouseMove={handleMouseMove}
     >
       {children}
 
-      <div style={tooltipStyle} className={styles.tooltipBox}>
+      <div style={tooltipStyle} className={styles.box}>
         <BedrockText
-          extraClassName={styles.tooltipText}
           text={text ?? "Tooltip text"}
+          extraClassName={styles.text}
           color="white"
           type="p"
           textAlign="center"

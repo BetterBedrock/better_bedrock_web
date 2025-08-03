@@ -5,50 +5,9 @@
   display: inline-block;
 }
 
-.tooltip .text {
-  visibility: hidden;
+.box {
   max-width: 300px;
   min-width: 50px;
-  white-space: nowrap;
-  padding: calc((g.$minecraftdepth * 2) + g.$padding-xxsm);
-
-  position: absolute;
-  z-index: 5;
-  bottom: 100%;
-  left: 50%;
-  margin-bottom: g.$padding-xsm;
-  transform: translateX(-50%);
-
-  image-rendering: pixelated;
-  border-image-slice: 4 4 4 4 fill;
-  border-image-width: 10px 10px 10px 10px;
-  border-image-source: url("~/assets/ui/tooltip/purple_border.png");
-  padding: calc((g.$minecraftdepth * 2) + g.$padding-xxsm + 1px);
-
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease;
-  opacity: 0;
-}
-
-.tooltip:hover .text {
-  visibility:visible;
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease;
-  opacity: 1;
-}
-
-
-.tooltipWrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.tooltipBox {
-  max-width: 300px;
-  min-width: 50px;
-  white-space: nowrap;
   padding: calc((g.$minecraftdepth * 2) + g.$padding-xxsm + 1px);
   image-rendering: pixelated;
   border-image-slice: 4 4 4 4 fill;
@@ -56,7 +15,6 @@
   border-image-source: url("~/assets/ui/tooltip/purple_border.png");
 }
 
-.tooltipText {
-  /* reset any height/overflow so text can size naturally */
-  line-height: 1.2;
+.text {
+  white-space: pre-wrap;
 }
