@@ -84,6 +84,12 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     buttonType: "dark",
                     betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo2.png"],
+                    richDescription: [
+                        {
+                            name: "Before Images",
+                            images: ["/static/images/logo2.png", "/static/images/logo2.png"],
+                        },
+                    ],
                 },
                 {
                     title: "Better Fogs v2.1",

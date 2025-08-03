@@ -31,6 +31,8 @@ import { CreateCheckoutSessionResponseDto } from "src/checkout/dto/create-checko
 import { obscureEmail } from "src/utils/string";
 import { CheckoutOffersDto } from "src/checkout/dto/checkout-offers.dto";
 import { VoucherDto } from "src/voucher/dto/voucher.dto";
+import { AnalyticsService } from "src/analytics/analytics.service";
+import { AnalyticsNames } from "src/analytics/constants/analytics-names";
 
 @ApiTags("checkout")
 @Controller("checkout")
@@ -38,6 +40,7 @@ export class CheckoutController {
     constructor(
         private readonly checkoutService: CheckoutService,
         private readonly voucherService: VoucherService,
+        private readonly analyticsService: AnalyticsService,
     ) {}
 
     @Get("offers")
@@ -127,7 +130,7 @@ export class CheckoutController {
 
             const email = fullSession.customer_details?.email;
             const items = fullSession.line_items!.data;
-            items.forEach((item) => {
+            items.forEach(async (item) => {
                 const productName = (item!.price!.product as Stripe.Product).name;
                 const priceId = item!.price!.id;
                 const ids = CHECKOUT_OFFERS.offers.flatMap((offer) => offer.items);
@@ -145,7 +148,7 @@ export class CheckoutController {
                 const price = item.amount_total / 100;
                 // reward user
                 Logger.log(`User with email ${email} purchased ${productName} for $${price}.`);
-                this.voucherService.createVoucher({
+                await this.voucherService.createVoucher({
                     email: email ?? "unknown",
                     checkoutId: session.id,
                     code: this.voucherService.generateCode(8),
@@ -153,6 +156,11 @@ export class CheckoutController {
                     betterBedrockContentOnly: priceOptions.betterBedrockContentOnly,
                     expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * priceOptions.expiresAt), // 30 days from now
                 });
+
+                await this.analyticsService.incrementAnalytics(
+                    AnalyticsNames.boughtVouchers,
+                    "general",
+                );
             });
         }
     }
