@@ -119,8 +119,8 @@ import {
 const configuration = new Configuration();
 const apiInstance = new DownloadApi(configuration);
 
-let hash: string; //Hash generated to go through the ads on linkvertise (default to undefined)
-let code: string; // (default to undefined)
+let hash: string; //Hash generated to go through the ads on linkvertise (optional) (default to undefined)
+let code: string; // (optional) (default to undefined)
 
 const { status, data } = await apiInstance.downloadControllerVerify(
     hash,
@@ -132,8 +132,8 @@ const { status, data } = await apiInstance.downloadControllerVerify(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **hash** | [**string**] | Hash generated to go through the ads on linkvertise | defaults to undefined|
-| **code** | [**string**] |  | defaults to undefined|
+| **hash** | [**string**] | Hash generated to go through the ads on linkvertise | (optional) defaults to undefined|
+| **code** | [**string**] |  | (optional) defaults to undefined|
 
 
 ### Return type
