@@ -2,6 +2,7 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 import { useCookies } from "react-cookie";
 import { AuthApi, Configuration } from "~/lib/api";
 import { useNotification } from "~/providers/notification";
+import { baseUrl } from "~/utils/url";
 
 interface AuthContextProps {
   authenticated: boolean;
@@ -24,7 +25,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const authenticate = async (token: string) => {
     try {
       const config = new Configuration({
-        basePath: import.meta.env.VITE_LOCAL_BACKEND_URL,
+        basePath: baseUrl,
         accessToken: token,
       });
 
