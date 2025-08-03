@@ -8,9 +8,9 @@ export class VerifyDownloadDto {
     @IsString()
     @Length(64, 64)
     @IsOptional()
-    hash: string;
+    hash?: string;
 
     @IsString()
     @IsOptional()
-    code: string;
+    code?: string;
 }
