@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsEnum } from "class-validator";
 import { DownloadsButtonType } from "src/download/dto/downloads-button.dto";
+import { DownloadsRichDescriptionDto } from "src/download/dto/downloads-rich-description.dto";
 
 export class DownloadsItemDto {
     title: string;
@@ -18,6 +19,8 @@ export class DownloadsItemDto {
 
     itemWeight: number;
     imageAssetUrl: string[];
+
+    richDescription?: DownloadsRichDescriptionDto[];
 
     tags?: string[];
     titleColor?: string;
