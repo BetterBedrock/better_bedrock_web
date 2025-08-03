@@ -9,7 +9,6 @@ interface LabelProps extends HTMLAttributes<HTMLDivElement> {
   minHeight?: string;
   type?: "green" | "white" | "dark";
   className?: string;
-  extraClassName?: string;
 }
 
 export const Label = ({
@@ -19,17 +18,13 @@ export const Label = ({
   minHeight,
   type = "white",
   className,
-  extraClassName,
   ...props
 }: LabelProps) => (
   <div
-    outer-data-type={type}
-    className={clsx(styles.outer_div, className && className)}
+    className={clsx(styles.label, styles[type], className && className)}
     style={{ width: width, height: height, minHeight: minHeight }}
     {...props}
   >
-    <div inner-data-type={type} className={clsx(styles.inner_div, extraClassName && extraClassName)}>
-      {children}
-    </div>
+    {children}
   </div>
 );

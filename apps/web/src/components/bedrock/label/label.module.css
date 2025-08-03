@@ -1,42 +1,25 @@
-.outer_div {
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    overflow: visible;
-    padding-bottom: calc(var(--minecraftdepth) * 2);
-}
-
-.inner_div {
+.label {
+    position: relative;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
-    position: relative;
-
-    overflow: visible;
+    justify-content: start;
     align-items: center;
+    overflow: visible;
+    box-sizing: border-box;
+    min-height: calc(var(--minecraftdepth) * 2);
 }
 
-[inner-data-type="white"] {
+.white {
     background-color: rgb(230, 232, 235);
+    border-bottom: calc(var(--minecraftdepth) * 2) solid rgb(145, 145, 145);
 }
 
-[inner-data-type="green"] {
+.green {
     background-color: rgb(82, 165, 53);
-}
-
-[inner-data-type="dark"] {
-    background-color: #313233;
-}
-
-[outer-data-type="white"] {
-    background-color: rgb(145, 145, 145);
-}
-
-[outer-data-type="green"] {
     background-color: rgb(29, 77, 19);
 }
 
-[outer-data-type="dark"] {
+.dark {
+    background-color: #313233;
     background-color: #1e1e1f;
 }
