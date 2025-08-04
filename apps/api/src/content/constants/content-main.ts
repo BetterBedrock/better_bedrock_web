@@ -87,8 +87,11 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     imageAssetUrl: ["/static/images/logo2.png"],
                     richDescription: [
                         {
-                            name: "Before Images",
-                            images: ["/static/images/logo2.png", "/static/images/logo2.png"],
+                            name: "Effects",
+                            images: [
+                                "/static/images/extensions/waypoints1.png",
+                                "/static/images/extensions/waypoints2.png",
+                            ],
                         },
                     ],
                 },
@@ -104,6 +107,22 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     buttonType: "dark",
                     betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo2.png"],
+                    richDescription: [
+                        {
+                            name: "Before & After",
+                            images: [
+                                "/static/images/extensions/better_fogs3.png",
+                                "/static/images/extensions/better_fogs1.png",
+                            ],
+                        },
+                        {
+                            name: "subpacks: Default & Clean lava",
+                            images: [
+                                "/static/images/extensions/better_fogs2.png",
+                                "/static/images/extensions/better_fogs4.png",
+                            ],
+                        },
+                    ],
                 },
                 {
                     title: "Dark UI v1.1",
@@ -116,6 +135,29 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     buttonType: "dark",
                     betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo2.png"],
+                    richDescription: [
+                        {
+                            name: "Start Screen",
+                            images: [
+                                "/static/images/extensions/dark_ui1.png",
+                                "/static/images/extensions/dark_ui4.png",
+                            ],
+                        },
+                        {
+                            name: "Pause Screen",
+                            images: [
+                                "/static/images/extensions/dark_ui2.png",
+                                "/static/images/extensions/dark_ui5.png",
+                            ],
+                        },
+                        {
+                            name: "Mod Menu",
+                            images: [
+                                "/static/images/extensions/dark_ui3.png",
+                                "/static/images/extensions/dark_ui6.png",
+                            ],
+                        },
+                    ],
                 },
                 {
                     title: "Clean Water v1.0",
@@ -128,6 +170,15 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     buttonType: "dark",
                     betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo2.png"],
+                    richDescription: [
+                        {
+                            name: "Before & After",
+                            images: [
+                                "/static/images/extensions/clean_water1.png",
+                                "/static/images/extensions/clean_water2.png",
+                            ],
+                        },
+                    ],
                 },
                 {
                     title: "Dark Mode v1.2",
@@ -140,6 +191,29 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     buttonType: "dark",
                     betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo3.png"],
+                    richDescription: [
+                        {
+                            name: "Settings Screen",
+                            images: [
+                                "/static/images/extensions/dark_mode1.png",
+                                "/static/images/extensions/dark_mode4.png",
+                            ],
+                        },
+                        {
+                            name: "Chest Screen",
+                            images: [
+                                "/static/images/extensions/dark_mode2.png",
+                                "/static/images/extensions/dark_mode5.png",
+                            ],
+                        },
+                        {
+                            name: "Inventory Screen",
+                            images: [
+                                "/static/images/extensions/dark_mode3.png",
+                                "/static/images/extensions/dark_mode6.png",
+                            ],
+                        },
+                    ],
                 },
                 {
                     title: "Particle Limiter v2.2",
@@ -153,6 +227,16 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     buttonType: "dark",
                     betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo3.png"],
+                    richDescription: [
+                        {
+                            name: "All, Minimal, Disabled",
+                            images: [
+                                "/static/images/extensions/particle_limiter1.png",
+                                "/static/images/extensions/particle_limiter2.png",
+                                "/static/images/extensions/particle_limiter3.png",
+                            ],
+                        },
+                    ],
                 },
                 {
                     title: "Low Fire v1.1",
@@ -165,6 +249,15 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     buttonType: "dark",
                     betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo3.png"],
+                    richDescription: [
+                        {
+                            name: "Before & After",
+                            images: [
+                                "/static/images/extensions/low_fire1.png",
+                                "/static/images/extensions/low_fire2.png",
+                            ],
+                        },
+                    ],
                 },
                 {
                     title: "Full Grass v1.1",
@@ -177,6 +270,15 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     buttonType: "dark",
                     betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo3.png"],
+                    richDescription: [
+                        {
+                            name: "Before & After",
+                            images: [
+                                "/static/images/extensions/full_grass1.png",
+                                "/static/images/extensions/full_grass2.png",
+                            ],
+                        },
+                    ],
                 },
                 {
                     title: "Clean Glass v1.1",
@@ -190,6 +292,15 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     buttonType: "dark",
                     betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo3.png"],
+                    richDescription: [
+                        {
+                            name: "Before & After",
+                            images: [
+                                "/static/images/extensions/clean_glass1.png",
+                                "/static/images/extensions/clean_glass2.png",
+                            ],
+                        },
+                    ],
                 },
             ],
         },

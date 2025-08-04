@@ -44,7 +44,7 @@ export const Hero = () => {
           type="h1"
           textAlign="center"
           color="white"
-          font="Minecraft"
+          font="MinecraftTen"
         />
         <BedrockText
           text={`${download.description ? download.description + " By " : ""}@${download.creator}`}
@@ -64,11 +64,13 @@ export const Hero = () => {
         </Button>
       </div>
 
-      <Gallery
-        images={download.imageAssetUrl.map((image) => `${baseUrl}${image}`)}
-        show={true}
-        fullscreen={false}
-      />
+      {download.richDescription?.length === undefined && (
+        <Gallery
+          images={download.imageAssetUrl.map((image) => `${baseUrl}${image}`)}
+          show={true}
+          fullscreen={false}
+        />
+      )}
 
       {download.richDescription?.map((description) => (
         <div>
@@ -76,7 +78,7 @@ export const Hero = () => {
             type="h1"
             text={description.name}
             color="white"
-            font="Minecraft"
+            font="MinecraftTen"
             extraClassName={styles.description}
           />
           <Gallery

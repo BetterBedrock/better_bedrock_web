@@ -12,6 +12,7 @@ interface DownloadMethodCardProp {
   lockClicking?: boolean;
   height?: string;
   onClick?: () => Promise<void>;
+  color?: string;
 }
 
 export const DownloadMethodCard = ({
@@ -19,6 +20,7 @@ export const DownloadMethodCard = ({
   title,
   price,
   buttonType = "white",
+  color = "black",
   playSound = true,
   lockClicking,
   height = "auto",
@@ -40,10 +42,10 @@ export const DownloadMethodCard = ({
           font="MinecraftTen"
           textAlign="left"
           extraClassName={styles.price}
-          color={buttonType === "white" ? "black" : "white"}
+          color={color}
         />
         <div className={styles.download_card_description}>
-          <BedrockText text={title ?? ""} type={"p"} textAlign="left" />
+          <BedrockText text={title ?? ""} type={"p"} textAlign="left" color={color}/>
         </div>
       </div>
     </Button>

@@ -19,7 +19,13 @@ import DarkUncheckedHover from "~/assets/ui/buttons/dark/unchecked_hover.png";
 import DarkChecked from "~/assets/ui/buttons/dark/checked.png";
 import DarkCheckedHover from "~/assets/ui/buttons/dark/checked_hover.png";
 
-export type ButtonType = "green" | "white" | "dark";
+
+import GoldUnchecked from "~/assets/ui/buttons/gold/unchecked.png";
+import GoldUncheckedHover from "~/assets/ui/buttons/gold/unchecked_hover.png";
+import GoldChecked from "~/assets/ui/buttons/gold/checked.png";
+import GoldCheckedHover from "~/assets/ui/buttons/gold/checked_hover.png";
+
+export type ButtonType = "green" | "white" | "dark" | "gold";
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
@@ -115,6 +121,12 @@ export const Button = ({
   // Select images based on button type
   let unchecked, uncheckedHover, checked, checkedHover;
   switch (type) {
+    case "gold":
+      unchecked = GoldUnchecked;
+      uncheckedHover = GoldUncheckedHover;
+      checked = GoldChecked;
+      checkedHover = GoldCheckedHover;
+      break;
     case "green":
       unchecked = GreenUnchecked;
       uncheckedHover = GreenUncheckedHover;

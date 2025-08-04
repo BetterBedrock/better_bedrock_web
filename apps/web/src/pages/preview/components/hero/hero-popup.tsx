@@ -191,6 +191,7 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
             <DownloadMethodCard
               key={index}
               buttonType={"green"}
+              color="white"
               price={`${item.priceOption.price}$`}
               label={item.priceOption.label}
               title={`${item.priceOption.title} (Recommended, monthly)`}
@@ -215,7 +216,7 @@ export const HeroPopup = ({ onClose, downloadItem }: HeroPopupProps) => {
               ?.items.map((item, index) => (
                 <DownloadMethodCard
                   key={index}
-                  buttonType={item.priceOption.featured ? "green" : "white"} // instead of green make it gold - use latest 9slice buttons 
+                  buttonType={item.priceOption.featured ? "gold" : "white"} // instead of green make it gold - use latest 9slice buttons 
                   price={`${item.priceOption.price}$`}
                   label={item.priceOption.label}
                   title={item.priceOption.title}

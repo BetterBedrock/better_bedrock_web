@@ -2,7 +2,6 @@ import { useState } from "react";
 import { MainActions, MainArchiveButton, MainItemsList, styles } from ".";
 import { useContent } from "~/providers/content";
 import { Heading } from "~/pages/downloads/components/heading";
-import { Tabs } from "~/pages/downloads/components/tabs";
 import { useNavigate, useParams } from "react-router-dom";
 import { Routes } from "~/utils/routes";
 
@@ -44,8 +43,6 @@ export const Main = () => {
             setActiveTab={handleSetActiveTab}
           />
         )}
-
-        <Tabs activeTab={category!} setActiveTab={handleSetActiveTab} />
       </div>
     </>
   );

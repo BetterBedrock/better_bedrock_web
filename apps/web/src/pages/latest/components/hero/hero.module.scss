@@ -6,6 +6,10 @@
   flex-direction: column;
 }
 
+.wrapper .subSection {
+  width: 100%;
+}
+
 .wrapper .subSection > p {
   padding-bottom: 1rem;
 }
