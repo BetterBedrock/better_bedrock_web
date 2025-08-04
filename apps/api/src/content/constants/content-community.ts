@@ -34,18 +34,18 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
             buttons: [
                 {
                     type: "green",
-                    text: "Submit YOUR texturepack",
+                    text: "Submit YOUR theme/config",
                     notification: {
-                        title: "Texturepack submission",
+                        title: "Theme/config submission",
                         description:
-                            "Please submit your texturepack on our Discord server on #submissions",
+                            "Please submit your texturepack on our Discord server on #tickets",
                         type: "info",
                     },
                 },
                 {
                     type: "white",
                     text: "Watch theme creation tutorial",
-                    link: "https://updateitlater.com",
+                    link: "https://youtu.be/GRQahMrdEoY",
                 },
             ],
             items: [

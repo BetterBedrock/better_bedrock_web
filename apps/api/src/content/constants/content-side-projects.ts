@@ -20,7 +20,7 @@ export const SIDE_PROJECTS_LIST: DownloadsCategoryDto = {
                     notification: {
                         title: "Side project submission",
                         description:
-                            "Please submit your side project to our Discord server on #submissions.",
+                            "Please submit your side project to our Discord server on #tickets.",
                         type: "info",
                     },
                 },
