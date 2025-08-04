@@ -1,6 +1,28 @@
 import { DownloadsCategoryDto } from "src/download/dto/downloads-category.dto";
 
-// todo: update theme files on server
+export const COMMUNITY_DOWNLOADS_IDS = {
+    blueUI: "blue_ui.mcpack",
+    redUITheme: "red_ui.mcpack",
+    cherryTheme: "cherry_theme.mcpack",
+    lightDarkTheme: "light_dark_theme.mcpack",
+    highContrastTheme: "high_contrast_theme.mcpack",
+    purpleTheme: "purple_theme.mcpack",
+    amoledDarkUI: "amoled_dark_ui.mcpack",
+    classicBlue: "classic_blue.mcpack",
+    montezusTheme: "montezu_s_theme.mcpack",
+    copperOrange: "copper_orange.mcpack",
+    oxidizedOrange: "oxidized_copper.mcpack",
+    futuristicUI: "futuristic_ui.mcpack",
+    wc5Ui: "5wc_ui.mcpack",
+
+    blueUIv2: "blue_ui_v2.mcpack",
+    cherryThemev2: "cherry_theme_v2.mcpack",
+    highContrastThemev2: "high_contrast_theme_v2.mcpack",
+    lightDarkThemev2: "light_dark_theme_v2.mcpack",
+    purpleThemev2: "purple_theme_v2.mcpack",
+    redUIThemev2: "red_ui_v2.mcpack",
+};
+
 export const COMMUNITY_LIST: DownloadsCategoryDto = {
     id: "community",
     name: "Community",
@@ -38,7 +60,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v8/blue_ui/4.png",
                         "/static/images/themes/v8/blue_ui/5.png",
                     ],
-                    downloadId: "blue_ui_v2.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.blueUIv2,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -53,7 +75,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v8/cherry_theme/4.png",
                         "/static/images/themes/v8/cherry_theme/5.png",
                     ],
-                    downloadId: "cherry_ui_v2.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.cherryThemev2,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -68,7 +90,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v8/high_contrast/4.png",
                         "/static/images/themes/v8/high_contrast/5.png",
                     ],
-                    downloadId: "high_contrast_v2.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.highContrastThemev2,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -83,7 +105,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v8/light_dark_ui/4.png",
                         "/static/images/themes/v8/light_dark_ui/5.png",
                     ],
-                    downloadId: "light_dark_ui_v2.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.lightDarkThemev2,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -98,7 +120,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v8/purple_theme/4.png",
                         "/static/images/themes/v8/purple_theme/5.png",
                     ],
-                    downloadId: "purple_theme_v2.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.purpleThemev2,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -113,7 +135,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v8/red_ui/4.png",
                         "/static/images/themes/v8/red_ui/5.png",
                     ],
-                    downloadId: "red_ui_v2.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.redUIThemev2,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -128,7 +150,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v7-4/blue_ui/4.png",
                         "/static/images/themes/v7-4/blue_ui/5.png",
                     ],
-                    downloadId: "blue_ui.mcpack",
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.blueUI,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -143,7 +165,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v7-4/red_ui/4.png",
                         "/static/images/themes/v7-4/red_ui/5.png",
                     ],
-                    downloadId: "red_ui.mcpack",
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.redUITheme,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -158,7 +180,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v7-4/cherry_theme/4.png",
                         "/static/images/themes/v7-4/cherry_theme/5.png",
                     ],
-                    downloadId: "cherry_ui.mcpack",
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.cherryTheme,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -173,7 +195,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v7-4/light_dark_ui/4.png",
                         "/static/images/themes/v7-4/light_dark_ui/5.png",
                     ],
-                    downloadId: "light_dark_ui.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.lightDarkTheme,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -188,7 +210,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v7-4/high_contrast/4.png",
                         "/static/images/themes/v7-4/high_contrast/5.png",
                     ],
-                    downloadId: "high_contrast.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.highContrastTheme,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -203,7 +225,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v7-4/purple_theme/4.png",
                         "/static/images/themes/v7-4/purple_theme/5.png",
                     ],
-                    downloadId: "purple_theme.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.purpleTheme,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -218,7 +240,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v7-4/amoled_dark_ui/4.png",
                         "/static/images/themes/v7-4/amoled_dark_ui/5.png",
                     ],
-                    downloadId: "amoled_dark_ui.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.amoledDarkUI,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -233,7 +255,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v7-4/classic_blue/4.png",
                         "/static/images/themes/v7-4/classic_blue/5.png",
                     ],
-                    downloadId: "classic_blue.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.classicBlue,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -248,7 +270,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v7-4/montezu_s_theme/4.png",
                         "/static/images/themes/v7-4/montezu_s_theme/5.png",
                     ],
-                    downloadId: "montezu_s_theme.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.montezusTheme,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -263,7 +285,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v7-4/copper_orange/4.png",
                         "/static/images/themes/v7-4/copper_orange/5.png",
                     ],
-                    downloadId: "copper_orange.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.copperOrange,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -278,7 +300,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v7-4/oxidized_copper/4.png",
                         "/static/images/themes/v7-4/oxidized_copper/5.png",
                     ],
-                    downloadId: "oxidized_copper.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.oxidizedOrange,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -293,7 +315,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v7-4/futuristic_ui/4.png",
                         "/static/images/themes/v7-4/futuristic_ui/5.png",
                     ],
-                    downloadId: "futuristic_ui.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.futuristicUI,
                     buttonType: "white",
                     itemWeight: 0,
                 },
@@ -308,7 +330,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                         "/static/images/themes/v7-4/5wc/4.png",
                         "/static/images/themes/v7-4/5wc/5.png",
                     ],
-                    downloadId: "5wc_ui.mcpack", // update
+                    downloadId: COMMUNITY_DOWNLOADS_IDS.wc5Ui,
                     buttonType: "white",
                     itemWeight: 0,
                 },
