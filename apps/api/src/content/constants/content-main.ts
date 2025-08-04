@@ -34,7 +34,7 @@ export const DOWNLOADS_IDS = {
     murderDetectorV30: "murder_detector_v3.0.mcpack",
     murderDetectorV20: "murder_detector_v2.0.mcpack",
 
-    customSkyOverlayV1: "file_name.mcpack", //todo
+    customSkyOverlayV1: "custom_sky_overlay.mcpack", //todo: add file on server
 
     betterBedrockBetterFogs: "better_bedrock_better_fogs.mcpack",
     betterBedrockCleanGlass: "better_bedrock_clean_glass.mcpack",
