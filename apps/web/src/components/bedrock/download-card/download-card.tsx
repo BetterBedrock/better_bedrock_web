@@ -15,6 +15,7 @@ interface DownloadCardProp {
   onClick?: () => Promise<void>;
   tags?: string[];
   titleColor?: string;
+  tagBgColor?: string;
 }
 
 const DownloadCard: React.FC<DownloadCardProp> = ({
@@ -29,6 +30,7 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
   onClick,
   tags,
   titleColor,
+  tagBgColor = "rgb(35, 35, 35)"
 }) => {
   return (
     <Button
@@ -68,7 +70,9 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
           {tags && tags.length > 0 && (
             <div className={styles.TagsContainer}>
               {tags.map((tag) => (
-                <p key={tag} className={styles.Tag}>
+                <p key={tag} className={styles.Tag} style={{
+                  backgroundColor: tagBgColor
+                }}>
                   {tag}
                 </p>
               ))}

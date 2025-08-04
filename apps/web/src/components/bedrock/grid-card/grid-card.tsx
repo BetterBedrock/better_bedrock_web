@@ -2,7 +2,7 @@ import React from "react";
 import { BedrockText } from "../bedrock-text/bedrock-text";
 
 import styles from "./grid-card.module.css";
-import tutorialThumbnail from "~/assets/images/tutorial_thumbnails/thumbnail-placeholder.png";
+import tutorialThumbnail from "~/assets/images/tutorial-thumbnail-placeholder.png";
 
 interface GridCardProps {
   title?: string,
@@ -11,9 +11,20 @@ interface GridCardProps {
   index?: string | number,
   useCustomThumbnail?: boolean,
   customThumbnailImageUrl?: string,
+  tags?: TagsTypes[]
 }
 
-export const GridCard: React.FC<GridCardProps> = ({ title, description, link = "https://www.youtube.com", index, useCustomThumbnail = false, customThumbnailImageUrl }) => {
+export type TagsTypes =  "All Devices" | "Mobile" | "PC" | "Console" | "PC/Console" | "Featured" | "Deprecated";
+
+export const GridCard: React.FC<GridCardProps> = ({
+  title,
+  description,
+  link = "https://www.youtube.com",
+  index,
+  useCustomThumbnail = false,
+  customThumbnailImageUrl,
+  tags
+}) => {
   return (
     <div className={styles.container}>
       {useCustomThumbnail && (
@@ -35,6 +46,43 @@ export const GridCard: React.FC<GridCardProps> = ({ title, description, link = "
                   color="white"
                   style={{ position: "absolute" }}
                 />
+                {tags && (
+                  <div className={styles.tagsWrapper}>
+                    <div className={styles.tagsContainer}>
+                      {tags.map(tag => {
+                        let textColor, bgColor
+
+                        switch (tag) {
+                          case "Featured":
+                            textColor = "black";
+                            bgColor = "rgb(255, 232, 102)"
+                            break;
+                          case "Deprecated":
+                            textColor = "black";
+                            // bgColor = "rgb(217, 54, 54)"
+                            bgColor = "rgb(255, 63, 63)"
+                            break;
+                          default:
+                            textColor = "black";
+                            // bgColor = "rgb(49, 50, 51)";
+                            bgColor = "rgb(140, 179, 255)"
+                        }
+
+                        return (
+                          < BedrockText
+                            text={tag}
+                            type={"p"}
+                            textAlign="left"
+                            color={textColor}
+                            style={{
+                              backgroundColor: bgColor
+                            }}
+                          />
+                        )
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>)}
           </div>
         </a>)}

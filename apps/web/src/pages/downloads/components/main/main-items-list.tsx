@@ -46,6 +46,7 @@ export const MainItemsList = ({ category, categoryId }: MainItemsList) => {
               buttonType={item.buttonType}
               iconPath={item.imageAssetUrl ? `${baseUrl}${item.imageAssetUrl}` : logo}
               tags={item.tags}
+              tagBgColor={item.tagBgColor}
               titleColor={item.titleColor}
               onClick={async () => {
                 if (item.richDescription) {
@@ -65,7 +66,8 @@ export const MainItemsList = ({ category, categoryId }: MainItemsList) => {
             <GridDownloadCard
               key={item.downloadId}
               title={item.title}
-              downloadSize={`${item.itemWeight} MB`}
+              tags={item.tags}
+              // downloadSize={`${item.itemWeight} MB`}
               description={
                 <BedrockText text={`@${item.creator}`} type={"p"} textAlign="left" color="white" />
               }

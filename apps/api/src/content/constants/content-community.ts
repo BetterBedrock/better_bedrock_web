@@ -52,7 +52,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                 {
                     title: "Blue UI v2",
                     creator: "ayaanthe0ne",
-                    description: "A blue-themed UI for Better Bedrock.",
+                    description: "Blue Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v8/blue_ui/1.png",
                         "/static/images/themes/v8/blue_ui/2.png",
@@ -63,11 +63,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.blueUIv2,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v8.0"],
                 },
                 {
                     title: "Cherry Theme v2",
                     creator: "notmadann",
-                    description: "A cherry-themed UI for Better Bedrock.",
+                    description: "Cherry Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v8/cherry_theme/1.png",
                         "/static/images/themes/v8/cherry_theme/2.png",
@@ -78,11 +79,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.cherryThemev2,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v8.0"],
                 },
                 {
                     title: "High Contrast v2",
                     creator: "jarvis0002",
-                    description: "A high-contrast UI for Better Bedrock.",
+                    description: "High Contrast Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v8/high_contrast/1.png",
                         "/static/images/themes/v8/high_contrast/2.png",
@@ -93,11 +95,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.highContrastThemev2,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v8.0"],
                 },
                 {
                     title: "Light Dark UI v2",
                     creator: "profox3333",
-                    description: "A light-dark UI for Better Bedrock.",
+                    description: "Light Dark Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v8/light_dark_ui/1.png",
                         "/static/images/themes/v8/light_dark_ui/2.png",
@@ -108,11 +111,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.lightDarkThemev2,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v8.0"],
                 },
                 {
                     title: "Purple Theme v2",
                     creator: "profox3333",
-                    description: "A purple-theme UI for Better Bedrock.",
+                    description: "Purple Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v8/purple_theme/1.png",
                         "/static/images/themes/v8/purple_theme/2.png",
@@ -123,11 +127,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.purpleThemev2,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v8.0"],
                 },
                 {
                     title: "Red UI v2",
                     creator: "unknown",
-                    description: "A red-themed UI for Better Bedrock.",
+                    description: "Red Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v8/red_ui/1.png",
                         "/static/images/themes/v8/red_ui/2.png",
@@ -138,11 +143,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.redUIThemev2,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v8.0"],
                 },
                 {
                     title: "Blue UI",
                     creator: "ayaanthe0ne",
-                    description: "A blue-themed UI for Better Bedrock.",
+                    description: "Blue Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v7-4/blue_ui/1.png",
                         "/static/images/themes/v7-4/blue_ui/2.png",
@@ -153,11 +159,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.blueUI,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v7.0 - v7.4"],
                 },
                 {
                     title: "Red UI",
                     creator: "unknown",
-                    description: "A red-themed UI for Better Bedrock.",
+                    description: "Red Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v7-4/red_ui/1.png",
                         "/static/images/themes/v7-4/red_ui/2.png",
@@ -168,11 +175,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.redUITheme,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v7.0 - v7.4"],
                 },
                 {
                     title: "Cherry Theme",
                     creator: "notmadann",
-                    description: "A cherry-themed UI for Better Bedrock.",
+                    description: "Cherry Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v7-4/cherry_theme/1.png",
                         "/static/images/themes/v7-4/cherry_theme/2.png",
@@ -183,11 +191,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.cherryTheme,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v7.0 - v7.4"],
                 },
                 {
                     title: "Light Dark UI",
                     creator: "profox3333",
-                    description: "A light-dark UI for Better Bedrock.",
+                    description: "Light Dark for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v7-4/light_dark_ui/1.png",
                         "/static/images/themes/v7-4/light_dark_ui/2.png",
@@ -198,11 +207,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.lightDarkTheme,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v7.0 - v7.4"],
                 },
                 {
                     title: "High Contrast",
                     creator: "jarvis0002",
-                    description: "A high-contrast UI for Better Bedrock.",
+                    description: "High Contrast Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v7-4/high_contrast/1.png",
                         "/static/images/themes/v7-4/high_contrast/2.png",
@@ -213,11 +223,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.highContrastTheme,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v7.0 - v7.4"],
                 },
                 {
                     title: "Purple Theme",
                     creator: "profox3333",
-                    description: "A purple-theme UI for Better Bedrock.",
+                    description: "Purple Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v7-4/purple_theme/1.png",
                         "/static/images/themes/v7-4/purple_theme/2.png",
@@ -228,11 +239,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.purpleTheme,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v7.0 - v7.4"],
                 },
                 {
                     title: "Amoled Dark UI",
                     creator: "vigilante_katsu_xx",
-                    description: "A amoled-dark UI for Better Bedrock.",
+                    description: "Amoled Dark Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v7-4/amoled_dark_ui/1.png",
                         "/static/images/themes/v7-4/amoled_dark_ui/2.png",
@@ -243,11 +255,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.amoledDarkUI,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v7.0 - v7.4"],
                 },
                 {
                     title: "Classic Blue",
                     creator: "unknown",
-                    description: "A classic-blue UI for Better Bedrock.",
+                    description: "Classic Blue Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v7-4/classic_blue/1.png",
                         "/static/images/themes/v7-4/classic_blue/2.png",
@@ -258,11 +271,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.classicBlue,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v7.0 - v7.4"],
                 },
                 {
                     title: "Montezu's Theme",
                     creator: "montezu_22",
-                    description: "A UI for Better Bedrock.",
+                    description: "Yellow-Red Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v7-4/montezu_s_theme/1.png",
                         "/static/images/themes/v7-4/montezu_s_theme/2.png",
@@ -273,11 +287,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.montezusTheme,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v7.0 - v7.4"],
                 },
                 {
                     title: "Copper Orange",
                     creator: "notmadann",
-                    description: "A copper-orange UI for Better Bedrock.",
+                    description: "Copper Orange Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v7-4/copper_orange/1.png",
                         "/static/images/themes/v7-4/copper_orange/2.png",
@@ -288,11 +303,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.copperOrange,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v7.0 - v7.4"],
                 },
                 {
                     title: "Oxidized Copper",
                     creator: "notmadann",
-                    description: "A oxidized-copper UI for Better Bedrock.",
+                    description: "Oxidized Copper Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v7-4/oxidized_copper/1.png",
                         "/static/images/themes/v7-4/oxidized_copper/2.png",
@@ -303,11 +319,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.oxidizedOrange,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v7.0 - v7.4"],
                 },
                 {
                     title: "Futuristic UI",
                     creator: "onlyrmoura",
-                    description: "A Futuristic UI for Better Bedrock.",
+                    description: "Futuristic Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v7-4/futuristic_ui/1.png",
                         "/static/images/themes/v7-4/futuristic_ui/2.png",
@@ -318,11 +335,12 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.futuristicUI,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v7.0 - v7.4"],
                 },
                 {
                     title: "5WC",
                     creator: "onlyrmoura",
-                    description: "A 5WC for Better Bedrock.",
+                    description: "5WC Theme for Better Bedrock.",
                     imageAssetUrl: [
                         "/static/images/themes/v7-4/5wc/1.png",
                         "/static/images/themes/v7-4/5wc/2.png",
@@ -333,6 +351,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     downloadId: COMMUNITY_DOWNLOADS_IDS.wc5Ui,
                     buttonType: "white",
                     itemWeight: 0,
+                    tags: ["v7.0 - v7.4"],
                 },
             ],
         },

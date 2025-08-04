@@ -25,4 +25,5 @@ export class DownloadsItemDto {
     tags?: string[];
     titleColor?: string;
     betterBedrockContent?: boolean;
+    tagBgColor?: string;
 }

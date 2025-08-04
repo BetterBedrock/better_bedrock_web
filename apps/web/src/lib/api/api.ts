@@ -317,6 +317,7 @@ export interface DownloadsDto {
  * @interface DownloadsItemDto
  */
 export interface DownloadsItemDto {
+    tagBgColor: string | undefined;
     /**
      * 
      * @type {DownloadsButtonType}
