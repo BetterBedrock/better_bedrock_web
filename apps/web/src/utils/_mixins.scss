@@ -7,7 +7,6 @@
   background-size: cover;
 }
 
-
 @mixin section-padding($sides: null, $padding: g.$sectionsPadding) {
   @if $sides {
     @if meta.type-of($sides) == "list" {
@@ -18,4 +17,20 @@
       padding-#{$sides}: $padding;
     }
   }
+}
+
+@mixin no-select() {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+@mixin no-drag() {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }

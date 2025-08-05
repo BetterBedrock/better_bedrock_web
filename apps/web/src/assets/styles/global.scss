@@ -11,34 +11,12 @@
   box-sizing: border-box;
 }
 
-:root {
-  --minecraftdepth: 2.5px;
-  --sectionsPadding: 10rem;
-
-  /* Minecraft Colors */
-  --black: rgb(30, 30, 30);
-  --grey: rgb(70, 70, 70);
-  --white: rgb(230, 232, 235);
-  --dirty-white: rgb(200, 200, 200);
-  --bedrock-simple-button-click-on-focus-visible: rgb(170, 170, 170);
-  --bedrock-simple-button-click: rgb(207, 208, 212);
-  --slider-active: rgb(60, 133, 39);
-  --selection-color: rgba(60, 133, 39, 1);
-  --caret-color: rgba(85, 139, 65, 1);
-  --background-color: rgb(14, 14, 14);
-
-  --padding-small: 2.5px;
-  --padding-medium: 5px;
-  --padding-large: 7.5px;
-  --padding-xlarge: 10px;
-}
-
 ::selection,
 ::-moz-selection,
 ::-o-selection,
 ::-ms-selection,
 ::-webkit-selection {
-  background: var(--selection-color);
+  background: $color-selection;
   color: #fff;
 }
 
@@ -61,7 +39,7 @@ input::-webkit-inner-spin-button {
 
 input[type="number"] {
   appearance: textfield;
-  -moz-appearance: textfield; /* Firefox */
+  -moz-appearance: textfield;
 }
 
 @font-face {
@@ -115,7 +93,7 @@ section {
 }
 
 a {
-  color: var(--selection-color);
+  color: $color-selection;
 }
 
 p,
@@ -192,20 +170,4 @@ h1 {
     font-size: 1.75rem;
     line-height: 2rem;
   }
-}
-
-.noSelect {
-  user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -o-user-select: none;
-}
-
-.noDrag {
-  -webkit-user-drag: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
 }
