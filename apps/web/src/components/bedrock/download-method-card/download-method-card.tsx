@@ -1,6 +1,5 @@
-import React from "react";
 import { BedrockText } from "../bedrock-text/bedrock-text";
-import styles from "./download-method-card.module.css";
+import { styles } from ".";
 import { ButtonType, Button } from "~/components/bedrock/button";
 
 interface DownloadMethodCardProp {
@@ -16,7 +15,6 @@ interface DownloadMethodCardProp {
 }
 
 export const DownloadMethodCard = ({
-  // label,
   title,
   price,
   buttonType = "white",
@@ -35,7 +33,7 @@ export const DownloadMethodCard = ({
       playSound={playSound}
       onClick={onClick}
     >
-      <div className={styles.download_card_content}>
+      <div className={styles.content}>
         <BedrockText
           text={price ?? ""}
           type={"h1"}
@@ -44,8 +42,8 @@ export const DownloadMethodCard = ({
           extraClassName={styles.price}
           color={color}
         />
-        <div className={styles.download_card_description}>
-          <BedrockText text={title ?? ""} type={"p"} textAlign="left" color={color}/>
+        <div className={styles.description}>
+          <BedrockText text={title ?? ""} type="p" textAlign="left" color={color} />
         </div>
       </div>
     </Button>
