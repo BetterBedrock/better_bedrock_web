@@ -1,19 +1,26 @@
 import React from "react";
 import { BedrockText } from "../bedrock-text/bedrock-text";
 
-import styles from "./grid-card.module.css";
+import { styles } from ".";
 import tutorialThumbnail from "~/assets/images/tutorial_thumbnails/thumbnail-placeholder.png";
 
 interface GridCardProps {
-  title?: string,
-  description?: string
-  link?: string,
-  index?: string | number,
-  useCustomThumbnail?: boolean,
-  customThumbnailImageUrl?: string,
+  title?: string;
+  description?: string;
+  link?: string;
+  index?: string | number;
+  useCustomThumbnail?: boolean;
+  customThumbnailImageUrl?: string;
 }
 
-export const GridCard: React.FC<GridCardProps> = ({ title, description, link = "https://www.youtube.com", index, useCustomThumbnail = false, customThumbnailImageUrl }) => {
+export const GridCard: React.FC<GridCardProps> = ({
+  title,
+  description,
+  link = "https://www.youtube.com",
+  index,
+  useCustomThumbnail = false,
+  customThumbnailImageUrl,
+}) => {
   return (
     <div className={styles.container}>
       {useCustomThumbnail && (
@@ -27,7 +34,7 @@ export const GridCard: React.FC<GridCardProps> = ({ title, description, link = "
             <img src={tutorialThumbnail} alt="" />
             {index && (
               <div className={styles.imgWrapper}>
-                < BedrockText
+                <BedrockText
                   text={(index && `#${index}`) || ""}
                   type={"h1"}
                   font="MinecraftTen"
@@ -35,23 +42,20 @@ export const GridCard: React.FC<GridCardProps> = ({ title, description, link = "
                   color="white"
                   style={{ position: "absolute" }}
                 />
-              </div>)}
+              </div>
+            )}
           </div>
-        </a>)}
+        </a>
+      )}
       <div className={styles.texts}>
-        < BedrockText
+        <BedrockText
           text={title || ""}
           type={"h2"}
           font="MinecraftTen"
           textAlign="left"
           color="white"
         />
-        <BedrockText
-          text={description ?? ""}
-          type={"p"}
-          textAlign="left"
-          color="white"
-        />
+        <BedrockText text={description ?? ""} type={"p"} textAlign="left" color="white" />
       </div>
     </div>
   );

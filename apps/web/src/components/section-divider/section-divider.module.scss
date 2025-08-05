@@ -1,3 +1,5 @@
+@use "~/utils" as g;
+
 .wrapper {
     -webkit-mask-image: linear-gradient(to bottom, transparent 5%, black 33%, black 67%, transparent 95%);
     mask-image: linear-gradient(to bottom, transparent 5%, black 33%, black 67%, transparent 95%);
@@ -8,6 +10,9 @@
 }
 
 .block {
+    @include g.no-select();
+    @include g.no-drag();
+    
     flex-shrink: 0;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;

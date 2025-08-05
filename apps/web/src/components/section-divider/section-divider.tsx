@@ -174,7 +174,7 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
                   width: blockSize,
                   height: blockSize,
                 }}
-                className={clsx(styles.block, "noDrag", "noSelect")}
+                className={clsx(styles.block)}
               />
             ) : null,
           )}

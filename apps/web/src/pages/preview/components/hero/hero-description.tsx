@@ -1,9 +1,17 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
+import { DownloadsItemDto } from "~/lib/api";
+import { styles } from ".";
 
-export const HeroDescription = () => (
+interface HeroDescriptionProps {
+  download: DownloadsItemDto;
+}
+
+export const HeroDescription = ({ download }: HeroDescriptionProps) => (
   <BedrockText
+    text={`${download.description ? download.description + " By " : ""}@${download.creator}`}
+    extraClassName={styles.description}
     type="p"
+    textAlign="center"
     color="white"
-    text="This path is invalid. Click the buttons below to navigate to the correct paths."
   />
 );

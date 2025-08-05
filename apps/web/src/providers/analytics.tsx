@@ -33,7 +33,6 @@ export const AnalyticsProvider = ({ children }: AnalyticsProvider) => {
     try {
       const { data } = await analyticsApi.analyticsControllerAnalytics();
 
-      console.log({ analyticsData: data });
       setAnalytics(data);
     } catch (err) {
       throwError(err, "Failed to fetch analytics");

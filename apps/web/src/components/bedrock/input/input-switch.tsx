@@ -47,7 +47,7 @@ export const InputSwitch = ({ checked, onChange, className, ...props }: InputSwi
       {...props}
     >
       <img
-        className={clsx("noDrag", "noSelect", styles.image)}
+        className={clsx(styles.image)}
         src={hovering}
         height="100%"
         width="100%"

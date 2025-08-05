@@ -12,6 +12,7 @@ import {
     NotFoundException,
     BadRequestException,
     ForbiddenException,
+    GoneException,
 } from "@nestjs/common";
 import { CheckoutService } from "src/checkout/checkout.service";
 import { ActivateVoucherDto } from "src/checkout/dto/activate-voucher.dto";
@@ -33,6 +34,7 @@ import { CheckoutOffersDto } from "src/checkout/dto/checkout-offers.dto";
 import { VoucherDto } from "src/voucher/dto/voucher.dto";
 import { AnalyticsService } from "src/analytics/analytics.service";
 import { AnalyticsNames } from "src/analytics/constants/analytics-names";
+import dayjs from "dayjs";
 
 @ApiTags("checkout")
 @Controller("checkout")
@@ -99,6 +101,14 @@ export class CheckoutController {
 
             if (voucher.blocked) {
                 throw new ForbiddenException("Voucher is blocked");
+            }
+
+            if (dayjs(voucher.expiresAt).isBefore(new Date())) {
+                throw new GoneException("Voucher has expired");
+            }
+
+            if (voucher.maxDownloads <= voucher.downloadCount) {
+                throw new GoneException("Voucher has been used");
             }
 
             voucher.email = obscureEmail(voucher.email);

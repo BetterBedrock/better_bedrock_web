@@ -27,8 +27,6 @@ interface BarChartProps {
 }
 
 export const BarChart = ({ data }: BarChartProps) => {
-  console.log({ bar: data });
-
   if (data.categories.length < 1) {
     return;
   }
@@ -80,13 +78,6 @@ export const BarChart = ({ data }: BarChartProps) => {
           </div>
         ))}
       </div>
-      {/* <div className={styles.label}>
-        {convertedData.map((piece) => (
-          <div className={styles.piece}>
-            <BedrockText text={piece.name} type="p" color="black" extraClassName={styles.text} />
-          </div>
-        ))}
-      </div> */}
     </div>
   );
 };

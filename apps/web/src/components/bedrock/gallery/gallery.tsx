@@ -94,12 +94,7 @@ export const Gallery = ({ images, fullscreen, show, onClose }: GalleryProps) => 
               onClick={() => {
                 setSelecteedImage(originalImageGlobalIndex);
               }}
-              // --- KEY CHANGE IS HERE ---
-              // Use the image source itself as the key, assuming URLs are unique.
-              // This allows React to recognize existing image elements even when their position changes.
               key={imageSrc}
-              // If imageSrc might not be unique, you'd ideally have an array of objects
-              // with a unique ID for each image, e.g., key={image.id}
             >
               <img src={imageSrc} alt={`Gallery image ${originalImageGlobalIndex + 1}`} />
               <p className={clsx(styles.imageIndex)}>{' '}{originalImageGlobalIndex + 1}.</p> {/* Display index */}

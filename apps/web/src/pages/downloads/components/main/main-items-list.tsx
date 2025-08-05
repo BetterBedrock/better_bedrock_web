@@ -4,7 +4,6 @@ import logo from "~/assets/images/favicon.png";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "~/utils/routes";
 import { baseUrl } from "~/utils/url";
-import { HeroPopup } from "~/pages/preview/components/hero/hero-popup";
 import { useState } from "react";
 import { DownloadsItemDto, DownloadsListDto } from "~/lib/api";
 import { useContent } from "~/providers/content";
@@ -12,6 +11,7 @@ import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-d
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { Button } from "~/components/bedrock/button";
+import { PreviewPopup } from "~/pages/preview/components/hero/preview-popup";
 
 const calcItemWeight = (itemWeight: number) => {
   return itemWeight <= 0.1 ? "<0.0" : itemWeight.toFixed(1);
@@ -34,7 +34,7 @@ export const MainItemsList = ({ category, categoryId }: MainItemsList) => {
 
   return (
     <>
-      {item && <HeroPopup onClose={() => setDownloadItem(null)} downloadItem={item} />}
+      {item && <PreviewPopup onClose={() => setDownloadItem(null)} downloadItem={item} />}
       <div className={downloads!.default === categoryId ? styles.list : styles.grid}>
         {category.items.map((item, _itemIndex) =>
           downloads!.default === categoryId ? (

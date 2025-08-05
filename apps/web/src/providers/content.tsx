@@ -1,8 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { NotificationType, useNotification } from "~/providers/notification";
-import { $api } from "~/services/api-client";
+import { useNotification } from "~/providers/notification";
 import { baseUrl } from "~/utils/url";
-import { Configuration, DownloadApi, DownloadsDto, DownloadsItemDto } from "~/lib/api";
+import { Configuration, ContentApi, DownloadApi, DownloadsDto, DownloadsItemDto } from "~/lib/api";
 
 interface ContentContextProps {
   fetched: boolean;
@@ -23,7 +22,7 @@ interface ContentProviderProps {
 const ContentContext = createContext<ContentContextProps | undefined>(undefined);
 
 export const ContentProvider = ({ children }: ContentProviderProps) => {
-  const { sendNotification, throwError } = useNotification();
+  const { throwError } = useNotification();
 
   const [fetched, setFetched] = useState<boolean>(false);
   const [downloading, setDownloading] = useState<boolean>(false);
@@ -34,101 +33,61 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
   const config = new Configuration({ basePath: baseUrl });
 
   const downloadApi = new DownloadApi(config);
+  const contentApi = new ContentApi(config);
 
   const download = async () => {
     setDownloading(true);
     setDownloadProgress(0);
 
-    const downloadUrl = `${baseUrl}/download`;
+    try {
+      const { headers, data } = await downloadApi.downloadControllerDownload();
 
-    const response = await fetch(downloadUrl);
+      const contentLength = String(headers["Content-Length"]);
+      const total = contentLength ? parseInt(contentLength, 10) : NaN;
 
-    if (!response.ok || !response.body) {
-      let title = "";
-      let label = "";
-      let type = "" as NotificationType;
-      switch (response.status) {
-        case 401:
-          title = "Download Not Verified";
-          label =
-            "Your download has not been verified. Please make sure you went through the process correctly";
-          type = "error";
-          break;
-        case 404:
-          title = "File Not Found";
-          label = "The file you are trying to download does not exist on our server";
-          type = "error";
-          break;
-        default:
-          title = "Error While Downloading";
-          label = "Please report this issue to us on our discord";
-          type = "error";
-          break;
-      }
+      const reader = data.stream().getReader();
+      const chunks: Uint8Array[] = [];
+      let loaded = 0;
 
-      sendNotification({
-        title,
-        label,
-        type,
-      });
-      setDownloading(false);
-      return;
-    }
-
-    const contentLength = response.headers.get("Content-Length");
-    const total = contentLength ? parseInt(contentLength, 10) : NaN;
-
-    const reader = response.body.getReader();
-    const chunks: Uint8Array[] = [];
-    let loaded = 0;
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      if (value) {
-        chunks.push(value);
-        loaded += value.length;
-        // Compute % and update state:
-        if (!isNaN(total)) {
-          setDownloadProgress(Math.floor((loaded / total) * 100));
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        if (value) {
+          chunks.push(value);
+          loaded += value.length;
+          // Compute % and update state:
+          if (!isNaN(total)) {
+            setDownloadProgress(Math.floor((loaded / total) * 100));
+          }
         }
       }
+
+      const blob = new Blob(chunks);
+      const disposition = headers["Content-Disposition"] || "";
+      const filenameMatch = /filename\*=UTF-8''([^;]+)|filename="([^"]+)"/.exec(disposition);
+      const filename = filenameMatch
+        ? decodeURIComponent(filenameMatch[1] || filenameMatch[2])
+        : "download";
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+
+      setDownloadProgress(100);
+      setDownloading(false);
+    } catch (err) {
+      throwError(err, "Failed to download content");
     }
-
-    const blob = new Blob(chunks);
-    const disposition = response.headers.get("Content-Disposition") || "";
-    const filenameMatch = /filename\*=UTF-8''([^;]+)|filename="([^"]+)"/.exec(disposition);
-    const filename = filenameMatch
-      ? decodeURIComponent(filenameMatch[1] || filenameMatch[2])
-      : "download";
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-
-    setDownloadProgress(100);
-    setDownloading(false);
   };
 
   const fetchDownloads = async () => {
     try {
-      const { data, error } = await $api.GET("/content/downloads");
+      const { data } = await contentApi.contentControllerDownloads();
       setFetched(true);
-
-      if (error) {
-        console.log(error);
-        sendNotification({
-          title: "Failed Fetching",
-          label: "Could not fetch downloads from our server",
-          type: "error",
-        });
-        return;
-      }
-
       setDownloads(data as unknown as DownloadsDto);
     } catch (err) {
       throwError(err, "Failed to fetch downloads");
@@ -136,41 +95,17 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
   };
 
   const generateDownload = async (file: string) => {
-    const { error, response } = await $api.POST("/download/generate", {
-      params: {
-        query: {
-          file,
-        },
-      },
-    });
-
-    if (error) {
-      let title = "";
-      let label = "";
-      let type = "" as NotificationType;
-      switch (response.status) {
-        case 404:
-          title = "File Not Found";
-          label = "The file you are trying to download does not exist on our server";
-          type = "error";
-          break;
-        default:
-          title = "Error While Generating";
-          label = "Please report this issue to us on our discord";
-          type = "error";
-          break;
-      }
-
-      sendNotification({
-        title,
-        label,
-        type,
-      });
-      throw Error(error);
+    try {
+      await downloadApi.downloadControllerGenerate(file);
+    } catch (err) {
+      throwError(err, "Failed to generate download");
     }
   };
 
-  const verifyDownload = async (hash?: string, code?: string): Promise<DownloadsItemDto | undefined> => {
+  const verifyDownload = async (
+    hash?: string,
+    code?: string,
+  ): Promise<DownloadsItemDto | undefined> => {
     try {
       const { data } = await downloadApi.downloadControllerVerify(hash, code);
       const downloadItem = data as unknown as DownloadsItemDto;
@@ -179,6 +114,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
       return downloadItem;
     } catch (err) {
       throwError(err, "Failed to verify download");
+      throw err;
     }
   };
 
