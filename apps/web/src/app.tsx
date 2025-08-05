@@ -24,6 +24,7 @@ import { PanelWrapper } from "~/pages/panel";
 import { ProtectedRoute } from "~/components/protected-route/protected-route";
 import { AuthProvider } from "~/providers/auth";
 import { Main } from "~/pages/downloads/components/main";
+import { Terms } from "./pages/terms";
 
 export const App = () => (
   <CookiesProvider>
@@ -78,6 +79,7 @@ export const App = () => (
                     <Route path="*" element={<Invalid />} />
                     <Route path="latest" element={<Latest />} />
                     <Route path="privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="terms" element={<Terms />} />
                     <Route path="checkout">
                       <Route path="cancel" element={<Cancel />} />
                       <Route path="success" element={<Success />} />

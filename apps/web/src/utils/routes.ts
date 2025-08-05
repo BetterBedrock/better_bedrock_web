@@ -12,4 +12,5 @@ export enum Routes {
     CHECKOUT_CANCEL = "/checkout/cancel",
     CHECKOUT_SUCCESS = "/checkout/success",
     PRIVACY_POLICY = "/privacy-policy",
+    TERMS = "/terms",
 }

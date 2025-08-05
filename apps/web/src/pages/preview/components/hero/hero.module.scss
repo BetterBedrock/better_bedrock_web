@@ -58,3 +58,8 @@
 .description {
   padding-bottom: g.$padding-sm;
 }
+
+.links {
+  display: inline-flex;
+  gap: g.$padding-xsm;
+}
