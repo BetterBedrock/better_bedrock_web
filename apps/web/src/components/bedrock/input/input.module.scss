@@ -1,4 +1,4 @@
-@use "~/utils/_variables" as g;
+@use "~/utils" as g;
 
 .input {
   background-color: #313233;
@@ -29,6 +29,8 @@
   aspect-ratio: 30 / 16;
 
   .image {
+    @include g.no-select();
+    @include g.no-drag();
     image-rendering: pixelated;
   }
 }

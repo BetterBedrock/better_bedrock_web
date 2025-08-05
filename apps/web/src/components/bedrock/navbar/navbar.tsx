@@ -59,9 +59,18 @@ export const Navbar = () => {
           {navItems.map(({ name, path }) => {
             const navPaths = path.split("/");
             const locationPaths = location.pathname.split("/");
-            const finalNavPath = navPaths
-              .map((p, index) => (p.startsWith(":") ? (locationPaths[index] ?? p.replace(":", "")) : p))
-              .join("/");
+
+            let finalNavPath;
+
+            if (navPaths[1] === locationPaths[1]) {
+              finalNavPath = navPaths
+                .map((p, index) =>
+                  p.startsWith(":") ? (locationPaths[index] ?? p.replace(":", "")) : p,
+                )
+                .join("/");
+            } else {
+              finalNavPath = navPaths.map((p) => p.startsWith(":") ? p.replace(":", "") : p).join("/");
+            }
 
             const isActive = location.pathname === finalNavPath;
 

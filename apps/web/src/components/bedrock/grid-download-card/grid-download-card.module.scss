@@ -1,17 +1,16 @@
-@use "~/utils/_variables" as g;
+@use "~/utils" as g;
 
 .container {
   /* padding: 1rem; */
   width: 100%;
   height: 100%;
   background-color: rgb(47, 47, 48);
-  border: var(--minecraftdepth) solid rgb(30, 30, 31);
+  border: g.$minecraftdepth solid rgb(30, 30, 31);
 }
 
 .container > a {
   display: flex;
-  border-bottom: var(--minecraftdepth) solid rgb(30, 30, 31);
-
+  border-bottom: g.$minecraftdepth solid rgb(30, 30, 31);
 }
 
 .container > a > div {
@@ -45,7 +44,6 @@
 
 .thumbnailWrapper {
   display: flex;
-  // border-bottom: var(--minecraftdepth) solid rgb(30, 30, 31);
 }
 
 .thumbnailWrapper img {
@@ -61,8 +59,4 @@
 
 .cardTitle p:nth-child(2) {
   white-space: nowrap; 
-}
-
-.downloadSize {
-  // background-color: rgb(31,31,32);
 }

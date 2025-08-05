@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import styles from "./label.module.css";
+import { styles } from ".";
 import clsx from "clsx";
 
 interface LabelProps extends HTMLAttributes<HTMLDivElement> {
