@@ -1,4 +1,4 @@
-.download_card_content {
+.content {
   width: 100%;
   padding: 5px;
   box-sizing: border-box;
@@ -9,27 +9,17 @@
 
 .price {
   flex-shrink: 0;
-  /* aspect-ratio: 1 / 1; */
 }
 
-.download_card_description {
+.description {
   margin-left: 7.5px;
   width: 100%;
 }
 
-.download_card_description p {
+.description p {
   display: flex;
   flex-direction: column;
   margin-block-start: 0em;
   margin-block-end: 0em;
   box-sizing: border-box;
-}
-
-.download_card_title {
-  display: flex;
-  justify-content: space-between;
-}
-
-.download_card_title p:nth-child(2) {
-  white-space: nowrap; 
 }

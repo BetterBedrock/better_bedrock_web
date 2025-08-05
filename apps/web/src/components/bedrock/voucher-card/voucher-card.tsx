@@ -1,11 +1,11 @@
 import React from "react";
 import { BedrockText } from "../bedrock-text/bedrock-text";
-import styles from "./voucher-card.module.css";
+import { styles } from ".";
 import { VoucherDto } from "~/lib/api";
 import { Button } from "~/components/bedrock/button";
 
 interface VoucherCardProps {
-  voucher: VoucherDto,
+  voucher: VoucherDto;
   playSound?: boolean;
   lockClicking?: boolean;
   height?: string;
@@ -28,7 +28,7 @@ export const VoucherCard = ({
       playSound={playSound}
       onClick={onClick}
     >
-      <div className={styles.download_card_content}>
+      <div className={styles.content}>
         <BedrockText
           text={voucher.code}
           type="h1"
@@ -36,7 +36,7 @@ export const VoucherCard = ({
           textAlign="left"
           extraClassName={styles.price}
         />
-        <div className={styles.download_card_description}>
+        <div className={styles.description}>
           <strong>
             <BedrockText text={voucher.email} type="p" textAlign="left" />
           </strong>
