@@ -1,6 +1,5 @@
-import React from "react";
 import { BedrockText } from "../bedrock-text/bedrock-text";
-import styles from "./download-card.module.css";
+import { styles } from ".";
 import { ButtonType, Button } from "~/components/bedrock/button";
 
 interface DownloadCardProp {
@@ -39,10 +38,10 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
       playSound={playSound}
       onClick={onClick}
     >
-      <div className={styles.download_card_content}>
+      <div className={styles.content}>
         <img alt="" src={iconPath} style={{ imageRendering: "pixelated" }} />
-        <div className={styles.download_card_description}>
-          <div className={styles.download_card_title}>
+        <div className={styles.description}>
+          <div className={styles.title}>
             <BedrockText
               color={titleColor ? titleColor : buttonType === "white" ? "black" : "white"}
               text={title ?? ""}
@@ -66,9 +65,9 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
             color={buttonType === "white" ? "black" : "white"}
           />
           {tags && tags.length > 0 && (
-            <div className={styles.TagsContainer}>
+            <div className={styles.tags}>
               {tags.map((tag) => (
-                <p key={tag} className={styles.Tag}>
+                <p key={tag} className={styles.tag}>
                   {tag}
                 </p>
               ))}
