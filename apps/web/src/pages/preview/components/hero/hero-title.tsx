@@ -1,5 +1,16 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
+import { DownloadsItemDto } from "~/lib/api";
 
-export const HeroTitle = () => (
-  <BedrockText type="h1" text="Error 404" color="white" font="MinecraftTen" />
+interface HeroTitleProps {
+  download: DownloadsItemDto;
+}
+
+export const HeroTitle = ({ download }: HeroTitleProps) => (
+  <BedrockText
+    text={download.title}
+    type="h1"
+    textAlign="center"
+    color="white"
+    font="MinecraftTen"
+  />
 );

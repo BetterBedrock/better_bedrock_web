@@ -11,15 +11,15 @@
 }
 
 .wrapper .subSection > p {
-  padding-bottom: 1rem;
+  padding-bottom: g.$padding-sm;
 }
 
 .actions {
-  padding-bottom: 4.5rem;
+  padding-bottom: g.$padding-xl;
   width: 100%;
   display: flex;
  
-  @media (max-width: 425px) {
+  @media (max-width: g.$breakpoint-mobileL) {
     flex-direction: column;
   }
 }
@@ -30,5 +30,5 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  gap: 4.5rem;
+  gap: g.$padding-xl;
 }

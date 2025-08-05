@@ -24,7 +24,7 @@ export const Hero = () => {
   }, []);
 
   return (
-    <main>
+    <div>
       <BedrockText
         type="h1"
         text="Payment Finished Successfuly"
@@ -48,6 +48,6 @@ export const Hero = () => {
       >
         <BedrockText text="Return to Home" type="p" color="white" />
       </Button>
-    </main>
+    </div>
   );
 };

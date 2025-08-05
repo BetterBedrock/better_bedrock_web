@@ -11,7 +11,6 @@ interface MainArchiveButtonProps {
 export const MainArchiveButton = ({
   showArchived,
   setShowArchived,
-  // setActiveTab,
 }: MainArchiveButtonProps) => (
   <ButtonGroup>
     <Button
@@ -27,11 +26,5 @@ export const MainArchiveButton = ({
         text={showArchived ? "Close archived versions" : "Open archived versions"}
       />
     </Button>
-    {/* <Button type="white" width="100%" height="auto" onClick={() => setActiveTab("community")} center>
-      <BedrockText type="p" color="black" text="Navigate to Community" />
-    </Button>
-    <Button type="white" width="100%" height="auto" onClick={() => setActiveTab("sideProjects")} center>
-      <BedrockText type="p" color="black" text="Navigate to Side Projects" />
-    </Button> */}
   </ButtonGroup>
 );

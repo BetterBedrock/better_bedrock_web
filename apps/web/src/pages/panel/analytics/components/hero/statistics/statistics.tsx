@@ -19,14 +19,11 @@ export const Statistics = () => {
     return acc;
   }, {});
 
-  console.log({ keys: Object.keys(data) });
-
   const simplifiedData = Object.keys(data).reduce((acc: { [key: string]: number }, key) => {
     acc[key] = data[key].reduce((sum, p) => sum + p.value, 0) || 0;
     return acc;
   }, {});
 
-  console.log({ simplifiedData });
   const averageVoucherUse =
     vouchers.reduce((sum, cur) => {
       return sum + cur.downloadCount;
@@ -44,11 +41,8 @@ export const Statistics = () => {
 
   const usedVouchers = vouchers.length - validVouchers;
 
-  console.log({ averageVoucherUse, averageVoucherUsePercentage });
-  // const averageVoucherUsePercentage = vouchers.reduce((sum, cur, index) => sum + cur.downloadCount)
   const estimatedProfit = ((simplifiedData["Ad Downloads"] ?? 0) / 1000) * 9;
 
-  console.log({ estimatedProfit });
   return (
     <div className={styles.data}>
       <StatisticsCard name={AnalyticsNames.Visits} data={data[AnalyticsNames.Visits]} className={styles.card} />

@@ -3,11 +3,11 @@ import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { DownloadsItemDto } from "~/lib/api";
-import { HeroPopup } from "~/pages/preview/components/hero/hero-popup";
 import { useContent } from "~/providers/content";
 import { styles } from ".";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "~/utils/routes";
+import { PreviewPopup } from "~/pages/preview/components/hero/preview-popup";
 
 export const HeroAction = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export const HeroAction = () => {
   return (
     <>
       {downloadItem && (
-        <HeroPopup onClose={() => setDownloadItem(null)} downloadItem={downloadItem} />
+        <PreviewPopup onClose={() => setDownloadItem(null)} downloadItem={downloadItem} />
       )}
       <div className={styles.actions}>
 

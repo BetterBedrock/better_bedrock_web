@@ -7,7 +7,7 @@ import { styles } from ".";
 export const Hero = () => {
   const navigate = useNavigate();
   return (
-    <main>
+    <div>
       <BedrockText type="h1" text="CHECKOUT CANCELLED" color="white" font="MinecraftTen" />
       <BedrockText
         type="p"
@@ -27,6 +27,6 @@ export const Hero = () => {
       >
         <BedrockText text="Return to Home" type="p" color="white" />
       </Button>
-    </main>
+    </div>
   );
 };
