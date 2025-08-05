@@ -1,4 +1,4 @@
-@use "~/utils/_variables" as g;
+@use "~/utils" as g;
 
 .gallery {
   position: relative;
@@ -10,7 +10,7 @@
 
   overflow: hidden;
 
-  background-color: rgb(47, 47, 48);
+  background-color: g.$color-card-background;
   padding: g.$padding-sm;
   gap: g.$padding-sm;
 
@@ -18,10 +18,6 @@
     flex-direction: column;
   }
 }
-
-// .gallery button image {
-//   border: solid red 1px;
-// }
 
 .fullscreen {
   position: fixed;
@@ -43,7 +39,7 @@
   img {
     background-color: rgb(30, 30, 31);
     aspect-ratio: 16 / 9;
-    border: var(--minecraftdepth) solid rgb(30, 30, 31);
+    border: g.$minecraftdepth solid rgb(30, 30, 31);
   }
 }
 
@@ -61,13 +57,11 @@
 .preview {
   display: flex;
   cursor: auto;
-  // flex-basis: calc( (100% - (g.$padding-xsm * (LIMIT_VAR - 1)) ) / LIMIT_VAR ); // If you want them to divide space
-  // width: 120px; // Or a fixed width for thumbnails
-  height: 100%; // Take full height of .images container
-  aspect-ratio: 16/9; // Enforce aspect ratio for the container itself
+  height: 100%;
+  aspect-ratio: 16/9;
   overflow: hidden;
   filter: brightness(0.6);
-  background-color: #444; // Placeholder background
+  background-color: #444;
 
   img {
     display: block;
@@ -94,7 +88,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: var(--minecraftdepth) solid white;
+  border: g.$minecraftdepth solid white;
   height: 100%;
 
   img {
@@ -102,7 +96,7 @@
     aspect-ratio: 1/1;
     height: 32px;
     width: 32px;
-    object-fit: contain; // Good for icon-like images
+    object-fit: contain;
   }
 }
 
