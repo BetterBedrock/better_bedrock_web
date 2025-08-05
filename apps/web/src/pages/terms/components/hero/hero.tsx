@@ -5,14 +5,14 @@ import { styles } from ".";
 
 export const Hero = () => {
   return (
-    <main>
+    <>
       <BedrockText type="h1" text="Terms" color="white" font="MinecraftTen" />
       <div className={styles.markdown}>
         <ReactMarkdown>
           {`
 **Last Updated: August 5, 2025**
 
-### Payment Rules
+## Payment Rules
 * **Payment Processing**: All payments are securely processed via Stripe.
 
 * **Only Better Bedrock Content**: Includes Main Texture Pack, All 9 extensions, and Archives.
@@ -29,6 +29,6 @@ export const Hero = () => {
         `}
         </ReactMarkdown>
       </div>
-    </main>
+    </>
   );
 };

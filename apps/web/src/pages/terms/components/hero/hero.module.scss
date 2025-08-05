@@ -1,7 +1,17 @@
 @use "~/utils/_variables" as g;
 
 .markdown {
-    gap: g.$padding-sm;
-    display:flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    text-align: left;
+    font-family: MinecraftTen;
+    padding: 2rem 0 0.5rem 0;
+  }
+
+  strong {
+    text-decoration: underline;
+    font-weight: 500;
+  }
 }
