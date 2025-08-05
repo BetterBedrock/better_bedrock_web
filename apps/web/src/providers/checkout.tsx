@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { useNotification } from "~/providers/notification";
 import { VoucherDto, CheckoutOffersDto, CheckoutApi, Configuration } from "~/lib/api";
+import { baseUrl } from "~/utils/url";
 
 interface CheckoutContextProps {
   createSession: (priceId: string) => Promise<{ checkoutId: string } | undefined>;
@@ -20,7 +21,7 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
   const { throwError } = useNotification();
 
   const config = new Configuration({
-    basePath: import.meta.env.VITE_LOCAL_BACKEND_URL,
+    basePath: baseUrl,
   });
 
   const checkoutApi = new CheckoutApi(config);
