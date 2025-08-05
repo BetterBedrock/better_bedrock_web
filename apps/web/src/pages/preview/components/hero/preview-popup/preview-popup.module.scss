@@ -30,3 +30,8 @@
   padding: g.$padding-sm;
   gap: g.$padding-xsm;
 }
+
+.links {
+  display: inline-flex;
+  gap: g.$padding-xsm;
+}

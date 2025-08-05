@@ -1,0 +1,45 @@
+@use "~/utils/_variables" as g;
+
+.preview {
+  width: 100%;
+  gap: g.$padding-xl;
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  padding-bottom: g.$padding-sm;
+}
+
+.action {
+  width: 100%;
+}
+
+.part {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: g.$padding-sm;
+}
+
+.links {
+  display: inline-flex;
+  gap: g.$padding-xsm;
+}
+
+.input {
+  width: 100%;
+}
+
+.buttonGroup {
+  gap: 0.5rem;
+}
+
+.description {
+  padding-bottom: g.$padding-sm;
+}
+
+.links {
+  display: inline-flex;
+  gap: g.$padding-xsm;
+}

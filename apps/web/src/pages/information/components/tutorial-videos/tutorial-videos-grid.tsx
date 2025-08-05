@@ -15,6 +15,7 @@ export const TutorialVideosGrid = ({ section }: TutorialVideosGridProps) => (
         title={tutorial.title}
         description={tutorial.description}
         link={tutorial.link}
+        tags={tutorial.tags}
       />
     ))}
   </div>

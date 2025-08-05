@@ -16,6 +16,7 @@ interface GridDownloadCardProps {
   /** Allows for adding custom CSS classes for further styling */
   className?: string;
   useTopDivider?: boolean;
+  tags?: string[]; // Changed to string[] to allow for any tags
 }
 
 export const GridDownloadCard: React.FC<GridDownloadCardProps> = ({
@@ -25,11 +26,37 @@ export const GridDownloadCard: React.FC<GridDownloadCardProps> = ({
   thumbnail,
   actions,
   className,
-  useTopDivider = false
+  useTopDivider = false,
+  tags
 }) => {
   return (
     <div className={clsx(styles.container, className)}>
-      {thumbnail && <div className={styles.thumbnailWrapper}>{thumbnail}</div>}
+      {thumbnail && (
+        <div className={styles.thumbnailWrapper}>
+          {thumbnail}
+          <div className={styles.imgWrapper}>
+            {tags && (
+              <div className={styles.tagsWrapper}>
+                <div className={styles.tagsContainer}>
+                  {tags.map(tag => {
+                    return (
+                      < BedrockText
+                        text={tag}
+                        type={"p"}
+                        textAlign="left"
+                        color={"black"}
+                        style={{
+                          backgroundColor: "rgb(140, 179, 255)"
+                        }}
+                      />
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {useTopDivider && <GridDownloadCardDivider />}
       <div className={styles.texts}>

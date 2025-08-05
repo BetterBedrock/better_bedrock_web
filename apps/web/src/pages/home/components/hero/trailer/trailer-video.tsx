@@ -5,6 +5,7 @@ export const TrailerVideo = () => (
     <iframe
       width="100%"
       height="100%"
+      // todo: update 
       src="https://www.youtube.com/embed/v5O-AG9P1Ag"
       title="BETTER BEDROCK V7 RELEASE! The Best Utility Texture Pack for Minecraft Bedrock | Showcase Trailer"
       frameBorder="0"

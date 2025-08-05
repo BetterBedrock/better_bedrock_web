@@ -25,7 +25,7 @@ export const PreviewPopupVoucher = ({
       onChange={(e) => setVoucherCode(e.target.value)}
     />
     <Button type="dark" onClick={useVoucher} center>
-      <BedrockText color="white" type="p" text="Apply" />
+      <BedrockText color="white" type="p" text="Apply" style={{ padding: "0 0.25rem" }} />
     </Button>
   </div>
 );

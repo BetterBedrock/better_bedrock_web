@@ -132,15 +132,348 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/voucher": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["VoucherController_vouchers"];
+        put?: never;
+        post: operations["VoucherController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/voucher/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["VoucherController_update"];
+        trace?: never;
+    };
+    "/auth": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["AuthController_authenticate"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/analytics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["AnalyticsController_analytics"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        DownloadsItemDto: Record<string, never>;
-        DownloadsDto: Record<string, never>;
-        CheckoutOffersDto: Record<string, never>;
-        CreateCheckoutSessionResponseDto: Record<string, never>;
-        VoucherDto: Record<string, never>;
+        /** @enum {string} */
+        DownloadsButtonType: "white" | "dark" | "green";
+        DownloadsRichDescriptionDto: {
+            name: string;
+            images: string[];
+        };
+        DownloadsItemDto: {
+            /** @example dark */
+            buttonType: components["schemas"]["DownloadsButtonType"];
+            title: string;
+            creator: string;
+            description: string;
+            downloadId: string;
+            itemWeight: number;
+            imageAssetUrl: string[];
+            richDescription?: components["schemas"]["DownloadsRichDescriptionDto"][];
+            tags?: string[];
+            titleColor?: string;
+            betterBedrockContent?: boolean;
+        };
+        /** @enum {string} */
+        DownloadsNotificationType: "warning" | "success" | "info" | "error";
+        DownloadsNotificationDto: {
+            /** @example error */
+            type: components["schemas"]["DownloadsNotificationType"];
+            title: string;
+            description: string;
+        };
+        DownloadsButtonDto: {
+            /** @example dark */
+            type: components["schemas"]["DownloadsButtonType"];
+            text: string;
+            link?: string;
+            notification?: components["schemas"]["DownloadsNotificationDto"];
+        };
+        DownloadsListDto: {
+            title: string;
+            description: string;
+            buttons?: components["schemas"]["DownloadsButtonDto"][];
+            items: components["schemas"]["DownloadsItemDto"][];
+        };
+        DownloadsCategoryDto: {
+            id: string;
+            name: string;
+            lists: components["schemas"]["DownloadsListDto"][];
+        };
+        DownloadsDto: {
+            default: string;
+            featured: string;
+            categories: components["schemas"]["DownloadsCategoryDto"][];
+        };
+        PriceOptionDto: {
+            /**
+             * @description Price in EUR
+             * @example 1
+             */
+            price: number;
+            /**
+             * @description Description of the pricing option
+             * @example For One Week (Better Bedrock Content Only)
+             */
+            label: string;
+            /**
+             * @description A title for the DownloadMethodCard
+             * @example Get 50 Ad Free Downloads
+             */
+            title: string;
+            /**
+             * @description Whether this option is featured
+             * @example false
+             */
+            featured: boolean;
+            /**
+             * @description How many dowloads does user get with the voucher
+             * @example 1
+             */
+            maxDownloads: number;
+            /**
+             * @description How many days from today does user have to use the voucher
+             * @example 7
+             */
+            expiresAt: number;
+            /**
+             * @description Specifies whether the voucher allows for download of Better Bedrock content
+             * @example true
+             */
+            betterBedrockContentOnly: boolean;
+        };
+        CheckoutOptionEntryDto: {
+            /**
+             * @description Stripe price ID
+             * @example price_1RYVyQQKPqpU2QRop44SCri8
+             */
+            priceId: string;
+            /** @description Pricing option details */
+            priceOption: components["schemas"]["PriceOptionDto"];
+        };
+        CheckoutOptionGroupDto: {
+            /**
+             * @description Title of the group (e.g. Week, Month)
+             * @example Week
+             */
+            title: string;
+            /** @description List of pricing entries for this group */
+            items: components["schemas"]["CheckoutOptionEntryDto"][];
+        };
+        CheckoutOffersDto: {
+            /** @description Array of checkout option groups */
+            offers: components["schemas"]["CheckoutOptionGroupDto"][];
+        };
+        CreateCheckoutSessionResponseDto: {
+            /**
+             * @description Id of the Stripe's checkout session
+             * @example cs_test_a11YYufWQzNY63zpQ6QSNRQhkUpVph4WRmzW0zWJO2znZKdVujZ0N0S22u
+             */
+            checkoutId: string;
+        };
+        VoucherDto: {
+            /**
+             * @description Unique identifier of the voucher
+             * @example ckv9p34s50000svef8bl7w2gb
+             */
+            id: string;
+            /**
+             * Format: email
+             * @description Email associated with the voucher
+             * @example user@example.com
+             */
+            email: string;
+            /**
+             * @description Unique checkout session ID associated with the voucher
+             * @example chk_1234567890abcdef
+             */
+            checkoutId?: string | null;
+            /**
+             * @description Unique voucher code
+             * @example SUMMER2025
+             */
+            code: string;
+            /**
+             * Format: date-time
+             * @description Date and time when the voucher was created
+             * @example 2025-06-01T12:34:56.789Z
+             */
+            createdAt: string;
+            /**
+             * Format: date-time
+             * @description Expiry date of the voucher
+             * @example 2025-12-31T23:59:59.000Z
+             */
+            expiresAt: string;
+            /**
+             * @description Maximum number of times the voucher can be downloaded
+             * @example 1
+             */
+            maxDownloads: number;
+            /**
+             * @description Current number of times the voucher has been downloaded
+             * @example 0
+             */
+            downloadCount: number;
+            /**
+             * @description Restrict voucher to Better Bedrock content only
+             * @example false
+             */
+            betterBedrockContentOnly: boolean;
+            /**
+             * @description Determins whether voucher is blocked
+             * @example false
+             */
+            blocked: boolean;
+        };
+        CreateVoucher: {
+            /**
+             * Format: email
+             * @description Email associated with the voucher
+             * @example user@example.com
+             */
+            email: string;
+            /**
+             * @description Unique checkout session ID associated with the voucher
+             * @example chk_1234567890abcdef
+             */
+            checkoutId?: string | null;
+            /**
+             * @description Unique voucher code
+             * @example SUMMER2025
+             */
+            code: string;
+            /**
+             * Format: date-time
+             * @description Expiry date of the voucher
+             * @example 2025-12-31T23:59:59.000Z
+             */
+            expiresAt: string;
+            /**
+             * @description Maximum number of times the voucher can be downloaded
+             * @example 1
+             */
+            maxDownloads: number;
+            /**
+             * @description Current number of times the voucher has been downloaded
+             * @example 0
+             */
+            downloadCount: number;
+            /**
+             * @description Restrict voucher to Better Bedrock content only
+             * @example false
+             */
+            betterBedrockContentOnly: boolean;
+            /**
+             * @description Determins whether voucher is blocked
+             * @example false
+             */
+            blocked: boolean;
+        };
+        UpdateVoucher: {
+            /**
+             * Format: email
+             * @description Email associated with the voucher
+             * @example user@example.com
+             */
+            email?: string;
+            /**
+             * @description Unique checkout session ID associated with the voucher
+             * @example chk_1234567890abcdef
+             */
+            checkoutId?: string | null;
+            /**
+             * @description Unique voucher code
+             * @example SUMMER2025
+             */
+            code?: string;
+            /**
+             * Format: date-time
+             * @description Expiry date of the voucher
+             * @example 2025-12-31T23:59:59.000Z
+             */
+            expiresAt?: string;
+            /**
+             * @description Maximum number of times the voucher can be downloaded
+             * @example 1
+             */
+            maxDownloads?: number;
+            /**
+             * @description Current number of times the voucher has been downloaded
+             * @example 0
+             */
+            downloadCount?: number;
+            /**
+             * @description Restrict voucher to Better Bedrock content only
+             * @example false
+             */
+            betterBedrockContentOnly?: boolean;
+            /**
+             * @description Determins whether voucher is blocked
+             * @example false
+             */
+            blocked?: boolean;
+        };
+        /** @enum {string} */
+        AnalyticsType: "file" | "general";
+        /** @enum {string} */
+        AnalyticsNames: "Bought Vouchers" | "Visits" | "Total Downloads" | "Voucher Downloads" | "Ad Downloads" | "Generated Downloads";
+        AnalyticsDto: {
+            /** @example file */
+            type: components["schemas"]["AnalyticsType"];
+            /** @example Visits */
+            name: components["schemas"]["AnalyticsNames"];
+            id: string;
+            /** Format: date-time */
+            date: string;
+            value: number;
+        };
     };
     responses: never;
     parameters: never;
@@ -186,9 +519,10 @@ export interface operations {
     };
     DownloadController_verify: {
         parameters: {
-            query: {
-                hash: string;
-                code: string;
+            query?: {
+                /** @description Hash generated to go through the ads on linkvertise */
+                hash?: string;
+                code?: string;
             };
             header?: never;
             path?: never;
@@ -319,7 +653,10 @@ export interface operations {
     };
     CheckoutController_create: {
         parameters: {
-            query?: never;
+            query: {
+                /** @description Id of the Stripe's price */
+                priceId: string;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -381,6 +718,13 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Voucher is blocked */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
             /** @description Voucher not found */
             404: {
                 headers: {
@@ -414,6 +758,128 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+        };
+    };
+    VoucherController_vouchers: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Returns list of existing voucher */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VoucherDto"][];
+                };
+            };
+        };
+    };
+    VoucherController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateVoucher"];
+            };
+        };
+        responses: {
+            /** @description Returns newly created voucher */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VoucherDto"];
+                };
+            };
+        };
+    };
+    VoucherController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateVoucher"];
+            };
+        };
+        responses: {
+            /** @description Returns updated voucher */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VoucherDto"];
+                };
+            };
+        };
+    };
+    AuthController_authenticate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successfully authenticated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Could not authenticate */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Secret for admin panel is not set */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AnalyticsController_analytics: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Analytics about downloads, vouchers, and more */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AnalyticsDto"][];
+                };
             };
         };
     };

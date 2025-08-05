@@ -34,7 +34,7 @@ export const DOWNLOADS_IDS = {
     murderDetectorV30: "murder_detector_v3.0.mcpack",
     murderDetectorV20: "murder_detector_v2.0.mcpack",
 
-    customSkyOverlayV1: "file_name.mcpack", //todo
+    customSkyOverlayV1: "custom_sky_overlay.mcpack", //todo: add file on server
 
     betterBedrockBetterFogs: "better_bedrock_better_fogs.mcpack",
     betterBedrockCleanGlass: "better_bedrock_clean_glass.mcpack",
@@ -65,6 +65,8 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 11.5,
                     betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
+                    tags: ["MCBE v1.21.80+"],
+                    tagBgColor: "rgb(29, 77, 19)",
                 },
             ],
         },
@@ -312,8 +314,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                 {
                     title: "Mobile App 1.1.1",
                     creator: "iDarkQ",
-                    description:
-                        "Our mobile app allows you to edit and save config and cape without any 3rd party applications.",
+                    description: "Archived and discontinued.",
                     downloadId: DOWNLOADS_IDS.betterBedrockApp,
                     itemWeight: 27.74,
                     buttonType: "white",
@@ -323,8 +324,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                 {
                     title: "Client V1",
                     creator: "iDarkQ",
-                    description:
-                        "Our Minecraft client for Windows 10/11. This client includes modules such as Zoom, FreeLook, No Hurt Cam, and more!",
+                    description: "Archived and discontinued.",
                     downloadId: DOWNLOADS_IDS.betterBedrockWindowsClientV1,
                     itemWeight: 32.07,
                     buttonType: "white",

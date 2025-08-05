@@ -5,7 +5,7 @@ export const TrailerTitle = () => (
     type="h1"
     textAlign="center"
     color="white"
-    text="Latest Showcase"
+    text="Latest Trailer"
     font="MinecraftTen"
   />
 );
