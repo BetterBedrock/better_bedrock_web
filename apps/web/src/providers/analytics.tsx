@@ -42,6 +42,8 @@ export const AnalyticsProvider = ({ children }: AnalyticsProvider) => {
   useEffect(() => {
     if (!authenticated) return;
     fetchAnalytics();
+
+    setInterval(fetchAnalytics, 2000)
   }, [authenticated]);
 
   return (
