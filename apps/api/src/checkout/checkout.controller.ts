@@ -35,6 +35,8 @@ import { VoucherDto } from "src/voucher/dto/voucher.dto";
 import { AnalyticsService } from "src/analytics/analytics.service";
 import { AnalyticsNames } from "src/analytics/constants/analytics-names";
 import dayjs from "dayjs";
+import { Throttle } from "@nestjs/throttler";
+import { MailService } from "src/mail/mail.service";
 
 @ApiTags("checkout")
 @Controller("checkout")
@@ -43,6 +45,7 @@ export class CheckoutController {
         private readonly checkoutService: CheckoutService,
         private readonly voucherService: VoucherService,
         private readonly analyticsService: AnalyticsService,
+        private readonly mailService: MailService,
     ) {}
 
     @Get("offers")
@@ -77,6 +80,12 @@ export class CheckoutController {
     }
 
     @Get("activate")
+    @Throttle({
+        default: {
+            ttl: 60000,
+            limit: 50,
+        },
+    })
     @ApiOkResponse({
         description: "Returns voucher for given code",
         type: VoucherDto,
@@ -158,6 +167,8 @@ export class CheckoutController {
                 const price = item.amount_total / 100;
                 // reward user
                 Logger.log(`User with email ${email} purchased ${productName} for $${price}.`);
+                const code = this.voucherService.generateCode(8);
+
                 await this.voucherService.createVoucher({
                     email: email ?? "unknown",
                     checkoutId: session.id,
@@ -166,6 +177,8 @@ export class CheckoutController {
                     betterBedrockContentOnly: priceOptions.betterBedrockContentOnly,
                     expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * priceOptions.expiresAt), // 30 days from now
                 });
+
+                if (email) await this.mailService.createVoucherEmail(email, code);
 
                 await this.analyticsService.incrementAnalytics(
                     AnalyticsNames.boughtVouchers,
