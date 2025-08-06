@@ -11,7 +11,7 @@ export const HeroActions = () => {
     <div className={styles.actions}>
       <ButtonGroup direction="responsive">
         <Button width="100%" type="green" onClick={() => navigate(Routes.DOWNLOADS)} center>
-          <BedrockText text="Download Now" type="p" color="white" />
+          <BedrockText text="Download Now!" type="p" color="white" />
         </Button>
         <Button
           width="100%"
@@ -21,7 +21,7 @@ export const HeroActions = () => {
           }
           center
         >
-          <BedrockText text="Join Discord" type="p" color="black" />
+          <BedrockText text="Join Discord (+70k members!)" type="p" color="black" />
         </Button>
       </ButtonGroup>
     </div>

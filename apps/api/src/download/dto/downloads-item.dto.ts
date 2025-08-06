@@ -67,4 +67,5 @@ export class DownloadsItemDto {
      * @example false
      */
     betterBedrockContent?: boolean;
+    tagBgColor?: string;
 }

@@ -13,6 +13,11 @@ export const Footer = () => {
             <Link link={Routes.PRIVACY_POLICY}>
               <BedrockText text="Privacy Policy" type="p" />
             </Link>
+            <BedrockText text="|" type="p" />
+            <Link link={Routes.TERMS}>
+              <BedrockText text="Terms" type="p" />
+            </Link>
+            <BedrockText text="|" type="p" />
             <Link isExternalLink={true} link="https://github.com/BetterBedrock/better_bedrock_web">
               <BedrockText text="GitHub" type="p" />
             </Link>

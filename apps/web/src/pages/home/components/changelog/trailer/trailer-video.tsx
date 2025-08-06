@@ -5,6 +5,7 @@ export const TrailerVideo = () => (
     <iframe
       width="100%"
       height="100%"
+      // todo: update 
       src="https://www.youtube.com/embed/Oz2cnztzSMw"
       title="Better Bedrock Changelog v8.0 #1 | Client release on windows! | New Texture Pack version | Showcase"
       frameBorder="0"
