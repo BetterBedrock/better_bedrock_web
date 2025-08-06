@@ -15,3 +15,16 @@
   word-break: break-all;
   white-space: pre-wrap;
 }
+
+.highlight {
+  animation: 1s ease-out 0s 1 highlight;
+}
+
+@keyframes highlight {
+  0% {
+    color: g.$color-selection;
+  }
+  100% {
+    color: g.$color-selection;
+  }
+}
