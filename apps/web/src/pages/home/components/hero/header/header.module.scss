@@ -21,11 +21,6 @@ $title-height: clamp(2.7em, 7vw, 6em);
 
 .actions {
   @include flex-container();
-
-  @media (max-width: 500px) {
-    display: flex;
-    flex-direction: column;
-  }
 }
 
 .title {
