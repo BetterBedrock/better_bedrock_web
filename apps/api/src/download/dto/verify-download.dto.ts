@@ -12,5 +12,9 @@ export class VerifyDownloadDto {
 
     @IsString()
     @IsOptional()
+    /**
+     * Voucher code to verify download without watching ads
+     * @example '12345678'
+     */
     code?: string;
 }

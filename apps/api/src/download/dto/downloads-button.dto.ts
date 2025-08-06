@@ -19,7 +19,15 @@ export class DownloadsButtonDto {
     @IsEnum(DownloadsButtonType)
     type: DownloadsButtonType;
 
+    /**
+     * Button inside the category yet not responsible for downloads
+     * @example 'Share your texturepacks'
+     */
     text: string;
+    /**
+     * Link of redirection on button click (can be left if notification is prefered)
+     * @example 'https://google.com'
+     */
     link?: string;
     notification?: DownloadsNotificationDto;
 }

@@ -12,7 +12,16 @@ export type DownloadsNotificationType =
     (typeof DownloadsNotificationType)[keyof typeof DownloadsNotificationType];
 
 export class DownloadsNotificationDto {
+    /**
+     * Title of the notification
+     * @example 'Confirmation'
+     */
     title: string;
+
+    /**
+     * Description of the notification
+     * @example 'Confirmation'
+     */
     description: string;
 
     @ApiProperty({
