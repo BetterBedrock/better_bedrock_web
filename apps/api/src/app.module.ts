@@ -14,7 +14,7 @@ import { AnalyticsModule } from "src/analytics/analytics.module";
             throttlers: [
                 {
                     ttl: 60000,
-                    limit: 50,
+                    limit: 1000,
                 },
             ],
         }),
