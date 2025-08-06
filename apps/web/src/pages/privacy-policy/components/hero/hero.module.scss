@@ -1,7 +1,7 @@
 @use "~/utils/_variables" as g;
 
 .markdown {
-    gap: g.$padding-sm;
-    display:flex;
-    flex-direction: column;
+  gap: g.$padding-sm;
+  display: flex;
+  flex-direction: column;
 }

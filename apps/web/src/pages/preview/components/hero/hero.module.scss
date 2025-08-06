@@ -5,19 +5,12 @@
   gap: g.$padding-xl;
   display: flex;
   flex-direction: column;
-}
 
-.description {
-  padding-bottom: g.$padding-sm;
-}
+  .description {
+    padding-bottom: g.$padding-sm;
+  }
 
-.action {
-  width: 100%;
-}
-
-.part {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: g.$padding-sm;
+  .action {
+    width: 100%;
+  }
 }
