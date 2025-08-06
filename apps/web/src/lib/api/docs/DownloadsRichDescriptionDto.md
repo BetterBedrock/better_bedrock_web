@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **string** |  | [default to undefined]
-**images** | **Array&lt;string&gt;** |  | [default to undefined]
+**name** | **string** | Text display above the image | [default to undefined]
+**images** | **Array&lt;string&gt;** | List of links to images | [default to undefined]
 
 ## Example
 

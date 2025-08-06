@@ -1,5 +1,5 @@
 import { Popup } from "~/components/bedrock/popup";
-import { styles } from "..";
+import { styles } from ".";
 import { CardDivider } from "~/components/bedrock/card";
 import { DownloadsItemDto, VoucherDto } from "~/lib/api";
 import { PreviewPopupFooter } from "~/pages/preview/components/hero/preview-popup/preview-popup-footer";

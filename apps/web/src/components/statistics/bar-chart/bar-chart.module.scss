@@ -33,7 +33,7 @@
 
 .text {
   display: block;
-  @media (max-width: 800px) {
+  @media (max-width: g.$breakpoint-tablet) {
     font-size: 0;
     display: block;
     &::first-letter {
@@ -45,8 +45,7 @@
 .piece {
     width: 100%;
     height: 100%;
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     align-items: end;
     flex: 1;

@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | [**DownloadsNotificationType**](DownloadsNotificationType.md) |  | [default to undefined]
-**title** | **string** |  | [default to undefined]
-**description** | **string** |  | [default to undefined]
+**title** | **string** | Title of the notification | [default to undefined]
+**description** | **string** | Description of the notification | [default to undefined]
 
 ## Example
 

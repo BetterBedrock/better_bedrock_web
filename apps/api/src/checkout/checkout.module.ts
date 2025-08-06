@@ -4,9 +4,10 @@ import { CheckoutService } from "./checkout.service";
 import { VoucherService } from "src/voucher/voucher.service";
 import { PrismaService } from "src/prisma.service";
 import { AnalyticsService } from "src/analytics/analytics.service";
+import { MailService } from "src/mail/mail.service";
 
 @Module({
     controllers: [CheckoutController],
-    providers: [CheckoutService, VoucherService, AnalyticsService, PrismaService],
+    providers: [CheckoutService, MailService, VoucherService, AnalyticsService, PrismaService],
 })
 export class CheckoutModule {}

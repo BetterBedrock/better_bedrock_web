@@ -96,8 +96,8 @@ export const GridDownloadCard: React.FC<GridDownloadCardProps> = ({
 export const GridDownloadCardDivider = () => {
   return (
     <>
-      <div style={{ backgroundColor: "rgb(31,31,32)", width: "100%", height: "2.5px" }}></div>
-      <div style={{ backgroundColor: "rgb(60,61,62)", width: "100%", height: "2.5px" }}></div>
+      <div className={styles.top}></div>
+      <div className={styles.bottom}></div>
     </>
   );
 };

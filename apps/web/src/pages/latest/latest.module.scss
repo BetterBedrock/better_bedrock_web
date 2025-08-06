@@ -5,8 +5,8 @@
     g.$background-linear-gradient,
     "~/assets/images/crosshair_backgrounds/17.png"
   );
-}
 
-.padding {
-  @include g.section-padding((top, bottom));
+  .padding {
+    @include g.section-padding((top, bottom));
+  }
 }

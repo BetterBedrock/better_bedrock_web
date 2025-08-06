@@ -27,6 +27,7 @@
         "dotenv": "^16.5.0",
         "fs": "^0.0.1-security",
         "helmet": "^8.1.0",
+        "mailersend": "^2.6.0",
         "reflect-metadata": "^0.2.2",
         "rxjs": "^7.8.1",
         "stripe": "^18.2.1",

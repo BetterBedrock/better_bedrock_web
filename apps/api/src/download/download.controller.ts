@@ -51,7 +51,7 @@ export class DownloadController {
         private downloadService: DownloadService,
         private analyticsService: AnalyticsService,
         private readonly voucherService: VoucherService,
-    ) { }
+    ) {}
 
     @Get()
     @SkipThrottle()

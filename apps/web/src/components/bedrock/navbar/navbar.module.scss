@@ -70,14 +70,13 @@
 }
 
 .label {
-  height: 60px;
   display: flex;
   flex-direction: row;
   padding: g.$padding-xsm;
   justify-content: space-between;
 
   &.expanded {
-    @media (max-width: 1000px) {
+    @media (max-width: g.$breakpoint-tablet) {
       .wrapper {
         position: fixed;
       }

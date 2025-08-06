@@ -7,7 +7,7 @@ export const TrailerVideo = () => (
       height="100%"
       // todo: update 
       src="https://www.youtube.com/embed/Oz2cnztzSMw"
-      title="Better Bedrock Changelog v7.2 #1 | Client release on windows! | New Texture Pack version | Showcase"
+      title="Better Bedrock Changelog v8.0 #1 | Client release on windows! | New Texture Pack version | Showcase"
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerPolicy="strict-origin-when-cross-origin"

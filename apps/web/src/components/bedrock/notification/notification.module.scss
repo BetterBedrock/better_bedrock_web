@@ -33,7 +33,7 @@ $pixel: calc(g.$minecraftdepth * 2);
 
 .icon {
   height: auto;
-  width: 25px;
+  width: g.$icon-sm;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
@@ -41,7 +41,7 @@ $pixel: calc(g.$minecraftdepth * 2);
 
 .close {
   height: auto;
-  width: 25px;
+  width: g.$icon-sm;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
@@ -58,12 +58,12 @@ $pixel: calc(g.$minecraftdepth * 2);
 
 .outer {
   background-color: #555555;
-  padding: 5px;
+  padding: calc(g.$minecraftdepth * 2);
 }
 
 .inner {
-  padding: 10px;
-  gap: 10px;
+  padding: calc(g.$minecraftdepth * 4);
+  gap: calc(g.$minecraftdepth * 4);
   height: 100%;
   width: 100%;
   background-color: #212121;

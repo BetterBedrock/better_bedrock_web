@@ -6,7 +6,7 @@
 }
 
 .box {
-  max-width: 300px;
+  max-width: g.$breakpoint-mobileS;
   min-width: 50px;
   padding: calc((g.$minecraftdepth * 2) + g.$padding-xxsm + 1px);
   image-rendering: pixelated;

@@ -18,9 +18,9 @@
 
 .body {
   z-index: 93;
-  pointer-events: auto; /* this is default */
+  pointer-events: auto;
   height: auto;
-  min-height: 300px;
+  min-height: g.$breakpoint-mobileS;
 
   width: 50%;
   max-width: g.$breakpoint-laptopL;

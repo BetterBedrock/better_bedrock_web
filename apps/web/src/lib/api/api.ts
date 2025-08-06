@@ -42,19 +42,19 @@ export interface AnalyticsDto {
      */
     'name': AnalyticsNames;
     /**
-     * 
+     * Unique identifier of the analytics entry
      * @type {string}
      * @memberof AnalyticsDto
      */
     'id': string;
     /**
-     * 
+     * The date when the analytics data was recorded
      * @type {string}
      * @memberof AnalyticsDto
      */
     'date': string;
     /**
-     * 
+     * The numeric value associated with the analytics entry
      * @type {number}
      * @memberof AnalyticsDto
      */
@@ -293,19 +293,19 @@ export interface DownloadsCategoryDto {
  */
 export interface DownloadsDto {
     /**
-     * 
+     * Default section which will be opened on the website
      * @type {string}
      * @memberof DownloadsDto
      */
     'default': string;
     /**
-     * 
+     * Featured item on the website (an item after clicking which, user gets redirected to /latest)
      * @type {string}
      * @memberof DownloadsDto
      */
     'featured': string;
     /**
-     * 
+     * Categories of downloads on the website
      * @type {Array<DownloadsCategoryDto>}
      * @memberof DownloadsDto
      */
@@ -394,13 +394,13 @@ export interface DownloadsItemDto {
  */
 export interface DownloadsListDto {
     /**
-     * 
+     * Title of the list
      * @type {string}
      * @memberof DownloadsListDto
      */
     'title': string;
     /**
-     * 
+     * Description of the list
      * @type {string}
      * @memberof DownloadsListDto
      */
@@ -431,13 +431,13 @@ export interface DownloadsNotificationDto {
      */
     'type': DownloadsNotificationType;
     /**
-     * 
+     * Title of the notification
      * @type {string}
      * @memberof DownloadsNotificationDto
      */
     'title': string;
     /**
-     * 
+     * Description of the notification
      * @type {string}
      * @memberof DownloadsNotificationDto
      */
@@ -468,13 +468,13 @@ export type DownloadsNotificationType = typeof DownloadsNotificationType[keyof t
  */
 export interface DownloadsRichDescriptionDto {
     /**
-     * 
+     * Text display above the image
      * @type {string}
      * @memberof DownloadsRichDescriptionDto
      */
     'name': string;
     /**
-     * 
+     * List of links to images
      * @type {Array<string>}
      * @memberof DownloadsRichDescriptionDto
      */

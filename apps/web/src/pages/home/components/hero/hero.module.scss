@@ -16,10 +16,10 @@ $header-height: 65vh;
     g.$background-linear-gradient,
     "~/assets/images/crosshair_backgrounds/9.png"
   );
-}
 
-.padding {
-  @include g.section-padding(bottom, g.$sectionsDividerPadding);
+  .padding {
+    @include g.section-padding(bottom, g.$sectionsDividerPadding);
+  }
 }
 
 .header {

@@ -27,7 +27,7 @@ export const PreviewPopupPlans = ({
         style={{ paddingBottom: "0.5rem" }}
       />
     )}
-    <ButtonGroup direction="vertical" className={styles.buttonGroup}>
+    <ButtonGroup direction="vertical" className={styles.group}>
       {categories
         ?.find((category) => category.title === selectedTimeframe)
         ?.items.map((item, index) => (

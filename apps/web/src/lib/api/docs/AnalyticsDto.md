@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | [**AnalyticsType**](AnalyticsType.md) |  | [default to undefined]
 **name** | [**AnalyticsNames**](AnalyticsNames.md) |  | [default to undefined]
-**id** | **string** |  | [default to undefined]
-**date** | **string** |  | [default to undefined]
-**value** | **number** |  | [default to undefined]
+**id** | **string** | Unique identifier of the analytics entry | [default to undefined]
+**date** | **string** | The date when the analytics data was recorded | [default to undefined]
+**value** | **number** | The numeric value associated with the analytics entry | [default to undefined]
 
 ## Example
 
