@@ -1,9 +1,7 @@
 @use "~/utils/_variables" as g;
 
 .wrapper {
-  background-position:
-    0% 0%,
-    0% 0%;
+  background-position: center;
   background-size: cover, cover;
   background-repeat: no-repeat, no-repeat;
 }
