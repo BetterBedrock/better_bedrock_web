@@ -3,6 +3,7 @@ import { useCookies } from "react-cookie";
 import { VoucherApi, Configuration, VoucherDto, CreateVoucher, UpdateVoucher } from "~/lib/api";
 import { useAuth } from "~/providers/auth";
 import { useNotification } from "~/providers/notification";
+import { baseUrl } from "~/utils/url";
 
 interface VoucherContextProps {
   vouchers: VoucherDto[];
@@ -24,7 +25,7 @@ export const VoucherProvider = ({ children }: VoucherProviderProps) => {
   const { throwError } = useNotification();
 
   const config = new Configuration({
-    basePath: import.meta.env.VITE_LOCAL_BACKEND_URL,
+    basePath: baseUrl,
     accessToken: cookie.adminSecret,
   });
 

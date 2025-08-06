@@ -1,7 +1,7 @@
 @use "~/utils" as g;
 
 .wrapper {
-  @include g.no-select;
+  @include g.no-drag();
 
   padding: calc(g.$minecraftdepth * 2);
   background-color: g.$color-sbtn-background;

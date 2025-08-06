@@ -1,7 +1,7 @@
 @use "~/utils" as g;
 
-$trailer-padding: 5vh;
-$header-height: 65vh;
+$trailer-padding: 5dvh;
+$header-height: 65dvh;
 
 @mixin flex-container {
   width: 100%;
@@ -27,7 +27,7 @@ $header-height: 65vh;
   height: $header-height;
 
   @media (max-width: g.$breakpoint-tablet) {
-    height: calc(100vh - g.$navbar-height);
+    height: calc(100dvh - g.$navbar-height);
   }
 }
 
