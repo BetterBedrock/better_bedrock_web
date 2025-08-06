@@ -1,6 +1,8 @@
-@use "~/utils/_variables.scss" as g;
+@use "~/utils" as g;
 
 .wrapper {
+  @include g.no-drag();
+
   height: auto;
   min-height: 3.5rem;
 
@@ -8,8 +10,7 @@
   flex-direction: column;
   justify-content: end;
   align-items: end;
-  touch-action: none;
-  user-select: none;
+  // touch-action: none;
 }
 
 .button {
