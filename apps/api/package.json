@@ -6,6 +6,7 @@
     "license": "UNLICENSED",
     "scripts": {
         "build": "nest build",
+        "preview": "node dist/main.js",
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "dev": "nest start -b swc --watch",
         "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",

@@ -40,7 +40,7 @@ export const VoucherCard = ({
           <strong>
             <BedrockText text={voucher.email} type="p" textAlign="left" />
           </strong>
-          <BedrockText text={String(voucher.checkoutId)} type="p2" textAlign="left" />
+          <BedrockText text={`Usage - ${voucher.downloadCount} / ${voucher.maxDownloads}`} type="p2" textAlign="left" />
         </div>
       </div>
     </Button>
