@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_default** | **string** |  | [default to undefined]
-**featured** | **string** |  | [default to undefined]
-**categories** | [**Array&lt;DownloadsCategoryDto&gt;**](DownloadsCategoryDto.md) |  | [default to undefined]
+**_default** | **string** | Default section which will be opened on the website | [default to undefined]
+**featured** | **string** | Featured item on the website (an item after clicking which, user gets redirected to /latest) | [default to undefined]
+**categories** | [**Array&lt;DownloadsCategoryDto&gt;**](DownloadsCategoryDto.md) | Categories of downloads on the website | [default to undefined]
 
 ## Example
 

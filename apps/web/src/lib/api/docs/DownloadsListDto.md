@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**title** | **string** |  | [default to undefined]
-**description** | **string** |  | [default to undefined]
+**title** | **string** | Title of the list | [default to undefined]
+**description** | **string** | Description of the list | [default to undefined]
 **buttons** | [**Array&lt;DownloadsButtonDto&gt;**](DownloadsButtonDto.md) |  | [optional] [default to undefined]
 **items** | [**Array&lt;DownloadsItemDto&gt;**](DownloadsItemDto.md) |  | [default to undefined]
 
