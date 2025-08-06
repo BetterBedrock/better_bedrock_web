@@ -1,6 +1,8 @@
+@use "~/utils" as g;
+
 .content {
   width: 100%;
-  padding: 5px;
+  padding: calc(g.$minecraftdepth * 2);
   box-sizing: border-box;
   position: relative;
   display: flex;
@@ -14,15 +16,15 @@
 }
 
 .description {
-  margin-left: 7.5px;
+  padding: calc(g.$minecraftdepth * 3);
   width: 100%;
 }
 
 .description p {
   display: flex;
   flex-direction: column;
-  margin-block-start: 0em;
-  margin-block-end: 0em;
+  margin-block-start: 0;
+  margin-block-end: 0;
   box-sizing: border-box;
 }
 
