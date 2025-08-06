@@ -20,19 +20,16 @@ export const CollapsibleButton = ({
     isClicked={isCollapsed}
     width="100%"
     onClick={() => setCollapsed((prev) => !prev)}
+    center
+    className={styles.button}
   >
-    <div className={styles.button}>
-      <div style={{ display: "flex" }}>
-        {/* Is this div even needed? */}
-        <BedrockText
-          type="p"
-          text={indexTextRef ? `${indexTextRef}. ${headerText}` : headerText}
-          textAlign="left"
-          color="white"
-          extraClassName={styles.buttonText}
-        />
-      </div>
-      <BedrockText type="p" text={isCollapsed ? "-" : "+"} color="white" />
-    </div>
+    <BedrockText
+      type="p"
+      text={indexTextRef ? `${indexTextRef}. ${headerText}` : headerText}
+      textAlign="left"
+      color="white"
+      extraClassName={styles.buttonText}
+    />
+    <BedrockText type="p" text={isCollapsed ? "-" : "+"} color="white" extraClassName={styles.icon}/>
   </Button>
 );
