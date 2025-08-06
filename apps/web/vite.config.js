@@ -11,5 +11,13 @@ export default defineConfig({
     alias: {
       "~": path.resolve(__dirname, "src"), // Global alias: # refers to the src folder
     },
-  }
+  },
+  server: {
+    host: "0.0.0.0",
+    port: 5173,
+    allowedHosts: ["betterbedrock.com"],
+  },
+  preview: {
+    port: 5173,
+  },
 });
