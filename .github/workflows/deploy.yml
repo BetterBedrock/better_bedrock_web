@@ -60,12 +60,7 @@ jobs:
             pm2 delete better-bedrock || true
 
             # Start preview with pm2 using bash -c to ensure correct shell environment
-            pm2 start --name better-bedrock --cwd $APP_DIR --interpreter bash -- bash -c '
-              export NVM_DIR="$HOME/.nvm"
-              [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-              nvm use 22 || nvm use default
-              yarn preview
-            '
+            pm2 start ecosystem.config.js
 
             # Save process list for resurrection on reboot
             pm2 save
