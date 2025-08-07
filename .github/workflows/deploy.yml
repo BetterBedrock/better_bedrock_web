@@ -8,66 +8,69 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      deployments: write  # Optional: ensures deployment permissions
 
     steps:
+      - name: Create GitHub Deployment
+        uses: chrnorm/deployment-action@v2
+        id: deployment
+        with:
+          token: ${{ github.token }}
+          environment: production
+          ref: ${{ github.sha }}  # The commit being deployed
+
       - name: Deploy to Server
-        uses: appleboy/ssh-action@v0.1.7  # Use latest version
+        uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          timeout: 300s  # 5 minute timeout
-          script_stop: true  # Stop on first error
+          timeout: 300s
+          script_stop: true
           script: |
-            set -e  # Exit on any error
-
+            set -e
             echo "🚀 Starting deployment..."
-            
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             nvm use 22 || nvm use default
-
             echo "Using node version: $(node -v)"
-
-            # Navigate to app directory
             cd ${{ secrets.APP_DIR }}
-
-            # Pull latest changes
             echo "📦 Pulling latest code..."
             git pull origin main
-
-            # Install dependencies
             echo "📋 Installing dependencies..."
             npx yarn install
-
-            # Database operations
             echo "🗄️ Running database operations..."
             cd apps/api
             npx yarn prisma generate
             npx yarn prisma migrate deploy
-
-            # Build application
-            echo "🔨 Building application..."
             cd ${{ secrets.APP_DIR }}
+            echo "🔨 Building application..."
             npx yarn build
-
-            # Start/restart services with PM2
             echo "🔄 Starting services..."
-
-            # Stop existing pm2 process, ignore errors
             pm2 stop better-bedrock || true
             pm2 delete better-bedrock || true
-
-            # Start preview with pm2 using bash -c to ensure correct shell environment
             pm2 start ecosystem.config.js
-
-            # Save process list for resurrection on reboot
             pm2 save
-
-            # Setup pm2 to launch on startup (run output command once manually)
             pm2 startup -u $USER --hp $HOME
-
             echo "✅ Deployment completed successfully!"
             echo "📊 PM2 Status:"
             pm2 status
+
+      - name: Update Deployment Status (Success)
+        if: success()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ github.token }}
+          state: success
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          environment_url: http://your-production-url.com  # Replace with your app’s URL
+
+      - name: Update Deployment Status (Failure)
+        if: failure()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ github.token }}
+          state: failure
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
