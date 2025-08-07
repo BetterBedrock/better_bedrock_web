@@ -19,12 +19,6 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Build Turborepo affected workspaces
-        run: yarn build
-
-      - name: Serve Turborepo affected workspaces
-        run: yarn preview
-
       - name: Generate Prisma CLient
         run: cd apps/api && yarn prisma generate
 
@@ -32,6 +26,12 @@ jobs:
         run: cd apps/api && yarn prisma migrate deploy
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+      - name: Build Turborepo affected workspaces
+        run: yarn build
+
+      - name: Serve Turborepo affected workspaces
+        run: yarn preview
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@master
@@ -44,6 +44,10 @@ jobs:
             cd ${{ secrets.APP_DIR }}
             git pull origin main
             yarn install
+            cd apps/api
+            yarn prisma generate
+            yarn prisma migrate deploy
+            cd ${{ secrets.APP_DIR }}
             turbo build
             turbo preview
             pm2 restart all
