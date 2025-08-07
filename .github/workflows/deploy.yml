@@ -60,7 +60,7 @@ jobs:
             pm2 delete better-bedrock || true
 
             # Start preview with pm2 using bash -c to ensure correct shell environment
-            pm2 start --name better-bedrock -- bash -c "yarn preview"
+            pm2 start ecosystem.config.js
 
             # Save process list for resurrection on reboot
             pm2 save
