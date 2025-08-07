@@ -49,8 +49,10 @@ jobs:
             echo "🔨 Building application..."
             npx yarn build
             echo "🔄 Starting services..."
-            pm2 stop better-bedrock || true
-            pm2 delete better-bedrock || true
+            pm2 stop better-bedrock-web || true
+            pm2 stop better-bedrock-api || true
+            pm2 delete better-bedrock-web || true
+            pm2 delete better-bedrock-api || true
             pm2 start ecosystem.config.js
             pm2 save
             pm2 startup -u $USER --hp $HOME
