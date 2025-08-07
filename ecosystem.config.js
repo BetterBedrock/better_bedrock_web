@@ -5,7 +5,6 @@ module.exports = {
       script: "yarn",
       cwd: "./apps/web",
       args: "preview",
-      interpreter: "bash",
       watch: false,
     },
     {
@@ -13,7 +12,6 @@ module.exports = {
       script: "yarn",
       args: "preview",
       cwd: "./apps/api",
-      interpreter: "bash",
       watch: false,
     },
   ],
