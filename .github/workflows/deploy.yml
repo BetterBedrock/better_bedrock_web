@@ -46,13 +46,14 @@ jobs:
             npx yarn prisma generate
             npx yarn prisma migrate deploy
             cd ${{ secrets.APP_DIR }}
-            echo "🔨 Building application..."
-            npx yarn build
-            echo "🔄 Starting services..."
+            echo "🔄 Stopping services..."
             pm2 stop better-bedrock-web || true
             pm2 stop better-bedrock-api || true
             pm2 delete better-bedrock-web || true
             pm2 delete better-bedrock-api || true
+            echo "🔨 Building application..."
+            npx yarn build
+            echo "🔄 Starting services..."
             pm2 start ecosystem.config.js
             pm2 save
             pm2 startup -u $USER --hp $HOME
