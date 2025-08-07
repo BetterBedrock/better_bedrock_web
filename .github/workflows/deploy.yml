@@ -55,16 +55,18 @@ jobs:
             # Start/restart services with PM2
             echo "🔄 Starting services..."
 
-            # Stop existing processes (ignore errors if not running)
-            pm2 stop all || true
-            pm2 delete all || true
+            # Stop existing pm2 process, ignore errors
+            pm2 stop better-bedrock || true
+            pm2 delete better-bedrock || true
 
-            # Start Turborepo
-            pm2 start npx yarn --name "better-bedrock" -- preview
+            # Start preview with pm2 using bash -c to ensure correct shell environment
+            pm2 start --name better-bedrock -- bash -c "yarn preview"
 
-            # Save PM2 configuration
+            # Save process list for resurrection on reboot
             pm2 save
-            pm2 startup
+
+            # Setup pm2 to launch on startup (run output command once manually)
+            pm2 startup -u $USER --hp $HOME
 
             echo "✅ Deployment completed successfully!"
             echo "📊 PM2 Status:"
