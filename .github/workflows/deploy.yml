@@ -10,14 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '22'
-
       - name: Deploy to Server
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.7  # Use latest version
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -29,6 +23,12 @@ jobs:
             set -e  # Exit on any error
 
             echo "🚀 Starting deployment..."
+            
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm use 22 || nvm use default
+
+            echo "Using node version: $(node -v)"
 
             # Navigate to app directory
             cd ${{ secrets.APP_DIR }}
