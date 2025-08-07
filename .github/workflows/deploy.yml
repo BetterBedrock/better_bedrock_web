@@ -25,10 +25,13 @@ jobs:
       - name: Serve Turborepo affected workspaces
         run: yarn preview
 
-#      - name: Run Prisma migrations
- #       run: npx prisma migrate deploy
-  #      env:
-   #       DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      - name: Generate Prisma CLient
+        run: cd apps/api && yarn prisma generate
+
+      - name: Run Prisma migrations
+        run: cd apps/api && yarn prisma migrate deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@master
