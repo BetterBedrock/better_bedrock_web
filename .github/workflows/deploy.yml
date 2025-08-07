@@ -14,18 +14,21 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '22'
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install
 
       - name: Build Turborepo affected workspaces
-        run: npx turbo run build --filter=...
+        run: yarn build
 
-      - name: Run Prisma migrations
-        run: npx prisma migrate deploy
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      - name: Serve Turborepo affected workspaces
+        run: yarn preview
+
+#      - name: Run Prisma migrations
+ #       run: npx prisma migrate deploy
+  #      env:
+   #       DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@master
@@ -37,6 +40,7 @@ jobs:
           script: |
             cd ${{ secrets.APP_DIR }}
             git pull origin main
-            npm ci
-            npx turbo run build --filter=...
+            yarn install
+            turbo build
+            turbo preview
             pm2 restart all
