@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Deploy to Server
         uses: appleboy/ssh-action@v0.1.7  # Use latest version
@@ -32,18 +33,18 @@ jobs:
 
             # Install dependencies
             echo "📋 Installing dependencies..."
-            yarn install
+            npx yarn install
 
             # Database operations
             echo "🗄️ Running database operations..."
             cd apps/api
-            yarn prisma generate
-            yarn prisma migrate deploy
+            npx yarn prisma generate
+            npx yarn prisma migrate deploy
 
             # Build application
             echo "🔨 Building application..."
             cd ${{ secrets.APP_DIR }}
-            yarn build
+            npx yarn build
 
             # Start/restart services with PM2
             echo "🔄 Starting services..."
@@ -53,7 +54,7 @@ jobs:
             pm2 delete all || true
 
             # Start Turborepo
-            pm2 start yarn --name "better-bedrock" -- preview
+            pm2 start npx yarn --name "better-bedrock" -- preview
 
             # Save PM2 configuration
             pm2 save
