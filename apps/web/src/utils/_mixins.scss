@@ -19,13 +19,6 @@
   }
 }
 
-@mixin no-select() {
-  user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -o-user-select: none;
-}
 
 @mixin no-drag() {
   -webkit-user-drag: none;

@@ -6,7 +6,7 @@ export const CHECKOUT_OFFERS: CheckoutOffersDto = {
             title: "Weekly",
             items: [
                 {
-                    priceId: "price_1RYVyQQKPqpU2QRop44SCri8",
+                    priceId: "price_1RtX87Kgf6LpBRfQsl8wUY1U",
                     priceOption: {
                         price: 1,
                         label: "",
@@ -18,7 +18,7 @@ export const CHECKOUT_OFFERS: CheckoutOffersDto = {
                     },
                 },
                 {
-                    priceId: "price_1RZZ7iQKPqpU2QRofx62IzDd",
+                    priceId: "price_1RtWWGKgf6LpBRfQgEy8ugJL",
                     priceOption: {
                         price: 2,
                         label: "",
@@ -30,7 +30,7 @@ export const CHECKOUT_OFFERS: CheckoutOffersDto = {
                     },
                 },
                 {
-                    priceId: "price_1RZZ8vQKPqpU2QRo9P4CgfTg",
+                    priceId: "price_1RtWWXKgf6LpBRfQ1TTdsWG1",
                     priceOption: {
                         price: 5,
                         label: "",
@@ -47,7 +47,7 @@ export const CHECKOUT_OFFERS: CheckoutOffersDto = {
             title: "Monthly",
             items: [
                 {
-                    priceId: "price_1RZZ9cQKPqpU2QRoVuq7xh7J",
+                    priceId: "price_1RtWXwKgf6LpBRfQXh42GPor",
                     priceOption: {
                         price: 3,
                         label: "",
@@ -59,7 +59,7 @@ export const CHECKOUT_OFFERS: CheckoutOffersDto = {
                     },
                 },
                 {
-                    priceId: "price_1RZZBDQKPqpU2QRoa4GnIPKc",
+                    priceId: "price_1RtWYAKgf6LpBRfQnIwvhMXz",
                     priceOption: {
                         price: 5,
                         label: "",
@@ -71,7 +71,7 @@ export const CHECKOUT_OFFERS: CheckoutOffersDto = {
                     },
                 },
                 {
-                    priceId: "price_1RZZDAQKPqpU2QRoyHXD6wrr",
+                    priceId: "price_1RtWYIKgf6LpBRfQfEWPBOTu",
                     priceOption: {
                         price: 10,
                         label: "",

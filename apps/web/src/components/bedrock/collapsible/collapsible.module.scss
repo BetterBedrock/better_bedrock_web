@@ -42,10 +42,8 @@
   display: flex;
   width: 100%;
   height: 100%;
-  align-items: center;
-  padding: 0 g.$padding-xsm;
-  gap: g.$padding-sm;
-  justify-content: space-between;
+  align-items: start;
+  justify-content: start;
 }
 
 .contentText {
@@ -53,5 +51,10 @@
 }
 
 .buttonText {
+  width: 100%;
   padding: g.$padding-xsm;
+}
+
+.icon {
+  padding: 0 g.$padding-xsm 0 0;
 }

@@ -39,3 +39,5 @@ apps/api/src/assets/downloads/*
 # Misc
 .DS_Store
 *.pem
+github_action
+github_action.pub

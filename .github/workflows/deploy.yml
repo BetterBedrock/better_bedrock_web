@@ -1,0 +1,79 @@
+name: CI/CD Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      deployments: write
+
+    steps:
+      - name: Create GitHub Deployment
+        uses: chrnorm/deployment-action@v2
+        id: deployment
+        with:
+          token: ${{ github.token }}
+          environment: production
+          ref: ${{ github.sha }}
+
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          timeout: 300s
+          script_stop: true
+          script: |
+            set -e
+            echo "🚀 Starting deployment..."
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm use 22 || nvm use default
+            echo "Using node version: $(node -v)"
+            cd ${{ secrets.APP_DIR }}
+            echo "📦 Pulling latest code..."
+            git pull origin main
+            echo "📋 Installing dependencies..."
+            npx yarn install
+            echo "🗄️ Running database operations..."
+            cd apps/api
+            npx yarn prisma generate
+            npx yarn prisma migrate deploy
+            cd ${{ secrets.APP_DIR }}
+            echo "🔄 Stopping services..."
+            pm2 stop better-bedrock-web || true
+            pm2 stop better-bedrock-api || true
+            pm2 delete better-bedrock-web || true
+            pm2 delete better-bedrock-api || true
+            echo "🔨 Building application..."
+            npx yarn build
+            echo "🔄 Starting services..."
+            pm2 start ecosystem.config.js
+            pm2 save
+            pm2 startup -u $USER --hp $HOME
+            echo "✅ Deployment completed successfully!"
+            echo "📊 PM2 Status:"
+            pm2 status
+
+      - name: Update Deployment Status (Success)
+        if: success()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ github.token }}
+          state: success
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          environment_url: https://betterbedrock.com/
+
+      - name: Update Deployment Status (Failure)
+        if: failure()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ github.token }}
+          state: failure
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}

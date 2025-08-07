@@ -162,7 +162,8 @@ export class DownloadController {
                 if (
                     voucher.betterBedrockContentOnly &&
                     CONTENT.flatMap((map) => map.items).find(
-                        (item) => item.downloadId === file!.downloadId,
+                        (item) =>
+                            item.downloadId === file!.downloadId && !item.betterBedrockContent,
                     )
                 ) {
                     throw new ForbiddenException(

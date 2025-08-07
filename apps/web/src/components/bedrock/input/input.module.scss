@@ -29,7 +29,6 @@
   aspect-ratio: 30 / 16;
 
   .image {
-    @include g.no-select();
     @include g.no-drag();
     image-rendering: pixelated;
   }

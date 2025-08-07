@@ -172,7 +172,7 @@ export class CheckoutController {
                 await this.voucherService.createVoucher({
                     email: email ?? "unknown",
                     checkoutId: session.id,
-                    code: this.voucherService.generateCode(8),
+                    code: code,
                     maxDownloads: priceOptions.maxDownloads,
                     betterBedrockContentOnly: priceOptions.betterBedrockContentOnly,
                     expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * priceOptions.expiresAt), // 30 days from now
