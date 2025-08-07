@@ -6,7 +6,7 @@ export const CHECKOUT_OFFERS: CheckoutOffersDto = {
             title: "Weekly",
             items: [
                 {
-                    priceId: "price_1RtWUQKgf6LpBRfQlUYvzBfI",
+                    priceId: "price_1RtX87Kgf6LpBRfQsl8wUY1U",
                     priceOption: {
                         price: 1,
                         label: "",
