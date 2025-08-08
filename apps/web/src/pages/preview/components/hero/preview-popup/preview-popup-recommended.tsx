@@ -1,5 +1,4 @@
 import { DownloadMethodCard } from "~/components/bedrock/download-method-card/download-method-card";
-import { styles } from ".";
 import { CheckoutOptionGroupDto } from "~/lib/api";
 
 interface PreviewPopupRecommendedProps {
@@ -7,9 +6,10 @@ interface PreviewPopupRecommendedProps {
   purchase: (priceId: string) => Promise<void>;
 }
 
-export const PreviewPopupRecommended = ({ categories, purchase }: PreviewPopupRecommendedProps) => (
-  <div className={styles.part}>
-    {categories?.[1]?.items.slice(1, 2).map((item, index) => (
+export const PreviewPopupRecommended = ({ categories, purchase }: PreviewPopupRecommendedProps) =>
+  categories?.[1]?.items
+    .slice(1, 2)
+    .map((item, index) => (
       <DownloadMethodCard
         key={index}
         buttonType="green"
@@ -19,6 +19,4 @@ export const PreviewPopupRecommended = ({ categories, purchase }: PreviewPopupRe
         title={`${item.priceOption.title} (Recommended, monthly)`}
         onClick={() => purchase(item.priceId)}
       />
-    ))}
-  </div>
-);
+    ));
