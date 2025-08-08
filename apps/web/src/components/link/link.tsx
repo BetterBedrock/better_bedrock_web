@@ -4,7 +4,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import { styles } from ".";
 
 interface LinkProps {
-  link: string;
+  link?: string;
   isExternalLink?: boolean;
   children: ReactNode;
   hideStyles?: boolean;
@@ -18,6 +18,8 @@ export const Link = ({
   isExternalLink = false,
   className,
 }: LinkProps) => {
+  if (!link) return children;
+
   return isExternalLink ? (
     <a
       href={link}
