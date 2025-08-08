@@ -1,6 +1,7 @@
 import React, { useState, useRef, useLayoutEffect } from "react";
 import { styles } from ".";
 import clsx from "clsx";
+import { useMediaQuery } from "react-responsive";
 
 interface SectionDividerProps {
   image: string;
@@ -21,8 +22,8 @@ const hashString = (str: string): number => {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash;
   }
   return Math.abs(hash);
 };
@@ -50,11 +51,19 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
   overlap,
   seed,
 }) => {
-  const totalHeight = rows * blockSize;
+  const isLaptop = useMediaQuery({ query: "(max-width: 1440px)" }); // Add query for laptop screens
+  const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const isMobileSmall = useMediaQuery({ query: "(max-width: 480px)" }); // Adjust query for small mobile screens
+
+  const finalBlockSize = Math.round(isMobileSmall ? blockSize / 1.8 : isMobile ? blockSize / 1.6 : isTablet ? blockSize / 1.4 : isLaptop ? blockSize / 1.2 : blockSize);
+  
+  console.log({finalBlockSize});
+  const totalHeight = rows * finalBlockSize;
   const overlapOffset = overlap ?? totalHeight / 3;
   const containerRef = useRef<HTMLDivElement>(null);
   const [grid, setGrid] = useState<Cell[][]>([]);
-  
+
   const seedRef = useRef<string | null>(null);
   if (seedRef.current === null) {
     seedRef.current = seed || Date.now().toString();
@@ -62,9 +71,9 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
 
   const generateGrid = () => {
     const width = containerRef.current?.offsetWidth || 0;
-    const cols = Math.ceil(width / blockSize);
+    const cols = Math.ceil(width / finalBlockSize);
 
-    const seedValue = `${seedRef.current}-${image}-${rows}-${fullCenterRows}-${blockSize}-${edgeProbability}-${cols}`;
+    const seedValue = `${seedRef.current}-${image}-${rows}-${fullCenterRows}-${finalBlockSize}-${edgeProbability}-${cols}`;
     const hashedSeed = hashString(seedValue);
     const rng = new SeededRandom(hashedSeed);
 
@@ -76,7 +85,7 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
 
     // initialize grid
     const newGrid: Cell[][] = Array.from({ length: rows }, () =>
-      Array.from({ length: cols }, (_, c) => ({ x: c * blockSize, render: false })),
+      Array.from({ length: cols }, (_, c) => ({ x: c * finalBlockSize, render: false })),
     );
 
     // fill full center rows
@@ -141,7 +150,7 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [rows, fullCenterRows, blockSize, edgeProbability]);
+  }, [rows, fullCenterRows, finalBlockSize, edgeProbability]);
 
   return (
     <div
@@ -159,8 +168,8 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
         <div
           key={r}
           style={{
-            top: r * blockSize,
-            height: blockSize,
+            top: r * finalBlockSize,
+            height: finalBlockSize,
           }}
           className={styles.row}
         >
@@ -171,8 +180,8 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
                 src={image}
                 style={{
                   left: cell.x,
-                  width: blockSize,
-                  height: blockSize,
+                  width: finalBlockSize,
+                  height: finalBlockSize,
                 }}
                 className={clsx(styles.block)}
               />
