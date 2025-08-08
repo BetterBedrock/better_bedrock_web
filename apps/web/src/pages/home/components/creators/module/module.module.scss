@@ -2,23 +2,12 @@
 
 $card-min-width: 150px;
 
-@mixin flex-container(
-  $direction: row,
-  $justify: flex-start,
-  $align: stretch,
-  $wrap: nowrap
-) {
+@mixin flex-container($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
   display: flex;
   flex-direction: $direction;
   justify-content: $justify;
   align-items: $align;
   flex-wrap: $wrap;
-}
-
-@mixin below-laptop {
-  @media (max-width: g.$breakpoint-tablet) {
-    @content;
-  }
 }
 
 .card {
@@ -29,13 +18,14 @@ $card-min-width: 150px;
 }
 
 .list {
-  @include flex-container(row, flex-start, stretch, wrap);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   width: 100%;
   gap: g.$padding-xsm;
   padding-top: g.$padding-sm;
 
-  @include below-laptop {
-    flex-direction: column;
+  @media (max-width: g.$breakpoint-tablet) {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 

@@ -8,10 +8,8 @@ interface ModuleContributorsListProps {
 
 export const ModuleContributorsList = ({ data }: ModuleContributorsListProps) => (
   <div className={styles.list}>
-    {data.map((item, index) => {
-      return (
-        <ModuleCard key={index} creator={item.creator} title={item.name} description={item.description ?? ""} />
-      );
-    })}
+    {data.map((item, index) => (
+      <ModuleCard key={index} data={item} />
+    ))}
   </div>
 );
