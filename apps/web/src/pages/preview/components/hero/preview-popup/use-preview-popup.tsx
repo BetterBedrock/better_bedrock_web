@@ -12,9 +12,10 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 interface usePreviewPopupProps {
   downloadItem: DownloadsItemDto;
+  onClose?: () => void;
 }
 
-export const usePreviewPopup = ({ downloadItem }: usePreviewPopupProps) => {
+export const usePreviewPopup = ({ downloadItem, onClose }: usePreviewPopupProps) => {
   const { sendNotification } = useNotification();
   const navigate = useNavigate();
   const [cookie, setVoucher] = useCookies(["voucher"]);
@@ -34,6 +35,7 @@ export const usePreviewPopup = ({ downloadItem }: usePreviewPopupProps) => {
         label: "You succesfully activated your voucher",
         type: "success",
       });
+      onClose?.();
     }
   };
 
@@ -125,7 +127,7 @@ export const usePreviewPopup = ({ downloadItem }: usePreviewPopupProps) => {
 
   const handleKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      event.preventDefault(); // Optional: prevent form submission
+      event.preventDefault();
       await useVoucher();
     }
   };
