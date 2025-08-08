@@ -25,10 +25,6 @@ $header-height: 65dvh;
 .header {
   @include flex-container();
   height: $header-height;
-
-  @media (max-width: g.$breakpoint-tablet) {
-    height: calc(100dvh - g.$navbar-height);
-  }
 }
 
 .trailer {
