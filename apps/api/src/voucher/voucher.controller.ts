@@ -1,10 +1,10 @@
 import { Body, Controller, Get, Param, Patch, Post, UseGuards } from "@nestjs/common";
 import { ApiTags, ApiOkResponse, ApiBearerAuth } from "@nestjs/swagger";
-import { AdminAuthGuard } from "src/auth/admin-auth.guard";
-import { CreateVoucher } from "src/voucher/dto/create-voucher.dto";
-import { UpdateVoucher } from "src/voucher/dto/update-voucher.dto";
-import { VoucherDto } from "src/voucher/dto/voucher.dto";
-import { VoucherService } from "src/voucher/voucher.service";
+import { AdminAuthGuard } from "~/auth/admin-auth.guard";
+import { CreateVoucher } from "~/voucher/dto/create-voucher.dto";
+import { UpdateVoucher } from "~/voucher/dto/update-voucher.dto";
+import { VoucherDto } from "~/voucher/dto/voucher.dto";
+import { VoucherService } from "~/voucher/voucher.service";
 
 @ApiTags("voucher")
 @Controller("voucher")

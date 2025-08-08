@@ -14,9 +14,9 @@ import {
     ForbiddenException,
     GoneException,
 } from "@nestjs/common";
-import { CheckoutService } from "src/checkout/checkout.service";
-import { ActivateVoucherDto } from "src/checkout/dto/activate-voucher.dto";
-import { VoucherService } from "src/voucher/voucher.service";
+import { CheckoutService } from "~/checkout/checkout.service";
+import { ActivateVoucherDto } from "~/checkout/dto/activate-voucher.dto";
+import { VoucherService } from "~/voucher/voucher.service";
 import Stripe from "stripe";
 import {
     ApiBadGatewayResponse,
@@ -26,17 +26,17 @@ import {
     ApiOkResponse,
     ApiTags,
 } from "@nestjs/swagger";
-import { CreateCheckoutSessionDto } from "src/checkout/dto/create-checkout-session.dto";
-import { CHECKOUT_OFFERS } from "src/checkout/constants/checkout-offers";
-import { CreateCheckoutSessionResponseDto } from "src/checkout/dto/create-checkout-session-response.dto";
-import { obscureEmail } from "src/utils/string";
-import { CheckoutOffersDto } from "src/checkout/dto/checkout-offers.dto";
-import { VoucherDto } from "src/voucher/dto/voucher.dto";
-import { AnalyticsService } from "src/analytics/analytics.service";
-import { AnalyticsNames } from "src/analytics/constants/analytics-names";
+import { CreateCheckoutSessionDto } from "~/checkout/dto/create-checkout-session.dto";
+import { CHECKOUT_OFFERS } from "~/checkout/constants/checkout-offers";
+import { CreateCheckoutSessionResponseDto } from "~/checkout/dto/create-checkout-session-response.dto";
+import { obscureEmail } from "~/utils/string";
+import { CheckoutOffersDto } from "~/checkout/dto/checkout-offers.dto";
+import { VoucherDto } from "~/voucher/dto/voucher.dto";
+import { AnalyticsService } from "~/analytics/analytics.service";
+import { AnalyticsNames } from "~/analytics/constants/analytics-names";
 import dayjs from "dayjs";
 import { Throttle } from "@nestjs/throttler";
-import { MailService } from "src/mail/mail.service";
+import { MailService } from "~/mail/mail.service";
 
 @ApiTags("checkout")
 @Controller("checkout")

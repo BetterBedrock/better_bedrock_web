@@ -1,8 +1,8 @@
 import { Controller, Get, UseGuards } from "@nestjs/common";
 import { ApiTags, ApiOkResponse, ApiBearerAuth } from "@nestjs/swagger";
-import { AnalyticsService } from "src/analytics/analytics.service";
-import { AdminAuthGuard } from "src/auth/admin-auth.guard";
-import { AnalyticsDto } from "src/analytics/dto/analytics.dto";
+import { AnalyticsService } from "~/analytics/analytics.service";
+import { AdminAuthGuard } from "~/auth/admin-auth.guard";
+import { AnalyticsDto } from "~/analytics/dto/analytics.dto";
 
 @ApiTags("analytics")
 @Controller("analytics")

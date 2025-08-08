@@ -1,4 +1,4 @@
 import { OmitType } from "@nestjs/swagger";
-import { VoucherDto } from "src/voucher/dto/voucher.dto";
+import { VoucherDto } from "~/voucher/dto/voucher.dto";
 
 export class CreateVoucher extends OmitType(VoucherDto, ["id", "createdAt"] as const) {}

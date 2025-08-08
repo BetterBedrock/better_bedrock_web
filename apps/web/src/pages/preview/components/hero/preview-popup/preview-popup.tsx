@@ -26,7 +26,7 @@ export const PreviewPopup = ({ onClose, downloadItem }: PreviewPopupProps) => {
     download,
     purchase,
     cookie,
-  } = usePreviewPopup({ downloadItem });
+  } = usePreviewPopup({ downloadItem, onClose });
 
   if (cookie.voucher || selectedTimeframe === undefined) {
     if (cookie.voucher satisfies VoucherDto) {

@@ -1,4 +1,4 @@
-import { DownloadsCategoryDto } from "src/download/dto/downloads-category.dto";
+import { DownloadsCategoryDto } from "~/download/dto/downloads-category.dto";
 
 export const COMMUNITY_DOWNLOADS_IDS = {
     blueUI: "blue_ui.mcpack",

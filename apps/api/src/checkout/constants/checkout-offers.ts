@@ -1,4 +1,4 @@
-import { CheckoutOffersDto } from "src/checkout/dto/checkout-offers.dto";
+import { CheckoutOffersDto } from "~/checkout/dto/checkout-offers.dto";
 
 export const CHECKOUT_OFFERS: CheckoutOffersDto = {
     offers: [

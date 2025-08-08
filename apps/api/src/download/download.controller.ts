@@ -26,20 +26,20 @@ import {
     ApiTags,
     ApiUnauthorizedResponse,
 } from "@nestjs/swagger";
-import { AnalyticsService } from "src/analytics/analytics.service";
+import { AnalyticsService } from "~/analytics/analytics.service";
 import { Response } from "express";
-import { DownloadService } from "src/download/download.service";
-import { GenerateDownloadDto } from "src/download/dto/generate-download.dto";
+import { DownloadService } from "~/download/download.service";
+import { GenerateDownloadDto } from "~/download/dto/generate-download.dto";
 import { HttpService } from "@nestjs/axios";
 import { lastValueFrom } from "rxjs";
-import { VerifyDownloadDto } from "src/download/dto/verify-download.dto";
+import { VerifyDownloadDto } from "~/download/dto/verify-download.dto";
 import { createReadStream, promises as fs } from "fs";
 import { join } from "path";
-import { VoucherService } from "src/voucher/voucher.service";
+import { VoucherService } from "~/voucher/voucher.service";
 import { SkipThrottle } from "@nestjs/throttler";
-import { DownloadsItemDto } from "src/download/dto/downloads-item.dto";
-import { CONTENT } from "src/content/constants/content";
-import { AnalyticsNames } from "src/analytics/constants/analytics-names";
+import { DownloadsItemDto } from "~/download/dto/downloads-item.dto";
+import { CONTENT } from "~/content/constants/content";
+import { AnalyticsNames } from "~/analytics/constants/analytics-names";
 
 @ApiTags("download")
 @Controller("download")
@@ -89,12 +89,7 @@ export class DownloadController {
         await this.analyticsService.incrementAnalytics(download.file, "file");
         await this.analyticsService.incrementAnalytics(AnalyticsNames.totalDownloads, "general");
 
-        const filePath = join(
-            __dirname,
-            "../..",
-            "src/assets/downloads",
-            registryElement.downloadId,
-        );
+        const filePath = join(__dirname, "../..", "~/assets/downloads", registryElement.downloadId);
 
         let stat;
         try {

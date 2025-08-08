@@ -39,49 +39,52 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
     setDownloading(true);
     setDownloadProgress(0);
 
-    try {
-      const { headers, data } = await downloadApi.downloadControllerDownload();
+    const downloadUrl = `${baseUrl}/download`;
 
-      const contentLength = String(headers["Content-Length"]);
-      const total = contentLength ? parseInt(contentLength, 10) : NaN;
+    const response = await fetch(downloadUrl);
 
-      const reader = data.stream().getReader();
-      const chunks: Uint8Array[] = [];
-      let loaded = 0;
+    if (!response.ok || !response.body) {
+      console.log({response});
+      return;
+    }
 
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        if (value) {
-          chunks.push(value);
-          loaded += value.length;
-          // Compute % and update state:
-          if (!isNaN(total)) {
-            setDownloadProgress(Math.floor((loaded / total) * 100));
-          }
+    const contentLength = response.headers.get("Content-Length");
+    const total = contentLength ? parseInt(contentLength, 10) : NaN;
+
+    const reader = response.body.getReader();
+    const chunks: Uint8Array[] = [];
+    let loaded = 0;
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      if (value) {
+        chunks.push(value);
+        loaded += value.length;
+        // Compute % and update state:
+        if (!isNaN(total)) {
+          setDownloadProgress(Math.floor((loaded / total) * 100));
         }
       }
-
-      const blob = new Blob(chunks);
-      const disposition = headers["Content-Disposition"] || "";
-      const filenameMatch = /filename\*=UTF-8''([^;]+)|filename="([^"]+)"/.exec(disposition);
-      const filename = filenameMatch
-        ? decodeURIComponent(filenameMatch[1] || filenameMatch[2])
-        : "download";
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-
-      setDownloadProgress(100);
-      setDownloading(false);
-    } catch (err) {
-      throwError(err, "Failed to download content");
     }
+
+    const blob = new Blob(chunks);
+    const disposition = response.headers.get("Content-Disposition") || "";
+    const filenameMatch = /filename\*=UTF-8''([^;]+)|filename="([^"]+)"/.exec(disposition);
+    const filename = filenameMatch
+      ? decodeURIComponent(filenameMatch[1] || filenameMatch[2])
+      : "download";
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+
+    setDownloadProgress(100);
+    setDownloading(false);
   };
 
   const fetchDownloads = async () => {

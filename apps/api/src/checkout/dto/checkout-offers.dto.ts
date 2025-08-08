@@ -1,6 +1,6 @@
 import { Type } from "class-transformer";
 import { IsArray, ValidateNested } from "class-validator";
-import { CheckoutOptionGroupDto } from "src/checkout/dto/checkout-option-group.dto";
+import { CheckoutOptionGroupDto } from "~/checkout/dto/checkout-option-group.dto";
 
 export class CheckoutOffersDto {
     /**

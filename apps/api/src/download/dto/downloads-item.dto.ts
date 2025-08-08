@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsEnum } from "class-validator";
-import { DownloadsButtonType } from "src/download/dto/downloads-button.dto";
-import { DownloadsRichDescriptionDto } from "src/download/dto/downloads-rich-description.dto";
+import { DownloadsButtonType } from "~/download/dto/downloads-button.dto";
+import { DownloadsRichDescriptionDto } from "~/download/dto/downloads-rich-description.dto";
 
 export class DownloadsItemDto {
     /**
