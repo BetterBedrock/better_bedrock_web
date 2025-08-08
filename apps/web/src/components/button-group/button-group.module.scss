@@ -28,6 +28,7 @@
 
 .buttonGroup[data-direction="vertical"] {
   flex-direction: column;
+  gap: g.$padding-xsm;
 }
 
 .buttonGroup[data-direction="vertical"] > :global(*:not(:first-child)) {
@@ -37,6 +38,7 @@
 @media (max-width: g.$breakpoint-mobileL) {
   .buttonGroup[data-direction="responsive"] {
     flex-direction: column;
+    gap: g.$padding-xsm;
   }
 
   .buttonGroup[data-direction="responsive"] > :global(*:not(:first-child)) {
