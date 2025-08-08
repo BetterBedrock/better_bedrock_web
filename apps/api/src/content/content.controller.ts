@@ -1,11 +1,11 @@
 import { Controller, Get } from "@nestjs/common";
 import { ApiTags, ApiOkResponse } from "@nestjs/swagger";
-import { DOWNLOADS_IDS, MAIN_LIST } from "src/content/constants/content-main";
-import { SIDE_PROJECTS_LIST } from "src/content/constants/content-side-projects";
-import { COMMUNITY_LIST } from "src/content/constants/content-community";
-import { DownloadsDto } from "src/download/dto/downloads.dto";
-import { AnalyticsService } from "src/analytics/analytics.service";
-import { AnalyticsNames } from "src/analytics/constants/analytics-names";
+import { DOWNLOADS_IDS, MAIN_LIST } from "~/content/constants/content-main";
+import { SIDE_PROJECTS_LIST } from "~/content/constants/content-side-projects";
+import { COMMUNITY_LIST } from "~/content/constants/content-community";
+import { DownloadsDto } from "~/download/dto/downloads.dto";
+import { AnalyticsService } from "~/analytics/analytics.service";
+import { AnalyticsNames } from "~/analytics/constants/analytics-names";
 
 @ApiTags("content")
 @Controller("content")

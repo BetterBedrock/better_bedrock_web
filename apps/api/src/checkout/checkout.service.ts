@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { CreateCheckoutSessionDto } from "src/checkout/dto/create-checkout-session.dto";
+import { CreateCheckoutSessionDto } from "~/checkout/dto/create-checkout-session.dto";
 import Stripe from "stripe";
 
 @Injectable()

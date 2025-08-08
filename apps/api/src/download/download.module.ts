@@ -1,10 +1,10 @@
 import { Module } from "@nestjs/common";
-import { AnalyticsService } from "src/analytics/analytics.service";
-import { DownloadController } from "src/download/download.controller";
-import { DownloadService } from "src/download/download.service";
-import { PrismaService } from "src/prisma.service";
+import { AnalyticsService } from "~/analytics/analytics.service";
+import { DownloadController } from "~/download/download.controller";
+import { DownloadService } from "~/download/download.service";
+import { PrismaService } from "~/prisma.service";
 import { HttpModule } from "@nestjs/axios";
-import { VoucherService } from "src/voucher/voucher.service";
+import { VoucherService } from "~/voucher/voucher.service";
 
 @Module({
     imports: [

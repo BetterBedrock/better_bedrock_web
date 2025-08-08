@@ -1,4 +1,4 @@
-import { DownloadsListDto } from "src/download/dto/downloads-list.dto";
+import { DownloadsListDto } from "~/download/dto/downloads-list.dto";
 
 export class DownloadsCategoryDto {
     /**

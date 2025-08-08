@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsEnum } from "class-validator";
-import { DownloadsNotificationDto } from "src/download/dto/downloads-notification.dto";
+import { DownloadsNotificationDto } from "~/download/dto/downloads-notification.dto";
 
 export const DownloadsButtonType = {
     white: "white",

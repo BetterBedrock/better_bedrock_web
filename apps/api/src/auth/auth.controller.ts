@@ -6,7 +6,7 @@ import {
     ApiTags,
     ApiUnauthorizedResponse,
 } from "@nestjs/swagger";
-import { AdminAuthGuard } from "src/auth/admin-auth.guard";
+import { AdminAuthGuard } from "~/auth/admin-auth.guard";
 
 @ApiTags("auth")
 @Controller("auth")

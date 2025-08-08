@@ -1,10 +1,10 @@
 import { Module } from "@nestjs/common";
-import { CheckoutController } from "src/checkout/checkout.controller";
+import { CheckoutController } from "~/checkout/checkout.controller";
 import { CheckoutService } from "./checkout.service";
-import { VoucherService } from "src/voucher/voucher.service";
-import { PrismaService } from "src/prisma.service";
-import { AnalyticsService } from "src/analytics/analytics.service";
-import { MailService } from "src/mail/mail.service";
+import { VoucherService } from "~/voucher/voucher.service";
+import { PrismaService } from "~/prisma.service";
+import { AnalyticsService } from "~/analytics/analytics.service";
+import { MailService } from "~/mail/mail.service";
 
 @Module({
     controllers: [CheckoutController],

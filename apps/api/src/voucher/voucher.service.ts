@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { Prisma, Voucher } from "@prisma/client";
 import { randomBytes } from "crypto";
-import { PrismaService } from "src/prisma.service";
+import { PrismaService } from "~/prisma.service";
 
 @Injectable()
 export class VoucherService {

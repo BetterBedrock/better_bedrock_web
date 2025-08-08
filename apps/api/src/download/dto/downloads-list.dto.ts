@@ -1,5 +1,5 @@
-import { DownloadsButtonDto } from "src/download/dto/downloads-button.dto";
-import { DownloadsItemDto } from "src/download/dto/downloads-item.dto";
+import { DownloadsButtonDto } from "~/download/dto/downloads-button.dto";
+import { DownloadsItemDto } from "~/download/dto/downloads-item.dto";
 
 export class DownloadsListDto {
     /**

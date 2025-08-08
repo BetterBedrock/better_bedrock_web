@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { AnalyticsType } from "@prisma/client";
 import dayjs from "dayjs";
-import { PrismaService } from "src/prisma.service";
+import { PrismaService } from "~/prisma.service";
 
 @Injectable()
 export class AnalyticsService {

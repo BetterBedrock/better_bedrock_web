@@ -1,4 +1,4 @@
-import { DownloadsCategoryDto } from "src/download/dto/downloads-category.dto";
+import { DownloadsCategoryDto } from "~/download/dto/downloads-category.dto";
 
 export const SIDE_PROJECTS_DOWNLOADS_IDS = {
     murderDetector: "murder_detector.mcpack",

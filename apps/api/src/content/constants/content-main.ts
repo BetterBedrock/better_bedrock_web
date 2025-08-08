@@ -1,4 +1,4 @@
-import { DownloadsCategoryDto } from "src/download/dto/downloads-category.dto";
+import { DownloadsCategoryDto } from "~/download/dto/downloads-category.dto";
 
 export const DOWNLOADS_IDS = {
     betterBedrockClientV80: "better_bedrock_texture_pack_v8.0.mcpack",

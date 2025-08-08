@@ -2,7 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { AnalyticsType } from "@prisma/client";
 import { Type } from "class-transformer";
 import { IsDate, IsEnum, IsNumber, IsString } from "class-validator";
-import { AnalyticsNames } from "src/analytics/constants/analytics-names";
+import { AnalyticsNames } from "~/analytics/constants/analytics-names";
 
 export class AnalyticsDto {
     /**
