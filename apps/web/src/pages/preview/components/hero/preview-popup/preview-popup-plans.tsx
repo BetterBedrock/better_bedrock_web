@@ -22,7 +22,7 @@ export const PreviewPopupPlans = ({
       <BedrockText
         textAlign={"left"}
         color={"white"}
-        text={`Selected Plan: ${selectedTimeframe === categories[0]?.title ? "Per Week" : "Per Month"}`}
+        text={`Voucher period: ${selectedTimeframe}`}
         type="p2"
         style={{ paddingBottom: "0.5rem" }}
       />
