@@ -226,13 +226,13 @@ export interface DownloadsButtonDto {
      */
     'type': DownloadsButtonType;
     /**
-     * 
+     * Button inside the category yet not responsible for downloads
      * @type {string}
      * @memberof DownloadsButtonDto
      */
     'text': string;
     /**
-     * 
+     * Link of redirection on button click (can be left if notification is prefered)
      * @type {string}
      * @memberof DownloadsButtonDto
      */
@@ -268,13 +268,13 @@ export type DownloadsButtonType = typeof DownloadsButtonType[keyof typeof Downlo
  */
 export interface DownloadsCategoryDto {
     /**
-     * 
+     * Id of the category (also used in url as a way to determine which category to open)
      * @type {string}
      * @memberof DownloadsCategoryDto
      */
     'id': string;
     /**
-     * 
+     * Name of the category
      * @type {string}
      * @memberof DownloadsCategoryDto
      */
@@ -317,7 +317,6 @@ export interface DownloadsDto {
  * @interface DownloadsItemDto
  */
 export interface DownloadsItemDto {
-    tagBgColor: string | undefined;
     /**
      * 
      * @type {DownloadsButtonType}
@@ -325,37 +324,37 @@ export interface DownloadsItemDto {
      */
     'buttonType': DownloadsButtonType;
     /**
-     * 
+     * Title of the item
      * @type {string}
      * @memberof DownloadsItemDto
      */
     'title': string;
     /**
-     * 
+     * Creator of the download item
      * @type {string}
      * @memberof DownloadsItemDto
      */
     'creator': string;
     /**
-     * 
+     * Description of the item
      * @type {string}
      * @memberof DownloadsItemDto
      */
     'description': string;
     /**
-     * 
+     * Id of the item & file name used when downloading and fetching file from the server
      * @type {string}
      * @memberof DownloadsItemDto
      */
     'downloadId': string;
     /**
-     * 
+     * Weigh of the download item
      * @type {number}
      * @memberof DownloadsItemDto
      */
     'itemWeight': number;
     /**
-     * 
+     * Image urls used for download items with preview option
      * @type {Array<string>}
      * @memberof DownloadsItemDto
      */
@@ -367,23 +366,29 @@ export interface DownloadsItemDto {
      */
     'richDescription'?: Array<DownloadsRichDescriptionDto>;
     /**
-     * 
+     * Tags displayed inside the download grid card
      * @type {Array<string>}
      * @memberof DownloadsItemDto
      */
     'tags'?: Array<string>;
     /**
-     * 
+     * Color of the text inside the download card
      * @type {string}
      * @memberof DownloadsItemDto
      */
     'titleColor'?: string;
     /**
-     * 
+     * Determines whether the item is considered better bedrock content
      * @type {boolean}
      * @memberof DownloadsItemDto
      */
     'betterBedrockContent'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof DownloadsItemDto
+     */
+    'tagBgColor'?: string;
 }
 
 
