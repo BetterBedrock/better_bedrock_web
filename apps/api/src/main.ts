@@ -35,6 +35,15 @@ async function bootstrap() {
         }),
     );
 
+    app.use((req, res, next) => {
+        if (!req.path.startsWith("/static")) {
+            res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+            res.setHeader("Pragma", "no-cache");
+            res.setHeader("Expires", "0");
+        }
+        next();
+    });
+
     const config = new DocumentBuilder()
         .setTitle("Better Bedrock API")
         .setDescription("The API used for handling downloads from Better Bedrock site")
