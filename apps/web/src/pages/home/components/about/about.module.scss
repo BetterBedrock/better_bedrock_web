@@ -7,6 +7,10 @@
 
 .inner {
   overflow: unset;
+
+  @media (max-width: g.$breakpoint-laptop) {
+    gap: 3rem !important;
+  }
 }
 
 .about {
