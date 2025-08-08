@@ -10,7 +10,10 @@
   flex-direction: column;
   justify-content: end;
   align-items: end;
-  // touch-action: none;
+
+  @media (max-width: g.$breakpoint-tablet) {
+      min-height: 3.25rem;
+  }
 }
 
 .button {
