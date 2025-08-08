@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 /**
  * Better Bedrock API
  * The API used for handling downloads from Better Bedrock site

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **string** |  | [default to undefined]
-**name** | **string** |  | [default to undefined]
+**id** | **string** | Id of the category (also used in url as a way to determine which category to open) | [default to undefined]
+**name** | **string** | Name of the category | [default to undefined]
 **lists** | [**Array&lt;DownloadsListDto&gt;**](DownloadsListDto.md) |  | [default to undefined]
 
 ## Example

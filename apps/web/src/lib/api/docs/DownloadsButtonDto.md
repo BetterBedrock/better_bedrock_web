@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | [**DownloadsButtonType**](DownloadsButtonType.md) |  | [default to undefined]
-**text** | **string** |  | [default to undefined]
-**link** | **string** |  | [optional] [default to undefined]
+**text** | **string** | Button inside the category yet not responsible for downloads | [default to undefined]
+**link** | **string** | Link of redirection on button click (can be left if notification is prefered) | [optional] [default to undefined]
 **notification** | [**DownloadsNotificationDto**](DownloadsNotificationDto.md) |  | [optional] [default to undefined]
 
 ## Example
