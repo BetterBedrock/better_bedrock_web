@@ -4,7 +4,8 @@
   position: sticky;
   top: 0;
   width: 100%;
-  height: g.$navbar-height;
+  // HACK: -1px fixes issue of the gap between header and body
+  height: calc(g.$navbar-height - 1px);
   z-index: 91;
 }
 
