@@ -1,3 +1,8 @@
+[![License: NCSL](https://img.shields.io/badge/License-NonCommercial-red.svg)](LICENSE)
+[![Open Source? No](https://img.shields.io/badge/Open%20Source-No-orange.svg)](LICENSE)
+[![Free to Use](https://img.shields.io/badge/Free%20to%20Use-Yes-brightgreen.svg)](LICENSE)
+[![Commercial Use](https://img.shields.io/badge/Commercial%20Use-No-red.svg)](LICENSE)
+
 This is an open-source repository for **Better Bedrock** Project. It contains frontend and the backend of the website used by hundreds of thousands of people. This repository follows a Turborepo monorepo structure with separate frontend and backend packages, built with modern frameworks and tools. It provides a clean developer workflow, integrated PostgreSQL database, and easy environment configuration. 🚀
 
 🚀 Features
@@ -14,7 +19,9 @@ This is an open-source repository for **Better Bedrock** Project. It contains fr
 📸 Screenshots
 --------------
 
-![Home Page](./docs/screenshots/home.png) ![Dashboard](./docs/screenshots/dashboard.png)
+![Home](./docs/home.png)
+![Downloads](./docs/downloads.png)
+![Information](./docs/information.png)
 
 🛠 Tech Stack
 -------------
@@ -128,10 +135,17 @@ We welcome contributions! Please follow:
     git commit -m "feat: add user authentication flow"
     
 
-📄 License
+📄 🚫 NonCommercial License
 ----------
 
-This project is licensed under the **MIT License**. See the [LICENSE](./LICENSE) file for details.
+**This project is free to use, modify, and share — but you may NOT use it for commercial purposes.**
+
+- ✅ Use it personally or for learning  
+- ✅ Modify and share your changes  
+- ❌ No selling, paid services, or monetization  
+- ❌ No use in commercial products
+
+📜 Full license text: [LICENSE](LICENSE)
 
 * * *
 

@@ -43,7 +43,7 @@ export const PreviewPopup = ({ onClose, downloadItem }: PreviewPopupProps) => {
   return (
     <Popup onClose={onClose} title="Download Method">
       <div className={styles.container}>
-        <div className={styles.part} style={{ paddingBottom: 0 }}>
+        <div className={styles.part}>
           <PreviewPopupTabs
             categories={categories}
             selectedTimeframe={selectedTimeframe}
@@ -55,8 +55,9 @@ export const PreviewPopup = ({ onClose, downloadItem }: PreviewPopupProps) => {
             handleKeyDown={handleKeyDown}
             useVoucher={useVoucher}
           />
+          <PreviewPopupRecommended categories={categories} purchase={purchase} />
         </div>
-        <PreviewPopupRecommended categories={categories} purchase={purchase} />
+
         <CardDivider />
         <PreviewPopupPlans
           categories={categories}

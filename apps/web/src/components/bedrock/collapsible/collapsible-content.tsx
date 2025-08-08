@@ -21,6 +21,7 @@ export const CollapsibleContent = ({
     style={{ height: contentHeight }}
   >
     <div className={styles.content}>
+      <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer" />
       <BedrockText
         type="p"
         text={contentText}

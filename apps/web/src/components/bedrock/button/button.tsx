@@ -19,7 +19,6 @@ import DarkUncheckedHover from "~/assets/ui/buttons/dark/unchecked_hover.png";
 import DarkChecked from "~/assets/ui/buttons/dark/checked.png";
 import DarkCheckedHover from "~/assets/ui/buttons/dark/checked_hover.png";
 
-
 import GoldUnchecked from "~/assets/ui/buttons/gold/unchecked.png";
 import GoldUncheckedHover from "~/assets/ui/buttons/gold/unchecked_hover.png";
 import GoldChecked from "~/assets/ui/buttons/gold/checked.png";
@@ -38,6 +37,7 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   center?: boolean;
   lockClicking?: boolean;
   isClicked?: boolean;
+  summary?: boolean;
   buttonType?: "button" | "reset" | "submit" | undefined;
 }
 
@@ -51,6 +51,7 @@ export const Button = ({
   center = false,
   lockClicking = false,
   isClicked,
+  summary = false,
   buttonType,
   onClick,
   ...props
@@ -173,8 +174,10 @@ export const Button = ({
     };
   }, [unchecked, uncheckedHover, checked, checkedHover]);
 
+  const Component = summary ? "summary" : "button";
+
   return (
-    <button
+    <Component
       className={clsx(styles.wrapper, finalClicked && styles.selected, className && className)}
       type={buttonType}
       onMouseEnter={handleEnter}
@@ -203,6 +206,6 @@ export const Button = ({
         {children}
         {/* <BedrockText type="p" text="Test" color="white" selectable={false} /> */}
       </div>
-    </button>
+    </Component>
   );
 };

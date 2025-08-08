@@ -32,8 +32,13 @@
 }
 
 .footer {
-  display:flex;
+  display: flex;
   flex-direction: column;
-  width:100%;
+  width: 100%;
   gap: g.$padding-xxsm;
+}
+
+.hide {
+  width: 100%;
+  text-decoration: none;
 }

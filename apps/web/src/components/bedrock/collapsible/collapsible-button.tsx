@@ -19,6 +19,7 @@ export const CollapsibleButton = ({
     type="dark"
     isClicked={isCollapsed}
     width="100%"
+    summary={true}
     onClick={() => setCollapsed((prev) => !prev)}
     center
     className={styles.button}
@@ -30,6 +31,11 @@ export const CollapsibleButton = ({
       color="white"
       extraClassName={styles.buttonText}
     />
-    <BedrockText type="p" text={isCollapsed ? "-" : "+"} color="white" extraClassName={styles.icon}/>
+    <BedrockText
+      type="p"
+      text={isCollapsed ? "-" : "+"}
+      color="white"
+      extraClassName={styles.icon}
+    />
   </Button>
 );

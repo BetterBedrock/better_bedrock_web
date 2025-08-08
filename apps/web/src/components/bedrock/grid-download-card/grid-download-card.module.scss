@@ -42,11 +42,6 @@
   padding: g.$padding-xsm;
 }
 
-.thumbnailWrapper {
-  // display: flex;
-  // border-bottom: var(--minecraftdepth) solid rgb(30, 30, 31);
-}
-
 .thumbnailWrapper img {
   background-color: gray;
   display: flex;
@@ -72,7 +67,7 @@
 }
 
 .tagsContainer {
-  border: var(--minecraftdepth) solid rgb(30, 30, 31);
+  border: g.$minecraftdepth solid rgb(30, 30, 31);
   flex-direction: row;
   flex-wrap: wrap;
   display: flex;

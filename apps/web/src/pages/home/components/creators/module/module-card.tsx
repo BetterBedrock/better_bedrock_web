@@ -1,40 +1,41 @@
 import { styles } from ".";
-import defaultImage from "~/assets/images/example_head.png";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
+import { CreatorsListElement } from "~/pages/home/components/creators";
 
 interface ModuleCardProp {
-  title: string;
-  description: string;
-  creator?: boolean;
+  data: CreatorsListElement;
 }
 
-export const ModuleCard = ({ title, description, creator }: ModuleCardProp) => {
+export const ModuleCard = ({ data }: ModuleCardProp) => {
   return (
     <Button
       width="auto"
       height="auto"
-      type={creator ? "green" : "white"}
+      type={data.creator ? "green" : "white"}
       lockClicking={true}
       playSound={false}
       className={styles.card}
     >
       <div className={styles.content}>
-        <img alt="Minecraft Profile Picture" src={defaultImage} />
+        <img
+          alt="Minecraft Profile Picture"
+          src={data.profileId ? `https://mc-heads.net/avatar/${data.profileId}/8/8` : data.skin}
+        />
         <div className={styles.description}>
           <div className={styles.title}>
             <BedrockText
-              text={title}
+              text={data.name}
               type="h2"
               font="MinecraftTen"
               textAlign="left"
-              color={creator ? "white" : "black"}
+              color={data.creator ? "white" : "black"}
               style={{ padding: "0 0.5rem 0 0" }}
             />
           </div>
           <BedrockText
-            text={description}
-            color={creator ? "white" : "black"}
+            text={data.description ?? ""}
+            color={data.creator ? "white" : "black"}
             type="p"
             textAlign="left"
           />

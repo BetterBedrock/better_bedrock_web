@@ -27,15 +27,14 @@ export const Collapsible = ({
 
   return (
     <div className={clsx(styles.collapsible, floating && styles.floating)} style={{ width: width }}>
-      {
+      <details itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
         <CollapsibleButton
           headerText={headerText}
           isCollapsed={isCollapsed}
           setCollapsed={setCollapsed}
           indexTextRef={indexTextRef}
         />
-      }
-      {isCollapsed && (
+
         <CollapsibleContent
           floating={floating}
           contentText={contentText}
@@ -43,7 +42,7 @@ export const Collapsible = ({
         >
           {children}
         </CollapsibleContent>
-      )}
+      </details>
     </div>
   );
 };

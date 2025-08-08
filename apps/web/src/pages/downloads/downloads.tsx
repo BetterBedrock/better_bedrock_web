@@ -29,10 +29,6 @@ export const Downloads = () => {
     }
   }, [category]);
 
-  const handleSetActiveTab = (tab: string) => {
-    navigate(Routes.DOWNLOADS + "/" + tab);
-  };
-
   return (
     <main>
       <Section
@@ -44,7 +40,7 @@ export const Downloads = () => {
         {!showLoading ? (
           <div className={styles.header}>
             <Ad />
-            <Tabs activeTab={category!} setActiveTab={handleSetActiveTab} />
+            <Tabs activeTab={category!} />
           </div>
         ) : (
           <CircularProgressIndicator size="large" />
