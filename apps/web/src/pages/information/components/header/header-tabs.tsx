@@ -1,30 +1,32 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
 import { ButtonGroup } from "~/components/button-group/button-group";
+import { Link } from "~/components/link";
+import { informationData, InformationTab } from "~/pages/information";
+import { Routes } from "~/utils/routes";
+import { styles } from ".";
 
 interface HeaderTabsProps {
-  activeTab: number;
-  setActiveTab: (index: number) => void;
+  selectedCategory: InformationTab;
 }
 
-const TAB_NAMES: string[] = ["General", "Mobile Devices", "PC/Other Devices"];
-
-export const HeaderTabs = ({ activeTab, setActiveTab }: HeaderTabsProps) => (
+export const HeaderTabs = ({ selectedCategory }: HeaderTabsProps) => (
   <div>
     <ButtonGroup>
-      {TAB_NAMES.map((text, index) => (
-        <Button
-          key={index}
-          tabIndex={index}
-          isClicked={activeTab === index}
-          onClick={() => setActiveTab(index)}
-          width="100%"
-          height="auto"
-          type="green"
-          center
-        >
-          <BedrockText text={text} color="white" type="p" />
-        </Button>
+      {informationData.map((c, index) => (
+        <Link link={Routes.INFORMATION + "/" + c.id} className={styles.link}>
+          <Button
+            key={index}
+            tabIndex={index}
+            isClicked={selectedCategory.id === c.id}
+            width="100%"
+            height="auto"
+            type="green"
+            center
+          >
+            <BedrockText text={c.name} color="white" type="p" />
+          </Button>
+        </Link>
       ))}
     </ButtonGroup>
   </div>

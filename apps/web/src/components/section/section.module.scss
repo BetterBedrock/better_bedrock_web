@@ -6,8 +6,16 @@
   background-repeat: no-repeat, no-repeat;
 }
 
+// HACK: This fixes all of the issues related to background-attachment: fixed;\
+// No macos (buggy scrolling), on android (white background at the bottom of the page caused by search header)
+// And on windows fixes nothing bcs there was no problems /shrug
 .fixed {
-  background-attachment: fixed;
+  z-index: -1;
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
 .center {

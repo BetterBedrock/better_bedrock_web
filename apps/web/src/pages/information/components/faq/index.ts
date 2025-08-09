@@ -1,5 +1,4 @@
 export * from "./faq";
-export * from "./faq-data";
 export * from "./faq-title";
 export * from "./faq-description";
 export * from "./faq-collapsible-list";

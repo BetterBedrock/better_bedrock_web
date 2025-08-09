@@ -1,14 +1,14 @@
 import { Collapsible } from "~/components/bedrock/collapsible";
-import { FAQSection } from "~/pages/information/components/faq/faq-data";
 import { styles } from ".";
+import { InformationTab } from "~/pages/information";
 
 interface FAQCollapsibleListProps {
-  faqSection: FAQSection;
+  selectedCategory: InformationTab;
 }
 
-export const FAQCollapsibleList = ({ faqSection }: FAQCollapsibleListProps) => (
+export const FAQCollapsibleList = ({ selectedCategory }: FAQCollapsibleListProps) => (
   <div className={styles.question}>
-    {faqSection.items.map((question, index) => (
+    {selectedCategory.faq.questions.map((question, index) => (
       <Collapsible
         key={question.question}
         headerText={question.question}

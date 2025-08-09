@@ -44,7 +44,10 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
     const response = await fetch(downloadUrl);
 
     if (!response.ok || !response.body) {
-      console.log({response});
+      const json = await response.json();
+      if(json.message) {
+        throwError(null, json.message);
+      }
       return;
     }
 

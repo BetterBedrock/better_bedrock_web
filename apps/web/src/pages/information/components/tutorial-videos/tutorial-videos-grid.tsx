@@ -1,21 +1,22 @@
 import { GridCard } from "~/components/bedrock/grid-card/grid-card";
 import { styles } from ".";
-import { TutorialSection } from "~/pages/information/components/tutorial-videos/tutorial-videos-data";
+import { InformationVideo } from "~/pages/information";
 
 interface TutorialVideosGridProps {
-  section: TutorialSection;
+  videos: InformationVideo[];
+  deprected: boolean;
 }
 
-export const TutorialVideosGrid = ({ section }: TutorialVideosGridProps) => (
+export const TutorialVideosGrid = ({ videos, deprected }: TutorialVideosGridProps) => (
   <div className={styles.grid}>
-    {section.items.map((tutorial, index) => (
+    {videos.map((tutorial, index) => (
       <GridCard
         key={tutorial.title}
         index={index + 1}
         title={tutorial.title}
         description={tutorial.description}
         link={tutorial.link}
-        tags={tutorial.tags}
+        tags={[...(tutorial.tags ?? []), ...(deprected ? ["deprected"] : [])]}
       />
     ))}
   </div>
