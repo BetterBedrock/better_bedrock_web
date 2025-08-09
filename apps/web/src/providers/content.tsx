@@ -36,6 +36,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
   const contentApi = new ContentApi(config);
 
   const download = async () => {
+    if (downloadProgress > 0 && downloading) return;
     setDownloading(true);
     setDownloadProgress(0);
 
@@ -45,7 +46,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
 
     if (!response.ok || !response.body) {
       const json = await response.json();
-      if(json.message) {
+      if (json.message) {
         throwError(null, json.message);
       }
       return;
