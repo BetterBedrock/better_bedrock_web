@@ -1,4 +1,4 @@
-@use "~/utils/_variables" as g;
+@use "~/utils" as g;
 
 .hero {
   display: flex;
@@ -15,6 +15,7 @@
 }
 
 .label {
+  @include g.no-drag();
   opacity: 0.7;
 }
 
