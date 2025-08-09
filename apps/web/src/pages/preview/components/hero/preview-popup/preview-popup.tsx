@@ -30,7 +30,8 @@ export const PreviewPopup = ({ onClose, downloadItem }: PreviewPopupProps) => {
 
   if (cookie.voucher || selectedTimeframe === undefined) {
     if (cookie.voucher satisfies VoucherDto) {
-      if (!cookie.voucher.betterBedrockContentOnly) {
+      const bbOnly = cookie.voucher.betterBedrockContentOnly;
+      if (!bbOnly || (downloadItem.betterBedrockContent && bbOnly)) {
         if (onClose) onClose!();
         return <></>;
       }
