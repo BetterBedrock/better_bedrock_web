@@ -11,16 +11,6 @@
   box-sizing: border-box;
 }
 
-#root {
-  position: absolute;
-  top: 0.5px;
-  left: 0;
-  right: 0;
-  bottom: 0.5px;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
 ::selection,
 ::-moz-selection,
 ::-o-selection,
@@ -28,6 +18,10 @@
 ::-webkit-selection {
   background: $color-selection;
   color: #fff;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
 }
 
 button,
@@ -104,7 +98,6 @@ section {
 
 a {
   color: $color-label-green-bright;
-  
 }
 
 p,
