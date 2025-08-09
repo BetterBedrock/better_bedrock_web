@@ -12,6 +12,8 @@ async function bootstrap() {
         rawBody: true,
     });
 
+    app.getHttpAdapter().getInstance().set("trust proxy", true);
+
     app.use(
         helmet.contentSecurityPolicy({
             directives: {
