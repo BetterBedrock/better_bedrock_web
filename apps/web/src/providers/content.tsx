@@ -41,7 +41,6 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
     setDownloadProgress(0);
 
     const downloadUrl = `${baseUrl}/download`;
-
     const response = await fetch(downloadUrl);
 
     if (!response.ok || !response.body) {
@@ -54,6 +53,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
 
     const contentLength = response.headers.get("Content-Length");
     const total = contentLength ? parseInt(contentLength, 10) : NaN;
+    const contentType = response.headers.get("Content-Type") || "application/octet-stream";
 
     const reader = response.body.getReader();
     const chunks: Uint8Array[] = [];
@@ -65,19 +65,26 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
       if (value) {
         chunks.push(value);
         loaded += value.length;
-        // Compute % and update state:
         if (!isNaN(total)) {
           setDownloadProgress(Math.floor((loaded / total) * 100));
         }
       }
     }
 
-    const blob = new Blob(chunks);
+    const blob = new Blob(chunks, { type: contentType });
+
+    // Extract filename from headers (if present)
     const disposition = response.headers.get("Content-Disposition") || "";
     const filenameMatch = /filename\*=UTF-8''([^;]+)|filename="([^"]+)"/.exec(disposition);
-    const filename = filenameMatch
+    let filename = filenameMatch
       ? decodeURIComponent(filenameMatch[1] || filenameMatch[2])
       : "download";
+
+    // Ensure filename has an extension, otherwise default to .mcpack
+    if (!/\.[a-z0-9]+$/i.test(filename)) {
+      filename += ".mcpack";
+    }
+
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
