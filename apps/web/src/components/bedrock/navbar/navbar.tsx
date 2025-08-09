@@ -33,7 +33,7 @@ export const Navbar = () => {
       : [
           { name: "Home", path: "/" },
           { name: "Downloads", path: "/downloads/:main" },
-          { name: "Information", path: "/information" },
+          { name: "Information", path: "/information/:general" },
           { name: "Discord", path: "/discord" },
         ];
 

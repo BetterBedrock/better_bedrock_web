@@ -3,6 +3,7 @@ import { BedrockText } from "../bedrock-text/bedrock-text";
 
 import { styles } from ".";
 import tutorialThumbnail from "~/assets/images/tutorial-thumbnail-placeholder.png";
+import { tagData } from "~/pages/information";
 
 interface GridCardProps {
   title?: string;
@@ -11,10 +12,17 @@ interface GridCardProps {
   index?: string | number;
   useCustomThumbnail?: boolean;
   customThumbnailImageUrl?: string;
-  tags?: TagsTypes[]
+  tags?: string[];
 }
 
-export type TagsTypes =  "All Devices" | "Mobile" | "PC" | "Console" | "PC/Console" | "Featured" | "Deprecated";
+export type TagsTypes =
+  | "All Devices"
+  | "Mobile"
+  | "PC"
+  | "Console"
+  | "PC/Console"
+  | "Feavideostured"
+  | "Deprecated";
 
 export const GridCard: React.FC<GridCardProps> = ({
   title,
@@ -23,7 +31,7 @@ export const GridCard: React.FC<GridCardProps> = ({
   index,
   useCustomThumbnail = false,
   customThumbnailImageUrl,
-  tags
+  tags,
 }) => {
   return (
     <div className={styles.container}>
@@ -49,41 +57,25 @@ export const GridCard: React.FC<GridCardProps> = ({
                 {tags && (
                   <div className={styles.tagsWrapper}>
                     <div className={styles.tagsContainer}>
-                      {tags.map(tag => {
-                        let textColor, bgColor
-
-                        switch (tag) {
-                          case "Featured":
-                            textColor = "black";
-                            bgColor = "rgb(255, 232, 102)"
-                            break;
-                          case "Deprecated":
-                            textColor = "black";
-                            // bgColor = "rgb(217, 54, 54)"
-                            bgColor = "rgb(255, 63, 63)"
-                            break;
-                          default:
-                            textColor = "black";
-                            // bgColor = "rgb(49, 50, 51)";
-                            bgColor = "rgb(140, 179, 255)"
-                        }
+                      {tags.map((tag) => {
+                        const selectedTag = tagData.find((t) => t.id === tag);
+                        if (!selectedTag) return <></>;
 
                         return (
-                          < BedrockText
-                            text={tag}
+                          <BedrockText
+                            text={selectedTag.name}
                             type={"p"}
                             textAlign="left"
-                            color={textColor}
-                            style={{
-                              backgroundColor: bgColor
-                            }}
+                            style={{ backgroundColor: selectedTag.color }}
+                            color="#000"
                           />
-                        )
+                        );
                       })}
                     </div>
                   </div>
                 )}
-              </div>)}
+              </div>
+            )}
           </div>
         </a>
       )}

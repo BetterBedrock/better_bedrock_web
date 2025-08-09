@@ -1,31 +1,17 @@
-import {
-  useTutorialVideos,
-  SectionType,
-  TutorialVideosTitle,
-  TutorialVideosDescription,
-  TutorialVideosGrid,
-  styles,
-} from ".";
+import { InformationVideos } from "~/pages/information";
+import { TutorialVideosTitle, TutorialVideosDescription, TutorialVideosGrid, styles } from ".";
 
 export interface TutorialVideosProps {
-  activeTab: number;
-  section?: SectionType;
+  deprected: boolean;
+  videos: InformationVideos;
 }
 
-export const TutorialVideos = ({ activeTab, section }: TutorialVideosProps) => {
-  const { sectionType, data } = useTutorialVideos({ activeTab, section });
-
-  if (!data) {
-    return null;
-  }
-
-  return (
-    <div>
-      <div className={styles.heading}>
-        <TutorialVideosTitle section={sectionType} />
-        <TutorialVideosDescription description={data.description ?? "No description available."} />
-      </div>
-      <TutorialVideosGrid section={data} />
+export const TutorialVideos = ({ videos, deprected }: TutorialVideosProps) => (
+  <div>
+    <div className={styles.heading}>
+      <TutorialVideosTitle deprected={deprected} />
+      <TutorialVideosDescription description={videos.description ?? "No description available."} />
     </div>
-  );
-};
+    <TutorialVideosGrid videos={videos.videos} deprected={deprected} />
+  </div>
+);

@@ -1,13 +1,13 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 
 interface TutorialVideosTitle {
-  section: string;
+  deprected: boolean;
 }
 
-export const TutorialVideosTitle = ({ section }: TutorialVideosTitle) => (
+export const TutorialVideosTitle = ({ deprected }: TutorialVideosTitle) => (
   <BedrockText
     type="h1"
-    text={section === "default" ? "Tutorial Videos" : "Deprecated Tutorial Videos"}
+    text={deprected ? "Tutorial Videos" : "Deprecated Tutorial Videos"}
     color="white"
     font="MinecraftTen"
   />

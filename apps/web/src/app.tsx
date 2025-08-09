@@ -25,6 +25,7 @@ import { ProtectedRoute } from "~/components/protected-route/protected-route";
 import { AuthProvider } from "~/providers/auth";
 import { Main } from "~/pages/downloads/components/main";
 import { Terms } from "./pages/terms";
+import { Categories } from "~/pages/information/components/categories";
 
 export const App = () => (
   <CookiesProvider>
@@ -38,12 +39,11 @@ export const App = () => (
                   <Routes>
                     <Route index element={<Home />} />
                     <Route path="downloads" element={<Downloads />}>
-                      <Route
-                        path=":category"
-                        element={<Main />}
-                      />
+                      <Route path=":category" element={<Main />} />
                     </Route>
-                    <Route path="information" element={<Information />} />
+                    <Route path="information" element={<Information />}>
+                      <Route path=":category" element={<Categories />} />
+                    </Route>
                     <Route path="discord" element={<Discord />} />
                     <Route path="fetch" element={<Fetch />} />
                     <Route path="preview/:file" element={<Preview />} />
