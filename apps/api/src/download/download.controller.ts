@@ -64,7 +64,6 @@ export class DownloadController {
     @ApiNotFoundResponse({ description: "File not found or does not exist on the server" })
     async download(@Ip() ip, @Res({ passthrough: true }) res: Response): Promise<StreamableFile> {
         const download = await this.downloadService.download({ ipAddress: ip });
-        //TODO: Add try check
 
         if (!download) {
             throw new NotFoundException(`Download for your device could not be found.`);
@@ -89,7 +88,12 @@ export class DownloadController {
         await this.analyticsService.incrementAnalytics(download.file, "file");
         await this.analyticsService.incrementAnalytics(AnalyticsNames.totalDownloads, "general");
 
-        const filePath = join(__dirname, "../..", "~/assets/downloads", registryElement.downloadId);
+        const filePath = join(
+            __dirname,
+            "../..",
+            "src/assets/downloads",
+            registryElement.downloadId,
+        );
 
         let stat;
         try {
