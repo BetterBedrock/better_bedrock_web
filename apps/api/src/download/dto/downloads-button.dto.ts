@@ -21,7 +21,7 @@ export class DownloadsButtonDto {
 
     /**
      * Button inside the category yet not responsible for downloads
-     * @example 'Share your texturepacks'
+     * @example 'Share your texture packs'
      */
     text: string;
     /**

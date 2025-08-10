@@ -10,7 +10,7 @@ export class DownloadsListDto {
 
     /**
      * Description of the list
-     * @example 'Our latest texturepack'
+     * @example 'Our latest texture pack'
      */
     description: string;
 

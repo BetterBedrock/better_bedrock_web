@@ -38,7 +38,7 @@ export const COMMUNITY_LIST: DownloadsCategoryDto = {
                     notification: {
                         title: "Theme/config submission",
                         description:
-                            "Please submit your texturepack on our Discord server on #tickets",
+                            "Please submit your texture pack on our Discord server on #tickets",
                         type: "info",
                     },
                 },

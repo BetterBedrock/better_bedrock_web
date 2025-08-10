@@ -157,7 +157,7 @@ export const informationData: InformationTab[] = [
         },
         {
           question: "Why my cape is not visible?",
-          answer: `It has been issue for use since larger amount of modules used. At the moment this issue is still in BB v7.4 and in that and earlier versions you can use BB cape (add horizontaly 2 pixles in your skin image to bring that cape) In coming v7.5 we will fix this issue and render default cape that you choosen in "dressing room"`,
+          answer: `It has been issue for use since larger amount of modules used. At the moment this issue is still in BB v7.4 and in that and earlier versions you can use BB cape (add horizontaly 2 pixles in your skin image to bring that cape) In coming v8 we will fix this issue and render default cape that you choosen in "dressing room"`,
         },
         {
           question: "Can I become a helper on discord?",
