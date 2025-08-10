@@ -10,7 +10,7 @@ export const Creators = () => (
     />
     <CreatorsModule
       title="HELPERS"
-      description="Meet the Better Bedrock helpers. They have significantly contributed to developing many features for the TexturePack."
+      description="Meet the Better Bedrock helpers. They have significantly contributed to developing many features for the Texture Pack."
       contributors={HELPERS}
     />
   </Section>
