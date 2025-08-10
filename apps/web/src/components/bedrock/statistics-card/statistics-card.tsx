@@ -3,6 +3,8 @@ import { FData, StatisticsCardProps, styles, transformToFData } from ".";
 
 import { BarChart } from "~/components/statistics/bar-chart";
 import { Card } from "~/components/bedrock/card";
+import { Button } from "../button";
+import { useState } from "react";
 
 export const StatisticsCard = ({
   name,
@@ -12,6 +14,8 @@ export const StatisticsCard = ({
   suffix = "",
   ...props
 }: StatisticsCardProps) => {
+  const [toggleGraph, setToggleGraph] = useState(true);
+
   let total = 0;
   let fdata: FData | null = null;
 
@@ -25,23 +29,36 @@ export const StatisticsCard = ({
   return (
     <Card {...props}>
       <div className={styles.statistics}>
-        <BedrockText
-          extraClassName={styles.name}
-          type="h3"
-          text={name}
-          textAlign="left"
-          color="grey"
-        />
-        <BedrockText
-          key={total}
-          type="h2"
-          text={`Total ${total.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 4 })}${suffix}`}
-          textAlign="left"
-          color="white"
-          font="Minecraft"
-          extraClassName={styles.highlight}
-        />
-        {showGraph && fdata && <BarChart direction="horizontal" data={fdata} />}
+        <div className={styles.header}>
+          <div className={styles.title}>
+            <BedrockText
+              extraClassName={styles.name}
+              type="p"
+              text={name}
+              textAlign="left"
+              color="grey"
+            />
+            <BedrockText
+              key={total}
+              type="h2"
+              text={`${total.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 4 })}${suffix}`}
+              textAlign="left"
+              color="white"
+              font="MinecraftTen"
+              extraClassName={styles.highlight}
+            />
+          </div>
+          {showGraph && fdata && (<Button
+            width="auto"
+            type="white"
+            onClick={() =>
+              setToggleGraph(!toggleGraph)
+            }
+            center>
+            <BedrockText text={toggleGraph ? "Hide Chart" : "Show Chart"} type="p" color="black" />
+          </Button>)}
+        </div>
+        {toggleGraph && showGraph && fdata && <BarChart direction="horizontal" data={fdata} />}
       </div>
     </Card>
   );

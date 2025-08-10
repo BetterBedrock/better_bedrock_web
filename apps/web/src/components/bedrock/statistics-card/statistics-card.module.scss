@@ -28,3 +28,8 @@
     color: g.$color-selection;
   }
 }
+
+.header {
+  display: flex;
+  justify-content: space-between
+}
