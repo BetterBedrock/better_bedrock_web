@@ -112,57 +112,57 @@ export const informationData: InformationTab[] = [
     name: "General",
     faq: {
       description:
-        "General topic FAQ. If you still have questions, please check out our discord server!",
+        "General topic FAQ. If you still have questions, please check out our Discord server!",
       questions: [
         {
-          question: "Is Better Bedrock content safe?",
+          question: "Are all Better Bedrock content safe?",
           answer:
-            "DEFINITELY YES! Texture Pack doesn't need anything. Mobile Client requires permissions, but for editing minecraft files only. Windows clinet can be flagged as a virus, however it's safe. We only read minecraft memory and injecting features there. In all these products, we DO NOT collect any data from our users.",
+            "DEFINITELY YES! The Texture Pack doesn't need anything. The Mobile Client do require permissions, but only for editing Minecraft files only. The Windows client can be flagged as a virus, however it is safe. We only read Minecraft memory and injecting features there. In all these products, we DO NOT collect any data from our users.",
         },
         {
-          question: "How to Better Bedrock content?",
+          question: "How do I download Better Bedrock content?",
           answer: "Simply navigate to downloads page and click item you want to download!",
         },
         {
-          question: `Why download process failed and there is error "We could not verify your session"`,
+          question: `Why did the download process fail and show the error "We could not verify your session"`,
           answer: `It's due to several potential issues. Here are some possible reasons: 1. You used services such as bypass.city to skip the ads. 2. While downloading one file from our website, you clicked to begin another download - wait patiently. 3. You waited too long on the linkvertise page before clicking button "Get Better Bedrock" to redirect. 4. You changed your ip address (or used a VPN) while being on our site. 5. Your internet connection was too slow to send a request to our servers. Minimum download speed: ~0.33MB/s. 6. You have adblockers or any extensions blocking requests to our servers. (Browsers such as Brave, or Safari can also sometimes prevent requests)`,
         },
         {
           question: "What devices are supported by Better Bedrock?",
           answer:
-            "Texture Pack is available for all devices that are able to import Texture Packs. Mobile Client is available for Android. Windows Client is available for Windows 10/11",
+            "The Texture Pack is available for all devices that are able to import Texture Packs. Mobile Client is available for Android. The Windows Client is available for both Windows 10 and 11",
         },
         {
-          question: "How to open Mod Menu?",
-          answer: `Simply open pause menu and double click the "Mod Menu" button in bottom left corner.`,
+          question: "How do I open the Mod Menu?",
+          answer: `Simply open the pause menu and double click the "Mod Menu" button in bottom left corner.`,
         },
         {
-          question: "Why are my Mod Menu options reset?",
+          question: "Why do my Mod Menu options reset?",
           answer:
             "To save these options and adjust extra ones use config. Scroll down to Config section for more information.",
         },
         {
           question: "What is a subpack?",
-          answer: `Subpack is minecraft name for texture pack options. To access it, open settings, go to "Global Resources", select "ACTIVE" tab, select Better Bedrock and then click gear icon in bottom right corner.`,
+          answer: `A subpack is Minecraft name for texture pack options. To access it, open settings, go to "Global Resources", select "ACTIVE" tab, select Better Bedrock and then click gear icon in bottom right corner.`,
         },
         {
-          question: "Where are tutorial videos?",
+          question: "Where are the tutorial videos?",
           answer:
             "Just scroll down a bit! And make sure to select proper option at the top for your topic.",
         },
         {
           question: "When will the new versions be released?",
           answer:
-            "New content will be always announced on our discord server at #announcements. Make sure to join us to stay updated!",
+            "New content will be always announced on our Discord server at #announcements. Make sure to join us to stay updated!",
         },
         {
-          question: "Why my cape is not visible?",
-          answer: `It has been issue for use since larger amount of modules used. At the moment this issue is still in BB v7.4 and in that and earlier versions you can use BB cape (add horizontaly 2 pixles in your skin image to bring that cape) In coming v8 we will fix this issue and render default cape that you choosen in "dressing room"`,
+          question: "Why is my cape not visible?",
+          answer: `It has been issue for use since larger amount of modules used. At the moment this issue is still in BB v7.4 and in that and earlier versions you can use BB cape (add horizontaly 2 pixles in your skin image to bring that cape). In the coming V8, we will fix this issue and render default cape that you chose in the "dressing room".`,
         },
         {
-          question: "Can I become a helper on discord?",
+          question: "Can I become a helper on Discord?",
           answer:
-            "In short, we see no need for more helpers on our discord server. If we need more people, we will let you know at #announcements on our discord server.",
+            "In short, we see no need for more helpers on our Discord server. If we need more people, we will let you know at #announcements on our Discord server.",
         },
       ],
     },
@@ -229,7 +229,7 @@ export const informationData: InformationTab[] = [
     name: "Mobile Devices",
     faq: {
       description:
-        "Mobile devices FAQ. If you still have questions, please check out our discord server!",
+        "Mobile devices FAQ. If you still have questions, please check out our Discord server!",
       questions: [
         {
           question: "Why can't I open Inventory Screen",
@@ -270,7 +270,7 @@ export const informationData: InformationTab[] = [
     name: "PC/Other Devices",
     faq: {
       description:
-        "PC/Other devices FAQ. If you still have questions, please check out our discord server!",
+        "PC/Other devices FAQ. If you still have questions, please check out our Discord server!",
       questions: [
         {
           question: "(CONSOLE) How to change config on console.",
