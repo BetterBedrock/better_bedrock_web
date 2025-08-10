@@ -20,14 +20,28 @@
 }
 
 .card {
-  //   width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   flex: 1;
   height: 100%;
-  align-items: start;
-  justify-content: start;
+  // align-items: start;
+  // justify-content: start;
 
-  padding: g.$padding-xsm;
-  gap: g.$padding-xsm;
+  @include g.card-padding;
+  gap: g.$padding-sm;
+}
+
+.sub {
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-sm;
+  overflow: hidden;
+  @include g.card-padding;
+
+  & * {
+    width: 100%;
+  }
 }
 
 .question {
