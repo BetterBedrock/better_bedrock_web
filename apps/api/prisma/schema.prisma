@@ -43,7 +43,41 @@ model Analytics {
   type  AnalyticsType
   name  String
   date  DateTime      @default(now()) @db.Date
-  value Int        @default(0)
+  value Int           @default(0)
 
   @@unique([name, date, type])
+}
+
+model User {
+  id        String    @id @default(cuid())
+  googleId  String    @unique
+  email     String    @unique
+  name      String    @unique
+  bio       String
+  banned    Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  projects  Project[]
+}
+
+enum ProjectType {
+  world
+  texturepack
+  shaderpack
+  behaviourpack
+  addon
+  skin
+  script
+}
+
+model Project {
+  id                   String      @id
+  title                String
+  description          String
+  itemWeight           Float // In MB (e.g. 11.5)
+  betterBedrockContent Boolean     @default(false)
+  tags                 String[]
+  type                 ProjectType
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
 }
