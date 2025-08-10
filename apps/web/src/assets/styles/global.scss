@@ -2,7 +2,7 @@
 @use "~/utils" as *;
 
 * {
-  scrollbar-width: thin;              /* Firefox */
+  scrollbar-width: thin; /* Firefox */
   scrollbar-color: rgba(255, 255, 255, 0.3) transparent; /* Firefox */
 }
 
@@ -143,7 +143,26 @@ a {
   color: $color-label-green-bright;
 }
 
+ol {
+  list-style-type: decimal;
+  padding-left: 2.5rem;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding-left: 1.5rem;
+  }
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 2.5rem;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding-left: 1.5rem;
+  }
+}
+
 p,
+code,
 ul,
 li {
   font-family: "Mojangles";
@@ -159,6 +178,25 @@ li {
 
   @media (max-width: $breakpoint-tablet) {
     font-size: 1rem;
+  }
+}
+
+h4 {
+  font-family: "Minecraft";
+  font-weight: 400;
+  font-size: 1.2rem;
+  letter-spacing: -0.015em;
+  line-height: 1.2rem;
+  color: white;
+
+  @media (max-width: $breakpoint-laptop) {
+    font-size: 1.1rem;
+    line-height: 1.15rem;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 0.9rem;
+    line-height: 1.05rem;
   }
 }
 
