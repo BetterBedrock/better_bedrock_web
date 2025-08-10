@@ -1,6 +1,6 @@
 import XxDreamxXYT4286 from "~/assets/images/avatars/XxDreamxXYT4286.png";
-import Steve from "~/assets/images/avatars/Steve.png";
 import bestfurth from "~/assets/images/avatars/bestfurth.png";
+// import Steve from "~/assets/images/avatars/Steve.png";
 
 export interface CreatorsListElement {
     profileId?: string;
@@ -32,7 +32,7 @@ export const HELPERS: CreatorsListElement[] = [
         description: "Helper",
     },
     {
-        skin: Steve,
+        profileId: "df75d5ad359249a9a5f09ecb0794250f",
         name: "Ayaanthe0ne",
         description: "Helper",
     },
