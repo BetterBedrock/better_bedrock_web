@@ -58,7 +58,6 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
 
   const finalBlockSize = Math.round(isMobileSmall ? blockSize / 1.8 : isMobile ? blockSize / 1.6 : isTablet ? blockSize / 1.4 : isLaptop ? blockSize / 1.2 : blockSize);
   
-  console.log({finalBlockSize});
   const totalHeight = rows * finalBlockSize;
   const overlapOffset = overlap ?? totalHeight / 3;
   const containerRef = useRef<HTMLDivElement>(null);

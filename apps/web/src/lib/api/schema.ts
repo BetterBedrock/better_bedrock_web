@@ -203,52 +203,145 @@ export interface components {
         /** @enum {string} */
         DownloadsButtonType: "white" | "dark" | "green";
         DownloadsRichDescriptionDto: {
+            /**
+             * @description Text display above the image
+             * @example Before & After
+             */
             name: string;
+            /**
+             * @description List of links to images
+             * @example [
+             *       "/static/assets/image.png"
+             *     ]
+             */
             images: string[];
         };
         DownloadsItemDto: {
             /** @example dark */
             buttonType: components["schemas"]["DownloadsButtonType"];
+            /**
+             * @description Title of the item
+             * @example
+             */
             title: string;
+            /**
+             * @description Creator of the download item
+             * @example axmbro
+             */
             creator: string;
+            /**
+             * @description Description of the item
+             * @example Dark mode in minecraft
+             */
             description: string;
+            /**
+             * @description Id of the item & file name used when downloading and fetching file from the server
+             * @example better_bedrock_v8.mcpack
+             */
             downloadId: string;
+            /**
+             * @description Weigh of the download item
+             * @example 1
+             */
             itemWeight: number;
+            /**
+             * @description Image urls used for download items with preview option
+             * @example [
+             *       "static/assets/better_bedrock_v8.png"
+             *     ]
+             */
             imageAssetUrl: string[];
             richDescription?: components["schemas"]["DownloadsRichDescriptionDto"][];
+            /**
+             * @description Tags displayed inside the download grid card
+             * @example [
+             *       "MCBE 1.12",
+             *       "BB V8"
+             *     ]
+             */
             tags?: string[];
+            /**
+             * @description Color of the text inside the download card
+             * @example black
+             */
             titleColor?: string;
+            /**
+             * @description Determines whether the item is considered better bedrock content
+             * @example false
+             */
             betterBedrockContent?: boolean;
+            tagBgColor?: string;
         };
         /** @enum {string} */
         DownloadsNotificationType: "warning" | "success" | "info" | "error";
         DownloadsNotificationDto: {
             /** @example error */
             type: components["schemas"]["DownloadsNotificationType"];
+            /**
+             * @description Title of the notification
+             * @example Confirmation
+             */
             title: string;
+            /**
+             * @description Description of the notification
+             * @example Confirmation
+             */
             description: string;
         };
         DownloadsButtonDto: {
             /** @example dark */
             type: components["schemas"]["DownloadsButtonType"];
+            /**
+             * @description Button inside the category yet not responsible for downloads
+             * @example Share your texture packs
+             */
             text: string;
+            /**
+             * @description Link of redirection on button click (can be left if notification is prefered)
+             * @example https://google.com
+             */
             link?: string;
             notification?: components["schemas"]["DownloadsNotificationDto"];
         };
         DownloadsListDto: {
+            /**
+             * @description Title of the list
+             * @example Featured
+             */
             title: string;
+            /**
+             * @description Description of the list
+             * @example Our latest texture pack
+             */
             description: string;
             buttons?: components["schemas"]["DownloadsButtonDto"][];
             items: components["schemas"]["DownloadsItemDto"][];
         };
         DownloadsCategoryDto: {
+            /**
+             * @description Id of the category (also used in url as a way to determine which category to open)
+             * @example sideProjects
+             */
             id: string;
+            /**
+             * @description Name of the category
+             * @example Side Projects
+             */
             name: string;
             lists: components["schemas"]["DownloadsListDto"][];
         };
         DownloadsDto: {
+            /**
+             * @description Default section which will be opened on the website
+             * @example main
+             */
             default: string;
+            /**
+             * @description Featured item on the website (an item after clicking which, user gets redirected to /latest)
+             * @example better_bedrock_v8.mcpack
+             */
             featured: string;
+            /** @description Categories of downloads on the website */
             categories: components["schemas"]["DownloadsCategoryDto"][];
         };
         PriceOptionDto: {
@@ -469,9 +562,21 @@ export interface components {
             type: components["schemas"]["AnalyticsType"];
             /** @example Visits */
             name: components["schemas"]["AnalyticsNames"];
+            /**
+             * @description Unique identifier of the analytics entry
+             * @example cme0bzzxp000008l1bjjjbns4
+             */
             id: string;
-            /** Format: date-time */
+            /**
+             * Format: date-time
+             * @description The date when the analytics data was recorded
+             * @example 2025-08-06
+             */
             date: string;
+            /**
+             * @description The numeric value associated with the analytics entry
+             * @example 42
+             */
             value: number;
         };
     };
