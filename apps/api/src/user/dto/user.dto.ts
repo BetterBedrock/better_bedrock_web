@@ -5,7 +5,6 @@ import {
     IsEmail,
     IsOptional,
     IsString,
-    Length,
     MaxLength,
     MinLength,
 } from "class-validator";
@@ -49,6 +48,6 @@ export class UserDto {
 
     @IsString()
     @IsOptional()
-    @Length(64, 64)
+    @MaxLength(64)
     linkvertiseSecret: string | null;
 }
