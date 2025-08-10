@@ -1,6 +1,7 @@
 @use "~/utils" as g;
 
 .chart {
+  padding-top: 1rem;
   display: flex;
   flex-direction: column;
   width: 100%;
