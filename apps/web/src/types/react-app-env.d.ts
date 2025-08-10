@@ -13,6 +13,7 @@ interface ImportMetaEnv {
     readonly VITE_STRIPE_PUBLISHABLE_KEY: string;
     readonly VITE_LOCAL_BACKEND_URL: string;
     readonly VITE_BACKEND_URL: string;
+    readonly VITE_GOOGLE_CLIENT_ID: string;
     readonly VITE_DEBUG: string;
 }
 

@@ -1,3 +1,4 @@
+import { useGoogleLogin } from "@react-oauth/google";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { AuthApi, Configuration } from "~/lib/api";
@@ -7,7 +8,8 @@ import { baseUrl } from "~/utils/url";
 interface AuthContextProps {
   authenticated: boolean;
   fetched: boolean;
-  authenticate: (token: string) => Promise<void>;
+  adminAuthenticate: (token: string) => Promise<void>;
+  googleLogin: () => void;
 }
 
 interface AuthProviderProps {
@@ -19,10 +21,45 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [fetched, setFetched] = useState(false);
-  const [cookie, setCookie] = useCookies(["adminSecret"]);
+  const [cookie, setCookie] = useCookies(["adminSecret", "secret"]);
   const { throwError } = useNotification();
 
-  const authenticate = async (token: string) => {
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      const config = new Configuration({
+        basePath: baseUrl,
+      });
+
+      const authApi = new AuthApi(config);
+
+      try {
+        const { data } = await authApi.authControllerAuthorize({
+          token: tokenResponse.access_token,
+        });
+        setCookie("secret", data.token);
+      } catch (err) {
+        throwError(err, "Failed to login with google");
+      }
+    },
+    onError: (errorResponse) => throwError(errorResponse, "Failed to login with google"),
+  });
+
+  const authenticate = async (secret: string) => {
+    try {
+      const config = new Configuration({
+        basePath: baseUrl,
+        accessToken: secret,
+      });
+
+      const authApi = new AuthApi(config);
+      const user = await authApi.authControllerAuthenticate();
+      console.log({ user });
+    } catch (err) {
+      throwError(err, "Failed to authenticate");
+    }
+  };
+
+  const adminAuthenticate = async (token: string) => {
     try {
       const config = new Configuration({
         basePath: baseUrl,
@@ -31,7 +68,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
       const authApi = new AuthApi(config);
 
-      await authApi.authControllerAuthenticate();
+      await authApi.authControllerAdminAuthenticate();
 
       setCookie("adminSecret", token);
       setAuthenticated(true);
@@ -44,12 +81,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   useEffect(() => {
     if (cookie.adminSecret && cookie.adminSecret !== "") {
-      authenticate(cookie.adminSecret);
+      adminAuthenticate(cookie.adminSecret);
+    }
+
+    if (cookie.secret && cookie.secret !== "") {
+      authenticate(cookie.secret);
     }
   }, [cookie]);
 
   return (
-    <AuthContext.Provider value={{ fetched, authenticate, authenticated }}>
+    <AuthContext.Provider value={{ fetched, googleLogin, adminAuthenticate, authenticated }}>
       {children}
     </AuthContext.Provider>
   );

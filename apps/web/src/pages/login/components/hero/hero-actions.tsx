@@ -12,11 +12,15 @@ interface HeroActionsProps {
 
 export const HeroActions = ({ password }: HeroActionsProps) => {
   const navigate = useNavigate();
-  const { authenticate, authenticated } = useAuth();
+  const { adminAuthenticate, authenticated, googleLogin } = useAuth();
 
   const handleClick = async () => {
-    await authenticate(password);
+    await adminAuthenticate(password);
   };
+
+  const handleGoogleLogin = async () => {
+    googleLogin();
+  }
 
   useEffect(() => {
     if (authenticated) {
@@ -25,8 +29,13 @@ export const HeroActions = ({ password }: HeroActionsProps) => {
   }, [authenticated]);
 
   return (
-    <Button type="green" onClick={handleClick} className={styles.actions} center>
-      <BedrockText color="white" text="Login" type="p" />
-    </Button>
+    <>
+      <Button type="green" onClick={handleClick} className={styles.actions} center>
+        <BedrockText color="white" text="Login" type="p" />
+      </Button>
+      <Button type="dark" onClick={handleGoogleLogin} className={styles.actions} center>
+        <BedrockText color="white" text="Google Login" type="p" />
+      </Button>
+    </>
   );
 };

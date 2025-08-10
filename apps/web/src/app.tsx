@@ -26,71 +26,74 @@ import { AuthProvider } from "~/providers/auth";
 import { Main } from "~/pages/downloads/components/main";
 import { Terms } from "./pages/terms";
 import { Categories } from "~/pages/information/components/categories";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 export const App = () => (
-  <CookiesProvider>
-    <NotificationProvider>
-      <CheckoutProvider>
-        <ContentProvider>
-          <AuthProvider>
-            <BrowserRouter>
-              <ScrollToTop>
-                <Layout>
-                  <Routes>
-                    <Route index element={<Home />} />
-                    <Route path="downloads" element={<Downloads />}>
-                      <Route path=":category" element={<Main />} />
-                    </Route>
-                    <Route path="information" element={<Information />}>
-                      <Route path=":category" element={<Categories />} />
-                    </Route>
-                    <Route path="discord" element={<Discord />} />
-                    <Route path="fetch" element={<Fetch />} />
-                    <Route path="preview/:file" element={<Preview />} />
-                    <Route path="login" element={<Login />} />
+  <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+    <CookiesProvider>
+      <NotificationProvider>
+        <CheckoutProvider>
+          <ContentProvider>
+            <AuthProvider>
+              <BrowserRouter>
+                <ScrollToTop>
+                  <Layout>
+                    <Routes>
+                      <Route index element={<Home />} />
+                      <Route path="downloads" element={<Downloads />}>
+                        <Route path=":category" element={<Main />} />
+                      </Route>
+                      <Route path="information" element={<Information />}>
+                        <Route path=":category" element={<Categories />} />
+                      </Route>
+                      <Route path="discord" element={<Discord />} />
+                      <Route path="fetch" element={<Fetch />} />
+                      <Route path="preview/:file" element={<Preview />} />
+                      <Route path="login" element={<Login />} />
 
-                    <Route path="panel" element={<PanelWrapper />}>
-                      <Route
-                        index
-                        element={
-                          <ProtectedRoute>
-                            <Dashboard />
-                          </ProtectedRoute>
-                        }
-                      />
-                      <Route
-                        path="analytics"
-                        element={
-                          <ProtectedRoute>
-                            <Analytics />
-                          </ProtectedRoute>
-                        }
-                      />
-                      <Route
-                        path="voucher"
-                        element={
-                          <ProtectedRoute>
-                            <Voucher />
-                          </ProtectedRoute>
-                        }
-                      />
-                    </Route>
+                      <Route path="panel" element={<PanelWrapper />}>
+                        <Route
+                          index
+                          element={
+                            <ProtectedRoute>
+                              <Dashboard />
+                            </ProtectedRoute>
+                          }
+                        />
+                        <Route
+                          path="analytics"
+                          element={
+                            <ProtectedRoute>
+                              <Analytics />
+                            </ProtectedRoute>
+                          }
+                        />
+                        <Route
+                          path="voucher"
+                          element={
+                            <ProtectedRoute>
+                              <Voucher />
+                            </ProtectedRoute>
+                          }
+                        />
+                      </Route>
 
-                    <Route path="*" element={<Invalid />} />
-                    <Route path="latest" element={<Latest />} />
-                    <Route path="privacy-policy" element={<PrivacyPolicy />} />
-                    <Route path="terms" element={<Terms />} />
-                    <Route path="checkout">
-                      <Route path="cancel" element={<Cancel />} />
-                      <Route path="success" element={<Success />} />
-                    </Route>
-                  </Routes>
-                </Layout>
-              </ScrollToTop>
-            </BrowserRouter>
-          </AuthProvider>
-        </ContentProvider>
-      </CheckoutProvider>
-    </NotificationProvider>
-  </CookiesProvider>
+                      <Route path="*" element={<Invalid />} />
+                      <Route path="latest" element={<Latest />} />
+                      <Route path="privacy-policy" element={<PrivacyPolicy />} />
+                      <Route path="terms" element={<Terms />} />
+                      <Route path="checkout">
+                        <Route path="cancel" element={<Cancel />} />
+                        <Route path="success" element={<Success />} />
+                      </Route>
+                    </Routes>
+                  </Layout>
+                </ScrollToTop>
+              </BrowserRouter>
+            </AuthProvider>
+          </ContentProvider>
+        </CheckoutProvider>
+      </NotificationProvider>
+    </CookiesProvider>
+  </GoogleOAuthProvider>
 );
