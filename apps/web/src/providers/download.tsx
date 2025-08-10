@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { useNotification } from "~/providers/notification";
-import { baseUrl } from "~/utils/url";
+import { baseFrontendUrl, baseUrl } from "~/utils/url";
 import { Configuration, DownloadApi, ProjectDto } from "~/lib/api";
 import { useCookies } from "react-cookie";
 
@@ -124,7 +124,7 @@ export const DownloadProvider = ({ children }: DownloadProviderProps) => {
   };
 
   const getLinkvertiseUrl = async (linkvertiseId: string): Promise<string> => {
-    const targetUrl = baseUrl + "/verify";
+    const targetUrl = baseFrontendUrl + "/verify";
     const pemEncodedKey = `-----BEGIN PUBLIC KEY-----
     MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1piHDY9WRIehbfC3Fpol
     Ly/WrJF8TKFVdDMobj3fkNjN/69dTv9JgXt+gcJxVn/h4NCMtQ2mCQXNBMXzLOky
