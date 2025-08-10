@@ -45,10 +45,14 @@ export const Statistics = () => {
 
   return (
     <div className={styles.data}>
-      <StatisticsCard name={AnalyticsNames.Visits} data={data[AnalyticsNames.Visits]} className={styles.card} />
+      <StatisticsCard
+        name={AnalyticsNames.Visits}
+        data={data[AnalyticsNames.Visits]}
+        className={styles.card}
+      />
       <StatisticsCard
         name="Ads Estimated Revenue"
-        data={estimatedProfit}
+        data={parseFloat(estimatedProfit.toFixed(2))}
         suffix="$"
         showGraph={false}
         className={styles.card}
@@ -64,7 +68,11 @@ export const Statistics = () => {
           data={data[AnalyticsNames.GeneratedDownloads]}
           className={styles.card}
         />
-        <StatisticsCard name="Ad Downloads" data={data[AnalyticsNames.AdDownloads]} className={styles.card} />
+        <StatisticsCard
+          name="Ad Downloads"
+          data={data[AnalyticsNames.AdDownloads]}
+          className={styles.card}
+        />
         <StatisticsCard
           name="Voucher Downloads"
           data={data[AnalyticsNames.VoucherDownloads]}
@@ -72,16 +80,20 @@ export const Statistics = () => {
         />
         <StatisticsCard
           name="Average Voucher Use"
-          data={averageVoucherUse}
+          data={parseFloat(averageVoucherUse.toFixed(2))}
           className={styles.card}
         />
         <StatisticsCard
           name="Average Voucher Use %"
-          data={averageVoucherUsePercentage}
+          data={parseFloat(averageVoucherUsePercentage.toFixed(2))}
           suffix="%"
           className={styles.card}
         />
-        <StatisticsCard name="Valid Vouchers" data={validVouchers} className={styles.card} />
+        <StatisticsCard
+          name="Valid Vouchers"
+          data={validVouchers}
+          className={styles.card}
+        />
         <StatisticsCard
           name="Used Vouchers"
           data={usedVouchers}
