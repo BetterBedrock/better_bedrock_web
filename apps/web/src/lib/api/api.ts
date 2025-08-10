@@ -97,6 +97,19 @@ export type AnalyticsType = typeof AnalyticsType[keyof typeof AnalyticsType];
 /**
  * 
  * @export
+ * @interface AuthorizeDto
+ */
+export interface AuthorizeDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthorizeDto
+     */
+    'token': string;
+}
+/**
+ * 
+ * @export
  * @interface CheckoutOffersDto
  */
 export interface CheckoutOffersDto {
@@ -488,6 +501,25 @@ export interface DownloadsRichDescriptionDto {
 /**
  * 
  * @export
+ * @interface JwtTokenDto
+ */
+export interface JwtTokenDto {
+    /**
+     * A unique token for user authentication
+     * @type {string}
+     * @memberof JwtTokenDto
+     */
+    'token': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof JwtTokenDto
+     */
+    'isNewUser': boolean;
+}
+/**
+ * 
+ * @export
  * @interface PriceOptionDto
  */
 export interface PriceOptionDto {
@@ -769,6 +801,39 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        authControllerAdminAuthenticate: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/auth/admin`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         authControllerAuthenticate: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -797,6 +862,41 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {AuthorizeDto} authorizeDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        authControllerAuthorize: async (authorizeDto: AuthorizeDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorizeDto' is not null or undefined
+            assertParamExists('authControllerAuthorize', 'authorizeDto', authorizeDto)
+            const localVarPath = `/auth`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(authorizeDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -812,10 +912,33 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authControllerAuthenticate(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async authControllerAdminAuthenticate(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.authControllerAdminAuthenticate(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AuthApi.authControllerAdminAuthenticate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async authControllerAuthenticate(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.authControllerAuthenticate(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AuthApi.authControllerAuthenticate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {AuthorizeDto} authorizeDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async authControllerAuthorize(authorizeDto: AuthorizeDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JwtTokenDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.authControllerAuthorize(authorizeDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AuthApi.authControllerAuthorize']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -833,8 +956,25 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authControllerAuthenticate(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        authControllerAdminAuthenticate(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.authControllerAdminAuthenticate(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        authControllerAuthenticate(options?: RawAxiosRequestConfig): AxiosPromise<object> {
             return localVarFp.authControllerAuthenticate(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {AuthorizeDto} authorizeDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        authControllerAuthorize(authorizeDto: AuthorizeDto, options?: RawAxiosRequestConfig): AxiosPromise<JwtTokenDto> {
+            return localVarFp.authControllerAuthorize(authorizeDto, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -852,8 +992,29 @@ export class AuthApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AuthApi
      */
+    public authControllerAdminAuthenticate(options?: RawAxiosRequestConfig) {
+        return AuthApiFp(this.configuration).authControllerAdminAuthenticate(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApi
+     */
     public authControllerAuthenticate(options?: RawAxiosRequestConfig) {
         return AuthApiFp(this.configuration).authControllerAuthenticate(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {AuthorizeDto} authorizeDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApi
+     */
+    public authControllerAuthorize(authorizeDto: AuthorizeDto, options?: RawAxiosRequestConfig) {
+        return AuthApiFp(this.configuration).authControllerAuthorize(authorizeDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

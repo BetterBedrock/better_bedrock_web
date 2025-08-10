@@ -9,6 +9,7 @@ docs/AnalyticsDto.md
 docs/AnalyticsNames.md
 docs/AnalyticsType.md
 docs/AuthApi.md
+docs/AuthorizeDto.md
 docs/CheckoutApi.md
 docs/CheckoutOffersDto.md
 docs/CheckoutOptionEntryDto.md
@@ -26,6 +27,7 @@ docs/DownloadsListDto.md
 docs/DownloadsNotificationDto.md
 docs/DownloadsNotificationType.md
 docs/DownloadsRichDescriptionDto.md
+docs/JwtTokenDto.md
 docs/PriceOptionDto.md
 docs/UpdateVoucher.md
 docs/VoucherApi.md
