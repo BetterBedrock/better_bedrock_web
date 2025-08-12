@@ -4,10 +4,11 @@ import { styles } from ".";
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   children?: React.ReactNode;
+  sub?: boolean;
 }
 
-export const Card = ({ className, children, ...rest }: CardProps) => (
-  <div className={clsx(styles.container, className && className)} {...rest}>
+export const Card = ({ className, children, sub, ...rest }: CardProps) => (
+  <div className={clsx(styles.container, sub && styles.sub, className && className)} {...rest}>
     {children}
   </div>
 );
