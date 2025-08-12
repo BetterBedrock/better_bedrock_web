@@ -27,6 +27,7 @@ import { Main } from "~/pages/downloads/components/main";
 import { Terms } from "./pages/terms";
 import { Categories } from "~/pages/information/components/categories";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { Profile } from "~/pages/profile";
 
 export const App = () => (
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
@@ -50,6 +51,7 @@ export const App = () => (
                       <Route path="fetch" element={<Fetch />} />
                       <Route path="preview/:file" element={<Preview />} />
                       <Route path="login" element={<Login />} />
+                      <Route path="profile/:id" element={<Profile />} />
 
                       <Route path="panel" element={<PanelWrapper />}>
                         <Route

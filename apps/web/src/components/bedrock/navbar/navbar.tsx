@@ -15,7 +15,7 @@ import { useAuth } from "~/providers/auth";
 export const Navbar = () => {
   const [expandedNavbar, setExpandedNavbar] = useState(false);
   const location = useLocation();
-  const { authenticated } = useAuth();
+  const { authenticated, user } = useAuth();
 
   const handleExpandNavbar = (value?: boolean) => {
     setExpandedNavbar((prev) => (value !== undefined ? value : !prev));
@@ -35,6 +35,7 @@ export const Navbar = () => {
           { name: "Downloads", path: "/downloads/:main" },
           { name: "Information", path: "/information/:general" },
           { name: "Discord", path: "/discord" },
+          user ? { name: "Profile", path: `/profile/${user.name}` } : { name: "Login", path: "/login" },
         ];
 
   return (
@@ -69,7 +70,9 @@ export const Navbar = () => {
                 )
                 .join("/");
             } else {
-              finalNavPath = navPaths.map((p) => p.startsWith(":") ? p.replace(":", "") : p).join("/");
+              finalNavPath = navPaths
+                .map((p) => (p.startsWith(":") ? p.replace(":", "") : p))
+                .join("/");
             }
 
             const isActive = location.pathname === finalNavPath;

@@ -1,0 +1,35 @@
+@use "~/utils/_variables" as g;
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-md;
+}
+
+.profile {
+  padding: g.$padding-sm;
+  display: inline-flex;
+  gap: g.$padding-sm;
+  align-items: start;
+  width: 100%;
+  // grid-template-columns: repeat(2, 1fr);
+}
+
+.image {
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 1/1;
+  image-rendering: pixelated;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.list {
+  display:flex;
+  flex-direction: column;
+  gap: g.$padding-sm;
+}
