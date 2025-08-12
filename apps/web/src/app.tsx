@@ -26,6 +26,7 @@ import { AuthProvider } from "~/providers/auth";
 import { Main } from "~/pages/downloads/components/main";
 import { Terms } from "./pages/terms";
 import { Categories } from "~/pages/information/components/categories";
+import { Config } from "~/pages/config/editor";
 
 export const App = () => (
   <CookiesProvider>
@@ -48,6 +49,7 @@ export const App = () => (
                     <Route path="fetch" element={<Fetch />} />
                     <Route path="preview/:file" element={<Preview />} />
                     <Route path="login" element={<Login />} />
+                    <Route path="config/editor" element={<Config />} />
 
                     <Route path="panel" element={<PanelWrapper />}>
                       <Route
