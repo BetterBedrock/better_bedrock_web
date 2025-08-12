@@ -54,7 +54,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **authControllerAuthenticate**
-> object authControllerAuthenticate()
+> UserDto authControllerAuthenticate()
 
 
 ### Example
@@ -77,7 +77,7 @@ This endpoint does not have any parameters.
 
 ### Return type
 
-**object**
+**UserDto**
 
 ### Authorization
 
@@ -92,7 +92,7 @@ This endpoint does not have any parameters.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** |  |  -  |
+|**200** | Successfully authenticated |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -143,7 +143,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Successfully authorized connection with account  |  -  |
+|**201** | Successfully authorized connection with account  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -624,6 +624,55 @@ export interface UpdateVoucher {
 /**
  * 
  * @export
+ * @interface UserDto
+ */
+export interface UserDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    'googleId': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    'bio': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserDto
+     */
+    'banned': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    'createdAt': string;
+}
+/**
+ * 
+ * @export
  * @interface VoucherDto
  */
 export interface VoucherDto {
@@ -923,7 +972,7 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authControllerAuthenticate(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+        async authControllerAuthenticate(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.authControllerAuthenticate(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AuthApi.authControllerAuthenticate']?.[localVarOperationServerIndex]?.url;
@@ -964,7 +1013,7 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authControllerAuthenticate(options?: RawAxiosRequestConfig): AxiosPromise<object> {
+        authControllerAuthenticate(options?: RawAxiosRequestConfig): AxiosPromise<UserDto> {
             return localVarFp.authControllerAuthenticate(options).then((request) => request(axios, basePath));
         },
         /**
