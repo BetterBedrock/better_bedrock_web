@@ -1,13 +1,14 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { AuthApi, Configuration } from "~/lib/api";
+import { AuthApi, Configuration, UserDto } from "~/lib/api";
 import { useNotification } from "~/providers/notification";
 import { baseUrl } from "~/utils/url";
 
 interface AuthContextProps {
   authenticated: boolean;
   fetched: boolean;
+  user: UserDto | undefined;
   adminAuthenticate: (token: string) => Promise<void>;
   googleLogin: () => void;
 }
@@ -23,7 +24,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [fetched, setFetched] = useState(false);
   const [cookie, setCookie] = useCookies(["adminSecret", "secret"]);
   const { throwError } = useNotification();
+  const [user, setUser] = useState<UserDto | undefined>();
 
+  console.log({ user });
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       const config = new Configuration({
@@ -52,8 +55,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       });
 
       const authApi = new AuthApi(config);
-      const user = await authApi.authControllerAuthenticate();
-      console.log({ user });
+      const { data } = await authApi.authControllerAuthenticate();
+      setUser(data);
     } catch (err) {
       throwError(err, "Failed to authenticate");
     }
@@ -90,7 +93,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, [cookie]);
 
   return (
-    <AuthContext.Provider value={{ fetched, googleLogin, adminAuthenticate, authenticated }}>
+    <AuthContext.Provider value={{ user, fetched, googleLogin, adminAuthenticate, authenticated }}>
       {children}
     </AuthContext.Provider>
   );
