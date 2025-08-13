@@ -8,9 +8,11 @@ export enum Routes {
     INFORMATION = "/information",
     FETCH = "/fetch",
     PREVIEW = "/preview",
+    PROFILE = "/profile",
     LATEST = "/latest",
     CHECKOUT_CANCEL = "/checkout/cancel",
     CHECKOUT_SUCCESS = "/checkout/success",
     PRIVACY_POLICY = "/privacy-policy",
     TERMS = "/terms",
+    CREATE = "/create",
 }

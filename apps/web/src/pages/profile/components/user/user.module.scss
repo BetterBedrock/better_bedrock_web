@@ -18,18 +18,8 @@
 
 .image {
   width: 100%;
-  max-width: 200px;
+  max-width: 150px;
   aspect-ratio: 1/1;
   image-rendering: pixelated;
 }
 
-.projects {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.list {
-  display:flex;
-  flex-direction: column;
-  gap: g.$padding-sm;
-}

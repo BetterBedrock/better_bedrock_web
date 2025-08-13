@@ -28,6 +28,8 @@ import { Terms } from "./pages/terms";
 import { Categories } from "~/pages/information/components/categories";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Profile } from "~/pages/profile";
+import { Projects } from "~/pages/profile/components/user/projects";
+import { Submissions } from "~/pages/profile/components/user/submissions";
 
 export const App = () => (
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
@@ -50,8 +52,13 @@ export const App = () => (
                       <Route path="discord" element={<Discord />} />
                       <Route path="fetch" element={<Fetch />} />
                       <Route path="preview/:file" element={<Preview />} />
+                      <Route path="create" element={<Preview create/>} />
                       <Route path="login" element={<Login />} />
-                      <Route path="profile/:id" element={<Profile />} />
+                      <Route path="profile/:id" element={<Profile />}>
+                        <Route path="projects" element={<Projects />} />
+                        <Route path="reviews" element={<Projects />} />
+                        <Route path="submissions" element={<Submissions />} />
+                      </Route>
 
                       <Route path="panel" element={<PanelWrapper />}>
                         <Route
