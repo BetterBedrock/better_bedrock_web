@@ -5,8 +5,8 @@ export const ExtensionsGallery = () => {
   return (
     <Gallery
       images={[
-        `${baseUrl}/static/images/bb/extensions1.png`,
-        `${baseUrl}/static/images/bb/extensions2.png`,
+        `${baseUrl}/static/uploads/public/images/bb/extensions1.png`,
+        `${baseUrl}/static/uploads/public/images/bb/extensions2.png`,
       ]}
       show={true}
     />

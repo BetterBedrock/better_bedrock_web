@@ -5,8 +5,8 @@ export const PlatformSupportGallery = () => {
   return (
     <Gallery
       images={[
-        `${baseUrl}/static/images/bb/platform_support1.png`,
-        `${baseUrl}/static/images/bb/platform_support2.png`,
+        `${baseUrl}/static/uploads/public/images/bb/platform_support1.png`,
+        `${baseUrl}/static/uploads/public/images/bb/platform_support2.png`,
       ]}
       show={true}
     />

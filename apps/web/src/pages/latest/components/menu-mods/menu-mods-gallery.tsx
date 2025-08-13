@@ -5,11 +5,11 @@ export const MenuModsGallery = () => {
   return (
     <Gallery
       images={[
-        `${baseUrl}/static/images/bb/menu_mods1.png`,
-        `${baseUrl}/static/images/bb/menu_mods2.png`,
-        `${baseUrl}/static/images/bb/menu_mods3.png`,
-        `${baseUrl}/static/images/bb/menu_mods4.png`,
-        `${baseUrl}/static/images/bb/menu_mods5.png`,
+        `${baseUrl}/static/uploads/public/images/bb/menu_mods1.png`,
+        `${baseUrl}/static/uploads/public/images/bb/menu_mods2.png`,
+        `${baseUrl}/static/uploads/public/images/bb/menu_mods3.png`,
+        `${baseUrl}/static/uploads/public/images/bb/menu_mods4.png`,
+        `${baseUrl}/static/uploads/public/images/bb/menu_mods5.png`,
       ]}
       show={true}
     />

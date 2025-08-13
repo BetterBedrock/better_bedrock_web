@@ -57,7 +57,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     buttonType: "green",
                     itemWeight: 11.5,
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/favicon.png"],
                     tags: ["MCBE v1.21.80+"],
                     tagBgColor: "rgb(29, 77, 19)",
                 },
@@ -79,13 +79,13 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 0.04,
                     buttonType: "dark",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/logo2.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/logo2.png"],
                     richDescription: [
                         {
                             name: "Effects",
                             images: [
-                                "/static/images/extensions/waypoints1.png",
-                                "/static/images/extensions/waypoints2.png",
+                                "/static/uploads/public/images/extensions/waypoints1.png",
+                                "/static/uploads/public/images/extensions/waypoints2.png",
                             ],
                         },
                     ],
@@ -101,20 +101,20 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 0.02,
                     buttonType: "dark",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/logo2.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/logo2.png"],
                     richDescription: [
                         {
                             name: "Before & After",
                             images: [
-                                "/static/images/extensions/better_fogs3.png",
-                                "/static/images/extensions/better_fogs1.png",
+                                "/static/uploads/public/images/extensions/better_fogs3.png",
+                                "/static/uploads/public/images/extensions/better_fogs1.png",
                             ],
                         },
                         {
                             name: "subpacks: Default & Clean lava",
                             images: [
-                                "/static/images/extensions/better_fogs2.png",
-                                "/static/images/extensions/better_fogs4.png",
+                                "/static/uploads/public/images/extensions/better_fogs2.png",
+                                "/static/uploads/public/images/extensions/better_fogs4.png",
                             ],
                         },
                     ],
@@ -129,27 +129,27 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 0.001,
                     buttonType: "dark",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/logo2.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/logo2.png"],
                     richDescription: [
                         {
                             name: "Start Screen",
                             images: [
-                                "/static/images/extensions/dark_ui1.png",
-                                "/static/images/extensions/dark_ui4.png",
+                                "/static/uploads/public/images/extensions/dark_ui1.png",
+                                "/static/uploads/public/images/extensions/dark_ui4.png",
                             ],
                         },
                         {
                             name: "Pause Screen",
                             images: [
-                                "/static/images/extensions/dark_ui2.png",
-                                "/static/images/extensions/dark_ui5.png",
+                                "/static/uploads/public/images/extensions/dark_ui2.png",
+                                "/static/uploads/public/images/extensions/dark_ui5.png",
                             ],
                         },
                         {
                             name: "Mod Menu",
                             images: [
-                                "/static/images/extensions/dark_ui3.png",
-                                "/static/images/extensions/dark_ui6.png",
+                                "/static/uploads/public/images/extensions/dark_ui3.png",
+                                "/static/uploads/public/images/extensions/dark_ui6.png",
                             ],
                         },
                     ],
@@ -164,13 +164,13 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 0.01,
                     buttonType: "dark",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/logo2.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/logo2.png"],
                     richDescription: [
                         {
                             name: "Before & After",
                             images: [
-                                "/static/images/extensions/clean_water1.png",
-                                "/static/images/extensions/clean_water2.png",
+                                "/static/uploads/public/images/extensions/clean_water1.png",
+                                "/static/uploads/public/images/extensions/clean_water2.png",
                             ],
                         },
                     ],
@@ -185,27 +185,27 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 1.2,
                     buttonType: "dark",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/logo3.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/logo3.png"],
                     richDescription: [
                         {
                             name: "Settings Screen",
                             images: [
-                                "/static/images/extensions/dark_mode1.png",
-                                "/static/images/extensions/dark_mode4.png",
+                                "/static/uploads/public/images/extensions/dark_mode1.png",
+                                "/static/uploads/public/images/extensions/dark_mode4.png",
                             ],
                         },
                         {
                             name: "Chest Screen",
                             images: [
-                                "/static/images/extensions/dark_mode2.png",
-                                "/static/images/extensions/dark_mode5.png",
+                                "/static/uploads/public/images/extensions/dark_mode2.png",
+                                "/static/uploads/public/images/extensions/dark_mode5.png",
                             ],
                         },
                         {
                             name: "Inventory Screen",
                             images: [
-                                "/static/images/extensions/dark_mode3.png",
-                                "/static/images/extensions/dark_mode6.png",
+                                "/static/uploads/public/images/extensions/dark_mode3.png",
+                                "/static/uploads/public/images/extensions/dark_mode6.png",
                             ],
                         },
                     ],
@@ -221,14 +221,14 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 0.13,
                     buttonType: "dark",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/logo3.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/logo3.png"],
                     richDescription: [
                         {
                             name: "All, Minimal, Disabled",
                             images: [
-                                "/static/images/extensions/particle_limiter1.png",
-                                "/static/images/extensions/particle_limiter2.png",
-                                "/static/images/extensions/particle_limiter3.png",
+                                "/static/uploads/public/images/extensions/particle_limiter1.png",
+                                "/static/uploads/public/images/extensions/particle_limiter2.png",
+                                "/static/uploads/public/images/extensions/particle_limiter3.png",
                             ],
                         },
                     ],
@@ -243,13 +243,13 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 0.23,
                     buttonType: "dark",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/logo3.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/logo3.png"],
                     richDescription: [
                         {
                             name: "Before & After",
                             images: [
-                                "/static/images/extensions/low_fire1.png",
-                                "/static/images/extensions/low_fire2.png",
+                                "/static/uploads/public/images/extensions/low_fire1.png",
+                                "/static/uploads/public/images/extensions/low_fire2.png",
                             ],
                         },
                     ],
@@ -264,13 +264,13 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 0.01,
                     buttonType: "dark",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/logo3.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/logo3.png"],
                     richDescription: [
                         {
                             name: "Before & After",
                             images: [
-                                "/static/images/extensions/full_grass1.png",
-                                "/static/images/extensions/full_grass2.png",
+                                "/static/uploads/public/images/extensions/full_grass1.png",
+                                "/static/uploads/public/images/extensions/full_grass2.png",
                             ],
                         },
                     ],
@@ -286,13 +286,13 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 0.001,
                     buttonType: "dark",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/logo3.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/logo3.png"],
                     richDescription: [
                         {
                             name: "Before & After",
                             images: [
-                                "/static/images/extensions/clean_glass1.png",
-                                "/static/images/extensions/clean_glass2.png",
+                                "/static/uploads/public/images/extensions/clean_glass1.png",
+                                "/static/uploads/public/images/extensions/clean_glass2.png",
                             ],
                         },
                     ],
@@ -312,7 +312,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 27.74,
                     buttonType: "white",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/favicon.png"],
                 },
                 {
                     title: "Client V1",
@@ -322,7 +322,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 32.07,
                     buttonType: "white",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/favicon.png"],
                 },
                 {
                     title: "Better Bedrock v7.4",
@@ -332,7 +332,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 10.1,
                     buttonType: "white",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/favicon.png"],
                 },
                 {
                     title: "Better Bedrock V6",
@@ -342,7 +342,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 2.71,
                     buttonType: "white",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/favicon.png"],
                 },
                 {
                     title: "Better Bedrock V5",
@@ -352,7 +352,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 17.8,
                     buttonType: "white",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/favicon.png"],
                 },
                 {
                     title: "Better Bedrock V5 Error Fix V2.0",
@@ -362,7 +362,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 0.483,
                     buttonType: "white",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/favicon.png"],
                 },
                 {
                     title: "Better Bedrock V5 Patch V1.2",
@@ -372,7 +372,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 0.483,
                     buttonType: "white",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/favicon.png"],
                 },
                 {
                     title: "Better Bedrock V5 Config",
@@ -382,7 +382,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 0.471,
                     buttonType: "white",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/favicon.png"],
                 },
                 {
                     title: "Better Bedrock V4 Patch",
@@ -392,7 +392,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 0.486,
                     buttonType: "white",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/favicon.png"],
                 },
                 {
                     title: "Better Bedrock V4 Lite",
@@ -402,7 +402,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 49.23,
                     buttonType: "white",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/favicon.png"],
                 },
                 {
                     title: "Better Bedrock V4",
@@ -412,7 +412,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 49.42,
                     buttonType: "white",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/favicon.png"],
                 },
                 {
                     title: "Better Bedrock V3",
@@ -422,7 +422,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 6.86,
                     buttonType: "white",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/favicon.png"],
                 },
                 {
                     title: "Better Bedrock V2",
@@ -432,7 +432,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 4.45,
                     buttonType: "white",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/favicon.png"],
                 },
                 {
                     title: "Better Bedrock V1",
@@ -442,7 +442,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     itemWeight: 20.14,
                     buttonType: "white",
                     betterBedrockContent: true,
-                    imageAssetUrl: ["/static/images/favicon.png"],
+                    imageAssetUrl: ["/static/uploads/public/images/favicon.png"],
                 },
             ],
         },

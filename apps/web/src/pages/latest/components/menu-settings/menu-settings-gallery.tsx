@@ -5,9 +5,9 @@ export const MenuSettingsGallery = () => {
   return (
     <Gallery
       images={[
-        `${baseUrl}/static/images/bb/menu_settings1.png`,
-        `${baseUrl}/static/images/bb/menu_settings2.png`,
-        `${baseUrl}/static/images/bb/menu_settings3.png`,
+        `${baseUrl}/static/uploads/public/images/bb/menu_settings1.png`,
+        `${baseUrl}/static/uploads/public/images/bb/menu_settings2.png`,
+        `${baseUrl}/static/uploads/public/images/bb/menu_settings3.png`,
       ]}
       show={true}
     />
