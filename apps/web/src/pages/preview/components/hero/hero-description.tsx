@@ -8,10 +8,10 @@ interface HeroDescriptionProps {
 
 export const HeroDescription = ({ download }: HeroDescriptionProps) => (
   <BedrockText
-    text={`${download.description ? download.description + " By " : ""}@${download.creator}`}
+    text={download.description}
     extraClassName={styles.description}
     type="p"
-    textAlign="center"
+    textAlign="start"
     color="white"
   />
 );

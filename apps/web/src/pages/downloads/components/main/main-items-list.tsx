@@ -74,7 +74,7 @@ export const MainItemsList = ({ category, categoryId }: MainItemsList) => {
               description={
                 <BedrockText text={`@${item.creator}`} type={"p"} textAlign="left" color="white" />
               }
-              thumbnail={<img src={`${baseUrl}${item.imageAssetUrl[0]}`} alt={""} />}
+              thumbnail={`${baseUrl}${item.imageAssetUrl[0]}`}
               actions={
                 <ButtonGroup>
                   <Button

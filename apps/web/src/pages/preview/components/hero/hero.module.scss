@@ -14,3 +14,35 @@
     width: 100%;
   }
 }
+
+.information {
+  padding: g.$padding-sm;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  padding: g.$padding-xsm;
+  gap: g.$padding-xxsm;
+}
+
+.avatar {
+  width: g.$icon-md;
+  height: g.$icon-md;
+  image-rendering: pixelated;
+}
+
+.skip {
+  color: g.$color-selection !important;
+}
+
+.title {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  gap: g.$padding-xsm;
+}
+
+.editor {
+  padding: g.$padding-sm;
+}
