@@ -1,0 +1,19 @@
+@use "~/utils" as g;
+
+.rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: g.$padding-xxsm;
+}
+
+.text {
+  line-height: g.$icon-sm;
+}
+
+.star {
+  image-rendering: pixelated;
+  width: g.$icon-sm;
+  height: g.$icon-sm;
+  aspect-ratio: 1/1;
+}
