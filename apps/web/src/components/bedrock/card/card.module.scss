@@ -5,6 +5,12 @@
   border: g.$minecraftdepth solid rgb(30, 30, 31);
 }
 
+.sub {
+  background-color: #494949 !important;
+  padding-block: g.$minecraftdepth;
+  box-shadow: 0px g.$minecraftdepth 0px 0px inset #5a5a5a, 0px calc(g.$minecraftdepth * -1) 0px 0px inset #323232;
+}
+
 .top {
   background-color: rgb(31, 31, 32);
   width: 100%;
