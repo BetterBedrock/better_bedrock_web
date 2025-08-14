@@ -35,7 +35,9 @@ export const Navbar = () => {
           { name: "Downloads", path: "/downloads/:main" },
           { name: "Information", path: "/information/:general" },
           { name: "Discord", path: "/discord" },
-          user ? { name: "Profile", path: `/profile/${user.name}` } : { name: "Login", path: "/login" },
+          user
+            ? { name: "Profile", path: `/profile/${user.name}/:projects` }
+            : { name: "Login", path: "/login" },
         ];
 
   return (
@@ -83,7 +85,8 @@ export const Navbar = () => {
                   <SimpleButton
                     key={name}
                     width="100%"
-                    className={clsx(styles.button, isActive && styles.active)}
+                    isClicked={isActive}
+                    className={styles.button}
                     onTap={() => {
                       handleExpandNavbar(false);
                     }}
