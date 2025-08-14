@@ -87,7 +87,59 @@
 }
 
 .bottom {
-  background-color: rgb(60,61,62);
+  background-color: rgb(60, 61, 62);
   width: 100%;
   height: g.$minecraftdepth;
+}
+
+.thumbnailWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-top: g.$minecraftdepth solid rgb(30, 30, 31);
+  border-bottom: g.$minecraftdepth solid rgb(30, 30, 31);
+}
+
+.thumbnail {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+.details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: end;
+}
+
+.cardTitle {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: g.$padding-xxsm;
+}
+
+.tags {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: inline-flex;
+  align-items: start;
+  justify-content: end;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  padding: g.$padding-xsm;
+  gap: g.$padding-xxsm;
+}
+
+.avatar {
+  width: g.$icon-md;
+  height: g.$icon-md;
+  image-rendering: pixelated;
 }
