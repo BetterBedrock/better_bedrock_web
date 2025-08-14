@@ -1,6 +1,9 @@
 @forward "~/utils";
 @use "~/utils" as *;
 
+@import "~/styles/_variables.scss";
+@import "~/styles/_keyframe-animations.scss";
+
 *,
 *::before,
 *::after {
