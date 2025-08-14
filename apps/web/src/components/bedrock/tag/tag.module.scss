@@ -1,0 +1,8 @@
+@use "~/utils" as g;
+
+.tag {
+  background-color: rgb(140, 179, 255);
+  border-bottom: g.$minecraftdepth solid rgb(30, 30, 31);
+  border-left: g.$minecraftdepth solid rgb(30, 30, 31);
+  padding: g.$padding-xxsm;
+}
