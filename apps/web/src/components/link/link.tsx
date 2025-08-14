@@ -9,6 +9,7 @@ interface LinkProps {
   children: ReactNode;
   hideStyles?: boolean;
   className?: string;
+  onClick?: () => void;
 }
 
 export const Link = ({
@@ -17,6 +18,7 @@ export const Link = ({
   link,
   isExternalLink = false,
   className,
+  onClick,
 }: LinkProps) => {
   if (!link) return children;
 
@@ -26,11 +28,16 @@ export const Link = ({
       className={clsx(className && className, hideStyles && styles.hide)}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={onClick}
     >
       {children}
     </a>
   ) : (
-    <ReactRouterLink to={link} className={clsx(className && className, hideStyles && styles.hide)}>
+    <ReactRouterLink
+      to={link}
+      className={clsx(className && className, hideStyles && styles.hide)}
+      onClick={onClick}
+    >
       {children}
     </ReactRouterLink>
   );
