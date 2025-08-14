@@ -46,7 +46,7 @@ export class CheckoutController {
         private readonly voucherService: VoucherService,
         private readonly analyticsService: AnalyticsService,
         private readonly mailService: MailService,
-    ) {}
+    ) { }
 
     @Get("offers")
     @ApiOkResponse({
@@ -148,6 +148,13 @@ export class CheckoutController {
             const fullSession = await this.checkoutService.retriveSession(session.id);
 
             const email = fullSession.customer_details?.email;
+
+            const existing = await this.voucherService.findByCheckoutId(session.id);
+            if (existing) {
+                Logger.warn(`Checkout ${session.id} already processed, skipping...`);
+                return;
+            }
+
             const items = fullSession.line_items!.data;
             items.forEach(async (item) => {
                 const productName = (item!.price!.product as Stripe.Product).name;

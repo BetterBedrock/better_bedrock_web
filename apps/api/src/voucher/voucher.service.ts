@@ -5,7 +5,7 @@ import { PrismaService } from "~/prisma.service";
 
 @Injectable()
 export class VoucherService {
-    constructor(private prisma: PrismaService) {}
+    constructor(private prisma: PrismaService) { }
 
     async createVoucher(data: Prisma.VoucherCreateInput) {
         return await this.prisma.voucher.create({
@@ -38,5 +38,11 @@ export class VoucherService {
             .toString("hex") // hex = 0-9a-f
             .slice(0, length)
             .toUpperCase();
+    }
+
+    async findByCheckoutId(checkoutId: string): Promise<Voucher | null> {
+        return await this.prisma.voucher.findFirst({
+            where: { checkoutId },
+        });
     }
 }
