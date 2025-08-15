@@ -7,7 +7,7 @@ interface TutorialVideosTitle {
 export const TutorialVideosTitle = ({ deprected }: TutorialVideosTitle) => (
   <BedrockText
     type="h1"
-    text={deprected ? "Tutorial Videos" : "Deprecated Tutorial Videos"}
+    text={deprected ? "Deprecated Tutorial Videos" : "Tutorial Videos"}
     color="white"
     font="MinecraftTen"
   />

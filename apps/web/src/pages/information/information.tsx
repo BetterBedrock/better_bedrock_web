@@ -111,39 +111,27 @@ export const informationData: InformationTab[] = [
     id: "general",
     name: "General",
     faq: {
-      description:
-        "General topic FAQ. If you still have questions, please check out our Discord server!",
+      description: "General topic FAQ. If you still have questions, please check out our Discord server!",
       questions: [
         {
           question: "Are all Better Bedrock content safe?",
-          answer:
-            "DEFINITELY YES! The Texture Pack doesn't need anything. The Mobile Client do require permissions, but only for editing Minecraft files only. The Windows client can be flagged as a virus, however it is safe. We only read Minecraft memory and injecting features there. In all these products, we DO NOT collect any data from our users.",
+          answer: "DEFINITELY YES! The Texture Pack doesn't contain any harmful files or executables. We also DO NOT collect any data from our users.",
         },
         {
-          question: "How do I download Better Bedrock content?",
-          answer: "Simply navigate to downloads page and click item you want to download!",
-        },
-        {
-          question: `Why did the download process fail and show the error "We could not verify your session"`,
-          answer: `It's due to several potential issues. Here are some possible reasons: 1. You used services such as bypass.city to skip the ads. 2. While downloading one file from our website, you clicked to begin another download - wait patiently. 3. You waited too long on the linkvertise page before clicking button "Get Better Bedrock" to redirect. 4. You changed your ip address (or used a VPN) while being on our site. 5. Your internet connection was too slow to send a request to our servers. Minimum download speed: ~0.33MB/s. 6. You have adblockers or any extensions blocking requests to our servers. (Browsers such as Brave, or Safari can also sometimes prevent requests)`,
+          question: "Why do my Mod Menu options reset?",
+          answer: "To save these options and adjust extra ones use config. Scroll down to Tutorials section and follow steps from here.",
         },
         {
           question: "What devices are supported by Better Bedrock?",
-          answer:
-            "The Texture Pack is available for all devices that are able to import Texture Packs. Mobile Client is available for Android. The Windows Client is available for both Windows 10 and 11",
+          answer: "The Texture Pack is available for all devices that are able to import Texture Packs.",
         },
         {
           question: "How do I open the Mod Menu?",
           answer: `Simply open the pause menu and double click the "Mod Menu" button in bottom left corner.`,
         },
         {
-          question: "Why do my Mod Menu options reset?",
-          answer:
-            "To save these options and adjust extra ones use config. Scroll down to Config section for more information.",
-        },
-        {
-          question: "What is a subpack?",
-          answer: `A subpack is Minecraft name for texture pack options. To access it, open settings, go to "Global Resources", select "ACTIVE" tab, select Better Bedrock and then click gear icon in bottom right corner.`,
+          question: "How do I download Better Bedrock content?",
+          answer: "Simply navigate to downloads page and click item you want to download!",
         },
         {
           question: "Where are the tutorial videos?",
@@ -151,25 +139,30 @@ export const informationData: InformationTab[] = [
             "Just scroll down a bit! And make sure to select proper option at the top for your topic.",
         },
         {
-          question: "When will the new versions be released?",
-          answer:
-            "New content will be always announced on our Discord server at #announcements. Make sure to join us to stay updated!",
+          question: `Why did the free download process fail?`,
+          answer: `It's due to several potential issues. Here are some possible reasons: 1. You used bypass services to skip the ads. 2. While downloading one file from our website, you clicked to begin another download - wait patiently. 3. You waited too long on the linkvertise page before clicking button "Get Better Bedrock" to redirect. 4. You changed your ip address (or used a VPN) while being on our site. 5. Your internet connection was too slow to send a request to our servers. Minimum download speed: ~0.33MB/s. 6. You have adblockers or any extensions blocking requests to our servers. (Browsers such as Brave, or Safari can also sometimes prevent requests) 7. You have blocked popups so the download page cannot open.`,
         },
         {
-          question: "Why is my cape not visible?",
-          answer: `It has been issue for use since larger amount of modules used. At the moment this issue is still in BB v7.4 and in that and earlier versions you can use BB cape (add horizontaly 2 pixles in your skin image to bring that cape). In the coming V8, we will fix this issue and render default cape that you chose in the "dressing room".`,
+          question: `Why doesn't the free download option work?`,
+          answer: `You probably have blocked popups so the download page cannot open, we recommend to disable it or try using other download methods :3`,
+        },
+        {
+          question: "What is a subpack?",
+          answer: `A subpack is Minecraft name for texture pack options. To access it, open settings, go to "Global Resources", select "ACTIVE" tab, select Better Bedrock and then click gear icon in bottom right corner.`,
+        },
+        {
+          question: "When will the new versions be released?",
+          answer: "New content will be always announced on our Discord server at #announcements. Make sure to join us to stay updated!",
         },
         {
           question: "Can I become a helper on Discord?",
-          answer:
-            "In short, we see no need for more helpers on our Discord server. If we need more people, we will let you know at #announcements on our Discord server.",
+          answer: "In short, we see no need for more helpers on our Discord server. If we need more people, we will let you know at #announcements on our Discord server.",
         },
       ],
     },
 
     videos: {
-      description:
-        "List of general topic videos that explain the features and tools provided by Better Bedrock. TUTORIALS ARE DIFFERENT FOR EACH CATEGORY!",
+      description: "List of general topic videos that explain the features and tools provided by Better Bedrock. TUTORIALS ARE DIFFERENT FOR EACH CATEGORY!",
       videos: [
         {
           title: "How to use waypoints",
@@ -187,8 +180,7 @@ export const informationData: InformationTab[] = [
     },
 
     deprectedVideos: {
-      description:
-        "List of DEPRECATED videos for mobile devices designed to explain the features and tools that Better Bedrock provides. TUTORIALS ARE DIFFERENT FOR EACH CATEGORY!",
+      description: "List of DEPRECATED videos for mobile devices designed to explain the features and tools that Better Bedrock provides. TUTORIALS ARE DIFFERENT FOR EACH CATEGORY!",
       videos: [
         {
           title: "Manually edit cape",
@@ -228,20 +220,21 @@ export const informationData: InformationTab[] = [
     id: "mobile",
     name: "Mobile Devices",
     faq: {
-      description:
-        "Mobile devices FAQ. If you still have questions, please check out our Discord server!",
+      description: "Mobile devices FAQ. If you still have questions, please check out our Discord server!",
       questions: [
         {
           question: "Why can't I open Inventory Screen",
-          answer:
-            "This issue usually appears when pocket UI is used. We do not fully support this mode and we recommend using second one - the classic UI. To change it open sttings, navigate to video, scroll down until you see UI Profile option, then click and change to classic UI, problem should be resolved.",
+          answer: "This issue usually appears when pocket UI is used. We do not fully support this mode and we recommend using second one - the classic UI. To change it open sttings, navigate to video, scroll down until you see UI Profile option, then click and change to classic UI, problem should be resolved.",
+        },
+        {
+          question: "Why are hearts not visible?",
+          answer: "We do not support pocket UI, please change it to classic UI",
         },
       ],
     },
 
     videos: {
-      description:
-        "List of videos for mobile devices designed to explain the features and tools that Better Bedrock provides. TUTORIALS ARE DIFFERENT FOR EACH CATEGORY!",
+      description: "List of videos for mobile devices designed to explain the features and tools that Better Bedrock provides. TUTORIALS ARE DIFFERENT FOR EACH CATEGORY!",
       videos: [
         {
           title: "Download and Import Texture Pack to Minecraft",
@@ -269,28 +262,25 @@ export const informationData: InformationTab[] = [
     id: "pc",
     name: "PC/Other Devices",
     faq: {
-      description:
-        "PC/Other devices FAQ. If you still have questions, please check out our Discord server!",
+      description: "PC/Other devices FAQ. If you still have questions, please check out our Discord server!",
       questions: [
         {
           question: "(CONSOLE) How to change config on console.",
-          answer: `There isn't any way to adjust config on consoles, because it requires editing txt pack files, but there is one way. In short, open "Mobile Devices" tab and search for "Edit config before importing pack" or #3 tutorial video. Follow this until you see part about zipping created folder. After that you need to put this created file firstly named something.zip and then something.mcpack to console files and open BB from here. Yes we know that it's slow process, but we still provide methods to use our pack on consoles. It's not stable but still possible. We recommend adjusting config on phone or console and then changing this on PC/Phone like on tutorial.`,
+          answer: `There isn't any way to adjust config on consoles, because it requires editing txt pack files, but there is one way. In short, open "Mobile Devices" tab and search for "Edit config before importing pack" or #3 tutorial video. Follow this until you see part about zipping created folder. After that you need to put this created file, firstly named something.zip and then something.mcpack, to console files and open BB from here. Yes we know that it's slow process, but we still provide methods to use our pack on consoles. We recommend adjusting config on phone or console and then changing this on PC/Phone like on tutorial.`,
         },
         {
-          question: "(Controller) Why is the Mod Menu key missing?",
+          question: "(Controller) Why is the Mod Menu button missing?",
           answer: `If you use pack without subpack option selected to "Controller Mode", then that's the reason. Enable this option and make sure to read important note about this mode - in short, controller input is really problematic and there isn't any way to make it work perfectly.`,
         },
         {
-          question:
-            "(Controller) Why is the Mod Menu visible in the background on container screens?",
-          answer: `Container Screens means e.g. inventory screen or pause screen, it's just in background. It's common problem when using controller input and "Controller Mode" subpack. Again, controller input is really problematic and there isn't any way to make it work perfectly and that's why we recommend adjusting config and using other Modes to prevent this behavior.`,
+          question: "(Controller) Why is the Mod Menu visible in the background on container screens?",
+          answer: `Container Screens means e.g. inventory screen or pause screen, it's just in background and It's common problem when using controller input and "Controller Mode" subpack. Again, controller input is really problematic and there isn't any way to make it work perfectly and that's why we recommend adjusting config and using other Modes to prevent this behavior.`,
         },
       ],
     },
 
     videos: {
-      description:
-        "List of videos for PC/Other devices designed to explain the features and tools that Better Bedrock provides. TUTORIALS ARE DIFFERENT FOR EACH CATEGORY!",
+      description: "List of videos for PC/Other devices designed to explain the features and tools that Better Bedrock provides. TUTORIALS ARE DIFFERENT FOR EACH CATEGORY!",
       videos: [
         {
           title: "Download and Import Texture Pack to Minecraft",
@@ -309,7 +299,7 @@ export const informationData: InformationTab[] = [
           description:
             "Simple bind change that works on PC, but may not work on the console - not tested",
           link: "https://youtu.be/O3D6bNQW-Lc",
-          tags: ["pc-console"],
+          tags: ["pc"],
         },
         {
           title: "How to create custom theme",
