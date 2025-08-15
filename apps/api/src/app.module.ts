@@ -7,6 +7,7 @@ import { APP_GUARD } from "@nestjs/core";
 import { VoucherModule } from "~/voucher/voucher.module";
 import { AuthModule } from "~/auth/auth.module";
 import { AnalyticsModule } from "~/analytics/analytics.module";
+import { ProjectModule } from "./project/project.module";
 
 @Module({
     imports: [
@@ -24,6 +25,7 @@ import { AnalyticsModule } from "~/analytics/analytics.module";
         VoucherModule,
         AuthModule,
         AnalyticsModule,
+        ProjectModule,
     ],
     providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })
