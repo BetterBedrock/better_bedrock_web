@@ -115,7 +115,15 @@ export const informationData: InformationTab[] = [
       questions: [
         {
           question: "Are all Better Bedrock content safe?",
-          answer: "DEFINITELY YES! The Texture Pack doesn't contain any harmful files or executables. We also DO NOT collect any data from our users.",
+          answer: "DEFINITELY YES! The Texture Pack doesn't contain any harmful files or executables. We also DO NOT collect any data from our users. This project exists since 3 years and we never put here any malicious files or anything. You can track whole history on our discord or on youtube @axmbro. Here you will find all previous versions, starting with version 1, as proof of security and reputation!",
+        },
+        {
+          question: "Is it available on the Marketplace?",
+          answer: "No, and probably it will never be. The Texture Pack is available only on our website. We do not plan to publish it on the Marketplace, because it you wouldn't be able to adjust the config.",
+        },
+        {
+          question: "Why you cannot just save config in game?",
+          answer: "Unfortunately game doesn't provide any functions to change files and actually save mods states through UI. We are forced to manage it through config file, and adjusting it manually. There is no way to change it right now... That's also main reason why this pack won't be available on the Marketplace.",
         },
         {
           question: "Why do my Mod Menu options reset?",
@@ -134,9 +142,12 @@ export const informationData: InformationTab[] = [
           answer: "Simply navigate to downloads page and click item you want to download!",
         },
         {
+          question: "Why I cannot see Mod Menu button?",
+          answer: "It's because you probably use 'UI Mode with Mods', and therefore button is hidden and it's intentional. If you use controller input, then mod menu is only available to click in the 'Controler Mode'. Generally make sure to read the description of subpack options to understand how each mdoe work and what they do.",
+        },
+        {
           question: "Where are the tutorial videos?",
-          answer:
-            "Just scroll down a bit! And make sure to select proper option at the top for your topic.",
+          answer: "Just scroll down a bit! And make sure to select proper option at the top for your topic.",
         },
         {
           question: `Why did the free download process fail?`,
@@ -259,11 +270,15 @@ export const informationData: InformationTab[] = [
   },
 
   {
-    id: "pc",
+    id: "other",
     name: "PC/Other Devices",
     faq: {
       description: "PC/Other devices FAQ. If you still have questions, please check out our Discord server!",
       questions: [
+        {
+          question: "(CONSOLE) How to download packs on console.",
+          answer: `At the beginning XBOX is more flexible than PS, so playstation may be more limited and less accessible. For xbox, open browser, search for this website, download pack and try to import it, or just transfer packs from other device to xbox and through files either run it by minecraft or put in files. If this won't help, then I we recommend to check out this tutorial: https://youtu.be/cHkiufOsRrY`,
+        },
         {
           question: "(CONSOLE) How to change config on console.",
           answer: `There isn't any way to adjust config on consoles, because it requires editing txt pack files, but there is one way. In short, open "Mobile Devices" tab and search for "Edit config before importing pack" or #3 tutorial video. Follow this until you see part about zipping created folder. After that you need to put this created file, firstly named something.zip and then something.mcpack, to console files and open BB from here. Yes we know that it's slow process, but we still provide methods to use our pack on consoles. We recommend adjusting config on phone or console and then changing this on PC/Phone like on tutorial.`,
