@@ -148,43 +148,52 @@ export class CheckoutController {
             const fullSession = await this.checkoutService.retriveSession(session.id);
 
             const email = fullSession.customer_details?.email;
-            const items = fullSession.line_items!.data;
-            items.forEach(async (item) => {
-                const productName = (item!.price!.product as Stripe.Product).name;
-                const priceId = item!.price!.id;
-                const ids = CHECKOUT_OFFERS.offers.flatMap((offer) => offer.items);
-                const product = ids.find((item) => item.priceId === priceId);
+
+            const existing = await this.voucherService.findByCheckoutId(session.id);
+            if (existing) {
+                Logger.warn(`Checkout ${session.id} already processed, skipping...`);
+                return;
+            }
+
+            for (const item of fullSession.line_items!.data) {
+                const priceId = item.price!.id;
+
+                const product = CHECKOUT_OFFERS.offers
+                    .flatMap((offer) => offer.items)
+                    .find((offerItem) => offerItem.priceId === priceId);
 
                 if (!product) {
                     Logger.error(
                         `User with email ${email} tried to purchase ${priceId} but the product does not exist`,
                     );
-                    return;
+                    continue;
                 }
 
-                const priceOptions = product.priceOption;
+                const { maxDownloads, betterBedrockContentOnly, expiresAt } = product.priceOption;
+                const qty = item.quantity ?? 1;
 
-                const price = item.amount_total / 100;
-                // reward user
-                Logger.log(`User with email ${email} purchased ${productName} for $${price}.`);
-                const code = this.voucherService.generateCode(8);
+                for (let i = 0; i < qty; i++) {
+                    const code = this.voucherService.generateCode(8);
 
-                await this.voucherService.createVoucher({
-                    email: email ?? "unknown",
-                    checkoutId: session.id,
-                    code: code,
-                    maxDownloads: priceOptions.maxDownloads,
-                    betterBedrockContentOnly: priceOptions.betterBedrockContentOnly,
-                    expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * priceOptions.expiresAt), // 30 days from now
-                });
+                    await this.voucherService.createVoucher({
+                        email: email ?? "unknown",
+                        checkoutId: session.id,
+                        code,
+                        maxDownloads,
+                        betterBedrockContentOnly,
+                        expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * expiresAt),
+                    });
 
-                if (email) await this.mailService.createVoucherEmail(email, code);
+                    if (email) {
+                        await this.mailService.createVoucherEmail(email, code);
+                    }
+                }
+            }
 
-                await this.analyticsService.incrementAnalytics(
-                    AnalyticsNames.boughtVouchers,
-                    "general",
-                );
-            });
+            await this.analyticsService.incrementAnalytics(
+                AnalyticsNames.boughtVouchers,
+                "general",
+            );
         }
     }
 }
