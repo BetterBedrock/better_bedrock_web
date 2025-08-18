@@ -8,6 +8,7 @@ import { VoucherModule } from "~/voucher/voucher.module";
 import { AuthModule } from "~/auth/auth.module";
 import { AnalyticsModule } from "~/analytics/analytics.module";
 import { ProjectModule } from "./project/project.module";
+import { UserModule } from "~/user/user.module";
 
 @Module({
     imports: [
@@ -26,6 +27,7 @@ import { ProjectModule } from "./project/project.module";
         AuthModule,
         AnalyticsModule,
         ProjectModule,
+        UserModule,
     ],
     providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })
