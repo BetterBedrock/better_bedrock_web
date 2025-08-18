@@ -19,6 +19,18 @@ export class ProjectDto {
     @Type(() => Date)
     createdAt: Date;
 
+    @IsString()
+    @IsOptional()
+    error: string | null;
+
+    @IsString()
+    @IsOptional()
+    thumbnail: string | null;
+
+    @IsString()
+    @IsOptional()
+    downloadFile: string | null;
+
     tags: string[];
 
     @ApiProperty({ enum: ProjectType, enumName: "ProjectType" })
