@@ -20,8 +20,6 @@ export class ProjectDto {
     createdAt: Date;
 
     tags: string[];
-    mainFile: string;
-    files: string[];
 
     @ApiProperty({ enum: ProjectType, enumName: "ProjectType" })
     type: ProjectType;
