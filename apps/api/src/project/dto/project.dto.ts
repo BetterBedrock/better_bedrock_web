@@ -1,15 +1,27 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { ProjectType } from "@prisma/client";
+import { JsonValue } from "@prisma/client/runtime/library";
 import { Type } from "class-transformer";
-import { IsDate } from "class-validator";
+import { IsBoolean, IsDate, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class ProjectDto {
-    id: string;
+    @IsString()
     title: string;
-    description: string;
+    @IsString()
+    id: string;
+
+    @IsBoolean()
+    draft: boolean;
+    @IsBoolean()
+    submitted: boolean;
+
+    @ApiProperty({ type: "object", nullable: true, additionalProperties: true })
+    description: JsonValue;
+
+    @IsNumber()
     itemWeight: number;
+    @IsBoolean()
     betterBedrockContent: boolean;
-    verified: boolean;
 
     @IsDate()
     @Type(() => Date)
