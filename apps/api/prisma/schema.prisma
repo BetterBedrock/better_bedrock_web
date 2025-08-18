@@ -76,20 +76,20 @@ enum ProjectType {
 
 model Project {
   title     String
-  id        String  @id
+  id        String
   draft     Boolean @default(true)
-  verified  Boolean @default(false)
   submitted Boolean @default(false)
 
-  description          String
+  description          Json
   itemWeight           Float // In MB (e.g. 11.5)
   betterBedrockContent Boolean  @default(false)
-  lastChanged          DateTime
+  lastChanged          DateTime @default(now())
   createdAt            DateTime @default(now())
 
-  error String
+  error String?
 
-  files String[]
+  thumbnail    String?
+  downloadFile String?
 
   tags String[]
   type ProjectType
@@ -97,5 +97,6 @@ model Project {
   userId String
   user   User   @relation(fields: [userId], references: [id])
 
+  @@id([id, draft])
   @@unique([id, draft])
 }
