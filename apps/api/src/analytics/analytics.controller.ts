@@ -1,8 +1,9 @@
-import { Controller, Get, UseGuards } from "@nestjs/common";
+import { Controller, Get, Req, UseGuards } from "@nestjs/common";
 import { ApiTags, ApiOkResponse, ApiBearerAuth } from "@nestjs/swagger";
 import { AnalyticsService } from "~/analytics/analytics.service";
 import { AdminAuthGuard } from "~/auth/admin-auth.guard";
 import { AnalyticsDto } from "~/analytics/dto/analytics.dto";
+import { UserAuthGuard } from "~/auth/user-auth.guard";
 
 @ApiTags("analytics")
 @Controller("analytics")
@@ -19,5 +20,16 @@ export class AnalyticsController {
     @UseGuards(AdminAuthGuard)
     async analytics(): Promise<AnalyticsDto[]> {
         return await this.analyticsService.analytics();
+    }
+
+    @Get("/user")
+    @ApiOkResponse({
+        description: "Analytics about downloads for the user's projects",
+        type: AnalyticsDto,
+        isArray: true,
+    })
+    @UseGuards(UserAuthGuard)
+    async user(@Req() req): Promise<AnalyticsDto[]> {
+        return await this.analyticsService.userAnalytics(req.user.id);
     }
 }
