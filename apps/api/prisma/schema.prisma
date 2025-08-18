@@ -49,10 +49,15 @@ model Analytics {
 }
 
 model User {
-  id        String    @id @default(cuid())
-  googleId  String    @unique
-  email     String    @unique
-  name      String    @unique
+  id       String @id @default(cuid())
+  googleId String @unique
+  email    String @unique
+  name     String @unique
+
+  customLinkvertise Boolean @default(false)
+  linkvertiseId     String?
+  linkvertiseSecret String?
+
   bio       String
   banned    Boolean   @default(false)
   createdAt DateTime  @default(now())
