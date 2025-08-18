@@ -1,12 +1,13 @@
 import { applyDecorators, UseInterceptors, BadRequestException } from "@nestjs/common";
-import { ApiBody, ApiConsumes, ApiOkResponse } from "@nestjs/swagger";
+import { ApiBody, ApiConsumes, ApiCreatedResponse } from "@nestjs/swagger";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
 import { extname } from "path";
 import fs from "fs";
+import { UploadFileDto } from "~/project/dto/upload-file.dto";
 
-const IMAGE_EXTENSIONS = ["png", "jpg", "jpeg"];
-const MC_EXTENSIONS = [
+export const IMAGE_EXTENSIONS = ["png", "jpg", "jpeg"];
+export const MC_EXTENSIONS = [
     "mcworld",
     "mcproject",
     "mcpack",
@@ -37,6 +38,15 @@ export function FileUpload() {
             FileInterceptor("file", {
                 storage: diskStorage({
                     destination: (req, file, cb) => {
+                        const project = req.project;
+                        if (!project) {
+                            return cb(
+                                new BadRequestException(
+                                    "Project information missing for file upload",
+                                ),
+                                "",
+                            );
+                        }
                         const ext = extname(file.originalname).replace(".", "").toLowerCase();
                         let visibility: "public" | "private";
                         if (IMAGE_EXTENSIONS.includes(ext)) {
@@ -51,14 +61,17 @@ export function FileUpload() {
                                 "",
                             );
                         }
-                        const uploadPath = `./static/uploads/${visibility}/tmp`;
+                        const uploadPath = `./static/${visibility}/${project.id}/draft/`;
                         fs.mkdirSync(uploadPath, { recursive: true });
                         cb(null, uploadPath);
                     },
                     filename: (_, file, cb) => {
-                        const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-                        const fileExt = extname(file.originalname);
-                        cb(null, `${uniqueSuffix}${fileExt}`);
+                        let uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+                        const ext = extname(file.originalname).replace(".", "").toLowerCase();
+                        if (MC_EXTENSIONS.includes(ext)) {
+                            uniqueSuffix = "file";
+                        }
+                        cb(null, `${uniqueSuffix}.${ext}`);
                     },
                 }),
                 fileFilter: (req, file, cb) => {
@@ -77,6 +90,6 @@ export function FileUpload() {
                 limits: { fileSize: 5 * 1024 * 1024 },
             }),
         ),
-        ApiOkResponse({ description: "Successfully uploaded file" }),
+        ApiCreatedResponse({ description: "Successfully uploaded file", type: UploadFileDto }),
     );
 }
