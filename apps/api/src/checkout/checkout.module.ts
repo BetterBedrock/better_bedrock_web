@@ -5,9 +5,17 @@ import { VoucherService } from "~/voucher/voucher.service";
 import { PrismaService } from "~/prisma.service";
 import { AnalyticsService } from "~/analytics/analytics.service";
 import { MailService } from "~/mail/mail.service";
+import { ProjectService } from "~/project/project.service";
 
 @Module({
     controllers: [CheckoutController],
-    providers: [CheckoutService, MailService, VoucherService, AnalyticsService, PrismaService],
+    providers: [
+        CheckoutService,
+        MailService,
+        VoucherService,
+        AnalyticsService,
+        PrismaService,
+        ProjectService,
+    ],
 })
 export class CheckoutModule {}
