@@ -1,0 +1,18 @@
+@use "~/utils" as g;
+
+.background {
+  @include g.page-background(
+    g.$background-linear-gradient,
+    "~/assets/images/crosshair_backgrounds/6.png"
+  );
+}
+
+.padding {
+  @include g.section-padding((top, bottom));
+}
+
+.projects {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
