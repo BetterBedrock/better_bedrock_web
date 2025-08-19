@@ -1,4 +1,4 @@
-# UserDto
+# SimpleUserDto
 
 
 ## Properties
@@ -12,16 +12,13 @@ Name | Type | Description | Notes
 **bio** | **string** |  | [default to undefined]
 **banned** | **boolean** |  | [default to undefined]
 **createdAt** | **string** |  | [default to undefined]
-**customLinkvertise** | **boolean** |  | [default to undefined]
-**linkvertiseId** | **string** |  | [default to undefined]
-**linkvertiseSecret** | **string** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { UserDto } from './api';
+import { SimpleUserDto } from './api';
 
-const instance: UserDto = {
+const instance: SimpleUserDto = {
     id,
     googleId,
     email,
@@ -29,9 +26,6 @@ const instance: UserDto = {
     bio,
     banned,
     createdAt,
-    customLinkvertise,
-    linkvertiseId,
-    linkvertiseSecret,
 };
 ```
 

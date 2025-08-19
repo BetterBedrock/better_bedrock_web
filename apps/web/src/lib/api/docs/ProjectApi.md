@@ -1,0 +1,669 @@
+# ProjectApi
+
+All URIs are relative to *http://localhost*
+
+|Method | HTTP request | Description|
+|------------- | ------------- | -------------|
+|[**projectControllerCancelSubmission**](#projectcontrollercancelsubmission) | **PATCH** /project/submit/cancel/{id} | |
+|[**projectControllerCreate**](#projectcontrollercreate) | **POST** /project | |
+|[**projectControllerDecline**](#projectcontrollerdecline) | **PATCH** /project/decline/{id} | |
+|[**projectControllerDelete**](#projectcontrollerdelete) | **DELETE** /project/{id} | |
+|[**projectControllerDraftDetails**](#projectcontrollerdraftdetails) | **GET** /project/draft/{id} | |
+|[**projectControllerFindAll**](#projectcontrollerfindall) | **GET** /project | |
+|[**projectControllerProjectDetails**](#projectcontrollerprojectdetails) | **GET** /project/details/{id} | |
+|[**projectControllerPublish**](#projectcontrollerpublish) | **PATCH** /project/publish/{id} | |
+|[**projectControllerSubmit**](#projectcontrollersubmit) | **PATCH** /project/submit/{id} | |
+|[**projectControllerSubmitted**](#projectcontrollersubmitted) | **GET** /project/submitted | |
+|[**projectControllerUpdate**](#projectcontrollerupdate) | **PATCH** /project/{id} | |
+|[**projectControllerUploadProjectFile**](#projectcontrolleruploadprojectfile) | **POST** /project/file/{id} | |
+|[**projectControllerUserProjects**](#projectcontrolleruserprojects) | **GET** /project/user/{id} | |
+
+# **projectControllerCancelSubmission**
+> ProjectDto projectControllerCancelSubmission()
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let id: string; // (default to undefined)
+
+const { status, data } = await apiInstance.projectControllerCancelSubmission(
+    id
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**ProjectDto**
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successfully cancelled submission |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerCreate**
+> projectControllerCreate(createProjectDto)
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration,
+    CreateProjectDto
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let createProjectDto: CreateProjectDto; //
+
+const { status, data } = await apiInstance.projectControllerCreate(
+    createProjectDto
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **createProjectDto** | **CreateProjectDto**|  | |
+
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**201** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerDecline**
+> projectControllerDecline(declineProjectDto)
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration,
+    DeclineProjectDto
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let id: string; // (default to undefined)
+let declineProjectDto: DeclineProjectDto; //
+
+const { status, data } = await apiInstance.projectControllerDecline(
+    id,
+    declineProjectDto
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **declineProjectDto** | **DeclineProjectDto**|  | |
+| **id** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerDelete**
+> projectControllerDelete()
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let id: string; // (default to undefined)
+
+const { status, data } = await apiInstance.projectControllerDelete(
+    id
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successfully deleted project |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerDraftDetails**
+> ProjectDto projectControllerDraftDetails()
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let id: string; // (default to undefined)
+
+const { status, data } = await apiInstance.projectControllerDraftDetails(
+    id
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**ProjectDto**
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successfully fetched draft details |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerFindAll**
+> Array<ProjectDto> projectControllerFindAll()
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+const { status, data } = await apiInstance.projectControllerFindAll();
+```
+
+### Parameters
+This endpoint does not have any parameters.
+
+
+### Return type
+
+**Array<ProjectDto>**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerProjectDetails**
+> ProjectDto projectControllerProjectDetails()
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let id: string; // (default to undefined)
+
+const { status, data } = await apiInstance.projectControllerProjectDetails(
+    id
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**ProjectDto**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successfully fetched project details |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerPublish**
+> projectControllerPublish()
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let id: string; // (default to undefined)
+
+const { status, data } = await apiInstance.projectControllerPublish(
+    id
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerSubmit**
+> ProjectDto projectControllerSubmit()
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let id: string; // (default to undefined)
+
+const { status, data } = await apiInstance.projectControllerSubmit(
+    id
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**ProjectDto**
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successfully submitted for review |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerSubmitted**
+> Array<SimpleProjectDto> projectControllerSubmitted()
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+const { status, data } = await apiInstance.projectControllerSubmitted();
+```
+
+### Parameters
+This endpoint does not have any parameters.
+
+
+### Return type
+
+**Array<SimpleProjectDto>**
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Returns submitted projects for review |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerUpdate**
+> ProjectDto projectControllerUpdate(updateProjectDto)
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration,
+    UpdateProjectDto
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let id: string; // (default to undefined)
+let updateProjectDto: UpdateProjectDto; //
+
+const { status, data } = await apiInstance.projectControllerUpdate(
+    id,
+    updateProjectDto
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **updateProjectDto** | **UpdateProjectDto**|  | |
+| **id** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**ProjectDto**
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successfully updated project details |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerUploadProjectFile**
+> UploadFileDto projectControllerUploadProjectFile()
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let id: string; // (default to undefined)
+let file: File; // (optional) (default to undefined)
+
+const { status, data } = await apiInstance.projectControllerUploadProjectFile(
+    id,
+    file
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] |  | defaults to undefined|
+| **file** | [**File**] |  | (optional) defaults to undefined|
+
+
+### Return type
+
+**UploadFileDto**
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**201** | Successfully uploaded file |  -  |
+|**400** | File upload failed |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerUserProjects**
+> Array<SimpleProjectDto> projectControllerUserProjects()
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let id: string; // (default to undefined)
+
+const { status, data } = await apiInstance.projectControllerUserProjects(
+    id
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**Array<SimpleProjectDto>**
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successfully fetched user projects |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
