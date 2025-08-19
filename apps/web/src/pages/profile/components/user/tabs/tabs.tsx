@@ -5,6 +5,9 @@ import { styles } from ".";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Routes } from "~/utils/routes";
 import { useAuth } from "~/providers/auth";
+import { useEffect } from "react";
+
+const tabs = ["projects", "stats", "drafts"];
 
 export const Tabs = () => {
   //   const navigate = useNavigate();
@@ -36,20 +39,20 @@ export const Tabs = () => {
         type="dark"
         center
         className={styles.tab}
-        isClicked={lastSegment === "reviews"}
-        onClick={() => handleTabClick("reviews")}
+        isClicked={lastSegment === "stats"}
+        onClick={() => handleTabClick("stats")}
       >
-        <BedrockText text="Reviews" color="white" type="p" />
+        <BedrockText text="Stats" color="white" type="p" />
       </Button>
       {user?.name === id && (
         <Button
           type="dark"
           center
           className={styles.tab}
-          isClicked={lastSegment === "submissions"}
-          onClick={() => handleTabClick("submissions")}
+          isClicked={lastSegment === "drafts"}
+          onClick={() => handleTabClick("drafts")}
         >
-          <BedrockText text="Submissions" color="white" type="p" />
+          <BedrockText text="Drafts" color="white" type="p" />
         </Button>
       )}
     </ButtonGroup>
