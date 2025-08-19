@@ -1,11 +1,5 @@
 import { styles } from ".";
-import {
-  HTMLAttributes,
-  ReactNode,
-  useEffect,
-  useState,
-  forwardRef,
-} from "react";
+import { HTMLAttributes, ReactNode, useEffect, useState, forwardRef } from "react";
 import clsx from "clsx";
 import bedrockClickSound from "~/assets/sounds/minecraft_click.mp3";
 import useSound from "use-sound";
@@ -30,7 +24,12 @@ import GoldUncheckedHover from "~/assets/ui/buttons/gold/unchecked_hover.png";
 import GoldChecked from "~/assets/ui/buttons/gold/checked.png";
 import GoldCheckedHover from "~/assets/ui/buttons/gold/checked_hover.png";
 
-export type ButtonType = "green" | "white" | "dark" | "gold";
+import RedUnchecked from "~/assets/ui/buttons/red/unchecked.png";
+import RedUncheckedHover from "~/assets/ui/buttons/red/unchecked_hover.png";
+import RedChecked from "~/assets/ui/buttons/red/checked.png";
+import RedCheckedHover from "~/assets/ui/buttons/red/checked_hover.png";
+
+export type ButtonType = "green" | "white" | "dark" | "gold" | "red";
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
@@ -64,7 +63,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
       onClick,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [hover, setHover] = useState(false);
     const [clicked, setClicked] = useState(false);
@@ -128,6 +127,12 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
         checked = GoldChecked;
         checkedHover = GoldCheckedHover;
         break;
+      case "red":
+        unchecked = RedUnchecked;
+        uncheckedHover = RedUncheckedHover;
+        checked = RedChecked;
+        checkedHover = RedCheckedHover;
+        break;
       case "green":
         unchecked = GreenUnchecked;
         uncheckedHover = GreenUncheckedHover;
@@ -179,7 +184,6 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
       <Component
         ref={ref}
         className={clsx(styles.wrapper, finalClicked && styles.selected, className)}
-        type={buttonType}
         onMouseEnter={handleEnter}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleLeave}
@@ -193,6 +197,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
         onPointerDown={handlePointerDown}
         style={{ width, height }}
         {...props}
+        type={buttonType}
       >
         <div
           style={{ borderImage: `url(${hovering})` }}
@@ -200,14 +205,14 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
             styles.button,
             finalClicked && styles.clicked,
             center && styles.center,
-            lockClicking && styles.lock
+            lockClicking && styles.lock,
           )}
         >
           {children}
         </div>
       </Component>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";
