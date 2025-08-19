@@ -34,7 +34,6 @@ export const Navbar = () => {
           { name: "Home", path: "/" },
           { name: "Downloads", path: "/downloads/:main" },
           { name: "Information", path: "/information/:general" },
-          { name: "Discord", path: "/discord" },
           user
             ? { name: "Profile", path: `/profile/${user.name}/:projects` }
             : { name: "Login", path: "/login" },
