@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import { Routes } from "~/utils/routes";
+// import { useNavigate } from "react-router-dom";
+// import { Routes } from "~/utils/routes";
 import { styles } from ".";
 import { useAuth } from "~/providers/auth";
 import { useEffect } from "react";
@@ -11,7 +11,7 @@ interface HeroActionsProps {
 }
 
 export const HeroActions = ({ password }: HeroActionsProps) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { adminAuthenticate, authenticated, googleLogin } = useAuth();
 
   const handleClick = async () => {
@@ -23,9 +23,9 @@ export const HeroActions = ({ password }: HeroActionsProps) => {
   }
 
   useEffect(() => {
-    if (authenticated) {
-      navigate(Routes.PANEL);
-    }
+    // if (authenticated) {
+    //   navigate(Routes.PANEL);
+    // }
   }, [authenticated]);
 
   return (
