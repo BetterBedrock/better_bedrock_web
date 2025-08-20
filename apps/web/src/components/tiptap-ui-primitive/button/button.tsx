@@ -60,7 +60,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       );
     }
 
-    console.log({ pres: Boolean(props["aria-pressed"]), tpp: tooltip });
+    // console.log({ pres: Boolean(props["aria-pressed"]), tpp: tooltip });
 
     return (
       <Tooltip text={String(tooltip)}>
