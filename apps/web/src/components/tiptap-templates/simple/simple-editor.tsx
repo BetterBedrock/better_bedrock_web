@@ -1,73 +1,67 @@
-import * as React from "react"
-import { EditorContent, EditorContext, useEditor } from "@tiptap/react"
+import * as React from "react";
+import { Content, EditorContent, EditorContext, useEditor } from "@tiptap/react";
 
 // --- Tiptap Core Extensions ---
-import { StarterKit } from "@tiptap/starter-kit"
-import { Image } from "@tiptap/extension-image"
-import { TaskItem, TaskList } from "@tiptap/extension-list"
-import { TextAlign } from "@tiptap/extension-text-align"
-import { Typography } from "@tiptap/extension-typography"
-import { Highlight } from "@tiptap/extension-highlight"
-import { Selection } from "@tiptap/extensions"
+import { StarterKit } from "@tiptap/starter-kit";
+// import { Image } from "@tiptap/extension-image";
+import { TaskItem, TaskList } from "@tiptap/extension-list";
+import { TextAlign } from "@tiptap/extension-text-align";
+import { Typography } from "@tiptap/extension-typography";
+import { Highlight } from "@tiptap/extension-highlight";
+import { Selection } from "@tiptap/extensions";
 
 // --- UI Primitives ---
-import { Button } from "~/components/tiptap-ui-primitive/button"
-import { Spacer } from "~/components/tiptap-ui-primitive/spacer"
-import {
-  Toolbar,
-  ToolbarGroup,
-  ToolbarSeparator,
-} from "~/components/tiptap-ui-primitive/toolbar"
+import { Button } from "~/components/tiptap-ui-primitive/button";
+import { Spacer } from "~/components/tiptap-ui-primitive/spacer";
+import { Toolbar, ToolbarGroup, ToolbarSeparator } from "~/components/tiptap-ui-primitive/toolbar";
 
 // --- Tiptap Node ---
-import { ImageUploadNode } from "~/components/tiptap-node/image-upload-node/image-upload-node-extension"
-import "~/components/tiptap-node/list-node/list-node.scss"
-import "~/components/tiptap-node/image-node/image-node.scss"
-import "~/components/tiptap-node/paragraph-node/paragraph-node.scss"
+import { ImageUploadNode } from "~/components/tiptap-node/image-upload-node/image-upload-node-extension";
+import "~/components/tiptap-node/list-node/list-node.scss";
+import "~/components/tiptap-node/image-node/image-node.scss";
+import "~/components/tiptap-node/paragraph-node/paragraph-node.scss";
 
 // --- Tiptap UI ---
-import { ImageUploadButton } from "~/components/tiptap-ui/image-upload-button"
-import { ListDropdownMenu } from "~/components/tiptap-ui/list-dropdown-menu"
+import { ImageUploadButton } from "~/components/tiptap-ui/image-upload-button";
+import { ListDropdownMenu } from "~/components/tiptap-ui/list-dropdown-menu";
 import {
   ColorHighlightPopover,
   ColorHighlightPopoverContent,
   ColorHighlightPopoverButton,
-} from "~/components/tiptap-ui/color-highlight-popover"
-import {
-  LinkPopover,
-  LinkContent,
-  LinkButton,
-} from "~/components/tiptap-ui/link-popover"
-import { MarkButton } from "~/components/tiptap-ui/mark-button"
-import { TextAlignButton } from "~/components/tiptap-ui/text-align-button"
-import { UndoRedoButton } from "~/components/tiptap-ui/undo-redo-button"
+} from "~/components/tiptap-ui/color-highlight-popover";
+import { LinkPopover, LinkContent, LinkButton } from "~/components/tiptap-ui/link-popover";
+import { MarkButton } from "~/components/tiptap-ui/mark-button";
+import { TextAlignButton } from "~/components/tiptap-ui/text-align-button";
+import { UndoRedoButton } from "~/components/tiptap-ui/undo-redo-button";
 
 // --- Icons ---
-import { ArrowLeftIcon } from "~/components/tiptap-icons/arrow-left-icon"
-import { HighlighterIcon } from "~/components/tiptap-icons/highlighter-icon"
-import { LinkIcon } from "~/components/tiptap-icons/link-icon"
+import { ArrowLeftIcon } from "~/components/tiptap-icons/arrow-left-icon";
+import { HighlighterIcon } from "~/components/tiptap-icons/highlighter-icon";
+import { LinkIcon } from "~/components/tiptap-icons/link-icon";
 
 // --- Hooks ---
-import { useIsMobile } from "~/hooks/use-mobile"
-import { useWindowSize } from "~/hooks/use-window-size"
-import { useCursorVisibility } from "~/hooks/use-cursor-visibility"
+import { useIsMobile } from "~/hooks/use-mobile";
+import { useWindowSize } from "~/hooks/use-window-size";
+import { useCursorVisibility } from "~/hooks/use-cursor-visibility";
 
 // --- Lib ---
-import { handleImageUpload, MAX_FILE_SIZE } from "~/lib/tiptap-utils"
+import { MAX_FILE_SIZE } from "~/lib/tiptap-utils";
 
 // --- Styles ---
-import "~/components/tiptap-templates/simple/simple-editor.scss"
-
-import content from "~/components/tiptap-templates/simple/data/content.json"
+import "~/components/tiptap-templates/simple/simple-editor.scss";
+import { PrefixedImage } from "~/components/tiptap-node/image-node/prefixed-image-node";
+import { baseUrl } from "~/utils/url";
+import { useParams } from "react-router-dom";
+import { useProject } from "~/providers/project";
 
 const MainToolbarContent = ({
   onHighlighterClick,
   onLinkClick,
   isMobile,
 }: {
-  onHighlighterClick: () => void
-  onLinkClick: () => void
-  isMobile: boolean
+  onHighlighterClick: () => void;
+  onLinkClick: () => void;
+  isMobile: boolean;
 }) => {
   return (
     <>
@@ -81,10 +75,7 @@ const MainToolbarContent = ({
       <ToolbarSeparator />
 
       <ToolbarGroup>
-        <ListDropdownMenu
-          types={["bulletList", "orderedList", "taskList"]}
-          portal={isMobile}
-        />
+        <ListDropdownMenu types={["bulletList", "orderedList", "taskList"]} portal={isMobile} />
       </ToolbarGroup>
 
       <ToolbarSeparator />
@@ -121,15 +112,15 @@ const MainToolbarContent = ({
 
       {isMobile && <ToolbarSeparator />}
     </>
-  )
-}
+  );
+};
 
 const MobileToolbarContent = ({
   type,
   onBack,
 }: {
-  type: "highlighter" | "link"
-  onBack: () => void
+  type: "highlighter" | "link";
+  onBack: () => void;
 }) => (
   <>
     <ToolbarGroup>
@@ -145,25 +136,69 @@ const MobileToolbarContent = ({
 
     <ToolbarSeparator />
 
-    {type === "highlighter" ? (
-      <ColorHighlightPopoverContent />
-    ) : (
-      <LinkContent />
-    )}
+    {type === "highlighter" ? <ColorHighlightPopoverContent /> : <LinkContent />}
   </>
-)
+);
 
-export function SimpleEditor() {
-  const isMobile = useIsMobile()
-  const { height } = useWindowSize()
-  const [mobileView, setMobileView] = React.useState<
-    "main" | "highlighter" | "link"
-  >("main")
-  const toolbarRef = React.useRef<HTMLDivElement>(null)
+interface SimpleEditor {
+  content?: Content | undefined;
+  editable?: boolean;
+  onChange?: (content: Content | undefined) => void;
+}
+
+export function SimpleEditor({ content, onChange, editable }: SimpleEditor) {
+  const isMobile = useIsMobile();
+  const { height } = useWindowSize();
+  const [mobileView, setMobileView] = React.useState<"main" | "highlighter" | "link">("main");
+  const toolbarRef = React.useRef<HTMLDivElement>(null);
+
+  const { id } = useParams();
+  const { uploadFile } = useProject();
+
+  /**
+   * Handles image upload with progress tracking and abort capability
+   * @param file The file to upload
+   * @param onProgress Optional callback for tracking upload progress
+   * @param abortSignal Optional AbortSignal for cancelling the upload
+   * @returns Promise resolving to the URL of the uploaded image
+   */
+  const handleImageUpload = async (
+    file: File,
+    onProgress?: (event: { progress: number }) => void,
+    abortSignal?: AbortSignal,
+  ): Promise<string> => {
+    // Validate file
+    if (!file) {
+      throw new Error("No file provided");
+    }
+
+    if (!id) {
+      throw new Error("No project id provided");
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      throw new Error(`File size exceeds maximum allowed (${MAX_FILE_SIZE / (1024 * 1024)}MB)`);
+    }
+
+    // For demo/testing: Simulate upload progress. In production, replace the following code
+    // with your own upload implementation.
+    for (let progress = 0; progress <= 100; progress += 10) {
+      if (abortSignal?.aborted) {
+        throw new Error("Upload cancelled");
+      }
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      onProgress?.({ progress });
+    }
+
+    const upload = await uploadFile(id!, file);
+
+    return upload!.fileUrl;
+  };
 
   const editor = useEditor({
     immediatelyRender: false,
     shouldRerenderOnTransaction: false,
+    editable: editable,
     editorProps: {
       attributes: {
         autocomplete: "off",
@@ -187,7 +222,11 @@ export function SimpleEditor() {
       TaskList,
       TaskItem.configure({ nested: true }),
       Highlight.configure({ multicolor: true }),
-      Image,
+      PrefixedImage.configure({
+        // inline: true,
+        // allowBase64: true, // if needed
+        prefix: baseUrl + "/",
+      }),
       Typography,
       Selection,
       ImageUploadNode.configure({
@@ -199,18 +238,21 @@ export function SimpleEditor() {
       }),
     ],
     content,
-  })
+    onUpdate: (data) => {
+      onChange?.(data.editor.getJSON());
+    },
+  });
 
   const rect = useCursorVisibility({
     editor,
     overlayHeight: toolbarRef.current?.getBoundingClientRect().height ?? 0,
-  })
+  });
 
   React.useEffect(() => {
     if (!isMobile && mobileView !== "main") {
-      setMobileView("main")
+      setMobileView("main");
     }
-  }, [isMobile, mobileView])
+  }, [isMobile, mobileView]);
 
   return (
     <div className="simple-editor-wrapper">
@@ -239,12 +281,8 @@ export function SimpleEditor() {
           )}
         </Toolbar>
 
-        <EditorContent
-          editor={editor}
-          role="presentation"
-          className="simple-editor-content"
-        />
+        <EditorContent editor={editor} role="presentation" className="simple-editor-content" />
       </EditorContext.Provider>
     </div>
-  )
+  );
 }

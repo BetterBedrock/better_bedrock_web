@@ -1,3 +1,5 @@
+@use "~/utils" as g;
+
 body {
   --tt-toolbar-height: 44px;
   --tt-theme-text: var(--tt-gray-light-900);
@@ -27,6 +29,8 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
+
+  padding: g.$padding-sm;
 }
 
 .simple-editor-content .tiptap.ProseMirror.simple-editor {
