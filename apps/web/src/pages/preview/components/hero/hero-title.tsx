@@ -1,22 +1,12 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
-import { Rating } from "~/components/rating";
-import { DownloadsItemDto } from "~/lib/api";
 import { styles } from ".";
 
 interface HeroTitleProps {
-  create?: boolean;
-  download: DownloadsItemDto;
+  title: string;
 }
 
-export const HeroTitle = ({ download, create }: HeroTitleProps) => (
+export const HeroTitle = ({ title }: HeroTitleProps) => (
   <div className={styles.title}>
-    <BedrockText
-      text={download.title}
-      type="h1"
-      textAlign="start"
-      color="white"
-      font="MinecraftTen"
-    />
-    {!create && <Rating simple rating={4.2} />}
+    <BedrockText text={title} type="h1" textAlign="start" color="white" font="MinecraftTen" />
   </div>
 );

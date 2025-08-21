@@ -2,7 +2,8 @@
 
 .preview {
   width: 100%;
-  gap: g.$padding-xl;
+  gap: g.$padding-md;
+  padding: g.$padding-md;
   display: flex;
   flex-direction: column;
 
@@ -16,7 +17,10 @@
 }
 
 .information {
-  padding: g.$padding-sm;
+  display: flex;
+  flex-direction: column;
+
+  // gap: g.$padding-sm;
 }
 
 .header {
@@ -24,6 +28,13 @@
   flex-direction: row;
   padding: g.$padding-xsm;
   gap: g.$padding-xxsm;
+}
+
+.card {
+  gap: g.$padding-sm;
+  padding: g.$padding-sm;
+  display: flex;
+  flex-direction: column;
 }
 
 .avatar {
@@ -37,12 +48,36 @@
 }
 
 .title {
-  display:flex;
+  display: flex;
   flex-direction: row;
   align-items: center;
   gap: g.$padding-xsm;
 }
 
 .editor {
-  padding: g.$padding-sm;
+  margin-inline: g.$padding-sm;
+  margin-block: g.$padding-sm;
+}
+
+.picker {
+  display: none;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: g.$padding-xxsm;
+
+  width: 100%;
+}
+
+.creator {
+  width: 100%;
+  display: inline-flex;
+  padding-bottom: g.$padding-xxsm;
+}
+
+.input {
+  width: 100%;
 }
