@@ -9,6 +9,7 @@ interface AuthContextProps {
   authenticated: boolean;
   fetched: boolean;
   user: UserDto | undefined;
+  setUser: React.Dispatch<React.SetStateAction<UserDto | undefined>>;
   adminAuthenticate: (token: string) => Promise<void>;
   googleLogin: () => void;
 }
@@ -26,7 +27,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const { throwError } = useNotification();
   const [user, setUser] = useState<UserDto | undefined>();
 
-  console.log({ user });
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       const config = new Configuration({
@@ -93,7 +93,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, [cookie]);
 
   return (
-    <AuthContext.Provider value={{ user, fetched, googleLogin, adminAuthenticate, authenticated }}>
+    <AuthContext.Provider value={{ user, setUser, fetched, googleLogin, adminAuthenticate, authenticated }}>
       {children}
     </AuthContext.Provider>
   );
