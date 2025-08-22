@@ -21,8 +21,29 @@ export const Tabs = () => {
   const handleTabClick = (tab: string) => {
     navigate(Routes.PROFILE + "/" + id + "/" + tab);
   };
+  
+  console.log({pathname: pathname.split("/")})
 
-  console.log({ user, id });
+  const segments = pathname.split("/");
+  const tabSegment = segments[4];
+
+  useEffect(() => {
+    if(!tabs.includes(tabSegment)) {
+      navigate("./projects")
+    }
+
+    if(!user) return
+    
+    if(user.name !== id) {
+      if(tabSegment === "drafts" || tabSegment === "stats") {
+        navigate("..")
+      }
+    }
+  }, [])
+
+  if (user?.name !== id) {
+    return <></>;
+  }
 
   return (
     <ButtonGroup className={styles.tabs}>
