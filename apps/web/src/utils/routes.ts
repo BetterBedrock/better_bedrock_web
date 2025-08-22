@@ -4,6 +4,7 @@ export enum Routes {
     PANEL = "/panel",
     PANEL_ANALYTICS = "/panel/analytics",
     PANEL_VOUCHER = "/panel/voucher",
+    PANEL_PROJECTS = "/panel/projects",
     LOGIN = "/login",
     INFORMATION = "/information",
     FETCH = "/fetch",
@@ -15,4 +16,7 @@ export enum Routes {
     PRIVACY_POLICY = "/privacy-policy",
     TERMS = "/terms",
     CREATE = "/create",
+    EDITOR = "/editor",
+    REVIEW = "/review",
+    DISCORD = "/discord",
 }
