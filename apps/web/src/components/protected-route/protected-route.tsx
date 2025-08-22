@@ -10,13 +10,13 @@ interface ProtectedRouteProps {
 }
 
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const { fetched, authenticated, authenticate } = useAuth();
+  const { fetched, authenticated, adminAuthenticate } = useAuth();
   const [cookies] = useCookies(["adminSecret"]);
   const { sendNotification } = useNotification();
   const navigate = useNavigate();
 
   useEffect(() => {
-    authenticate(cookies.adminSecret);
+    adminAuthenticate(cookies.adminSecret);
   }, []);
 
   if (!fetched) {
