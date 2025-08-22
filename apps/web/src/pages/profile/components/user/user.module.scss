@@ -16,6 +16,12 @@
   // grid-template-columns: repeat(2, 1fr);
 }
 
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .image {
   width: 100%;
   max-width: 150px;
@@ -23,3 +29,32 @@
   image-rendering: pixelated;
 }
 
+.name {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.icon {
+  width: g.$icon-sm;
+  height: g.$icon-sm;
+}
+
+.part {
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-xsm;
+  padding: g.$padding-sm;
+}
+
+.input {
+  width: 100%;
+}
+
+.link {
+  color: g.$color-selection !important;
+}
+
+.error {
+  color: g.$color-red !important;
+}
