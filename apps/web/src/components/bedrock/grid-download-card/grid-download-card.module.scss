@@ -7,102 +7,29 @@
   border: g.$minecraftdepth solid rgb(30, 30, 31);
 }
 
-.container > a {
-  display: flex;
-  border-bottom: g.$minecraftdepth solid rgb(30, 30, 31);
-}
-
-.container > a > div {
-  width: 100%;
-}
-
-.container > a > div > img {
-  display: flex;
-  background-color: gray;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-}
-
-.imgWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  height: 100%;
-  width: 100%;
-  transform: translate(0%, -100%);
-}
-
-.imgWrapper:hover > h1 {
-  color: rgb(83, 216, 34) !important;
-}
-
-.texts,
-.actions {
-  padding: g.$padding-xsm;
-}
-
-.thumbnailWrapper img {
-  background-color: gray;
-  display: flex;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-}
-
-.cardTitle {
-  display: flex;
-  justify-content: space-between;
-}
-
-.cardTitle p:nth-child(2) {
-  white-space: nowrap;
-}
-
-.tagsWrapper {
-  display: flex;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  align-items: flex-end;
-}
-
-.tagsContainer {
-  border: g.$minecraftdepth solid rgb(30, 30, 31);
-  flex-direction: row;
-  flex-wrap: wrap;
-  display: flex;
-  border-bottom: 0;
-  border-left: 0;
-}
-
-.tagsContainer p {
-  padding: 0.125rem 0.33rem;
-  background-color: rgb(49, 50, 51);
-}
-
-.top {
-  background-color: rgb(31, 31, 32);
-  width: 100%;
-  height: g.$minecraftdepth;
-}
-
-.bottom {
-  background-color: rgb(60, 61, 62);
-  width: 100%;
-  height: g.$minecraftdepth;
-}
-
-.thumbnailWrapper {
+.background {
   position: relative;
   width: 100%;
   aspect-ratio: 16/9;
   border-top: g.$minecraftdepth solid rgb(30, 30, 31);
-  border-bottom: g.$minecraftdepth solid rgb(30, 30, 31);
+}
+
+.empty {
+  background-color: rgb(30, 30, 31);
+  display: flex;
+  width: 100%;
+  aspect-ratio: 16/9;
+
+  align-items: center;
+  justify-content: center;
 }
 
 .thumbnail {
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100%;
   width: 100%;
-  aspect-ratio: 16/9;
 }
 
 .details {
@@ -115,7 +42,7 @@
   align-items: end;
 }
 
-.cardTitle {
+.title {
   background-color: rgba(0, 0, 0, 0.5);
   padding: g.$padding-xxsm;
 }
@@ -142,4 +69,9 @@
   width: g.$icon-md;
   height: g.$icon-md;
   image-rendering: pixelated;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
 }
