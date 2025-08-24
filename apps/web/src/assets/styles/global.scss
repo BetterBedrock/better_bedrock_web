@@ -1,8 +1,8 @@
 @forward "~/utils";
 @use "~/utils" as *;
 
-@import "~/styles/_variables.scss";
-@import "~/styles/_keyframe-animations.scss";
+// @import "~/styles/_variables.scss";
+// @import "~/styles/_keyframe-animations.scss";
 
 *,
 *::before,
@@ -97,6 +97,15 @@ section {
   @media (max-width: $breakpoint-tablet) {
     width: 90%;
   }
+}
+
+strong {
+  font-family: "Minecraft";
+}
+
+mark {
+  background-color: $color-selection;
+  color: black;
 }
 
 a {
