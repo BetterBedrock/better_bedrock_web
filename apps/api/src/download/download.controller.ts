@@ -6,6 +6,7 @@ import {
     HttpException,
     HttpStatus,
     Ip,
+    Logger,
     NotFoundException,
     Post,
     Query,
@@ -34,12 +35,12 @@ import { HttpService } from "@nestjs/axios";
 import { lastValueFrom } from "rxjs";
 import { VerifyDownloadDto } from "~/download/dto/verify-download.dto";
 import { createReadStream, promises as fs } from "fs";
-import { join } from "path";
+import path from "path";
 import { VoucherService } from "~/voucher/voucher.service";
 import { SkipThrottle } from "@nestjs/throttler";
-import { DownloadsItemDto } from "~/download/dto/downloads-item.dto";
-import { CONTENT } from "~/content/constants/content";
 import { AnalyticsNames } from "~/analytics/constants/analytics-names";
+import { ProjectService } from "~/project/project.service";
+import { UserService } from "~/user/user.service";
 
 @ApiTags("download")
 @Controller("download")
@@ -51,6 +52,8 @@ export class DownloadController {
         private downloadService: DownloadService,
         private analyticsService: AnalyticsService,
         private readonly voucherService: VoucherService,
+        private readonly projectService: ProjectService,
+        private readonly userService: UserService,
     ) {}
 
     @Get()
@@ -69,6 +72,16 @@ export class DownloadController {
             throw new NotFoundException(`Download for your device could not be found.`);
         }
 
+        const project = await this.projectService.findOne(download.file);
+        if (!project) {
+            //TODO: Add to API documentation?
+            throw new NotFoundException(`Requested file not found.`);
+        }
+
+        if (!project.downloadFile) {
+            throw new NotFoundException(`Requested file not found.`);
+        }
+
         if (!download?.verified) {
             throw new HttpException(
                 "You have not verified your download yet.",
@@ -76,25 +89,12 @@ export class DownloadController {
             );
         }
 
-        const registryElement = this.findDownloadItemById(download.file);
-
-        if (!registryElement) {
-            throw new HttpException(
-                "This file does not exist anymore on our servers.",
-                HttpStatus.NOT_FOUND,
-            );
-        }
-
         await this.analyticsService.incrementAnalytics(download.file, "file");
         await this.analyticsService.incrementAnalytics(AnalyticsNames.totalDownloads, "general");
 
-        const filePath = join(
-            __dirname,
-            "../..",
-            "src/assets/downloads",
-            registryElement.downloadId,
-        );
+        const filePath = path.join(process.cwd(), project.downloadFile);
 
+        Logger.error({ filePath });
         let stat;
         try {
             stat = await fs.stat(filePath);
@@ -103,7 +103,7 @@ export class DownloadController {
         }
         const fileSize = stat.size;
 
-        const fileStream = createReadStream(`src/assets/downloads/${registryElement.downloadId}`);
+        const fileStream = createReadStream(project.downloadFile);
 
         res.setHeader("Access-Control-Expose-Headers", "Content-Disposition, Content-Length");
         res.set({
@@ -115,7 +115,7 @@ export class DownloadController {
     }
 
     @Post("verify")
-    @ApiOkResponse({ type: DownloadsItemDto, description: "Download verified successfully" })
+    @ApiOkResponse({ description: "Download verified successfully" })
     @ApiNotFoundResponse({
         description: "Download record not found for this IP or file not found",
     })
@@ -127,10 +127,7 @@ export class DownloadController {
     @ApiBadGatewayResponse({ description: "Failed to verify with Linkvertise gateway" })
     @ApiServiceUnavailableResponse({ description: "Linkvertise service unavailable" })
     @ApiForbiddenResponse({ description: "Voucher is blocked" })
-    async verify(
-        @Ip() ip: string,
-        @Query() query: VerifyDownloadDto,
-    ): Promise<DownloadsItemDto | undefined> {
+    async verify(@Ip() ip: string, @Query() query: VerifyDownloadDto) {
         const download = await this.downloadService.download({ ipAddress: ip });
         const voucher = query.code
             ? await this.voucherService.getVoucher({ code: query.code })
@@ -140,7 +137,16 @@ export class DownloadController {
             throw new NotFoundException(`Download for your device could not be found.`);
         }
 
-        const file = this.findDownloadItemById(download.file);
+        const project = await this.projectService.findOne(download.file);
+        if (!project) {
+            //TODO: Add to API documentation?
+            throw new NotFoundException(`Requested file not found.`);
+        }
+
+        const creator = await this.userService.userDetailedById(project.userId);
+        const linkvertiseSecret = creator.customLinkvertise
+            ? (creator.linkvertiseSecret ?? this.linkvertiseApiKey)
+            : this.linkvertiseApiKey;
 
         if (!download.verified) {
             if (query.code && !voucher) {
@@ -158,13 +164,7 @@ export class DownloadController {
                     throw new GoneException("The voucher has either expired or already been used.");
                 }
 
-                if (
-                    voucher.betterBedrockContentOnly &&
-                    CONTENT.flatMap((map) => map.items).find(
-                        (item) =>
-                            item.downloadId === file!.downloadId && !item.betterBedrockContent,
-                    )
-                ) {
+                if (voucher.betterBedrockContentOnly && project.betterBedrockContent === false) {
                     throw new ForbiddenException(
                         "This voucher allows you to download only better bedrock content",
                     );
@@ -186,7 +186,7 @@ export class DownloadController {
             }
 
             if (!voucher) {
-                const url = `https://publisher.linkvertise.com/api/v1/anti_bypassing?token=${this.linkvertiseApiKey}&hash=${query.hash}`;
+                const url = `https://publisher.linkvertise.com/api/v1/anti_bypassing?token=${linkvertiseSecret}&hash=${query.hash}`;
 
                 try {
                     const response$ = this.http.post(
@@ -231,7 +231,7 @@ export class DownloadController {
             });
         }
 
-        return this.findDownloadItemById(download.file);
+        return;
     }
 
     @Post("generate")
@@ -244,7 +244,11 @@ export class DownloadController {
     @ApiCreatedResponse({ description: "Download record created." })
     @ApiNotFoundResponse({ description: "Requested file not found." })
     async generate(@Ip() ip, @Query() query: GenerateDownloadDto) {
-        this.findDownloadItemById(query.file);
+        const project = await this.projectService.findOne(query.file);
+        if (!project) {
+            throw new NotFoundException(`Requested file not found.`);
+        }
+
         const download = await this.downloadService.download({ ipAddress: ip });
 
         if (download != null) {
@@ -260,16 +264,5 @@ export class DownloadController {
             AnalyticsNames.generatedDownloads,
             "general",
         );
-    }
-
-    findDownloadItemById(downloadId: string): DownloadsItemDto | undefined {
-        for (const section of CONTENT) {
-            const match = section.items.find((item) => item.downloadId === downloadId);
-            if (match) {
-                return match;
-            }
-        }
-
-        throw new NotFoundException(`Download "${downloadId}" not found.`);
     }
 }
