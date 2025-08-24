@@ -62,6 +62,8 @@ model User {
   banned    Boolean   @default(false)
   createdAt DateTime  @default(now())
   projects  Project[]
+  comments  Comment[]
+  ratings   Rating[]
 }
 
 enum ProjectType {
@@ -97,6 +99,52 @@ model Project {
   userId String
   user   User   @relation(fields: [userId], references: [id])
 
+  comments Comment[]
+  Rating   Rating[]
+
   @@id([id, draft])
   @@unique([id, draft])
+}
+
+model Comment {
+  id       String @id @default(cuid())
+  content  String
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id])
+
+  projectId    String
+  projectDraft Boolean
+  project      Project @relation(fields: [projectId, projectDraft], references: [id, draft])
+
+  parentId String?
+  parent   Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies  Comment[] @relation("CommentReplies")
+
+  pinned Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  deleted   Boolean   @default(false)
+  deletedAt DateTime?
+
+  @@index([projectId, projectDraft])
+  @@index([parentId])
+  @@index([pinned])
+}
+
+model Rating {
+  id String @id @default(cuid())
+
+  rating Int
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  projectId    String
+  projectDraft Boolean
+  project      Project @relation(fields: [projectId, projectDraft], references: [id, draft])
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, projectId])
+  @@index([projectId, projectDraft])
 }
