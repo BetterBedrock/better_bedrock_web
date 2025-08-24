@@ -26,14 +26,29 @@ import { SimpleProjectDto } from "~/project/dto/simple-project.dto";
 import { UploadFileDto } from "~/project/dto/upload-file.dto";
 import { extname } from "path";
 import { OptionalAuthGuard } from "~/auth/optional-auth.guard";
+import { RatingService } from "~/rating/rating.service";
+import { ProjectRatingDto } from "~/rating/dto/project-rating.dto";
+import { RateProjectParamsDto } from "~/rating/dto/rate-project-params.dto";
+import { CommentService } from "~/comment/comment.service";
+import { PostCommentParamsDto } from "~/comment/dto/post-comment-params.dto";
+import { ReplyToCommentParamsDto } from "~/comment/dto/reply-to-comment-params.dto";
+import { CommentDto } from "~/comment/dto/comment.dto";
 
 @Controller("project")
 export class ProjectController {
-    constructor(private readonly projectService: ProjectService) {}
+    constructor(
+        private readonly projectService: ProjectService,
+        private readonly ratingService: RatingService,
+        private readonly commentService: CommentService,
+    ) {}
 
     @Post()
     @ApiBearerAuth()
     @UseGuards(UserAuthGuard)
+    @ApiOkResponse({
+        description: "Successfully created project",
+        type: ProjectDto,
+    })
     async create(@Body() data: CreateProjectDto, @Req() req) {
         const id = data.title
             .toLowerCase()
@@ -169,5 +184,74 @@ export class ProjectController {
     async delete(@Param("id") id: string) {
         await this.projectService.delete(id);
         return;
+    }
+
+    @Post("rate/:projectId/:rating")
+    @UseGuards(UserAuthGuard)
+    @ApiOkResponse({ description: "Successfully rated project" })
+    @ApiBearerAuth()
+    async rateProject(@Req() req, @Param() params: RateProjectParamsDto) {
+        await this.ratingService.rateProject({ userId: req.user.id, ...params });
+        return;
+    }
+
+    @Get("rate/:projectId")
+    @ApiOkResponse({
+        description: "Successfully commented under a project",
+        type: ProjectRatingDto,
+    })
+    async getProjectRating(@Param("projectId") projectId: string): Promise<ProjectRatingDto> {
+        return await this.ratingService.getProjectRating(projectId);
+    }
+
+    @Delete("rate/:projectId")
+    @UseGuards(UserAuthGuard)
+    @ApiOkResponse({ description: "Successfully deleted rating for given project" })
+    @ApiBearerAuth()
+    async deleteRating(@Req() req, @Param("projectId") projectId: string) {
+        await this.ratingService.deleteUsersRating(req.user.id, projectId);
+        return;
+    }
+
+    @Get("comments/:projectId")
+    @ApiOkResponse({ description: "Returns comments under a project", type: CommentDto })
+    async comments(@Param("projectId") projectId: string) {
+        return await this.commentService.getComments(projectId);
+    }
+
+    @Post("comment/:projectId")
+    @UseGuards(UserAuthGuard)
+    @ApiOkResponse({ description: "Successfully posted a comment", type: CommentDto })
+    @ApiBearerAuth()
+    async postComment(
+        @Param("projectId") projectId: string,
+        @Req() req,
+        @Body() body: PostCommentParamsDto,
+    ) {
+        return await this.commentService.postComment({ ...body, authorId: req.user.id, projectId });
+    }
+
+    @Post("comment/:projectId/reply/:commentId")
+    @UseGuards(UserAuthGuard)
+    @ApiOkResponse({ description: "Successfully posted a reply", type: CommentDto })
+    @ApiBearerAuth()
+    async replyToComment(
+        @Param() params: ReplyToCommentParamsDto,
+        @Req() req,
+        @Body() body: PostCommentParamsDto,
+    ) {
+        return await this.commentService.replyToComment({
+            ...params,
+            ...body,
+            authorId: req.user.id,
+        });
+    }
+
+    @Delete("comment/:id")
+    @UseGuards(UserAuthGuard)
+    @ApiOkResponse({ description: "Successfully deleted a comment" })
+    @ApiBearerAuth()
+    async deleteComment(@Param("id") commentId: string, @Req() req) {
+        return await this.commentService.deleteComment(commentId, req.user.id);
     }
 }

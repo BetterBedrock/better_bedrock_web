@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "~/prisma.service";
 import { Prisma } from "@prisma/client";
 
@@ -8,7 +8,6 @@ import * as fs from "fs/promises";
 import { ProjectDto } from "~/project/dto/project.dto";
 import { DeclineProjectDto } from "~/project/dto/decline-project.dto";
 import { SimpleProjectDto } from "~/project/dto/simple-project.dto";
-import { baseUrl } from "~/utils/url";
 import { UserDto } from "~/user/dto/user.dto";
 
 const simpleProjectSelect = {
@@ -121,6 +120,20 @@ export class ProjectService {
         await this.moveDraftToRelease(id);
 
         const updatedDescription = this.replaceDraftImageSrcs(draftProject.description, id);
+        const updatedThumbnail = draftProject.thumbnail
+            ? draftProject.thumbnail.replace(
+                  new RegExp(`static/public/${id}/draft/`, "g"),
+                  `static/public/${id}/release/`,
+              )
+            : null;
+        const updatedDownloadFile = draftProject.downloadFile
+            ? draftProject.downloadFile.replace(
+                  new RegExp(`static/private/${id}/draft/`, "g"),
+                  `static/private/${id}/release/`,
+              )
+            : null;
+
+        Logger.error({ updatedThumbnail, updatedDownloadFile, updatedDescription });
 
         const { id: projectId, ...rest } = draftProject;
         const releaseProjectData = {
@@ -130,6 +143,9 @@ export class ProjectService {
             createdAt: oldReleasedProject ? oldReleasedProject.createdAt : new Date(),
             lastChanged: new Date(),
             description: updatedDescription,
+            thumbnail: updatedThumbnail,
+            downloadFile: updatedDownloadFile,
+            error: null,
         };
 
         const releaseProject = await this.prismaService.project.upsert({
@@ -221,16 +237,10 @@ export class ProjectService {
                 newNode.attrs?.src &&
                 typeof newNode.attrs.src === "string"
             ) {
-                // Regex to match any URL containing /public/{projectId}/draft/ and the filename after it
-                const regex = new RegExp( //TODO: Fix not updating file names in doc
-                    `(https?:\\/\\/[^\\/]+)?\\/static\\/public\\/${projectId}\\/draft\\/([^\\/]+\\.[a-zA-Z0-9]+)`,
-                );
+                const fileName = String(newNode.attrs.src).split("/").pop();
                 newNode.attrs = {
                     ...newNode.attrs,
-                    src: newNode.attrs.src.replace(
-                        regex,
-                        `${baseUrl}/static/public/${projectId}/release/$2`,
-                    ),
+                    src: `static/public/${projectId}/release/${fileName}`,
                 };
             }
             for (const key in newNode) {
@@ -306,12 +316,25 @@ export class ProjectService {
 
             try {
                 await fs.mkdir(releaseDir, { recursive: true });
-                const files = await fs.readdir(draftDir);
 
-                for (const file of files) {
+                // files from draft
+                const draftFiles = await fs.readdir(draftDir);
+
+                // files already in release
+                const releaseFiles = await fs.readdir(releaseDir);
+
+                // Copy draft -> release
+                for (const file of draftFiles) {
                     const src = path.join(draftDir, file);
                     const dest = path.join(releaseDir, file);
                     await fs.copyFile(src, dest);
+                }
+
+                // Remove files from release that aren’t in draft
+                for (const file of releaseFiles) {
+                    if (!draftFiles.includes(file)) {
+                        await fs.rm(path.join(releaseDir, file), { recursive: true, force: true });
+                    }
                 }
             } catch (_) {
                 // Optionally handle errors (e.g., log if draftDir doesn't exist)
