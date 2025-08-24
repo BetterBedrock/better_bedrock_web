@@ -10,9 +10,7 @@ import { useTiptapEditor } from "~/hooks/use-tiptap-editor"
 import { useIsMobile } from "~/hooks/use-mobile"
 
 // --- Icons ---
-import { ListIcon } from "~/components/tiptap-icons/list-icon"
-import { ListOrderedIcon } from "~/components/tiptap-icons/list-ordered-icon"
-import { ListTodoIcon } from "~/components/tiptap-icons/list-todo-icon"
+import ListIcon from "~/assets/ui/tiptap-icons/3.png"
 
 // --- Lib ---
 import {
@@ -21,8 +19,9 @@ import {
   isNodeTypeSelected,
   isValidPosition,
 } from "~/lib/tiptap-utils"
+import { TiptapIcon } from "~/components/tiptap-icons"
 
-export type ListType = "bulletList" | "orderedList" | "taskList"
+export type ListType = "bulletList";
 
 /**
  * Configuration for the list functionality
@@ -48,21 +47,15 @@ export interface UseListConfig {
 }
 
 export const listIcons = {
-  bulletList: ListIcon,
-  orderedList: ListOrderedIcon,
-  taskList: ListTodoIcon,
+  bulletList: <TiptapIcon icon={ListIcon} className="tiptap-button-icon" />,
 }
 
 export const listLabels: Record<ListType, string> = {
   bulletList: "Bullet List",
-  orderedList: "Ordered List",
-  taskList: "Task List",
 }
 
 export const LIST_SHORTCUT_KEYS: Record<ListType, string> = {
   bulletList: "mod+shift+8",
-  orderedList: "mod+shift+7",
-  taskList: "mod+shift+9",
 }
 
 /**
@@ -81,10 +74,6 @@ export function canToggleList(
     switch (type) {
       case "bulletList":
         return editor.can().toggleBulletList()
-      case "orderedList":
-        return editor.can().toggleOrderedList()
-      case "taskList":
-        return editor.can().toggleList("taskList", "taskItem")
       default:
         return false
     }
@@ -118,10 +107,6 @@ export function isListActive(editor: Editor | null, type: ListType): boolean {
   switch (type) {
     case "bulletList":
       return editor.isActive("bulletList")
-    case "orderedList":
-      return editor.isActive("orderedList")
-    case "taskList":
-      return editor.isActive("taskList")
     default:
       return false
   }
@@ -184,8 +169,6 @@ export function toggleList(editor: Editor | null, type: ListType): boolean {
       // Wrap in specific list type
       const toggleMap: Record<ListType, () => typeof chain> = {
         bulletList: () => chain.toggleBulletList(),
-        orderedList: () => chain.toggleOrderedList(),
-        taskList: () => chain.toggleList("taskList", "taskItem"),
       }
 
       const toggle = toggleMap[type]

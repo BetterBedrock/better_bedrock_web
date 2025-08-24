@@ -107,7 +107,7 @@ export const ImageUploadButton = React.forwardRef<
       >
         {children ?? (
           <>
-            <Icon className="tiptap-button-icon" />
+            {Icon}
             {text && <span className="tiptap-button-text">{text}</span>}
             {showShortcut && <ImageShortcutBadge shortcutKeys={shortcutKeys} />}
           </>

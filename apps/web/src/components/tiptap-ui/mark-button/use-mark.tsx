@@ -12,22 +12,19 @@ import { useIsMobile } from "~/hooks/use-mobile"
 import { isMarkInSchema, isNodeTypeSelected } from "~/lib/tiptap-utils"
 
 // --- Icons ---
-import { BoldIcon } from "~/components/tiptap-icons/bold-icon"
-import { Code2Icon } from "~/components/tiptap-icons/code2-icon"
-import { ItalicIcon } from "~/components/tiptap-icons/italic-icon"
-import { StrikeIcon } from "~/components/tiptap-icons/strike-icon"
-import { SubscriptIcon } from "~/components/tiptap-icons/subscript-icon"
-import { SuperscriptIcon } from "~/components/tiptap-icons/superscript-icon"
-import { UnderlineIcon } from "~/components/tiptap-icons/underline-icon"
+import BoldIcon from "~/assets/ui/tiptap-icons/4.png"
+import ItalicIcon from "~/assets/ui/tiptap-icons/5.png"
+import StrikeIcon from "~/assets/ui/tiptap-icons/6.png"
+import UnderlineIcon from "~/assets/ui/tiptap-icons/7.png"
+import HighlighterIcon from "~/assets/ui/tiptap-icons/8.png"
+import { TiptapIcon } from "~/components/tiptap-icons"
 
 export type Mark =
   | "bold"
   | "italic"
   | "strike"
-  | "code"
   | "underline"
-  | "superscript"
-  | "subscript"
+  | "highlight"
 
 /**
  * Configuration for the mark functionality
@@ -53,13 +50,11 @@ export interface UseMarkConfig {
 }
 
 export const markIcons = {
-  bold: BoldIcon,
-  italic: ItalicIcon,
-  underline: UnderlineIcon,
-  strike: StrikeIcon,
-  code: Code2Icon,
-  superscript: SuperscriptIcon,
-  subscript: SubscriptIcon,
+  bold: <TiptapIcon icon={BoldIcon} className="tiptap-button-icon" />,
+  italic: <TiptapIcon icon={ItalicIcon} className="tiptap-button-icon" />,
+  underline: <TiptapIcon icon={UnderlineIcon} className="tiptap-button-icon" />,
+  strike: <TiptapIcon icon={StrikeIcon} className="tiptap-button-icon" />,
+  highlight: <TiptapIcon icon={HighlighterIcon} className="tiptap-button-icon" />,
 }
 
 export const MARK_SHORTCUT_KEYS: Record<Mark, string> = {
@@ -67,9 +62,7 @@ export const MARK_SHORTCUT_KEYS: Record<Mark, string> = {
   italic: "mod+i",
   underline: "mod+u",
   strike: "mod+shift+s",
-  code: "mod+e",
-  superscript: "mod+.",
-  subscript: "mod+,",
+  highlight: "mod+,",
 }
 
 /**
