@@ -37,7 +37,8 @@ export function FileUpload() {
         UseInterceptors(
             FileInterceptor("file", {
                 storage: diskStorage({
-                    destination: (req, file, cb) => {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    destination: (req: any, file, cb) => {
                         const project = req.project;
                         if (!project) {
                             return cb(
