@@ -8,10 +8,13 @@ All URIs are relative to *http://localhost*
 |[**projectControllerCreate**](#projectcontrollercreate) | **POST** /project | |
 |[**projectControllerDecline**](#projectcontrollerdecline) | **PATCH** /project/decline/{id} | |
 |[**projectControllerDelete**](#projectcontrollerdelete) | **DELETE** /project/{id} | |
+|[**projectControllerDeleteRating**](#projectcontrollerdeleterating) | **DELETE** /project/rate/{projectId} | |
 |[**projectControllerDraftDetails**](#projectcontrollerdraftdetails) | **GET** /project/draft/{id} | |
 |[**projectControllerFindAll**](#projectcontrollerfindall) | **GET** /project | |
+|[**projectControllerGetProjectRating**](#projectcontrollergetprojectrating) | **GET** /project/rate/{projectId} | |
 |[**projectControllerProjectDetails**](#projectcontrollerprojectdetails) | **GET** /project/details/{id} | |
 |[**projectControllerPublish**](#projectcontrollerpublish) | **PATCH** /project/publish/{id} | |
+|[**projectControllerRateProject**](#projectcontrollerrateproject) | **POST** /project/rate/{projectId}/{rating} | |
 |[**projectControllerSubmit**](#projectcontrollersubmit) | **PATCH** /project/submit/{id} | |
 |[**projectControllerSubmitted**](#projectcontrollersubmitted) | **GET** /project/submitted | |
 |[**projectControllerUpdate**](#projectcontrollerupdate) | **PATCH** /project/{id} | |
@@ -69,7 +72,7 @@ const { status, data } = await apiInstance.projectControllerCancelSubmission(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **projectControllerCreate**
-> projectControllerCreate(createProjectDto)
+> ProjectDto projectControllerCreate(createProjectDto)
 
 
 ### Example
@@ -100,7 +103,7 @@ const { status, data } = await apiInstance.projectControllerCreate(
 
 ### Return type
 
-void (empty response body)
+**ProjectDto**
 
 ### Authorization
 
@@ -109,13 +112,13 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**201** |  |  -  |
+|**200** | Successfully created project |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -223,6 +226,56 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **projectControllerDeleteRating**
+> projectControllerDeleteRating()
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let projectId: string; // (default to undefined)
+
+const { status, data } = await apiInstance.projectControllerDeleteRating(
+    projectId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successfully deleted rating for given project |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **projectControllerDraftDetails**
 > ProjectDto projectControllerDraftDetails()
 
@@ -313,6 +366,56 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerGetProjectRating**
+> ProjectRatingDto projectControllerGetProjectRating()
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let projectId: string; // (default to undefined)
+
+const { status, data } = await apiInstance.projectControllerGetProjectRating(
+    projectId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**ProjectRatingDto**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successfully commented under a project |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -413,6 +516,59 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerRateProject**
+> projectControllerRateProject()
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let projectId: string; // (default to undefined)
+let rating: number; // (default to undefined)
+
+const { status, data } = await apiInstance.projectControllerRateProject(
+    projectId,
+    rating
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | [**string**] |  | defaults to undefined|
+| **rating** | [**number**] |  | defaults to undefined|
+
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successfully rated project |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

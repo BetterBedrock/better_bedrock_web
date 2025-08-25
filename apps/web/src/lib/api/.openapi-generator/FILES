@@ -33,6 +33,7 @@ docs/JwtTokenDto.md
 docs/PriceOptionDto.md
 docs/ProjectApi.md
 docs/ProjectDto.md
+docs/ProjectRatingDto.md
 docs/ProjectType.md
 docs/SimpleProjectDto.md
 docs/SimpleUserDto.md
@@ -43,6 +44,7 @@ docs/UploadFileDto.md
 docs/UserApi.md
 docs/UserDto.md
 docs/UserNameDto.md
+docs/UserRatingDto.md
 docs/VoucherApi.md
 docs/VoucherDto.md
 git_push.sh

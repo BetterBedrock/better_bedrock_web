@@ -277,14 +277,10 @@ export function isAllowedUri(
   const allowedProtocols: string[] = [
     "http",
     "https",
-    "ftp",
-    "ftps",
     "mailto",
     "tel",
     "callto",
     "sms",
-    "cid",
-    "xmpp",
   ]
 
   if (protocols) {

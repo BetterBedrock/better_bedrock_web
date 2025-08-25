@@ -694,6 +694,25 @@ export interface ProjectDto {
 /**
  * 
  * @export
+ * @interface ProjectRatingDto
+ */
+export interface ProjectRatingDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof ProjectRatingDto
+     */
+    'average': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProjectRatingDto
+     */
+    'count': number;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
@@ -790,18 +809,6 @@ export interface SimpleUserDto {
      * @type {string}
      * @memberof SimpleUserDto
      */
-    'googleId': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SimpleUserDto
-     */
-    'email': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SimpleUserDto
-     */
     'name': string;
     /**
      * 
@@ -821,6 +828,18 @@ export interface SimpleUserDto {
      * @memberof SimpleUserDto
      */
     'createdAt': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SimpleUserDto
+     */
+    'customLinkvertise': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleUserDto
+     */
+    'linkvertiseId': string | null;
 }
 /**
  * 
@@ -1039,6 +1058,25 @@ export interface UserNameDto {
      * @memberof UserNameDto
      */
     'name': string;
+}
+/**
+ * 
+ * @export
+ * @interface UserRatingDto
+ */
+export interface UserRatingDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof UserRatingDto
+     */
+    'average': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UserRatingDto
+     */
+    'count': number;
 }
 /**
  * 
@@ -2054,7 +2092,7 @@ export const DownloadApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async downloadControllerVerify(hash?: string, code?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DownloadsItemDto>> {
+        async downloadControllerVerify(hash?: string, code?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.downloadControllerVerify(hash, code, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DownloadApi.downloadControllerVerify']?.[localVarOperationServerIndex]?.url;
@@ -2094,7 +2132,7 @@ export const DownloadApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        downloadControllerVerify(hash?: string, code?: string, options?: RawAxiosRequestConfig): AxiosPromise<DownloadsItemDto> {
+        downloadControllerVerify(hash?: string, code?: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.downloadControllerVerify(hash, code, options).then((request) => request(axios, basePath));
         },
     };
@@ -2307,6 +2345,43 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        projectControllerDeleteRating: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('projectControllerDeleteRating', 'projectId', projectId)
+            const localVarPath = `/project/rate/{projectId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2349,6 +2424,39 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
          */
         projectControllerFindAll: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/project`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        projectControllerGetProjectRating: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('projectControllerGetProjectRating', 'projectId', projectId)
+            const localVarPath = `/project/rate/{projectId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2423,6 +2531,47 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
             }
 
             const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} projectId 
+         * @param {number} rating 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        projectControllerRateProject: async (projectId: string, rating: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('projectControllerRateProject', 'projectId', projectId)
+            // verify required parameter 'rating' is not null or undefined
+            assertParamExists('projectControllerRateProject', 'rating', rating)
+            const localVarPath = `/project/rate/{projectId}/{rating}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"rating"}}`, encodeURIComponent(String(rating)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -2665,7 +2814,7 @@ export const ProjectApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async projectControllerCreate(createProjectDto: CreateProjectDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async projectControllerCreate(createProjectDto: CreateProjectDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProjectDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerCreate(createProjectDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerCreate']?.[localVarOperationServerIndex]?.url;
@@ -2698,6 +2847,18 @@ export const ProjectApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async projectControllerDeleteRating(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerDeleteRating(projectId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerDeleteRating']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2717,6 +2878,18 @@ export const ProjectApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerFindAll(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerFindAll']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async projectControllerGetProjectRating(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProjectRatingDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerGetProjectRating(projectId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerGetProjectRating']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -2741,6 +2914,19 @@ export const ProjectApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerPublish(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerPublish']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} projectId 
+         * @param {number} rating 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async projectControllerRateProject(projectId: string, rating: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerRateProject(projectId, rating, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerRateProject']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -2829,7 +3015,7 @@ export const ProjectApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectControllerCreate(createProjectDto: CreateProjectDto, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        projectControllerCreate(createProjectDto: CreateProjectDto, options?: RawAxiosRequestConfig): AxiosPromise<ProjectDto> {
             return localVarFp.projectControllerCreate(createProjectDto, options).then((request) => request(axios, basePath));
         },
         /**
@@ -2853,6 +3039,15 @@ export const ProjectApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        projectControllerDeleteRating(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.projectControllerDeleteRating(projectId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2867,6 +3062,15 @@ export const ProjectApiFactory = function (configuration?: Configuration, basePa
          */
         projectControllerFindAll(options?: RawAxiosRequestConfig): AxiosPromise<Array<ProjectDto>> {
             return localVarFp.projectControllerFindAll(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        projectControllerGetProjectRating(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<ProjectRatingDto> {
+            return localVarFp.projectControllerGetProjectRating(projectId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2885,6 +3089,16 @@ export const ProjectApiFactory = function (configuration?: Configuration, basePa
          */
         projectControllerPublish(id: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.projectControllerPublish(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} projectId 
+         * @param {number} rating 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        projectControllerRateProject(projectId: string, rating: number, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.projectControllerRateProject(projectId, rating, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2989,6 +3203,17 @@ export class ProjectApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} projectId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectApi
+     */
+    public projectControllerDeleteRating(projectId: string, options?: RawAxiosRequestConfig) {
+        return ProjectApiFp(this.configuration).projectControllerDeleteRating(projectId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -3006,6 +3231,17 @@ export class ProjectApi extends BaseAPI {
      */
     public projectControllerFindAll(options?: RawAxiosRequestConfig) {
         return ProjectApiFp(this.configuration).projectControllerFindAll(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} projectId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectApi
+     */
+    public projectControllerGetProjectRating(projectId: string, options?: RawAxiosRequestConfig) {
+        return ProjectApiFp(this.configuration).projectControllerGetProjectRating(projectId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3028,6 +3264,18 @@ export class ProjectApi extends BaseAPI {
      */
     public projectControllerPublish(id: string, options?: RawAxiosRequestConfig) {
         return ProjectApiFp(this.configuration).projectControllerPublish(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} projectId 
+     * @param {number} rating 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectApi
+     */
+    public projectControllerRateProject(projectId: string, rating: number, options?: RawAxiosRequestConfig) {
+        return ProjectApiFp(this.configuration).projectControllerRateProject(projectId, rating, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3095,6 +3343,39 @@ export class ProjectApi extends BaseAPI {
  */
 export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userControllerGetUserRating: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('userControllerGetUserRating', 'id', id)
+            const localVarPath = `/user/rate/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {UpdateProfileDto} updateProfileDto 
@@ -3212,6 +3493,18 @@ export const UserApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userControllerGetUserRating(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserRatingDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userControllerGetUserRating(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.userControllerGetUserRating']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {UpdateProfileDto} updateProfileDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3258,6 +3551,15 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
     return {
         /**
          * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userControllerGetUserRating(id: string, options?: RawAxiosRequestConfig): AxiosPromise<UserRatingDto> {
+            return localVarFp.userControllerGetUserRating(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {UpdateProfileDto} updateProfileDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3293,6 +3595,17 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
  * @extends {BaseAPI}
  */
 export class UserApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public userControllerGetUserRating(id: string, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).userControllerGetUserRating(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {UpdateProfileDto} updateProfileDto 
