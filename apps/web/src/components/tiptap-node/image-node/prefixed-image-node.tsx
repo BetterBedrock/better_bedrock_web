@@ -13,7 +13,6 @@ export const PrefixedImage = Image.extend<PrefixedImageOptions>({
 
     return {
       ...parentOptions,
-      // Provide explicit default values for required options
       inline: parentOptions.inline ?? false,
       allowBase64: parentOptions.allowBase64 ?? false,
       HTMLAttributes: parentOptions.HTMLAttributes ?? {},

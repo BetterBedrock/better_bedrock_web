@@ -56,7 +56,6 @@
     bottom: 0;
     right: 0;
     background-color: var(--tiptap-image-upload-icon-bg);
-    border-radius: var(--tt-radius-lg, 0.75rem);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -103,7 +102,6 @@
   .tiptap-image-upload-drag-area {
     padding: 2rem 1.5rem;
     border: 1.5px dashed var(--tiptap-image-upload-border);
-    border-radius: var(--tt-radius-md, 0.5rem);
     text-align: center;
     cursor: pointer;
     position: relative;
@@ -166,7 +164,6 @@
   // === Individual File Preview Styles ===
   .tiptap-image-upload-preview {
     position: relative;
-    border-radius: var(--tt-radius-md, 0.5rem);
     overflow: hidden;
 
     .tiptap-image-upload-progress {
@@ -179,7 +176,6 @@
     .tiptap-image-upload-preview-content {
       position: relative;
       border: 1px solid var(--tiptap-image-upload-border);
-      border-radius: var(--tt-radius-md, 0.5rem);
       padding: 1rem;
       display: flex;
       align-items: center;
@@ -195,7 +191,6 @@
       .tiptap-image-upload-file-icon {
         padding: 0.5rem;
         background-color: var(--tiptap-image-upload-icon-bg);
-        border-radius: var(--tt-radius-lg, 0.75rem);
 
         svg {
           width: 0.875rem;
