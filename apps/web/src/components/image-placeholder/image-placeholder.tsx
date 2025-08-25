@@ -6,17 +6,21 @@ import { CircularProgressIndicator } from "~/components/bedrock/circular-progres
 
 interface ImagePlaceholderProps {
   onUpload?: (file: File) => Promise<void>;
+  pass?: boolean;
+  placeholder?: string;
   src?: string;
 }
 
-export const ImagePlaceholder = ({ onUpload, src }: ImagePlaceholderProps) => {
+export const ImagePlaceholder = ({ onUpload, src, pass, placeholder }: ImagePlaceholderProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [loading, setLoading] = useState(false);
   const handleCardClick = () => {
+    if (pass) return;
     inputRef.current?.click();
   };
 
   const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (pass) return;
     const file = e.target.files?.item(0);
 
     if (!file) {
@@ -34,7 +38,7 @@ export const ImagePlaceholder = ({ onUpload, src }: ImagePlaceholderProps) => {
         <img src={src} className={styles.thumbnail} />
       ) : !loading ? (
         <BedrockText
-          text="Click To Upload Thumbnail"
+          text={placeholder || "Click to upload image"}
           type="h3"
           font="Minecraft"
           color="white"
