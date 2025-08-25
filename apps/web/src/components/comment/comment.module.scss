@@ -1,0 +1,26 @@
+@use "~/utils" as g;
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: start;
+  padding: g.$padding-xsm;
+  gap: g.$padding-xxsm;
+
+  &:not(:first-child) {
+      padding-left: g.$padding-lg;
+  }
+}
+.avatar {
+  width: g.$icon-md;
+  height: g.$icon-md;
+  image-rendering: pixelated;
+}
+
+.comment {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-xxsm;
+}
