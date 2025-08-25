@@ -19,7 +19,7 @@ export class ContentController {
         schema: {
             example: {
                 default: MAIN_LIST.id,
-                featured: DOWNLOADS_IDS.betterBedrockClientV80,
+                featured: DOWNLOADS_IDS.betterBedrockClientV81,
                 categories: [MAIN_LIST, COMMUNITY_LIST, SIDE_PROJECTS_LIST],
             },
         },
@@ -28,7 +28,7 @@ export class ContentController {
         await this.analyticsService.incrementAnalytics(AnalyticsNames.visits, "general");
         return {
             default: MAIN_LIST.id,
-            featured: DOWNLOADS_IDS.betterBedrockClientV80,
+            featured: DOWNLOADS_IDS.betterBedrockClientV81,
             categories: [MAIN_LIST, COMMUNITY_LIST, SIDE_PROJECTS_LIST],
         };
     }
