@@ -9,10 +9,11 @@ interface RatingProps {
   simple?: boolean;
   max?: number;
   rating?: number;
+  suffix?: string;
 }
 
-export const Rating = ({ max = 5, rating = 1, simple }: RatingProps) => (
-  <Tooltip text={`${rating}/${max}`}>
+export const Rating = ({ suffix, max = 5, rating = 1, simple }: RatingProps) => (
+  <Tooltip text={`${rating}/${max} ${suffix}`}>
     <div className={styles.rating}>
       {simple ? (
         <>
