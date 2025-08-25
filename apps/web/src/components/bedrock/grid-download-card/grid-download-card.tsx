@@ -32,6 +32,8 @@ export const GridDownloadCard = ({
   mode,
 }: GridDownloadCardProps) => {
   const link = () => {
+
+    if(!mode) return;
     if (mode === "edit") return Routes.EDITOR + "/" + project.id;
     if (mode === "review") return Routes.REVIEW + "/" + project.id;
     return Routes.PREVIEW + "/" + project.id;
