@@ -1,7 +1,7 @@
 import { DownloadsCategoryDto } from "~/download/dto/downloads-category.dto";
 
 export const DOWNLOADS_IDS = {
-    betterBedrockClientV80: "better_bedrock_texture_pack_v8.0.mcpack",
+    betterBedrockClientV81: "better_bedrock_texture_pack_v8.1.mcpack",
 
     betterBedrockClientV74: "better_bedrock_texture_pack_v7.4.mcpack",
     betterBedrockClientV73: "better_bedrock_texture_pack_v7.3.mcpack",
@@ -50,12 +50,12 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                 "Enjoy playing Minecraft on a whole new level using latest version of the main texture pack!",
             items: [
                 {
-                    title: "Better Bedrock v8.0",
+                    title: "Better Bedrock v8.1",
                     creator: "axmbro",
                     description: "Enhance your gameplay with multiple mods and adjustable options!",
-                    downloadId: DOWNLOADS_IDS.betterBedrockClientV80,
+                    downloadId: DOWNLOADS_IDS.betterBedrockClientV81,
                     buttonType: "green",
-                    itemWeight: 11.5,
+                    itemWeight: 11.4,
                     betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/favicon.png"],
                     tags: ["MCBE v1.21.80+"],
@@ -76,7 +76,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     description:
                         "Adds ability to create vertical beams around world to improve positioning",
                     downloadId: DOWNLOADS_IDS.betterBedrockWaypoints,
-                    itemWeight: 0.04,
+                    itemWeight: 0.001,
                     buttonType: "dark",
                     betterBedrockContent: true,
                     imageAssetUrl: ["/static/images/logo2.png"],
