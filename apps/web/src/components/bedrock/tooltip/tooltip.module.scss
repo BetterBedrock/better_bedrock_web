@@ -15,6 +15,10 @@
   border-image-source: url("~/assets/ui/tooltip/purple_border.png");
 }
 
+.unlimited {
+  max-width: none;
+}
+
 .text {
   white-space: pre-wrap;
 }
