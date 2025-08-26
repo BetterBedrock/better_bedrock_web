@@ -9,4 +9,5 @@
 
 .padding {
   @include g.section-padding((top, bottom));
+  overflow: unset !important;
 }
