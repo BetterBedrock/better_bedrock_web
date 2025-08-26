@@ -19,18 +19,17 @@ body {
 
 .simple-editor-wrapper {
   width: 100%;
-  overflow: auto;
 }
 
 .simple-editor-content {
+  margin-top: g.$padding-sm;
+  
   width: 100%;
   margin: 0 auto;
   height: 100%;
   display: flex;
   flex-direction: column;
   flex: 1;
-
-  padding: g.$padding-sm;
 }
 
 .simple-editor-content .tiptap.ProseMirror.simple-editor {

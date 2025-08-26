@@ -1,4 +1,11 @@
+@use "~/utils" as g;
+
 .card {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: sticky;
+  position: -webkit-sticky;
+  top: g.$navbar-height;
+  z-index: 2;
   display: flex;
   flex-direction: row;
 }

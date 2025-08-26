@@ -4,7 +4,6 @@ import { useComposedRef } from "~/hooks/use-composed-ref";
 import clsx from "clsx";
 import { styles } from ".";
 import { useState, useCallback, useEffect, forwardRef, useRef } from "react";
-import { CardDivider } from "~/components/bedrock/card";
 
 type BaseProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -82,19 +81,16 @@ export const Toolbar = forwardRef<HTMLDivElement, ToolbarProps>(
     useToolbarNavigation(toolbarRef);
 
     return (
-      <>
-        <div
-          ref={composedRef}
-          role="toolbar"
-          aria-label="toolbar"
-          data-variant={variant}
-          className={clsx(styles.card, className)}
-          {...props}
-        >
-          {children}
-        </div>
-        <CardDivider />
-      </>
+      <div
+        ref={composedRef}
+        role="toolbar"
+        aria-label="toolbar"
+        data-variant={variant}
+        className={clsx(styles.card, className)}
+        {...props}
+      >
+        {children}
+      </div>
     );
   },
 );
