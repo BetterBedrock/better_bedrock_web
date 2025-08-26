@@ -12,6 +12,7 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "~/components/link";
 import { Routes } from "~/utils/routes";
+import { useAuth } from "~/providers/auth";
 
 const schema = z.object({
   name: z.string(),
@@ -30,6 +31,7 @@ interface UserSettingsFormProps {
 }
 
 export const UserSettingsForm = ({ onClose, onSave, user }: UserSettingsFormProps) => {
+  const { logout } = useAuth();
   const [showLinkvertiseOptions, setShowLinkvertiseOptions] = useState(
     user.customLinkvertise ?? false,
   );
@@ -160,7 +162,7 @@ export const UserSettingsForm = ({ onClose, onSave, user }: UserSettingsFormProp
           <Button type="green" buttonType="submit" center width="100%">
             <BedrockText type="p" text="Save Settings" color="white" />
           </Button>
-          <Button type="dark" width="100%" center>
+          <Button type="dark" width="100%" center onClick={logout}>
             <BedrockText type="p" text="Logout" color="white" />
           </Button>
         </div>
