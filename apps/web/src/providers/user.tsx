@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext } from "react";
 import { useCookies } from "react-cookie";
-import { Configuration, SimpleUserDto, UpdateProfileDto, UserApi, UserDto } from "~/lib/api";
+import { Configuration, SimpleUserDto, UpdateProfileDto, UserApi, UserDto, UserRatingDto } from "~/lib/api";
 import { useAuth } from "~/providers/auth";
 import { useNotification } from "~/providers/notification";
 import { baseUrl } from "~/utils/url";
@@ -9,6 +9,7 @@ interface UserContextProps {
   findUserByName: (name: string) => Promise<SimpleUserDto | undefined>;
   findUserById: (id: string) => Promise<SimpleUserDto | undefined>;
   updateProfile: (profile: UpdateProfileDto) => Promise<UserDto | undefined>;
+  getProfileRating: (userId: string) => Promise<UserRatingDto | undefined>;
 }
 
 interface UserProviderProps {
@@ -56,8 +57,17 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     }
   };
 
+  const getProfileRating = async (userId: string) => {
+    try {
+      const { data } = await userApi.userControllerGetUserRating(userId);
+      return data;
+    } catch (err) {
+      throwError(err, "Failed to fetch user rating");
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ updateProfile, findUserByName, findUserById }}>
+    <UserContext.Provider value={{ updateProfile, getProfileRating, findUserByName, findUserById }}>
       {children}
     </UserContext.Provider>
   );
