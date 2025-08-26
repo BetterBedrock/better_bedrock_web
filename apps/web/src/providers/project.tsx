@@ -5,6 +5,7 @@ import {
   Configuration,
   ProjectApi,
   ProjectDto,
+  ProjectRatingDto,
   SimpleProjectDto,
   UpdateProjectDto,
   UploadFileDto,
@@ -22,7 +23,9 @@ interface ProjectContextProps {
   submitProject: (id: string) => Promise<ProjectDto | undefined>;
   cancelSubmission: (id: string) => Promise<ProjectDto | undefined>;
   deleteProject: (id: string) => Promise<void>;
+  createProject: (title: string) => Promise<ProjectDto | undefined>;
 
+  getProjectRating: (id: string) => Promise<ProjectRatingDto | undefined>;
   publish: (id: string) => Promise<void>;
 }
 
@@ -33,7 +36,7 @@ interface ProjectProviderProps {
 const ProjectContext = createContext<ProjectContextProps | undefined>(undefined);
 
 export const ProjectProvider = ({ children }: ProjectProviderProps) => {
-  const { throwError } = useNotification();
+  const { throwError, sendNotification } = useNotification();
   const [cookie] = useCookies(["secret", "adminSecret"]);
 
   const [fetched, _blank] = useState<boolean>(false);
@@ -73,15 +76,34 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
   const uploadFile = async (id: string, file: File): Promise<UploadFileDto | undefined> => {
     try {
       const { data } = await projectApi.projectControllerUploadProjectFile(id, file);
+      sendNotification({
+        type: "success",
+        title: "Project",
+        label: "File uploaded successfully",
+      });
       return data;
     } catch (err) {
       throwError(err, "Failed to upload file");
     }
   };
 
+  const createProject = async (title: string): Promise<ProjectDto | undefined> => {
+    try {
+      const { data } = await projectApi.projectControllerCreate({ title });
+      return data;
+    } catch (err) {
+      throwError(err, "Failed to save project");
+    }
+  };
+
   const saveProject = async (id: string, project: UpdateProjectDto) => {
     try {
       const { data } = await projectApi.projectControllerUpdate(id, project);
+      sendNotification({
+        type: "info",
+        title: data.title,
+        label: "Project has been saved",
+      });
       return data;
     } catch (err) {
       throwError(err, "Failed to save project");
@@ -100,6 +122,11 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
   const submitProject = async (id: string): Promise<ProjectDto | undefined> => {
     try {
       const { data } = await projectApi.projectControllerSubmit(id);
+      sendNotification({
+        type: "info",
+        title: data.title,
+        label: "Project has been submitted for review",
+      });
       return data;
     } catch (err) {
       throwError(err, "Failed to submit project");
@@ -109,6 +136,11 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
   const cancelSubmission = async (id: string): Promise<ProjectDto | undefined> => {
     try {
       const { data } = await projectApi.projectControllerCancelSubmission(id);
+      sendNotification({
+        type: "info",
+        title: data.title,
+        label: "Project submission has been cancelled",
+      });
       return data;
     } catch (err) {
       throwError(err, "Failed to submit project");
@@ -118,6 +150,11 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
   const publish = async (id: string): Promise<void> => {
     try {
       await adminProjectApi.projectControllerPublish(id);
+      sendNotification({
+        type: "success",
+        title: id,
+        label: "The project has been published",
+      });
     } catch (err) {
       throwError(err, "Failed to publish project");
     }
@@ -126,8 +163,22 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
   const deleteProject = async (id: string) => {
     try {
       await projectApi.projectControllerDelete(id);
+      sendNotification({
+        type: "info",
+        title: id,
+        label: "The project has been deleted",
+      });
     } catch (err) {
       throwError(err, "Failed to delete project");
+    }
+  };
+  
+  const getProjectRating = async (id: string) => {
+    try {
+      const { data } = await projectApi.projectControllerGetProjectRating(id);
+      return data;
+    } catch (err) {
+      throwError(err, "Failed to fetch project rating");
     }
   };
 
@@ -145,6 +196,8 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
         deleteProject,
         publish,
         fetchProjectDetails,
+        createProject,
+        getProjectRating,
       }}
     >
       {children}
