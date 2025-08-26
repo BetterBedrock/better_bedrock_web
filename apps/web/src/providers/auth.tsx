@@ -12,6 +12,7 @@ interface AuthContextProps {
   setUser: React.Dispatch<React.SetStateAction<UserDto | undefined>>;
   adminAuthenticate: (token: string) => Promise<void>;
   googleLogin: () => void;
+  logout: () => void;
 }
 
 interface AuthProviderProps {
@@ -23,8 +24,8 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [fetched, setFetched] = useState(false);
-  const [cookie, setCookie] = useCookies(["adminSecret", "secret"]);
-  const { throwError } = useNotification();
+  const [cookie, setCookie, removeCookie] = useCookies(["adminSecret", "secret"]);
+  const { throwError, sendNotification } = useNotification();
   const [user, setUser] = useState<UserDto | undefined>();
 
   const googleLogin = useGoogleLogin({
@@ -82,6 +83,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setFetched(true);
   };
 
+  const logout = () => {
+    removeCookie("secret");
+    removeCookie("adminSecret");
+    setUser(undefined);
+    setAuthenticated(false);
+    setFetched(false);
+
+    sendNotification({
+      type: "info",
+      title: "Logout",
+      label: "You have been logged out",
+    });
+  };
+
   useEffect(() => {
     if (cookie.adminSecret && cookie.adminSecret !== "") {
       adminAuthenticate(cookie.adminSecret);
@@ -93,7 +108,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, [cookie]);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, fetched, googleLogin, adminAuthenticate, authenticated }}>
+    <AuthContext.Provider
+      value={{ user, setUser, fetched, googleLogin, adminAuthenticate, authenticated, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
