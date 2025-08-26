@@ -5,15 +5,19 @@ import { Button } from "~/components/bedrock/button";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { styles } from ".";
 import { useState } from "react";
+import { useProject } from "~/providers/project";
 
 export const HeroActions = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [projectId, setProjectId] = useState("");
+  const [title, setTitle] = useState("");
+  const { createProject } = useProject();
 
-  const createProject = () => {
+  const handleCreateProject = async () => {
+    const project = await createProject(title);
+    if(!project) return;
 
-    navigate(Routes.EDITOR + "/" + projectId);
+    navigate(Routes.EDITOR + "/" + project.id);
   };
 
   if (!id) {
@@ -21,10 +25,10 @@ export const HeroActions = () => {
       <div className={styles.actions}>
         <Input
           placeholder="Project Title"
-          value={projectId}
-          onChange={(e) => setProjectId(e.target.value)}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
-        <Button onClick={createProject} center>
+        <Button onClick={handleCreateProject} center>
           <BedrockText text="Create" type="p" color="white" />
         </Button>
       </div>
