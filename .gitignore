@@ -34,6 +34,7 @@ yarn-debug.log*
 yarn-error.log*
 yarn.lock
 
+# Generated files
 apps/api/src/assets/downloads/*
 apps/api/static/private/*
 apps/api/static/public/*
@@ -43,5 +44,3 @@ apps/api/static/public/*
 *.pem
 github_action
 github_action.pub
-apps/api/static/private/better_bedrock_v12/draft/file.mcpack
-apps/api/static/private/better_bedrock_v12/release/file.mcpack
