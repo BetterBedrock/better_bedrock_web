@@ -10,7 +10,7 @@ interface ContentContextProps {
   downloadItem: DownloadsItemDto | undefined;
   downloads: DownloadsDto | undefined;
   generateDownload: (file: string) => Promise<void>;
-  verifyDownload: (hash?: string, code?: string) => Promise<DownloadsItemDto | undefined>;
+  verifyDownload: (hash?: string, code?: string) => Promise<void>;
   download: (code?: string) => Promise<void>;
   openLinkvertise: () => void;
 }
@@ -28,7 +28,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
   const [downloading, setDownloading] = useState<boolean>(false);
   const [downloads, setDownloads] = useState<DownloadsDto | undefined>();
   const [downloadProgress, setDownloadProgress] = useState(0);
-  const [downloadItem, setDownloadItem] = useState<DownloadsItemDto | undefined>(undefined);
+  const [downloadItem, _] = useState<DownloadsItemDto | undefined>(undefined);
 
   const config = new Configuration({ basePath: baseUrl });
 
@@ -119,26 +119,21 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
   const verifyDownload = async (
     hash?: string,
     code?: string,
-  ): Promise<DownloadsItemDto | undefined> => {
+  ) => {
     try {
-      const { data } = await downloadApi.downloadControllerVerify(hash, code);
-      const downloadItem = data as unknown as DownloadsItemDto;
-      setDownloadItem(downloadItem);
-
-      return downloadItem;
+      await downloadApi.downloadControllerVerify(hash, code);
     } catch (err) {
       throwError(err, "Failed to verify download");
       throw err;
     }
   };
 
-  const openLinkvertise = () => {
+  const openLinkvertise = (linkvertiseId: string = import.meta.env.VITE_LINKVERTISE_ID) => {
     const currentUrl = new URL(window.location.origin);
     const segments = currentUrl.pathname.split("/").filter(Boolean);
     segments.push("fetch");
     currentUrl.pathname = "/" + segments.join("/");
 
-    const linkvertiseId = import.meta.env.VITE_LINKVERTISE_ID;
     const baseUrl = `https://link-to.net/${linkvertiseId}/${Math.random() * 1000}/dynamic/`;
 
     const encodedUri = currentUrl.toString();
