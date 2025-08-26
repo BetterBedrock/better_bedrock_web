@@ -12,7 +12,7 @@ import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Link } from "~/components/link";
 import { SimpleEditor } from "~/components/tiptap-templates/simple/simple-editor";
 import { useProject } from "~/providers/project";
-import { ProjectDto, SimpleUserDto, UpdateProjectDto } from "~/lib/api";
+import { ProjectDto, ProjectRatingDto, SimpleUserDto, UpdateProjectDto } from "~/lib/api";
 import { HeroSave } from "~/pages/preview/components/hero/hero-save";
 import { Collapsible } from "~/components/bedrock/collapsible";
 import { Button } from "~/components/bedrock/button";
@@ -26,13 +26,16 @@ import { Content } from "@tiptap/react";
 import { useUser } from "~/providers/user";
 import { Routes } from "~/utils/routes";
 import { PreviewMode } from "~/pages/preview";
+import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-download-card";
+import { PreviewPopup } from "~/pages/preview/components/hero/preview-popup";
+import { Comment } from "~/components/comment";
 
 interface HeroProps {
   mode: PreviewMode;
 }
 
 export const Hero = ({ mode }: HeroProps) => {
-  const [_, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   // const navigate = useNavigate();
   const { sendNotification } = useNotification();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -49,11 +52,14 @@ export const Hero = ({ mode }: HeroProps) => {
     submitProject,
     uploadFile,
     deleteProject,
+    publish,
+    getProjectRating,
   } = useProject();
 
   const [draftProject, setDraftProject] = useState<ProjectDto | undefined>();
   const [project, setProject] = useState<ProjectDto | undefined>();
   const [creator, setCreator] = useState<SimpleUserDto | undefined>();
+  const [rating, setRating] = useState<ProjectRatingDto | undefined>(undefined);
 
   const { findUserById } = useUser();
 
@@ -79,12 +85,23 @@ export const Hero = ({ mode }: HeroProps) => {
   }, [file]);
 
   useEffect(() => {
+    if (selectedProject) {
+      getProjectRating(selectedProject.id).then((data) => setRating(data));
+    }
+  }, [selectedProject]);
+
+  useEffect(() => {
     if (!selectedProject || !selectedProject.userId) return;
     findUserById(selectedProject.userId).then((data) => setCreator(data));
   }, [draftProject, project]);
 
   if (!fetched) {
     return <CircularProgressIndicator size="large" />;
+  }
+
+  if (!selectedProject) {
+    navigate(Routes.HOME);
+    return null;
   }
 
   // if ((!create && (!downloads || !download)) || !download) {
@@ -168,16 +185,18 @@ export const Hero = ({ mode }: HeroProps) => {
 
   return (
     <div className={styles.preview}>
-      {/* {showPopup && <PreviewPopup onClose={() => setShowPopup(false)} downloadItem={download} />} */}
-      <Card className={styles.card}>
+      {showPopup && <PreviewPopup onClose={() => setShowPopup(false)} project={selectedProject!} />}
+      <div className={styles.card}>
         <Card sub className={styles.information}>
           {/* <HeroDescription download={download} /> */}
           <div className={clsx(styles.editor)}>
             <HeroTitle title={selectedProject?.title ?? ""} />
-            {mode === "view" && <Rating rating={4.2} />}
+            {mode === "view" && rating && (
+              <Rating rating={rating.average} suffix={`(${rating.count} Reviews)`} />
+            )}
           </div>
 
-          <CardDivider />
+          <CardDivider sub />
 
           <div className={clsx(styles.editor)}>
             <div className={styles.header}>
@@ -190,7 +209,7 @@ export const Hero = ({ mode }: HeroProps) => {
                 ) : (
                   <CircularProgressIndicator size="small" />
                 )}
-                <Rating simple rating={2.5} />
+                {rating && <Rating rating={2.5} simple />}
               </div>
             </div>
           </div>
@@ -212,7 +231,7 @@ export const Hero = ({ mode }: HeroProps) => {
               <HeroTitle title="Details" />
             </div>
 
-            <CardDivider />
+            <CardDivider sub />
             <div className={clsx(styles.editor)}>
               <Collapsible width="100%" headerText="Project Type" contentText="" floating>
                 <Button type="dark" center>
@@ -221,7 +240,7 @@ export const Hero = ({ mode }: HeroProps) => {
               </Collapsible>
             </div>
 
-            <CardDivider />
+            <CardDivider sub />
             <div className={clsx(styles.editor, styles.tagsWrapper)}>
               <div className={styles.creator}>
                 <Input
@@ -251,7 +270,7 @@ export const Hero = ({ mode }: HeroProps) => {
               </div>
             </div>
 
-            <CardDivider />
+            <CardDivider sub />
             <div className={clsx(styles.editor)}>
               <BedrockText
                 text={
@@ -283,9 +302,9 @@ export const Hero = ({ mode }: HeroProps) => {
             </div>
           </Card>
         )}
-      </Card>
+      </div>
 
-      <Card className={styles.card}>
+      <div className={styles.card}>
         {mode === "edit" ? (
           <>
             <Card sub>
@@ -305,6 +324,9 @@ export const Hero = ({ mode }: HeroProps) => {
             <Card sub>
               <div className={styles.editor}>
                 <HeroTitle title="Description" />
+              </div>
+              <CardDivider sub />
+              <div className={styles.editor}>
                 <SimpleEditor
                   editable={true}
                   content={selectedProject?.description}
@@ -318,6 +340,9 @@ export const Hero = ({ mode }: HeroProps) => {
             <Card sub>
               <div className={styles.editor}>
                 <HeroTitle title="Description" />
+              </div>
+              <CardDivider sub />
+              <div className={styles.editor}>
                 <SimpleEditor
                   editable={false}
                   content={selectedProject?.description}
@@ -327,7 +352,7 @@ export const Hero = ({ mode }: HeroProps) => {
             </Card>
           </>
         )}
-      </Card>
+      </div>
 
       <div>
         {/* <HeroTitle download={download} /> */}
@@ -356,28 +381,82 @@ export const Hero = ({ mode }: HeroProps) => {
         ) : (
           <HeroAction ref={buttonRef} setShowPopup={setShowPopup} />
         )}
-
-        {mode === "review" && (
-          <>
-            <Button
-              className={styles.action}
-              width="100%"
-              type="gold"
-              center
-              onClick={handleDelete}
-            >
-              <BedrockText text="Publish" type="p" color="white" />
-            </Button>
-            <Button className={styles.action} width="100%" type="red" center>
-              <BedrockText text="Decline Project" type="p" color="white" />
-            </Button>
-
-            <Button className={styles.action} width="100%" type="red" center onClick={handleDelete}>
-              <BedrockText text="Delete Project" type="p" color="white" />
-            </Button>
-          </>
-        )}
       </div>
+      {mode === "view" && (
+        <div className={styles.card}>
+          <Card sub>
+            <div className={styles.editor}>
+              <HeroTitle title="Comments" />
+            </div>
+            <CardDivider sub />
+            <div className={styles.editor}>
+              <Button className={styles.action} width="100%" type="green" center>
+                <BedrockText text="Post Comment" type="p" color="white" />
+              </Button>
+            </div>
+            <div className={styles.editor}>
+              <div className={styles.comments}>
+                <Comment
+                  creator="iDarkQ"
+                  comment="It is a virus. I dont recommend"
+                  subComments={[
+                    { creator: "Notch", comment: "No, it is not a virus." },
+                    { creator: "Herobrine", comment: "Yes, it is a virus." },
+                  ]}
+                />
+                <Comment
+                  creator="iDarkQ"
+                  comment="It is a virus. I dont recommend"
+                  subComments={[
+                    { creator: "Notch", comment: "No, it is not a virus." },
+                    { creator: "Herobrine", comment: "Yes, it is a virus." },
+                  ]}
+                />
+              </div>
+            </div>
+          </Card>
+        </div>
+      )}
+      {mode === "review" && (
+        <div className={styles.card}>
+          <Card sub>
+            <div className={styles.editor}>
+              <HeroTitle title="Review" />
+            </div>
+            <CardDivider sub />
+            <div className={styles.editor}>
+              {selectedProject && (
+                <GridDownloadCard project={{ ...selectedProject, user: { name: "iDarkQ" } }} />
+              )}
+            </div>
+            <CardDivider sub />
+            <div className={styles.editor}>
+              <Button
+                className={styles.action}
+                width="100%"
+                type="gold"
+                center
+                onClick={() => publish(selectedProject!.id)}
+              >
+                <BedrockText text="Publish" type="p" color="white" />
+              </Button>
+              <Button className={styles.action} width="100%" type="red" center>
+                <BedrockText text="Decline Project" type="p" color="white" />
+              </Button>
+
+              {/* <Button
+                  className={styles.action}
+                  width="100%"
+                  type="red"
+                  center
+                  onClick={handleDelete}
+                >
+                  <BedrockText text="Delete Project" type="p" color="white" />
+                </Button> */}
+            </div>
+          </Card>
+        </div>
+      )}
     </div>
   );
 };

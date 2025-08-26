@@ -32,7 +32,6 @@
 
 .card {
   gap: g.$padding-sm;
-  padding: g.$padding-sm;
   display: flex;
   flex-direction: column;
 }
@@ -80,4 +79,10 @@
 
 .input {
   width: 100%;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-sm;
 }
