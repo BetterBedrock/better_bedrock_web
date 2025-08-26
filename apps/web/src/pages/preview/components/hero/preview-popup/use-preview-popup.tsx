@@ -2,29 +2,33 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import { DownloadsItemDto, VoucherDto } from "~/lib/api";
+import { ProjectDto, VoucherDto } from "~/lib/api";
 import { useCheckout } from "~/providers/checkout";
-import { useContent } from "~/providers/content";
+import { useDownload } from "~/providers/download";
 import { useNotification } from "~/providers/notification";
+import { useUser } from "~/providers/user";
 import { Routes } from "~/utils/routes";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 interface usePreviewPopupProps {
-  downloadItem: DownloadsItemDto;
+  project: ProjectDto;
   onClose?: () => void;
 }
 
-export const usePreviewPopup = ({ downloadItem, onClose }: usePreviewPopupProps) => {
+export const usePreviewPopup = ({ project, onClose }: usePreviewPopupProps) => {
   const { sendNotification } = useNotification();
   const navigate = useNavigate();
   const [cookie, setVoucher] = useCookies(["voucher"]);
+
   const [voucherCode, setVoucherCode] = useState<string>("");
   const [selectedTimeframe, setSelectedTimeframe] = useState<string | undefined>(undefined);
-  const { generateDownload, openLinkvertise } = useContent();
-  const { createSession, offers, activateVoucher } = useCheckout();
 
-  const isBetterBedrockItem = downloadItem.betterBedrockContent;
+  const { generateDownload, openLinkvertise, getLinkvertiseUrl } = useDownload();
+  const { createSession, offers, activateVoucher } = useCheckout();
+  const { findUserById } = useUser();
+
+  const isBetterBedrockItem = project.betterBedrockContent;
 
   const useVoucher = async () => {
     const voucher = await activateVoucher(undefined, voucherCode);
@@ -97,18 +101,33 @@ export const usePreviewPopup = ({ downloadItem, onClose }: usePreviewPopupProps)
   };
 
   const download = async () => {
-    await generateDownload(downloadItem.downloadId);
-
+    await generateDownload(project);
+    const creator = await findUserById(project.userId);
     if (verifyVoucher()) {
       navigate(Routes.FETCH);
       return;
     }
-    openLinkvertise();
+
+    const linkvertiseId = creator?.customLinkvertise
+      ? (creator.linkvertiseId ?? import.meta.env.VITE_LINKVERTISE_ID)
+      : import.meta.env.VITE_LINKVERTISE_ID;
+
+    openLinkvertise(linkvertiseId);
+  };
+
+  const getLinkvertiseId = async (): Promise<string> => {
+    const creator = await findUserById(project.userId);
+
+    const linkvertiseId = creator?.customLinkvertise
+      ? (creator.linkvertiseId ?? import.meta.env.VITE_LINKVERTISE_ID)
+      : import.meta.env.VITE_LINKVERTISE_ID;
+
+    return getLinkvertiseUrl(linkvertiseId);
   };
 
   useEffect(() => {
     if (verifyVoucher()) {
-      generateDownload(downloadItem.downloadId).then(() => {
+      generateDownload(project).then(() => {
         navigate(Routes.FETCH);
       });
     }
@@ -141,6 +160,7 @@ export const usePreviewPopup = ({ downloadItem, onClose }: usePreviewPopupProps)
     setVoucherCode,
     useVoucher,
     download,
+    getLinkvertiseId,
     purchase,
     cookie,
   };

@@ -16,7 +16,7 @@ export const Hero = () => {
 
   return (
     <div className={styles.hero}>
-      <HeroHeader downloadItem={downloadItem} />
+      <HeroHeader project={downloadItem} />
       <LoadingBar className={styles.bar} percentage={downloadProgress} />
       <BedrockText
         type="p"

@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate, useLocation } from "react-router-dom";
 import { VoucherDto } from "~/lib/api";
-import { useContent } from "~/providers/content";
 import { useNotification } from "~/providers/notification";
 import { AxiosError } from "axios";
 import { Routes } from "~/utils/routes";
+import { useDownload } from "~/providers/download";
 
 export const useHero = () => {
   const [cookie, _, removeCookie] = useCookies(["voucher"]);
-  const { verifyDownload, download, downloadProgress, downloadItem, downloading } = useContent();
+  const { verifyDownload, download, downloadProgress, downloadItem, downloading } = useDownload();
   const { sendNotification } = useNotification();
   const [verified, setVerified] = useState(false);
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import { Popup } from "~/components/bedrock/popup";
 import { styles } from ".";
 import { CardDivider } from "~/components/bedrock/card";
-import { DownloadsItemDto, VoucherDto } from "~/lib/api";
+import { ProjectDto, VoucherDto } from "~/lib/api";
 import { PreviewPopupFooter } from "~/pages/preview/components/hero/preview-popup/preview-popup-footer";
 import { PreviewPopupPlans } from "~/pages/preview/components/hero/preview-popup/preview-popup-plans";
 import { PreviewPopupRecommended } from "~/pages/preview/components/hero/preview-popup/preview-popup-recommended";
@@ -10,11 +10,11 @@ import { PreviewPopupVoucher } from "~/pages/preview/components/hero/preview-pop
 import { usePreviewPopup } from "~/pages/preview/components/hero/preview-popup/use-preview-popup";
 
 interface PreviewPopupProps {
-  downloadItem: DownloadsItemDto;
+  project: ProjectDto;
   onClose?: () => void;
 }
 
-export const PreviewPopup = ({ onClose, downloadItem }: PreviewPopupProps) => {
+export const PreviewPopup = ({ onClose, project }: PreviewPopupProps) => {
   const {
     categories,
     handleKeyDown,
@@ -26,12 +26,13 @@ export const PreviewPopup = ({ onClose, downloadItem }: PreviewPopupProps) => {
     download,
     purchase,
     cookie,
-  } = usePreviewPopup({ downloadItem, onClose });
+    getLinkvertiseId,
+  } = usePreviewPopup({ project, onClose });
 
   if (cookie.voucher || selectedTimeframe === undefined) {
     if (cookie.voucher satisfies VoucherDto) {
       const bbOnly = cookie.voucher.betterBedrockContentOnly;
-      if (!bbOnly || (downloadItem.betterBedrockContent && bbOnly)) {
+      if (!bbOnly || (project.betterBedrockContent && bbOnly)) {
         if (onClose) onClose!();
         return <></>;
       }
@@ -65,6 +66,7 @@ export const PreviewPopup = ({ onClose, downloadItem }: PreviewPopupProps) => {
           selectedTimeframe={selectedTimeframe}
           download={download}
           purchase={purchase}
+          getLinkvertiseId={getLinkvertiseId}
         />
         <CardDivider />
         <PreviewPopupFooter />
