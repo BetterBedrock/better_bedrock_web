@@ -29,6 +29,7 @@ export class CommentDto {
     deleted: boolean;
 
     @IsDate()
+    @IsOptional()
     @Type(() => Date)
-    deletedAt?: Date;
+    deletedAt: Date | null;
 }
