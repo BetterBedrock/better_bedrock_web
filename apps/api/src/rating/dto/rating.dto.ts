@@ -8,6 +8,7 @@ export class RatingDto {
     @Min(1)
     @Max(5)
     @IsInt()
+    @Type(() => Number)
     rating: number;
 
     @IsString()

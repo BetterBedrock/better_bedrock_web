@@ -11,7 +11,7 @@ export class RatingService {
     async rateProject(data: RateProjectDto) {
         const { userId, projectId, rating } = data;
 
-        return await this.prismaService.rating.upsert({
+        await this.prismaService.rating.upsert({
             where: { userId_projectId: { userId, projectId } },
             update: { rating },
             create: {
@@ -21,6 +21,8 @@ export class RatingService {
                 rating,
             },
         });
+
+        return await this.getProjectRating(projectId);
     }
 
     async getProjectRating(projectId: string): Promise<ProjectRatingDto> {
@@ -44,9 +46,11 @@ export class RatingService {
     }
 
     async deleteUsersRating(userId: string, projectId: string) {
-        return await this.prismaService.rating.deleteMany({
+        await this.prismaService.rating.deleteMany({
             where: { userId, projectId, projectDraft: false },
         });
+
+        return await this.getProjectRating(projectId);
     }
 
     async getProfileRating(userId: string): Promise<UserRatingDto> {
