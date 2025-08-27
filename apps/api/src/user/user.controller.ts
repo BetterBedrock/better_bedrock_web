@@ -41,7 +41,18 @@ export class UserController {
         description: "Successfully commented under a project",
         type: UserRatingDto,
     })
-    async getUserRating(@Param("id") id: string): Promise<UserRatingDto> {
-        return await this.ratingService.getProjectRating(id);
+    async profileRating(@Param("id") id: string): Promise<UserRatingDto> {
+        return await this.ratingService.getProfileRating(id);
+    }
+
+    @Get("rating/project/:projectId")
+    @ApiOkResponse({
+        description: "Successfully commented under a project",
+        type: Number,
+    })
+    @UseGuards(UserAuthGuard)
+    @ApiBearerAuth()
+    async userRating(@Param("projectId") projectId: string, @Req() req) {
+        return await this.ratingService.getUserRating(req.user.id, projectId);
     }
 }
