@@ -1,6 +1,5 @@
 import { Module } from "@nestjs/common";
 import { DownloadModule } from "~/download/download.module";
-import { ContentModule } from "./content/content.module";
 import { CheckoutModule } from "./checkout/checkout.module";
 import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler";
 import { APP_GUARD } from "@nestjs/core";
@@ -21,7 +20,6 @@ import { UserModule } from "~/user/user.module";
             ],
         }),
         DownloadModule,
-        ContentModule,
         CheckoutModule,
         VoucherModule,
         AuthModule,
