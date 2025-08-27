@@ -9,7 +9,7 @@ import { useState } from "react";
 export const StatisticsCard = ({
   name,
   data = [],
-  range = "7d",
+  range = "30d",
   showGraph = true,
   suffix = "",
   ...props
