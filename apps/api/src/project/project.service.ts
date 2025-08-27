@@ -9,12 +9,18 @@ import { ProjectDto } from "~/project/dto/project.dto";
 import { DeclineProjectDto } from "~/project/dto/decline-project.dto";
 import { SimpleProjectDto } from "~/project/dto/simple-project.dto";
 import { UserDto } from "~/user/dto/user.dto";
+import { SearchProjectsQueryDto } from "~/project/dto/search-project-query.dto";
+import { ProjectTagDto } from "~/project/dto/project-tag.dto";
+
+const projectInclude = {
+    tags: { select: { name: true } },
+};
 
 const simpleProjectSelect = {
     id: true,
     title: true,
     thumbnail: true,
-    tags: true,
+    tags: { select: { name: true } },
     type: true,
     lastChanged: true,
     betterBedrockContent: true,
@@ -39,8 +45,143 @@ export class ProjectService {
         return project;
     }
 
-    async findAll(): Promise<ProjectDto[]> {
-        return await this.prismaService.project.findMany();
+    async search(query: SearchProjectsQueryDto) {
+        const { text, type, page = 1 } = query;
+        const limit = 20;
+        const candidateLimit = 200;
+
+        // --- 1. Build base filter ---
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const baseWhere: any = { draft: false };
+        if (type) baseWhere.type = type;
+
+        // --- 2. Short-circuit: No text, simple DB query ---
+        if (!text?.trim()) {
+            const [items, total] = await this.prismaService.$transaction([
+                this.prismaService.project.findMany({
+                    where: baseWhere,
+                    orderBy: { lastChanged: "desc" },
+                    select: simpleProjectSelect,
+                    skip: (page - 1) * limit,
+                    take: limit,
+                }),
+                this.prismaService.project.count({ where: baseWhere }),
+            ]);
+            return { items, total, page, totalPages: Math.ceil(total / limit) };
+        }
+
+        // --- 3. Normalize and tokenize input ---
+        function tokenize(s: string) {
+            return Array.from(
+                new Set(
+                    s
+                        .toLowerCase()
+                        .split(/[\s\W_]+/)
+                        .map((tok) => tok.trim())
+                        .filter((tok) => tok.length >= 2),
+                ),
+            ).slice(0, 10);
+        }
+        const tokens = tokenize(text);
+
+        // If text doesn't produce tokens, fallback to general contains
+        if (tokens.length === 0) {
+            const where = {
+                ...baseWhere,
+                OR: [
+                    { title: { contains: text, mode: "insensitive" } },
+                    { user: { is: { name: { contains: text, mode: "insensitive" } } } },
+                    { tags: { some: { name: { contains: text, mode: "insensitive" } } } },
+                ],
+            };
+            const [items, total] = await this.prismaService.$transaction([
+                this.prismaService.project.findMany({
+                    where,
+                    orderBy: { lastChanged: "desc" },
+                    select: simpleProjectSelect,
+                    skip: (page - 1) * limit,
+                    take: limit,
+                }),
+                this.prismaService.project.count({ where }),
+            ]);
+
+            return { items, total, page, totalPages: Math.ceil(total / limit) };
+        }
+
+        // --- 4. Broad DB fetch (matches any token in title/user/tags) ---
+        const anyMatchWhere = {
+            ...baseWhere,
+            OR: tokens.flatMap((tok) => [
+                { title: { contains: tok, mode: "insensitive" } },
+                { user: { is: { name: { contains: tok, mode: "insensitive" } } } },
+                { tags: { some: { name: { contains: tok, mode: "insensitive" } } } },
+            ]),
+        };
+
+        const candidates = await this.prismaService.project.findMany({
+            where: anyMatchWhere,
+            orderBy: { lastChanged: "desc" },
+            select: {
+                ...simpleProjectSelect,
+                description: true,
+                user: { select: { name: true, id: true } },
+                tags: true,
+                lastChanged: true,
+            },
+            take: candidateLimit,
+        });
+
+        Logger.error({ candidates });
+
+        // --- 5. Scoring: TAGS are crucial! ---
+        const SCORE_WEIGHTS = {
+            title: 5,
+            tag: 3,
+            username: 2,
+            description: 1,
+        };
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        function scoreProject(proj: any) {
+            let score = 0;
+            if (!proj) return score;
+            const title = (proj.title ?? "").toLowerCase();
+            const username = (proj.user?.name ?? "").toLowerCase();
+            const tags = (proj.tags ?? []).map((t: ProjectTagDto) => t.name.toLowerCase());
+            const desc = proj.description ? JSON.stringify(proj.description).toLowerCase() : "";
+
+            console.log({ desc });
+
+            for (const tok of tokens) {
+                if (tags.some((tag) => tag.includes(tok))) score += SCORE_WEIGHTS.tag;
+                if (title.includes(tok)) score += SCORE_WEIGHTS.title;
+                if (username.includes(tok)) score += SCORE_WEIGHTS.username;
+                if (desc.includes(tok)) score += SCORE_WEIGHTS.description;
+            }
+            return score;
+        }
+
+        const scored = candidates
+            .map((proj) => ({ proj, score: scoreProject(proj) }))
+            .filter((item) => item.score > 0)
+            .sort((a, b) =>
+                b.score !== a.score
+                    ? b.score - a.score
+                    : new Date(b.proj.lastChanged).getTime() -
+                      new Date(a.proj.lastChanged).getTime(),
+            );
+
+        Logger.error({ score: scoreProject(candidates[0]) });
+
+        const total = scored.length;
+        const paged = scored.slice((page - 1) * limit, page * limit).map((s) => s.proj);
+
+        return {
+            items: paged,
+            total,
+            page,
+            totalPages: Math.ceil(total / limit),
+        };
     }
 
     async findOne(id: string) {
@@ -62,12 +203,14 @@ export class ProjectService {
     async projectDetails(id: string): Promise<ProjectDto> {
         return await this.prismaService.project.findUniqueOrThrow({
             where: { id_draft: { id, draft: false } },
+            include: projectInclude,
         });
     }
 
     async draftDetails(id: string): Promise<ProjectDto> {
         return await this.prismaService.project.findUniqueOrThrow({
             where: { id_draft: { id, draft: true } },
+            include: projectInclude,
         });
     }
 
@@ -106,6 +249,7 @@ export class ProjectService {
     async publish(id: string) {
         const draftProject = await this.prismaService.project.findUnique({
             where: { id_draft: { id, draft: true } },
+            include: { tags: true },
         });
 
         const oldReleasedProject = await this.prismaService.project.findUnique({
@@ -133,9 +277,13 @@ export class ProjectService {
               )
             : null;
 
-        Logger.error({ updatedThumbnail, updatedDownloadFile, updatedDescription });
+        const { id: projectId, tags, ...rest } = draftProject;
+        const releaseTags = tags.map((tag) => ({
+            name: tag.name,
+        }));
 
-        const { id: projectId, ...rest } = draftProject;
+        await this.prismaService.tag.deleteMany({ where: { projectId: id, projectDraft: false } });
+
         const releaseProjectData = {
             ...rest,
             draft: false,
@@ -146,6 +294,20 @@ export class ProjectService {
             thumbnail: updatedThumbnail,
             downloadFile: updatedDownloadFile,
             error: null,
+            tags: {
+                connectOrCreate: releaseTags.map((tag) => ({
+                    where: {
+                        projectId_projectDraft_name: {
+                            name: tag.name,
+                            projectDraft: false,
+                            projectId,
+                        },
+                    },
+                    create: {
+                        name: tag.name,
+                    },
+                })),
+            },
         };
 
         const releaseProject = await this.prismaService.project.upsert({
@@ -177,13 +339,21 @@ export class ProjectService {
             throw new BadRequestException("Project has already been submitted");
         }
 
-        const updateData = {
+        const tags = data.tags?.map((tag) => tag.name) ?? [];
+        const updateData: Prisma.ProjectUpdateInput = {
             ...data,
             description: data.description as Prisma.InputJsonValue | undefined,
+            ...(data.tags !== undefined
+                ? {
+                      tags: await this.buildTagUpdate(project.id, tags),
+                  }
+                : { tags: undefined }),
         };
+
         const updatedProject = await this.prismaService.project.update({
             where: { id_draft: { id: project.id, draft: true } },
             data: updateData,
+            include: projectInclude,
         });
 
         if (data.description) {
@@ -196,6 +366,46 @@ export class ProjectService {
         }
 
         return updatedProject;
+    }
+
+    private async buildTagUpdate(
+        projectId: string,
+        tags: string[],
+    ): Promise<Prisma.TagUpdateManyWithoutProjectNestedInput> {
+        if (tags.length === 0) {
+            return { deleteMany: {} };
+        }
+
+        const existingTags = await this.prismaService.tag.findMany({
+            where: { projectId, projectDraft: true },
+            select: { name: true },
+        });
+
+        const existingTagNames = new Set(existingTags.map((t) => t.name));
+        const newTagNames = new Set(tags);
+
+        const tagsToDelete = existingTagNames.difference(newTagNames);
+        const tagsToCreate = newTagNames.difference(existingTagNames);
+
+        return {
+            ...(tagsToDelete.size > 0 && {
+                deleteMany: { name: { in: [...tagsToDelete] } },
+            }),
+            ...(tagsToCreate.size > 0 && {
+                connectOrCreate: [...tagsToCreate].map((tag) => ({
+                    where: {
+                        projectId_projectDraft_name: {
+                            projectId,
+                            projectDraft: true,
+                            name: tag,
+                        },
+                    },
+                    create: {
+                        name: tag,
+                    },
+                })),
+            }),
+        };
     }
 
     async submitted(): Promise<SimpleProjectDto[]> {

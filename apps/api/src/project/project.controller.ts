@@ -10,6 +10,7 @@ import {
     UploadedFile,
     BadRequestException,
     Delete,
+    Query,
 } from "@nestjs/common";
 import { ProjectService } from "./project.service";
 import { CreateProjectDto } from "./dto/create-project.dto";
@@ -32,7 +33,9 @@ import { RateProjectParamsDto } from "~/rating/dto/rate-project-params.dto";
 import { CommentService } from "~/comment/comment.service";
 import { PostCommentParamsDto } from "~/comment/dto/post-comment-params.dto";
 import { ReplyToCommentParamsDto } from "~/comment/dto/reply-to-comment-params.dto";
-import { CommentDto } from "~/comment/dto/comment.dto";
+import { ProjectCommentDto } from "~/comment/dto/project-comment.dto";
+import { SearchProjectsQueryDto } from "~/project/dto/search-project-query.dto";
+import { SearchProjectsDto } from "~/project/dto/search-project.dto";
 
 @Controller("project")
 export class ProjectController {
@@ -61,7 +64,7 @@ export class ProjectController {
             itemWeight: 0,
             title: data.title,
             description: "",
-            type: ProjectType.texturepack,
+            type: ProjectType.texturepacks,
         });
     }
 
@@ -93,8 +96,8 @@ export class ProjectController {
     }
 
     @Get()
-    findAll(): Promise<ProjectDto[]> {
-        return this.projectService.findAll();
+    search(@Query() query: SearchProjectsQueryDto): Promise<SearchProjectsDto> {
+        return this.projectService.search(query);
     }
 
     @Get("user/:id")
@@ -188,11 +191,10 @@ export class ProjectController {
 
     @Post("rate/:projectId/:rating")
     @UseGuards(UserAuthGuard)
-    @ApiOkResponse({ description: "Successfully rated project" })
+    @ApiOkResponse({ description: "Successfully rated project", type: ProjectRatingDto })
     @ApiBearerAuth()
     async rateProject(@Req() req, @Param() params: RateProjectParamsDto) {
-        await this.ratingService.rateProject({ userId: req.user.id, ...params });
-        return;
+        return await this.ratingService.rateProject({ userId: req.user.id, ...params });
     }
 
     @Get("rate/:projectId")
@@ -206,22 +208,28 @@ export class ProjectController {
 
     @Delete("rate/:projectId")
     @UseGuards(UserAuthGuard)
-    @ApiOkResponse({ description: "Successfully deleted rating for given project" })
+    @ApiOkResponse({
+        description: "Successfully deleted rating for given project",
+        type: ProjectRatingDto,
+    })
     @ApiBearerAuth()
     async deleteRating(@Req() req, @Param("projectId") projectId: string) {
-        await this.ratingService.deleteUsersRating(req.user.id, projectId);
-        return;
+        return await this.ratingService.deleteUsersRating(req.user.id, projectId);
     }
 
     @Get("comments/:projectId")
-    @ApiOkResponse({ description: "Returns comments under a project", type: CommentDto })
+    @ApiOkResponse({
+        description: "Returns comments under a project",
+        type: ProjectCommentDto,
+        isArray: true,
+    })
     async comments(@Param("projectId") projectId: string) {
         return await this.commentService.getComments(projectId);
     }
 
     @Post("comment/:projectId")
     @UseGuards(UserAuthGuard)
-    @ApiOkResponse({ description: "Successfully posted a comment", type: CommentDto })
+    @ApiOkResponse({ description: "Successfully posted a comment", type: ProjectCommentDto })
     @ApiBearerAuth()
     async postComment(
         @Param("projectId") projectId: string,
@@ -231,9 +239,9 @@ export class ProjectController {
         return await this.commentService.postComment({ ...body, authorId: req.user.id, projectId });
     }
 
-    @Post("comment/:projectId/reply/:commentId")
+    @Post("comment/:projectId/reply/:parentId")
     @UseGuards(UserAuthGuard)
-    @ApiOkResponse({ description: "Successfully posted a reply", type: CommentDto })
+    @ApiOkResponse({ description: "Successfully posted a reply", type: ProjectCommentDto })
     @ApiBearerAuth()
     async replyToComment(
         @Param() params: ReplyToCommentParamsDto,

@@ -3,6 +3,7 @@ import { ProjectType } from "@prisma/client";
 import { JsonValue } from "@prisma/client/runtime/library";
 import { Type } from "class-transformer";
 import { IsBoolean, IsDate, IsNumber, IsOptional, IsString } from "class-validator";
+import { TagNameDto } from "~/project/dto/tag-name.dto";
 
 export class ProjectDto {
     @IsString()
@@ -43,7 +44,7 @@ export class ProjectDto {
     @IsOptional()
     downloadFile: string | null;
 
-    tags: string[];
+    tags: TagNameDto[];
 
     @ApiProperty({ enum: ProjectType, enumName: "ProjectType" })
     type: ProjectType;
