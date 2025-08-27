@@ -8,26 +8,31 @@ import WhiteUnchecked from "~/assets/ui/buttons/white/unchecked.png";
 import WhiteUncheckedHover from "~/assets/ui/buttons/white/unchecked_hover.png";
 import WhiteChecked from "~/assets/ui/buttons/white/checked.png";
 import WhiteCheckedHover from "~/assets/ui/buttons/white/checked_hover.png";
+import WhiteCheckedDefault from "~/assets/ui/buttons/white/default.png";
 
 import GreenUnchecked from "~/assets/ui/buttons/green/unchecked.png";
 import GreenUncheckedHover from "~/assets/ui/buttons/green/unchecked_hover.png";
 import GreenChecked from "~/assets/ui/buttons/green/checked.png";
 import GreenCheckedHover from "~/assets/ui/buttons/green/checked_hover.png";
+import GreenCheckedDefault from "~/assets/ui/buttons/green/default.png";
 
 import DarkUnchecked from "~/assets/ui/buttons/dark/unchecked.png";
 import DarkUncheckedHover from "~/assets/ui/buttons/dark/unchecked_hover.png";
 import DarkChecked from "~/assets/ui/buttons/dark/checked.png";
 import DarkCheckedHover from "~/assets/ui/buttons/dark/checked_hover.png";
+import DarkCheckedDefault from "~/assets/ui/buttons/dark/default.png";
 
 import GoldUnchecked from "~/assets/ui/buttons/gold/unchecked.png";
 import GoldUncheckedHover from "~/assets/ui/buttons/gold/unchecked_hover.png";
 import GoldChecked from "~/assets/ui/buttons/gold/checked.png";
 import GoldCheckedHover from "~/assets/ui/buttons/gold/checked_hover.png";
+import GoldCheckedDefault from "~/assets/ui/buttons/gold/default.png";
 
 import RedUnchecked from "~/assets/ui/buttons/red/unchecked.png";
 import RedUncheckedHover from "~/assets/ui/buttons/red/unchecked_hover.png";
 import RedChecked from "~/assets/ui/buttons/red/checked.png";
 import RedCheckedHover from "~/assets/ui/buttons/red/checked_hover.png";
+import RedCheckedDefault from "~/assets/ui/buttons/red/default.png";
 
 export type ButtonType = "green" | "white" | "dark" | "gold" | "red";
 
@@ -43,6 +48,7 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   lockClicking?: boolean;
   isClicked?: boolean;
   summary?: boolean;
+  isToggled?: boolean;
   buttonType?: "button" | "reset" | "submit" | undefined;
 }
 
@@ -60,6 +66,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
       isClicked,
       summary = false,
       buttonType,
+      isToggled = false,
       onClick,
       ...props
     },
@@ -119,31 +126,35 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
 
     const handleEnter = () => setHover(true);
 
-    let unchecked, uncheckedHover, checked, checkedHover;
+    let unchecked, uncheckedHover, checked, checkedHover, toggled;
     switch (type) {
       case "gold":
         unchecked = GoldUnchecked;
         uncheckedHover = GoldUncheckedHover;
         checked = GoldChecked;
         checkedHover = GoldCheckedHover;
+        toggled = GoldCheckedDefault;
         break;
       case "red":
         unchecked = RedUnchecked;
         uncheckedHover = RedUncheckedHover;
         checked = RedChecked;
         checkedHover = RedCheckedHover;
+        toggled = RedCheckedDefault;
         break;
       case "green":
         unchecked = GreenUnchecked;
         uncheckedHover = GreenUncheckedHover;
         checked = GreenChecked;
         checkedHover = GreenCheckedHover;
+        toggled = GreenCheckedDefault;
         break;
       case "dark":
         unchecked = DarkUnchecked;
         uncheckedHover = DarkUncheckedHover;
         checked = DarkChecked;
         checkedHover = DarkCheckedHover;
+        toggled = DarkCheckedDefault;
         break;
       case "white":
       default:
@@ -151,6 +162,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
         uncheckedHover = WhiteUncheckedHover;
         checked = WhiteChecked;
         checkedHover = WhiteCheckedHover;
+        toggled = WhiteCheckedDefault;
         break;
     }
 
@@ -158,6 +170,11 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
     const finalClicked = isClicked !== undefined ? isClicked : clicked;
     if (finalClicked) {
       hovering = hover ? checkedHover : checked;
+    }
+
+    if (isToggled) {
+      hovering = toggled;
+      // finalClicked = toggled;
     }
 
     useEffect(() => {
@@ -175,7 +192,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
       return () => {
         imageRefs.forEach((img) => (img.src = ""));
       };
-    }, [unchecked, uncheckedHover, checked, checkedHover, preload]);
+    }, [unchecked, uncheckedHover, checked, checkedHover, toggled, preload]);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const Component: any = summary ? "summary" : "button";
@@ -214,5 +231,3 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
     );
   },
 );
-
-Button.displayName = "Button";
