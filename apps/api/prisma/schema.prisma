@@ -67,13 +67,12 @@ model User {
 }
 
 enum ProjectType {
-  world
-  texturepack
-  shaderpack
-  behaviourpack
-  addon
-  skin
-  script
+  texturepacks
+  addons
+  scripts
+  maps
+  skinPacks
+  other
 }
 
 model Project {
@@ -93,7 +92,7 @@ model Project {
   thumbnail    String?
   downloadFile String?
 
-  tags String[]
+  tags Tag[]
   type ProjectType
 
   userId String
@@ -104,6 +103,17 @@ model Project {
 
   @@id([id, draft])
   @@unique([id, draft])
+}
+
+model Tag {
+  name String
+
+  projectId    String
+  projectDraft Boolean
+
+  project Project @relation(fields: [projectId, projectDraft], references: [id, draft], onDelete: Cascade)
+
+  @@unique([projectId, projectDraft, name])
 }
 
 model Comment {
@@ -117,7 +127,7 @@ model Comment {
   project      Project @relation(fields: [projectId, projectDraft], references: [id, draft])
 
   parentId String?
-  parent   Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  parent   Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
   replies  Comment[] @relation("CommentReplies")
 
   pinned Boolean @default(false)
@@ -141,7 +151,7 @@ model Rating {
 
   projectId    String
   projectDraft Boolean
-  project      Project @relation(fields: [projectId, projectDraft], references: [id, draft])
+  project      Project @relation(fields: [projectId, projectDraft], references: [id, draft], onDelete: Cascade)
 
   createdAt DateTime @default(now())
 
