@@ -1,8 +1,20 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { PostCommentDto } from "~/comment/dto/post-comment.dto";
+import { ProjectCommentDto } from "~/comment/dto/project-comment.dto";
 import { ReplyToCommentDto } from "~/comment/dto/reply-to-comment.dto";
 import { PrismaService } from "~/prisma.service";
 import { ProjectService } from "~/project/project.service";
+
+const commentInclude = {
+    author: { select: { id: true, name: true } },
+    replies: {
+        where: { deleted: false },
+        orderBy: { createdAt: "asc" },
+        include: {
+            author: { select: { id: true, name: true } },
+        },
+    },
+} as const;
 
 @Injectable()
 export class CommentService {
@@ -21,17 +33,15 @@ export class CommentService {
 
         return await this.prismaService.comment.create({
             data: { authorId, projectId, projectDraft: false, content },
+            include: commentInclude,
         });
     }
 
-    async getComments(projectId: string) {
+    async getComments(projectId: string): Promise<ProjectCommentDto[]> {
         return await this.prismaService.comment.findMany({
-            where: { projectId, projectDraft: false, deleted: false },
+            where: { projectId, projectDraft: false, deleted: false, parentId: null },
             orderBy: { createdAt: "desc" },
-            include: {
-                author: { select: { id: true, name: true } },
-                replies: { where: { deleted: false } },
-            },
+            include: commentInclude,
         });
     }
 
@@ -73,6 +83,7 @@ export class CommentService {
 
         return await this.prismaService.comment.create({
             data: { authorId, projectId, projectDraft: false, content, parentId },
+            include: commentInclude,
         });
     }
 
