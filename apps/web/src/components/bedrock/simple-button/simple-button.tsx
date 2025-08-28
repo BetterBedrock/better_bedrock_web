@@ -87,5 +87,3 @@ export const SimpleButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, Si
     );
   },
 );
-
-SimpleButton.displayName = "SimpleButton";
