@@ -3,18 +3,16 @@
 
 ## Enum
 
-* `World` (value: `'world'`)
+* `Texturepacks` (value: `'texturepacks'`)
 
-* `Texturepack` (value: `'texturepack'`)
+* `Addons` (value: `'addons'`)
 
-* `Shaderpack` (value: `'shaderpack'`)
+* `Scripts` (value: `'scripts'`)
 
-* `Behaviourpack` (value: `'behaviourpack'`)
+* `Maps` (value: `'maps'`)
 
-* `Addon` (value: `'addon'`)
+* `SkinPacks` (value: `'skinPacks'`)
 
-* `Skin` (value: `'skin'`)
-
-* `Script` (value: `'script'`)
+* `Other` (value: `'other'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

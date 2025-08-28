@@ -4,13 +4,14 @@ All URIs are relative to *http://localhost*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|[**userControllerGetUserRating**](#usercontrollergetuserrating) | **GET** /user/rate/{id} | |
+|[**userControllerProfileRating**](#usercontrollerprofilerating) | **GET** /user/rate/{id} | |
 |[**userControllerUpdateProfile**](#usercontrollerupdateprofile) | **PATCH** /user | |
 |[**userControllerUserInfoById**](#usercontrolleruserinfobyid) | **GET** /user/id/{id} | |
 |[**userControllerUserInfoByName**](#usercontrolleruserinfobyname) | **GET** /user/name/{name} | |
+|[**userControllerUserRating**](#usercontrolleruserrating) | **GET** /user/rating/project/{projectId} | |
 
-# **userControllerGetUserRating**
-> UserRatingDto userControllerGetUserRating()
+# **userControllerProfileRating**
+> UserRatingDto userControllerProfileRating()
 
 
 ### Example
@@ -26,7 +27,7 @@ const apiInstance = new UserApi(configuration);
 
 let id: string; // (default to undefined)
 
-const { status, data } = await apiInstance.userControllerGetUserRating(
+const { status, data } = await apiInstance.userControllerProfileRating(
     id
 );
 ```
@@ -207,6 +208,56 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | Returns user object |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userControllerUserRating**
+> number userControllerUserRating()
+
+
+### Example
+
+```typescript
+import {
+    UserApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new UserApi(configuration);
+
+let projectId: string; // (default to undefined)
+
+const { status, data } = await apiInstance.userControllerUserRating(
+    projectId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**number**
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successfully commented under a project |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

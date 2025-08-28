@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **{ [key: string]: any; }** |  | [optional] [default to undefined]
 **type** | [**ProjectType**](ProjectType.md) |  | [optional] [default to undefined]
-**tags** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
 **thumbnail** | **string** |  | [optional] [default to undefined]
+**tags** | [**Array&lt;TagNameDto&gt;**](TagNameDto.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -18,8 +18,8 @@ import { UpdateProjectDto } from './api';
 const instance: UpdateProjectDto = {
     description,
     type,
-    tags,
     thumbnail,
+    tags,
 };
 ```
 

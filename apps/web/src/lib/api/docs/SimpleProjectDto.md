@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **id** | **string** |  | [default to undefined]
 **title** | **string** |  | [default to undefined]
 **thumbnail** | **string** |  | [default to undefined]
-**tags** | **Array&lt;string&gt;** |  | [default to undefined]
+**tags** | [**Array&lt;TagNameDto&gt;**](TagNameDto.md) |  | [default to undefined]
 **lastChanged** | **string** |  | [default to undefined]
 **betterBedrockContent** | **boolean** |  | [default to undefined]
 **draft** | **boolean** |  | [default to undefined]

@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **error** | **string** |  | [default to undefined]
 **thumbnail** | **string** |  | [default to undefined]
 **downloadFile** | **string** |  | [default to undefined]
-**tags** | **Array&lt;string&gt;** |  | [default to undefined]
+**tags** | [**Array&lt;TagNameDto&gt;**](TagNameDto.md) |  | [default to undefined]
 **userId** | **string** |  | [default to undefined]
 
 ## Example
