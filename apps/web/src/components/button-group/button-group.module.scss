@@ -13,7 +13,7 @@
 }
 .buttonGroup > :global(*:hover),
 .buttonGroup > :global(*:focus-within) {
-  z-index: 2;
+  z-index: 1;
 }
 
 .buttonGroup[data-direction="horizontal"],
@@ -32,7 +32,7 @@
 }
 
 .buttonGroup[data-direction="vertical"] > :global(*:not(:first-child)) {
-  margin-top: calc(-1 * math.floor(g.$minecraftdepth));
+  margin-top: calc(-1 * g.$minecraftdepth);
 }
 
 @media (max-width: g.$breakpoint-mobileL) {
@@ -43,6 +43,6 @@
 
   .buttonGroup[data-direction="responsive"] > :global(*:not(:first-child)) {
     margin-left: 0;
-    margin-top: calc(-1 * math.floor(g.$minecraftdepth));
+    margin-top: calc(-1 * g.$minecraftdepth);
   }
 }
