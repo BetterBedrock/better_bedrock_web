@@ -1,24 +1,52 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { styles } from ".";
 import Steve from "~/assets/images/avatars/Steve.png";
+import { useRef, useState } from "react";
+import { Input } from "~/components/bedrock/input";
+import { Button } from "~/components/bedrock/button";
+import { ProjectCommentDto } from "~/lib/api";
 
 interface CommentProps {
-  creator: string;
-  comment: string;
+  comment: ProjectCommentDto;
   subComments?: CommentProps[]; // For future use with nested comments
+  onReply?: (comment: string, parentId: string) => void;
 }
 
-export const Comment = ({ creator, comment, subComments }: CommentProps) => {
+export const Comment = ({ comment, subComments, onReply }: CommentProps) => {
+  const [isReplying, setIsReplying] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const getComment = (user: string, content: string, reply: boolean = false) => (
     <div className={styles.header}>
       <img src={Steve} className={styles.avatar} />
 
       <div>
         <BedrockText text={`@${user}`} type="p" color="white" textAlign="start" font="Minecraft" />
-        <BedrockText text={content} type="p" color="white" />
+        <BedrockText text={content} type="p" color="white" textAlign="start" />
 
-        {reply && (
-            <BedrockText text="Reply" type="p" textAlign="start" color="#303030" />
+        {reply && !isReplying && (
+          <BedrockText
+            text="Reply"
+            type="p"
+            textAlign="start"
+            color="#303030"
+            onClick={() => setIsReplying(true)}
+          />
+        )}
+        {isReplying && reply && (
+          <div className={styles.reply}>
+            <Input ref={inputRef} placeholder="Response..." />
+            <Button
+              type="green"
+              center
+              onClick={() => onReply?.(inputRef.current?.value ?? "", comment.id)}
+            >
+              <BedrockText color="white" type="p" text="Submit" />
+            </Button>
+            <Button type="dark" center onClick={() => setIsReplying(false)}>
+              <BedrockText color="white" type="p" text="X" />
+            </Button>
+          </div>
         )}
       </div>
     </div>
@@ -26,8 +54,8 @@ export const Comment = ({ creator, comment, subComments }: CommentProps) => {
 
   return (
     <div className={styles.comment}>
-      {getComment(creator, comment, true)}
-      {subComments?.map((c) => getComment(c.creator, c.comment))}
+      {getComment(comment.author.name, comment.content, true)}
+      {subComments?.map((c) => getComment(c.comment.author.name, c.comment.content))}
     </div>
   );
 };
