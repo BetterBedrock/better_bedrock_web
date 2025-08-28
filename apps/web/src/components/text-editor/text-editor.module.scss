@@ -1,0 +1,96 @@
+@use "~/utils" as g;
+
+.editor {
+  width: 100%;
+}
+
+.content {
+  margin-top: g.$padding-sm;
+
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.toolbar {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.content {
+  /* Ensure each top-level node has relative positioning 
+   so absolutely positioned placeholders work correctly */
+
+  :global(.tiptap.ProseMirror) > * {
+    position: relative;
+  }
+
+  :global(.tiptap.ProseMirror) {
+    /* Paragraph Node */
+    white-space: pre-wrap;
+    outline: none;
+
+    p:not(:first-child) {
+      margin-top: g.$padding-md;
+    }
+
+    /* List Node */
+    ol,
+    ul {
+      margin-top: g.$padding-md;
+      margin-bottom: g.$padding-md;
+      padding-left: g.$padding-md;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      ol,
+      ul {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    li {
+      p {
+        margin-top: 0;
+        line-height: g.$line-height-lg;
+      }
+    }
+
+    ul {
+      list-style: disc;
+
+      ul {
+        list-style: circle;
+
+        ul {
+          list-style: square;
+        }
+      }
+    }
+
+    /* Image */
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      content: "https://";
+      margin: g.$padding-md 0;
+      outline: g.$minecraftdepth solid transparent;
+    }
+
+    :global(.ProseMirror-selectednode) {
+      outline-color: var(--tt-brand-color-500);
+    }
+  }
+}
