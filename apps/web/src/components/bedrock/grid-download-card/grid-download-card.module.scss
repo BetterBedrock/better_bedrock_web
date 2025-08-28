@@ -42,10 +42,25 @@
   align-items: end;
 }
 
-.title {
-  background-color: rgba(0, 0, 0, 0.5);
+.opacity {
   padding: g.$padding-xxsm;
+  // gap: calc(g.$padding-xxsm * -1);
+  background-color: rgba(0, 0, 0, 0.5);
+  width: fit-content;
 }
+
+.type {
+  padding-bottom: 0;
+}
+
+// .title {
+//   padding-top: 0;
+//   // white-space: pre-line;
+// }
+
+// .type {
+//   padding-bottom: 0;
+// }
 
 .tags {
   position: absolute;

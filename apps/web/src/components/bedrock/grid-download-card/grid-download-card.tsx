@@ -10,6 +10,7 @@ import { baseUrl } from "~/utils/url";
 import { Link } from "~/components/link";
 import { Routes } from "~/utils/routes";
 import { PreviewMode } from "~/pages/preview";
+import { PROJECT_TYPES } from "~/assets/content/better-bedrock";
 
 interface GridDownloadCardProps {
   project: SimpleProjectDto;
@@ -32,8 +33,7 @@ export const GridDownloadCard = ({
   mode,
 }: GridDownloadCardProps) => {
   const link = () => {
-
-    if(!mode) return;
+    if (!mode) return;
     if (mode === "edit") return Routes.EDITOR + "/" + project.id;
     if (mode === "review") return Routes.REVIEW + "/" + project.id;
     return Routes.PREVIEW + "/" + project.id;
@@ -76,18 +76,27 @@ export const GridDownloadCard = ({
 
           <div className={styles.details}>
             <div className={styles.title}>
-              <BedrockText
-                text={project.title}
-                type="h2"
-                font="MinecraftTen"
-                textAlign="left"
-                color="white"
-              />
+                <BedrockText
+                  text={PROJECT_TYPES[project.type]}
+                  type="h3"
+                  font="MinecraftTen"
+                  textAlign="left"
+                  color="grey"
+                  extraClassName={clsx(styles.opacity, styles.type)}
+                />
+                <BedrockText
+                  text={project.title}
+                  type="h2"
+                  font="MinecraftTen"
+                  textAlign="left"
+                  color="white"
+                  extraClassName={clsx(styles.opacity, styles.title)}
+                />
             </div>
           </div>
           <div className={styles.tags}>
             {project.tags.map((tag) => (
-              <Tag border={["left", "bottom"]} name={tag} />
+              <Tag border={["left", "bottom"]} name={tag.name} />
             ))}
           </div>
         </div>
