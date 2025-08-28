@@ -16,4 +16,19 @@
   width: g.$icon-sm;
   height: g.$icon-sm;
   aspect-ratio: 1/1;
+
+  &.small {
+    width: g.$icon-sm;
+    height: g.$icon-sm;
+  }
+
+  &.medium {
+    width: g.$icon-md;
+    height: g.$icon-md;
+  }
+
+  &.large {
+    width: g.$icon-lg;
+    height: g.$icon-lg;
+  }
 }
