@@ -3,7 +3,6 @@
 .preview {
   width: 100%;
   gap: g.$padding-md;
-  padding: g.$padding-md;
   display: flex;
   flex-direction: column;
 
@@ -26,12 +25,11 @@
 .header {
   display: flex;
   flex-direction: row;
-  padding: g.$padding-xsm;
   gap: g.$padding-xxsm;
 }
 
 .card {
-  gap: g.$padding-sm;
+  gap: g.$padding-md;
   display: flex;
   flex-direction: column;
 }
@@ -54,8 +52,8 @@
 }
 
 .editor {
-  margin-inline: g.$padding-sm;
-  margin-block: g.$padding-sm;
+  margin-inline: calc(g.$padding-xsm * 2.5);
+  margin-block: g.$padding-xsm;
 }
 
 .picker {
@@ -85,4 +83,10 @@
   display: flex;
   flex-direction: column;
   gap: g.$padding-sm;
+}
+
+.rating {
+  width: 100%;
+  align-items: center;
+  display: inline;
 }

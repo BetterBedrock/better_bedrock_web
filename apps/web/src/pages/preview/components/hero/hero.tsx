@@ -1,20 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
-// import { Routes } from "~/utils/routes";
 import { styles, HeroTitle, HeroAction } from ".";
-
-// import { PreviewPopup } from "./preview-popup";
 import { Card, CardDivider } from "~/components/bedrock/card";
 import { Rating } from "~/components/rating";
 import Steve from "~/assets/images/avatars/Steve.png";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Link } from "~/components/link";
-import { SimpleEditor } from "~/components/tiptap-templates/simple/simple-editor";
+import { TextEditor } from "~/components/text-editor/text-editor";
 import { useProject } from "~/providers/project";
-import { ProjectDto, ProjectRatingDto, SimpleUserDto, UpdateProjectDto } from "~/lib/api";
+import {
+  ProjectCommentDto,
+  ProjectDto,
+  ProjectRatingDto,
+  ProjectType,
+  SimpleUserDto,
+  UpdateProjectDto,
+} from "~/lib/api";
 import { HeroSave } from "~/pages/preview/components/hero/hero-save";
-import { Collapsible } from "~/components/bedrock/collapsible";
 import { Button } from "~/components/bedrock/button";
 import { useNotification } from "~/providers/notification";
 import { Tag } from "~/components/bedrock/tag";
@@ -29,6 +32,8 @@ import { PreviewMode } from "~/pages/preview";
 import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-download-card";
 import { PreviewPopup } from "~/pages/preview/components/hero/preview-popup";
 import { Comment } from "~/components/comment";
+import { PROJECT_TYPES } from "~/assets/content/better-bedrock";
+import { ButtonGroup } from "~/components/button-group/button-group";
 
 interface HeroProps {
   mode: PreviewMode;
@@ -36,8 +41,7 @@ interface HeroProps {
 
 export const Hero = ({ mode }: HeroProps) => {
   const [showPopup, setShowPopup] = useState(false);
-  // const navigate = useNavigate();
-  const { sendNotification } = useNotification();
+  const { sendNotification, throwError } = useNotification();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const uploadFileRef = useRef<HTMLInputElement | null>(null);
   const [tagInput, setTagInput] = useState("");
@@ -54,14 +58,22 @@ export const Hero = ({ mode }: HeroProps) => {
     deleteProject,
     publish,
     getProjectRating,
+    getComments,
+    postComment,
+    replyToComment,
+    postRating,
+    deleteRating,
   } = useProject();
 
   const [draftProject, setDraftProject] = useState<ProjectDto | undefined>();
   const [project, setProject] = useState<ProjectDto | undefined>();
   const [creator, setCreator] = useState<SimpleUserDto | undefined>();
   const [rating, setRating] = useState<ProjectRatingDto | undefined>(undefined);
+  const [userRating, setUserRating] = useState<number | undefined>(undefined);
+  const [comments, setComments] = useState<ProjectCommentDto[] | undefined>([]);
+  const commentInputRef = useRef<HTMLInputElement>(null);
 
-  const { findUserById } = useUser();
+  const { findUserById, getUserRating } = useUser();
 
   const editorContent = useRef<Content | undefined>(draftProject?.description);
 
@@ -87,6 +99,8 @@ export const Hero = ({ mode }: HeroProps) => {
   useEffect(() => {
     if (selectedProject) {
       getProjectRating(selectedProject.id).then((data) => setRating(data));
+      getComments(selectedProject.id).then((data) => setComments(data ?? []));
+      getUserRating(selectedProject.id).then((data) => setUserRating(data));
     }
   }, [selectedProject]);
 
@@ -183,6 +197,58 @@ export const Hero = ({ mode }: HeroProps) => {
     navigate(Routes.HOME);
   };
 
+  const handlePostComment = async () => {
+    if (!selectedProject) return;
+
+    const content = commentInputRef.current?.value;
+
+    if (!content || content === "") {
+      throwError(null, "You need to provide a comment");
+    }
+
+    const comment = await postComment(selectedProject.id, content!);
+    if (!comment) return;
+
+    setComments((prev) => [...(prev ?? []), comment]);
+  };
+
+  const handlePostReply = async (reply: string, parentId: string) => {
+    if (!selectedProject) return;
+
+    if (!reply.trim()) {
+      throwError(null, "You need to provide a comment");
+      return;
+    }
+
+    const newReply = await replyToComment(selectedProject.id, parentId, reply);
+    if (!newReply) return;
+
+    setComments((prev) =>
+      (prev ?? []).map((comment) =>
+        comment.id === parentId
+          ? {
+              ...comment,
+              replies: [...(comment.replies ?? []), newReply], // immutably add reply
+            }
+          : comment,
+      ),
+    );
+  };
+
+  const handlePostRating = async (rating: number) => {
+    if (!selectedProject) return;
+
+    const newProjectRating = await postRating(selectedProject.id, rating);
+    setRating(newProjectRating);
+  };
+
+  const handleDeleteRating = async () => {
+    if (!selectedProject) return;
+
+    const newProjectRating = await deleteRating(selectedProject.id);
+    setRating(newProjectRating);
+  };
+
   return (
     <div className={styles.preview}>
       {showPopup && <PreviewPopup onClose={() => setShowPopup(false)} project={selectedProject!} />}
@@ -232,13 +298,28 @@ export const Hero = ({ mode }: HeroProps) => {
             </div>
 
             <CardDivider sub />
-            <div className={clsx(styles.editor)}>
-              <Collapsible width="100%" headerText="Project Type" contentText="" floating>
-                <Button type="dark" center>
-                  <BedrockText text="Texture Pack" type="p" color="white" />
+            <ButtonGroup className={clsx(styles.editor)}>
+              {Object.entries(PROJECT_TYPES).map(([key, label]) => (
+                <Button
+                  key={key}
+                  // transparent
+                  // toggled
+                  type={key === selectedProject.type ? "green" : "white"}
+                  onClick={() =>
+                    setDraftProject((prev) => ({ ...prev!, type: key as ProjectType }))
+                  }
+                  isClicked={key === selectedProject.type}
+                  isToggled={key === selectedProject.type}
+                  center
+                >
+                  <BedrockText
+                    text={label}
+                    color={key === selectedProject.type ? "white" : "black"}
+                    type="p"
+                  />
                 </Button>
-              </Collapsible>
-            </div>
+              ))}
+            </ButtonGroup>
 
             <CardDivider sub />
             <div className={clsx(styles.editor, styles.tagsWrapper)}>
@@ -253,9 +334,7 @@ export const Hero = ({ mode }: HeroProps) => {
                   onClick={() =>
                     setDraftProject((prev) => ({
                       ...prev!,
-                      tags: prev?.tags
-                        ? Array.from(new Set([...prev.tags, tagInput]).values())
-                        : [tagInput],
+                      tags: [...(prev?.tags ?? []), { name: tagInput }],
                     }))
                   }
                   center
@@ -264,8 +343,19 @@ export const Hero = ({ mode }: HeroProps) => {
                 </Button>
               </div>
               <div className={styles.tags}>
-                {selectedProject?.tags.map((tag) => (
-                  <Tag border={"all"} name={tag} deletable />
+                {(selectedProject?.tags ?? []).map((tag) => (
+                  <Tag
+                    border={"all"}
+                    name={tag.name}
+                    deletable
+                    onDelete={() => {
+                      setDraftProject((prev) => ({
+                        ...prev!,
+                        tags:
+                          prev?.tags.filter((existingTag) => existingTag.name !== tag.name) ?? [],
+                      }));
+                    }}
+                  />
                 ))}
               </div>
             </div>
@@ -327,7 +417,7 @@ export const Hero = ({ mode }: HeroProps) => {
               </div>
               <CardDivider sub />
               <div className={styles.editor}>
-                <SimpleEditor
+                <TextEditor
                   editable={true}
                   content={selectedProject?.description}
                   onChange={(data) => (editorContent.current = data)}
@@ -343,7 +433,7 @@ export const Hero = ({ mode }: HeroProps) => {
               </div>
               <CardDivider sub />
               <div className={styles.editor}>
-                <SimpleEditor
+                <TextEditor
                   editable={false}
                   content={selectedProject?.description}
                   onChange={(data) => (editorContent.current = data)}
@@ -383,6 +473,18 @@ export const Hero = ({ mode }: HeroProps) => {
         )}
       </div>
       {mode === "view" && (
+        <div>
+          <Rating
+            rating={userRating}
+            onReset={handleDeleteRating}
+            onUpdate={async (rating) => await handlePostRating(rating)}
+            className={styles.rating}
+            selectable={true}
+            size="medium"
+          />
+        </div>
+      )}
+      {mode === "view" && (
         <div className={styles.card}>
           <Card sub>
             <div className={styles.editor}>
@@ -390,13 +492,35 @@ export const Hero = ({ mode }: HeroProps) => {
             </div>
             <CardDivider sub />
             <div className={styles.editor}>
-              <Button className={styles.action} width="100%" type="green" center>
+              <Input className={styles.input} ref={commentInputRef} placeholder="Your Comment..." />
+              <Button
+                className={styles.action}
+                width="100%"
+                type="green"
+                onClick={handlePostComment}
+                center
+              >
                 <BedrockText text="Post Comment" type="p" color="white" />
               </Button>
             </div>
             <div className={styles.editor}>
               <div className={styles.comments}>
-                <Comment
+                {comments?.length === 0 && (
+                  <BedrockText text="No comments yet" type="p" color="white" />
+                )}
+                {comments?.map((comment, index) => (
+                  <Comment
+                    key={index}
+                    comment={comment}
+                    onReply={handlePostReply}
+                    subComments={
+                      comment.replies?.map((reply) => ({
+                        comment: reply,
+                      })) ?? []
+                    }
+                  />
+                ))}
+                {/* <Comment
                   creator="iDarkQ"
                   comment="It is a virus. I dont recommend"
                   subComments={[
@@ -411,7 +535,7 @@ export const Hero = ({ mode }: HeroProps) => {
                     { creator: "Notch", comment: "No, it is not a virus." },
                     { creator: "Herobrine", comment: "Yes, it is a virus." },
                   ]}
-                />
+                /> */}
               </div>
             </div>
           </Card>
