@@ -1,6 +1,13 @@
 import { createContext, ReactNode, useContext } from "react";
 import { useCookies } from "react-cookie";
-import { Configuration, SimpleUserDto, UpdateProfileDto, UserApi, UserDto, UserRatingDto } from "~/lib/api";
+import {
+  Configuration,
+  SimpleUserDto,
+  UpdateProfileDto,
+  UserApi,
+  UserDto,
+  UserRatingDto,
+} from "~/lib/api";
 import { useAuth } from "~/providers/auth";
 import { useNotification } from "~/providers/notification";
 import { baseUrl } from "~/utils/url";
@@ -10,6 +17,7 @@ interface UserContextProps {
   findUserById: (id: string) => Promise<SimpleUserDto | undefined>;
   updateProfile: (profile: UpdateProfileDto) => Promise<UserDto | undefined>;
   getProfileRating: (userId: string) => Promise<UserRatingDto | undefined>;
+  getUserRating: (projectId: string) => Promise<number | undefined>;
 }
 
 interface UserProviderProps {
@@ -59,7 +67,16 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   const getProfileRating = async (userId: string) => {
     try {
-      const { data } = await userApi.userControllerGetUserRating(userId);
+      const { data } = await userApi.userControllerProfileRating(userId);
+      return data;
+    } catch (err) {
+      throwError(err, "Failed to fetch user rating");
+    }
+  };
+
+  const getUserRating = async (projectId: string) => {
+    try {
+      const { data } = await userApi.userControllerUserRating(projectId);
       return data;
     } catch (err) {
       throwError(err, "Failed to fetch user rating");
@@ -67,7 +84,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   };
 
   return (
-    <UserContext.Provider value={{ updateProfile, getProfileRating, findUserByName, findUserById }}>
+    <UserContext.Provider
+      value={{ updateProfile, getProfileRating, getUserRating, findUserByName, findUserById }}
+    >
       {children}
     </UserContext.Provider>
   );
