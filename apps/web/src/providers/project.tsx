@@ -4,8 +4,10 @@ import { baseUrl } from "~/utils/url";
 import {
   Configuration,
   ProjectApi,
+  ProjectCommentDto,
   ProjectDto,
   ProjectRatingDto,
+  SearchProjectsDto,
   SimpleProjectDto,
   UpdateProjectDto,
   UploadFileDto,
@@ -14,6 +16,7 @@ import { useCookies } from "react-cookie";
 
 interface ProjectContextProps {
   fetched: boolean;
+  search: (type?: string, text?: string, page?: number) => Promise<SearchProjectsDto | undefined>;
   fetchDraftDetails: (id: string) => Promise<ProjectDto | undefined>;
   fetchProjectDetails: (id: string) => Promise<ProjectDto | undefined>;
   fetchUserProjects: (id: string) => Promise<SimpleProjectDto[] | undefined>;
@@ -27,6 +30,18 @@ interface ProjectContextProps {
 
   getProjectRating: (id: string) => Promise<ProjectRatingDto | undefined>;
   publish: (id: string) => Promise<void>;
+
+  postComment: (projectId: string, content: string) => Promise<ProjectCommentDto | undefined>;
+  replyToComment: (
+    projectId: string,
+    parentId: string,
+    content: string,
+  ) => Promise<ProjectCommentDto | undefined>;
+  deleteComment: (commentId: string) => Promise<void>;
+
+  getComments: (projectId: string) => Promise<ProjectCommentDto[] | undefined>;
+  postRating: (projectId: string, rating: number) => Promise<ProjectRatingDto | undefined>;
+  deleteRating: (projectId: string) => Promise<ProjectRatingDto | undefined>;
 }
 
 interface ProjectProviderProps {
@@ -45,6 +60,19 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
 
   const projectApi = new ProjectApi(config);
   const adminProjectApi = new ProjectApi(adminConfig);
+
+  const search = async (
+    type?: string,
+    text?: string,
+    page?: number,
+  ): Promise<SearchProjectsDto | undefined> => {
+    try {
+      const { data } = await projectApi.projectControllerSearch(type, text, page);
+      return data;
+    } catch (err) {
+      throwError(err, "Failed searching for projects");
+    }
+  };
 
   const fetchProjectDetails = async (id: string): Promise<ProjectDto | undefined> => {
     try {
@@ -172,7 +200,7 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
       throwError(err, "Failed to delete project");
     }
   };
-  
+
   const getProjectRating = async (id: string) => {
     try {
       const { data } = await projectApi.projectControllerGetProjectRating(id);
@@ -182,10 +210,94 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
     }
   };
 
+  const postRating = async (projectId: string, rating: number) => {
+    try {
+      const { data } = await projectApi.projectControllerRateProject(projectId, rating);
+      sendNotification({
+        type: "info",
+        title: "Rating",
+        label: `You just rated this project ${rating} stars.`,
+      });
+
+      return data;
+    } catch (err) {
+      throwError(err, "Failed to post rating");
+    }
+  };
+
+  const deleteRating = async (projectId: string) => {
+    try {
+      const { data } = await projectApi.projectControllerDeleteRating(projectId);
+      sendNotification({
+        type: "info",
+        title: "Rating",
+        label: `Reset your rating for this project`,
+      });
+      return data;
+    } catch (err) {
+      throwError(err, "Failed to reset rating");
+    }
+  };
+
+  const postComment = async (projectId: string, content: string) => {
+    try {
+      const { data } = await projectApi.projectControllerPostComment(projectId, { content });
+      sendNotification({
+        type: "success",
+        title: "Comment posted",
+        label: "Your comment has been posted successfully",
+      });
+
+      return data;
+    } catch (err) {
+      throwError(err, "Failed to post comment");
+    }
+  };
+
+  const replyToComment = async (projectId: string, parentId: string, content: string) => {
+    try {
+      const { data } = await projectApi.projectControllerReplyToComment(projectId, parentId, {
+        content,
+      });
+      sendNotification({
+        type: "success",
+        title: "Comment posted",
+        label: "Your comment has been posted successfully",
+      });
+
+      return data;
+    } catch (err) {
+      throwError(err, "Failed to post comment");
+    }
+  };
+
+  const deleteComment = async (commentId: string) => {
+    try {
+      await projectApi.projectControllerDeleteComment(commentId);
+      sendNotification({
+        type: "info",
+        title: "Comment deleted",
+        label: "The comment has been deleted",
+      });
+    } catch (err) {
+      throwError(err, "Failed to delete comment");
+    }
+  };
+
+  const getComments = async (projectId: string) => {
+    try {
+      const { data } = await projectApi.projectControllerComments(projectId);
+      return data;
+    } catch (err) {
+      throwError(err, "Failed to fetch comments");
+    }
+  };
+
   return (
     <ProjectContext.Provider
       value={{
         fetched,
+        search,
         fetchDraftDetails,
         uploadFile,
         saveProject,
@@ -198,6 +310,12 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
         fetchProjectDetails,
         createProject,
         getProjectRating,
+        postComment,
+        deleteComment,
+        getComments,
+        replyToComment,
+        postRating,
+        deleteRating,
       }}
     >
       {children}
