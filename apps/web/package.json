@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "generate:api": "openapi-generator-cli generate -g typescript-axios -i ./src/lib/api/api.json -o ./src/lib/api --skip-validate-spec"
+    "generate:api": "openapi-generator-cli generate -g typescript-axios -i http://localhost:8084/documentation/json -o ./src/lib/api --skip-validate-spec"
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.15",
