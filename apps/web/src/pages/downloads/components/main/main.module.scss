@@ -1,44 +1,91 @@
-@use "~/utils/_variables" as g;
+@use "~/utils" as g;
+
+.main {
+  width: 100%;
+}
+
+.downloads {
+  display: flex;
+  flex-direction: column;
+  padding: g.$padding-sm;
+  gap: g.$padding-sm;
+  width: 100%;
+}
+
+.ad {
+  display: grid;
+  grid-template-areas:
+    "bb bb"
+    "extensions side";
+  grid-template-columns: 1fr 1fr;
+  gap: g.$padding-xsm;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  &.bb {
+    grid-area: bb;
+  }
+
+  &.extensions {
+    grid-area: extensions;
+  }
+
+  &.side {
+    grid-area: side;
+  }
+
+  .image {
+    object-fit: cover;
+    filter: brightness(40%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .caption {
+    position: relative;
+    z-index: 1;
+    padding: g.$padding-md;
+    text-shadow: 0 calc(g.$minecraftdepth * 2) black;
+  }
+}
 
 .list {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
-  gap: g.$padding-sm;
-
-  @media (max-width: g.$breakpoint-laptop) {
-    gap: g.$padding-xsm;
-  }
-}
-
-.grid {
-  gap: g.$padding-sm;
-  width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  @media (max-width: g.$breakpoint-tablet) {
-    grid-template-columns: repeat(1, 1fr);
-    gap: g.$padding-xsm;
-  }
+  gap: g.$padding-xsm;
 }
 
-.category {
+.searchbar {
   width: 100%;
 }
 
-.actions {
-  padding-bottom: g.$padding-sm;
+.types {
+  // display: inline-flex;
+  // gap: g.$padding-xsm;
+  // overflow: auto;
 }
 
-.footer {
+.loader {
+  width: 100%;
+  padding: g.$padding-sm;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  gap: g.$padding-xxsm;
+  align-items: center;
+  justify-content: center;
 }
 
-.hide {
-  width: 100%;
-  text-decoration: none;
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-sm;
 }
