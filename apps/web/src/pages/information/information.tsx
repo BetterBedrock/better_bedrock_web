@@ -180,6 +180,12 @@ export const informationData: InformationTab[] = [
       description: "List of general topic videos that explain the features and tools provided by Better Bedrock. TUTORIALS ARE DIFFERENT FOR EACH CATEGORY!",
       videos: [
         {
+          title: "Download stuff from webiste",
+          description: "Simple tutorial about downloading process.",
+          link: "https://youtu.be/bHlLB_tksi0",
+          tags: ["all-devices", "featured"],
+        },
+        {
           title: "How to use waypoints",
           description: "Download extension pack and follow steps in pack description.",
           link: "https://youtu.be/HLJQOW-TkeU",
