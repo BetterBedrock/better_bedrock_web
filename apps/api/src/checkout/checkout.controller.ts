@@ -1,69 +1,45 @@
 import {
     Headers,
     Controller,
-    HttpException,
-    Logger,
     Post,
     RawBodyRequest,
     Req,
     Get,
     Query,
-    BadGatewayException,
     NotFoundException,
     BadRequestException,
-    ForbiddenException,
-    GoneException,
 } from "@nestjs/common";
 import { CheckoutService } from "~/checkout/checkout.service";
 import { ActivateVoucherDto } from "~/checkout/dto/activate-voucher.dto";
 import { VoucherService } from "~/voucher/voucher.service";
 import Stripe from "stripe";
-import {
-    ApiBadGatewayResponse,
-    ApiBadRequestResponse,
-    ApiForbiddenResponse,
-    ApiNotFoundResponse,
-    ApiOkResponse,
-    ApiTags,
-} from "@nestjs/swagger";
 import { CreateCheckoutSessionDto } from "~/checkout/dto/create-checkout-session.dto";
 import { CHECKOUT_OFFERS } from "~/checkout/constants/checkout-offers";
 import { CreateCheckoutSessionResponseDto } from "~/checkout/dto/create-checkout-session-response.dto";
-import { obscureEmail } from "~/utils/string";
 import { CheckoutOffersDto } from "~/checkout/dto/checkout-offers.dto";
 import { VoucherDto } from "~/voucher/dto/voucher.dto";
 import { AnalyticsService } from "~/analytics/analytics.service";
 import { AnalyticsNames } from "~/analytics/constants/analytics-names";
-import dayjs from "dayjs";
 import { Throttle } from "@nestjs/throttler";
 import { MailService } from "~/mail/mail.service";
 
-@ApiTags("checkout")
 @Controller("checkout")
 export class CheckoutController {
     constructor(
-        private readonly checkoutService: CheckoutService,
-        private readonly voucherService: VoucherService,
-        private readonly analyticsService: AnalyticsService,
-        private readonly mailService: MailService,
-    ) { }
+        private checkoutService: CheckoutService,
+        private voucherService: VoucherService,
+        private analyticsService: AnalyticsService,
+        private mailService: MailService,
+    ) {}
 
     @Get("offers")
-    @ApiOkResponse({
-        description: "Returns current checkout offers",
-        type: CheckoutOffersDto,
-    })
-    async offers() {
+    async offers(): Promise<CheckoutOffersDto> {
+        await this.analyticsService.incrementAnalytics(AnalyticsNames.visits, "general");
+
         return CHECKOUT_OFFERS;
     }
 
     @Post("create")
-    @ApiOkResponse({
-        description: "Create a checkout session",
-        type: CreateCheckoutSessionResponseDto,
-    })
-    @ApiBadGatewayResponse({ description: "Checkout could not be initiated" })
-    @ApiNotFoundResponse({ description: "This offer does not exist" })
     async create(
         @Query() query: CreateCheckoutSessionDto,
     ): Promise<CreateCheckoutSessionResponseDto> {
@@ -71,12 +47,9 @@ export class CheckoutController {
         if (!ids.find((item) => item.priceId === query.priceId)) {
             throw new NotFoundException("This offer does not exist");
         }
-        try {
-            const checkoutId = await this.checkoutService.createCheckoutSession(query);
-            return { checkoutId };
-        } catch (err) {
-            throw new BadGatewayException("Checkout could not be initiated: " + err);
-        }
+
+        const checkoutId = await this.checkoutService.createCheckoutSession(query);
+        return { checkoutId };
     }
 
     @Get("activate")
@@ -86,112 +59,71 @@ export class CheckoutController {
             limit: 50,
         },
     })
-    @ApiOkResponse({
-        description: "Returns voucher for given code",
-        type: VoucherDto,
-    })
-    @ApiNotFoundResponse({ description: "Voucher not found" })
-    @ApiBadRequestResponse({ description: "You need to provide either checkoutId or voucher code" })
-    @ApiBadGatewayResponse({ description: "Activation was unsuccessful" })
-    @ApiForbiddenResponse({ description: "Voucher is blocked" })
-    async activate(@Query() query: ActivateVoucherDto) {
+    activate(@Query() query: ActivateVoucherDto): Promise<VoucherDto> {
         if (!query.checkoutId && !query.code) {
             throw new BadRequestException("You need to provide either checkoutId or voucher code");
         }
 
-        try {
-            const voucher = await this.voucherService.getVoucher({
-                checkoutId: query.checkoutId == "" ? undefined : query.checkoutId,
-                code: query.code,
-            });
-            if (!voucher) {
-                throw new NotFoundException("Voucher not found");
-            }
-
-            if (voucher.blocked) {
-                throw new ForbiddenException("Voucher is blocked");
-            }
-
-            if (dayjs(voucher.expiresAt).isBefore(new Date())) {
-                throw new GoneException("Voucher has expired");
-            }
-
-            if (voucher.maxDownloads <= voucher.downloadCount) {
-                throw new GoneException("Voucher has been used");
-            }
-
-            voucher.email = obscureEmail(voucher.email);
-
-            return voucher;
-        } catch (err) {
-            if (err instanceof HttpException) throw err;
-            throw new BadGatewayException("Activation was unsuccessful" + err);
-        }
+        return this.voucherService.activate(query);
     }
 
     @Post("webhook")
-    @ApiOkResponse({ description: "Handle checkout webhook" })
     async webhook(
         @Headers("stripe-signature") signature: string,
         @Req() req: RawBodyRequest<Request>,
     ) {
-        let event;
+        let event: Stripe.Event;
+
         try {
             event = this.checkoutService.constructWebhookEvent(req.rawBody!, signature);
-        } catch (err) {
-            Logger.error("⚠️  Webhook signature verification failed.", err.message);
-            throw new HttpException("Webhook Error: Signature verification failed", 400);
+        } catch {
+            throw new BadRequestException("Signature verification failed");
         }
 
-        if (event.type === "checkout.session.completed") {
-            const session = event.data.object as Stripe.Checkout.Session;
-            const fullSession = await this.checkoutService.retriveSession(session.id);
+        if (event.type !== "checkout.session.completed") {
+            return;
+        }
 
-            const email = fullSession.customer_details?.email;
+        const session = event.data.object as Stripe.Checkout.Session;
+        const fullSession = await this.checkoutService.retriveSession(session.id);
 
-            const existing = await this.voucherService.findByCheckoutId(session.id);
-            if (existing) {
-                Logger.warn(`Checkout ${session.id} already processed, skipping...`);
-                return;
+        const email = fullSession.customer_details?.email ?? "unknown";
+
+        const existing = await this.voucherService.findByCheckoutId(session.id);
+        if (existing) return;
+
+        const items = fullSession.line_items?.data ?? [];
+
+        for (const item of items) {
+            const priceId = item?.price?.id;
+            if (!priceId) continue;
+
+            const product = CHECKOUT_OFFERS.offers
+                .flatMap((offer) => offer.items)
+                .find((i) => i.priceId === priceId);
+
+            if (!product) continue;
+
+            const { maxDownloads, betterBedrockContentOnly, expiresAt } = product.priceOption;
+            const code = this.voucherService.generateCode(8);
+
+            await this.voucherService.createVoucher({
+                email,
+                checkoutId: session.id,
+                code,
+                maxDownloads,
+                betterBedrockContentOnly,
+                expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * expiresAt),
+            });
+
+            if (email !== "unknown") {
+                await this.mailService.sendVoucherEmail(email, code);
             }
 
-            const items = fullSession.line_items!.data;
-            items.forEach(async (item) => {
-                const productName = (item!.price!.product as Stripe.Product).name;
-                const priceId = item!.price!.id;
-                const ids = CHECKOUT_OFFERS.offers.flatMap((offer) => offer.items);
-                const product = ids.find((item) => item.priceId === priceId);
-
-                if (!product) {
-                    Logger.error(
-                        `User with email ${email} tried to purchase ${priceId} but the product does not exist`,
-                    );
-                    return;
-                }
-
-                const priceOptions = product.priceOption;
-
-                const price = item.amount_total / 100;
-                // reward user
-                Logger.log(`User with email ${email} purchased ${productName} for $${price}.`);
-                const code = this.voucherService.generateCode(8);
-
-                await this.voucherService.createVoucher({
-                    email: email ?? "unknown",
-                    checkoutId: session.id,
-                    code: code,
-                    maxDownloads: priceOptions.maxDownloads,
-                    betterBedrockContentOnly: priceOptions.betterBedrockContentOnly,
-                    expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * priceOptions.expiresAt), // 30 days from now
-                });
-
-                if (email) await this.mailService.createVoucherEmail(email, code);
-
-                await this.analyticsService.incrementAnalytics(
-                    AnalyticsNames.boughtVouchers,
-                    "general",
-                );
-            });
+            await this.analyticsService.incrementAnalytics(
+                AnalyticsNames.boughtVouchers,
+                "general",
+            );
         }
     }
 }

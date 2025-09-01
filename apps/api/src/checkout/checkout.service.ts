@@ -1,29 +1,29 @@
-import { Injectable } from "@nestjs/common";
+import { BadGatewayException, Injectable } from "@nestjs/common";
 import { CreateCheckoutSessionDto } from "~/checkout/dto/create-checkout-session.dto";
 import Stripe from "stripe";
+import { baseFrontendUrl } from "~/utils/url";
 
 @Injectable()
 export class CheckoutService {
     private stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "");
 
     async createCheckoutSession(query: CreateCheckoutSessionDto) {
-        const baseUrl =
-            process.env.DEBUG === "true"
-                ? process.env.LOCAL_FRONTEND_URL
-                : process.env.FRONTEND_URL;
-
-        const session = await this.stripe.checkout.sessions.create({
-            line_items: [
-                {
-                    price: query.priceId,
-                    quantity: 1,
-                },
-            ],
-            mode: "payment",
-            success_url: `${baseUrl}/checkout/success?checkoutId={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${baseUrl}/checkout/cancel`,
-        });
-        return session.id;
+        try {
+            const session = await this.stripe.checkout.sessions.create({
+                line_items: [
+                    {
+                        price: query.priceId,
+                        quantity: 1,
+                    },
+                ],
+                mode: "payment",
+                success_url: `${baseFrontendUrl}/checkout/success?checkoutId={CHECKOUT_SESSION_ID}`,
+                cancel_url: `${baseFrontendUrl}/checkout/cancel`,
+            });
+            return session.id;
+        } catch (err) {
+            throw new BadGatewayException("Checkout could not be initiated: " + err);
+        }
     }
 
     constructWebhookEvent(rawBody: Buffer, signature: string) {
@@ -32,7 +32,7 @@ export class CheckoutService {
     }
 
     async retriveSession(checkoutId: string) {
-        return await this.stripe.checkout.sessions.retrieve(checkoutId, {
+        return this.stripe.checkout.sessions.retrieve(checkoutId, {
             expand: ["line_items.data.price.product", "customer"],
         });
     }

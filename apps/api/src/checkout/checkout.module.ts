@@ -6,6 +6,7 @@ import { PrismaService } from "~/prisma.service";
 import { AnalyticsService } from "~/analytics/analytics.service";
 import { MailService } from "~/mail/mail.service";
 import { ProjectService } from "~/project/project.service";
+import { RatingService } from "~/rating/rating.service";
 
 @Module({
     controllers: [CheckoutController],
@@ -16,6 +17,7 @@ import { ProjectService } from "~/project/project.service";
         AnalyticsService,
         PrismaService,
         ProjectService,
+        RatingService,
     ],
 })
 export class CheckoutModule {}
