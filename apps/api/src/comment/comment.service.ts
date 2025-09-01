@@ -1,6 +1,10 @@
-import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
+import {
+    BadRequestException,
+    Injectable,
+    NotFoundException,
+    UnauthorizedException,
+} from "@nestjs/common";
 import { PostCommentDto } from "~/comment/dto/post-comment.dto";
-import { ProjectCommentDto } from "~/comment/dto/project-comment.dto";
 import { ReplyToCommentDto } from "~/comment/dto/reply-to-comment.dto";
 import { PrismaService } from "~/prisma.service";
 import { ProjectService } from "~/project/project.service";
@@ -19,8 +23,8 @@ const commentInclude = {
 @Injectable()
 export class CommentService {
     constructor(
-        private readonly prismaService: PrismaService,
-        private readonly projectService: ProjectService,
+        private prismaService: PrismaService,
+        private projectService: ProjectService,
     ) {}
 
     async postComment(data: PostCommentDto) {
@@ -31,14 +35,14 @@ export class CommentService {
             throw new NotFoundException("Project not found");
         }
 
-        return await this.prismaService.comment.create({
+        return this.prismaService.comment.create({
             data: { authorId, projectId, projectDraft: false, content },
             include: commentInclude,
         });
     }
 
-    async getComments(projectId: string): Promise<ProjectCommentDto[]> {
-        return await this.prismaService.comment.findMany({
+    async getComments(projectId: string) {
+        return this.prismaService.comment.findMany({
             where: { projectId, projectDraft: false, deleted: false, parentId: null },
             orderBy: { createdAt: "desc" },
             include: commentInclude,
@@ -48,10 +52,11 @@ export class CommentService {
     async deleteComment(commentId: string, userId: string) {
         const comment = await this.prismaService.comment.findUnique({ where: { id: commentId } });
 
-        if (!comment) throw new Error("Comment not found");
+        if (!comment) throw new NotFoundException("Comment not found");
 
-        if (comment.authorId !== userId)
-            throw new Error("You are not authorized to delete this comment");
+        if (comment.authorId !== userId) {
+            throw new UnauthorizedException("You are not authorized to delete this comment");
+        }
 
         await this.prismaService.comment.update({
             where: { id: commentId },
@@ -63,11 +68,9 @@ export class CommentService {
         const { authorId, projectId, content, parentId } = data;
         const project = await this.projectService.findOne(projectId);
 
-        if (!project) {
+        if (!project || !parentId) {
             throw new NotFoundException("Project not found");
         }
-
-        if (!parentId) return; // No need to throw error here since it's validated in the controller
 
         const parentComment = await this.prismaService.comment.findUnique({
             where: { id: parentId, deleted: false },
@@ -78,10 +81,10 @@ export class CommentService {
         }
 
         if (!parentComment) {
-            throw new Error("Parent comment not found");
+            throw new NotFoundException("Parent comment not found");
         }
 
-        return await this.prismaService.comment.create({
+        return this.prismaService.comment.create({
             data: { authorId, projectId, projectDraft: false, content, parentId },
             include: commentInclude,
         });
@@ -94,11 +97,11 @@ export class CommentService {
         });
 
         if (!comment) {
-            throw new Error("Comment not found");
+            throw new NotFoundException("Comment not found");
         }
 
         if (comment.project.userId !== userId) {
-            throw new Error("You are not authorized to pin this comment");
+            throw new UnauthorizedException("You are not authorized to pin this comment");
         }
 
         await this.prismaService.comment.updateMany({
@@ -106,7 +109,7 @@ export class CommentService {
             data: { pinned: false },
         });
 
-        return await this.prismaService.comment.update({
+        return this.prismaService.comment.update({
             where: { id: commentId },
             data: { pinned: true },
         });
@@ -119,14 +122,14 @@ export class CommentService {
         });
 
         if (!comment) {
-            throw new Error("Comment not found");
+            throw new NotFoundException("Comment not found");
         }
 
         if (comment.project.userId !== userId) {
-            throw new Error("You are not authorized to unpin this comment");
+            throw new UnauthorizedException("You are not authorized to unpin this comment");
         }
 
-        return await this.prismaService.comment.update({
+        return this.prismaService.comment.update({
             where: { id: commentId },
             data: { pinned: false },
         });
