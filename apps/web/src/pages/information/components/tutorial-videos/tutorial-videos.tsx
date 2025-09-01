@@ -2,16 +2,15 @@ import { InformationVideos } from "~/pages/information";
 import { TutorialVideosTitle, TutorialVideosDescription, TutorialVideosGrid, styles } from ".";
 
 export interface TutorialVideosProps {
-  deprected: boolean;
   videos: InformationVideos;
 }
 
-export const TutorialVideos = ({ videos, deprected }: TutorialVideosProps) => (
+export const TutorialVideos = ({ videos }: TutorialVideosProps) => (
   <div>
     <div className={styles.heading}>
-      <TutorialVideosTitle deprected={deprected} />
+      <TutorialVideosTitle />
       <TutorialVideosDescription description={videos.description ?? "No description available."} />
     </div>
-    <TutorialVideosGrid videos={videos.videos} deprected={deprected} />
+    <TutorialVideosGrid videos={videos.videos} />
   </div>
 );

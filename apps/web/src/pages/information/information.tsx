@@ -119,15 +119,15 @@ export const informationData: InformationTab[] = [
         },
         {
           question: "Is it available on the Marketplace?",
-          answer: "No, and probably it will never be. The Texture Pack is available only on our website. We do not plan to publish it on the Marketplace, because it you wouldn't be able to adjust the config.",
-        },
-        {
-          question: "Why you cannot just save config in game?",
-          answer: "Unfortunately game doesn't provide any functions to change files and actually save mods states through UI. We are forced to manage it through config file, and adjusting it manually. There is no way to change it right now... That's also main reason why this pack won't be available on the Marketplace.",
+          answer: "No, and probably it will never be. The Texture Pack is available only on our website and we do not plan to publish it here, because you wouldn't be able to adjust the config. And that's the main issue and reason.",
         },
         {
           question: "Why do my Mod Menu options reset?",
           answer: "To save these options and adjust extra ones use config. Scroll down to Tutorials section and follow steps from here.",
+        },
+        {
+          question: "Why you cannot just save config in game?",
+          answer: "Unfortunately game doesn't provide any functions to change files and actually save mods states through UI. We are forced to manage it through config file, and adjusting it manually. There is no way to change it right now...",
         },
         {
           question: "What devices are supported by Better Bedrock?",
@@ -154,12 +154,16 @@ export const informationData: InformationTab[] = [
           answer: `It's due to several potential issues. Here are some possible reasons: 1. You used bypass services to skip the ads. 2. While downloading one file from our website, you clicked to begin another download - wait patiently. 3. You waited too long on the linkvertise page before clicking button "Get Better Bedrock" to redirect. 4. You changed your ip address (or used a VPN) while being on our site. 5. Your internet connection was too slow to send a request to our servers. Minimum download speed: ~0.33MB/s. 6. You have adblockers or any extensions blocking requests to our servers. (Browsers such as Brave, or Safari can also sometimes prevent requests) 7. You have blocked popups so the download page cannot open.`,
         },
         {
-          question: `Why doesn't the free download option work?`,
-          answer: `You probably have blocked popups so the download page cannot open, we recommend to disable it or try using other download methods :3`,
+          question: `Why doesn't the free download open another window?`,
+          answer: `You probably have blocked popups so the download page cannot open, we recommend to disable it or try using other download methods :3 Also if your page is loading too long, then make sure you have disabled adblockers.`,
         },
         {
           question: "What is a subpack?",
           answer: `A subpack is Minecraft name for texture pack options. To access it, open settings, go to "Global Resources", select "ACTIVE" tab, select Better Bedrock and then click gear icon in bottom right corner.`,
+        },
+        {
+          question: "What Mods won't be added to Better Bedrock Texture Pack?",
+          answer: "This is list of features that are impossible to add, or may be a bit useless, or simply may cause performance issues: 1. Autosprint 2. Zoom 3. Motion blur 4. Freelook 6. Pocket UI support 7. Small gui scale support (0) 8. Item physics 9. Injector/launcher 10. Very accurate fps/cps/combo counters 11. Small chunk render (1/2) 12. Chunk border 13. Player hitbox 14. Health indicator 15. Actually working Minimap 16. 3D player models 17. 'Free' Hacks (fake texts etc.) 18. Clickable links on HUD chat 19. Dynamic lighting and things related to shaders 20. Nametags in 3rd person 21. Dynamic lighting and things related to shaders 22. Armor Hud durability in HUD 23. Friend List 24. Auto GG 25. Replay Mod 26. In-game night vision 27. Custom buttons on hud (like quick drop etc.) 28. Sound subtitles 29. Pack display 30. Voice Mod",
         },
         {
           question: "When will the new versions be released?",
@@ -189,42 +193,6 @@ export const informationData: InformationTab[] = [
         },
       ],
     },
-
-    deprectedVideos: {
-      description: "List of DEPRECATED videos for mobile devices designed to explain the features and tools that Better Bedrock provides. TUTORIALS ARE DIFFERENT FOR EACH CATEGORY!",
-      videos: [
-        {
-          title: "Manually edit cape",
-          description: "For the console only, you need to import skin to the game.",
-          link: "https://youtu.be/nI-UxUOEgSU",
-          tags: ["pc-console", "deprecated"],
-        },
-        {
-          title: "Manually edit cape",
-          description: "Everything is explained in video. All ways, tools etc.",
-          link: "https://youtu.be/CCraMUpQX_Q",
-          tags: ["mobile", "deprecated"],
-        },
-        {
-          title: "Download and Install BB Mobile App",
-          description: "Classic installation tutorial.",
-          link: "https://youtu.be/3Rox3FRRo84",
-          tags: ["mobile", "deprecated"],
-        },
-        {
-          title: "Edit config in Mobile App",
-          description: "Everything is explained in video.",
-          link: "https://youtu.be/Pn-9RxvNFPM",
-          tags: ["mobile", "deprecated"],
-        },
-        {
-          title: "Edit cape in Mobile App",
-          description: "Everything is explained in video.",
-          link: "https://youtu.be/t0d4_LuDPEs",
-          tags: ["mobile", "deprecated"],
-        },
-      ],
-    },
   },
 
   {
@@ -248,7 +216,7 @@ export const informationData: InformationTab[] = [
       description: "List of videos for mobile devices designed to explain the features and tools that Better Bedrock provides. TUTORIALS ARE DIFFERENT FOR EACH CATEGORY!",
       videos: [
         {
-          title: "Download and Import Texture Pack to Minecraft",
+          title: "Download and import the Texture Packs",
           description: "Classic installation tutorial.",
           link: "https://youtu.be/dOTW4ffn9rA",
           tags: ["mobile"],
@@ -298,26 +266,31 @@ export const informationData: InformationTab[] = [
       description: "List of videos for PC/Other devices designed to explain the features and tools that Better Bedrock provides. TUTORIALS ARE DIFFERENT FOR EACH CATEGORY!",
       videos: [
         {
-          title: "Download and Import Texture Pack to Minecraft",
+          title: "Download and import the Texture Packs",
           description: "Classic installation tutorial.",
           link: "https://youtu.be/QV67l-vrlSI",
           tags: ["pc"],
         },
         {
           title: "Manually edit config",
-          description: "For the console only, you need to import this config to the game.",
+          description: "Save mod states on PC.",
           link: "https://youtu.be/QG9vJq6UPGA",
-          tags: ["pc-console", "featured"],
+          tags: ["pc", "featured"],
         },
         {
-          title: "How to set up autosprint",
-          description:
-            "Simple bind change that works on PC, but may not work on the console - not tested",
+          title: "Manually edit config on console",
+          description: "Save mod states on console.",
+          link: "https://youtu.be/cHkiufOsRrY",
+          tags: ["console"],
+        },
+        {
+          title: "Set up autosprint",
+          description: "Simple bind change that works on PC.",
           link: "https://youtu.be/O3D6bNQW-Lc",
           tags: ["pc"],
         },
         {
-          title: "How to create custom theme",
+          title: "Create custom theme",
           description: "More complex tutorial about all theme customization available in BB.",
           link: "https://youtu.be/GRQahMrdEoY",
           tags: ["pc"],
