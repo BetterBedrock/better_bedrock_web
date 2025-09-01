@@ -1,25 +1,20 @@
 import { Controller, Get, Req, UseGuards } from "@nestjs/common";
-import { ApiTags, ApiOkResponse, ApiBearerAuth } from "@nestjs/swagger";
+import { ApiBearerAuth } from "@nestjs/swagger";
 import { AnalyticsService } from "~/analytics/analytics.service";
-import { AdminAuthGuard } from "~/auth/admin-auth.guard";
 import { AnalyticsDto } from "~/analytics/dto/analytics.dto";
+import { AdminAuthGuard } from "~/auth/admin-auth.guard";
 import { UserAuthGuard } from "~/auth/user-auth.guard";
+import { AuthenticatedRequest } from "~/common/types/authenticated-request.type";
 
-@ApiTags("analytics")
 @Controller("analytics")
-@ApiBearerAuth()
 export class AnalyticsController {
-    constructor(private readonly analyticsService: AnalyticsService) {}
+    constructor(private analyticsService: AnalyticsService) {}
 
     @Get()
-    @ApiOkResponse({
-        description: "Analytics about downloads, vouchers, and more",
-        type: AnalyticsDto,
-        isArray: true,
-    })
     @UseGuards(AdminAuthGuard)
-    async analytics(): Promise<AnalyticsDto[]> {
-        return await this.analyticsService.analytics();
+    @ApiBearerAuth()
+    analytics(): Promise<AnalyticsDto[]> {
+        return this.analyticsService.analytics();
     }
 
     @Get("/user")

@@ -7,11 +7,13 @@ import { ProjectService } from "~/project/project.service";
 @Injectable()
 export class AnalyticsService {
     constructor(
-        private prisma: PrismaService,
-        private readonly projectService: ProjectService,
+        private prismaService: PrismaService,
+        private projectService: ProjectService,
     ) {}
 
     async analytics() {
+        return this.prismaService.analytics.findMany();
+    }
 
     async userAnalytics(id: string) {
         const projects = await this.projectService.userProjects(id);
@@ -31,7 +33,7 @@ export class AnalyticsService {
     async incrementAnalytics(name: string, type: AnalyticsType) {
         const today = dayjs().toISOString();
 
-        return await this.prisma.analytics.upsert({
+        return this.prismaService.analytics.upsert({
             where: {
                 name_date_type: { name, date: today, type },
             },
@@ -43,21 +45,6 @@ export class AnalyticsService {
                 type,
                 date: today,
                 value: 1,
-            },
-        });
-    }
-
-    async userAnalytics(id: string) {
-        const projects = await this.projectService.userProjects(id);
-
-        const projectNames = projects.map((project) => project.id);
-
-        return await this.prisma.analytics.findMany({
-            where: {
-                name: {
-                    in: projectNames,
-                },
-                type: "file",
             },
         });
     }
