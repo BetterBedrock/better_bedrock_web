@@ -8,8 +8,8 @@ import {
 
 import { JwtService } from "@nestjs/jwt";
 
-import { Request } from "express";
 import { PrismaService } from "~/prisma.service";
+import { extractTokenFromHeader } from "~/utils/string";
 
 @Injectable()
 export class UserAuthGuard implements CanActivate {
@@ -20,7 +20,7 @@ export class UserAuthGuard implements CanActivate {
 
     async canActivate(context: ExecutionContext): Promise<boolean> {
         const request = context.switchToHttp().getRequest();
-        const token = this.extractTokenFromHeader(request);
+        const token = extractTokenFromHeader(request);
         if (!token) {
             throw new UnauthorizedException();
         }
@@ -40,10 +40,5 @@ export class UserAuthGuard implements CanActivate {
             throw new UnauthorizedException("Could not authenticate");
         }
         return true;
-    }
-
-    private extractTokenFromHeader(request: Request): string | undefined {
-        const [type, token] = request.headers.authorization?.split(" ") ?? [];
-        return type === "Bearer" ? token : undefined;
     }
 }

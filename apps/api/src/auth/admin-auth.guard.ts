@@ -23,12 +23,6 @@ export class AdminAuthGuard implements CanActivate {
         if (!token || token !== process.env.ADMIN_PANEL_SECRET) {
             throw new UnauthorizedException("Could not authenticate");
         }
-
         return true;
-    }
-
-    private extractTokenFromHeader(request: Request): string | undefined {
-        const [type, token] = request.headers.authorization?.split(" ") ?? [];
-        return type === "Bearer" ? token : undefined;
     }
 }
