@@ -1,0 +1,13 @@
+import { Module } from "@nestjs/common";
+import { PrismaService } from "~/prisma.service";
+import { ProjectService } from "~/project/project.service";
+import { RatingService } from "~/rating/rating.service";
+import { ReportController } from "~/report/report.controller";
+import { ReportService } from "~/report/report.service";
+import { UserService } from "~/user/user.service";
+
+@Module({
+    controllers: [ReportController],
+    providers: [ProjectService, PrismaService, ReportService, RatingService, UserService],
+})
+export class ReportModule {}
