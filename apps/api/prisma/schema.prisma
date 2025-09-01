@@ -54,6 +54,8 @@ model User {
   email    String @unique
   name     String @unique
 
+  admin Boolean @default(false)
+
   customLinkvertise Boolean @default(false)
   linkvertiseId     String?
   linkvertiseSecret String?
@@ -64,6 +66,10 @@ model User {
   projects  Project[]
   comments  Comment[]
   ratings   Rating[]
+
+  reported Report[] @relation("ReportReporter")
+
+  reports Report[] @relation("ReportTargetUser")
 }
 
 enum ProjectType {
@@ -99,7 +105,8 @@ model Project {
   user   User   @relation(fields: [userId], references: [id])
 
   comments Comment[]
-  Rating   Rating[]
+  ratings   Rating[]
+  reports Report[] @relation("ReportTargetProject")
 
   @@id([id, draft])
   @@unique([id, draft])
@@ -157,4 +164,29 @@ model Rating {
 
   @@unique([userId, projectId])
   @@index([projectId, projectDraft])
+}
+
+model Report {
+  id String @id @default(cuid())
+
+  reporterId String
+  reporter   User   @relation("ReportReporter", fields: [reporterId], references: [id])
+
+  reportedUserId String?
+  reportedUser   User?    @relation("ReportTargetUser", fields: [reportedUserId], references: [id])
+
+  reportedProjectId    String?
+  reportedProjectDraft Boolean?
+  reportedProject      Project? @relation("ReportTargetProject", fields: [reportedProjectId, reportedProjectDraft], references: [id, draft], onDelete: Cascade)
+
+  message   String
+
+  resolved   Boolean   @default(false)
+  resolvedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([reportedUserId])
+  @@index([reportedProjectId, reportedProjectDraft])
+  @@index([reporterId])
 }
