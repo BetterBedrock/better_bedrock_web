@@ -1,6 +1,4 @@
-import { IsString } from "class-validator";
+import { PickType } from "@nestjs/swagger";
+import { JwtTokenDto } from "~/auth/dto/jwt-token.dto";
 
-export class AuthorizeDto {
-    @IsString()
-    token: string;
-}
+export class AuthorizeDto extends PickType(JwtTokenDto, ["token"] as const) {}
