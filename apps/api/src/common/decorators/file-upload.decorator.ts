@@ -1,10 +1,10 @@
 import { applyDecorators, UseInterceptors, BadRequestException } from "@nestjs/common";
-import { ApiBody, ApiConsumes, ApiCreatedResponse } from "@nestjs/swagger";
+import { ApiBody, ApiConsumes } from "@nestjs/swagger";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
 import { extname } from "path";
 import fs from "fs";
-import { UploadFileDto } from "~/project/dto/upload-file.dto";
+import { ProjectRequest } from "~/common/types/project-request.type";
 
 export const IMAGE_EXTENSIONS = ["png", "jpg", "jpeg"];
 export const MC_EXTENSIONS = [
@@ -37,8 +37,7 @@ export function FileUpload() {
         UseInterceptors(
             FileInterceptor("file", {
                 storage: diskStorage({
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    destination: (req: any, file, cb) => {
+                    destination: (req: ProjectRequest, file, cb) => {
                         const project = req.project;
                         if (!project) {
                             return cb(
@@ -91,6 +90,5 @@ export function FileUpload() {
                 limits: { fileSize: 5 * 1024 * 1024 },
             }),
         ),
-        ApiCreatedResponse({ description: "Successfully uploaded file", type: UploadFileDto }),
     );
 }
