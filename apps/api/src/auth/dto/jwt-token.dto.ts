@@ -8,6 +8,10 @@ export class JwtTokenDto {
     @IsString()
     token: string;
 
+    /**
+     * Determines whether the user account was just created
+     * @example true
+     */
     @IsBoolean()
     isNewUser: boolean;
 }
