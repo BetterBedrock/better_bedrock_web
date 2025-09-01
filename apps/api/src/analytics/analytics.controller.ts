@@ -23,13 +23,9 @@ export class AnalyticsController {
     }
 
     @Get("/user")
-    @ApiOkResponse({
-        description: "Analytics about downloads for the user's projects",
-        type: AnalyticsDto,
-        isArray: true,
-    })
     @UseGuards(UserAuthGuard)
-    async user(@Req() req): Promise<AnalyticsDto[]> {
-        return await this.analyticsService.userAnalytics(req.user.id);
+    @ApiBearerAuth()
+    user(@Req() req: AuthenticatedRequest): Promise<AnalyticsDto[]> {
+        return this.analyticsService.userAnalytics(req.user.id);
     }
 }

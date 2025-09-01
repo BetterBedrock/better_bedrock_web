@@ -12,7 +12,20 @@ export class AnalyticsService {
     ) {}
 
     async analytics() {
-        return this.prisma.analytics.findMany();
+
+    async userAnalytics(id: string) {
+        const projects = await this.projectService.userProjects(id);
+
+        const projectNames = projects.map((project) => project.id);
+
+        return this.prismaService.analytics.findMany({
+            where: {
+                name: {
+                    in: projectNames,
+                },
+                type: "file",
+            },
+        });
     }
 
     async incrementAnalytics(name: string, type: AnalyticsType) {
