@@ -1,15 +1,13 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma.service";
-import { Prisma, Download } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 
 @Injectable()
 export class DownloadService {
-    constructor(private prisma: PrismaService) {}
+    constructor(private prismaService: PrismaService) {}
 
-    async download(
-        downloadWhereUniqueInput: Prisma.DownloadWhereUniqueInput,
-    ): Promise<Download | null> {
-        return await this.prisma.download.findUnique({
+    async download(downloadWhereUniqueInput: Prisma.DownloadWhereUniqueInput) {
+        return this.prismaService.download.findUnique({
             where: downloadWhereUniqueInput,
         });
     }
@@ -20,9 +18,9 @@ export class DownloadService {
         cursor?: Prisma.DownloadWhereUniqueInput;
         where?: Prisma.DownloadWhereInput;
         orderBy?: Prisma.DownloadOrderByWithRelationInput;
-    }): Promise<Download[]> {
+    }) {
         const { skip, take, cursor, where, orderBy } = params;
-        return await this.prisma.download.findMany({
+        return this.prismaService.download.findMany({
             skip,
             take,
             cursor,
@@ -31,8 +29,8 @@ export class DownloadService {
         });
     }
 
-    async createDownload(data: Prisma.DownloadCreateInput): Promise<Download> {
-        return await this.prisma.download.create({
+    async createDownload(data: Prisma.DownloadCreateInput) {
+        return this.prismaService.download.create({
             data,
         });
     }
@@ -40,16 +38,16 @@ export class DownloadService {
     async updateDownload(params: {
         where: Prisma.DownloadWhereUniqueInput;
         data: Prisma.DownloadUpdateInput;
-    }): Promise<Download> {
+    }) {
         const { where, data } = params;
-        return await this.prisma.download.update({
+        return this.prismaService.download.update({
             data,
             where,
         });
     }
 
-    async deleteDownload(where: Prisma.DownloadWhereUniqueInput): Promise<Download> {
-        return await this.prisma.download.delete({
+    async deleteDownload(where: Prisma.DownloadWhereUniqueInput) {
+        return this.prismaService.download.delete({
             where,
         });
     }

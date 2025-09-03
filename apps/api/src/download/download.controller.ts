@@ -6,7 +6,6 @@ import {
     HttpException,
     HttpStatus,
     Ip,
-    Logger,
     NotFoundException,
     Post,
     Query,
@@ -14,19 +13,7 @@ import {
     StreamableFile,
     UnauthorizedException,
 } from "@nestjs/common";
-import {
-    ApiBadGatewayResponse,
-    ApiCreatedResponse,
-    ApiForbiddenResponse,
-    ApiGoneResponse,
-    ApiNotFoundResponse,
-    ApiOkResponse,
-    ApiProduces,
-    ApiQuery,
-    ApiServiceUnavailableResponse,
-    ApiTags,
-    ApiUnauthorizedResponse,
-} from "@nestjs/swagger";
+import { ApiOkResponse, ApiProduces } from "@nestjs/swagger";
 import { AnalyticsService } from "~/analytics/analytics.service";
 import { Response } from "express";
 import { DownloadService } from "~/download/download.service";
@@ -34,7 +21,7 @@ import { GenerateDownloadDto } from "~/download/dto/generate-download.dto";
 import { HttpService } from "@nestjs/axios";
 import { lastValueFrom } from "rxjs";
 import { VerifyDownloadDto } from "~/download/dto/verify-download.dto";
-import { createReadStream, promises as fs } from "fs";
+import { createReadStream, promises as fs, Stats } from "fs";
 import path from "path";
 import { VoucherService } from "~/voucher/voucher.service";
 import { SkipThrottle } from "@nestjs/throttler";
@@ -42,18 +29,17 @@ import { AnalyticsNames } from "~/analytics/constants/analytics-names";
 import { ProjectService } from "~/project/project.service";
 import { UserService } from "~/user/user.service";
 
-@ApiTags("download")
 @Controller("download")
 export class DownloadController {
     private readonly linkvertiseApiKey = process.env.LINKVERTISE_API_KEY;
 
     constructor(
-        private readonly http: HttpService,
+        private http: HttpService,
         private downloadService: DownloadService,
         private analyticsService: AnalyticsService,
-        private readonly voucherService: VoucherService,
-        private readonly projectService: ProjectService,
-        private readonly userService: UserService,
+        private voucherService: VoucherService,
+        private projectService: ProjectService,
+        private userService: UserService,
     ) {}
 
     @Get()
@@ -63,30 +49,20 @@ export class DownloadController {
         schema: { type: "string", format: "binary" },
     })
     @ApiProduces("application/octet-stream")
-    @ApiUnauthorizedResponse({ description: "Not verified for download" })
-    @ApiNotFoundResponse({ description: "File not found or does not exist on the server" })
     async download(@Ip() ip, @Res({ passthrough: true }) res: Response): Promise<StreamableFile> {
         const download = await this.downloadService.download({ ipAddress: ip });
 
         if (!download) {
-            throw new NotFoundException(`Download for your device could not be found.`);
-        }
-
-        const project = await this.projectService.findOne(download.file);
-        if (!project) {
-            //TODO: Add to API documentation?
-            throw new NotFoundException(`Requested file not found.`);
-        }
-
-        if (!project.downloadFile) {
-            throw new NotFoundException(`Requested file not found.`);
+            throw new NotFoundException(`Download for your device could not be found`);
         }
 
         if (!download?.verified) {
-            throw new HttpException(
-                "You have not verified your download yet.",
-                HttpStatus.UNAUTHORIZED,
-            );
+            throw new UnauthorizedException("You have not verified your download yet.");
+        }
+
+        const project = await this.projectService.findOne(download.file);
+        if (!project || !project.downloadFile) {
+            throw new NotFoundException(`Requested file not found.`);
         }
 
         await this.analyticsService.incrementAnalytics(download.file, "file");
@@ -94,8 +70,7 @@ export class DownloadController {
 
         const filePath = path.join(process.cwd(), project.downloadFile);
 
-        Logger.error({ filePath });
-        let stat;
+        let stat: Stats;
         try {
             stat = await fs.stat(filePath);
         } catch (_) {
@@ -115,18 +90,6 @@ export class DownloadController {
     }
 
     @Post("verify")
-    @ApiOkResponse({ description: "Download verified successfully" })
-    @ApiNotFoundResponse({
-        description: "Download record not found for this IP or file not found",
-    })
-    @ApiGoneResponse({ description: "The voucher has either expired or already been used" })
-    @ApiForbiddenResponse({
-        description: "This voucher allows you to download only better bedrock content",
-    })
-    @ApiUnauthorizedResponse({ description: "The voucher does not exist" })
-    @ApiBadGatewayResponse({ description: "Failed to verify with Linkvertise gateway" })
-    @ApiServiceUnavailableResponse({ description: "Linkvertise service unavailable" })
-    @ApiForbiddenResponse({ description: "Voucher is blocked" })
     async verify(@Ip() ip: string, @Query() query: VerifyDownloadDto) {
         const download = await this.downloadService.download({ ipAddress: ip });
         const voucher = query.code
@@ -139,7 +102,6 @@ export class DownloadController {
 
         const project = await this.projectService.findOne(download.file);
         if (!project) {
-            //TODO: Add to API documentation?
             throw new NotFoundException(`Requested file not found.`);
         }
 
@@ -230,23 +192,13 @@ export class DownloadController {
                 data: { verified: true },
             });
         }
-
-        return;
     }
 
     @Post("generate")
-    @ApiQuery({
-        name: "file",
-        type: "string",
-        description: "Download ID to generate",
-        required: true,
-    })
-    @ApiCreatedResponse({ description: "Download record created." })
-    @ApiNotFoundResponse({ description: "Requested file not found." })
     async generate(@Ip() ip, @Query() query: GenerateDownloadDto) {
         const project = await this.projectService.findOne(query.file);
         if (!project) {
-            throw new NotFoundException(`Requested file not found.`);
+            throw new NotFoundException(`Requested file not found`);
         }
 
         const download = await this.downloadService.download({ ipAddress: ip });

@@ -7,6 +7,7 @@ import { HttpModule } from "@nestjs/axios";
 import { VoucherService } from "~/voucher/voucher.service";
 import { ProjectService } from "~/project/project.service";
 import { UserService } from "~/user/user.service";
+import { RatingService } from "~/rating/rating.service";
 
 @Module({
     imports: [
@@ -23,6 +24,7 @@ import { UserService } from "~/user/user.service";
         VoucherService,
         ProjectService,
         UserService,
+        RatingService,
     ],
 })
 export class DownloadModule {}
