@@ -3,7 +3,7 @@ import { Recipient, EmailParams, MailerSend, Sender } from "mailersend";
 
 @Injectable()
 export class MailService {
-    async createVoucherEmail(email: string, voucher: string) {
+    async sendVoucherEmail(email: string, voucher: string) {
         const secret = process.env.MAILERSEND_SECRET;
         const senderEmail = process.env.MAILERSEND_SENDER_EMAIL;
         const template = process.env.MAILERSEND_TEMPLATE_ID;
