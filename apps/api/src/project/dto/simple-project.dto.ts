@@ -1,6 +1,6 @@
 import { IntersectionType, PickType } from "@nestjs/swagger";
+import { ProjectDetailsDto } from "~/project/dto/project-details.dto";
 import { ProjectDto } from "~/project/dto/project.dto";
-import { UserNameDto } from "~/user/dto/user-name.dto";
 
 export class SimpleProjectDto extends IntersectionType(
     PickType(ProjectDto, [
@@ -12,7 +12,7 @@ export class SimpleProjectDto extends IntersectionType(
         "lastChanged",
         "betterBedrockContent",
         "draft",
+        "userId",
     ] as const),
-) {
-    user: UserNameDto;
-}
+    ProjectDetailsDto,
+) {}
