@@ -1,18 +1,27 @@
-import { BadRequestException, Injectable, Logger, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "~/prisma.service";
-import { Prisma } from "@prisma/client";
+import { Prisma, ProjectType } from "@prisma/client";
 
 import * as path from "path";
 import * as fs from "fs/promises";
 
 import { ProjectDto } from "~/project/dto/project.dto";
 import { DeclineProjectDto } from "~/project/dto/decline-project.dto";
-import { SimpleProjectDto } from "~/project/dto/simple-project.dto";
 import { UserDto } from "~/user/dto/user.dto";
 import { SearchProjectsQueryDto } from "~/project/dto/search-project-query.dto";
-import { ProjectTagDto } from "~/project/dto/project-tag.dto";
+import { CreateProjectDto } from "~/project/dto/create-project.dto";
+import { RatingService } from "~/rating/rating.service";
+import { ProjectDetailsDto } from "~/project/dto/project-details.dto";
+import { BaseProjectDto } from "~/project/dto/base-project.dto";
+import { SearchProjectsDto } from "~/project/dto/search-project.dto";
 
-const projectInclude = {
+export const projectCreatorInclude = {
+    user: {
+        select: { name: true },
+    },
+};
+
+export const projectTagsInclude = {
     tags: { select: { name: true } },
 };
 
@@ -25,6 +34,7 @@ const simpleProjectSelect = {
     lastChanged: true,
     betterBedrockContent: true,
     draft: true,
+    userId: true,
     user: {
         select: { name: true },
     },
@@ -32,30 +42,43 @@ const simpleProjectSelect = {
 
 @Injectable()
 export class ProjectService {
-    constructor(private readonly prismaService: PrismaService) {}
-    async create(
-        data:
-            | Prisma.ProjectCreateInput
-            | (Omit<Prisma.ProjectCreateInput, "user"> & { userId: string }),
-    ) {
-        const project = await this.prismaService.project.create({ data: data });
+    constructor(
+        private prismaService: PrismaService,
+        private ratingService: RatingService,
+    ) {}
 
-        await this.createProjectFolders(data.id);
+    async create(data: CreateProjectDto) {
+        const { title, userId } = data;
+        const id = data.title
+            .toLowerCase()
+            .replace(/\s+/g, "_")
+            .replace(/[^a-z0-9_]/g, "");
+
+        const project = await this.prismaService.project.create({
+            data: {
+                id,
+                userId,
+                itemWeight: 0,
+                title,
+                description: "",
+                type: ProjectType.texturepacks,
+            },
+            include: projectTagsInclude,
+        });
+
+        await this.createProjectFolders(id);
 
         return project;
     }
 
-    async search(query: SearchProjectsQueryDto) {
+    async search(query: SearchProjectsQueryDto): Promise<SearchProjectsDto> {
         const { text, type, page = 1 } = query;
         const limit = 20;
         const candidateLimit = 200;
 
-        // --- 1. Build base filter ---
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const baseWhere: any = { draft: false };
-        if (type) baseWhere.type = type;
+        const baseWhere: Prisma.ProjectWhereInput = { draft: false };
+        if (type) baseWhere.type = type as ProjectType;
 
-        // --- 2. Short-circuit: No text, simple DB query ---
         if (!text?.trim()) {
             const [items, total] = await this.prismaService.$transaction([
                 this.prismaService.project.findMany({
@@ -67,12 +90,19 @@ export class ProjectService {
                 }),
                 this.prismaService.project.count({ where: baseWhere }),
             ]);
-            return { items, total, page, totalPages: Math.ceil(total / limit) };
+
+            const detailedItems = await Promise.all(
+                items.map(async (p) => {
+                    const projectDetails = await this.getProjectDetails(p);
+                    return { ...p, ...projectDetails };
+                }),
+            );
+
+            return { items: detailedItems, total, page, totalPages: Math.ceil(total / limit) };
         }
 
-        // --- 3. Normalize and tokenize input ---
-        function tokenize(s: string) {
-            return Array.from(
+        const tokenize = (s: string): string[] =>
+            Array.from(
                 new Set(
                     s
                         .toLowerCase()
@@ -81,12 +111,11 @@ export class ProjectService {
                         .filter((tok) => tok.length >= 2),
                 ),
             ).slice(0, 10);
-        }
+
         const tokens = tokenize(text);
 
-        // If text doesn't produce tokens, fallback to general contains
         if (tokens.length === 0) {
-            const where = {
+            const where: Prisma.ProjectWhereInput = {
                 ...baseWhere,
                 OR: [
                     { title: { contains: text, mode: "insensitive" } },
@@ -105,11 +134,17 @@ export class ProjectService {
                 this.prismaService.project.count({ where }),
             ]);
 
-            return { items, total, page, totalPages: Math.ceil(total / limit) };
+            const detailedItems = await Promise.all(
+                items.map(async (p) => {
+                    const projectDetails = await this.getProjectDetails(p);
+                    return { ...p, ...projectDetails };
+                }),
+            );
+
+            return { items: detailedItems, total, page, totalPages: Math.ceil(total / limit) };
         }
 
-        // --- 4. Broad DB fetch (matches any token in title/user/tags) ---
-        const anyMatchWhere = {
+        const anyMatchWhere: Prisma.ProjectWhereInput = {
             ...baseWhere,
             OR: tokens.flatMap((tok) => [
                 { title: { contains: tok, mode: "insensitive" } },
@@ -124,16 +159,12 @@ export class ProjectService {
             select: {
                 ...simpleProjectSelect,
                 description: true,
-                user: { select: { name: true, id: true } },
                 tags: true,
                 lastChanged: true,
             },
             take: candidateLimit,
         });
 
-        Logger.error({ candidates });
-
-        // --- 5. Scoring: TAGS are crucial! ---
         const SCORE_WEIGHTS = {
             title: 5,
             tag: 3,
@@ -141,16 +172,21 @@ export class ProjectService {
             description: 1,
         };
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        function scoreProject(proj: any) {
+        const scoreProject = (proj: {
+            title: string;
+            user: { name: string } | null;
+            tags: { name: string }[];
+            description: unknown;
+        }): number => {
             let score = 0;
             if (!proj) return score;
             const title = (proj.title ?? "").toLowerCase();
             const username = (proj.user?.name ?? "").toLowerCase();
-            const tags = (proj.tags ?? []).map((t: ProjectTagDto) => t.name.toLowerCase());
-            const desc = proj.description ? JSON.stringify(proj.description).toLowerCase() : "";
-
-            console.log({ desc });
+            const tags = (proj.tags ?? []).map((t) => t.name.toLowerCase());
+            const desc =
+                proj.description !== null && proj.description !== undefined
+                    ? JSON.stringify(proj.description).toLowerCase()
+                    : "";
 
             for (const tok of tokens) {
                 if (tags.some((tag) => tag.includes(tok))) score += SCORE_WEIGHTS.tag;
@@ -159,7 +195,7 @@ export class ProjectService {
                 if (desc.includes(tok)) score += SCORE_WEIGHTS.description;
             }
             return score;
-        }
+        };
 
         const scored = candidates
             .map((proj) => ({ proj, score: scoreProject(proj) }))
@@ -171,47 +207,94 @@ export class ProjectService {
                       new Date(a.proj.lastChanged).getTime(),
             );
 
-        Logger.error({ score: scoreProject(candidates[0]) });
-
         const total = scored.length;
         const paged = scored.slice((page - 1) * limit, page * limit).map((s) => s.proj);
 
+        const detailedItems = await Promise.all(
+            paged.map(async (p) => {
+                const projectDetails = await this.getProjectDetails(p);
+                return { ...p, ...projectDetails };
+            }),
+        );
+
         return {
-            items: paged,
+            items: detailedItems,
             total,
             page,
             totalPages: Math.ceil(total / limit),
         };
     }
 
-    async findOne(id: string) {
-        return await this.prismaService.project.findFirst({ where: { id } });
-    }
-
-    async userProjects(
-        userId: string,
-        user: UserDto | undefined = undefined,
-    ): Promise<SimpleProjectDto[]> {
+    async userProjects(userId: string, user: UserDto | undefined = undefined) {
         const all = user ? userId === user.id : false;
 
-        return await this.prismaService.project.findMany({
+        const projects = await this.prismaService.project.findMany({
             where: { userId, draft: all ? undefined : false },
             select: simpleProjectSelect,
         });
+
+        return Promise.all(
+            projects.map(async (p) => {
+                const projectDetails = await this.getProjectDetails(p);
+                return { ...p, ...projectDetails };
+            }),
+        );
     }
 
-    async projectDetails(id: string): Promise<ProjectDto> {
-        return await this.prismaService.project.findUniqueOrThrow({
+    async projectDetails(id: string) {
+        const project = await this.prismaService.project.findUnique({
             where: { id_draft: { id, draft: false } },
-            include: projectInclude,
+            include: { ...projectTagsInclude, ...projectCreatorInclude },
         });
+
+        if (!project) {
+            throw new NotFoundException("Could not find details about this project");
+        }
+
+        const [projectRating, userRating] = await Promise.all([
+            this.ratingService.getProjectRating(project.id),
+            this.ratingService.getProfileRating(project.userId),
+        ]);
+
+        return {
+            ...project,
+            rating: projectRating,
+            user: { ...project.user, rating: userRating.average },
+        };
     }
 
-    async draftDetails(id: string): Promise<ProjectDto> {
-        return await this.prismaService.project.findUniqueOrThrow({
-            where: { id_draft: { id, draft: true } },
-            include: projectInclude,
+    async update(project: ProjectDto, data: Partial<ProjectDto>) {
+        if (project.submitted) {
+            throw new BadRequestException("Project has already been submitted");
+        }
+
+        const tags = data.tags?.map((tag) => tag.name) ?? [];
+        const updateData: Prisma.ProjectUpdateInput = {
+            ...data,
+            description: data.description as Prisma.InputJsonValue | undefined,
+            ...(data.tags !== undefined
+                ? {
+                      tags: await this.buildTagUpdate(project.id, tags),
+                  }
+                : { tags: undefined }),
+        };
+
+        const updatedProject = await this.prismaService.project.update({
+            where: { id_draft: { id: project.id, draft: true } },
+            data: updateData,
+            include: projectTagsInclude,
         });
+
+        if (data.description) {
+            const thumbnailFile = path.basename(updatedProject.thumbnail ?? "");
+            await this.cleanupDraftImages(
+                project.id,
+                thumbnailFile === "" ? [] : [thumbnailFile],
+                data.description,
+            );
+        }
+
+        return updatedProject;
     }
 
     async submitForReview(project: ProjectDto) {
@@ -225,7 +308,7 @@ export class ProjectService {
 
         const submittedProject = await this.prismaService.project.update({
             where: { id_draft: { id: project.id, draft: true } },
-            data: { submitted: true },
+            data: { submitted: true, error: null },
         });
 
         const thumbnailFile = path.basename(project.thumbnail ?? "");
@@ -240,7 +323,7 @@ export class ProjectService {
     }
 
     async cancelSubmission(id: string) {
-        return await this.prismaService.project.update({
+        return this.prismaService.project.update({
             where: { id_draft: { id, draft: true } },
             data: { submitted: false },
         });
@@ -259,7 +342,7 @@ export class ProjectService {
             },
         });
 
-        if (!draftProject) throw new Error("Draft project not found");
+        if (!draftProject) throw new NotFoundException("Draft project not found");
 
         await this.moveDraftToRelease(id);
 
@@ -317,6 +400,7 @@ export class ProjectService {
                 ...releaseProjectData,
                 id: projectId,
             },
+            include: projectTagsInclude,
         });
 
         await this.prismaService.project.update({
@@ -328,44 +412,50 @@ export class ProjectService {
     }
 
     async decline(id: string, data: DeclineProjectDto) {
-        return await this.prismaService.project.update({
-            where: { id_draft: { id, draft: false } },
+        return this.prismaService.project.update({
+            where: { id_draft: { id, draft: true } },
             data: { error: data.error, submitted: false },
+            include: projectTagsInclude,
         });
     }
 
-    async update(project: ProjectDto, data: Partial<ProjectDto>) {
-        if (project.submitted) {
-            throw new BadRequestException("Project has already been submitted");
-        }
-
-        const tags = data.tags?.map((tag) => tag.name) ?? [];
-        const updateData: Prisma.ProjectUpdateInput = {
-            ...data,
-            description: data.description as Prisma.InputJsonValue | undefined,
-            ...(data.tags !== undefined
-                ? {
-                      tags: await this.buildTagUpdate(project.id, tags),
-                  }
-                : { tags: undefined }),
-        };
-
-        const updatedProject = await this.prismaService.project.update({
-            where: { id_draft: { id: project.id, draft: true } },
-            data: updateData,
-            include: projectInclude,
+    async submitted() {
+        const items = await this.prismaService.project.findMany({
+            where: { submitted: true },
+            select: simpleProjectSelect,
         });
 
-        if (data.description) {
-            const thumbnailFile = path.basename(updatedProject.thumbnail ?? "");
-            await this.cleanupDraftImages(
-                project.id,
-                thumbnailFile === "" ? [] : [thumbnailFile],
-                data.description,
-            );
-        }
+        return Promise.all(
+            items.map(async (p) => {
+                const projectDetails = await this.getProjectDetails(p);
+                return { ...p, ...projectDetails };
+            }),
+        );
+    }
 
-        return updatedProject;
+    async delete(id: string) {
+        await this.prismaService.project.deleteMany({ where: { id } });
+        await this.deleteProjectFolders(id);
+    }
+
+    async findOne(id: string) {
+        return this.prismaService.project.findFirst({ where: { id } });
+    }
+
+    /**
+     *  Private Functions
+     */
+
+    private async getProjectDetails(project: BaseProjectDto): Promise<ProjectDetailsDto> {
+        const [projectRating, userRating] = await Promise.all([
+            this.ratingService.getProjectRating(project.id),
+            this.ratingService.getProfileRating(project.userId),
+        ]);
+
+        return {
+            rating: projectRating,
+            user: { name: project.user.name, rating: userRating.average },
+        };
     }
 
     private async buildTagUpdate(
@@ -408,19 +498,7 @@ export class ProjectService {
         };
     }
 
-    async submitted(): Promise<SimpleProjectDto[]> {
-        return await this.prismaService.project.findMany({
-            where: { submitted: true },
-            select: simpleProjectSelect,
-        });
-    }
-
-    async delete(id: string) {
-        await this.prismaService.project.deleteMany({ where: { id } });
-        this.deleteProjectFolders(id);
-    }
-
-    private async deleteProjectFolders(id: string): Promise<void> {
+    private async deleteProjectFolders(id: string) {
         const baseDir = path.join(process.cwd(), "static");
 
         const folders = [path.join(baseDir, "private", id), path.join(baseDir, "public", id)];
@@ -501,7 +579,7 @@ export class ProjectService {
         }
     }
 
-    private async createProjectFolders(id: string): Promise<void> {
+    private async createProjectFolders(id: string) {
         const baseDir = path.join(process.cwd(), "static");
 
         const folders = [
@@ -516,7 +594,7 @@ export class ProjectService {
         }
     }
 
-    private async moveDraftToRelease(projectId: string): Promise<void> {
+    private async moveDraftToRelease(projectId: string) {
         const baseDir = path.join(process.cwd(), "static");
         const locations = ["private", "public"];
 
