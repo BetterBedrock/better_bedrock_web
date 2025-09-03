@@ -1,12 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "~/prisma.service";
-import { ProjectRatingDto } from "~/rating/dto/project-rating.dto";
 import { RateProjectDto } from "~/rating/dto/rate-project.dto";
-import { UserRatingDto } from "~/rating/dto/user-rating.dto";
 
 @Injectable()
 export class RatingService {
-    constructor(private readonly prismaService: PrismaService) {}
+    constructor(private prismaService: PrismaService) {}
 
     async rateProject(data: RateProjectDto) {
         const { userId, projectId, rating } = data;
@@ -22,10 +20,10 @@ export class RatingService {
             },
         });
 
-        return await this.getProjectRating(projectId);
+        return this.getProjectRating(projectId);
     }
 
-    async getProjectRating(projectId: string): Promise<ProjectRatingDto> {
+    async getProjectRating(projectId: string) {
         const agg = await this.prismaService.rating.aggregate({
             where: { projectId, projectDraft: false },
             _avg: { rating: true },
@@ -50,10 +48,10 @@ export class RatingService {
             where: { userId, projectId, projectDraft: false },
         });
 
-        return await this.getProjectRating(projectId);
+        return this.getProjectRating(projectId);
     }
 
-    async getProfileRating(userId: string): Promise<UserRatingDto> {
+    async getProfileRating(userId: string) {
         const agg = await this.prismaService.rating.aggregate({
             where: { userId, projectDraft: false },
             _avg: { rating: true },
