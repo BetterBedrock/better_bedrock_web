@@ -1,34 +1,45 @@
-import { Injectable, Logger } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { PrismaService } from "~/prisma.service";
+import { ManageProfileDto } from "~/user/dto/manage-profile.dto";
 import { UpdateProfileDto } from "~/user/dto/update-profile.dto";
 
 @Injectable()
 export class UserService {
-    constructor(private readonly prismaService: PrismaService) {}
+    constructor(private prismaService: PrismaService) {}
 
     async userInfoByName(name: string) {
-        return await this.prismaService.user.findFirstOrThrow({
-            where: { name },
+        return this.prismaService.user.findFirstOrThrow({
+            where: { name, banned: false },
             omit: { email: true, linkvertiseSecret: true, googleId: true },
         });
     }
 
-    async userInfoById(id: string) {
-        return await this.prismaService.user.findFirstOrThrow({
+    async detailedUserInfoByName(name: string) {
+        return this.prismaService.user.findFirstOrThrow({
+            where: { name },
+        });
+    }
+
+    async detailedUserInfoById(id: string) {
+        return this.prismaService.user.findFirstOrThrow({
             where: { id },
+        });
+    }
+
+    async userInfoById(id: string) {
+        return this.prismaService.user.findFirstOrThrow({
+            where: { id, banned: false },
             omit: { email: true, linkvertiseSecret: true, googleId: true },
         });
     }
 
     async userDetailedById(id: string) {
-        return await this.prismaService.user.findFirstOrThrow({
+        return this.prismaService.user.findFirstOrThrow({
             where: { id },
         });
     }
 
-    async updateProfile(id: string, data: UpdateProfileDto) {
-        Logger.error({ id, data });
-
-        return await this.prismaService.user.update({ where: { id }, data: data });
+    async updateProfile(id: string, data: UpdateProfileDto | ManageProfileDto) {
+        return this.prismaService.user.update({ where: { id }, data: data });
     }
 }
