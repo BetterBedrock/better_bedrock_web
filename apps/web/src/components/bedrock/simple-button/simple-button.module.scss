@@ -22,6 +22,10 @@
   &:active {
     background-color: g.$color-sbtn-click;
   }
+
+  * {
+    @include g.no-drag();
+  }
 }
 
 .child {
