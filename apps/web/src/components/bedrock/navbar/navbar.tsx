@@ -15,7 +15,7 @@ import { useAuth } from "~/providers/auth";
 export const Navbar = () => {
   const [expandedNavbar, setExpandedNavbar] = useState(false);
   const location = useLocation();
-  const { authenticated, user } = useAuth();
+  const { user } = useAuth();
 
   const handleExpandNavbar = (value?: boolean) => {
     setExpandedNavbar((prev) => (value !== undefined ? value : !prev));
@@ -24,12 +24,13 @@ export const Navbar = () => {
   // Determine which nav items to show
   const isPanelSection = location.pathname === "/panel" || location.pathname.startsWith("/panel/");
   const navItems =
-    isPanelSection && authenticated
+    isPanelSection && user?.admin
       ? [
           { name: "Dashboard", path: "/panel" },
           { name: "Analytics", path: "/panel/analytics" },
           { name: "Voucher", path: "/panel/voucher" },
           { name: "Projects", path: "/panel/projects" },
+          { name: "Reports", path: "/panel/reports" },
         ]
       : [
           { name: "Home", path: "/" },
@@ -53,7 +54,7 @@ export const Navbar = () => {
               extraClassName={styles.heading}
             />
           </Link>
-          <SimpleButton height="100%" onTap={handleExpandNavbar} className={styles.menuButton}>
+          <SimpleButton height="100%" onTap={handleExpandNavbar} className={styles.menuButton} isClicked={expandedNavbar}>
             <div className={clsx("material-icons", styles.menu)}>menu</div>
           </SimpleButton>
         </div>
