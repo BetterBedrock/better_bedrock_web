@@ -1,19 +1,21 @@
-# AuthorizeDto
+# ProjectCreatorDto
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**token** | **string** | A unique token for user authentication | [default to undefined]
+**rating** | **number** |  | [default to undefined]
+**name** | **string** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { AuthorizeDto } from './api';
+import { ProjectCreatorDto } from './api';
 
-const instance: AuthorizeDto = {
-    token,
+const instance: ProjectCreatorDto = {
+    rating,
+    name,
 };
 ```
 

@@ -26,7 +26,7 @@ All URIs are relative to *http://localhost*
 |[**projectControllerUserProjects**](#projectcontrolleruserprojects) | **GET** /project/user/{id} | |
 
 # **projectControllerCancelSubmission**
-> ProjectDto projectControllerCancelSubmission()
+> projectControllerCancelSubmission()
 
 
 ### Example
@@ -56,7 +56,7 @@ const { status, data } = await apiInstance.projectControllerCancelSubmission(
 
 ### Return type
 
-**ProjectDto**
+void (empty response body)
 
 ### Authorization
 
@@ -65,13 +65,13 @@ const { status, data } = await apiInstance.projectControllerCancelSubmission(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Successfully cancelled submission |  -  |
+|**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -121,12 +121,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Returns comments under a project |  -  |
+|**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **projectControllerCreate**
-> ProjectDto projectControllerCreate(createProjectDto)
+> ProjectDto projectControllerCreate(createProjectBodyDto)
 
 
 ### Example
@@ -135,16 +135,16 @@ No authorization required
 import {
     ProjectApi,
     Configuration,
-    CreateProjectDto
+    CreateProjectBodyDto
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new ProjectApi(configuration);
 
-let createProjectDto: CreateProjectDto; //
+let createProjectBodyDto: CreateProjectBodyDto; //
 
 const { status, data } = await apiInstance.projectControllerCreate(
-    createProjectDto
+    createProjectBodyDto
 );
 ```
 
@@ -152,7 +152,7 @@ const { status, data } = await apiInstance.projectControllerCreate(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **createProjectDto** | **CreateProjectDto**|  | |
+| **createProjectBodyDto** | **CreateProjectBodyDto**|  | |
 
 
 ### Return type
@@ -172,7 +172,7 @@ const { status, data } = await apiInstance.projectControllerCreate(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Successfully created project |  -  |
+|**201** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -276,7 +276,7 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Successfully deleted project |  -  |
+|**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -326,7 +326,7 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Successfully deleted a comment |  -  |
+|**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -376,12 +376,12 @@ const { status, data } = await apiInstance.projectControllerDeleteRating(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Successfully deleted rating for given project |  -  |
+|**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **projectControllerDraftDetails**
-> ProjectDto projectControllerDraftDetails()
+> DetailedProjectDto projectControllerDraftDetails()
 
 
 ### Example
@@ -411,7 +411,7 @@ const { status, data } = await apiInstance.projectControllerDraftDetails(
 
 ### Return type
 
-**ProjectDto**
+**DetailedProjectDto**
 
 ### Authorization
 
@@ -426,7 +426,7 @@ const { status, data } = await apiInstance.projectControllerDraftDetails(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Successfully fetched draft details |  -  |
+|**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -476,7 +476,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Successfully commented under a project |  -  |
+|**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -530,12 +530,12 @@ const { status, data } = await apiInstance.projectControllerPostComment(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Successfully posted a comment |  -  |
+|**201** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **projectControllerProjectDetails**
-> ProjectDto projectControllerProjectDetails()
+> DetailedProjectDto projectControllerProjectDetails()
 
 
 ### Example
@@ -565,7 +565,7 @@ const { status, data } = await apiInstance.projectControllerProjectDetails(
 
 ### Return type
 
-**ProjectDto**
+**DetailedProjectDto**
 
 ### Authorization
 
@@ -580,7 +580,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Successfully fetched project details |  -  |
+|**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -683,7 +683,7 @@ const { status, data } = await apiInstance.projectControllerRateProject(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Successfully rated project |  -  |
+|**201** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -740,7 +740,7 @@ const { status, data } = await apiInstance.projectControllerReplyToComment(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Successfully posted a reply |  -  |
+|**201** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -801,7 +801,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **projectControllerSubmit**
-> ProjectDto projectControllerSubmit()
+> projectControllerSubmit()
 
 
 ### Example
@@ -831,7 +831,7 @@ const { status, data } = await apiInstance.projectControllerSubmit(
 
 ### Return type
 
-**ProjectDto**
+void (empty response body)
 
 ### Authorization
 
@@ -840,13 +840,13 @@ const { status, data } = await apiInstance.projectControllerSubmit(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Successfully submitted for review |  -  |
+|**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -889,7 +889,7 @@ This endpoint does not have any parameters.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Returns submitted projects for review |  -  |
+|**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -943,7 +943,7 @@ const { status, data } = await apiInstance.projectControllerUpdate(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Successfully updated project details |  -  |
+|**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -996,8 +996,7 @@ const { status, data } = await apiInstance.projectControllerUploadProjectFile(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**201** | Successfully uploaded file |  -  |
-|**400** | File upload failed |  -  |
+|**201** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1047,7 +1046,7 @@ const { status, data } = await apiInstance.projectControllerUserProjects(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Successfully fetched user projects |  -  |
+|**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **token** | **string** | A unique token for user authentication | [default to undefined]
-**isNewUser** | **boolean** |  | [default to undefined]
+**isNewUser** | **boolean** | Determines whether the user account was just created | [default to undefined]
 
 ## Example
 

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **googleId** | **string** |  | [default to undefined]
 **email** | **string** |  | [default to undefined]
 **name** | **string** |  | [default to undefined]
+**admin** | **boolean** |  | [default to undefined]
 **bio** | **string** |  | [default to undefined]
 **banned** | **boolean** |  | [default to undefined]
 **createdAt** | **string** |  | [default to undefined]
@@ -26,6 +27,7 @@ const instance: UserDto = {
     googleId,
     email,
     name,
+    admin,
     bio,
     banned,
     createdAt,

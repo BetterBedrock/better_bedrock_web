@@ -1,19 +1,19 @@
-# AuthorizeDto
+# ReportProjectBodyDto
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**token** | **string** | A unique token for user authentication | [default to undefined]
+**message** | **string** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { AuthorizeDto } from './api';
+import { ReportProjectBodyDto } from './api';
 
-const instance: AuthorizeDto = {
-    token,
+const instance: ReportProjectBodyDto = {
+    message,
 };
 ```
 
