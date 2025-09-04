@@ -1,5 +1,4 @@
-import { ReactNode, useEffect } from "react";
-import { useCookies } from "react-cookie";
+import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "~/providers/auth";
 import { useNotification } from "~/providers/notification";
@@ -10,20 +9,17 @@ interface ProtectedRouteProps {
 }
 
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const { fetched, authenticated, adminAuthenticate } = useAuth();
-  const [cookies] = useCookies(["adminSecret"]);
+  const { fetched, user } = useAuth();
   const { sendNotification } = useNotification();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    adminAuthenticate(cookies.adminSecret);
-  }, []);
 
   if (!fetched) {
     return;
   }
 
-  if (fetched && !authenticated) {
+  console.log({fetched, user})
+
+  if (fetched && !user?.admin) {
     sendNotification({
       title: "No access",
       label: "You don't have access to this page",
