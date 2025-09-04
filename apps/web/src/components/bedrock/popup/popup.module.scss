@@ -4,7 +4,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 92;
+  z-index: 100;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -20,7 +20,7 @@
   z-index: 93;
   pointer-events: auto;
   height: auto;
-  min-height: g.$breakpoint-mobileS;
+  // min-height: g.$breakpoint-mobileS;
 
   width: 50%;
   max-width: g.$breakpoint-laptopL;
@@ -42,16 +42,18 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-
   right: g.$padding-xsm;
 
-  height: g.$exit-button-size;
-  width: g.$exit-button-size;
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
-  filter: invert(1);
-  cursor: pointer;
+  .icon {
+    position: relative;
+    height: g.$exit-button-size;
+    width: g.$exit-button-size;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    filter: invert(1);
+    cursor: pointer;
+  }
 }
 
 .header {
@@ -64,4 +66,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.container {
+  width: 100%;
+
+  .part {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: g.$padding-sm;
+    gap: g.$padding-xsm;
+  }
+}
+
+.group {
+  width: 100%;
 }
