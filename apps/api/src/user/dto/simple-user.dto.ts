@@ -5,4 +5,5 @@ export class SimpleUserDto extends OmitType(UserDto, [
     "linkvertiseSecret",
     "email",
     "googleId",
+    "admin",
 ] as const) {}

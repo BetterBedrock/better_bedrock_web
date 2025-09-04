@@ -14,6 +14,9 @@ export class UserDto {
     @IsString()
     name: string;
 
+    @IsBoolean()
+    admin: boolean;
+
     @IsString()
     bio: string;
 
