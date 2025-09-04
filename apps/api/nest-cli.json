@@ -1,19 +1,20 @@
 {
-    "$schema": "https://json.schemastore.org/nest-cli",
-    "collection": "@nestjs/schematics",
-    "sourceRoot": "src",
-    "compilerOptions": {
-        "deleteOutDir": true,
-        "plugins": [
-            {
-                "name": "@nestjs/swagger",
-                "options": {
-                    "classValidatorShim": true,
-                    "introspectComments": true,
-                    "skipAutoHttpCode": true,
-                    "dtoFileNameSuffix": [".dto.ts", ".model.ts"]
-                }
-            }
-        ]
-    }
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "plugins": [
+      {
+        "name": "@nestjs/swagger/plugin",
+        "options": {
+          "classValidatorShim": true,
+          "introspectComments": true,
+          "dtoFileNameSuffix": [".dto.ts", ".model.ts"],
+          "controllerFileNameSuffix": [".controller.ts"],
+          "skipAutoHttpCode": true
+        }
+      }
+    ]
+  }
 }
