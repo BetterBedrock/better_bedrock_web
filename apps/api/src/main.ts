@@ -50,7 +50,6 @@ async function bootstrap() {
         .setTitle("Better Bedrock API")
         .setDescription("The API used for handling downloads from Better Bedrock site")
         .setVersion("1.0")
-        .addTag("download")
         .addBearerAuth()
         .build();
     const documentFactory = () => SwaggerModule.createDocument(app, config);
@@ -58,6 +57,8 @@ async function bootstrap() {
     await SwaggerModule.loadPluginMetadata(metadata);
     SwaggerModule.setup("documentation", app, documentFactory, {
         jsonDocumentUrl: "documentation/json",
+        ui: true,
+        raw: ["json"],
     });
 
     app.useStaticAssets(join(__dirname, "..", "static"), {
