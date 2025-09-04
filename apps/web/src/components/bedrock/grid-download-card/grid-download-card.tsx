@@ -49,7 +49,8 @@ export const GridDownloadCard = ({
           <div>
             <BedrockText text={`@${project.user.name}`} type={"p"} textAlign="left" color="white" />
 
-            <Rating simple rating={2.5} />
+            {project.rating.count < 1 ? <BedrockText type="p2" text="No ratings" color="white"/> :
+            <Rating simple rating={project.rating.average} />}
           </div>
         </div>
       </Link>
@@ -95,7 +96,7 @@ export const GridDownloadCard = ({
             </div>
           </div>
           <div className={styles.tags}>
-            {project.tags.map((tag) => (
+            {project.tags?.map((tag) => (
               <Tag border={["left", "bottom"]} name={tag.name} />
             ))}
           </div>
