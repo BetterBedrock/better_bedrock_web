@@ -1,5 +1,5 @@
 [![License: NCSL](https://img.shields.io/badge/License-NonCommercial-red.svg)](LICENSE)
-[![Open Source? No](https://img.shields.io/badge/Open%20Source-No-orange.svg)](LICENSE)
+[![Open Source? YES](https://img.shields.io/badge/Open%20Source-No-orange.svg)](LICENSE)
 [![Free to Use](https://img.shields.io/badge/Free%20to%20Use-Yes-brightgreen.svg)](LICENSE)
 [![Commercial Use](https://img.shields.io/badge/Commercial%20Use-No-red.svg)](LICENSE)
 
