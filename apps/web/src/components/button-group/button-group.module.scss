@@ -9,11 +9,6 @@
 
 .buttonGroup > :global(*) {
   position: relative;
-  z-index: 1;
-}
-.buttonGroup > :global(*:hover),
-.buttonGroup > :global(*:focus-within) {
-  z-index: 1;
 }
 
 .buttonGroup[data-direction="horizontal"],
