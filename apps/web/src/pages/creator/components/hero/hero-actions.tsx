@@ -6,6 +6,7 @@ import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { styles } from ".";
 import { useState } from "react";
 import { useProject } from "~/providers/project";
+import { ButtonGroup } from "~/components/button-group/button-group";
 
 export const HeroActions = () => {
   const navigate = useNavigate();
@@ -22,16 +23,17 @@ export const HeroActions = () => {
 
   if (!id) {
     return (
-      <div className={styles.actions}>
+      <ButtonGroup className={styles.actions}>
         <Input
           placeholder="Project Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          className={styles.input}
         />
         <Button onClick={handleCreateProject} center>
           <BedrockText text="Create" type="p" color="white" />
         </Button>
-      </div>
+      </ButtonGroup>
     );
   }
   return <></>;
