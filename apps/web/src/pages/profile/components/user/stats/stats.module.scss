@@ -3,12 +3,16 @@
 .projects {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  width:100%;
+}
+
+.text {
+  width:100%;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: g.$padding-sm;
 }
 
 .link {

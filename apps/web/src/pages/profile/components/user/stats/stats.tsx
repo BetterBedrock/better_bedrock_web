@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { SimpleUserDto, AnalyticsDto } from "~/lib/api";
 import { useAnalytics } from "~/providers/analytics";
 import { StatisticsCard } from "~/components/bedrock/statistics-card";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
 
 export const Stats = () => {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ export const Stats = () => {
           <StatisticsCard name={name} data={data[name]} className={styles.card} />
         ))}
       </div>
+              {Object.keys(data).length < 1 && <BedrockText text="No statistics available" type="p" textAlign="center" color="white" extraClassName={styles.text}/>}
     </div>
   );
 };
