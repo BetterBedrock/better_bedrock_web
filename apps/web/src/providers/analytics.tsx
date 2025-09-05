@@ -18,27 +18,21 @@ interface AnalyticsProvider {
 const AnalyticsContext = createContext<AnalyticsContextProps | undefined>(undefined);
 
 export const AnalyticsProvider = ({ children }: AnalyticsProvider) => {
-  const [cookie] = useCookies(["adminSecret", "secret"]);
+  const [cookie] = useCookies(["secret"]);
   const [analytics, setAnalytics] = useState<AnalyticsDto[]>([]);
   const { throwError } = useNotification();
-  const { authenticated } = useAuth();
-
-  const adminConfig = new Configuration({
-    basePath: baseUrl,
-    accessToken: cookie.adminSecret,
-  });
+  const { user } = useAuth();
 
   const config = new Configuration({
     basePath: baseUrl,
     accessToken: cookie.secret,
   });
 
-  const adminAnalyticsApi = new AnalyticsApi(adminConfig);
   const analyticsApi = new AnalyticsApi(config);
 
   const fetchAnalytics = async () => {
     try {
-      const { data } = await adminAnalyticsApi.analyticsControllerAnalytics();
+      const { data } = await analyticsApi.analyticsControllerAnalytics();
 
       setAnalytics(data);
     } catch (err) {
@@ -56,11 +50,11 @@ export const AnalyticsProvider = ({ children }: AnalyticsProvider) => {
   };
 
   useEffect(() => {
-    if (!authenticated) return;
+    if (!user || !user.admin) return;
     fetchAnalytics();
 
     setInterval(fetchAnalytics, 2000);
-  }, [authenticated]);
+  }, [user]);
 
   return (
     <AnalyticsContext.Provider value={{ analytics, fetchUserAnalytics, fetchAnalytics }}>

@@ -10,7 +10,6 @@ interface AuthContextProps {
   fetched: boolean;
   user: UserDto | undefined;
   setUser: React.Dispatch<React.SetStateAction<UserDto | undefined>>;
-  adminAuthenticate: (token: string) => Promise<void>;
   googleLogin: () => void;
   logout: () => void;
 }
@@ -24,7 +23,7 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [fetched, setFetched] = useState(false);
-  const [cookie, setCookie, removeCookie] = useCookies(["adminSecret", "secret"]);
+  const [cookie, setCookie, removeCookie] = useCookies(["secret"]);
   const { throwError, sendNotification } = useNotification();
   const [user, setUser] = useState<UserDto | undefined>();
 
@@ -37,7 +36,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const authApi = new AuthApi(config);
 
       try {
-        const { data } = await authApi.authControllerAuthorize({
+        const { data } = await authApi.authControllerGoogleAuthorize({
           token: tokenResponse.access_token,
         });
         setCookie("secret", data.token);
@@ -49,6 +48,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   });
 
   const authenticate = async (secret: string) => {
+    setFetched(false);
     try {
       const config = new Configuration({
         basePath: baseUrl,
@@ -61,31 +61,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     } catch (err) {
       throwError(err, "Failed to authenticate");
     }
-  };
 
-  const adminAuthenticate = async (token: string) => {
-    try {
-      const config = new Configuration({
-        basePath: baseUrl,
-        accessToken: token,
-      });
-
-      const authApi = new AuthApi(config);
-
-      await authApi.authControllerAdminAuthenticate();
-
-      setCookie("adminSecret", token);
-      setAuthenticated(true);
-    } catch (err) {
-      setAuthenticated(false);
-      throwError(err, "Failed to authenticate");
-    }
     setFetched(true);
   };
 
   const logout = () => {
     removeCookie("secret");
-    removeCookie("adminSecret");
     setUser(undefined);
     setAuthenticated(false);
     setFetched(false);
@@ -98,18 +79,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   useEffect(() => {
-    if (cookie.adminSecret && cookie.adminSecret !== "") {
-      adminAuthenticate(cookie.adminSecret);
-    }
-
     if (cookie.secret && cookie.secret !== "") {
       authenticate(cookie.secret);
     }
-  }, [cookie]);
+  }, [cookie.secret]);
 
   return (
     <AuthContext.Provider
-      value={{ user, setUser, fetched, googleLogin, adminAuthenticate, authenticated, logout }}
+      value={{ user, setUser, fetched, googleLogin, authenticated, logout }}
     >
       {children}
     </AuthContext.Provider>

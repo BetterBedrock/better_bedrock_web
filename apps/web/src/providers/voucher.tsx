@@ -21,12 +21,12 @@ const VoucherContext = createContext<VoucherContextProps | undefined>(undefined)
 export const VoucherProvider = ({ children }: VoucherProviderProps) => {
   const [vouchers, setVouchers] = useState<VoucherDto[]>([]);
   const { authenticated } = useAuth();
-  const [cookie] = useCookies(["adminSecret"]);
+  const [cookie] = useCookies(["secret"]);
   const { throwError } = useNotification();
 
   const config = new Configuration({
     basePath: baseUrl,
-    accessToken: cookie.adminSecret,
+    accessToken: cookie.secret,
   });
 
   const voucherApi = new VoucherApi(config);
