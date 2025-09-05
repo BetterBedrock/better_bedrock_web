@@ -18,6 +18,8 @@ export const HeaderTabs = ({ selectedCategory }: HeaderTabsProps) => (
           <Button
             key={index}
             tabIndex={index}
+            
+            isToggled={selectedCategory.id === c.id}
             isClicked={selectedCategory.id === c.id}
             width="100%"
             height="auto"
