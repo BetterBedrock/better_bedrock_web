@@ -20,6 +20,7 @@ const schema = z.object({
   customLinkvertise: z.boolean(),
   linkvertiseId: z.string().nullable(),
   linkvertiseSecret: z.string().nullable(),
+  banned: z.boolean(),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -28,9 +29,15 @@ interface UserSettingsFormProps {
   onClose: () => void;
   onSave: (data: FormValues) => void;
   user: UserDto;
+  admin?: boolean;
 }
 
-export const UserSettingsForm = ({ onClose, onSave, user }: UserSettingsFormProps) => {
+export const UserSettingsForm = ({
+  onClose,
+  onSave,
+  user,
+  admin = false,
+}: UserSettingsFormProps) => {
   const { logout } = useAuth();
   const [showLinkvertiseOptions, setShowLinkvertiseOptions] = useState(
     user.customLinkvertise ?? false,
@@ -45,8 +52,6 @@ export const UserSettingsForm = ({ onClose, onSave, user }: UserSettingsFormProp
     defaultValues: user,
     resolver: zodResolver(schema),
   });
-
-  console.log({ errors });
 
   const onClickSubmit = handleSubmit(onSave);
 
@@ -159,12 +164,29 @@ export const UserSettingsForm = ({ onClose, onSave, user }: UserSettingsFormProp
 
         <CardDivider />
         <div className={styles.part}>
-          <Button type="green" buttonType="submit" center width="100%">
+          <Button type={admin ? "dark" : "green"} buttonType="submit" center width="100%">
             <BedrockText type="p" text="Save Settings" color="white" />
           </Button>
-          <Button type="dark" width="100%" center onClick={logout}>
-            <BedrockText type="p" text="Logout" color="white" />
-          </Button>
+          {!admin ? (
+            <Button type="dark" width="100%" center onClick={logout}>
+              <BedrockText type="p" text="Logout" color="white" />
+            </Button>
+          ) : (
+            <Controller
+              name="banned"
+              control={control}
+              render={({ field }) => (
+                <Button
+                  type={field.value ? "dark" : "red"}
+                  width="100%"
+                  center
+                  onClick={() => field.onChange(!field.value)}
+                >
+                  <BedrockText type="p" text={field.value ? "Unban" : "Ban"} color="white" />
+                </Button>
+              )}
+            />
+          )}
         </div>
       </form>
     </Popup>

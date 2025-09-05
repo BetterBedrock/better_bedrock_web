@@ -35,9 +35,10 @@
   width: 100%;
 }
 
-.icon {
+.settings {
   width: g.$icon-sm;
   height: g.$icon-sm;
+  image-rendering: pixelated;
 }
 
 .part {
@@ -57,4 +58,13 @@
 
 .error {
   color: g.$color-red !important;
+}
+
+.icons {
+  display: inline-flex;
+}
+
+.report {
+  height: g.$icon-sm;
+  image-rendering: pixelated;
 }
