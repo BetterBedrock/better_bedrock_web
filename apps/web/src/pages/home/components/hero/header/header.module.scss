@@ -51,3 +51,9 @@ $title-height: clamp(2.7em, 7vw, 6em);
 .description {
   margin-bottom: g.$padding-sm;
 }
+
+.link {
+  width: 100%;
+  text-decoration: none !important;
+  color: inherit;
+}
