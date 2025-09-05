@@ -9,7 +9,6 @@ export const Downloads = () => (
       className={styles.background}
       extraClassName={styles.padding}
       fixed
-      // center={showLoading}
     >
       <Outlet />
     </Section>
