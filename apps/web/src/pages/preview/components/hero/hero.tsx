@@ -10,9 +10,8 @@ import { Link } from "~/components/link";
 import { TextEditor } from "~/components/text-editor/text-editor";
 import { useProject } from "~/providers/project";
 import {
+  DetailedProjectDto,
   ProjectCommentDto,
-  ProjectDto,
-  ProjectRatingDto,
   ProjectType,
   SimpleUserDto,
   UpdateProjectDto,
@@ -34,6 +33,12 @@ import { PreviewPopup } from "~/pages/preview/components/hero/preview-popup";
 import { Comment } from "~/components/comment";
 import { PROJECT_TYPES } from "~/assets/content/better-bedrock";
 import { ButtonGroup } from "~/components/button-group/button-group";
+import { useAuth } from "~/providers/auth";
+import { PopupConfirmation } from "~/components/bedrock/popup/popup-confirmation";
+import { SimpleButton } from "~/components/bedrock/simple-button";
+import { PopupReport } from "~/components/bedrock/popup/popup-report";
+import ReportGlyph from "~/assets/images/glyphs/WarningGlyph.png";
+import { HeroDeclinePopup } from "~/pages/preview/components/hero/hero-decline-popup";
 
 interface HeroProps {
   mode: PreviewMode;
@@ -57,23 +62,25 @@ export const Hero = ({ mode }: HeroProps) => {
     uploadFile,
     deleteProject,
     publish,
-    getProjectRating,
     getComments,
     postComment,
     replyToComment,
     postRating,
     deleteRating,
+    decline,
   } = useProject();
 
-  const [draftProject, setDraftProject] = useState<ProjectDto | undefined>();
-  const [project, setProject] = useState<ProjectDto | undefined>();
+  const [draftProject, setDraftProject] = useState<DetailedProjectDto | undefined>();
+  const [project, setProject] = useState<DetailedProjectDto | undefined>();
   const [creator, setCreator] = useState<SimpleUserDto | undefined>();
-  const [rating, setRating] = useState<ProjectRatingDto | undefined>(undefined);
   const [userRating, setUserRating] = useState<number | undefined>(undefined);
   const [comments, setComments] = useState<ProjectCommentDto[] | undefined>([]);
   const commentInputRef = useRef<HTMLInputElement>(null);
+  const [reportOpen, setReportOpen] = useState(false);
+  const [declineOpen, setDeclineOpen] = useState(false);
 
   const { findUserById, getUserRating } = useUser();
+  const { user, fetched: fetchedUser } = useAuth();
 
   const editorContent = useRef<Content | undefined>(draftProject?.description);
 
@@ -81,6 +88,8 @@ export const Hero = ({ mode }: HeroProps) => {
   const selectedProject = draftProject ?? project;
 
   useEffect(() => {
+    if (!user) return;
+
     if (file) {
       if (mode !== "view") {
         fetchDraftDetails(file).then((data) => {
@@ -94,11 +103,10 @@ export const Hero = ({ mode }: HeroProps) => {
         });
       }
     }
-  }, [file]);
+  }, [file, user]);
 
   useEffect(() => {
     if (selectedProject) {
-      getProjectRating(selectedProject.id).then((data) => setRating(data));
       getComments(selectedProject.id).then((data) => setComments(data ?? []));
       getUserRating(selectedProject.id).then((data) => setUserRating(data));
     }
@@ -109,7 +117,7 @@ export const Hero = ({ mode }: HeroProps) => {
     findUserById(selectedProject.userId).then((data) => setCreator(data));
   }, [draftProject, project]);
 
-  if (!fetched) {
+  if (!fetched || !fetchedUser) {
     return <CircularProgressIndicator size="large" />;
   }
 
@@ -176,9 +184,13 @@ export const Hero = ({ mode }: HeroProps) => {
 
     if (!selectedProject.submitted) {
       await handleSaveProject(selectedProject);
-      setDraftProject(await submitProject(selectedProject.id));
+      const submission = await submitProject(selectedProject.id, selectedProject.title);
+
+      if (!submission) return;
+      setDraftProject((prev) => ({ ...prev!, submitted: true, error: null }));
     } else {
-      setDraftProject(await cancelSubmission(selectedProject.id));
+      await cancelSubmission(selectedProject.id, selectedProject.title);
+      setDraftProject((prev) => ({ ...prev!, submitted: false }));
     }
   };
 
@@ -187,7 +199,7 @@ export const Hero = ({ mode }: HeroProps) => {
 
     console.log({ selectedProject });
 
-    await deleteProject(selectedProject.id);
+    await deleteProject(selectedProject.id, selectedProject.title);
     sendNotification({
       title: "Deleted",
       label: "Successfully deleted project",
@@ -239,26 +251,68 @@ export const Hero = ({ mode }: HeroProps) => {
     if (!selectedProject) return;
 
     const newProjectRating = await postRating(selectedProject.id, rating);
-    setRating(newProjectRating);
+
+    if (!newProjectRating) return;
+    setProject((prev) => ({ ...prev!, rating: newProjectRating }));
   };
 
   const handleDeleteRating = async () => {
     if (!selectedProject) return;
 
     const newProjectRating = await deleteRating(selectedProject.id);
-    setRating(newProjectRating);
+    if (!newProjectRating) return;
+    setProject((prev) => ({ ...prev!, rating: newProjectRating }));
   };
 
   return (
     <div className={styles.preview}>
       {showPopup && <PreviewPopup onClose={() => setShowPopup(false)} project={selectedProject!} />}
+      {reportOpen && selectedProject && (
+        <PopupReport
+          name={selectedProject.title}
+          id={selectedProject.id}
+          type="user"
+          onClose={() => setReportOpen(false)}
+        />
+      )}
+      {declineOpen && (
+        <HeroDeclinePopup
+          onCancel={() => setDeclineOpen(false)}
+          onSubmit={async (reason) => {
+            await decline(selectedProject.id, selectedProject.title, reason);
+            navigate(Routes.PANEL_PROJECTS);
+          }}
+        />
+      )}
+      {selectedProject.error && (
+        <div className={clsx(styles.card, styles.error)}>
+          <BedrockText
+            textAlign="start"
+            type="p"
+            color="white"
+            font="Minecraft"
+            text={`Your project has been decline for the following reason: `}
+          />
+          <BedrockText textAlign="start" type="p" color="white" text={selectedProject.error} />
+        </div>
+      )}
       <div className={styles.card}>
         <Card sub className={styles.information}>
           {/* <HeroDescription download={download} /> */}
           <div className={clsx(styles.editor)}>
-            <HeroTitle title={selectedProject?.title ?? ""} />
-            {mode === "view" && rating && (
-              <Rating rating={rating.average} suffix={`(${rating.count} Reviews)`} />
+            <div className={styles.title}>
+              <HeroTitle title={selectedProject?.title ?? ""} />
+              {user && user?.id !== selectedProject.userId && mode === "view" && (
+                <SimpleButton transparent onClick={() => setReportOpen(true)}>
+                  <img src={ReportGlyph} className={styles.report} />
+                </SimpleButton>
+              )}
+            </div>
+            {mode === "view" && (
+              <Rating
+                rating={selectedProject.rating.average}
+                suffix={`(${selectedProject.rating.count} Reviews)`}
+              />
             )}
           </div>
 
@@ -275,21 +329,20 @@ export const Hero = ({ mode }: HeroProps) => {
                 ) : (
                   <CircularProgressIndicator size="small" />
                 )}
-                {rating && <Rating rating={2.5} simple />}
+                <Rating rating={selectedProject.user.rating} simple />
               </div>
             </div>
+            {mode === "view" && (
+              <Link link="#download" onClick={scrollToButton}>
+                <BedrockText
+                  text="Skip to download"
+                  type="p"
+                  color="white"
+                  extraClassName={styles.skip}
+                />
+              </Link>
+            )}
           </div>
-
-          {mode === "view" && (
-            <Link link="#download" onClick={scrollToButton}>
-              <BedrockText
-                text="Skip to download"
-                type="p"
-                color="white"
-                extraClassName={styles.skip}
-              />
-            </Link>
-          )}
         </Card>
         {mode === "edit" && (
           <Card sub className={styles.information}>
@@ -298,32 +351,37 @@ export const Hero = ({ mode }: HeroProps) => {
             </div>
 
             <CardDivider sub />
-            <ButtonGroup className={clsx(styles.editor)}>
-              {Object.entries(PROJECT_TYPES).map(([key, label]) => (
-                <Button
-                  key={key}
-                  // transparent
-                  // toggled
-                  type={key === selectedProject.type ? "green" : "white"}
-                  onClick={() =>
-                    setDraftProject((prev) => ({ ...prev!, type: key as ProjectType }))
-                  }
-                  isClicked={key === selectedProject.type}
-                  isToggled={key === selectedProject.type}
-                  center
-                >
-                  <BedrockText
-                    text={label}
-                    color={key === selectedProject.type ? "white" : "black"}
-                    type="p"
-                  />
-                </Button>
-              ))}
-            </ButtonGroup>
+            <div className={clsx(styles.editor, styles.size)}>
+              <BedrockText text="Project Type" type="p" color="white" textAlign="left" />
+
+              <ButtonGroup>
+                {Object.entries(PROJECT_TYPES).map(([key, label]) => (
+                  <Button
+                    key={key}
+                    // transparent
+                    // toggled
+                    type={key === selectedProject.type ? "green" : "white"}
+                    onClick={() =>
+                      setDraftProject((prev) => ({ ...prev!, type: key as ProjectType }))
+                    }
+                    isClicked={key === selectedProject.type}
+                    isToggled={key === selectedProject.type}
+                    center
+                  >
+                    <BedrockText
+                      text={label}
+                      color={key === selectedProject.type ? "white" : "black"}
+                      type="p"
+                    />
+                  </Button>
+                ))}
+              </ButtonGroup>
+            </div>
 
             <CardDivider sub />
-            <div className={clsx(styles.editor, styles.tagsWrapper)}>
-              <div className={styles.creator}>
+            <div className={clsx(styles.editor, styles.size, styles.tagsWrapper)}>
+              <BedrockText text="Tags" type="p" color="white" textAlign="left" />
+              <ButtonGroup className={styles.creator}>
                 <Input
                   className={styles.input}
                   placeholder="Tag Name"
@@ -341,7 +399,7 @@ export const Hero = ({ mode }: HeroProps) => {
                 >
                   <BedrockText text="Create" type="p" color="white" />
                 </Button>
-              </div>
+              </ButtonGroup>
               <div className={styles.tags}>
                 {(selectedProject?.tags ?? []).map((tag) => (
                   <Tag
@@ -361,11 +419,11 @@ export const Hero = ({ mode }: HeroProps) => {
             </div>
 
             <CardDivider sub />
-            <div className={clsx(styles.editor)}>
+            <div className={clsx(styles.editor, styles.size)}>
               <BedrockText
                 text={
                   selectedProject?.downloadFile
-                    ? `Selected File : ${selectedProject.itemWeight}MB`
+                    ? `Selected File Size: ${selectedProject.itemWeight}MB`
                     : "No selected file yet"
                 }
                 type="p"
@@ -400,7 +458,9 @@ export const Hero = ({ mode }: HeroProps) => {
             <Card sub>
               <div className={styles.editor}>
                 <HeroTitle title="Thumbnail" />
-
+              </div>
+              <CardDivider sub />
+              <div className={styles.editor}>
                 <ImagePlaceholder
                   onUpload={handleUploadThumbnail}
                   src={
@@ -444,34 +504,53 @@ export const Hero = ({ mode }: HeroProps) => {
         )}
       </div>
 
-      <div>
+      <ButtonGroup>
         {/* <HeroTitle download={download} /> */}
         {/* <HeroDescription download={download} /> */}
         {mode === "edit" ? (
           <>
             <HeroSave onClick={async () => await handleSaveProject(selectedProject!)} />
-            <Button
-              className={styles.action}
-              width="100%"
-              type="dark"
-              onClick={handleSubmission}
-              center
-            >
-              <BedrockText
-                text={selectedProject?.submitted ? "Unsubmit project" : "Submit for review"}
-                type="p"
-                color="white"
-              />
-            </Button>
 
-            <Button className={styles.action} width="100%" type="red" center onClick={handleDelete}>
-              <BedrockText text={"Delete Project"} type="p" color="white" />
-            </Button>
+            <PopupConfirmation
+              description="You are about to submit your project for verification process which will take up to 24h, if you are unsure, or want to make a change, you can alaways cancel the submission."
+              confirmText="Submit"
+              ignore={selectedProject?.submitted}
+            >
+              <Button
+                className={styles.action}
+                width="100%"
+                type="dark"
+                onClick={handleSubmission}
+                center
+              >
+                <BedrockText
+                  text={selectedProject?.submitted ? "Cancel Submission" : "Submit for review"}
+                  type="p"
+                  color="white"
+                />
+              </Button>
+            </PopupConfirmation>
+
+            <PopupConfirmation
+              description="Are you sure you want to delete this project? Both the released and draft versions will be deleted."
+              confirmText="Delete"
+              confirmType="red"
+            >
+              <Button
+                className={styles.action}
+                width="100%"
+                type="red"
+                center
+                onClick={handleDelete}
+              >
+                <BedrockText text={"Delete Project"} type="p" color="white" />
+              </Button>
+            </PopupConfirmation>
           </>
         ) : (
           <HeroAction ref={buttonRef} setShowPopup={setShowPopup} />
         )}
-      </div>
+      </ButtonGroup>
       {mode === "view" && (
         <div>
           <Rating
@@ -492,16 +571,16 @@ export const Hero = ({ mode }: HeroProps) => {
             </div>
             <CardDivider sub />
             <div className={styles.editor}>
-              <Input className={styles.input} ref={commentInputRef} placeholder="Your Comment..." />
-              <Button
-                className={styles.action}
-                width="100%"
-                type="green"
-                onClick={handlePostComment}
-                center
-              >
-                <BedrockText text="Post Comment" type="p" color="white" />
-              </Button>
+              <ButtonGroup>
+                <Input
+                  className={styles.input}
+                  ref={commentInputRef}
+                  placeholder="Your Comment..."
+                />
+                <Button type="green" onClick={handlePostComment} center>
+                  <BedrockText text="Post" type="p" color="white" />
+                </Button>
+              </ButtonGroup>
             </div>
             <div className={styles.editor}>
               <div className={styles.comments}>
@@ -520,22 +599,6 @@ export const Hero = ({ mode }: HeroProps) => {
                     }
                   />
                 ))}
-                {/* <Comment
-                  creator="iDarkQ"
-                  comment="It is a virus. I dont recommend"
-                  subComments={[
-                    { creator: "Notch", comment: "No, it is not a virus." },
-                    { creator: "Herobrine", comment: "Yes, it is a virus." },
-                  ]}
-                />
-                <Comment
-                  creator="iDarkQ"
-                  comment="It is a virus. I dont recommend"
-                  subComments={[
-                    { creator: "Notch", comment: "No, it is not a virus." },
-                    { creator: "Herobrine", comment: "Yes, it is a virus." },
-                  ]}
-                /> */}
               </div>
             </div>
           </Card>
@@ -549,24 +612,39 @@ export const Hero = ({ mode }: HeroProps) => {
             </div>
             <CardDivider sub />
             <div className={styles.editor}>
-              {selectedProject && (
-                <GridDownloadCard project={{ ...selectedProject, user: { name: "iDarkQ" } }} />
-              )}
+              {selectedProject && <GridDownloadCard project={{ ...selectedProject }} />}
             </div>
             <CardDivider sub />
             <div className={styles.editor}>
-              <Button
-                className={styles.action}
-                width="100%"
-                type="gold"
-                center
-                onClick={() => publish(selectedProject!.id)}
-              >
-                <BedrockText text="Publish" type="p" color="white" />
-              </Button>
-              <Button className={styles.action} width="100%" type="red" center>
-                <BedrockText text="Decline Project" type="p" color="white" />
-              </Button>
+              <ButtonGroup>
+                <PopupConfirmation
+                  description="Are you sure you want to publish this project?"
+                  confirmText="Publish"
+                  confirmType="gold"
+                >
+                  <Button
+                    className={styles.action}
+                    width="100%"
+                    type="gold"
+                    center
+                    onClick={async () => {
+                      await publish(selectedProject!.id, selectedProject.title);
+                      navigate(Routes.PANEL_PROJECTS);
+                    }}
+                  >
+                    <BedrockText text="Publish" type="p" color="white" />
+                  </Button>
+                </PopupConfirmation>
+                <Button
+                  className={styles.action}
+                  width="100%"
+                  type="red"
+                  onClick={() => setDeclineOpen(true)}
+                  center
+                >
+                  <BedrockText text="Decline Project" type="p" color="white" />
+                </Button>
+              </ButtonGroup>
 
               {/* <Button
                   className={styles.action}

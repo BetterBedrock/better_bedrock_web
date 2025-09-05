@@ -18,8 +18,6 @@
 .information {
   display: flex;
   flex-direction: column;
-
-  // gap: g.$padding-sm;
 }
 
 .header {
@@ -48,12 +46,19 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   gap: g.$padding-xsm;
 }
 
 .editor {
   margin-inline: calc(g.$padding-xsm * 2.5);
   margin-block: g.$padding-xsm;
+
+  &.size {
+    display: flex;
+    flex-direction: column;
+    gap: g.$padding-xxsm;
+  }
 }
 
 .picker {
@@ -89,4 +94,27 @@
   width: 100%;
   align-items: center;
   display: inline;
+}
+
+.container {
+  width: 100%;
+
+  .part {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: g.$padding-sm;
+    gap: g.$padding-xsm;
+  }
+}
+
+.group {
+  width: 100%;
+}
+
+.error {
+  gap: 0;
+  background-color: g.$color-error;
+  padding-inline: calc(g.$padding-xsm * 2.5);
+  padding-block: g.$padding-xsm;
 }
