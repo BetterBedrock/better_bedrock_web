@@ -2,6 +2,7 @@ import { createContext, ReactNode, useContext } from "react";
 import { useCookies } from "react-cookie";
 import {
   Configuration,
+  ManageProfileDto,
   SimpleUserDto,
   UpdateProfileDto,
   UserApi,
@@ -15,7 +16,11 @@ import { baseUrl } from "~/utils/url";
 interface UserContextProps {
   findUserByName: (name: string) => Promise<SimpleUserDto | undefined>;
   findUserById: (id: string) => Promise<SimpleUserDto | undefined>;
+  findDetailedUserByName: (name: string) => Promise<UserDto | undefined>;
+  findDetailedUserById: (id: string) => Promise<UserDto | undefined>;
+
   updateProfile: (profile: UpdateProfileDto) => Promise<UserDto | undefined>;
+  manageProfile: (id: string, profile: ManageProfileDto) => Promise<UserDto | undefined>;
   getProfileRating: (userId: string) => Promise<UserRatingDto | undefined>;
   getUserRating: (projectId: string) => Promise<number | undefined>;
 }
@@ -41,8 +46,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     try {
       const { data } = await userApi.userControllerUserInfoByName(name);
       return data;
-    } catch (err) {
-      throwError(err, "Failed to fetch find user");
+    } catch (_) {
+      /* empty */
     }
   };
 
@@ -50,8 +55,26 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     try {
       const { data } = await userApi.userControllerUserInfoById(id);
       return data;
+    } catch (_) {
+      /* empty */
+    }
+  };
+
+  const findDetailedUserByName = async (name: string): Promise<UserDto | undefined> => {
+    try {
+      const { data } = await userApi.userControllerDetailedUserInfoByName(name);
+      return data;
     } catch (err) {
-      throwError(err, "Failed to fetch find user");
+      throwError(err, "Failed to fetch details about user");
+    }
+  };
+
+  const findDetailedUserById = async (id: string): Promise<UserDto | undefined> => {
+    try {
+      const { data } = await userApi.userControllerDetailedUserInfoById(id);
+      return data;
+    } catch (err) {
+      throwError(err, "Failed to fetch details about user");
     }
   };
 
@@ -62,6 +85,15 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       return data;
     } catch (err) {
       throwError(err, "Failed to update user profile");
+    }
+  };
+
+  const manageProfile = async (id: string, profile: ManageProfileDto) => {
+    try {
+      const { data } = await userApi.userControllerManageProfile(id, profile);
+      return data;
+    } catch (err) {
+      throwError(err, "Failed to make change in user profil");
     }
   };
 
@@ -85,7 +117,16 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   return (
     <UserContext.Provider
-      value={{ updateProfile, getProfileRating, getUserRating, findUserByName, findUserById }}
+      value={{
+        manageProfile,
+        findDetailedUserByName,
+        findDetailedUserById,
+        updateProfile,
+        getProfileRating,
+        getUserRating,
+        findUserByName,
+        findUserById,
+      }}
     >
       {children}
     </UserContext.Provider>
