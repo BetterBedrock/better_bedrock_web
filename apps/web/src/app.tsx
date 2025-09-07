@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import { Home } from "~/pages/home/home";
 import { Information } from "~/pages/information/information";
 import { Downloads } from "~/pages/downloads/downloads";
@@ -36,6 +36,8 @@ import { Stats } from "~/pages/profile/components/user/stats";
 import { DownloadProvider } from "~/providers/download";
 import { Main } from "~/pages/downloads/components/main";
 import { BetterBedrock } from "~/pages/downloads/components/better-bedrock";
+import { ReportProvider } from "~/providers/report";
+import { Reports } from "~/pages/panel/reports";
 
 export const App = () => (
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
@@ -46,78 +48,91 @@ export const App = () => (
             <DownloadProvider>
               <AuthProvider>
                 <UserProvider>
-                  <BrowserRouter>
-                    <ScrollToTop>
-                      <Layout>
-                        <Routes>
-                          <Route index element={<Home />} />
-                          <Route path="downloads" element={<Downloads />}>
-                            <Route path="better-bedrock" element={<BetterBedrock />} />
-                            <Route path="main" element={<Main />} />
-                          </Route>
-                          <Route path="information" element={<Information />}>
-                            <Route path=":category" element={<Categories />} />
-                          </Route>
-                          <Route path="discord" element={<Discord />} />
-                          <Route path="fetch" element={<Fetch />} />
-                          <Route path="preview/:file" element={<Preview mode="view" />} />
-                          <Route path="create" element={<Editor />} />
-                          <Route path="editor/:file" element={<Preview mode="edit" />} />
-                          <Route path="review/:file" element={<Preview mode="review" />} />
-                          <Route path="login" element={<Login />} />
-                          <Route path="profile/:id" element={<Profile />}>
-                            <Route path="projects" element={<Projects />} />
-                            <Route path="stats" element={<Stats />} />
-                            <Route path="drafts" element={<Drafts />} />
-                          </Route>
+                  <ReportProvider>
+                    <BrowserRouter>
+                      <ScrollToTop>
+                        <Layout>
+                          <Routes>
+                            <Route index element={<Home />} />
+                            <Route path="downloads" element={<Downloads />}>
+                              <Route index element={<Navigate to="main" replace />} />
+                              <Route path="better-bedrock" element={<BetterBedrock />} />
+                              <Route path="main" element={<Main />} />
+                            </Route>
+                            <Route path="information" element={<Information />}>
+                              <Route path=":category" element={<Categories />} />
+                            </Route>
+                            <Route path="discord" element={<Discord />} />
+                            <Route path="fetch" element={<Fetch />} />
+                            <Route path="preview/:file" element={<Preview mode="view" />} />
+                            <Route path="create" element={<Editor />} />
+                            <Route path="editor/:file" element={<Preview mode="edit" />} />
+                            <Route path="review/:file" element={<Preview mode="review" />} />
+                            <Route path="login" element={<Login />} />
+                            <Route path="profile/:id" element={<Profile />}>
+                              <Route index element={<Navigate to="projects" replace />} />
 
-                          <Route path="panel" element={<PanelWrapper />}>
-                            <Route
-                              index
-                              element={
-                                <ProtectedRoute>
-                                  <Dashboard />
-                                </ProtectedRoute>
-                              }
-                            />
-                            <Route
-                              path="analytics"
-                              element={
-                                <ProtectedRoute>
-                                  <Analytics />
-                                </ProtectedRoute>
-                              }
-                            />
-                            <Route
-                              path="voucher"
-                              element={
-                                <ProtectedRoute>
-                                  <Voucher />
-                                </ProtectedRoute>
-                              }
-                            />
-                            <Route
-                              path="projects"
-                              element={
-                                <ProtectedRoute>
-                                  <PanelProjects />
-                                </ProtectedRoute>
-                              }
-                            />
-                          </Route>
+                              <Route path="projects" element={<Projects />} />
+                              <Route path="stats" element={<Stats />} />
+                              <Route path="drafts" element={<Drafts />} />
+                            </Route>
 
-                          <Route path="*" element={<Invalid />} />
-                          <Route path="latest" element={<Latest />} />
-                          <Route path="privacy-policy" element={<PrivacyPolicy />} />
-                          <Route path="terms" element={<Terms />} />
-                          <Route path="checkout">
-                            <Route path="cancel" element={<Cancel />} />
-                            <Route path="success" element={<Success />} />
-                          </Route>
-                        </Routes>
-                      </Layout>
-                    </ScrollToTop>
-                  </BrowserRouter>
+                            <Route path="panel" element={<PanelWrapper />}>
+                              <Route
+                                index
+                                element={
+                                  <ProtectedRoute>
+                                    <Dashboard />
+                                  </ProtectedRoute>
+                                }
+                              />
+                              <Route
+                                path="analytics"
+                                element={
+                                  <ProtectedRoute>
+                                    <Analytics />
+                                  </ProtectedRoute>
+                                }
+                              />
+                              <Route
+                                path="voucher"
+                                element={
+                                  <ProtectedRoute>
+                                    <Voucher />
+                                  </ProtectedRoute>
+                                }
+                              />
+                              <Route
+                                path="projects"
+                                element={
+                                  <ProtectedRoute>
+                                    <PanelProjects />
+                                  </ProtectedRoute>
+                                }
+                              />
+                              <Route
+                                path="reports"
+                                element={
+                                  <ProtectedRoute>
+                                    <Reports />
+                                  </ProtectedRoute>
+                                }
+                              />
+                            </Route>
+
+                            <Route path="*" element={<Invalid />} />
+                            <Route path="latest" element={<Latest />} />
+                            <Route path="privacy-policy" element={<PrivacyPolicy />} />
+                            <Route path="terms" element={<Terms />} />
+                            <Route path="checkout">
+                              <Route path="cancel" element={<Cancel />} />
+                              <Route path="success" element={<Success />} />
+                            </Route>
+                          </Routes>
+                        </Layout>
+                      </ScrollToTop>
+                    </BrowserRouter>
+                  </ReportProvider>
                 </UserProvider>
               </AuthProvider>
             </DownloadProvider>
