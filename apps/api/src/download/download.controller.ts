@@ -9,11 +9,13 @@ import {
     NotFoundException,
     Post,
     Query,
+    Req,
     Res,
     StreamableFile,
     UnauthorizedException,
+    UseGuards,
 } from "@nestjs/common";
-import { ApiOkResponse, ApiProduces } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiOkResponse, ApiProduces } from "@nestjs/swagger";
 import { AnalyticsService } from "~/analytics/analytics.service";
 import { Response } from "express";
 import { DownloadService } from "~/download/download.service";
@@ -28,6 +30,8 @@ import { SkipThrottle } from "@nestjs/throttler";
 import { AnalyticsNames } from "~/analytics/constants/analytics-names";
 import { ProjectService } from "~/project/project.service";
 import { UserService } from "~/user/user.service";
+import { OptionalAuthGuard } from "~/auth/optional-auth.guard";
+import { AuthenticatedRequest } from "~/common/types/authenticated-request.type";
 
 @Controller("download")
 export class DownloadController {
@@ -90,7 +94,13 @@ export class DownloadController {
     }
 
     @Post("verify")
-    async verify(@Ip() ip: string, @Query() query: VerifyDownloadDto) {
+    @UseGuards(OptionalAuthGuard)
+    @ApiBearerAuth()
+    async verify(
+        @Ip() ip: string,
+        @Req() req: AuthenticatedRequest,
+        @Query() query: VerifyDownloadDto,
+    ) {
         const download = await this.downloadService.download({ ipAddress: ip });
         const voucher = query.code
             ? await this.voucherService.getVoucher({ code: query.code })
@@ -102,7 +112,7 @@ export class DownloadController {
 
         const project = await this.projectService.findOne(download.file);
         if (!project) {
-            throw new NotFoundException(`Requested file not found.`);
+            throw new NotFoundException(`Requested project not found.`);
         }
 
         const creator = await this.userService.userDetailedById(project.userId);
@@ -111,80 +121,87 @@ export class DownloadController {
             : this.linkvertiseApiKey;
 
         if (!download.verified) {
-            if (query.code && !voucher) {
-                throw new UnauthorizedException("The voucher does not exist");
-            }
-
-            if (voucher) {
-                if (voucher.blocked) {
-                    throw new ForbiddenException("Voucher is blocked");
-                }
-                if (
-                    voucher.downloadCount >= voucher.maxDownloads ||
-                    voucher.expiresAt.getTime() <= Date.now()
-                ) {
-                    throw new GoneException("The voucher has either expired or already been used.");
+            if (project.userId !== req.user.id && !req.user.admin) {
+                if (query.code && !voucher) {
+                    throw new UnauthorizedException("The voucher does not exist");
                 }
 
-                if (voucher.betterBedrockContentOnly && project.betterBedrockContent === false) {
-                    throw new ForbiddenException(
-                        "This voucher allows you to download only better bedrock content",
-                    );
-                }
-
-                await this.voucherService.updateVoucher({
-                    where: { code: query.code },
-                    data: {
-                        downloadCount: {
-                            increment: 1,
-                        },
-                    },
-                });
-
-                await this.analyticsService.incrementAnalytics(
-                    AnalyticsNames.voucherDownloads,
-                    "general",
-                );
-            }
-
-            if (!voucher) {
-                const url = `https://publisher.linkvertise.com/api/v1/anti_bypassing?token=${linkvertiseSecret}&hash=${query.hash}`;
-
-                try {
-                    const response$ = this.http.post(
-                        url,
-                        {}, // no body
-                        {
-                            headers: {
-                                "Access-Control-Allow-Origin": "*",
-                                "Access-Control-Allow-Methods": "POST",
-                                "Access-Control-Allow-Headers": "Content-Type, Authorization",
-                            },
-                        },
-                    );
-                    const { data, status } = await lastValueFrom(response$);
-
-                    if (status !== 200 || !data.status) {
-                        throw new HttpException(
-                            "Failed to verify with Linkvertise gateway.",
-                            HttpStatus.BAD_GATEWAY,
+                if (voucher) {
+                    if (voucher.blocked) {
+                        throw new ForbiddenException("Voucher is blocked");
+                    }
+                    if (
+                        voucher.downloadCount >= voucher.maxDownloads ||
+                        voucher.expiresAt.getTime() <= Date.now()
+                    ) {
+                        throw new GoneException(
+                            "The voucher has either expired or already been used.",
                         );
                     }
-                } catch (err) {
-                    if (err instanceof HttpException) {
-                        throw err;
+
+                    if (
+                        voucher.betterBedrockContentOnly &&
+                        project.betterBedrockContent === false
+                    ) {
+                        throw new ForbiddenException(
+                            "This voucher allows you to download only better bedrock content",
+                        );
                     }
 
-                    throw new HttpException(
-                        "Linkvertise service unavailable.",
-                        HttpStatus.SERVICE_UNAVAILABLE,
+                    await this.voucherService.updateVoucher({
+                        where: { code: query.code },
+                        data: {
+                            downloadCount: {
+                                increment: 1,
+                            },
+                        },
+                    });
+
+                    await this.analyticsService.incrementAnalytics(
+                        AnalyticsNames.voucherDownloads,
+                        "general",
                     );
                 }
 
-                await this.analyticsService.incrementAnalytics(
-                    AnalyticsNames.adDownloads,
-                    "general",
-                );
+                if (!voucher) {
+                    const url = `https://publisher.linkvertise.com/api/v1/anti_bypassing?token=${linkvertiseSecret}&hash=${query.hash}`;
+
+                    try {
+                        const response$ = this.http.post(
+                            url,
+                            {}, // no body
+                            {
+                                headers: {
+                                    "Access-Control-Allow-Origin": "*",
+                                    "Access-Control-Allow-Methods": "POST",
+                                    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+                                },
+                            },
+                        );
+                        const { data, status } = await lastValueFrom(response$);
+
+                        if (status !== 200 || !data.status) {
+                            throw new HttpException(
+                                "Failed to verify with Linkvertise gateway.",
+                                HttpStatus.BAD_GATEWAY,
+                            );
+                        }
+                    } catch (err) {
+                        if (err instanceof HttpException) {
+                            throw err;
+                        }
+
+                        throw new HttpException(
+                            "Linkvertise service unavailable.",
+                            HttpStatus.SERVICE_UNAVAILABLE,
+                        );
+                    }
+
+                    await this.analyticsService.incrementAnalytics(
+                        AnalyticsNames.adDownloads,
+                        "general",
+                    );
+                }
             }
 
             await this.downloadService.updateDownload({
