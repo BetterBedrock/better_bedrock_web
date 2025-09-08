@@ -1,6 +1,11 @@
-import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
+import {
+    BadRequestException,
+    ForbiddenException,
+    Injectable,
+    NotFoundException,
+} from "@nestjs/common";
 import { PrismaService } from "~/prisma.service";
-import { Prisma, ProjectType } from "@prisma/client";
+import { Prisma, PrismaClient, ProjectType } from "@prisma/client";
 
 import * as path from "path";
 import * as fs from "fs/promises";
@@ -14,6 +19,24 @@ import { RatingService } from "~/rating/rating.service";
 import { ProjectDetailsDto } from "~/project/dto/project-details.dto";
 import { BaseProjectDto } from "~/project/dto/base-project.dto";
 import { SearchProjectsDto } from "~/project/dto/search-project.dto";
+
+const restrictedNames = [
+    "better_bedrock",
+    "betterbedrock",
+    "better-bedrock",
+    "better_fogs",
+    "clean_glass",
+    "clean_water",
+    "dark_mode",
+    "dark_ui",
+    "enchant_glint_switcher",
+    "full_grass",
+    "hit_particles",
+    "low_fire",
+    "particle_limiter",
+    "waypoints",
+];
+const maxProjects = 5;
 
 export const projectCreatorInclude = {
     user: {
@@ -47,26 +70,61 @@ export class ProjectService {
         private ratingService: RatingService,
     ) {}
 
-    async create(data: CreateProjectDto) {
+    async create(data: CreateProjectDto, admin: boolean) {
         const { title, userId } = data;
-        const id = data.title
+        const id = title
             .toLowerCase()
             .replace(/\s+/g, "_")
             .replace(/[^a-z0-9_]/g, "");
 
-        const project = await this.prismaService.project.create({
-            data: {
-                id,
-                userId,
-                itemWeight: 0,
-                title,
-                description: "",
-                type: ProjectType.texturepacks,
-            },
-            include: projectTagsInclude,
+        if (!admin && restrictedNames.some((name) => id.includes(name))) {
+            throw new ForbiddenException(`${title} is a restricted project name`);
+        }
+
+        const project = await this.prismaService.$transaction(async (prisma: PrismaClient) => {
+            const drafts = await prisma.project.findMany({
+                where: { userId, draft: true },
+                select: { id: true },
+            });
+
+            const totalDrafts = drafts.length;
+
+            if (totalDrafts > 0 && !admin) {
+                const publishedIds = drafts.map((d) => d.id);
+
+                const publishedSiblingCount = await prisma.project.count({
+                    where: {
+                        userId,
+                        draft: false,
+                        id: { in: publishedIds },
+                    },
+                });
+
+                const unpublishedDrafts = totalDrafts - publishedSiblingCount;
+
+                if (unpublishedDrafts >= maxProjects) {
+                    throw new ForbiddenException(
+                        `You can only have up to ${maxProjects} unpublished drafts`,
+                    );
+                }
+            }
+
+            const created = await prisma.project.create({
+                data: {
+                    id,
+                    userId,
+                    itemWeight: 0,
+                    title,
+                    description: "",
+                    type: ProjectType.texturepacks,
+                },
+                include: projectTagsInclude,
+            });
+
+            return created;
         });
 
-        await this.createProjectFolders(id);
+        await this.createProjectFolders(project.id);
 
         return project;
     }

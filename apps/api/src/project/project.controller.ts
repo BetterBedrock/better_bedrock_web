@@ -54,10 +54,13 @@ export class ProjectController {
         @Body() data: CreateProjectBodyDto,
         @Req() req: AuthenticatedRequest,
     ): Promise<ProjectDto> {
-        return this.projectService.create({
-            userId: req.user.id,
-            title: data.title,
-        });
+        return this.projectService.create(
+            {
+                userId: req.user.id,
+                title: data.title,
+            },
+            req.user.admin,
+        );
     }
 
     @Post("file/:id")
