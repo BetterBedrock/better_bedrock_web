@@ -178,6 +178,14 @@ export class ProjectController {
         return;
     }
 
+    @Delete("production/:id")
+    @UseGuards(UserAuthGuard, ProjectOwnerGuard)
+    @ApiBearerAuth()
+    async deleteProduction(@Param("id") id: string) {
+        await this.projectService.deleteProduction(id);
+        return;
+    }
+
     @Post("rate/:projectId/:rating")
     @UseGuards(UserAuthGuard)
     @ApiBearerAuth()

@@ -493,7 +493,13 @@ export class ProjectService {
 
     async delete(id: string) {
         await this.prismaService.project.deleteMany({ where: { id } });
-        await this.deleteProjectFolders(id);
+        await this.deleteProjectProductionFolders(id);
+        await this.deleteProjectDraftFolders(id);
+    }
+
+    async deleteProduction(id: string) {
+        await this.prismaService.project.deleteMany({ where: { id, draft: false } });
+        await this.deleteProjectProductionFolders(id);
     }
 
     async findOne(id: string) {
@@ -556,17 +562,36 @@ export class ProjectService {
         };
     }
 
-    private async deleteProjectFolders(id: string) {
+    private async deleteProjectDraftFolders(id: string) {
         const baseDir = path.join(process.cwd(), "static");
 
-        const folders = [path.join(baseDir, "private", id), path.join(baseDir, "public", id)];
+        const draftFolders = [
+            path.join(baseDir, "private", id, "draft"),
+            path.join(baseDir, "public", id, "draft"),
+        ];
 
-        for (const folder of folders) {
+        for (const folder of draftFolders) {
             try {
                 await fs.rm(folder, { recursive: true, force: true });
             } catch (err) {
-                // Optional: log errors if needed
-                console.warn(`Failed to delete folder ${folder}:`, err);
+                console.warn(`Failed to delete draft folder ${folder}:`, err);
+            }
+        }
+    }
+
+    private async deleteProjectProductionFolders(id: string) {
+        const baseDir = path.join(process.cwd(), "static");
+
+        const releaseFolders = [
+            path.join(baseDir, "private", id, "release"),
+            path.join(baseDir, "public", id, "release"),
+        ];
+
+        for (const folder of releaseFolders) {
+            try {
+                await fs.rm(folder, { recursive: true, force: true });
+            } catch (err) {
+                console.warn(`Failed to delete release folder ${folder}:`, err);
             }
         }
     }
