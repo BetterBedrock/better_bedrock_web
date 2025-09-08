@@ -393,6 +393,10 @@ export class ProjectService {
             include: { tags: true },
         });
 
+        if (!draftProject?.submitted) {
+            throw new BadRequestException("This project has not been submitted");
+        }
+
         const oldReleasedProject = await this.prismaService.project.findUnique({
             where: { id_draft: { id, draft: false } },
             select: {
@@ -470,6 +474,15 @@ export class ProjectService {
     }
 
     async decline(id: string, data: DeclineProjectDto) {
+        const draftProject = await this.prismaService.project.findUnique({
+            where: { id_draft: { id, draft: true } },
+            include: { tags: true },
+        });
+
+        if (!draftProject?.submitted) {
+            throw new BadRequestException("This project has not been submitted");
+        }
+
         return this.prismaService.project.update({
             where: { id_draft: { id, draft: true } },
             data: { error: data.error, submitted: false },
