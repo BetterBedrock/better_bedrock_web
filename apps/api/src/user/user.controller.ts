@@ -10,10 +10,13 @@ import {
 } from "@nestjs/common";
 import { ApiBearerAuth, ApiOkResponse } from "@nestjs/swagger";
 import { AdminAuthGuard } from "~/auth/admin-auth.guard";
+import { OptionalAuthGuard } from "~/auth/optional-auth.guard";
 import { UserAuthGuard } from "~/auth/user-auth.guard";
 import { AuthenticatedRequest } from "~/common/types/authenticated-request.type";
+import { OptionalAuthenticatedRequest } from "~/common/types/optional-authenticated-request.type";
 import { UserRatingDto } from "~/rating/dto/user-rating.dto";
 import { RatingService } from "~/rating/rating.service";
+import { DetailedUserDto } from "~/user/dto/detailed-user.dto";
 import { ManageProfileDto } from "~/user/dto/manage-profile.dto";
 import { SimpleUserDto } from "~/user/dto/simple-user.dto";
 import { UpdateProfileDto } from "~/user/dto/update-profile.dto";
@@ -28,27 +31,30 @@ export class UserController {
     ) {}
 
     @Get("name/:name")
-    userInfoByName(@Param("name") name: string): Promise<SimpleUserDto> {
-        return this.userService.userInfoByName(name);
+    @UseGuards(OptionalAuthGuard)
+    @ApiBearerAuth()
+    userInfoByName(
+        @Param("name") name: string,
+        @Req() req: OptionalAuthenticatedRequest,
+    ): Promise<SimpleUserDto> {
+        return this.userService.userInfoByName(name, req.user?.admin);
     }
 
     @Get("id/:id")
-    userInfoById(@Param("id") id: string): Promise<SimpleUserDto> {
-        return this.userService.userInfoById(id);
-    }
-
-    @Get("name/:name/details")
-    @UseGuards(AdminAuthGuard)
+    @UseGuards(OptionalAuthGuard)
     @ApiBearerAuth()
-    detailedUserInfoByName(@Param("name") name: string): Promise<UserDto> {
-        return this.userService.detailedUserInfoByName(name);
+    userInfoById(
+        @Param("id") id: string,
+        @Req() req: OptionalAuthenticatedRequest,
+    ): Promise<SimpleUserDto> {
+        return this.userService.userInfoById(id, req.user?.admin);
     }
 
     @Get("id/:id/details")
     @UseGuards(AdminAuthGuard)
     @ApiBearerAuth()
-    detailedUserInfoById(@Param("id") id: string): Promise<UserDto> {
-        return this.userService.detailedUserInfoById(id);
+    detailedUserInfo(@Param("id") id: string): Promise<DetailedUserDto> {
+        return this.userService.detailedUserInfo(id);
     }
 
     @Patch()
