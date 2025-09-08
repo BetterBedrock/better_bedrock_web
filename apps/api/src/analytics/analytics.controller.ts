@@ -1,4 +1,4 @@
-import { Controller, Get, Req, UseGuards } from "@nestjs/common";
+import { Controller, ForbiddenException, Get, Param, Req, UseGuards } from "@nestjs/common";
 import { ApiBearerAuth } from "@nestjs/swagger";
 import { AnalyticsService } from "~/analytics/analytics.service";
 import { AnalyticsDto } from "~/analytics/dto/analytics.dto";
@@ -17,10 +17,16 @@ export class AnalyticsController {
         return this.analyticsService.analytics();
     }
 
-    @Get("/user")
+    @Get("/user/:id")
     @UseGuards(UserAuthGuard)
     @ApiBearerAuth()
-    user(@Req() req: AuthenticatedRequest): Promise<AnalyticsDto[]> {
-        return this.analyticsService.userAnalytics(req.user.id);
+    user(@Req() req: AuthenticatedRequest, @Param("id") id: string): Promise<AnalyticsDto[]> {
+        const user = req.user;
+
+        if (user.id !== id && !user.admin) {
+            throw new ForbiddenException("You are not allowed to view this user's analytics");
+        }
+
+        return this.analyticsService.userAnalytics(id);
     }
 }
