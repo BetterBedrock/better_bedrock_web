@@ -6,11 +6,14 @@ import metadata from "./metadata";
 import { join } from "path";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import helmet from "helmet";
+import { ThrottlerExceptionFilter } from "~/common/filters/throttler-exception-filter";
 
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule, {
         rawBody: true,
     });
+
+    app.useGlobalFilters(new ThrottlerExceptionFilter());
 
     app.getHttpAdapter().getInstance().set("trust proxy", true);
 
