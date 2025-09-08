@@ -329,6 +329,7 @@ export class ProjectService {
         const tags = data.tags?.map((tag) => tag.name) ?? [];
         const updateData: Prisma.ProjectUpdateInput = {
             ...data,
+            lastChanged: new Date(),
             description: data.description as Prisma.InputJsonValue | undefined,
             ...(data.tags !== undefined
                 ? {
@@ -366,7 +367,7 @@ export class ProjectService {
 
         const submittedProject = await this.prismaService.project.update({
             where: { id_draft: { id: project.id, draft: true } },
-            data: { submitted: true, error: null },
+            data: { submitted: true, error: null, lastChanged: new Date() },
         });
 
         const thumbnailFile = path.basename(project.thumbnail ?? "");
