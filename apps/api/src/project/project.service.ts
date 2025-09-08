@@ -494,6 +494,7 @@ export class ProjectService {
     async submitted() {
         const items = await this.prismaService.project.findMany({
             where: { submitted: true },
+            orderBy: { lastChanged: "desc" },
             select: simpleProjectSelect,
         });
 
