@@ -3,6 +3,8 @@ import { ProjectType } from "@prisma/client";
 import { JsonValue } from "@prisma/client/runtime/library";
 import { Type } from "class-transformer";
 import {
+    ArrayMaxSize,
+    IsArray,
     IsBoolean,
     IsDate,
     IsNumber,
@@ -10,6 +12,7 @@ import {
     IsString,
     MaxLength,
     MinLength,
+    ValidateNested,
 } from "class-validator";
 import { TagNameDto } from "~/project/dto/tag-name.dto";
 
@@ -55,6 +58,10 @@ export class ProjectDto {
     @IsOptional()
     downloadFile: string | null;
 
+    @IsArray()
+    @ArrayMaxSize(5, { message: "A project can have at most 5 tags" })
+    @ValidateNested({ each: true })
+    @Type(() => TagNameDto)
     tags: TagNameDto[];
 
     @ApiProperty({ enum: ProjectType, enumName: "ProjectType" })
