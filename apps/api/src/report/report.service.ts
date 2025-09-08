@@ -21,7 +21,7 @@ export class ReportService {
     }
 
     async fetchReports() {
-        return this.prismaService.report.findMany();
+        return this.prismaService.report.findMany({ orderBy: { createdAt: "desc" } });
     }
 
     async resolveReport(id: string) {
