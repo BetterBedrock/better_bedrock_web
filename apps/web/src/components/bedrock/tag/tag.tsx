@@ -9,14 +9,15 @@ interface TagProps {
   border: Border | Border[];
   onDelete?: () => void;
   deletable?: boolean;
-  // border:
+  className?: string;
 }
 
-export const Tag = ({ name, border, onDelete, deletable }: TagProps) => (
+export const Tag = ({ name, className, border, onDelete, deletable }: TagProps) => (
   <div
     className={clsx(
       styles.tag,
       Array.isArray(border) ? border.map((b) => styles[b]) : styles[border],
+      className && className,
     )}
   >
     <BedrockText text={name} type="p" textAlign="center" color="black" />

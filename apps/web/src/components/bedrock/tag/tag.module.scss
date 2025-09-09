@@ -3,7 +3,7 @@
 $border: g.$minecraftdepth solid rgb(30, 30, 31);
 
 .tag {
-  background-color: rgb(140, 179, 255);
+  background-color: g.$color-tag-default;
   padding: g.$padding-xxsm;
   width: fit-content;
   display: inline-flex;
@@ -32,4 +32,5 @@ $border: g.$minecraftdepth solid rgb(30, 30, 31);
 
 .delete {
   cursor: pointer;
+  text-decoration: none;
 }
