@@ -5,6 +5,7 @@ import { Button, ButtonType } from "~/components/bedrock/button"; // Assuming a 
 import React from "react";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
+import { CardDivider } from "~/components/bedrock/card";
 
 interface PopupConfirmationProps {
   title?: string;
@@ -70,6 +71,10 @@ export const PopupConfirmation = ({
           <div className={styles.container}>
             <div className={styles.part}>
               <BedrockText type="p" text={description} textAlign="start" color="white" />
+            </div>
+
+            <CardDivider />
+            <div className={styles.part}>
               <ButtonGroup className={styles.group}>
                 <Button onClick={handleCancel} type="white" center width="100%">
                   <BedrockText type="p" text={cancelText} color="black" />
