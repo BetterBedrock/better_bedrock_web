@@ -8,6 +8,7 @@ export interface BedrockTextProps {
   textAlign?: "left" | "right" | "center" | "justify" | "start" | "end" | undefined;
   margin?: string;
   selectable?: boolean;
+  shadow?: boolean;
   strong?: boolean;
   type: "h1" | "h2" | "h3" | "p" | "p2";
   style?: React.CSSProperties;
@@ -23,6 +24,7 @@ export const BedrockText = ({
   textAlign = "center",
   selectable = true,
   strong = false,
+  shadow = false,
   margin,
   style,
   onClick,
@@ -39,6 +41,7 @@ export const BedrockText = ({
         selectable === false ? styles.non_selectable : "",
         onClick && styles.underline,
         strong && styles.strong,
+        shadow && styles.shadow,
         ...(Array.isArray(extraClassName) ? extraClassName : [extraClassName]),
       )}
       style={{

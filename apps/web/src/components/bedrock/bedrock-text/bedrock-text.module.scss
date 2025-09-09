@@ -1,20 +1,26 @@
+@use "~/utils" as g;
+
 p.p2 {
-    font-size: 1.2rem;
-    letter-spacing: 0.3px;
-    line-height: 1.2em;
+  font-size: 1.2rem;
+  letter-spacing: 0.3px;
+  line-height: 1.2em;
 }
 
 .strong {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .non_selectable {
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .underline {
-    cursor: pointer;
-    text-decoration: underline;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.shadow {
+  text-shadow: g.$text-shadow;
 }
