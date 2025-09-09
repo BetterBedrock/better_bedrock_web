@@ -10,6 +10,7 @@ All URIs are relative to *http://localhost*
 |[**projectControllerDecline**](#projectcontrollerdecline) | **PATCH** /project/decline/{id} | |
 |[**projectControllerDelete**](#projectcontrollerdelete) | **DELETE** /project/{id} | |
 |[**projectControllerDeleteComment**](#projectcontrollerdeletecomment) | **DELETE** /project/comment/{id} | |
+|[**projectControllerDeleteProduction**](#projectcontrollerdeleteproduction) | **DELETE** /project/production/{id} | |
 |[**projectControllerDeleteRating**](#projectcontrollerdeleterating) | **DELETE** /project/rate/{projectId} | |
 |[**projectControllerDraftDetails**](#projectcontrollerdraftdetails) | **GET** /project/draft/{id} | |
 |[**projectControllerGetProjectRating**](#projectcontrollergetprojectrating) | **GET** /project/rate/{projectId} | |
@@ -298,6 +299,56 @@ const apiInstance = new ProjectApi(configuration);
 let id: string; // (default to undefined)
 
 const { status, data } = await apiInstance.projectControllerDeleteComment(
+    id
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerDeleteProduction**
+> projectControllerDeleteProduction()
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let id: string; // (default to undefined)
+
+const { status, data } = await apiInstance.projectControllerDeleteProduction(
     id
 );
 ```

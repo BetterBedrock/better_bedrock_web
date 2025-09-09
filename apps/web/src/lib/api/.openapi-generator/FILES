@@ -19,6 +19,7 @@ docs/CreateProjectBodyDto.md
 docs/CreateVoucher.md
 docs/DeclineProjectDto.md
 docs/DetailedProjectDto.md
+docs/DetailedUserDto.md
 docs/DownloadApi.md
 docs/JwtTokenDto.md
 docs/ManageProfileDto.md

@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost*
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
 |[**analyticsControllerAnalytics**](#analyticscontrolleranalytics) | **GET** /analytics | |
-|[**analyticsControllerUser**](#analyticscontrolleruser) | **GET** /analytics/user | |
+|[**analyticsControllerUser**](#analyticscontrolleruser) | **GET** /analytics/user/{id} | |
 
 # **analyticsControllerAnalytics**
 > Array<AnalyticsDto> analyticsControllerAnalytics()
@@ -65,11 +65,18 @@ import {
 const configuration = new Configuration();
 const apiInstance = new AnalyticsApi(configuration);
 
-const { status, data } = await apiInstance.analyticsControllerUser();
+let id: string; // (default to undefined)
+
+const { status, data } = await apiInstance.analyticsControllerUser(
+    id
+);
 ```
 
 ### Parameters
-This endpoint does not have any parameters.
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] |  | defaults to undefined|
 
 
 ### Return type

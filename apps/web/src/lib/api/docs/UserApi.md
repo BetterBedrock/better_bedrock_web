@@ -4,8 +4,7 @@ All URIs are relative to *http://localhost*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|[**userControllerDetailedUserInfoById**](#usercontrollerdetaileduserinfobyid) | **GET** /user/id/{id}/details | |
-|[**userControllerDetailedUserInfoByName**](#usercontrollerdetaileduserinfobyname) | **GET** /user/name/{name}/details | |
+|[**userControllerDetailedUserInfo**](#usercontrollerdetaileduserinfo) | **GET** /user/id/{id}/details | |
 |[**userControllerManageProfile**](#usercontrollermanageprofile) | **PATCH** /user/id/{id} | |
 |[**userControllerProfileRating**](#usercontrollerprofilerating) | **GET** /user/rate/{id} | |
 |[**userControllerUpdateProfile**](#usercontrollerupdateprofile) | **PATCH** /user | |
@@ -13,8 +12,8 @@ All URIs are relative to *http://localhost*
 |[**userControllerUserInfoByName**](#usercontrolleruserinfobyname) | **GET** /user/name/{name} | |
 |[**userControllerUserRating**](#usercontrolleruserrating) | **GET** /user/rating/project/{projectId} | |
 
-# **userControllerDetailedUserInfoById**
-> UserDto userControllerDetailedUserInfoById()
+# **userControllerDetailedUserInfo**
+> DetailedUserDto userControllerDetailedUserInfo()
 
 
 ### Example
@@ -30,7 +29,7 @@ const apiInstance = new UserApi(configuration);
 
 let id: string; // (default to undefined)
 
-const { status, data } = await apiInstance.userControllerDetailedUserInfoById(
+const { status, data } = await apiInstance.userControllerDetailedUserInfo(
     id
 );
 ```
@@ -44,57 +43,7 @@ const { status, data } = await apiInstance.userControllerDetailedUserInfoById(
 
 ### Return type
 
-**UserDto**
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **userControllerDetailedUserInfoByName**
-> UserDto userControllerDetailedUserInfoByName()
-
-
-### Example
-
-```typescript
-import {
-    UserApi,
-    Configuration
-} from './api';
-
-const configuration = new Configuration();
-const apiInstance = new UserApi(configuration);
-
-let name: string; // (default to undefined)
-
-const { status, data } = await apiInstance.userControllerDetailedUserInfoByName(
-    name
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **name** | [**string**] |  | defaults to undefined|
-
-
-### Return type
-
-**UserDto**
+**DetailedUserDto**
 
 ### Authorization
 
@@ -303,7 +252,7 @@ const { status, data } = await apiInstance.userControllerUserInfoById(
 
 ### Authorization
 
-No authorization required
+[bearer](../README.md#bearer)
 
 ### HTTP request headers
 
@@ -353,7 +302,7 @@ const { status, data } = await apiInstance.userControllerUserInfoByName(
 
 ### Authorization
 
-No authorization required
+[bearer](../README.md#bearer)
 
 ### HTTP request headers
 
