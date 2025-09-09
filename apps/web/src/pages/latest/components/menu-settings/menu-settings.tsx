@@ -5,7 +5,7 @@ import { styles } from "../hero";
 export const MenuSettings = () => {
   return (
     <div className={styles.subSection}>
-      <BedrockText text="Mod Menu: Settings" type="h1" font="MinecraftTen" textAlign="center" color="white" />
+      <BedrockText text="Mod Menu: Settings" type="h1" font="Minecraft" textAlign="center" color="white" />
       <BedrockText
         text="Manage either vanilla, misc or even mod menu settings right there!"
         type="p"

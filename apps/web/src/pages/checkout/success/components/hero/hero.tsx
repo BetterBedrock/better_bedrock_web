@@ -29,7 +29,7 @@ export const Hero = () => {
         type="h1"
         text="Payment Finished Successfuly"
         color="white"
-        font="MinecraftTen"
+        font="Minecraft"
       />
       <BedrockText
         type="p"

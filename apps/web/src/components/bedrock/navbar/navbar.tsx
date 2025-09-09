@@ -50,7 +50,7 @@ export const Navbar = () => {
             <BedrockText
               text="Better Bedrock"
               type="h1"
-              font="MinecraftTen"
+              font="Minecraft"
               extraClassName={styles.heading}
             />
           </Link>

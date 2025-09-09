@@ -9,6 +9,6 @@ export const TutorialVideosTitle = ({ deprected }: TutorialVideosTitle) => (
     type="h1"
     text={deprected ? "Tutorial Videos" : "Deprecated Tutorial Videos"}
     color="white"
-    font="MinecraftTen"
+    font="Minecraft"
   />
 );

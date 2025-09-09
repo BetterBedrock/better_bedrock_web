@@ -44,7 +44,7 @@ export const StatisticsCard = ({
               text={`${total.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 4 })}${suffix}`}
               textAlign="left"
               color="white"
-              font="MinecraftTen"
+              font="Minecraft"
               extraClassName={styles.highlight}
             />
           </div>

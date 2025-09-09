@@ -49,7 +49,7 @@ export const GridCard: React.FC<GridCardProps> = ({
                 <BedrockText
                   text={(index && `#${index}`) || ""}
                   type={"h1"}
-                  font="MinecraftTen"
+                  font="Minecraft"
                   textAlign="left"
                   color="white"
                   style={{ position: "absolute" }}
@@ -83,7 +83,7 @@ export const GridCard: React.FC<GridCardProps> = ({
         <BedrockText
           text={title || ""}
           type={"h2"}
-          font="MinecraftTen"
+          font="Minecraft"
           textAlign="left"
           color="white"
         />

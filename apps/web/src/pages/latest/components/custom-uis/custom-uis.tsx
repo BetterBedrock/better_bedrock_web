@@ -5,7 +5,7 @@ import { styles } from "../hero";
 export const CustomUis = () => {
   return (
     <div className={styles.subSection}>
-      <BedrockText text="Custom Uis" type="h1" font="MinecraftTen" textAlign="center" color="white" />
+      <BedrockText text="Custom Uis" type="h1" font="Minecraft" textAlign="center" color="white" />
       <BedrockText
         text="Revamped custom UIs offer a refreshed design, giving Minecraft's main screens a sleek and updated look!"
         type="p"

@@ -10,9 +10,10 @@ export const HeroTitle = () => (
       type="h1"
       text="Better Bedrock"
       color="white"
-      font="MinecraftTen"
+      font="Minecraft"
       textAlign="center"
       extraClassName={styles.title}
+      shadow
     />
     <img className={clsx(styles.logo, styles.reversed)} alt="Logo Line Right" src={LogoLines} />
   </div>

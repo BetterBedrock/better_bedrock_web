@@ -32,7 +32,7 @@ export const VoucherCard = ({
         <BedrockText
           text={voucher.code}
           type="h1"
-          font="MinecraftTen"
+          font="Minecraft"
           textAlign="left"
           extraClassName={styles.price}
         />

@@ -25,7 +25,7 @@ export const Popup = ({ children, onClose, className, title }: PopupProps) => (
         {title && (
           <BedrockText
             text={title}
-            font="MinecraftTen"
+            font="Minecraft"
             type="h2"
             color="white"
             textAlign="center"

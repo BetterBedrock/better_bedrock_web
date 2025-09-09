@@ -37,7 +37,7 @@ export const DownloadMethodCard = ({
         <BedrockText
           text={price ?? ""}
           type={"h1"}
-          font="MinecraftTen"
+          font="Minecraft"
           textAlign="left"
           extraClassName={styles.price}
           color={color}

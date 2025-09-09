@@ -9,7 +9,7 @@ interface HeroHeaderProps {
 export const HeroHeader = ({ project }: HeroHeaderProps) => (
   <div>
     <div className={styles.header}>
-      <BedrockText type="h1" text="DOWNLOADING" color="white" font="MinecraftTen" />
+      <BedrockText type="h1" text="DOWNLOADING" color="white" font="Minecraft" />
     </div>
     <BedrockText type="p" color="white" text={project.title} />
   </div>
