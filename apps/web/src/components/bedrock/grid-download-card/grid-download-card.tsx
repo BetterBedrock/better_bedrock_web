@@ -1,4 +1,3 @@
-import React from "react";
 import { BedrockText } from "../bedrock-text/bedrock-text";
 import styles from "./grid-download-card.module.scss";
 import clsx from "clsx";
@@ -9,12 +8,13 @@ import { SimpleProjectDto } from "~/lib/api";
 import { baseUrl } from "~/utils/url";
 import { Link } from "~/components/link";
 import { Routes } from "~/utils/routes";
-import { PreviewMode } from "~/pages/preview";
 import { PROJECT_TYPES } from "~/assets/content/better-bedrock";
+import CardLayout from "~/assets/ui/card/card_button.png";
+import { ProjectMode } from "~/pages/project";
 
 interface GridDownloadCardProps {
   project: SimpleProjectDto;
-  mode?: PreviewMode;
+  mode?: ProjectMode;
 
   title?: string;
   downloadSize?: string;
@@ -26,44 +26,25 @@ interface GridDownloadCardProps {
   tags?: string[];
 }
 
-export const GridDownloadCard = ({
-  className,
-
-  project,
-  mode,
-}: GridDownloadCardProps) => {
+export const GridDownloadCard = ({ className, tags, project, mode }: GridDownloadCardProps) => {
   const link = () => {
     if (!mode) return;
-    if (mode === "edit") return Routes.EDITOR + "/" + project.id;
-    if (mode === "review") return Routes.REVIEW + "/" + project.id;
-    return Routes.PREVIEW + "/" + project.id;
+    if (mode === "edit") return Routes.PROJECT_EDIT + "/" + project.id;
+    if (mode === "review") return Routes.PROJECT_REVIEW + "/" + project.id;
+    return Routes.PROJECT_PREVIEW + "/" + project.id;
   };
 
   return (
     <div className={clsx(styles.container, className)}>
-      <Link link={Routes.PROFILE + "/" + project.user.name} className={styles.link}>
-        <div className={styles.header}>
-          <img src={Steve} className={styles.avatar} />
-
-          {/* Renders the description, which can now be any React node */}
-          <div>
-            <BedrockText text={`@${project.user.name}`} type={"p"} textAlign="left" color="white" />
-
-            {project.rating.count < 1 ? <BedrockText type="p2" text="No ratings" color="white"/> :
-            <Rating simple rating={project.rating.average} />}
-          </div>
-        </div>
-      </Link>
-
-      <Link link={link()} className={styles.link}>
+      <Link link={link()} className={clsx(styles.link, styles.body)}>
         <div className={styles.background}>
           {!project.thumbnail || project.thumbnail === "" ? (
             <div className={styles.empty}>
               <BedrockText
                 text={"404 No Thumbnail"}
                 type="h1"
-                font="MinecraftTen"
-                textAlign="left"
+                font="Minecraft"
+                textAlign="center"
                 color="white"
               />
             </div>
@@ -75,30 +56,57 @@ export const GridDownloadCard = ({
             />
           )}
 
-          <div className={styles.details}>
-            <div className={styles.title}>
-                <BedrockText
-                  text={PROJECT_TYPES[project.type]}
-                  type="h3"
-                  font="MinecraftTen"
-                  textAlign="left"
-                  color="grey"
-                  extraClassName={clsx(styles.opacity, styles.type)}
-                />
-                <BedrockText
-                  text={project.title}
-                  type="h2"
-                  font="MinecraftTen"
-                  textAlign="left"
-                  color="white"
-                  extraClassName={clsx(styles.opacity, styles.title)}
-                />
-            </div>
+          <div className={styles.author}>
+            <Link link={Routes.PROFILE + "/" + project.user.name} className={styles.link}>
+              <div className={styles.header}>
+                <img src={Steve} className={styles.avatar} />
+
+                {/* Renders the description, which can now be any React node */}
+                <div>
+                  <BedrockText
+                    text={`@${project.user.name}`}
+                    type={"p"}
+                    textAlign="left"
+                    color="white"
+                  />
+                </div>
+              </div>
+            </Link>
           </div>
-          <div className={styles.tags}>
-            {project.tags?.map((tag) => (
-              <Tag border={["left", "bottom"]} name={tag.name} />
+
+          <div className={styles.details}>
+            <Tag border={["top", "right"]} name={PROJECT_TYPES[project.type]} />
+            {tags?.map((tag) => (
+              <Tag border={["top", "right"]} name={tag} className={styles.special} />
             ))}
+          </div>
+        </div>
+        <div className={styles.footer}>
+          <div
+            className={clsx(styles.foreground, styles.bottom)}
+            style={{ borderImage: `url(${CardLayout})` }}
+          >
+            <div className={styles.information}>
+              <BedrockText
+                text={project.title}
+                type="h2"
+                font="Minecraft"
+                textAlign="left"
+                color="white"
+              />
+              <div className={styles.tags2}>
+                {project.tags?.map((tag) => (
+                  <BedrockText
+                    text={`#${tag.name}`}
+                    type="p2"
+                    textAlign="left"
+                    extraClassName={styles.tag}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {<Rating simple rating={project.rating.average} />}
           </div>
         </div>
       </Link>
