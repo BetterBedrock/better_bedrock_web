@@ -3,9 +3,10 @@ import { BedrockText } from "../bedrock-text/bedrock-text";
 import { styles } from ".";
 import { DetailedProjectDto, ReportDto, SimpleUserDto } from "~/lib/api";
 import { Button } from "~/components/bedrock/button";
-import { useProject } from "~/providers/project";
 import { useUser } from "~/providers/user";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
+import { useProject } from "~/providers/project";
+import dayjs from "dayjs";
 
 interface ReportCardProps {
   report: ReportDto;
@@ -16,57 +17,68 @@ interface ReportCardProps {
 }
 
 export const ReportCard = ({ report, lockClicking, height = "auto", onClick }: ReportCardProps) => {
-  const { fetchProjectDetails } = useProject();
   const { findUserById } = useUser();
-  const [reportedItem, setReportedItem] = useState<
-    DetailedProjectDto | SimpleUserDto | undefined
-  >();
+  const { fetchProjectDetails } = useProject();
+  const [reporter, setReporter] = useState<SimpleUserDto | undefined>();
+  const [reported, setReported] = useState<SimpleUserDto | undefined>();
+  const [project, setProject] = useState<DetailedProjectDto | undefined>();
+  const [fetched, setFetched] = useState(false);
 
-  useEffect(() => {
-    console.log({ report });
-    if (report.reportedProjectId) {
-      fetchProjectDetails(report.reportedProjectId).then((data) => setReportedItem(data));
-    }
-
+  const fetchDetails = async () => {
+    setReporter(await findUserById(report.reporterId));
     if (report.reportedUserId) {
-      findUserById(report.reportedUserId).then((data) => setReportedItem(data));
+      setReported(await findUserById(report.reportedUserId));
     }
-  }, []);
 
-  const name = () => {
-    if (!reportedItem) return "";
-    if ("title" in reportedItem) {
-      return reportedItem.title;
-    } else {
-      return reportedItem.name;
+    if (report.reportedProjectId) {
+      setProject(await fetchProjectDetails(report.reportedProjectId));
     }
+
+    setFetched(true);
   };
+  useEffect(() => {
+    fetchDetails();
+  }, [report]);
+
+  if (!fetched) {
+    return <CircularProgressIndicator />;
+  }
+
+  const name = reported ? reported.name : project ? project.title : "Unknown";
+  const hoursAgo = dayjs().diff(dayjs(report.createdAt), "hour");
+  const resolvedAt = dayjs().diff(dayjs(report.resolvedAt), "hour");
+  const textColor = report.resolved ? "white" : "black";
 
   return (
     <Button
       width="100%"
       height={height}
-      type="white"
+      type={report.resolved ? "green" : "white"}
       lockClicking={lockClicking}
       playSound={true}
       onClick={onClick}
     >
-      {!reportedItem ? (
+      {!fetched ? (
         <CircularProgressIndicator />
       ) : (
         <div className={styles.content}>
-          {/* <BedrockText
-          text={report.}
-          type="h1"
-          font="MinecraftTen"
-          textAlign="left"
-          extraClassName={styles.price}
-        /> */}
           <div className={styles.description}>
-            <strong>
-              <BedrockText text={name()} type="p" textAlign="left" />
-            </strong>
-            <BedrockText text={report.message} type="p2" textAlign="left" />
+            <div className={styles.details}>
+              <BedrockText
+                text={`${reporter!.name} —> ${name}`}
+                type="p"
+                textAlign="left"
+                font="Minecraft"
+                color={textColor}
+              />
+            </div>
+            <BedrockText text={report.message} type="p2" textAlign="left" color={textColor} />
+            <BedrockText
+              text={`${report.resolved ? "Resolved" : "Reported"} ${report.resolvedAt ? resolvedAt : hoursAgo}h ago`}
+              type="p"
+              textAlign="left"
+              extraClassName={styles[report.resolved ? "resolved" : "unresolved"]}
+            />
           </div>
         </div>
       )}

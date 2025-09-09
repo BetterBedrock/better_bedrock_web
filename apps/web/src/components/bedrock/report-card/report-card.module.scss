@@ -1,3 +1,5 @@
+@use "~/utils" as g;
+
 .content {
   width: 100%;
   padding: 5px;
@@ -12,14 +14,21 @@
 }
 
 .description {
-  margin-left: 7.5px;
   width: 100%;
+  align-items: start;
 }
 
-.description p {
-  display: flex;
-  flex-direction: column;
-  margin-block-start: 0em;
-  margin-block-end: 0em;
-  box-sizing: border-box;
+.details {
+  display: inline-flex;
+  align-items: start;
+  width: 100%;
+  gap: g.$padding-xsm;
+}
+
+.resolved {
+  color: g.$color-sbtn-click !important;
+}
+
+.unresolved {
+  color: g.$color-grey !important;
 }
