@@ -20,7 +20,7 @@ export const BetterBedrock = () => {
     : categoryDownloads.lists.filter((c) => c.title !== "Archived");
 
   const handleSetActiveTab = (tab: string) => {
-    navigate(Routes.DOWNLOADS + "/" + tab);
+    navigate(Routes.DOWNLOADS_MAIN + "/" + tab);
   };
 
   return (

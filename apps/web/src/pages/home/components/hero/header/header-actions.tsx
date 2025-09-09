@@ -9,7 +9,7 @@ export const HeroActions = () => {
   return (
     <div className={styles.actions}>
       <ButtonGroup direction="responsive">
-        <Link link={Routes.DOWNLOADS} className={styles.link}>
+        <Link link={Routes.DOWNLOADS_MAIN} className={styles.link}>
           <Button width="100%" type="green" center>
             <BedrockText text="Downloads" type="p" color="white" />
           </Button>

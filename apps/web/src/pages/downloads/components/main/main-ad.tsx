@@ -13,7 +13,7 @@ export const MainAd = () => {
         grid="bb"
         color="#00a000"
         text="Better Bedrock"
-        link={Routes.DOWNLOADS + "better-bedrock"}
+        link={Routes.DOWNLOADS_BETTERBEDROCK + "better-bedrock"}
       />
       <MainBanner
         image={ExtensionsImage}
