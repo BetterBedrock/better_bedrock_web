@@ -50,7 +50,6 @@ export const InputSwitch = ({ checked, onChange, className, ...props }: InputSwi
         className={clsx(styles.image)}
         src={hovering}
         height="100%"
-        width="100%"
       />
     </div>
   );
