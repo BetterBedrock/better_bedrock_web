@@ -67,7 +67,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
             items: [
                 {
                     description: "Enhance your gameplay with multiple mods and adjustable options!",
-                    projectId: "better_bedrock_v8",
+                    projectId: "better_bedrock_texture_pack",
                     buttonType: "green",
                     tagBgColor: "rgb(29, 77, 19)",
                     imageAssetUrl: "/static/uploads/public/images/favicon.png",
