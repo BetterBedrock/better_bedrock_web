@@ -14,5 +14,6 @@
 .projects {
   width: 100%;
   display: grid;
+  gap: g.$padding-sm;
   grid-template-columns: repeat(2, 1fr);
 }

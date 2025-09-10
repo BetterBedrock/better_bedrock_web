@@ -5,6 +5,7 @@ import { useProject } from "~/providers/project";
 import { useEffect, useState } from "react";
 import { SimpleProjectDto } from "~/lib/api";
 import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-download-card";
+import dayjs from "dayjs";
 
 export const Projects = () => {
   const { submittedProjects } = useProject();
@@ -14,13 +15,17 @@ export const Projects = () => {
     submittedProjects().then((data) => setProjects(data));
   }, []);
 
+  const calculateHours = (project: SimpleProjectDto) => {
+    return dayjs().diff(dayjs(project.lastChanged), "hour");
+  }
+
   return (
     <main>
       <Section className={styles.background} extraClassName={styles.padding} fixed center>
         <Hero />
         <div className={styles.projects}>
           {projects?.map((project, index) => (
-            <GridDownloadCard key={index} project={project} mode="review" />
+            <GridDownloadCard key={index} project={project} mode="review" tags={[`${calculateHours(project)}h ago`]}/>
           ))}
         </div>
       </Section>
