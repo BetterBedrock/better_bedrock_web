@@ -60,7 +60,7 @@ export const UserSettingsForm = ({
       <form onSubmit={onClickSubmit}>
         <div className={styles.part}>
           <div className={styles.input}>
-            <BedrockText textAlign="start" text="User name" type="p" color="white" />
+            <BedrockText textAlign="start" text="Username" type="p" color="white" />
             <Input placeholder="Name" className={styles.input} {...register("name")} />
             {errors["name"] && (
               <BedrockText
@@ -164,14 +164,7 @@ export const UserSettingsForm = ({
 
         <CardDivider />
         <div className={styles.part}>
-          <Button type={admin ? "dark" : "green"} buttonType="submit" center width="100%">
-            <BedrockText type="p" text="Save Settings" color="white" />
-          </Button>
-          {!admin ? (
-            <Button type="dark" width="100%" center onClick={logout}>
-              <BedrockText type="p" text="Logout" color="white" />
-            </Button>
-          ) : (
+          {admin && (
             <Controller
               name="banned"
               control={control}
@@ -181,11 +174,20 @@ export const UserSettingsForm = ({
                   width="100%"
                   center
                   onClick={() => field.onChange(!field.value)}
+                  buttonType="submit"
                 >
                   <BedrockText type="p" text={field.value ? "Unban" : "Ban"} color="white" />
                 </Button>
               )}
             />
+          )}
+          <Button type="green" buttonType="submit" center width="100%">
+            <BedrockText type="p" text="Save Settings" color="white" />
+          </Button>
+          {!admin && (
+            <Button type="dark" width="100%" center onClick={logout}>
+              <BedrockText type="p" text="Logout" color="white" />
+            </Button>
           )}
         </div>
       </form>

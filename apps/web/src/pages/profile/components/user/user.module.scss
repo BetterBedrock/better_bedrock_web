@@ -1,5 +1,7 @@
 @use "~/utils/_variables" as g;
 
+$profile-image-size: 150px;
+
 .wrapper {
   width: 100%;
   display: flex;
@@ -13,7 +15,6 @@
   gap: g.$padding-sm;
   align-items: start;
   width: 100%;
-  // grid-template-columns: repeat(2, 1fr);
 }
 
 .info {
@@ -23,16 +24,23 @@
 }
 
 .image {
+  min-width: 20px;
   width: 100%;
-  max-width: 150px;
+  max-width: $profile-image-size;
   aspect-ratio: 1/1;
   image-rendering: pixelated;
 }
 
-.name {
+.header {
   display: inline-flex;
   justify-content: space-between;
   width: 100%;
+}
+
+.name {
+  display: inline-flex;
+  align-items: center;
+  gap: g.$padding-xsm;
 }
 
 .settings {
@@ -67,4 +75,12 @@
 .report {
   height: g.$icon-sm;
   image-rendering: pixelated;
+}
+
+.banned {
+  color: g.$color-red !important;
+}
+
+.rating {
+  width: fit-content !important;
 }
