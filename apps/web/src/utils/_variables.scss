@@ -48,10 +48,19 @@ $color-card-background: rgb(47, 47, 48);
 
 $color-selection: rgba(85, 183, 55, 1);
 
+$color-light-grey: #d0d1d4;
 $color-grey: #48494a;
 $color-green: #00a000;
 $color-blue: #0094ff;
 $color-orange: #ff6a00;
-
 $color-red: #d82828;
-$color-error: #ff5555;
+
+$color-background-blue: #2e6be5;
+$color-background-dark: #1e1e1e;
+$color-background-yellow: #ffe866;
+$color-background-red: $color-red;
+
+$color-tag-default: rgb(140, 179, 255);
+$color-tag-special: $color-background-yellow;
+
+$text-shadow: 0 0.25rem 0 black;
