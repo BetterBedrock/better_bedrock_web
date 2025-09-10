@@ -1,8 +1,8 @@
 import { MainBanner } from "~/pages/downloads/components/main/main-banner";
 import { styles } from ".";
 import BetterBedrockImage from "~/assets/images/crosshair_backgrounds/25.png";
-import ExtensionsImage from "~/assets/images/crosshair_backgrounds/26.png";
-import SideProjectsImage from "~/assets/images/crosshair_backgrounds/27.png";
+// import ExtensionsImage from "~/assets/images/crosshair_backgrounds/26.png";
+// import SideProjectsImage from "~/assets/images/crosshair_backgrounds/27.png";
 import { Routes } from "~/utils/routes";
 
 export const MainAd = () => {
@@ -15,7 +15,7 @@ export const MainAd = () => {
         text="Better Bedrock"
         link={Routes.DOWNLOADS_BETTERBEDROCK + "better-bedrock"}
       />
-      <MainBanner
+      {/* <MainBanner
         image={ExtensionsImage}
         grid="extensions"
         color="#ff6a00"
@@ -28,7 +28,7 @@ export const MainAd = () => {
         color="#0094ff"
         text="Side Projects"
         link={""}
-      />
+      /> */}
     </div>
   );
 };
