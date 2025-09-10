@@ -8,22 +8,22 @@ import { Routes } from "~/utils/routes";
 
 export const HeroActions = () => {
   const navigate = useNavigate();
-  
-  const { authenticated, googleLogin } = useAuth();
+
+  const { user, googleLogin } = useAuth();
 
   const handleGoogleLogin = async () => {
     googleLogin();
-  }
+  };
 
   useEffect(() => {
-    if (authenticated) {
-      navigate(Routes.PANEL);
+    if (user) {
+      navigate(Routes.PROFILE + `/${user.name}`);
     }
-  }, [authenticated]);
+  }, [user]);
 
   return (
-      <Button type="green" onClick={handleGoogleLogin} className={styles.actions} center>
-        <BedrockText color="white" text="Google Login" type="p" />
-      </Button>
+    <Button type="green" onClick={handleGoogleLogin} className={styles.actions} center>
+      <BedrockText color="white" text="Google Login" type="p" />
+    </Button>
   );
 };
