@@ -19,6 +19,15 @@
   }
 }
 
+@mixin card-margin() {
+  margin-inline: calc(g.$padding-xsm * 2.5);
+  margin-block: g.$padding-xsm;
+}
+
+@mixin card-padding() {
+  padding-inline: calc(g.$padding-xsm * 2.5);
+  padding-block: g.$padding-xsm;
+}
 
 @mixin no-drag() {
   -webkit-user-drag: none;
