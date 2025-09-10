@@ -8,7 +8,7 @@ import { baseUrl } from "~/utils/url";
 interface AnalyticsContextProps {
   analytics: AnalyticsDto[];
   fetchAnalytics: () => Promise<void>;
-  fetchUserAnalytics: () => Promise<AnalyticsDto[] | undefined>;
+  fetchUserAnalytics: (id: string) => Promise<AnalyticsDto[] | undefined>;
 }
 
 interface AnalyticsProvider {
@@ -40,9 +40,9 @@ export const AnalyticsProvider = ({ children }: AnalyticsProvider) => {
     }
   };
 
-  const fetchUserAnalytics = async (): Promise<AnalyticsDto[] | undefined> => {
+  const fetchUserAnalytics = async (id: string): Promise<AnalyticsDto[] | undefined> => {
     try {
-      const { data } = await analyticsApi.analyticsControllerUser();
+      const { data } = await analyticsApi.analyticsControllerUser(id);
       return data;
     } catch (err) {
       throwError(err, "Failed to fetch analytics");
