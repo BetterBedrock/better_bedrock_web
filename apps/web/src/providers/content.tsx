@@ -135,7 +135,7 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
   const openLinkvertise = () => {
     const currentUrl = new URL(window.location.origin);
     const segments = currentUrl.pathname.split("/").filter(Boolean);
-    segments.push("fetch");
+    segments.push("verify");
     currentUrl.pathname = "/" + segments.join("/");
 
     const linkvertiseId = import.meta.env.VITE_LINKVERTISE_ID;
