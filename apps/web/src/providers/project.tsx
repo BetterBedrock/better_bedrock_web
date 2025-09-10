@@ -19,7 +19,7 @@ interface ProjectContextProps {
   fetched: boolean;
   search: (type?: string, text?: string, page?: number) => Promise<SearchProjectsDto | undefined>;
   fetchDraftDetails: (id: string) => Promise<DetailedProjectDto | undefined>;
-  fetchProjectDetails: (id: string) => Promise<DetailedProjectDto | undefined>;
+  fetchProjectDetails: (id: string, throwErr?: boolean) => Promise<DetailedProjectDto | undefined>;
   fetchUserProjects: (id: string) => Promise<SimpleProjectDto[] | undefined>;
   saveProject: (id: string, project: UpdateProjectDto) => Promise<ProjectDto | undefined>;
   uploadFile: (id: string, file: File) => Promise<UploadFileDto | undefined>;
@@ -27,6 +27,7 @@ interface ProjectContextProps {
   submitProject: (id: string, name: string) => Promise<boolean>;
   cancelSubmission: (id: string, name: string) => Promise<boolean>;
   deleteProject: (id: string, name: string) => Promise<void>;
+  deleteProductionProject: (id: string, name: string) => Promise<void>;
   createProject: (title: string) => Promise<ProjectDto | undefined>;
 
   getProjectRating: (id: string) => Promise<ProjectRatingDto | undefined>;
@@ -74,12 +75,15 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
     }
   };
 
-  const fetchProjectDetails = async (id: string): Promise<DetailedProjectDto | undefined> => {
+  const fetchProjectDetails = async (
+    id: string,
+    throwErr: boolean = true,
+  ): Promise<DetailedProjectDto | undefined> => {
     try {
       const { data } = await projectApi.projectControllerProjectDetails(id);
       return data;
     } catch (err) {
-      throwError(err, "Failed fetching draft details");
+      if (throwErr) throwError(err, "Failed fetching draft details");
     }
   };
 
@@ -220,6 +224,19 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
     }
   };
 
+  const deleteProductionProject = async (id: string, name: string) => {
+    try {
+      await projectApi.projectControllerDeleteProduction(id);
+      sendNotification({
+        type: "info",
+        title: name,
+        label: "The public version of this project has been deleted",
+      });
+    } catch (err) {
+      throwError(err, "Failed to delete project");
+    }
+  };
+
   const getProjectRating = async (id: string) => {
     try {
       const { data } = await projectApi.projectControllerGetProjectRating(id);
@@ -325,6 +342,7 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
         submitProject,
         cancelSubmission,
         deleteProject,
+        deleteProductionProject,
         publish,
         fetchProjectDetails,
         createProject,
