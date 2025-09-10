@@ -1,28 +1,20 @@
 import { Section } from "~/components/section";
-import { Hero } from "./components/hero";
+import { Hero, HeroReportPopup } from "./components/hero";
 import { styles } from ".";
-import { useEffect, useState } from "react";
-import { ReportDto } from "~/lib/api";
-import { useReport } from "~/providers/report";
-import { ReportCard } from "~/components/bedrock/report-card";
+import { useReportsManager } from "~/pages/panel/reports/providers/reports-manager";
+import { Unresolved } from "~/pages/panel/reports/components/unresolved/unresolved";
+import { Resolved } from "~/pages/panel/reports/components/resolved";
 
 export const Reports = () => {
-  const { fetchReports } = useReport();
-  const [reports, setReports] = useState<ReportDto[]>();
-
-  useEffect(() => {
-    fetchReports().then((data) => setReports(data));
-  }, []);
+  const { selectedReport } = useReportsManager();
 
   return (
     <main>
-      <Section className={styles.background} extraClassName={styles.padding} fixed center>
+      {selectedReport && <HeroReportPopup />}
+      <Section className={styles.background} extraClassName={styles.padding} fixed>
         <Hero />
-        <div className={styles.projects}>
-          {reports?.map((report, index) => (
-            <ReportCard key={index} report={report} />
-          ))}
-        </div>
+        <Unresolved />
+        <Resolved />
       </Section>
     </main>
   );

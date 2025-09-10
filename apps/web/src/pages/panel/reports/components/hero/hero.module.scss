@@ -1,0 +1,48 @@
+@use "~/utils" as g;
+
+.container {
+  width: 100%;
+
+  .part {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: g.$padding-sm;
+    gap: g.$padding-xsm;
+  }
+}
+
+.loader {
+  margin-block: g.$padding-sm;
+  align-items: center;
+  width: 100%;
+}
+
+.group {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  gap: g.$padding-xxsm;
+}
+
+.avatar {
+  width: g.$icon-md;
+  height: g.$icon-md;
+  image-rendering: pixelated;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.rating {
+  color: g.$color-sbtn-click-on-focus-visible !important;
+}
+
+.profile {
+  padding: g.$padding-xsm;
+}
