@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, useLocation, useNavigate } from "react-router-dom";
 import { Home } from "~/pages/home/home";
 import { Information } from "~/pages/information/information";
 import { Downloads } from "~/pages/downloads/downloads";
@@ -26,6 +26,7 @@ import { AuthProvider } from "~/providers/auth";
 import { Main } from "~/pages/downloads/components/main";
 import { Terms } from "./pages/terms";
 import { Categories } from "~/pages/information/components/categories";
+import { useEffect } from "react";
 
 export const App = () => (
   <CookiesProvider>
@@ -34,6 +35,7 @@ export const App = () => (
         <ContentProvider>
           <AuthProvider>
             <BrowserRouter>
+              <UrlNormalizer />
               <ScrollToTop>
                 <Layout>
                   <Routes>
@@ -45,7 +47,7 @@ export const App = () => (
                       <Route path=":category" element={<Categories />} />
                     </Route>
                     <Route path="discord" element={<Discord />} />
-                    <Route path="fetch" element={<Fetch />} />
+                    <Route path="fetch*" element={<Fetch />} />
                     <Route path="preview/:file" element={<Preview />} />
                     <Route path="login" element={<Login />} />
 
@@ -94,3 +96,18 @@ export const App = () => (
     </NotificationProvider>
   </CookiesProvider>
 );
+
+// Remove when linkvertise fixes this ridiculous issue (adding %00 to urls)
+const UrlNormalizer = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname.includes("%00")) {
+      const cleanedPath = location.pathname.replace("%00", "");
+      navigate(cleanedPath + location.search, { replace: true });
+    }
+  }, [location, navigate]);
+
+  return null;
+}
