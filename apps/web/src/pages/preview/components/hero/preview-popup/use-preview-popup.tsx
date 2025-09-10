@@ -103,7 +103,7 @@ export const usePreviewPopup = ({ downloadItem, onClose }: usePreviewPopupProps)
       navigate(Routes.FETCH);
       return;
     }
-    openLinkvertise();
+    await openLinkvertise();
   };
 
   useEffect(() => {
