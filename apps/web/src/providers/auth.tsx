@@ -6,7 +6,6 @@ import { useNotification } from "~/providers/notification";
 import { baseUrl } from "~/utils/url";
 
 interface AuthContextProps {
-  authenticated: boolean;
   fetched: boolean;
   user: UserDto | undefined;
   setUser: React.Dispatch<React.SetStateAction<UserDto | undefined>>;
@@ -21,7 +20,6 @@ interface AuthProviderProps {
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [authenticated, setAuthenticated] = useState(false);
   const [fetched, setFetched] = useState(false);
   const [cookie, setCookie, removeCookie] = useCookies(["secret"]);
   const { throwError, sendNotification } = useNotification();
@@ -39,7 +37,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         const { data } = await authApi.authControllerGoogleAuthorize({
           token: tokenResponse.access_token,
         });
-        setCookie("secret", data.token);
+        setCookie("secret", data.token, { path: "/", secure: true, sameSite: "strict" });
       } catch (err) {
         throwError(err, "Failed to login with google");
       }
@@ -60,15 +58,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setUser(data);
     } catch (err) {
       throwError(err, "Failed to authenticate");
+      logout();
     }
 
     setFetched(true);
   };
 
   const logout = () => {
-    removeCookie("secret");
+    removeCookie("secret", { path: "/" });
     setUser(undefined);
-    setAuthenticated(false);
     setFetched(false);
 
     sendNotification({
@@ -76,6 +74,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       title: "Logout",
       label: "You have been logged out",
     });
+
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -85,9 +85,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, [cookie.secret]);
 
   return (
-    <AuthContext.Provider
-      value={{ user, setUser, fetched, googleLogin, authenticated, logout }}
-    >
+    <AuthContext.Provider value={{ user, setUser, fetched, googleLogin, logout }}>
       {children}
     </AuthContext.Provider>
   );
