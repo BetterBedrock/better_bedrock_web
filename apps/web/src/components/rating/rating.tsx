@@ -17,6 +17,7 @@ interface RatingProps extends BedrockComponentProps {
   onUpdate?: (rating: number) => void;
   onReset?: () => void;
   className?: string;
+  extraClassName?: string;
 }
 
 export const Rating: React.FC<RatingProps> = ({
@@ -29,6 +30,7 @@ export const Rating: React.FC<RatingProps> = ({
   onReset,
   className = "",
   size = "small",
+  extraClassName,
 }) => {
   const [selected, setSelected] = useState<number>(rating ?? 1);
   const [preview, setPreview] = useState<number | null>(null);
@@ -75,15 +77,15 @@ export const Rating: React.FC<RatingProps> = ({
     }
   };
 
-  const text = `${selected}/${max}${suffix ? ` ${suffix}` : ""}`;
+  const text = `${selected < 1 ? "-" : selected}/${max}${suffix ? ` ${suffix}` : ""}`;
   const starStyles = clsx(styles.star, styles[size]);
 
   return (
-    <Tooltip text={text}>
+    <Tooltip text={text} className={extraClassName}>
       <div className={clsx(styles.rating, className && className)}>
         {simple ? (
           <>
-            <BedrockText extraClassName={styles.text} type="p" text={text} color="white" />
+            <BedrockText extraClassName={styles.text} type="p" text={text} />
             {selectable ? (
               <button
                 aria-label={`Set rating (current ${selected} of ${max})`}
@@ -128,12 +130,7 @@ export const Rating: React.FC<RatingProps> = ({
               );
             })}
             {selectable && (
-              <BedrockText
-                text="Reset Rating"
-                onClick={handleReset}
-                type="p"
-                color="white"
-              />
+              <BedrockText text="Reset Rating" onClick={handleReset} type="p" color="white" />
             )}
           </>
         )}
