@@ -1,0 +1,39 @@
+@use "~/utils" as g;
+
+.information {
+  display: flex;
+  flex-direction: column;
+}
+
+.editor {
+  @include g.card-margin();
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  gap: g.$padding-xxsm;
+}
+
+.avatar {
+  width: g.$icon-md;
+  height: g.$icon-md;
+  image-rendering: pixelated;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: g.$padding-xsm;
+}
+
+.skip {
+  color: g.$color-selection !important;
+}
+
+.icon {
+  height: g.$icon-sm;
+  image-rendering: pixelated;
+}

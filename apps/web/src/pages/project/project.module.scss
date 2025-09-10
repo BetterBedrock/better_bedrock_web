@@ -1,0 +1,20 @@
+@use "~/utils" as g;
+
+.background {
+  @include g.page-background(
+    g.$background-linear-gradient,
+    "~/assets/images/crosshair_backgrounds/16.png"
+  );
+}
+
+.padding {
+  @include g.section-padding((top, bottom));
+  overflow: unset !important;
+}
+
+.card {
+  width: 100%;
+  gap: g.$padding-md;
+  display: flex;
+  flex-direction: column;
+}

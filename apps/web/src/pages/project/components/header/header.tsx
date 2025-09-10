@@ -1,0 +1,120 @@
+import clsx from "clsx";
+import { Banner } from "~/components/bedrock/banner";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
+import { Card, CardDivider } from "~/components/bedrock/card";
+import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
+import { SimpleButton } from "~/components/bedrock/simple-button";
+import { Rating } from "~/components/rating";
+import { ProjectMode } from "~/pages/project";
+import ReportGlyph from "~/assets/images/glyphs/WarningGlyph.png";
+import Steve from "~/assets/images/avatars/Steve.png";
+import { Link } from "~/components/link";
+import { useProjectManager } from "~/pages/project/providers/project-manager";
+import { useAuth } from "~/providers/auth";
+import { HeaderTitle, styles } from ".";
+import { useState } from "react";
+import { PopupReport } from "~/components/bedrock/popup/popup-report";
+import { useNavigate } from "react-router-dom";
+import { Routes } from "~/utils/routes";
+import EditIcon from "~/assets/ui/tiptap-icons/8.png";
+
+interface HeaderProps {
+  mode: ProjectMode;
+}
+
+export const Header = ({ mode }: HeaderProps) => {
+  const { user } = useAuth();
+  const { selectedProject } = useProjectManager();
+  const navigate = useNavigate();
+
+  const [reportOpen, setReportOpen] = useState(false);
+
+  const creator = selectedProject?.user;
+
+  if (!selectedProject) return;
+  return (
+    <>
+      {reportOpen && selectedProject && (
+        <PopupReport
+          name={selectedProject.title}
+          id={selectedProject.id}
+          type="project"
+          onClose={() => setReportOpen(false)}
+        />
+      )}
+      {selectedProject.error && (
+        <Banner
+          type="error"
+          message={
+            <>
+              <BedrockText
+                textAlign="start"
+                type="p"
+                color="white"
+                font="Minecraft"
+                text={`Your project has been decline for the following reason: `}
+              />
+              <BedrockText textAlign="start" type="p" color="white" text={selectedProject.error} />
+            </>
+          }
+        />
+      )}
+      <Card sub className={styles.information}>
+        {/* <HeroDescription download={download} /> */}
+        <div className={clsx(styles.editor)}>
+          <div className={styles.title}>
+            <HeaderTitle title={selectedProject?.title ?? ""} />
+            {user && user?.id !== selectedProject.userId && mode === "view" && (
+              <SimpleButton transparent onClick={() => setReportOpen(true)}>
+                <img src={ReportGlyph} className={styles.icon} />
+              </SimpleButton>
+            )}
+            {user?.admin && mode !== "edit" && (
+              <SimpleButton
+                transparent
+                onClick={() => navigate(Routes.PROJECT_EDIT + "/" + selectedProject.id)}
+              >
+                <img src={EditIcon} className={styles.icon} />
+              </SimpleButton>
+            )}
+          </div>
+          {mode === "view" && (
+            <Rating
+              rating={selectedProject.rating.average}
+              suffix={`(${selectedProject.rating.count} All Project Ratings)`}
+            />
+          )}
+        </div>
+
+        <CardDivider sub />
+
+        <div className={clsx(styles.editor)}>
+          <div className={styles.header}>
+            <img src={Steve} className={styles.avatar} />
+
+            {/* Renders the description, which can now be any React node */}
+            <div>
+              {creator ? (
+                <BedrockText text={`@${creator?.name}`} type="p" color="white" />
+              ) : (
+                <CircularProgressIndicator size="small" />
+              )}
+              <Rating rating={selectedProject.user.rating} simple />
+            </div>
+          </div>
+          {mode === "view" && (
+            <Link link="#download">
+              {/**onClick={scrollToButton} */}
+              <BedrockText
+                text="Skip to download"
+                type="p"
+                color="white"
+                extraClassName={styles.skip}
+              />
+            </Link>
+          )}
+        </div>
+      </Card>
+    </>
+  );
+};
