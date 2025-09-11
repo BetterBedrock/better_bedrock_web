@@ -6,7 +6,7 @@ export enum Routes {
     PANEL_VOUCHER = "/panel/voucher",
     LOGIN = "/login",
     INFORMATION = "/information",
-    FETCH = "/fetch",
+    FETCH = "/verify",
     PREVIEW = "/preview",
     LATEST = "/latest",
     CHECKOUT_CANCEL = "/checkout/cancel",
