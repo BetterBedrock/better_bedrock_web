@@ -20,7 +20,7 @@ const VoucherContext = createContext<VoucherContextProps | undefined>(undefined)
 
 export const VoucherProvider = ({ children }: VoucherProviderProps) => {
   const [vouchers, setVouchers] = useState<VoucherDto[]>([]);
-  const { authenticated } = useAuth();
+  const { user } = useAuth();
   const [cookie] = useCookies(["secret"]);
   const { throwError } = useNotification();
 
@@ -85,10 +85,10 @@ export const VoucherProvider = ({ children }: VoucherProviderProps) => {
   };
 
   useEffect(() => {
-    if (authenticated) {
+    if (user && user.admin) {
       fetchVouchers();
     }
-  }, [authenticated]);
+  }, [user]);
 
   return (
     <VoucherContext.Provider value={{ updateVoucher, fetchVouchers, createVoucher, vouchers }}>
