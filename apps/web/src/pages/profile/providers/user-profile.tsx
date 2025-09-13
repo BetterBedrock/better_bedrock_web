@@ -87,8 +87,9 @@ export const UserProfileProvider = ({ children }: UserProfileProviderProps) => {
       const newUser = await updateProfile(data);
       if (!newUser) return;
 
-      setSelectedUser(newUser);
       navigate(Routes.PROFILE + "/" + newUser.name + "/projects");
+
+      setSelectedUser(newUser);
       return;
     }
     if (!detailedUser) return;
