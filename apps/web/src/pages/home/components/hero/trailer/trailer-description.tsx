@@ -5,6 +5,6 @@ export const TrailerDescription = () => (
     type="p"
     textAlign="center"
     color="white"
-    text="Learn how you can publish and make 100% of the ad revenue on your projects"
+    text="Learn how you can publish and earn up to 70$ per 1000 downloads with your projects"
   />
 );
