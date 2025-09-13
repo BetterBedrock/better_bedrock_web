@@ -20,6 +20,7 @@ interface ProjectContextProps {
   search: (type?: string, text?: string, page?: number) => Promise<SearchProjectsDto | undefined>;
   fetchDraftDetails: (id: string) => Promise<DetailedProjectDto | undefined>;
   fetchProjectDetails: (id: string, throwErr?: boolean) => Promise<DetailedProjectDto | undefined>;
+  fetchProjectsBasicInfo: (ids: string[]) => Promise<SimpleProjectDto[] | undefined>;
   fetchUserProjects: (id: string) => Promise<SimpleProjectDto[] | undefined>;
   saveProject: (id: string, project: UpdateProjectDto) => Promise<ProjectDto | undefined>;
   uploadFile: (id: string, file: File) => Promise<UploadFileDto | undefined>;
@@ -83,7 +84,17 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
       const { data } = await projectApi.projectControllerProjectDetails(id);
       return data;
     } catch (err) {
-      if (throwErr) throwError(err, "Failed fetching draft details");
+      if (throwErr) throwError(err, "Failed fetching project details");
+    }
+  };
+
+  const fetchProjectsBasicInfo = async (ids: string[]): Promise<SimpleProjectDto[] | undefined> => {
+    try {
+      console.log({ids});
+      const { data } = await projectApi.projectControllerProjectsBasicInfo({ ids });
+      return data;
+    } catch (err) {
+      throwError(err, "Failed fetching projects basic info");
     }
   };
 
@@ -338,6 +349,7 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
         uploadFile,
         saveProject,
         fetchUserProjects,
+        fetchProjectsBasicInfo,
         submittedProjects,
         submitProject,
         cancelSubmission,

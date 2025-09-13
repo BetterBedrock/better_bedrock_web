@@ -3,7 +3,7 @@ import { styles } from ".";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { Tabs } from "~/pages/profile/components/tabs";
 import { useUser } from "~/providers/user";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { Routes } from "~/utils/routes";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 import { useAuth } from "~/providers/auth";
@@ -18,18 +18,15 @@ export const Profile = () => {
   const { user } = useAuth();
   const { fetchDetails, setSelectedUser, fetchedDetailedUser } = useUserProfile();
 
-  const fetchSelectedUser = useCallback(
-    async (id: string) => {
-      const data = await findUserByName(id);
-      if (!data) {
-        navigate(Routes.HOME);
-        return;
-      }
-      setSelectedUser(data);
-      await fetchDetails(data);
-    },
-    [findUserByName, navigate, fetchDetails, setSelectedUser],
-  );
+  const fetchSelectedUser = async (id: string) => {
+    const data = await findUserByName(id);
+    if (!data) {
+      navigate(Routes.HOME);
+      return;
+    }
+    setSelectedUser(data);
+    await fetchDetails(data);
+  };
 
   useEffect(() => {
     if (!id) {
@@ -37,7 +34,7 @@ export const Profile = () => {
       return;
     }
     fetchSelectedUser(id);
-  }, [user, id]);
+  }, [id, user?.admin]);
 
   return (
     <main>
