@@ -10,13 +10,7 @@ export const Main = () => {
     <>
       <Card sub className={styles.main}>
         <div className={styles.downloads}>
-          <BedrockText
-            text="Downloads"
-            type="h1"
-            color="white"
-            font="Minecraft"
-            textAlign="start"
-          />
+          <BedrockText text="Featured" type="h1" color="white" font="Minecraft" textAlign="start" />
         </div>
         <CardDivider sub />
         <div className={styles.downloads}>
@@ -25,8 +19,10 @@ export const Main = () => {
       </Card>
       <Card sub className={styles.main}>
         <div className={styles.downloads}>
-          <Banner type="info" message="Our creators get 100% of the ad revenue!" />{" "}
-      
+          <Banner
+            type="info"
+            message="Our creators get anti-bypass for ads & 100% of the ad revenue!"
+          />{" "}
           <BedrockText text="Projects" type="h1" color="white" font="Minecraft" textAlign="start" />
         </div>
         <CardDivider sub />

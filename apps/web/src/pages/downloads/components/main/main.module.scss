@@ -15,8 +15,7 @@
 .ad {
   display: grid;
   grid-template-areas:
-    "bb bb"
-    "extensions side";
+    "bb side";
   grid-template-columns: 1fr 1fr;
   gap: g.$padding-xsm;
 }

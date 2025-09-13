@@ -9,6 +9,7 @@ import { PROJECT_TYPES } from "~/assets/content/better-bedrock";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 import { Button } from "~/components/bedrock/button";
 import { ButtonGroup } from "~/components/button-group/button-group";
+import { Banner } from "~/components/bedrock/banner";
 
 export const MainProjects = () => {
   const { search } = useProject();
@@ -149,14 +150,15 @@ export const MainProjects = () => {
       ) : (
         <>
           {(!searchResults || searchResults.items.length < 1) && (
-            <div className={styles.loader}>
-              <BedrockText
-                text="No projects found for this search :("
-                font="Minecraft"
-                color="white"
-                type="p"
-              />
-            </div>
+            <Banner message="No projects found for this search :(" type="neutral" />
+            // <div className={styles.loader}>
+            //   <BedrockText
+            //     text="No projects found for this search :("
+            //     font="Minecraft"
+            //     color="white"
+            //     type="p"
+            //   />
+            // </div>
           )}
 
           {(searchResults?.items.length ?? 0) > 0 && (
