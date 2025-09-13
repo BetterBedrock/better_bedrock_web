@@ -16,6 +16,7 @@ All URIs are relative to *http://localhost*
 |[**projectControllerGetProjectRating**](#projectcontrollergetprojectrating) | **GET** /project/rate/{projectId} | |
 |[**projectControllerPostComment**](#projectcontrollerpostcomment) | **POST** /project/comment/{projectId} | |
 |[**projectControllerProjectDetails**](#projectcontrollerprojectdetails) | **GET** /project/details/{id} | |
+|[**projectControllerProjectsBasicInfo**](#projectcontrollerprojectsbasicinfo) | **POST** /project/info | |
 |[**projectControllerPublish**](#projectcontrollerpublish) | **PATCH** /project/publish/{id} | |
 |[**projectControllerRateProject**](#projectcontrollerrateproject) | **POST** /project/rate/{projectId}/{rating} | |
 |[**projectControllerReplyToComment**](#projectcontrollerreplytocomment) | **POST** /project/comment/{projectId}/reply/{parentId} | |
@@ -632,6 +633,57 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **projectControllerProjectsBasicInfo**
+> Array<SimpleProjectDto> projectControllerProjectsBasicInfo(projectBasicInfoBodyDto)
+
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration,
+    ProjectBasicInfoBodyDto
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let projectBasicInfoBodyDto: ProjectBasicInfoBodyDto; //
+
+const { status, data } = await apiInstance.projectControllerProjectsBasicInfo(
+    projectBasicInfoBodyDto
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **projectBasicInfoBodyDto** | **ProjectBasicInfoBodyDto**|  | |
+
+
+### Return type
+
+**Array<SimpleProjectDto>**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**201** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **betterBedrockContent** | **boolean** |  | [default to undefined]
 **draft** | **boolean** |  | [default to undefined]
 **userId** | **string** |  | [default to undefined]
+**itemWeight** | **number** |  | [default to undefined]
 **user** | [**ProjectCreatorDto**](ProjectCreatorDto.md) |  | [default to undefined]
 **rating** | [**ProjectRatingDto**](ProjectRatingDto.md) |  | [default to undefined]
 
@@ -32,6 +33,7 @@ const instance: SimpleProjectDto = {
     betterBedrockContent,
     draft,
     userId,
+    itemWeight,
     user,
     rating,
 };

@@ -26,6 +26,7 @@ docs/ManageProfileDto.md
 docs/PostCommentParamsDto.md
 docs/PriceOptionDto.md
 docs/ProjectApi.md
+docs/ProjectBasicInfoBodyDto.md
 docs/ProjectCommentDto.md
 docs/ProjectCommentDtoAuthor.md
 docs/ProjectCreatorDto.md
