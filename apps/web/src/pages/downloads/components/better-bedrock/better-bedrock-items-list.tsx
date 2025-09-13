@@ -1,20 +1,18 @@
 import DownloadCard from "~/components/bedrock/download-card/download-card";
-import { styles } from ".";
+import { SimpleCategory, styles } from ".";
 import logo from "~/assets/images/favicon.png";
 import { Routes } from "~/utils/routes";
 import { baseUrl } from "~/utils/url";
-import { useState } from "react";
 import { Link } from "~/components/link";
-import { DownloadsItemDto } from "~/assets/content/dto/downloads-item.dto";
-import { DownloadsListDto } from "~/assets/content/dto/downloads-list.dto";
+import { useNavigate } from "react-router-dom";
 
-// const calcItemWeight = (itemWeight: number) => {
-//   return itemWeight <= 0.1 ? "<0.0" : itemWeight.toFixed(1);
-// };
+const calcItemWeight = (itemWeight: number) => {
+  return itemWeight <= 0.1 ? "<0.0" : itemWeight.toFixed(1);
+};
 
 interface MainItemsList {
   categoryId: string;
-  category: DownloadsListDto;
+  category: SimpleCategory;
 }
 
 export const openInNewTab = (url: string): void => {
@@ -23,7 +21,7 @@ export const openInNewTab = (url: string): void => {
 };
 
 export const MainItemsList = ({ category }: MainItemsList) => {
-  const [_, setDownloadItem] = useState<DownloadsItemDto | null>(null);
+  const navigate = useNavigate();
 
   const handleOpenLink = (): string | undefined => {
     if (category.title === "Featured") {
@@ -33,29 +31,33 @@ export const MainItemsList = ({ category }: MainItemsList) => {
 
   return (
     <>
-      {/* {item && <PreviewPopup onClose={() => setDownloadItem(null)} />} */}
       <div className={styles.list}>
         {/* styles.grid */}
-        {category.items.map((item, _itemIndex) => (
-          // downloads!.default === categoryId ? (
-          <Link key={_itemIndex} link={handleOpenLink()} className={styles.hide}>
-            <DownloadCard
-              title={"Test"}
-              description={"Description"}
-              downloadSize={`0MB`}
-              buttonType={item.buttonType}
-              iconPath={item.imageAssetUrl ? `${baseUrl}${item.imageAssetUrl}` : logo}
-              tags={["Test"]}
-              tagBgColor={item.tagBgColor}
-              titleColor={item.titleColor}
-              onClick={async () => {
-                if (category.title !== "Featured") {
-                  setDownloadItem(item);
-                }
-              }}
-            />
-          </Link>
-        ))}
+        {category.items.map((project, _itemIndex) => {
+          const item = category.categoryItems.find((i) => i.projectId === project.id);
+
+          if(!item) return;
+          return (
+            // downloads!.default === categoryId ? (
+            <Link key={_itemIndex} link={handleOpenLink()} className={styles.hide}>
+              <DownloadCard
+                title={project.title}
+                description={item.description}
+                downloadSize={`${calcItemWeight(project.itemWeight)}MB`}
+                buttonType={item.buttonType}
+                iconPath={item.imageAssetUrl ? `${baseUrl}${item.imageAssetUrl}` : logo}
+                tags={project.tags.map((tag) => tag.name)}
+                tagBgColor={item.tagBgColor}
+                titleColor={item.titleColor}
+                onClick={async () => {
+                  if (category.title !== "Featured") {
+                    navigate(Routes.PROJECT_PREVIEW + "/" + project.id)
+                  }
+                }}
+              />
+            </Link>
+          );
+        })}
       </div>
     </>
   );
