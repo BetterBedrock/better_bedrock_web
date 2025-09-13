@@ -38,6 +38,7 @@ import { UploadFileDto } from "~/project/dto/upload-file.dto";
 import { OptionalAuthGuard } from "~/auth/optional-auth.guard";
 import { ApiBearerAuth } from "@nestjs/swagger";
 import { DetailedProjectDto } from "~/project/dto/detailed-project.dto";
+import { ProjectBasicInfoBodyDto } from "~/project/dto/project-basic-info-body.dto";
 
 @Controller("project")
 export class ProjectController {
@@ -50,7 +51,7 @@ export class ProjectController {
     @Post()
     @UseGuards(UserAuthGuard)
     @ApiBearerAuth()
-    create(
+    async create(
         @Body() data: CreateProjectBodyDto,
         @Req() req: AuthenticatedRequest,
     ): Promise<ProjectDto> {
@@ -107,6 +108,14 @@ export class ProjectController {
     @Get("details/:id")
     projectDetails(@Param("id") id: string): Promise<DetailedProjectDto> {
         return this.projectService.projectDetails(id);
+    }
+
+    @Post("info")
+    projectsBasicInfo(@Body() body: ProjectBasicInfoBodyDto): Promise<SimpleProjectDto[]> {
+        if (body.ids.length < 1 || body.ids.length > 20) {
+            throw new BadRequestException("You need to provide at least one and max 20 projects");
+        }
+        return this.projectService.basicInfo(body.ids);
     }
 
     @Get("draft/:id")

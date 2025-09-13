@@ -321,6 +321,22 @@ export class ProjectService {
         };
     }
 
+    async basicInfo(ids: string[]) {
+        Logger.error("ids, ", ids);
+        const items = await this.prismaService.project.findMany({
+            where: { id: { in: ids }, draft: false },
+            orderBy: { lastChanged: "desc" },
+            select: simpleProjectSelect,
+        });
+
+        return Promise.all(
+            items.map(async (p) => {
+                const projectDetails = await this.getProjectDetails(p);
+                return { ...p, ...projectDetails };
+            }),
+        );
+    }
+
     async update(project: ProjectDto, data: Partial<ProjectDto>) {
         if (project.submitted) {
             throw new BadRequestException("Project has already been submitted");
