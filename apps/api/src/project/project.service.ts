@@ -2,6 +2,7 @@ import {
     BadRequestException,
     ForbiddenException,
     Injectable,
+    Logger,
     NotFoundException,
 } from "@nestjs/common";
 import { PrismaService } from "~/prisma.service";
@@ -58,6 +59,7 @@ const simpleProjectSelect = {
     betterBedrockContent: true,
     draft: true,
     userId: true,
+    itemWeight: true,
     user: {
         select: { name: true },
     },
@@ -79,6 +81,12 @@ export class ProjectService {
 
         if (!admin && restrictedNames.some((name) => id.includes(name))) {
             throw new ForbiddenException(`${title} is a restricted project name`);
+        }
+
+        const existingProject = await this.prismaService.project.findFirst({ where: { id } });
+
+        if (existingProject) {
+            throw new BadRequestException("Project with this name already exists");
         }
 
         const project = await this.prismaService.$transaction(async (prisma: PrismaClient) => {
@@ -131,7 +139,7 @@ export class ProjectService {
 
     async search(query: SearchProjectsQueryDto): Promise<SearchProjectsDto> {
         const { text, type, page = 1 } = query;
-        const limit = 2;
+        const limit = 10;
         const candidateLimit = 200;
 
         const baseWhere: Prisma.ProjectWhereInput = { draft: false };

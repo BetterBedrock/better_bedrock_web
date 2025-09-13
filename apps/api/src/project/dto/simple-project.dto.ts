@@ -13,6 +13,7 @@ export class SimpleProjectDto extends IntersectionType(
         "betterBedrockContent",
         "draft",
         "userId",
+        "itemWeight",
     ] as const),
     ProjectDetailsDto,
 ) {}
