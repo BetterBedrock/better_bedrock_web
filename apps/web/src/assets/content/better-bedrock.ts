@@ -60,7 +60,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
             items: [
                 {
                     description: "Enhance your gameplay with multiple mods and adjustable options!",
-                    projectId: DOWNLOADS_IDS.betterBedrockClientV80,
+                    projectId: "better_bedrock_v8",
                     buttonType: "green",
                     tagBgColor: "rgb(29, 77, 19)",
                     imageAssetUrl: "/static/uploads/public/images/favicon.png",
