@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "~/prisma.service";
 import { RatingService } from "~/rating/rating.service";
 import { ManageProfileDto } from "~/user/dto/manage-profile.dto";
@@ -54,6 +54,18 @@ export class UserService {
     }
 
     async updateProfile(id: string, data: UpdateProfileDto | ManageProfileDto) {
+        const existsUser = await this.prismaService.user.findFirst({
+            where: {
+                name: {
+                    equals: data.name,
+                    mode: "insensitive",
+                },
+            },
+        });
+        if (existsUser) {
+            throw new BadRequestException("User with this name already exists");
+        }
+
         return this.prismaService.user.update({ where: { id }, data: data });
     }
 }
