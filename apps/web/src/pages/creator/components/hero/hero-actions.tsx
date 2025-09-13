@@ -18,7 +18,7 @@ export const HeroActions = () => {
     const project = await createProject(title);
     if(!project) return;
 
-    navigate(Routes.EDITOR + "/" + project.id);
+    navigate(Routes.PROJECT_EDIT + "/" + project.id);
   };
 
   if (!id) {
