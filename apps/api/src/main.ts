@@ -41,7 +41,7 @@ async function bootstrap() {
     );
 
     app.use((req, res, next) => {
-        if (!req.path.startsWith("/static/uploads/public")) {
+        if (!req.path.startsWith("/static/public")) {
             res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
             res.setHeader("Pragma", "no-cache");
             res.setHeader("Expires", "0");
