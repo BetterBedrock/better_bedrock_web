@@ -11,6 +11,7 @@ import {
     BadRequestException,
     Delete,
     Query,
+    ForbiddenException,
 } from "@nestjs/common";
 import { ProjectService } from "./project.service";
 import { UpdateProjectDto } from "./dto/update-project.dto";
@@ -133,6 +134,14 @@ export class ProjectController {
         @Req() req: ProjectRequest,
         @Body() updateProjectDto: UpdateProjectDto,
     ): Promise<ProjectDto> {
+        const user = req.user;
+
+        if (updateProjectDto.betterBedrockContent && !user.admin) {
+            throw new ForbiddenException(
+                "You don't have permission to make this project official Better Bedrock Content",
+            );
+        }
+
         return this.projectService.update(req.project, updateProjectDto);
     }
 
