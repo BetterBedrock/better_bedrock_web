@@ -12,6 +12,21 @@ export class AnalyticsService {
         return this.prismaService.analytics.findMany();
     }
 
+    async projectAnalytics(projectId: string, search?: SearchOrder) {
+        const take = () => {
+            if (search === SearchOrder.mostPopularThisMonth) return 30;
+            if (search === SearchOrder.mostPopularThisWeek) return 7;
+            if (search === SearchOrder.mostPopularThisYear) return 365;
+
+            return undefined;
+        };
+
+        return this.prismaService.analytics.findMany({
+            where: { name: projectId, type: "file" },
+            take: take(),
+        });
+    }
+
     async userAnalytics(id: string) {
         const projects = await this.prismaService.project.findMany({ where: { userId: id } });
 
