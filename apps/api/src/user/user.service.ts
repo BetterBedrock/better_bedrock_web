@@ -60,6 +60,9 @@ export class UserService {
                     equals: data.name,
                     mode: "insensitive",
                 },
+                id: {
+                    not: id,
+                },
             },
         });
         if (existsUser) {
