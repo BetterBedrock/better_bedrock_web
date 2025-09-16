@@ -44,3 +44,4 @@ apps/api/static/public/*
 *.pem
 github_action
 github_action.pub
+todo.md
