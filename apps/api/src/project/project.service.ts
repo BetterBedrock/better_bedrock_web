@@ -2,7 +2,6 @@ import {
     BadRequestException,
     ForbiddenException,
     Injectable,
-    Logger,
     NotFoundException,
 } from "@nestjs/common";
 import { PrismaService } from "~/prisma.service";
@@ -20,6 +19,8 @@ import { RatingService } from "~/rating/rating.service";
 import { ProjectDetailsDto } from "~/project/dto/project-details.dto";
 import { BaseProjectDto } from "~/project/dto/base-project.dto";
 import { SearchProjectsDto } from "~/project/dto/search-project.dto";
+import { SearchOrder } from "~/project/dto/search-order.dto";
+import { AnalyticsService } from "~/analytics/analytics.service";
 
 const restrictedNames = [
     "better_bedrock",
@@ -70,6 +71,7 @@ export class ProjectService {
     constructor(
         private prismaService: PrismaService,
         private ratingService: RatingService,
+        private analyticsService: AnalyticsService,
     ) {}
 
     async create(data: CreateProjectDto, admin: boolean) {
@@ -145,11 +147,111 @@ export class ProjectService {
         const baseWhere: Prisma.ProjectWhereInput = { draft: false };
         if (type) baseWhere.type = type as ProjectType;
 
-        if (!text?.trim()) {
+        const isPopularityOrder = [
+            SearchOrder.mostPopularThisWeek,
+            SearchOrder.mostPopularThisMonth,
+            SearchOrder.mostPopularThisYear,
+        ].includes(query.order ?? SearchOrder.newest);
+
+        const getOrderBy = (): Prisma.ProjectOrderByWithRelationInput => {
+            switch (query.order) {
+                case SearchOrder.oldest:
+                    return { lastChanged: "asc" };
+                default:
+                    return { lastChanged: "desc" };
+            }
+        };
+
+        const tokenize = (s: string): string[] =>
+            Array.from(
+                new Set(
+                    s
+                        .toLowerCase()
+                        .split(/[\s\W_]+/)
+                        .map((tok) => tok.trim())
+                        .filter((tok) => tok.length >= 2),
+                ),
+            ).slice(0, 10);
+
+        const buildSearchWhere = (
+            searchText: string,
+            tokens: string[],
+        ): Prisma.ProjectWhereInput => {
+            if (tokens.length === 0) {
+                return {
+                    ...baseWhere,
+                    OR: [
+                        { title: { contains: searchText, mode: "insensitive" } },
+                        { user: { is: { name: { contains: searchText, mode: "insensitive" } } } },
+                        { tags: { some: { name: { contains: searchText, mode: "insensitive" } } } },
+                    ],
+                };
+            }
+
+            return {
+                ...baseWhere,
+                OR: tokens.flatMap((tok) => [
+                    { title: { contains: tok, mode: "insensitive" } },
+                    { user: { is: { name: { contains: tok, mode: "insensitive" } } } },
+                    { tags: { some: { name: { contains: tok, mode: "insensitive" } } } },
+                ]),
+            };
+        };
+
+        const scoreProject = (
+            proj: {
+                title: string;
+                user: { name: string } | null;
+                tags: { name: string }[];
+                description: unknown;
+            },
+            tokens: string[],
+        ): number => {
+            if (!proj || tokens.length === 0) return 0;
+
+            const title = (proj.title ?? "").toLowerCase();
+            const username = (proj.user?.name ?? "").toLowerCase();
+            const tags = (proj.tags ?? []).map((t) => t.name.toLowerCase());
+            const desc =
+                proj.description !== null && proj.description !== undefined
+                    ? JSON.stringify(proj.description).toLowerCase()
+                    : "";
+
+            const SCORE_WEIGHTS = { title: 5, tag: 3, username: 2, description: 1 };
+            let score = 0;
+
+            for (const tok of tokens) {
+                if (tags.some((tag) => tag.includes(tok))) score += SCORE_WEIGHTS.tag;
+                if (title.includes(tok)) score += SCORE_WEIGHTS.title;
+                if (username.includes(tok)) score += SCORE_WEIGHTS.username;
+                if (desc.includes(tok)) score += SCORE_WEIGHTS.description;
+            }
+            return score;
+        };
+
+        const countDownloads = async (projectId: string): Promise<number> => {
+            const projectAnalytics = await this.analyticsService.projectAnalytics(
+                projectId,
+                query.order,
+            );
+            return projectAnalytics.reduce((acc, curr) => acc + curr.value, 0);
+        };
+
+        const detailedSelect = {
+            ...simpleProjectSelect,
+            description: true,
+            tags: true,
+            lastChanged: true,
+        };
+
+        const tokens = text?.trim() ? tokenize(text) : [];
+        const hasSearchText = text?.trim();
+
+        if (!hasSearchText && !isPopularityOrder) {
             const [items, total] = await this.prismaService.$transaction([
                 this.prismaService.project.findMany({
                     where: baseWhere,
-                    orderBy: { lastChanged: "desc" },
+                    orderBy: getOrderBy(),
                     select: simpleProjectSelect,
                     skip: (page - 1) * limit,
                     take: limit,
@@ -164,114 +266,44 @@ export class ProjectService {
                 }),
             );
 
-            return { items: detailedItems, total, page, totalPages: Math.ceil(total / limit) };
-        }
-
-        const tokenize = (s: string): string[] =>
-            Array.from(
-                new Set(
-                    s
-                        .toLowerCase()
-                        .split(/[\s\W_]+/)
-                        .map((tok) => tok.trim())
-                        .filter((tok) => tok.length >= 2),
-                ),
-            ).slice(0, 10);
-
-        const tokens = tokenize(text);
-
-        if (tokens.length === 0) {
-            const where: Prisma.ProjectWhereInput = {
-                ...baseWhere,
-                OR: [
-                    { title: { contains: text, mode: "insensitive" } },
-                    { user: { is: { name: { contains: text, mode: "insensitive" } } } },
-                    { tags: { some: { name: { contains: text, mode: "insensitive" } } } },
-                ],
+            return {
+                items: detailedItems,
+                total,
+                page,
+                totalPages: Math.ceil(total / limit),
             };
-            const [items, total] = await this.prismaService.$transaction([
-                this.prismaService.project.findMany({
-                    where,
-                    orderBy: { lastChanged: "desc" },
-                    select: simpleProjectSelect,
-                    skip: (page - 1) * limit,
-                    take: limit,
-                }),
-                this.prismaService.project.count({ where }),
-            ]);
-
-            const detailedItems = await Promise.all(
-                items.map(async (p) => {
-                    const projectDetails = await this.getProjectDetails(p);
-                    return { ...p, ...projectDetails };
-                }),
-            );
-
-            return { items: detailedItems, total, page, totalPages: Math.ceil(total / limit) };
         }
 
-        const anyMatchWhere: Prisma.ProjectWhereInput = {
-            ...baseWhere,
-            OR: tokens.flatMap((tok) => [
-                { title: { contains: tok, mode: "insensitive" } },
-                { user: { is: { name: { contains: tok, mode: "insensitive" } } } },
-                { tags: { some: { name: { contains: tok, mode: "insensitive" } } } },
-            ]),
-        };
+        const searchWhere = hasSearchText ? buildSearchWhere(text ?? "", tokens) : baseWhere;
 
         const candidates = await this.prismaService.project.findMany({
-            where: anyMatchWhere,
+            where: searchWhere,
             orderBy: { lastChanged: "desc" },
-            select: {
-                ...simpleProjectSelect,
-                description: true,
-                tags: true,
-                lastChanged: true,
-            },
+            select: detailedSelect,
             take: candidateLimit,
         });
 
-        const SCORE_WEIGHTS = {
-            title: 5,
-            tag: 3,
-            username: 2,
-            description: 1,
-        };
+        let scored;
 
-        const scoreProject = (proj: {
-            title: string;
-            user: { name: string } | null;
-            tags: { name: string }[];
-            description: unknown;
-        }): number => {
-            let score = 0;
-            if (!proj) return score;
-            const title = (proj.title ?? "").toLowerCase();
-            const username = (proj.user?.name ?? "").toLowerCase();
-            const tags = (proj.tags ?? []).map((t) => t.name.toLowerCase());
-            const desc =
-                proj.description !== null && proj.description !== undefined
-                    ? JSON.stringify(proj.description).toLowerCase()
-                    : "";
-
-            for (const tok of tokens) {
-                if (tags.some((tag) => tag.includes(tok))) score += SCORE_WEIGHTS.tag;
-                if (title.includes(tok)) score += SCORE_WEIGHTS.title;
-                if (username.includes(tok)) score += SCORE_WEIGHTS.username;
-                if (desc.includes(tok)) score += SCORE_WEIGHTS.description;
-            }
-            return score;
-        };
-
-        const scored = candidates
-            .map((proj) => ({ proj, score: scoreProject(proj) }))
-            .filter((item) => item.score > 0)
-            .sort((a, b) =>
-                b.score !== a.score
-                    ? b.score - a.score
-                    : new Date(b.proj.lastChanged).getTime() -
-                      new Date(a.proj.lastChanged).getTime(),
+        if (isPopularityOrder) {
+            const calculatedDownloads = await Promise.all(
+                candidates.map(async (proj) => {
+                    const score = await countDownloads(proj.id);
+                    return { proj, score };
+                }),
             );
+            scored = calculatedDownloads.sort((a, b) => b.score - a.score);
+        } else {
+            scored = candidates
+                .map((proj) => ({ proj, score: scoreProject(proj, tokens) }))
+                .filter((item) => item.score > 0)
+                .sort((a, b) =>
+                    b.score !== a.score
+                        ? b.score - a.score
+                        : new Date(b.proj.lastChanged).getTime() -
+                          new Date(a.proj.lastChanged).getTime(),
+                );
+        }
 
         const total = scored.length;
         const paged = scored.slice((page - 1) * limit, page * limit).map((s) => s.proj);
@@ -330,7 +362,6 @@ export class ProjectService {
     }
 
     async basicInfo(ids: string[]) {
-        Logger.error("ids, ", ids);
         const items = await this.prismaService.project.findMany({
             where: { id: { in: ids }, draft: false },
             orderBy: { lastChanged: "desc" },
@@ -653,6 +684,17 @@ export class ProjectService {
                     src: `static/public/${projectId}/release/${fileName}`,
                 };
             }
+
+            if (newNode.type === "gallery" && Array.isArray(newNode.attrs?.images)) {
+                newNode.attrs = {
+                    ...newNode.attrs,
+                    images: newNode.attrs.images.map((img: string) => {
+                        const fileName = String(img).split("/").pop();
+                        return `static/public/${projectId}/release/${fileName}`;
+                    }),
+                };
+            }
+
             for (const key in newNode) {
                 if (key !== "attrs") {
                     newNode[key] = this.replaceDraftImageSrcs(newNode[key], projectId);
@@ -672,6 +714,11 @@ export class ProjectService {
             if (node.type === "image" && node.attrs?.src) {
                 srcs.push(node.attrs.src);
             }
+
+            if (node.type === "gallery") {
+                srcs.push(...node.attrs.images);
+            }
+
             for (const key in node) {
                 srcs = srcs.concat(this.extractImageSrcs(node[key]));
             }
