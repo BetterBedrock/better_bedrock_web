@@ -2,21 +2,18 @@ import { Injectable } from "@nestjs/common";
 import { AnalyticsType } from "@prisma/client";
 import dayjs from "dayjs";
 import { PrismaService } from "~/prisma.service";
-import { ProjectService } from "~/project/project.service";
+import { SearchOrder } from "~/project/dto/search-order.dto";
 
 @Injectable()
 export class AnalyticsService {
-    constructor(
-        private prismaService: PrismaService,
-        private projectService: ProjectService,
-    ) {}
+    constructor(private prismaService: PrismaService) {}
 
     async analytics() {
         return this.prismaService.analytics.findMany();
     }
 
     async userAnalytics(id: string) {
-        const projects = await this.projectService.userProjects(id);
+        const projects = await this.prismaService.project.findMany({ where: { userId: id } });
 
         const projectNames = projects.map((project) => project.id);
 
