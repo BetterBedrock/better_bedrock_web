@@ -36,6 +36,7 @@ docs/ProjectType.md
 docs/ReportApi.md
 docs/ReportDto.md
 docs/ReportProjectBodyDto.md
+docs/SearchOrder.md
 docs/SearchProjectsDto.md
 docs/SimpleProjectDto.md
 docs/SimpleUserDto.md

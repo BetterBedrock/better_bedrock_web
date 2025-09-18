@@ -897,6 +897,23 @@ export interface ReportProjectBodyDto {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const SearchOrder = {
+    Newest: 'Newest',
+    Oldest: 'Oldest',
+    MostPopularThisWeek: 'Most Popular This Week',
+    MostPopularThisMonth: 'Most Popular This Month',
+    MostPopularThisYear: 'Most Popular This Year'
+} as const;
+
+export type SearchOrder = typeof SearchOrder[keyof typeof SearchOrder];
+
+
+/**
+ * 
+ * @export
  * @interface SearchProjectsDto
  */
 export interface SearchProjectsDto {
@@ -1135,6 +1152,12 @@ export interface UpdateProjectDto {
      * @memberof UpdateProjectDto
      */
     'tags'?: Array<TagNameDto>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateProjectDto
+     */
+    'betterBedrockContent'?: boolean;
 }
 
 
@@ -2867,13 +2890,14 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {SearchOrder} [order] 
          * @param {string} [type] 
          * @param {string} [text] 
          * @param {number} [page] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectControllerSearch: async (type?: string, text?: string, page?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        projectControllerSearch: async (order?: SearchOrder, type?: string, text?: string, page?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/project`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2885,6 +2909,10 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (order !== undefined) {
+                localVarQueryParameter['order'] = order;
+            }
 
             if (type !== undefined) {
                 localVarQueryParameter['type'] = type;
@@ -3314,14 +3342,15 @@ export const ProjectApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {SearchOrder} [order] 
          * @param {string} [type] 
          * @param {string} [text] 
          * @param {number} [page] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async projectControllerSearch(type?: string, text?: string, page?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SearchProjectsDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerSearch(type, text, page, options);
+        async projectControllerSearch(order?: SearchOrder, type?: string, text?: string, page?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SearchProjectsDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerSearch(order, type, text, page, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerSearch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -3548,14 +3577,15 @@ export const ProjectApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {SearchOrder} [order] 
          * @param {string} [type] 
          * @param {string} [text] 
          * @param {number} [page] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectControllerSearch(type?: string, text?: string, page?: number, options?: RawAxiosRequestConfig): AxiosPromise<SearchProjectsDto> {
-            return localVarFp.projectControllerSearch(type, text, page, options).then((request) => request(axios, basePath));
+        projectControllerSearch(order?: SearchOrder, type?: string, text?: string, page?: number, options?: RawAxiosRequestConfig): AxiosPromise<SearchProjectsDto> {
+            return localVarFp.projectControllerSearch(order, type, text, page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3796,6 +3826,7 @@ export class ProjectApi extends BaseAPI {
 
     /**
      * 
+     * @param {SearchOrder} [order] 
      * @param {string} [type] 
      * @param {string} [text] 
      * @param {number} [page] 
@@ -3803,8 +3834,8 @@ export class ProjectApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ProjectApi
      */
-    public projectControllerSearch(type?: string, text?: string, page?: number, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerSearch(type, text, page, options).then((request) => request(this.axios, this.basePath));
+    public projectControllerSearch(order?: SearchOrder, type?: string, text?: string, page?: number, options?: RawAxiosRequestConfig) {
+        return ProjectApiFp(this.configuration).projectControllerSearch(order, type, text, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
