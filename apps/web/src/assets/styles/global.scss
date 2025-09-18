@@ -1,8 +1,30 @@
 @forward "~/utils";
 @use "~/utils" as *;
 
-// @import "~/styles/_variables.scss";
-// @import "~/styles/_keyframe-animations.scss";
+* {
+  scrollbar-width: thin;              /* Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent; /* Firefox */
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  border: none;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
 
 *,
 *::before,
@@ -21,6 +43,10 @@
 ::-webkit-selection {
   background: $color-selection;
   color: #fff;
+}
+
+body {
+  background-color: $color-card-background;
 }
 
 details summary::-webkit-details-marker {
