@@ -49,6 +49,11 @@ export const DOWNLOADS_IDS = {
     betterBedrockParticleLimiter: "better_bedrock_particle_limiter.mcpack",
 };
 
+export const SIDE_PROJECTS_LIST = [
+    "better_bedrock_v8",
+    "dark_ui",
+];
+
 export const MAIN_LIST: DownloadsCategoryDto = {
     id: "main",
     name: "Main",
@@ -92,7 +97,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                 {
                     titleColor: "rgb(255, 255, 85)",
                     description: "Changes most BB textures to darker ones",
-                    projectId: DOWNLOADS_IDS.betterBedrockDarkUI,
+                    projectId: "dark_ui",
                     buttonType: "dark", imageAssetUrl: "/static/uploads/public/images/logo2.png",
 
                 },
