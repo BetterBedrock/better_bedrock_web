@@ -11,6 +11,7 @@ import { Routes } from "~/utils/routes";
 import { PROJECT_TYPES } from "~/assets/content/better-bedrock";
 import CardLayout from "~/assets/ui/card/card_button.png";
 import { ProjectMode } from "~/pages/project";
+import BBLogo from "~/assets/images/logo.png";
 
 interface GridDownloadCardProps {
   project: SimpleProjectDto;
@@ -79,6 +80,9 @@ export const GridDownloadCard = ({ className, tags, project, mode }: GridDownloa
             {tags?.map((tag) => (
               <Tag border={["top", "right"]} name={tag} className={styles.special} />
             ))}
+            {project.betterBedrockContent && (
+              <Tag border={["top", "right"]} name={<img src={BBLogo} className={styles.logo}></img>} className={styles.bb} />
+            )}
           </div>
         </div>
         <div className={styles.footer}>

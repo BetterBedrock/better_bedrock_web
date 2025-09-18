@@ -165,3 +165,12 @@
 .tag {
   color: g.$color-light-grey !important;
 }
+
+.bb {
+  background-color: g.$color-tag-bb !important;
+}
+
+.logo {
+  height: g.$icon-sm;
+  image-rendering: pixelated;
+}
