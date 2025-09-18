@@ -8,14 +8,16 @@ interface CircularProgressIndicatorProp
   extends HTMLAttributes<HTMLDivElement>,
     BedrockComponentProps {
   className?: string;
+  center?: boolean;
 }
 
 export const CircularProgressIndicator = ({
   className,
   size = "medium",
+  center = false,
   ...props
 }: CircularProgressIndicatorProp) => (
-  <div className={clsx(styles.indicator, className && className, styles[size])} {...props}>
+  <div className={clsx(styles.indicator, center && styles.center, className && className, styles[size])} {...props}>
     <img src={CircularProgressIndicatorSVG} className={styles.svg} />
   </div>
 );
