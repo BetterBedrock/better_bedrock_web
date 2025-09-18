@@ -7,6 +7,8 @@
   display: flex;
   flex-direction: column;
   border: g.$minecraftdepth solid rgb(30, 30, 31);
+
+  box-shadow: g.$minecraftdepth g.$minecraftdepth 0px 0px #373737;
 }
 
 .background {
