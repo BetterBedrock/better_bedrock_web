@@ -24,6 +24,11 @@
     position: absolute;
     display: block;
   }
+
+  &.limit {
+    max-height: 200px !important;
+    overflow: auto;
+  }
 }
 
 .content {
@@ -43,7 +48,7 @@
   width: 100%;
   height: 100%;
   align-items: start;
-  justify-content: start;
+  justify-content: space-between;
 }
 
 .contentText {
@@ -52,9 +57,4 @@
 
 .buttonText {
   width: 100%;
-  padding: g.$padding-xsm;
-}
-
-.icon {
-  padding: 0 g.$padding-xsm 0 0;
 }

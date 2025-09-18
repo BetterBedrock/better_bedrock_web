@@ -35,7 +35,6 @@ export const CollapsibleButton = ({
       type="p"
       text={isCollapsed ? "-" : "+"}
       color="white"
-      extraClassName={styles.icon}
     />
   </Button>
 );
