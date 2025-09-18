@@ -112,3 +112,65 @@
   padding: 0.125rem 0.125rem 0.125rem 0.25rem;
   position: absolute;
 }
+
+.list {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: g.$padding-sm;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  object-position: 50% 50%;
+  width: 100%;
+  height: 100%;
+  filter: brightness(40%);
+}
+
+.container {
+  width: 100%;
+
+  .part {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: g.$padding-sm;
+    gap: g.$padding-xsm;
+  }
+}
+
+.delete {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+
+  .icon {
+    position: relative;
+    height: g.$icon-md;
+    width: g.$icon-md;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    filter: invert(1);
+    cursor: pointer;
+  }
+}
+
+.empty {
+  background-color: rgb(30, 30, 31);
+  display: flex;
+  width: 100%;
+  aspect-ratio: 16/9;
+
+  align-items: center;
+  justify-content: center;
+}
