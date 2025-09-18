@@ -12,7 +12,7 @@
   align-items: end;
 
   @media (max-width: g.$breakpoint-tablet) {
-      min-height: 3.25rem;
+    min-height: 3.25rem;
   }
 }
 
@@ -59,7 +59,7 @@
     padding-bottom: g.$padding-xsm;
   }
 
-  p {
-    padding-inline: g.$padding-xsm;
+  * {
+    margin-inline: g.$padding-xsm;
   }
 }
