@@ -12,6 +12,8 @@ interface CollapsibleProp {
   contentHeight?: number | string;
   indexTextRef?: string | number;
   floating?: boolean;
+  limit?: boolean;
+  className?: string;
 }
 
 export const Collapsible = ({
@@ -22,11 +24,20 @@ export const Collapsible = ({
   contentHeight,
   floating = false,
   indexTextRef = "",
+  className,
+  limit = false,
 }: CollapsibleProp) => {
   const [isCollapsed, setCollapsed] = useState(false);
 
   return (
-    <div className={clsx(styles.collapsible, floating && styles.floating)} style={{ width: width }}>
+    <div
+      className={clsx(
+        styles.collapsible,
+        floating && styles.floating,
+        className && className,
+      )}
+      style={{ width: width }}
+    >
       <details itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
         <CollapsibleButton
           headerText={headerText}
@@ -37,6 +48,7 @@ export const Collapsible = ({
 
         <CollapsibleContent
           floating={floating}
+          limit={limit}
           contentText={contentText}
           contentHeight={contentHeight}
         >
