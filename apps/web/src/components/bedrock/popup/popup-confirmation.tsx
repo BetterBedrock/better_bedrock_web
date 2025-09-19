@@ -64,7 +64,7 @@ export const PopupConfirmation = ({
   };
 
   return (
-    <>
+    <div className={styles.confirmation}>
       {ignore ? children : enhancedChildren}
       {open && (
         <Popup title={title} onClose={handleCancel}>
@@ -87,6 +87,6 @@ export const PopupConfirmation = ({
           </div>
         </Popup>
       )}
-    </>
+    </div>
   );
 };
