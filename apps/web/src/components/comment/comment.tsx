@@ -22,8 +22,9 @@ export const Comment = ({ comment, subComments, onReply }: CommentProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const getComment = (user: string, content: string, reply: boolean = false) => (
-    <div className={styles.header}>
-      <img src={Steve} className={styles.avatar} />
+    <>
+      <div className={styles.header}>
+        <img src={Steve} className={styles.avatar} />
 
         <div>
           <Link link={Routes.PROFILE + "/" + user} hideStyles>
@@ -37,32 +38,40 @@ export const Comment = ({ comment, subComments, onReply }: CommentProps) => {
           </Link>
           <BedrockText text={content} type="p" color="white" textAlign="start" />
 
-        {reply && !isReplying && (
-          <BedrockText
-            text="Reply"
-            type="p"
-            textAlign="start"
-            color="#303030"
-            onClick={() => setIsReplying(true)}
-          />
-        )}
-        {isReplying && reply && (
-          <div className={styles.reply}>
-            <Input ref={inputRef} placeholder="Response..." />
+          {reply && !isReplying && (
+            <BedrockText
+              text="Reply"
+              type="p"
+              textAlign="start"
+              extraClassName={styles.reply}
+              onClick={() => setIsReplying(true)}
+            />
+          )}
+        </div>
+      </div>
+      {isReplying && reply && (
+        <div className={styles.header}>
+          <ButtonGroup>
+            <Input
+              autoFocus={true}
+              ref={inputRef}
+              placeholder="Response..."
+              onKeyDown={handleKeyDown}
+            />
             <Button
               type="green"
               center
               onClick={() => onReply?.(inputRef.current?.value ?? "", comment.id)}
             >
-              <BedrockText color="white" type="p" text="Submit" />
+              <BedrockText color="white" type="p" text="Post" />
             </Button>
             <Button type="dark" center onClick={() => setIsReplying(false)}>
               <img alt="Close" src={Exit} className={styles.icon} />
             </Button>
-          </div>
-        )}
-      </div>
-    </div>
+          </ButtonGroup>
+        </div>
+      )}
+    </>
   );
 
   return (
