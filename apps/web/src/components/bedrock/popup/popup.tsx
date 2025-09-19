@@ -31,3 +31,13 @@ export const Popup = ({ children, onClose, className, title }: PopupProps) => (
     </Card>
   </div>
 );
+
+interface PopupWrapperProps {
+  children: ReactNode;
+}
+
+Popup.Wrapper = ({ children }: PopupWrapperProps) => (
+  <div className={styles.container}>{children}</div>
+);
+
+Popup.Part = ({ children }: PopupWrapperProps) => <div className={styles.part}>{children}</div>;
