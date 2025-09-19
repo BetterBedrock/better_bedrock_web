@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: row;
   height: 200px;
-  gap: g.$padding-sm;
+  gap: g.$padding-xsm;
   padding-inline: g.$padding-sm;
 
   background: repeating-linear-gradient(
@@ -25,6 +25,10 @@
     transparent g.$minecraftdepth,
     transparent calc(25% - 0.5px)
   );
+
+  @media (max-width: g.$breakpoint-tablet) {
+      gap: g.$padding-xxsm;
+  }
 }
 
 .label {
