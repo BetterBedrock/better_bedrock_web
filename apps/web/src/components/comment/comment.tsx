@@ -5,6 +5,11 @@ import { useRef, useState } from "react";
 import { Input } from "~/components/bedrock/input";
 import { Button } from "~/components/bedrock/button";
 import { ProjectCommentDto } from "~/lib/api";
+import { ButtonGroup } from "~/components/button-group/button-group";
+
+import Exit from "~/assets/images/exit.png";
+import { Link } from "~/components/link";
+import { Routes } from "~/utils/routes";
 
 interface CommentProps {
   comment: ProjectCommentDto;
@@ -20,9 +25,17 @@ export const Comment = ({ comment, subComments, onReply }: CommentProps) => {
     <div className={styles.header}>
       <img src={Steve} className={styles.avatar} />
 
-      <div>
-        <BedrockText text={`@${user}`} type="p" color="white" textAlign="start" font="Minecraft" />
-        <BedrockText text={content} type="p" color="white" textAlign="start" />
+        <div>
+          <Link link={Routes.PROFILE + "/" + user} hideStyles>
+            <BedrockText
+              text={`@${user}`}
+              type="p"
+              color="white"
+              textAlign="start"
+              font="Minecraft"
+            />
+          </Link>
+          <BedrockText text={content} type="p" color="white" textAlign="start" />
 
         {reply && !isReplying && (
           <BedrockText
