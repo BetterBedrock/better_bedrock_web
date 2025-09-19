@@ -44,7 +44,7 @@ export const Comment = ({ comment, subComments, onReply }: CommentProps) => {
               <BedrockText color="white" type="p" text="Submit" />
             </Button>
             <Button type="dark" center onClick={() => setIsReplying(false)}>
-              <BedrockText color="white" type="p" text="X" />
+              <img alt="Close" src={Exit} className={styles.icon} />
             </Button>
           </div>
         )}

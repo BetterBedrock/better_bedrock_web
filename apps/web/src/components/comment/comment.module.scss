@@ -5,7 +5,7 @@
   flex-direction: row;
   align-items: start;
   justify-content: start;
-  padding: g.$padding-xsm;
+  padding-block: g.$padding-xsm;
   gap: g.$padding-xxsm;
 
   &:not(:first-child) {
@@ -26,6 +26,16 @@
 }
 
 .reply {
-  width: 100%;
-  display: inline-flex;
+  color: g.$color-light-grey !important;
+}
+
+.icon {
+  position: relative;
+  height: g.$exit-button-size;
+  width: g.$exit-button-size;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  filter: invert(1);
+  cursor: pointer;
 }
