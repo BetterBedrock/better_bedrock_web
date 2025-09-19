@@ -1,11 +1,12 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { styles } from ".";
 import clsx from "clsx";
+import { ReactNode } from "react";
 
 type Border = "left" | "right" | "bottom" | "top" | "all";
 
 interface TagProps {
-  name: string;
+  name: string | ReactNode;
   border: Border | Border[];
   onDelete?: () => void;
   deletable?: boolean;
@@ -20,7 +21,11 @@ export const Tag = ({ name, className, border, onDelete, deletable }: TagProps) 
       className && className,
     )}
   >
-    <BedrockText text={name} type="p" textAlign="center" color="black" />
+    {typeof name === "string" ? (
+      <BedrockText text={name} type="p" textAlign="center" color="black" />
+    ) : (
+      name
+    )}
     {deletable && (
       <BedrockText
         text="x"
