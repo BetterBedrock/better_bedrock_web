@@ -5,16 +5,26 @@ import { BarChart } from "~/components/statistics/bar-chart";
 import { Card } from "~/components/bedrock/card";
 import { Button } from "../button";
 import { useState } from "react";
+import { Collapsible } from "~/components/bedrock/collapsible";
+
+export const DATA_RANGE_OPTIONS = [
+  { label: "7d", text: "Last 7 Days" },
+  { label: "14d", text: "Last 14 Days" },
+  { label: "30d", text: "Last 30 Days" },
+  { label: "6m", text: "Last 6 Months" },
+  { label: "ytd", text: "This Year" },
+  { label: "all", text: "All Time" },
+];
 
 export const StatisticsCard = ({
   name,
   data = [],
-  range = "7d",
   showGraph = true,
   suffix = "",
   ...props
 }: StatisticsCardProps) => {
   const [toggleGraph, setToggleGraph] = useState(true);
+  const [category, setCategory] = useState(DATA_RANGE_OPTIONS[0].label);
 
   let total = 0;
   let fdata: FData | null = null;
@@ -22,7 +32,7 @@ export const StatisticsCard = ({
   if (typeof data === "number") {
     total = data;
   } else {
-    fdata = transformToFData(data, range);
+    fdata = transformToFData(data, category);
     total = fdata.categories[0].pieces.reduce((sum, p) => sum + p.value, 0);
   }
 
@@ -48,17 +58,38 @@ export const StatisticsCard = ({
               extraClassName={styles.highlight}
             />
           </div>
-          {showGraph && fdata && (<Button
-            width="auto"
-            type="white"
-            onClick={() =>
-              setToggleGraph(!toggleGraph)
-            }
-            center>
-            <BedrockText text={toggleGraph ? "Hide Chart" : "Show Chart"} type="p" color="black" />
-          </Button>)}
+          {showGraph && fdata && (
+            <Button width="auto" type="white" onClick={() => setToggleGraph(!toggleGraph)} center>
+              <BedrockText
+                text={toggleGraph ? "Hide Chart" : "Show Chart"}
+                type="p"
+                color="black"
+              />
+            </Button>
+          )}
         </div>
-        {toggleGraph && showGraph && fdata && <BarChart direction="horizontal" data={fdata} />}
+        <Collapsible
+          floating
+          headerText={DATA_RANGE_OPTIONS.find((d) => d.label === category)?.text ?? "No Data Range"}
+          contentText={""}
+          width="100%"
+          limit
+        >
+          {DATA_RANGE_OPTIONS.map((c) => (
+            <Button
+              type="dark"
+              width="100%"
+              isClicked={c.label === category}
+              onClick={() => setCategory(c.label)}
+              center
+            >
+              <BedrockText type="p" color="white" text={c.text} />
+            </Button>
+          ))}
+        </Collapsible>
+        {toggleGraph && showGraph && fdata && (
+          <BarChart direction="horizontal" data={fdata} category={category} />
+        )}
       </div>
     </Card>
   );
