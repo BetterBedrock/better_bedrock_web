@@ -23,6 +23,7 @@ type CommonProps = {
   tabIndex?: number;
   style?: CSSProperties;
   className?: string;
+  extraClassName?: string;
   transparent?: boolean;
 };
 
@@ -43,6 +44,7 @@ export const SimpleButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, Si
       transparent = false,
       style,
       className,
+      extraClassName,
       ...props
     },
     ref,
@@ -68,9 +70,16 @@ export const SimpleButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, Si
       ...style,
     };
 
-    const commonClassName = clsx(styles.wrapper, transparent && styles.transparent, clicked && styles.active, className);
+    const commonClassName = clsx(
+      styles.wrapper,
+      transparent && styles.transparent,
+      clicked && styles.active,
+      className,
+    );
 
-    const child = <div className={styles.child}>{children}</div>;
+    const child = (
+      <div className={clsx(styles.child, extraClassName && extraClassName)}>{children}</div>
+    );
 
     return (
       <button
