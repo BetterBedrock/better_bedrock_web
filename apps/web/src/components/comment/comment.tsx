@@ -21,6 +21,17 @@ export const Comment = ({ comment, subComments, onReply }: CommentProps) => {
   const [isReplying, setIsReplying] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Escape") {
+      setIsReplying(false);
+    }
+
+    if (event.key === "Enter") {
+      setIsReplying(false);
+      onReply?.(inputRef.current?.value ?? "", comment.id);
+    }
+  };
+
   const getComment = (user: string, content: string, reply: boolean = false) => (
     <>
       <div className={styles.header}>
