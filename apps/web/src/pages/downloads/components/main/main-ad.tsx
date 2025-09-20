@@ -15,19 +15,12 @@ export const MainAd = () => {
         text="Better Bedrock"
         link={Routes.DOWNLOADS_BETTERBEDROCK}
       />
-      {/* <MainBanner
-        image={ExtensionsImage}
-        grid="extensions"
-        color="#ff6a00"
-        text="Extensions"
-        link={""}
-      />*/}
       <MainBanner
         image={SideProjectsImage}
         grid="side"
         color="#0094ff"
         text="Side Projects"
-        link={Routes.DOWNLOADS_BETTERBEDROCK}
+        link={Routes.DOWNLOADS_SIDE_PROJECTS}
       />
     </div>
   );
