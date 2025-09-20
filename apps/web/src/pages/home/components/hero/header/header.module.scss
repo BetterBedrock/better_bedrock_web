@@ -12,7 +12,8 @@ $title-height: clamp(2.7em, 7vw, 6em);
 .heading {
   @include flex-container();
   gap: g.$padding-xxsm;
-  height: $title-height;
+  margin-bottom: g.$padding-sm;
+  // height: $title-height;
 
   @media (max-width: g.$breakpoint-mobileL) {
     height: auto;
@@ -26,11 +27,14 @@ $title-height: clamp(2.7em, 7vw, 6em);
 .title {
   text-wrap: nowrap;
   font-size: $title-height;
-  line-height: $title-height;
+  line-height: 2.5rem;
+  width: min-content;
+
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
 
   @media (max-width: g.$breakpoint-mobileL) {
     text-wrap: wrap;
-    line-height: 2.5rem;
   }
 }
 
@@ -56,4 +60,48 @@ $title-height: clamp(2.7em, 7vw, 6em);
   width: 100%;
   text-decoration: none !important;
   color: inherit;
+}
+
+.stripes {
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-xsm;
+  width: 100%;
+  height: 100%;
+  max-width: 40px;
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    margin-top: 0;
+    gap: g.$padding-sm;
+  }
+
+  &.left {
+    align-items: start;
+    justify-content: start;
+  }
+
+  &.right {
+    align-items: end;
+    justify-content: end;
+  }
+
+  .first {
+    background-color: #3c8527;
+    box-shadow: g.$text-shadow;
+    width: 100%;
+    height: 100%;
+  }
+  .second {
+    background-color: #3c8527;
+    box-shadow: g.$text-shadow;
+    width: 66%;
+    height: 100%;
+  }
+  .third {
+    background-color: #3c8527;
+    box-shadow: g.$text-shadow;
+
+    width: 33%;
+    height: 100%;
+  }
 }
