@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 import { useProject } from "~/providers/project";
 import { TextEditorToolbar } from "~/components/text-editor/text-editor-toolbar";
 import { useRef } from "react";
+import { GalleryExtension } from "~/components/text-editor/nodes/gallery-node/gallery-node-extension";
 
 interface TextEditorProps {
   content?: Content | undefined;
@@ -84,6 +85,7 @@ export const TextEditor = ({ content, onChange, editable }: TextEditorProps) => 
         upload: handleImageUpload,
         onError: (error) => console.error("Upload failed:", error),
       }),
+      GalleryExtension,
     ],
     content,
     onUpdate: (data) => {
@@ -100,11 +102,7 @@ export const TextEditor = ({ content, onChange, editable }: TextEditorProps) => 
           </Toolbar>
         )}
 
-        <EditorContent
-          editor={editor}
-          role="presentation"
-          className={styles.content}
-        />
+        <EditorContent editor={editor} role="presentation" className={styles.content} />
       </EditorContext.Provider>
     </div>
   );

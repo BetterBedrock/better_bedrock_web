@@ -37,7 +37,7 @@
     white-space: pre-wrap;
     outline: none;
 
-    p:not(:first-child) {
+    > p:not(:first-child) {
       margin-top: g.$padding-md;
     }
 
@@ -83,17 +83,9 @@
     }
 
     /* Image */
-    img {
-      width: 100%;
-      height: auto;
-      display: block;
-      content: "https://";
-      margin: g.$padding-md 0;
-      outline: g.$minecraftdepth solid transparent;
-    }
 
-    :global(.ProseMirror-selectednode) {
-      outline-color: var(--tt-brand-color-500);
-    }
+    // :global(.ProseMirror-selectednode) {
+    //   outline-color: var(--tt-brand-color-500);
+    // }
   }
 }
