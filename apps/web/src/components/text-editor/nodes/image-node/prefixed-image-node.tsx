@@ -1,5 +1,6 @@
 import Image, { ImageOptions } from "@tiptap/extension-image";
 import { mergeAttributes } from "@tiptap/core";
+import {styles} from ".";
 
 interface PrefixedImageOptions extends ImageOptions {
   prefix: string;
@@ -9,7 +10,7 @@ export const PrefixedImage = Image.extend<PrefixedImageOptions>({
   name: "image",
 
   addOptions() {
-    const parentOptions = this.parent?.() ?? {} as ImageOptions;
+    const parentOptions = this.parent?.() ?? ({} as ImageOptions);
 
     return {
       ...parentOptions,
@@ -27,6 +28,6 @@ export const PrefixedImage = Image.extend<PrefixedImageOptions>({
     const prefixedSrc =
       typeof src === "string" && !src.startsWith("http") ? `${prefix}${src}` : src;
 
-    return ["img", mergeAttributes(rest, { src: prefixedSrc })];
+    return ["img", mergeAttributes(rest, { src: prefixedSrc, class: styles.image })];
   },
 });
