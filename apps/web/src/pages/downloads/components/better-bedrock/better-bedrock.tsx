@@ -8,6 +8,8 @@ import { useProject } from "~/providers/project";
 import { SimpleProjectDto } from "~/lib/api";
 import { DownloadsListDto } from "~/assets/content/dto/downloads-list.dto";
 import { DownloadsItemDto } from "~/assets/content/dto/downloads-item.dto";
+import { Banner } from "~/components/bedrock/banner";
+import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 
 export interface SimpleCategory extends Omit<DownloadsListDto, "items"> {
   items: SimpleProjectDto[];
@@ -18,9 +20,9 @@ export const BetterBedrock = () => {
   const { fetchProjectsBasicInfo } = useProject();
 
   const [showArchived, setShowArchived] = useState(false);
-  const [simpleCategories, setSimpleCategories] = useState<SimpleCategory[]>([]);
+  const [simpleCategories, setSimpleCategories] = useState<SimpleCategory[] | undefined>();
 
-  const hasFetched = useRef(false); // <-- Add this ref
+  const hasFetched = useRef(false);
 
   const navigate = useNavigate();
   const categoryDownloads = MAIN_LIST;
@@ -34,27 +36,43 @@ export const BetterBedrock = () => {
   };
 
   useEffect(() => {
-    if (hasFetched.current) return; // <-- Prevent double call
+    if (hasFetched.current) return;
     hasFetched.current = true;
     fetchProjects();
   }, []);
 
   const fetchProjects = async () => {
-    visibleCategories.map(async (category) => {
+    const categories: SimpleCategory[] = [];
+
+    for (const category of visibleCategories) {
       const ids = category.items.map((item) => item.projectId);
-
       const data = await fetchProjectsBasicInfo(ids);
-      if (!data || data.length < 1) return;
+      if (!data || data.length < 1) continue;
 
-      setSimpleCategories((prev) => [
-        ...prev,
-        { ...category, categoryItems: category.items, items: data },
-      ]);
-    });
+      categories.push({
+        ...category,
+        categoryItems: category.items,
+        items: data,
+      });
+    }
+
+    setSimpleCategories(categories);
   };
 
-  if (!categoryDownloads) {
-    return;
+  if (!simpleCategories || !categoryDownloads) {
+    return <CircularProgressIndicator size="medium" />;
+  }
+
+  if (simpleCategories.length < 1) {
+    return (
+      <>
+        <Banner
+          type="info"
+          message="Better Bedrock content is not yet prepared, please wait a while and refresh this site."
+        />
+        <CircularProgressIndicator size="medium" />
+      </>
+    );
   }
 
   const archivedCategory = simpleCategories.find((c) => c.title === "Archived");
