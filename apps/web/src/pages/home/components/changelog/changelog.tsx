@@ -4,7 +4,7 @@ import { styles, ChangelogResources } from ".";
 
 export const Changelog = () => (
   <Section className={styles.background} extraClassName={styles.padding} center>
-    <ChangelogResources />
     <ChangelogTrailer />
+    <ChangelogResources />
   </Section>
 );
