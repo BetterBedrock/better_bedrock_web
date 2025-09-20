@@ -1,5 +1,6 @@
+@use "~/utils" as g;
+
 .icon {
-    width: 24px;
-    height: 24px;
+    width: g.$icon-sm;
     image-rendering: pixelated;
 }
