@@ -1,3 +1,11 @@
+@use "~/utils" as g;
+
 .button {
+  height: 100%;
   color: white;
+}
+
+.child {
+  display: inline-flex;
+  gap: g.$padding-xxsm;
 }
