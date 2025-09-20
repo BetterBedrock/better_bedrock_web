@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-download-card";
-import { SearchProjectsDto } from "~/lib/api";
+import { SearchOrder, SearchProjectsDto } from "~/lib/api";
 import { useProject } from "~/providers/project";
 import { styles } from ".";
 import { Input } from "~/components/bedrock/input";
@@ -10,6 +10,7 @@ import { CircularProgressIndicator } from "~/components/bedrock/circular-progres
 import { Button } from "~/components/bedrock/button";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { Banner } from "~/components/bedrock/banner";
+import { Collapsible } from "~/components/bedrock/collapsible";
 
 export const MainProjects = () => {
   const { search } = useProject();
@@ -17,6 +18,7 @@ export const MainProjects = () => {
   const [searchResults, setSearchResults] = useState<SearchProjectsDto | undefined>();
 
   const [selectedType, setSelectedType] = useState<string>(Object.keys(PROJECT_TYPES)[0]);
+  const [selectedOrder, setSelectedOrder] = useState<string>(Object.values(SearchOrder)[0]);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [page, setPage] = useState<number>(1);
@@ -34,7 +36,7 @@ export const MainProjects = () => {
     else setLoadingMore(true);
 
     try {
-      const data = await search(selectedType, query, pageNum);
+      const data = await search(selectedOrder as SearchOrder, selectedType, query, pageNum);
       if (append && searchResults) {
         if (data) {
           setSearchResults({
@@ -62,7 +64,7 @@ export const MainProjects = () => {
     setPage(1);
     setSearchResults(undefined);
     fetchProjects(query, 1, false);
-  }, [selectedType]);
+  }, [selectedType, selectedOrder]);
 
   useEffect(() => {
     const handleInputChange = () => {
@@ -81,7 +83,7 @@ export const MainProjects = () => {
       inputEl?.removeEventListener("input", handleInputChange);
       if (debounceTimer.current) clearTimeout(debounceTimer.current);
     };
-  }, [selectedType]);
+  }, [selectedType, selectedOrder]);
 
   useEffect(() => {
     observerRef.current?.disconnect();
@@ -120,66 +122,76 @@ export const MainProjects = () => {
     };
   }, [searchResults?.page, searchResults?.totalPages, loading, loadingMore, page]);
 
-  const handleClickType = (type: string) => {
-    setSelectedType(type);
-  };
-
   return (
-    <div className={styles.projects}>
-      <Input ref={inputRef} placeholder="Search for a project" className={styles.searchbar} />
-      <ButtonGroup className={styles.types}>
-        {Object.entries(PROJECT_TYPES).map(([key, label]) => (
-          <Button
-            key={key}
-            type={key === selectedType ? "green" : "white"}
-            onClick={() => handleClickType(key)}
-            isClicked={key === selectedType}
-            isToggled={key === selectedType}
-            center
-          >
-            <BedrockText text={label} color={key === selectedType ? "white" : "black"} type="p" />
-          </Button>
-        ))}
-      </ButtonGroup>
+    <div className={styles.wrapper}>
+      <div className={styles.projects}>
+        <Input ref={inputRef} placeholder="Search for a project" className={styles.searchbar} />
+        <ButtonGroup className={styles.types}>
+          {Object.entries(PROJECT_TYPES).map(([key, label]) => (
+            <Button
+              key={key}
+              type={key === selectedType ? "green" : "white"}
+              onClick={() => setSelectedType(key)}
+              isClicked={key === selectedType}
+              isToggled={key === selectedType}
+              center
+            >
+              <BedrockText text={label} color={key === selectedType ? "white" : "black"} type="p" />
+            </Button>
+          ))}
+        </ButtonGroup>
 
-      {loading && !searchResults ? (
-        <div className={styles.loader}>
-          <CircularProgressIndicator size="small" />
-          <BedrockText text="Fetching Projects..." color="white" type="p" />
-        </div>
-      ) : (
-        <>
-          {(!searchResults || searchResults.items.length < 1) && (
-            <Banner message="No projects found for this search :(" type="neutral" />
-            // <div className={styles.loader}>
-            //   <BedrockText
-            //     text="No projects found for this search :("
-            //     font="Minecraft"
-            //     color="white"
-            //     type="p"
-            //   />
-            // </div>
-          )}
+        <Collapsible
+          headerText={selectedOrder}
+          contentText=""
+          floating
+          className={styles.collapsible}
+          limit={true}
+        >
+          {Object.values(SearchOrder).map((type) => (
+            <Button
+              type="dark"
+              center
+              isClicked={type === selectedOrder}
+              isToggled={type === selectedOrder}
+              onClick={() => setSelectedOrder(type)}
+            >
+              <BedrockText type="p" text={type} color="white" />
+            </Button>
+          ))}
+        </Collapsible>
 
-          {(searchResults?.items.length ?? 0) > 0 && (
-            <>
-              <div className={styles.list}>
-                {searchResults!.items.map((project, index) => (
-                  <GridDownloadCard key={project.id ?? index} project={project} mode="view" />
-                ))}
+        {loading && !searchResults ? (
+          <div className={styles.loader}>
+            <CircularProgressIndicator size="small" />
+            <BedrockText text="Fetching Projects..." color="white" type="p" />
+          </div>
+        ) : (
+          <>
+            {(!searchResults || searchResults.items.length < 1) && (
+              <Banner message="No projects found for this search :(" type="neutral" />
+            )}
+
+            {(searchResults?.items.length ?? 0) > 0 && (
+              <>
+                <div className={styles.list}>
+                  {searchResults!.items.map((project, index) => (
+                    <GridDownloadCard key={project.id ?? index} project={project} mode="view" />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {loadingMore && (
+              <div className={styles.loader}>
+                <CircularProgressIndicator size="small" />
+                <BedrockText text="Loading more..." color="white" type="p" />
               </div>
-              <div ref={sentinelRef} />
-            </>
-          )}
-
-          {loadingMore && (
-            <div className={styles.loader}>
-              <CircularProgressIndicator size="small" />
-              <BedrockText text="Loading more..." color="white" type="p" />
-            </div>
-          )}
-        </>
-      )}
+            )}
+          </>
+        )}
+      </div>
+      <div ref={sentinelRef} />
     </div>
   );
 };
