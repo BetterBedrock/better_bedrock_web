@@ -13,11 +13,14 @@ import { HeaderTitle } from "~/pages/project/components/header";
 import { useProjectManager } from "~/pages/project/providers/project-manager";
 import { useNotification } from "~/providers/notification";
 import { useProject } from "~/providers/project";
+import { useAuth } from "~/providers/auth";
+import { InputSwitch } from "~/components/bedrock/input/input-switch";
 
 export const DetailsEditor = () => {
   const tagInputRef = useRef<HTMLInputElement>(null);
   const uploadFileRef = useRef<HTMLInputElement>(null);
 
+  const { user } = useAuth();
   const { sendNotification } = useNotification();
   const { uploadFile } = useProject();
   const { selectedProject, setSelectedProject, fetchSelectedProject } = useProjectManager();
@@ -26,7 +29,7 @@ export const DetailsEditor = () => {
   const uploadDownloadFile = async (file: File | undefined) => {
     if (!selectedProject || !file) return;
     await uploadFile(selectedProject!.id, file);
-    const newProject = await fetchSelectedProject(selectedProject.id, false);
+    const newProject = await fetchSelectedProject(selectedProject.id, true);
     setSelectedProject((prev) => ({
       ...prev!,
       downloadFile: newProject!.downloadFile,
@@ -108,6 +111,26 @@ export const DetailsEditor = () => {
             ))}
           </div>
         </div>
+
+        {user?.admin && (
+          <>
+            <CardDivider sub />
+            <div className={clsx(styles.editor, styles.size)}>
+              <BedrockText text="Better Bedrock Content" type="p" color="white" textAlign="left" />
+
+              <InputSwitch
+                placeholder="Better Bedrock Content"
+                checked={selectedProject.betterBedrockContent}
+                onChange={() => {
+                  setSelectedProject((prev) => ({
+                    ...prev!,
+                    betterBedrockContent: !prev?.betterBedrockContent,
+                  }));
+                }}
+              />
+            </div>
+          </>
+        )}
 
         <CardDivider sub />
         <div className={clsx(styles.editor, styles.size)}>
