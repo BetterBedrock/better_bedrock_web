@@ -63,6 +63,12 @@ export const Comments = () => {
     );
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handlePostComment();
+    }
+  };
+
   useEffect(() => {
     fetchComments();
   }, [selectedProject]);
@@ -75,7 +81,12 @@ export const Comments = () => {
       <CardDivider sub />
       <div className={styles.editor}>
         <ButtonGroup>
-          <Input className={styles.input} ref={commentInputRef} placeholder="Your Comment..." />
+          <Input
+            className={styles.input}
+            ref={commentInputRef}
+            placeholder="Your Comment..."
+            onKeyDown={handleKeyDown}
+          />
           <Button type="green" onClick={handlePostComment} center>
             <BedrockText text="Post" type="p" color="white" />
           </Button>
