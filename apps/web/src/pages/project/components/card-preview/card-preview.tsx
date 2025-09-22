@@ -48,6 +48,7 @@ export const CardPreview = () => {
             >
               <Button
                 width="100%"
+                height="100%"
                 type="gold"
                 center
                 onClick={async () => {
