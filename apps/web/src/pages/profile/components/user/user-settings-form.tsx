@@ -141,9 +141,9 @@ export const UserSettingsForm = ({
                 )}
               </div>
               <div className={styles.input}>
-                <BedrockText textAlign="start" text="Linkvertise Secret" type="p" color="white" />
+                <BedrockText textAlign="start" text="Linkvertise Anti-bypass Token" type="p" color="white" />
                 <Input
-                  placeholder="Linkvertise Secret"
+                  placeholder="Linkvertise Anti-bypass Token"
                   className={styles.input}
                   type="password"
                   {...register("linkvertiseSecret")}

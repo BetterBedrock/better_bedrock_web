@@ -8,7 +8,7 @@ export const UserCard = () => {
 
   return (
     <Card className={styles.profile}>
-      <UserProfilePicture />
+      <UserProfilePicture special={selectedUser!.name === "sumssatsuma"} />
       <div className={styles.info}>
         <div className={styles.header}>
           <UserProfileName name={selectedUser!.name} banned={selectedUser!.banned} />
