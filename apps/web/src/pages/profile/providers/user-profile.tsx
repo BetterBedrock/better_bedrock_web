@@ -89,6 +89,7 @@ export const UserProfileProvider = ({ children }: UserProfileProviderProps) => {
 
       navigate(Routes.PROFILE + "/" + newUser.name + "/projects");
 
+      setDetailedUser(newUser);
       setSelectedUser(newUser);
       return;
     }
