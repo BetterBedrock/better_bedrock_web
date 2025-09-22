@@ -5,7 +5,7 @@ import { Input } from "~/components/bedrock/input";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { styles } from ".";
 import { ProjectCommentDto } from "~/lib/api";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useProjectManager } from "~/pages/project/providers/project-manager";
 import { useNotification } from "~/providers/notification";
 import { useProject } from "~/providers/project";
@@ -17,6 +17,7 @@ export const Comments = () => {
   const { selectedProject } = useProjectManager();
   const commentInputRef = useRef<HTMLInputElement>(null);
   const { throwError } = useNotification();
+  const { postComment, replyToComment, getComments } = useProject();
   const [comments, setComments] = useState<ProjectCommentDto[] | undefined>(undefined);
 
   const fetchComments = async () => {
@@ -37,6 +38,9 @@ export const Comments = () => {
     const comment = await postComment(selectedProject.id, content!);
     if (!comment) return;
 
+    if (commentInputRef.current) {
+      commentInputRef.current!.value = "";
+    }
     setComments((prev) => [...(prev ?? []), comment]);
   };
 
