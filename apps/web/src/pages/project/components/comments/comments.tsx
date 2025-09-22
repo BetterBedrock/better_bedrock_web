@@ -17,8 +17,13 @@ export const Comments = () => {
   const { selectedProject } = useProjectManager();
   const commentInputRef = useRef<HTMLInputElement>(null);
   const { throwError } = useNotification();
-  const { postComment, replyToComment } = useProject();
-  const [comments, setComments] = useState<ProjectCommentDto[] | undefined>([]);
+  const [comments, setComments] = useState<ProjectCommentDto[] | undefined>(undefined);
+
+  const fetchComments = async () => {
+    if (!selectedProject) return;
+
+    setComments(await getComments(selectedProject.id));
+  };
 
   const handlePostComment = async () => {
     if (!selectedProject) return;
@@ -57,6 +62,11 @@ export const Comments = () => {
       ),
     );
   };
+
+  useEffect(() => {
+    fetchComments();
+  }, [selectedProject]);
+
   return (
     <Card sub>
       <div className={styles.editor}>
