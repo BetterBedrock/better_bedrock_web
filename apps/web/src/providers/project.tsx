@@ -8,6 +8,7 @@ import {
   ProjectCommentDto,
   ProjectDto,
   ProjectRatingDto,
+  SearchOrder,
   SearchProjectsDto,
   SimpleProjectDto,
   UpdateProjectDto,
@@ -17,7 +18,12 @@ import { useCookies } from "react-cookie";
 
 interface ProjectContextProps {
   fetched: boolean;
-  search: (type?: string, text?: string, page?: number) => Promise<SearchProjectsDto | undefined>;
+  search: (
+    order?: SearchOrder,
+    type?: string,
+    text?: string,
+    page?: number,
+  ) => Promise<SearchProjectsDto | undefined>;
   fetchDraftDetails: (id: string) => Promise<DetailedProjectDto | undefined>;
   fetchProjectDetails: (id: string, throwErr?: boolean) => Promise<DetailedProjectDto | undefined>;
   fetchProjectsBasicInfo: (ids: string[]) => Promise<SimpleProjectDto[] | undefined>;
@@ -64,12 +70,13 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
   const projectApi = new ProjectApi(config);
 
   const search = async (
+    order?: SearchOrder,
     type?: string,
     text?: string,
     page?: number,
   ): Promise<SearchProjectsDto | undefined> => {
     try {
-      const { data } = await projectApi.projectControllerSearch(type, text, page);
+      const { data } = await projectApi.projectControllerSearch(order, type, text, page);
       return data;
     } catch (err) {
       throwError(err, "Failed searching for projects");
@@ -90,7 +97,7 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
 
   const fetchProjectsBasicInfo = async (ids: string[]): Promise<SimpleProjectDto[] | undefined> => {
     try {
-      console.log({ids});
+      console.log({ ids });
       const { data } = await projectApi.projectControllerProjectsBasicInfo({ ids });
       return data;
     } catch (err) {
