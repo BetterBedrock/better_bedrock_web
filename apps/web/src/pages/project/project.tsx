@@ -12,7 +12,7 @@ export type ProjectMode = "edit" | "view" | "review";
 export const Project = () => {
   const { file } = useParams();
   const location = useLocation();
-  const currentPage = location.pathname.split("/").pop();
+  const currentPage = location.pathname.split("/")[2];
 
   const navigate = useNavigate();
   const { throwError } = useNotification();
@@ -21,7 +21,7 @@ export const Project = () => {
   useEffect(() => {
     if (!file) return;
     fetchSelectedProject(file, currentPage === "preview" ? false : true);
-  }, [file]);
+  }, [file, currentPage]);
 
   if (fetched && !selectedProject) {
     navigate(Routes.HOME);
