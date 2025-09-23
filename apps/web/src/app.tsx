@@ -42,6 +42,7 @@ import { ReportsWrapper } from "~/pages/panel/reports/reports-wrapper";
 import { ProjectWrapper } from "~/pages/project/project-wrapper";
 import { Edit } from "~/pages/project/edit";
 import { Review } from "~/pages/project/review";
+import { SideProjects } from "~/pages/downloads/components/side-projects";
 
 export const App = () => (
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
@@ -61,6 +62,7 @@ export const App = () => (
                             <Route path="downloads" element={<Downloads />}>
                               <Route index element={<Navigate to="main" replace />} />
                               <Route path="better-bedrock" element={<BetterBedrock />} />
+                              <Route path="side-projects" element={<SideProjects />} />
                               <Route path="main" element={<Main />} />
                             </Route>
                             <Route path="information" element={<Information />}>
