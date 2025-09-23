@@ -25,12 +25,13 @@ export const RateProject = () => {
   };
 
   return (
-    <div>
+    <div className={styles.center}>
       <Rating
         rating={userRating}
         onReset={handleDeleteRating}
         onUpdate={async (rating) => await handlePostRating(rating)}
         className={styles.rating}
+        extraClassName={styles.tooltip}
         selectable={true}
         size="medium"
       />

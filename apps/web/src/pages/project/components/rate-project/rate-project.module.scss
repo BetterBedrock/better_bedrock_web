@@ -1,5 +1,11 @@
+.center {
+  margin: 0 auto;
+}
+
 .rating {
-  width: 100%;
-  align-items: center;
-  display: inline;
+  display: block;
+}
+
+.tooltip {
+  width: fit-content;
 }
