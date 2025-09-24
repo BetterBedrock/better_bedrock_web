@@ -4,7 +4,7 @@
   @include g.no-drag();
 
   height: auto;
-  min-height: 3.5rem;
+  min-height: g.$buttonHeight;
 
   display: flex;
   flex-direction: column;
