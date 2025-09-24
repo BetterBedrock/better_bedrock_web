@@ -9,6 +9,8 @@ export enum PROJECT_TYPES {
     other = "Other",
 }
 
+export type ProjectTypeKey = keyof typeof PROJECT_TYPES;
+
 export const DOWNLOADS_IDS = {
     betterBedrockClientV80: "better_bedrock_texture_pack_v8.0.mcpack",
 
