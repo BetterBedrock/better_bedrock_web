@@ -40,6 +40,9 @@ import { OptionalAuthGuard } from "~/auth/optional-auth.guard";
 import { ApiBearerAuth } from "@nestjs/swagger";
 import { DetailedProjectDto } from "~/project/dto/detailed-project.dto";
 import { ProjectBasicInfoBodyDto } from "~/project/dto/project-basic-info-body.dto";
+import { Throttle } from "@nestjs/throttler";
+import { MailService } from "~/mail/mail.service";
+import { UserService } from "~/user/user.service";
 
 @Controller("project")
 export class ProjectController {
@@ -47,6 +50,8 @@ export class ProjectController {
         private projectService: ProjectService,
         private ratingService: RatingService,
         private commentService: CommentService,
+        private mailService: MailService,
+        private userService: UserService,
     ) {}
 
     @Post()
@@ -166,6 +171,14 @@ export class ProjectController {
     @ApiBearerAuth()
     async publish(@Param("id") _: string, @Req() req: ProjectRequest) {
         await this.projectService.publish(req.project.id);
+
+        const user = await this.userService.detailedUserInfo(req.project.userId);
+
+        await this.mailService.sendProjectApprovedEmail(
+            user.email,
+            req.project.id,
+            req.project.title,
+        );
         return;
     }
 
@@ -178,6 +191,15 @@ export class ProjectController {
         @Req() req: ProjectRequest,
     ) {
         await this.projectService.decline(req.project.id, data);
+
+        const user = await this.userService.detailedUserInfo(req.project.userId);
+
+        await this.mailService.sendProjectDeclinedEmail(
+            user.email,
+            data.error ?? "No Reason",
+            req.project.id,
+            req.project.title,
+        );
         return;
     }
 
@@ -237,6 +259,12 @@ export class ProjectController {
     @Post("comment/:projectId")
     @UseGuards(UserAuthGuard)
     @ApiBearerAuth()
+    @Throttle({
+        default: {
+            ttl: 5000,
+            limit: 1,
+        },
+    })
     postComment(
         @Param("projectId") projectId: string,
         @Req() req: AuthenticatedRequest,
@@ -248,6 +276,12 @@ export class ProjectController {
     @Post("comment/:projectId/reply/:parentId")
     @UseGuards(UserAuthGuard)
     @ApiBearerAuth()
+    @Throttle({
+        default: {
+            ttl: 60000,
+            limit: 1,
+        },
+    })
     replyToComment(
         @Param() params: ReplyToCommentParamsDto,
         @Req() req: AuthenticatedRequest,
