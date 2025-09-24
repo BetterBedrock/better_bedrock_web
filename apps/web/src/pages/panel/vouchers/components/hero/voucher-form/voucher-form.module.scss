@@ -1,19 +1,5 @@
 @use "~/utils/_variables" as g;
 
-.form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-
-  .part {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: g.$padding-sm;
-    gap: g.$padding-xxsm;
-  }
-}
-
 .field {
   width: 100%;
   display: flex;
