@@ -15,7 +15,11 @@ interface AvatarProps extends BedrockComponentProps {
 
 interface AvatarDetailsProps {
   name: string;
-  children: ReactNode;
+  bold?: boolean;
+  at?: boolean;
+  center?: boolean;
+  children?: ReactNode;
+  className?: string;
 }
 
 interface AvatarProps {
@@ -36,11 +40,17 @@ Avatar.Profile = ({ size, name, link = true }: AvatarProps) => (
   </Link>
 );
 
-Avatar.Details = ({ name, children }: AvatarDetailsProps) => {
+Avatar.Details = ({ name, at, bold, className, children }: AvatarDetailsProps) => {
   return (
-    <div className={styles.details}>
-      <Link link={Routes.PROFILE + "/" + name}>
-        <BedrockText text={name} type="p" color="white" />
+    <div className={clsx(styles.details, className && className)}>
+      <Link link={Routes.PROFILE + "/" + name} hideStyles>
+        <BedrockText
+          text={`${at ? "@" : ""}${name}`}
+          type="p"
+          color="white"
+          font={bold ? "Minecraft" : "Mojangles"}
+          textAlign="start"
+        />
       </Link>
       {children}
     </div>
