@@ -20,6 +20,26 @@ export const MC_EXTENSIONS = [
     "mcschema",
 ];
 
+const MAX_FOLDER_SIZE_MB = {
+    public: 10,
+    private: 40,
+};
+const MAX_FOLDER_SIZE = {
+    public: MAX_FOLDER_SIZE_MB.public * 1024 * 1024,
+    private: MAX_FOLDER_SIZE_MB.private * 1024 * 1024,
+};
+
+const getFolderSizeSync = (folderPath: string): number => {
+    if (!fs.existsSync(folderPath)) return 0;
+
+    const files = fs.readdirSync(folderPath);
+    return files.reduce((total, file) => {
+        const filePath = `${folderPath}/${file}`;
+        const stats = fs.statSync(filePath);
+        return total + (stats.isFile() ? stats.size : 0);
+    }, 0);
+};
+
 export function FileUpload() {
     return applyDecorators(
         ApiConsumes("multipart/form-data"),
@@ -47,6 +67,7 @@ export function FileUpload() {
                                 "",
                             );
                         }
+
                         const ext = extname(file.originalname).replace(".", "").toLowerCase();
                         let visibility: "public" | "private";
                         if (IMAGE_EXTENSIONS.includes(ext)) {
@@ -61,8 +82,23 @@ export function FileUpload() {
                                 "",
                             );
                         }
+
                         const uploadPath = `./static/${visibility}/${project.id}/draft/`;
                         fs.mkdirSync(uploadPath, { recursive: true });
+
+                        const folderSize = getFolderSizeSync(uploadPath);
+                        if (
+                            !project.betterBedrockContent &&
+                            folderSize >= MAX_FOLDER_SIZE[visibility]
+                        ) {
+                            return cb(
+                                new BadRequestException(
+                                    `Upload folder exceeded max size of ${MAX_FOLDER_SIZE_MB[visibility]}MB for ${visibility} files`,
+                                ),
+                                "",
+                            );
+                        }
+
                         cb(null, uploadPath);
                     },
                     filename: (_, file, cb) => {
@@ -87,7 +123,7 @@ export function FileUpload() {
                         );
                     }
                 },
-                limits: { fileSize: 5 * 1024 * 1024 },
+                limits: { fileSize: MAX_FOLDER_SIZE.private }, // still keep per-file size limit
             }),
         ),
     );
