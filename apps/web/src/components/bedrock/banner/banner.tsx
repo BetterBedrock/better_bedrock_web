@@ -12,6 +12,6 @@ interface BannerProps {
 
 export const Banner = ({ message, type }: BannerProps) => (
   <div className={clsx(styles.banner, styles[type])}>
-    {typeof message === "string" ? <BedrockText text={message} type="p" color="white" /> : message}
+    {typeof message === "string" ? <BedrockText text={message} type="p" color={type === "important" ? "black" : "white"} /> : message}
   </div>
 );
