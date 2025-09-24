@@ -25,11 +25,15 @@ interface AvatarDetailsProps {
 }
 
 interface AvatarProps {
-  children: ReactNode;
+  children?: ReactNode;
+  name?: string;
+  className?: string;
 }
 
-export const Avatar = ({ children }: AvatarProps) => (
-  <div className={styles.avatar}>{children}</div>
+export const Avatar = ({ children, name, className }: AvatarProps) => (
+  <Link link={name && Routes.PROFILE + "/" + name} hideStyles>
+    <div className={clsx(styles.avatar, className && className)}>{children}</div>
+  </Link>
 );
 
 Avatar.Profile = ({ size, name, className, link = true }: AvatarProfileProps) => (
