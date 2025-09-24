@@ -1,5 +1,14 @@
 import { Type } from "class-transformer";
-import { IsBoolean, IsDate, IsOptional, IsString } from "class-validator";
+import {
+    IsBoolean,
+    IsDate,
+    IsEmail,
+    IsOptional,
+    IsString,
+    Length,
+    MaxLength,
+    MinLength,
+} from "class-validator";
 
 export class UserDto {
     @IsString()
@@ -8,16 +17,19 @@ export class UserDto {
     @IsString()
     googleId: string;
 
-    @IsString()
+    @IsEmail()
     email: string;
 
     @IsString()
+    @MinLength(3)
+    @MaxLength(20)
     name: string;
 
     @IsBoolean()
     admin: boolean;
 
     @IsString()
+    @MaxLength(180)
     bio: string;
 
     @IsBoolean()
@@ -32,9 +44,11 @@ export class UserDto {
 
     @IsString()
     @IsOptional()
+    @MaxLength(10)
     linkvertiseId: string | null;
 
     @IsString()
     @IsOptional()
+    @Length(64, 64)
     linkvertiseSecret: string | null;
 }
