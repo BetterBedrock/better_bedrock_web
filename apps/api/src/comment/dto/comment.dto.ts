@@ -1,11 +1,13 @@
 import { Type } from "class-transformer";
-import { IsBoolean, IsDate, IsOptional, IsString } from "class-validator";
+import { IsBoolean, IsDate, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
 
 export class CommentDto {
     @IsString()
     id: string;
 
     @IsString()
+    @MinLength(0)
+    @MaxLength(200)
     content: string;
 
     @IsString()
