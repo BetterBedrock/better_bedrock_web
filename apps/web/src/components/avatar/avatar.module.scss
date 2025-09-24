@@ -2,29 +2,30 @@
 
 .picture {
   image-rendering: pixelated;
+}
 
-  .small {
-    width: g.$icon-sm;
-    height: g.$icon-sm;
-  }
+.small {
+  width: g.$icon-sm;
+  height: g.$icon-sm;
+}
 
-  .medium {
-    width: g.$icon-md;
-    height: g.$icon-md;
-  }
+.medium {
+  width: g.$icon-md;
+  height: g.$icon-md;
+}
 
-  .large {
-    width: g.$icon-lg;
-    height: g.$icon-lg;
-  }
+.large {
+  width: g.$icon-lg;
+  height: g.$icon-lg;
 }
 
 .avatar {
-    display:flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  gap: g.$padding-xxsm;
 }
 
 .details {
-    display:flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }

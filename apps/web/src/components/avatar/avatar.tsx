@@ -1,4 +1,5 @@
 import Steve from "~/assets/images/avatars/Steve.png";
+import Summsatsuma from "~/assets/images/avatars/sumssatsuma.png";
 import { Link } from "~/components/link";
 import { BedrockComponentProps } from "~/types";
 import { Routes } from "~/utils/routes";
@@ -7,10 +8,11 @@ import clsx from "clsx";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { ReactNode } from "react";
 
-interface AvatarProps extends BedrockComponentProps {
+interface AvatarProfileProps extends BedrockComponentProps {
   name: string;
   link?: boolean;
   profilePage?: boolean;
+  className?: string;
 }
 
 interface AvatarDetailsProps {
@@ -30,12 +32,15 @@ export const Avatar = ({ children }: AvatarProps) => (
   <div className={styles.avatar}>{children}</div>
 );
 
-Avatar.Profile = ({ size, name, link = true }: AvatarProps) => (
-  <Link link={link ? Routes.PROFILE + "/" + name : undefined}>
+Avatar.Profile = ({ size, name, className, link = true }: AvatarProfileProps) => (
+  <Link
+    link={link ? Routes.PROFILE + "/" + name : undefined}
+    className={(size && styles[size], className && className)}
+  >
     <img
       alt={name + " profile"}
-      src={Steve}
-      className={clsx(styles.picture, size && styles[size])}
+      src={name === "sumssatsuma" ? Summsatsuma : Steve}
+      className={clsx(styles.picture, size && styles[size], className && className)}
     />
   </Link>
 );
