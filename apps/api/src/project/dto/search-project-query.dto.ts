@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import { IsEnum, IsNumber, IsOptional, IsString } from "class-validator";
+import { IsEnum, IsNumber, IsOptional, IsString, MaxLength } from "class-validator";
 import { SearchOrder } from "~/project/dto/search-order.dto";
 
 export class SearchProjectsQueryDto {
@@ -15,6 +15,7 @@ export class SearchProjectsQueryDto {
 
     @IsOptional()
     @IsString()
+    @MaxLength(100)
     text?: string;
 
     @IsOptional()
