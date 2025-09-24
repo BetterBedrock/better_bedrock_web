@@ -102,7 +102,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **downloadControllerVerify**
-> downloadControllerVerify()
+> ProjectDto downloadControllerVerify()
 
 
 ### Example
@@ -135,7 +135,7 @@ const { status, data } = await apiInstance.downloadControllerVerify(
 
 ### Return type
 
-void (empty response body)
+**ProjectDto**
 
 ### Authorization
 
@@ -144,7 +144,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details

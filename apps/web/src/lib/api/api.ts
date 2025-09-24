@@ -2187,7 +2187,7 @@ export const DownloadApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async downloadControllerVerify(hash?: string, code?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async downloadControllerVerify(hash?: string, code?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProjectDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.downloadControllerVerify(hash, code, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DownloadApi.downloadControllerVerify']?.[localVarOperationServerIndex]?.url;
@@ -2227,7 +2227,7 @@ export const DownloadApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        downloadControllerVerify(hash?: string, code?: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        downloadControllerVerify(hash?: string, code?: string, options?: RawAxiosRequestConfig): AxiosPromise<ProjectDto> {
             return localVarFp.downloadControllerVerify(hash, code, options).then((request) => request(axios, basePath));
         },
     };
