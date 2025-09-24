@@ -32,6 +32,7 @@ import { ProjectService } from "~/project/project.service";
 import { UserService } from "~/user/user.service";
 import { OptionalAuthGuard } from "~/auth/optional-auth.guard";
 import { AuthenticatedRequest } from "~/common/types/authenticated-request.type";
+import { ProjectDto } from "~/project/dto/project.dto";
 
 @Controller("download")
 export class DownloadController {
@@ -100,7 +101,7 @@ export class DownloadController {
         @Ip() ip: string,
         @Req() req: AuthenticatedRequest,
         @Query() query: VerifyDownloadDto,
-    ) {
+    ): Promise<ProjectDto> {
         const download = await this.downloadService.download({ ipAddress: ip });
         const voucher = query.code
             ? await this.voucherService.getVoucher({ code: query.code })
@@ -111,7 +112,8 @@ export class DownloadController {
         }
 
         const project = await this.projectService.findOne(download.file);
-        if (!project) {
+        const includeDraft = project?.id !== req.user?.id || !req.user?.admin;
+        if (!project || (project.draft && !includeDraft)) {
             throw new NotFoundException(`Requested project not found.`);
         }
 
@@ -209,6 +211,10 @@ export class DownloadController {
                 data: { verified: true },
             });
         }
+
+        // Logger.error(canViewDraft);
+        const detailedProject = await this.projectService.projectDetails(project.id, includeDraft);
+        return { ...project, ...detailedProject };
     }
 
     @Post("generate")
