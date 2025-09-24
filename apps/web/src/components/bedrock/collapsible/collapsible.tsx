@@ -3,6 +3,7 @@ import { styles } from ".";
 import { CollapsibleButton } from "~/components/bedrock/collapsible/collapsible-button";
 import { CollapsibleContent } from "~/components/bedrock/collapsible/collapsible-content";
 import clsx from "clsx";
+import { ButtonType } from "~/components/bedrock/button";
 
 interface CollapsibleProp {
   headerText: string;
@@ -14,6 +15,7 @@ interface CollapsibleProp {
   floating?: boolean;
   limit?: boolean;
   className?: string;
+  type?: ButtonType;
 }
 
 export const Collapsible = ({
@@ -26,16 +28,13 @@ export const Collapsible = ({
   indexTextRef = "",
   className,
   limit = false,
+  type = "dark",
 }: CollapsibleProp) => {
   const [isCollapsed, setCollapsed] = useState(false);
 
   return (
     <div
-      className={clsx(
-        styles.collapsible,
-        floating && styles.floating,
-        className && className,
-      )}
+      className={clsx(styles.collapsible, floating && styles.floating, className && className)}
       style={{ width: width }}
     >
       <details itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
@@ -44,6 +43,7 @@ export const Collapsible = ({
           isCollapsed={isCollapsed}
           setCollapsed={setCollapsed}
           indexTextRef={indexTextRef}
+          type={type}
         />
 
         <CollapsibleContent
@@ -51,6 +51,7 @@ export const Collapsible = ({
           limit={limit}
           contentText={contentText}
           contentHeight={contentHeight}
+          type={type}
         >
           {children}
         </CollapsibleContent>
