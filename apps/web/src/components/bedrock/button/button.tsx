@@ -1,8 +1,7 @@
 import { styles } from ".";
-import { HTMLAttributes, ReactNode, useEffect, useState, forwardRef } from "react";
+import { HTMLAttributes, ReactNode, useEffect, useState, forwardRef, useRef } from "react";
 import clsx from "clsx";
 import bedrockClickSound from "~/assets/sounds/minecraft_click.mp3";
-import useSound from "use-sound";
 
 import WhiteUnchecked from "~/assets/ui/buttons/white/unchecked.png";
 import WhiteUncheckedHover from "~/assets/ui/buttons/white/unchecked_hover.png";
@@ -77,7 +76,31 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
     const [preload, setPreload] = useState(false);
     const [isHeld, setIsHeld] = useState(false);
 
-    const [playClickSound] = useSound(bedrockClickSound, { volume: 0.25 });
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+
+    useEffect(() => {
+      if (playSound && !audioRef.current) {
+        audioRef.current = new Audio(bedrockClickSound);
+        audioRef.current.volume = 0.25;
+        audioRef.current.preload = "auto";
+      }
+
+      return () => {
+        if (audioRef.current) {
+          audioRef.current.src = "";
+          audioRef.current = null;
+        }
+      };
+    }, [playSound]);
+
+    const playClickSound = () => {
+      if (audioRef.current && playSound) {
+        audioRef.current.currentTime = 0;
+        audioRef.current.play().catch((e: unknown) => {
+          console.warn("Audio play failed:", e);
+        });
+      }
+    };
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (lockClicking) return;
@@ -85,7 +108,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
       setIsHeld(true);
       handleSetIsToggled(false);
 
-      if (playSound) playClickSound();
+      playClickSound();
       if (onClick) onClick(e);
     };
 
