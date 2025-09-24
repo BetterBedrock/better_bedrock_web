@@ -1,5 +1,5 @@
 import { Type } from "class-transformer";
-import { IsBoolean, IsDate, IsOptional, IsString } from "class-validator";
+import { IsBoolean, IsDate, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
 
 export class ReportDto {
     @IsString()
@@ -17,6 +17,8 @@ export class ReportDto {
     reportedProjectId: string | null;
 
     @IsString()
+    @MinLength(3)
+    @MaxLength(200)
     message: string;
 
     @IsBoolean()
