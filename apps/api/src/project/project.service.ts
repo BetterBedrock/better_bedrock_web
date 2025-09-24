@@ -77,6 +77,7 @@ export class ProjectService {
     async create(data: CreateProjectDto, admin: boolean) {
         const { title, userId } = data;
         const id = title
+            .trim()
             .toLowerCase()
             .replace(/\s+/g, "_")
             .replace(/[^a-z0-9_]/g, "");
@@ -339,9 +340,9 @@ export class ProjectService {
         );
     }
 
-    async projectDetails(id: string) {
-        const project = await this.prismaService.project.findUnique({
-            where: { id_draft: { id, draft: false } },
+    async projectDetails(id: string, includeDraft: boolean = false) {
+        const project = await this.prismaService.project.findFirst({
+            where: { id, draft: includeDraft ? undefined : false },
             include: { ...projectTagsInclude, ...projectCreatorInclude },
         });
 
