@@ -44,23 +44,23 @@ export const PopupReport = ({ id, name, type, onClose }: PopupReportProps) => {
 
   return (
     <Popup title="Report" onClose={onClose}>
-      <div className={styles.container}>
-        <div className={styles.part}>
+      <Popup.Wrapper>
+        <Popup.Part>
           <BedrockText
             type="p"
             text={`You are about to report ${name}, what is your reasoning behind this report?`}
             textAlign="start"
             color="white"
           />
-          <Input ref={inputRef} placeholder="Message" />
-        </div>
+          <Input ref={inputRef} placeholder="Message" value={defaultMessage} />
+        </Popup.Part>
         <CardDivider />
-        <div className={styles.part}>
+        <Popup.Part>
           <Button onClick={handleReport} type="green" center width="100%">
             <BedrockText type="p" text="Report" color="white" />
           </Button>
-        </div>
-      </div>
+        </Popup.Part>
+      </Popup.Wrapper>
     </Popup>
   );
 };
