@@ -6,6 +6,7 @@ import { Card } from "~/components/bedrock/card";
 import { Button } from "../button";
 import { useState } from "react";
 import { Collapsible } from "~/components/bedrock/collapsible";
+import { ButtonGroup } from "~/components/button-group/button-group";
 
 export const DATA_RANGE_OPTIONS = [
   { label: "7d", text: "Last 7 Days" },
@@ -75,17 +76,19 @@ export const StatisticsCard = ({
           width="100%"
           limit
         >
-          {DATA_RANGE_OPTIONS.map((c) => (
-            <Button
-              type="dark"
-              width="100%"
-              isClicked={c.label === category}
-              onClick={() => setCategory(c.label)}
-              center
-            >
-              <BedrockText type="p" color="white" text={c.text} />
-            </Button>
-          ))}
+          <ButtonGroup direction="vertical">
+            {DATA_RANGE_OPTIONS.map((c) => (
+              <Button
+                type="dark"
+                width="100%"
+                isClicked={c.label === category}
+                onClick={() => setCategory(c.label)}
+                center
+              >
+                <BedrockText type="p" color="white" text={c.text} />
+              </Button>
+            ))}
+          </ButtonGroup>
         </Collapsible>
         {toggleGraph && showGraph && fdata && (
           <BarChart direction="horizontal" data={fdata} category={category} />
