@@ -1,7 +1,6 @@
 import { BedrockText } from "../bedrock-text/bedrock-text";
 import styles from "./grid-download-card.module.scss";
 import clsx from "clsx";
-import Steve from "~/assets/images/avatars/Steve.png";
 import { Tag } from "~/components/bedrock/tag";
 import { Rating } from "~/components/rating";
 import { SimpleProjectDto } from "~/lib/api";
@@ -12,6 +11,8 @@ import { PROJECT_TYPES } from "~/assets/content/better-bedrock";
 import CardLayout from "~/assets/ui/card/card_button.png";
 import { ProjectMode } from "~/pages/project";
 import BBLogo from "~/assets/images/logo.png";
+import { Tooltip } from "~/components/bedrock/tooltip";
+import { Avatar } from "~/components/avatar";
 
 interface GridDownloadCardProps {
   project: SimpleProjectDto;
@@ -58,21 +59,11 @@ export const GridDownloadCard = ({ className, tags, project, mode }: GridDownloa
           )}
 
           <div className={styles.author}>
-            <Link link={Routes.PROFILE + "/" + project.user.name} className={styles.link}>
-              <div className={styles.header}>
-                <img src={Steve} className={styles.avatar} />
+            <Avatar className={styles.header} name={project.user.name}>
+              <Avatar.Profile name={project.user.name} size="small" />
 
-                {/* Renders the description, which can now be any React node */}
-                <div>
-                  <BedrockText
-                    text={`@${project.user.name}`}
-                    type={"p"}
-                    textAlign="left"
-                    color="white"
-                  />
-                </div>
-              </div>
-            </Link>
+              <Avatar.Details name={project.user.name} at />
+            </Avatar>
           </div>
 
           <div className={styles.details}>
