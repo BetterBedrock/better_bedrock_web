@@ -8,10 +8,11 @@ export interface BasePopupWrapperProps {
 
 interface PopupWrapperProps {
   children: ReactNode;
+  ignore?: boolean;
   popup: (close: () => void) => ReactNode;
 }
 
-export const PopupWrapper = ({ children, popup }: PopupWrapperProps) => {
+export const PopupWrapper = ({ children, popup, ignore }: PopupWrapperProps) => {
   const [open, setOpen] = useState(false);
 
   const close = () => {
@@ -19,6 +20,7 @@ export const PopupWrapper = ({ children, popup }: PopupWrapperProps) => {
   };
 
   const handleOpen = () => {
+    if(ignore) return;
     setOpen(true);
   };
 
