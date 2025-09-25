@@ -1,11 +1,39 @@
 import { ReactNode, useState, MouseEvent, cloneElement, ReactElement, Children } from "react";
 import { styles } from ".";
 import { Popup } from "~/components/bedrock/popup/popup";
-import { Button, ButtonType } from "~/components/bedrock/button"; // Assuming a Button component exists
+import { Button, ButtonType } from "~/components/bedrock/button";
 import React from "react";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { CardDivider } from "~/components/bedrock/card";
+
+type ClickableElementProps = {
+  onClick?: (e: MouseEvent) => void;
+  children?: ReactNode;
+};
+
+export const useEnhanceTree = (
+  handleChildClick: (originalOnClick?: (e: MouseEvent) => void) => (e: MouseEvent) => void,
+) => {
+  const enhanceTree = (node: ReactNode): ReactNode => {
+    if (!React.isValidElement(node)) return node;
+
+    const element = node as ReactElement<ClickableElementProps>;
+    const props: Partial<ClickableElementProps> = {};
+
+    if (typeof element.props.onClick === "function") {
+      props.onClick = handleChildClick(element.props.onClick);
+    }
+
+    if (element.props.children) {
+      props.children = Children.map(element.props.children, enhanceTree);
+    }
+
+    return cloneElement(element, props);
+  };
+
+  return enhanceTree;
+};
 
 interface PopupConfirmationProps {
   title?: string;
@@ -29,35 +57,25 @@ export const PopupConfirmation = ({
   const [open, setOpen] = useState(false);
   const [pendingAction, setPendingAction] = useState<(() => void) | null>(null);
 
-  // Handle child click
+  // Wrap any onClick with confirmation logic
   const handleChildClick = (originalOnClick?: (e: MouseEvent) => void) => (e: MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    // Store the original click action
     setPendingAction(() => () => originalOnClick?.(e));
     setOpen(true);
   };
 
-  // Enhance children with click handler
-  const enhancedChildren = Children.map(children, (child) => {
-    if (!React.isValidElement<{ onClick?: (e: MouseEvent) => void }>(child)) {
-      return child;
-    }
+  // Recursively enhance children
+  const enhanceTree = useEnhanceTree(handleChildClick);
+  const enhancedChildren = ignore ? children : enhanceTree(children);
 
-    return cloneElement(child as ReactElement<{ onClick?: (e: MouseEvent) => void }>, {
-      onClick: handleChildClick(child.props.onClick),
-    });
-  });
-
-  // Handle confirm action
   const handleConfirm = () => {
     pendingAction?.();
     setOpen(false);
     setPendingAction(null);
   };
 
-  // Handle cancel action
   const handleCancel = () => {
     setOpen(false);
     setPendingAction(null);
@@ -65,7 +83,7 @@ export const PopupConfirmation = ({
 
   return (
     <div className={styles.confirmation}>
-      {ignore ? children : enhancedChildren}
+      {enhancedChildren}
       {open && (
         <Popup title={title} onClose={handleCancel}>
           <div className={styles.container}>
