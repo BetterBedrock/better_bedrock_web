@@ -135,18 +135,6 @@
   filter: brightness(40%);
 }
 
-.container {
-  width: 100%;
-
-  .part {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: g.$padding-sm;
-    gap: g.$padding-xsm;
-  }
-}
-
 .delete {
   position: absolute;
   top: 50%;

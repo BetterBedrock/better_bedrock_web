@@ -1,16 +1,14 @@
-import { styles } from ".";
+import { GalleryPopup, styles } from ".";
 import ArrowLeft from "~/assets/images/w_left_arrow.png";
 import ArrowRight from "~/assets/images/w_right_arrow.png";
 import Exit from "~/assets/images/exit.png";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
 import { useMediaQuery } from "react-responsive";
-import { SimpleButton } from "~/components/bedrock/simple-button";
-import { Popup } from "~/components/bedrock/popup";
 import { Button } from "~/components/bedrock/button";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
-import { CardDivider } from "~/components/bedrock/card";
 import { baseUrl } from "~/utils/url";
+import { PopupWrapper } from "~/components/bedrock/popup/popup-wrapper";
 
 interface GalleryProps {
   images: string[];
@@ -45,7 +43,6 @@ export const Gallery = ({
 
   const [startingIndex, setStartingIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(0);
-  const [isEditOpen, setIsEditOpen] = useState(false);
 
   // Preload all images
   useEffect(() => {
@@ -66,21 +63,11 @@ export const Gallery = ({
       ? images
       : Array.from({ length: limit }, (_, i) => images[(startingIndex + i) % images.length]);
 
-  // File input for adding new images
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const handleAddClick = () => {
-    if (fileInputRef.current) fileInputRef.current.click();
-  };
-  const handleFilesSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return;
-    onAddImages?.(e.target.files);
-    // reset input so same files can be chosen again
-    e.target.value = "";
-  };
-
   return (
     <>
-      <div className={clsx(styles.gallery, fullscreen && styles.fullscreen, className && className)}>
+      <div
+        className={clsx(styles.gallery, fullscreen && styles.fullscreen, className && className)}
+      >
         {fullscreen && (
           <button onClick={onClose} className={styles.closeButton}>
             <img alt="Close" src={Exit} className={styles.close} />
@@ -152,62 +139,23 @@ export const Gallery = ({
         )}
 
         {edit && (
-          <Button className={styles.editButton} onClick={() => setIsEditOpen(true)} center>
-            <BedrockText type="p" text="Edit Images" color="white" />
-          </Button>
+          <PopupWrapper
+            popup={(close) => (
+              <GalleryPopup
+                close={close}
+                maxImages={maxImages}
+                onDeleteImage={onDeleteImage}
+                onAddImages={onAddImages}
+                images={images}
+              />
+            )}
+          >
+            <Button className={styles.editButton} center>
+              <BedrockText type="p" text="Edit Images" color="white" />
+            </Button>
+          </PopupWrapper>
         )}
       </div>
-
-      {isEditOpen && (
-        <Popup title="Edit Gallery" onClose={() => setIsEditOpen(false)}>
-          <div className={styles.container}>
-            {images.length > 0 && (
-              <>
-                <div className={styles.part}>
-                  <div className={styles.list}>
-                    {images.map((src, idx) => (
-                      <div key={src} className={styles.wrapper}>
-                        <img src={baseUrl + "/" + src} alt={`Edit ${idx + 1}`} className={styles.image} />
-                        <SimpleButton
-                          onClick={() => onDeleteImage?.(idx)}
-                          transparent
-                          className={styles.delete}
-                          width="100%"
-                          height="100%"
-                        >
-                          <img alt="Close" src={Exit} className={styles.icon} />
-                        </SimpleButton>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <CardDivider />
-              </>
-            )}
-            <div className={styles.part}>
-              <input
-                ref={fileInputRef}
-                type="file"
-                multiple
-                accept="image/*"
-                style={{ display: "none" }}
-                onChange={handleFilesSelected}
-              />
-              <Button
-                type={images.length >= maxImages ? "dark" : "green"}
-                center
-                onClick={handleAddClick}
-              >
-                <BedrockText
-                  text={`Add Images (${images.length} / ${maxImages})`}
-                  type="p"
-                  color="white"
-                />
-              </Button>
-            </div>
-          </div>
-        </Popup>
-      )}
     </>
   );
 };
