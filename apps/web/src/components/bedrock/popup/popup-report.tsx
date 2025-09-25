@@ -1,21 +1,27 @@
 import { useRef } from "react";
 import { Popup } from "~/components/bedrock/popup/popup";
-import { useReport } from "~/providers/report";
-import { styles } from ".";
+import { ReportProvider, useReport } from "~/providers/report";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
 import { Input } from "~/components/bedrock/input";
 import { useNotification } from "~/providers/notification";
 import { CardDivider } from "~/components/bedrock/card";
 
-interface PopupReportProps {
+interface PopupReportComponentProps {
   id: string;
   name: string;
+  defaultMessage?: string;
   type: "project" | "user";
   onClose?: () => void;
 }
 
-export const PopupReport = ({ id, name, type, onClose }: PopupReportProps) => {
+export const PopupReport = (props: PopupReportComponentProps) => (
+  <ReportProvider>
+    <PopupReportComponent {...props} />
+  </ReportProvider>
+);
+
+const PopupReportComponent = ({ id, name, type, defaultMessage, onClose }: PopupReportComponentProps) => {
   const { reportProject, reportUser } = useReport();
   const { sendNotification } = useNotification();
   const inputRef = useRef<HTMLInputElement>(null);
