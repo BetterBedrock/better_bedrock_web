@@ -7,8 +7,6 @@ import {
   AnchorHTMLAttributes,
   forwardRef,
 } from "react";
-import { useSound } from "use-sound";
-import bedrockClickSound from "~/assets/sounds/minecraft_click.mp3";
 
 import { styles } from ".";
 import clsx from "clsx";
@@ -39,7 +37,6 @@ export const SimpleButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, Si
       children,
       onTap,
       isClicked,
-      playSound = false,
       tabIndex,
       transparent = false,
       style,
@@ -50,7 +47,6 @@ export const SimpleButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, Si
     ref,
   ) => {
     const [clicked, setClicked] = useState<boolean>(isClicked ?? false);
-    const [playClickSound] = useSound(bedrockClickSound);
 
     useEffect(() => {
       if (isClicked !== undefined) {
@@ -60,7 +56,6 @@ export const SimpleButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, Si
 
     const handleClick = () => {
       setClicked(true);
-      if (playSound) playClickSound();
       if (onTap) onTap();
     };
 
