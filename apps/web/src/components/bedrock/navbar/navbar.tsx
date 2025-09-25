@@ -28,7 +28,7 @@ export const Navbar = () => {
       ? [
           { name: "Dashboard", path: "/panel" },
           { name: "Analytics", path: "/panel/analytics" },
-          { name: "Voucher", path: "/panel/voucher" },
+          { name: "Vouchers", path: "/panel/vouchers" },
           { name: "Projects", path: "/panel/projects" },
           { name: "Reports", path: "/panel/reports" },
         ]
