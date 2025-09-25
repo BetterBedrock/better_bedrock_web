@@ -71,9 +71,6 @@ export const GridDownloadCard = ({ className, tags, project, mode }: GridDownloa
             {tags?.map((tag) => (
               <Tag border={["top", "right"]} name={tag} className={styles.special} />
             ))}
-            {project.betterBedrockContent && (
-              <Tag border={["top", "right"]} name={<img src={BBLogo} className={styles.logo}></img>} className={styles.bb} />
-            )}
           </div>
         </div>
         <div className={styles.footer}>
@@ -82,13 +79,24 @@ export const GridDownloadCard = ({ className, tags, project, mode }: GridDownloa
             style={{ borderImage: `url(${CardLayout})` }}
           >
             <div className={styles.information}>
-              <BedrockText
-                text={project.title}
-                type="h2"
-                font="Minecraft"
-                textAlign="left"
-                color="white"
-              />
+              <div className={styles.title}>
+                {project.betterBedrockContent && (
+                  <Tooltip text="Official Better Bedrock Content">
+                    <Tag
+                      className={styles.bb}
+                      border={[]}
+                      name={<img src={BBLogo} className={styles.logo}></img>}
+                    />
+                  </Tooltip>
+                )}
+                <BedrockText
+                  text={project.title}
+                  type="h2"
+                  font="Minecraft"
+                  textAlign="left"
+                  color="white"
+                />
+              </div>
               <div className={styles.tags2}>
                 {project.tags?.map((tag) => (
                   <BedrockText

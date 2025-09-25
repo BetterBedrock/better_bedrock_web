@@ -91,10 +91,8 @@
 }
 
 .header {
-  display: flex;
-  flex-direction: row;
+  align-items: center;
   padding: g.$padding-xsm;
-  gap: g.$padding-xxsm;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -171,6 +169,17 @@
 }
 
 .logo {
-  height: g.$icon-sm;
+  width: g.$icon-md;
+  height: auto;
   image-rendering: pixelated;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: center;
+  gap: g.$padding-xxsm;
 }
