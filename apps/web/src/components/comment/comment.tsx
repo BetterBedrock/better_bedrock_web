@@ -106,6 +106,7 @@ export const Comment = ({ comment, subComments, onReply }: CommentProps) => {
           <ButtonGroup>
             <Input
               autoFocus={true}
+              onBlur={(e) => e.target.value === "" && setIsReplying(false)}
               ref={inputRef}
               placeholder="Response..."
               onKeyDown={handleKeyDown}
