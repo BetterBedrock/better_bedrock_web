@@ -1,15 +1,27 @@
 @use "~/utils" as g;
 
+.card {
+  @include g.card-padding();
+}
+
 .header {
-  display: flex;
-  flex-direction: row;
   align-items: start;
   justify-content: start;
   padding-block: g.$padding-xsm;
-  gap: g.$padding-xxsm;
 
   &:not(:first-child) {
     padding-left: g.$padding-lg;
+    @media (max-width: g.$breakpoint-tablet) {
+      padding-left: g.$padding-md;
+    }
+
+    @media (max-width: g.$breakpoint-mobileL) {
+      padding-left: g.$padding-sm;
+    }
+
+    @media (max-width: g.$breakpoint-mobileM) {
+      padding-left: g.$padding-xsm;
+    }
   }
 }
 .avatar {
