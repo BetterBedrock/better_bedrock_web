@@ -13,6 +13,7 @@ import { Routes } from "~/utils/routes";
 
 interface CommentProps {
   comment: ProjectCommentDto;
+  user: UserDto | undefined;
   subComments?: CommentProps[]; // For future use with nested comments
   onReply?: (comment: string, parentId: string) => void;
 }
@@ -57,6 +58,46 @@ export const Comment = ({ comment, subComments, onReply }: CommentProps) => {
               extraClassName={styles.reply}
               onClick={() => setIsReplying(true)}
             />
+          )}
+
+        <div>
+          {user && (user?.name !== commentUser || user.admin) && (
+            <PopupConfirmation
+              description={`Are you sure you want to delete ${user.name === commentUser ? "this comment" : `${commentUser}'s comment`}?`}
+              confirmType="red"
+              confirmText="Delete"
+            >
+              <Tooltip text="Delete this comment">
+                <SimpleButton
+                  transparent
+                  onClick={async () => {
+                    if (!user) return;
+                    await onDelete?.(commentId);
+                  }}
+                >
+                  <img src={Trash} className={styles.more} />
+                </SimpleButton>
+              </Tooltip>
+            </PopupConfirmation>
+          )}
+          {user && user?.name !== commentUser && (
+            <PopupConfirmation
+              description={`Are you sure you want to report ${commentUser}'s comment?`}
+              confirmText="Report"
+            >
+              <Tooltip text="Report this comment">
+                <SimpleButton
+                  transparent
+                  onClick={async () => {
+                    if (!user) return;
+                    const message = `User ${user.name} (${user.id}) has reported ${commentUser}'s (${commentUserId}) comment '${content}' under '${comment.projectId}' project.`;
+                    await reportUser(commentUserId, { message });
+                  }}
+                >
+                  <img src={ReportGlyph} className={styles.more} />
+                </SimpleButton>
+              </Tooltip>
+            </PopupConfirmation>
           )}
         </div>
       </div>

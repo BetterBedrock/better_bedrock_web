@@ -39,3 +39,12 @@
   filter: invert(1);
   cursor: pointer;
 }
+
+.more {
+  position: relative;
+  height: g.$icon-sm;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  cursor: pointer;
+}
