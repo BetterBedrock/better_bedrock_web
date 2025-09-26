@@ -1,7 +1,7 @@
-import { HeroTitle, HeroDescription, HeroActions } from ".";
+import { HeroTitle, HeroDescription, HeroActions, styles } from ".";
 
 export const Hero = () => (
-  <div>
+  <div className={styles.hero}>
     <HeroTitle />
     <HeroDescription />
     <HeroActions />
