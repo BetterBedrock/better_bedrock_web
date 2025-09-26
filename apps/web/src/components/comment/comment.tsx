@@ -35,22 +35,11 @@ export const Comment = ({ comment, subComments, onReply }: CommentProps) => {
 
   const getComment = (user: string, content: string, reply: boolean = false) => (
     <>
-      <div className={styles.header}>
-        <img src={Steve} className={styles.avatar} />
-
-        <div>
-          <Link link={Routes.PROFILE + "/" + user} hideStyles>
-            <BedrockText
-              text={`@${user}`}
-              type="p"
-              color="white"
-              textAlign="start"
-              font="Minecraft"
-            />
-          </Link>
+      <Avatar className={styles.header}>
+        <Avatar.Profile name={commentUser} size="medium" />
+        <Avatar.Details name={commentUser} at bold className={styles.details}>
           <BedrockText text={content} type="p" color="white" textAlign="start" />
-
-          {reply && !isReplying && (
+          {user && reply && !isReplying && (
             <BedrockText
               text="Reply"
               type="p"
@@ -59,6 +48,7 @@ export const Comment = ({ comment, subComments, onReply }: CommentProps) => {
               onClick={() => setIsReplying(true)}
             />
           )}
+        </Avatar.Details>
 
         <div>
           {user && (user?.name !== commentUser || user.admin) && (
