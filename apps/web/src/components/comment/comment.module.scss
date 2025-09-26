@@ -52,6 +52,17 @@
   cursor: pointer;
 }
 
+.details {
+  width: 100%;
+}
+
+.name {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 .more {
   position: relative;
   height: g.$icon-sm;

@@ -1,25 +1,44 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { styles } from ".";
-import Steve from "~/assets/images/avatars/Steve.png";
 import { useRef, useState } from "react";
 import { Input } from "~/components/bedrock/input";
 import { Button } from "~/components/bedrock/button";
-import { ProjectCommentDto } from "~/lib/api";
+import { ProjectCommentDto, UserDto } from "~/lib/api";
 import { ButtonGroup } from "~/components/button-group/button-group";
 
 import Exit from "~/assets/images/exit.png";
-import { Link } from "~/components/link";
-import { Routes } from "~/utils/routes";
+import clsx from "clsx";
+import { Card } from "~/components/bedrock/card";
+// import MoreVert from "~/assets/images/more_vert.png";
+import { SimpleButton } from "~/components/bedrock/simple-button";
+
+import ReportGlyph from "~/assets/images/glyphs/WarningGlyph.png";
+import Trash from "~/assets/images/trash.png";
+import { PopupConfirmation } from "~/components/bedrock/popup/popup-confirmation";
+import { useReport } from "~/providers/report";
+import { Tooltip } from "~/components/bedrock/tooltip";
+import { Avatar } from "~/components/avatar";
 
 interface CommentProps {
   comment: ProjectCommentDto;
   user: UserDto | undefined;
+  className?: string;
   subComments?: CommentProps[]; // For future use with nested comments
   onReply?: (comment: string, parentId: string) => void;
+  onDelete?: (commentId: string) => Promise<void>;
 }
 
-export const Comment = ({ comment, subComments, onReply }: CommentProps) => {
+export const Comment = ({
+  comment,
+  subComments,
+  onReply,
+  onDelete,
+  user,
+  className,
+}: CommentProps) => {
   const [isReplying, setIsReplying] = useState(false);
+  const { reportUser } = useReport();
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -33,7 +52,13 @@ export const Comment = ({ comment, subComments, onReply }: CommentProps) => {
     }
   };
 
-  const getComment = (user: string, content: string, reply: boolean = false) => (
+  const getComment = (
+    commentId: string,
+    commentUserId: string,
+    commentUser: string,
+    content: string,
+    reply: boolean = false,
+  ) => (
     <>
       <Avatar className={styles.header}>
         <Avatar.Profile name={commentUser} size="medium" />
@@ -90,7 +115,7 @@ export const Comment = ({ comment, subComments, onReply }: CommentProps) => {
             </PopupConfirmation>
           )}
         </div>
-      </div>
+      </Avatar>
       {isReplying && reply && (
         <div className={styles.header}>
           <ButtonGroup>
@@ -118,9 +143,13 @@ export const Comment = ({ comment, subComments, onReply }: CommentProps) => {
   );
 
   return (
-    <div className={styles.comment}>
-      {getComment(comment.author.name, comment.content, true)}
-      {subComments?.map((c) => getComment(c.comment.author.name, c.comment.content))}
-    </div>
+    <Card className={styles.card}>
+      <div className={clsx(styles.comment, className && className)}>
+        {getComment(comment.id, comment.author.id, comment.author.name, comment.content, true)}
+        {subComments?.map((c) =>
+          getComment(c.comment.id, c.comment.author.id, c.comment.author.name, c.comment.content),
+        )}
+      </div>
+    </Card>
   );
 };
