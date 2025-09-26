@@ -21,9 +21,10 @@ interface TextEditorProps {
   content?: Content | undefined;
   editable?: boolean;
   onChange?: (content: Content | undefined) => void;
+  onUpload?: () => void;
 }
 
-export const TextEditor = ({ content, onChange, editable }: TextEditorProps) => {
+export const TextEditor = ({ content, onChange, onUpload, editable }: TextEditorProps) => {
   const toolbarRef = useRef<HTMLDivElement>(null);
 
   const { file: id } = useParams();
@@ -43,6 +44,7 @@ export const TextEditor = ({ content, onChange, editable }: TextEditorProps) => 
     }
 
     const upload = await uploadFile(id!, file);
+    onUpload?.();
 
     return upload!.fileUrl;
   };
