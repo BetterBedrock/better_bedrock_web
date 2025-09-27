@@ -1,10 +1,14 @@
 // import { StatisticsCard } from "~/components/bedrock/statistics-card";
 import { StatisticsCard } from "~/components/bedrock/statistics-card";
-import { styles } from ".";
-import { useAnalytics } from "~/providers/analytics";
+import { styles, useStatistics } from ".";
+import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 
 export const Statistics = () => {
-  const { analytics } = useAnalytics();
+  const { analytics } = useStatistics();
+
+  if (!analytics) {
+    return <CircularProgressIndicator center />;
+  }
 
   const categories = analytics.filter((value) => value.type === "file").map((value) => value.name);
 
