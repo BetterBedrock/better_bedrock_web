@@ -21,6 +21,7 @@ export const MainBanner = ({ image, color, text, link, grid }: MainBannerProps) 
         text={text}
         type="h1"
         font="Minecraft"
+        textAlign="start"
         color={color}
       />
     </Link>
