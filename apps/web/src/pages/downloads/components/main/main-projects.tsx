@@ -5,7 +5,7 @@ import { SearchOrder, SearchProjectsDto } from "~/lib/api";
 import { useProject } from "~/providers/project";
 import { styles } from ".";
 import { Input } from "~/components/bedrock/input";
-import { PROJECT_TYPES } from "~/assets/content/better-bedrock";
+import { PROJECT_TYPES, ProjectTypeKey } from "~/assets/content/better-bedrock";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 import { Button } from "~/components/bedrock/button";
 import { ButtonGroup } from "~/components/button-group/button-group";
@@ -17,7 +17,7 @@ export const MainProjects = () => {
 
   const [searchResults, setSearchResults] = useState<SearchProjectsDto | undefined>();
 
-  const [selectedType, setSelectedType] = useState<string>(Object.keys(PROJECT_TYPES)[0]);
+  const [selectedType, setSelectedType] = useState<ProjectTypeKey>("texturepacks");
   const [selectedOrder, setSelectedOrder] = useState<string>(Object.values(SearchOrder)[0]);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -122,25 +122,35 @@ export const MainProjects = () => {
     };
   }, [searchResults?.page, searchResults?.totalPages, loading, loadingMore, page]);
 
+  const types = Object.entries(PROJECT_TYPES).map(([key, label]) => (
+    <Button
+      key={key}
+      type={key === selectedType ? "green" : "white"}
+      onClick={() => setSelectedType(key as ProjectTypeKey)}
+      isClicked={key === selectedType}
+      isToggled={key === selectedType}
+      center
+    >
+      <BedrockText text={label} color={key === selectedType ? "white" : "black"} type="p" />
+    </Button>
+  ));
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.projects}>
         <Input ref={inputRef} placeholder="Search for a project" className={styles.searchbar} />
-        <ButtonGroup className={styles.types}>
-          {Object.entries(PROJECT_TYPES).map(([key, label]) => (
-            <Button
-              key={key}
-              type={key === selectedType ? "green" : "white"}
-              onClick={() => setSelectedType(key)}
-              isClicked={key === selectedType}
-              isToggled={key === selectedType}
-              center
-            >
-              <BedrockText text={label} color={key === selectedType ? "white" : "black"} type="p" />
-            </Button>
-          ))}
-        </ButtonGroup>
+        <Collapsible
+          headerText={PROJECT_TYPES[selectedType]}
+          contentText=""
+          floating
+          className={styles.types}
+          limit={true}
+          type="white"
+        >
+          <ButtonGroup direction="vertical">{types}</ButtonGroup>
+        </Collapsible>
 
+        <ButtonGroup direction="horizontal" className={styles.group}>{types}</ButtonGroup>
         <Collapsible
           headerText={selectedOrder}
           contentText=""
@@ -148,17 +158,20 @@ export const MainProjects = () => {
           className={styles.collapsible}
           limit={true}
         >
-          {Object.values(SearchOrder).map((type) => (
-            <Button
-              type="dark"
-              center
-              isClicked={type === selectedOrder}
-              isToggled={type === selectedOrder}
-              onClick={() => setSelectedOrder(type)}
-            >
-              <BedrockText type="p" text={type} color="white" />
-            </Button>
-          ))}
+          <ButtonGroup direction="vertical">
+            {Object.values(SearchOrder).map((type) => (
+              <Button
+                type="dark"
+                width="100%"
+                center
+                isClicked={type === selectedOrder}
+                isToggled={type === selectedOrder}
+                onClick={() => setSelectedOrder(type)}
+              >
+                <BedrockText type="p" text={type} color="white" />
+              </Button>
+            ))}
+          </ButtonGroup>
         </Collapsible>
 
         {loading && !searchResults ? (

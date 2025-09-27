@@ -17,6 +17,13 @@
   grid-template-areas: "bb side";
   grid-template-columns: 1fr 1fr;
   gap: g.$padding-xsm;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    grid-template-areas:
+      "bb"
+      "side";
+    grid-template-columns: 1fr;
+  }
 }
 
 .banner {
@@ -70,6 +77,10 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: g.$padding-sm;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .search {
@@ -82,9 +93,7 @@
 }
 
 .collapsible {
-  width: fit-content;
-  z-index: 2;
-  width: 200px;
+  max-width: 300px;
 
   > * {
     max-lines: 1;
@@ -92,9 +101,21 @@
 }
 
 .types {
-  // display: inline-flex;
-  // gap: g.$padding-xsm;
-  // overflow: auto;
+  display: none !important;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    display: flex !important;
+
+    > * {
+      max-lines: 1;
+    }
+  }
+}
+
+.group {
+  @media (max-width: g.$breakpoint-tablet) {
+    display: none;
+  }
 }
 
 .loader {
