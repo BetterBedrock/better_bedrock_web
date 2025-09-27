@@ -21,7 +21,7 @@ export const HeaderTabs = ({ selectedCategory }: HeaderTabsProps) => (
             isToggled={selectedCategory.id === c.id}
             isClicked={selectedCategory.id === c.id}
             width="100%"
-            height="auto"
+            height="100%"
             type="green"
             center
           >
