@@ -1,9 +1,12 @@
 import React from "react";
-import { HeaderTitle, HeaderDescription } from ".";
+import { HeaderTitle, HeaderDescription, HeaderAction, styles } from ".";
 
 export const Header = () => (
-  <div>
-    <HeaderTitle />
-    <HeaderDescription />
+  <div className={styles.header}>
+    <div>
+      <HeaderTitle />
+      <HeaderDescription />
+    </div>
+    <HeaderAction />
   </div>
 );
