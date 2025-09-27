@@ -2,6 +2,7 @@ import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { HeroHeader, styles, useHero } from ".";
 import { LoadingBar } from "~/components/bedrock/loading-bar/loading-bar";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator/circular-progress-indicator";
+import { Banner } from "~/components/bedrock/banner";
 
 export const Hero = () => {
   const { downloadItem, cookie, download, downloadProgress } = useHero();
@@ -17,7 +18,11 @@ export const Hero = () => {
   return (
     <div className={styles.hero}>
       <HeroHeader project={downloadItem} />
-      <LoadingBar className={styles.bar} percentage={downloadProgress} />
+      {downloadProgress == 100 ? (
+        <Banner message="File received successfully" type="important"/>
+      ) : (
+        <LoadingBar className={styles.bar} percentage={downloadProgress} />
+      )}
       <BedrockText
         type="p"
         color="white"
