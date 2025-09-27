@@ -1,14 +1,16 @@
 // import { StatisticsCard } from "~/components/bedrock/statistics-card";
 import { StatisticsCard } from "~/components/bedrock/statistics-card";
-import { styles } from ".";
-import { useAnalytics } from "~/providers/analytics";
-import { useVoucher } from "~/providers/voucher";
+import { styles, useStatistics } from ".";
 import dayjs from "dayjs";
 import { AnalyticsNames } from "~/lib/api";
+import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 
 export const Statistics = () => {
-  const { analytics } = useAnalytics();
-  const { vouchers } = useVoucher();
+  const { analytics, vouchers } = useStatistics();
+
+  if (!analytics || !vouchers) {
+    return <CircularProgressIndicator center />;
+  }
 
   const categories = analytics
     .filter((value) => value.type === "general")
@@ -89,16 +91,8 @@ export const Statistics = () => {
           suffix="%"
           className={styles.card}
         />
-        <StatisticsCard
-          name="Valid Vouchers"
-          data={validVouchers}
-          className={styles.card}
-        />
-        <StatisticsCard
-          name="Used Vouchers"
-          data={usedVouchers}
-          className={styles.card}
-        />
+        <StatisticsCard name="Valid Vouchers" data={validVouchers} className={styles.card} />
+        <StatisticsCard name="Used Vouchers" data={usedVouchers} className={styles.card} />
       </div>
     </div>
   );
