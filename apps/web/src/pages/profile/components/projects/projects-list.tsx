@@ -1,6 +1,6 @@
 import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-download-card";
 import { styles } from ".";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 import { useUserProfile } from "~/pages/profile/providers/user-profile";
@@ -13,9 +13,17 @@ export const ProjectsList = () => {
   const { selectedUser, projects, setProjects } = useUserProfile();
   const { fetchUserProjects } = useProject();
 
+  const [fetchedUserId, setFetchedUserId] = useState(() => {
+    if (selectedUser && projects && projects.length > 0) {
+      return selectedUser.id;
+    }
+    return null;
+  });
+
   const fetchProjects = async (id: string) => {
     const data = await fetchUserProjects(id);
     setProjects(data?.filter((d) => d.draft === false) ?? []);
+    setFetchedUserId(id);
   };
 
   useEffect(() => {
@@ -24,7 +32,9 @@ export const ProjectsList = () => {
       return;
     }
 
-    fetchProjects(selectedUser.id);
+    if (selectedUser.id !== fetchedUserId) {
+      fetchProjects(selectedUser.id);
+    }
   }, [selectedUser]);
 
   if (!projects) {
