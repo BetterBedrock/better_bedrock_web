@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { styles } from ".";
 import { Routes } from "~/utils/routes";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAnalytics } from "~/providers/analytics";
 import { StatisticsCard } from "~/components/bedrock/statistics-card";
 import { useUserProfile } from "~/pages/profile/providers/user-profile";
@@ -13,9 +13,17 @@ export const StatsList = () => {
   const { selectedUser, setAnalytics, analytics } = useUserProfile();
   const { fetchUserAnalytics } = useAnalytics();
 
+  const [fetchedUserId, setFetchedUserId] = useState(() => {
+    if (selectedUser && analytics && analytics.length > 0) {
+      return selectedUser.id;
+    }
+    return null;
+  });
+
   const fetchAnalytics = async (id: string) => {
     const data = await fetchUserAnalytics(id);
     setAnalytics(data ?? []);
+    setFetchedUserId(id);
   };
 
   useEffect(() => {
@@ -23,7 +31,10 @@ export const StatsList = () => {
       navigate(Routes.HOME);
       return;
     }
-    fetchAnalytics(selectedUser.id);
+
+    if (selectedUser.id !== fetchedUserId) {
+      fetchAnalytics(selectedUser.id);
+    }
   }, [selectedUser]);
 
   if (!analytics) {
