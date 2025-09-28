@@ -1,5 +1,10 @@
-import { BedrockText } from "~/components/bedrock/bedrock-text";
+import { styles } from ".";
+import { ProjectsList } from "~/pages/panel/projects/components/hero/projects-list";
+import { Header } from "~/pages/panel/projects/components/hero/header";
 
 export const Hero = () => (
-  <BedrockText text="Submitted Projects For Review" type="h1" color="white" font="Minecraft" />
+  <div className={styles.hero}>
+    <Header />
+    <ProjectsList />
+  </div>
 );
