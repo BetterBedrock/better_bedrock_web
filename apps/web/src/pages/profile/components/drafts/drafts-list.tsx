@@ -16,6 +16,13 @@ export const DraftsList = () => {
   const { fetchUserProjects } = useProject();
   const [publishedProjects, setPublishedProjects] = useState<string[]>([]);
 
+  const [fetchedUserId, setFetchedUserId] = useState(() => {
+    if (selectedUser && drafts && drafts.length > 0) {
+      return selectedUser.id;
+    }
+    return null;
+  });
+
   const fetchDrafts = async (id: string) => {
     const data = await fetchUserProjects(id);
     setDrafts(
@@ -24,6 +31,7 @@ export const DraftsList = () => {
       ),
     );
     setPublishedProjects(data?.filter((d) => d.draft === false).map((d) => d.id) ?? []);
+    setFetchedUserId(id);
   };
 
   useEffect(() => {
@@ -32,7 +40,9 @@ export const DraftsList = () => {
       return;
     }
 
-    fetchDrafts(selectedUser.id);
+    if (selectedUser.id !== fetchedUserId) {
+      fetchDrafts(selectedUser.id);
+    }
   }, [selectedUser]);
 
   if (!drafts) {
