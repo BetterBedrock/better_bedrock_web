@@ -4,10 +4,7 @@ import { styles } from ".";
 import { DetailedProjectDto, DetailedUserDto } from "~/lib/api";
 import { Button } from "~/components/bedrock/button";
 import { Card, CardDivider } from "~/components/bedrock/card";
-import { Routes } from "~/utils/routes";
-import { Link } from "~/components/link";
 import { Rating } from "~/components/rating";
-import Steve from "~/assets/images/avatars/Steve.png";
 import { useUser } from "~/providers/user";
 import { useEffect, useState } from "react";
 import { useProject } from "~/providers/project";
@@ -15,6 +12,7 @@ import { CircularProgressIndicator } from "~/components/bedrock/circular-progres
 import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-download-card";
 import { useReport } from "~/providers/report";
 import { useReportsManager } from "~/pages/panel/reports/providers/reports-manager";
+import { Avatar } from "~/components/avatar";
 
 export const HeroReportPopup = () => {
   const { findDetailedUser } = useUser();
@@ -67,21 +65,15 @@ export const HeroReportPopup = () => {
     if (!reporter) return <CircularProgressIndicator className={styles.loader} />;
 
     return (
-      <div className={styles.part}>
-        <Link link={Routes.PROFILE + "/" + reporter.name} className={styles.link}>
-          <div className={styles.header}>
-            <img src={Steve} className={styles.avatar} />
-
-            {/* Renders the description, which can now be any React node */}
-            <div>
-              <BedrockText text={`@${reporter!.name}`} type={"p"} textAlign="left" color="white" />
-
-              {<Rating simple rating={reporter.rating.average} />}
-            </div>
-          </div>
-        </Link>
+      <Popup.Part>
+        <Avatar>
+          <Avatar.Profile name={reporter.name} size="medium" />
+          <Avatar.Details name={reporter.name} at>
+            {<Rating simple rating={reporter.rating.average} />}
+          </Avatar.Details>
+        </Avatar>
         <BedrockText type="p" text={selectedReport!.message} textAlign="start" color="white" />
-      </div>
+      </Popup.Part>
     );
   };
 
@@ -91,11 +83,11 @@ export const HeroReportPopup = () => {
       <>
         {baseReport()}
         <CardDivider />
-        <div className={styles.part}>
+        <Popup.Part>
           <GridDownloadCard project={project} mode="view" />
-        </div>
+        </Popup.Part>
         <CardDivider />
-        <div className={styles.part}>
+        <Popup.Part>
           <Button
             type={selectedReport!.resolved ? "white" : "green"}
             center
@@ -108,7 +100,7 @@ export const HeroReportPopup = () => {
               color={selectedReport!.resolved ? "black" : "white"}
             />
           </Button>
-        </div>
+        </Popup.Part>
       </>
     );
   };
@@ -119,28 +111,18 @@ export const HeroReportPopup = () => {
       <>
         {baseReport()}
         <CardDivider />
-        <div className={styles.part}>
+        <Popup.Part>
           <Card className={styles.profile}>
-            <Link link={Routes.PROFILE + "/" + reported.name} className={styles.link}>
-              <div className={styles.header}>
-                <img src={Steve} className={styles.avatar} />
-
-                {/* Renders the description, which can now be any React node */}
-                <div>
-                  <BedrockText
-                    text={`@${reported!.name}`}
-                    type={"p"}
-                    textAlign="left"
-                    color="white"
-                  />
-                  {<Rating simple rating={reported.rating.average} />}
-                </div>
-              </div>
-            </Link>
+            <Avatar>
+              <Avatar.Profile name={reported.name} size="medium" />
+              <Avatar.Details name={reported.name} at>
+                <Rating simple rating={reported.rating.average} />
+              </Avatar.Details>
+            </Avatar>
           </Card>
-        </div>
+        </Popup.Part>
         <CardDivider />
-        <div className={styles.part}>
+        <Popup.Part>
           <Button
             type={selectedReport!.resolved ? "white" : "green"}
             center
@@ -153,14 +135,14 @@ export const HeroReportPopup = () => {
               color={selectedReport!.resolved ? "black" : "white"}
             />
           </Button>
-        </div>
+        </Popup.Part>
       </>
     );
   };
 
   return (
     <Popup title="Report" onClose={() => setSelectedReport(null)}>
-      <div className={styles.container}>
+      <Popup.Wrapper>
         {!fetched ? (
           <CircularProgressIndicator className={styles.loader} />
         ) : isUserReport ? (
@@ -168,7 +150,7 @@ export const HeroReportPopup = () => {
         ) : (
           projectReport()
         )}
-      </div>
+      </Popup.Wrapper>
     </Popup>
   );
 };

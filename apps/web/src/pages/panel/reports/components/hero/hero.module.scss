@@ -1,15 +1,10 @@
 @use "~/utils" as g;
 
-.container {
+.hero {
   width: 100%;
-
-  .part {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: g.$padding-sm;
-    gap: g.$padding-xsm;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-sm;
 }
 
 .loader {
@@ -20,12 +15,6 @@
 
 .group {
   width: 100%;
-}
-
-.header {
-  display: flex;
-  flex-direction: row;
-  gap: g.$padding-xxsm;
 }
 
 .avatar {

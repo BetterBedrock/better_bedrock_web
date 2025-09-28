@@ -1,5 +1,12 @@
-import { BedrockText } from "~/components/bedrock/bedrock-text";
+import { Unresolved } from "~/pages/panel/reports/components/hero/unresolved";
+import { styles } from ".";
+import { Header } from "./header";
+import { Resolved } from "~/pages/panel/reports/components/hero/resolved";
 
 export const Hero = () => (
-  <BedrockText text="Reports List" type="h1" color="white" font="Minecraft" />
+  <div className={styles.hero}>
+    <Header />
+    <Unresolved />
+    <Resolved />
+  </div>
 );
