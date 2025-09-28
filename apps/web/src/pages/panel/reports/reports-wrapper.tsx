@@ -1,8 +1,11 @@
 import { ReportsManagerProvider } from "~/pages/panel/reports/providers/reports-manager";
 import { Reports } from "~/pages/panel/reports/reports";
+import { ReportProvider } from "~/providers/report";
 
 export const ReportsWrapper = () => (
-  <ReportsManagerProvider>
-    <Reports />
-  </ReportsManagerProvider>
+  <ReportProvider>
+    <ReportsManagerProvider>
+      <Reports />
+    </ReportsManagerProvider>
+  </ReportProvider>
 );
