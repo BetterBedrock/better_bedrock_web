@@ -37,6 +37,10 @@ $profile-image-size: 150px;
   width: 100%;
 }
 
+.user {
+  word-break: break-all;
+}
+
 .name {
   display: inline-flex;
   align-items: center;
