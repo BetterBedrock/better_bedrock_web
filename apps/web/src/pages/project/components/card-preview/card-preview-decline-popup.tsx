@@ -17,8 +17,8 @@ export const CardPreviewDeclinePopup = ({ onCancel, onSubmit }: CardPreviewDecli
 
   return (
     <Popup title="Decline Project" onClose={onCancel}>
-      <div className={styles.container}>
-        <div className={styles.part}>
+      <Popup.Wrapper>
+        <Popup.Part>
           <BedrockText
             type="p"
             text="You are about to decline this project, what is your reasoning?"
@@ -39,8 +39,8 @@ export const CardPreviewDeclinePopup = ({ onCancel, onSubmit }: CardPreviewDecli
               <BedrockText type="p" text="Decline" color="white" />
             </Button>
           </ButtonGroup>
-        </div>
-      </div>
+        </Popup.Part>
+      </Popup.Wrapper>
     </Popup>
   );
 };
