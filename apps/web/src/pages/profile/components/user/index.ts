@@ -1,5 +1,4 @@
 export * from "./user";
-export * from "./user-card";
 export * from "./user-profile-actions";
 export * from "./user-profile-name";
 export * from "./user-profile-picture";
