@@ -16,9 +16,7 @@ interface UserProfileContextProps {
   ownsProfile: boolean;
 
   settingsOpen: boolean;
-  reportOpen: boolean;
   setSettingsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setReportOpen: React.Dispatch<React.SetStateAction<boolean>>;
 
   drafts: SimpleProjectDto[] | undefined;
   setDrafts: React.Dispatch<React.SetStateAction<SimpleProjectDto[] | undefined>>;
@@ -56,7 +54,6 @@ export const UserProfileProvider = ({ children }: UserProfileProviderProps) => {
   const [selectedUser, setSelectedUser] = useState<SimpleUserDto | undefined>(undefined);
 
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [reportOpen, setReportOpen] = useState(false);
   const [rating, setRating] = useState<UserRatingDto | undefined>(undefined);
 
   const [drafts, setDrafts] = useState<SimpleProjectDto[] | undefined>(undefined);
@@ -115,8 +112,6 @@ export const UserProfileProvider = ({ children }: UserProfileProviderProps) => {
         setSelectedUser,
         settingsOpen,
         setSettingsOpen,
-        reportOpen,
-        setReportOpen,
         user,
         handleProfileSave,
         fetchedDetailedUser,
