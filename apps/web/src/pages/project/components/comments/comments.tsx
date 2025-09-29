@@ -12,12 +12,15 @@ import { useProject } from "~/providers/project";
 import { Comment } from "~/components/comment";
 import { Banner } from "~/components/bedrock/banner";
 import { HeaderTitle } from "~/pages/project/components/header";
+import { useAuth } from "~/providers/auth";
+import { ReportProvider } from "~/providers/report";
 
 export const Comments = () => {
   const { selectedProject } = useProjectManager();
   const commentInputRef = useRef<HTMLInputElement>(null);
   const { throwError } = useNotification();
-  const { postComment, replyToComment, getComments } = useProject();
+  const { postComment, replyToComment, getComments, deleteComment } = useProject();
+  const { user } = useAuth();
   const [comments, setComments] = useState<ProjectCommentDto[] | undefined>(undefined);
 
   const fetchComments = async () => {
@@ -73,46 +76,87 @@ export const Comments = () => {
     }
   };
 
+  const handleDeleteComment = async (commentId: string) => {
+    try {
+      await deleteComment(commentId);
+
+      setComments(
+        (prev) =>
+          (prev ?? [])
+            .map((comment) => {
+              if (comment.id === commentId) {
+                return null;
+              }
+
+              const updatedReplies = comment.replies?.filter((reply) => reply.id !== commentId);
+
+              return {
+                ...comment,
+                replies: updatedReplies,
+              };
+            })
+            .filter(Boolean) as ProjectCommentDto[], // remove nulls
+      );
+    } catch (error) {
+      throwError(error, "Failed to delete comment");
+    }
+  };
+
   useEffect(() => {
     fetchComments();
   }, [selectedProject]);
 
   return (
-    <Card sub>
-      <div className={styles.editor}>
-        <HeaderTitle title="Comments" />
-      </div>
-      <CardDivider sub />
-      <div className={styles.editor}>
-        <ButtonGroup>
-          <Input
-            className={styles.input}
-            ref={commentInputRef}
-            placeholder="Your Comment..."
-            onKeyDown={handleKeyDown}
-          />
-          <Button type="green" onClick={handlePostComment} center>
-            <BedrockText text="Post" type="p" color="white" />
-          </Button>
-        </ButtonGroup>
-      </div>
-      <div className={styles.editor}>
-        <div className={styles.comments}>
-          {comments?.length === 0 && <Banner type="neutral" message="No comments yet" />}
-          {comments?.map((comment, index) => (
-            <Comment
-              key={index}
-              comment={comment}
-              onReply={handlePostReply}
-              subComments={
-                comment.replies?.map((reply) => ({
-                  comment: reply,
-                })) ?? []
-              }
-            />
-          ))}
+    <ReportProvider>
+      <Card sub>
+        <div className={styles.editor}>
+          <HeaderTitle title="Comments" />
         </div>
-      </div>
-    </Card>
+        <CardDivider sub />
+
+        <div className={styles.editor}>
+          {!user ? (
+            <Banner
+              message="You need to be logged in to comment and rate projects"
+              type="neutral"
+            />
+          ) : (
+            <ButtonGroup>
+              <Input
+                className={styles.input}
+                ref={commentInputRef}
+                placeholder="Your Comment..."
+                onKeyDown={handleKeyDown}
+              />
+              <Button type="green" onClick={handlePostComment} center>
+                <BedrockText text="Post" type="p" color="white" />
+              </Button>
+            </ButtonGroup>
+          )}
+        </div>
+        <div className={styles.editor}>
+          <div className={styles.comments}>
+            {comments?.length === 0 && <Banner type="neutral" message="No comments yet" />}
+            {comments?.map((comment, index) => (
+              <>
+                <Comment
+                  key={index}
+                  comment={comment}
+                  onReply={handlePostReply}
+                  user={user}
+                  onDelete={handleDeleteComment}
+                  subComments={
+                    comment.replies?.map((reply) => ({
+                      comment: reply,
+                      user: undefined,
+                    })) ?? []
+                  }
+                />
+              </>
+            ))}
+          </div>
+        </div>
+      </Card>
+    </ReportProvider>
   );
 };
