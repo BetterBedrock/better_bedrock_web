@@ -138,6 +138,8 @@ export const ActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
           </>
         )}
 
+        <CardDivider />
+
         <Popup.Part>
           <ButtonGroup>
             <Button type="white" center width="100%" onClick={close}>
