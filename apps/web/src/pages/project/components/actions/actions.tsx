@@ -50,7 +50,7 @@ export const Actions = () => {
 
       <PopupWrapper popup={(close) => <ActionsDeletePopup close={close} />}>
         <Button width="100%" height="100%" type="red" center>
-          <BedrockText text={"Deletion Options"} type="p" color="white" />
+          <BedrockText text="Deletion Options" type="p" color="white" />
         </Button>
       </PopupWrapper>
 
