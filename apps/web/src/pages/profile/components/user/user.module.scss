@@ -24,11 +24,10 @@ $profile-image-size: 150px;
 }
 
 .image {
-  min-width: 20px;
-  width: 100%;
-  max-width: $profile-image-size;
-  aspect-ratio: 1/1;
-  image-rendering: pixelated;
+  min-width: $profile-image-min-size;
+  max-width: $profile-image-max-size;
+  height: auto !important;
+  width: 100% !important;
 }
 
 .header {
