@@ -1,6 +1,7 @@
 @use "~/utils/_variables" as g;
 
-$profile-image-size: 150px;
+$profile-image-min-size: 120px;
+$profile-image-max-size: 150px;
 
 .wrapper {
   width: 100%;
@@ -9,8 +10,14 @@ $profile-image-size: 150px;
   gap: g.$padding-md;
 }
 
-.profile {
+.card {
+  display:flex;
+  flex-direction: column;
   padding: g.$padding-sm;
+  gap: g.$padding-sm;
+}
+
+.profile {
   display: inline-flex;
   gap: g.$padding-sm;
   align-items: start;
@@ -86,4 +93,29 @@ $profile-image-size: 150px;
 
 .rating {
   width: fit-content !important;
+
+  &.simple {
+    display: none;
+  }
+
+  @media (max-width: g.$breakpoint-mobileM) {
+    display: none;
+    &.simple {
+      display: flex;
+    }
+  }
+}
+
+.text {
+  @media (max-width: g.$breakpoint-mobileL) {
+    display: none;
+  }
+}
+
+.bio {
+  display: none;
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    display: flex;
+  }
 }
