@@ -40,6 +40,7 @@ import { ProjectWrapper } from "~/pages/project/project-wrapper";
 import { Edit } from "~/pages/project/edit";
 import { Review } from "~/pages/project/review";
 import { SideProjects } from "~/pages/downloads/components/side-projects";
+import { Linkvertise } from "~/pages/linkvertise";
 
 export const App = () => (
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
@@ -65,7 +66,7 @@ export const App = () => (
                         </Route>
                         <Route path="discord" element={<Discord />} />
                         <Route path="verify" element={<Fetch />} />
-                        {/* <Route path="fetch%00" element={<Fetch />} /> */}
+                        <Route path="linkvertise" element={<Linkvertise />} />
                         <Route path="project" element={<ProjectWrapper />}>
                           <Route path="preview/:file" element={<ProjectPreview />} />
                           <Route path="edit/:file" element={<Edit />} />
