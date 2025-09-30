@@ -31,7 +31,11 @@ export const Project = () => {
     <main>
       <Section className={styles.background} extraClassName={styles.padding} fixed center>
         <div className={styles.card}>
-          {selectedProject && fetched ? <Outlet /> : <CircularProgressIndicator size="medium" />}
+          {selectedProject && fetched ? (
+            <Outlet />
+          ) : (
+            <CircularProgressIndicator size="medium" center />
+          )}
         </div>
       </Section>
     </main>
