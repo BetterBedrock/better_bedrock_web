@@ -14,5 +14,19 @@ module.exports = {
       cwd: "./apps/api",
       watch: false,
     },
+    {
+      name: "better-bedrock-web-dev",
+      script: "yarn",
+      cwd: "./apps/web",
+      args: "preview",
+      watch: true,
+    },
+    {
+      name: "better-bedrock-api-dev",
+      script: "yarn",
+      cwd: "./apps/api",
+      args: "preview",
+      watch: true,
+    },
   ],
 };
