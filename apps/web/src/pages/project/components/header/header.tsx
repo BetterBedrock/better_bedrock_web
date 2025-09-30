@@ -7,16 +7,16 @@ import { SimpleButton } from "~/components/bedrock/simple-button";
 import { Rating } from "~/components/rating";
 import { ProjectMode } from "~/pages/project";
 import ReportGlyph from "~/assets/images/glyphs/WarningGlyph.png";
-import Steve from "~/assets/images/avatars/Steve.png";
 import { Link } from "~/components/link";
 import { useProjectManager } from "~/pages/project/providers/project-manager";
 import { useAuth } from "~/providers/auth";
 import { HeaderTitle, styles } from ".";
-import { useState } from "react";
 import { PopupReport } from "~/components/bedrock/popup/popup-report";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "~/utils/routes";
 import EditIcon from "~/assets/ui/tiptap-icons/8.png";
+import { PopupWrapper } from "~/components/bedrock/popup/popup-wrapper";
+import { Avatar } from "~/components/avatar";
 
 interface HeaderProps {
   mode: ProjectMode;
@@ -27,21 +27,11 @@ export const Header = ({ mode }: HeaderProps) => {
   const { selectedProject } = useProjectManager();
   const navigate = useNavigate();
 
-  const [reportOpen, setReportOpen] = useState(false);
-
   const creator = selectedProject?.user;
 
   if (!selectedProject) return;
   return (
     <>
-      {reportOpen && selectedProject && (
-        <PopupReport
-          name={selectedProject.title}
-          id={selectedProject.id}
-          type="project"
-          onClose={() => setReportOpen(false)}
-        />
-      )}
       {selectedProject.error && (
         <Banner
           type="error"
@@ -65,9 +55,20 @@ export const Header = ({ mode }: HeaderProps) => {
           <div className={styles.title}>
             <HeaderTitle title={selectedProject?.title ?? ""} />
             {user && user?.id !== selectedProject.userId && mode === "view" && (
-              <SimpleButton transparent onClick={() => setReportOpen(true)}>
-                <img src={ReportGlyph} className={styles.icon} />
-              </SimpleButton>
+              <PopupWrapper
+                popup={(close) => (
+                  <PopupReport
+                    name={selectedProject.title}
+                    id={selectedProject.id}
+                    type="project"
+                    onClose={close}
+                  />
+                )}
+              >
+                <SimpleButton transparent>
+                  <img src={ReportGlyph} className={styles.icon} />
+                </SimpleButton>
+              </PopupWrapper>
             )}
             {user?.admin && mode !== "edit" && (
               <SimpleButton
