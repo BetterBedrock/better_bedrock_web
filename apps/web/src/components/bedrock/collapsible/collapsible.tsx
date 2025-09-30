@@ -51,7 +51,6 @@ export const Collapsible = ({
           limit={limit}
           contentText={contentText}
           contentHeight={contentHeight}
-          type={type}
         >
           {children}
         </CollapsibleContent>
