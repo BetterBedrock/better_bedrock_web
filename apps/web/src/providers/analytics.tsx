@@ -6,8 +6,9 @@ import { useNotification } from "~/providers/notification";
 import { baseUrl } from "~/utils/url";
 
 interface AnalyticsContextProps {
-  analytics: AnalyticsDto[];
-  fetchAnalytics: () => Promise<void>;
+  autoRefresh: boolean;
+  setAutoRefresh: React.Dispatch<React.SetStateAction<boolean>>;
+  fetchAnalytics: () => Promise<AnalyticsDto[] | undefined>;
   fetchUserAnalytics: (id: string) => Promise<AnalyticsDto[] | undefined>;
 }
 
@@ -18,8 +19,9 @@ interface AnalyticsProvider {
 const AnalyticsContext = createContext<AnalyticsContextProps | undefined>(undefined);
 
 export const AnalyticsProvider = ({ children }: AnalyticsProvider) => {
+  const [autoRefresh, setAutoRefresh] = useState(false);
+
   const [cookie] = useCookies(["secret"]);
-  const [analytics, setAnalytics] = useState<AnalyticsDto[]>([]);
   const { throwError } = useNotification();
   const { user } = useAuth();
 
@@ -30,11 +32,11 @@ export const AnalyticsProvider = ({ children }: AnalyticsProvider) => {
 
   const analyticsApi = new AnalyticsApi(config);
 
-  const fetchAnalytics = async () => {
+  const fetchAnalytics = async (): Promise<AnalyticsDto[] | undefined> => {
     try {
       const { data } = await analyticsApi.analyticsControllerAnalytics();
 
-      setAnalytics(data);
+      return data;
     } catch (err) {
       throwError(err, "Failed to fetch analytics");
     }
@@ -45,7 +47,7 @@ export const AnalyticsProvider = ({ children }: AnalyticsProvider) => {
       const { data } = await analyticsApi.analyticsControllerUser(id);
       return data;
     } catch (err) {
-      throwError(err, "Failed to fetch analytics");
+      throwError(err, "Failed to fetch user analytics");
     }
   };
 
@@ -53,11 +55,13 @@ export const AnalyticsProvider = ({ children }: AnalyticsProvider) => {
     if (!user || !user.admin) return;
     fetchAnalytics();
 
-    setInterval(fetchAnalytics, 2000);
-  }, [user]);
+    if (autoRefresh) setInterval(fetchAnalytics, 2000);
+  }, [user, autoRefresh]);
 
   return (
-    <AnalyticsContext.Provider value={{ analytics, fetchUserAnalytics, fetchAnalytics }}>
+    <AnalyticsContext.Provider
+      value={{ autoRefresh, setAutoRefresh, fetchUserAnalytics, fetchAnalytics }}
+    >
       {children}
     </AnalyticsContext.Provider>
   );
