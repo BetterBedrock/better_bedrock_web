@@ -52,7 +52,7 @@ jobs:
             pm2 delete better-bedrock-web || true
             pm2 delete better-bedrock-api || true
             echo "🔨 Building application..."
-            npx yarn build:prod
+            npx yarn build
             echo "🔄 Starting services..."
             pm2 start ecosystem.config.js
             pm2 save
