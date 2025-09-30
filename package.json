@@ -2,8 +2,10 @@
   "name": "better-bedrock",
   "private": true,
   "scripts": {
-    "build": "turbo build",
-    "preview": "turbo preview",
+    "build:prod": "turbo build:prod",
+    "build:dev": "turbo build:dev",
+    "preview:prod": "turbo preview:prod",
+    "preview:dev": "turbo preview:prod",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
