@@ -90,19 +90,18 @@ export const Header = ({ mode }: HeaderProps) => {
         <CardDivider sub />
 
         <div className={clsx(styles.editor)}>
-          <div className={styles.header}>
-            <img src={Steve} className={styles.avatar} />
+          <Avatar>
+            <Avatar.Profile name={creator?.name ?? "Unnamed"} size="medium" />
 
-            {/* Renders the description, which can now be any React node */}
-            <div>
-              {creator ? (
-                <BedrockText text={`@${creator?.name}`} type="p" color="white" />
-              ) : (
-                <CircularProgressIndicator size="small" />
-              )}
-              <Rating rating={selectedProject.user.rating} simple />
-            </div>
-          </div>
+            {creator ? (
+              <Avatar.Details name={creator!.name} at>
+                <Rating rating={selectedProject.user.rating} simple />
+              </Avatar.Details>
+            ) : (
+              // <BedrockText text={`@${creator?.name}`} type="p" color="white" />
+              <CircularProgressIndicator size="small" />
+            )}
+          </Avatar>
           {mode === "view" && (
             <Link link="#download">
               {/**onClick={scrollToButton} */}
