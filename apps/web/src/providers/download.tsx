@@ -55,7 +55,7 @@ export const DownloadProvider = ({ children }: DownloadProviderProps) => {
     const contentType = response.headers.get("Content-Type") || "application/octet-stream";
 
     const reader = response.body.getReader();
-    const chunks: Uint8Array[] = [];
+    const chunks: BlobPart[] = [];
     let loaded = 0;
 
     while (true) {
@@ -108,7 +108,8 @@ export const DownloadProvider = ({ children }: DownloadProviderProps) => {
 
   const verifyDownload = async (hash?: string, code?: string) => {
     try {
-      await downloadApi.downloadControllerVerify(hash, code);
+      const { data } = await downloadApi.downloadControllerVerify(hash, code);
+      setDownloadItem(data);
     } catch (err) {
       throwError(err, "Failed to verify download");
       throw err;
@@ -123,7 +124,7 @@ export const DownloadProvider = ({ children }: DownloadProviderProps) => {
   };
 
   const getLinkvertiseUrl = async (linkvertiseId: string): Promise<string> => {
-    const targetUrl = "https://betterbedrock.com/verify";
+    const targetUrl = baseUrl + "/verify";
     const pemEncodedKey = `-----BEGIN PUBLIC KEY-----
     MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1piHDY9WRIehbfC3Fpol
     Ly/WrJF8TKFVdDMobj3fkNjN/69dTv9JgXt+gcJxVn/h4NCMtQ2mCQXNBMXzLOky
@@ -160,7 +161,7 @@ export const DownloadProvider = ({ children }: DownloadProviderProps) => {
     const encodedHref = new TextEncoder().encode(targetUrl);
 
     // Split into two parts like the official script
-    let part1: Uint8Array, part2: string;
+    let part1: BufferSource, part2: string;
     if (encodedHref.length > 70) {
       part1 = encodedHref.slice(0, 70);
       part2 = new TextDecoder().decode(encodedHref.slice(70));
@@ -181,9 +182,9 @@ export const DownloadProvider = ({ children }: DownloadProviderProps) => {
     const encryptedBase64 = btoa(binary);
 
     const fullEncryptedHref = `${encryptedBase64}${part2}`;
-    const baseUrl = `https://link-to.net/${linkvertiseId}/${Math.floor(Math.random() * 1000)}/dynamic/`;
+    const baseLinkvertiseUrl = `https://link-to.net/${linkvertiseId}/${Math.floor(Math.random() * 1000)}/dynamic/`;
 
-    return `${baseUrl}?r=${fullEncryptedHref}&v=2`;
+    return `${baseLinkvertiseUrl}?r=${fullEncryptedHref}&v=2`;
   };
 
   return (
