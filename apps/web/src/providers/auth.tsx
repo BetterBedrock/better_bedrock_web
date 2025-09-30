@@ -67,7 +67,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const logout = () => {
     removeCookie("secret", { path: "/" });
     setUser(undefined);
-    setFetched(false);
 
     sendNotification({
       type: "info",
@@ -81,6 +80,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   useEffect(() => {
     if (cookie.secret && cookie.secret !== "") {
       authenticate(cookie.secret);
+    } else {
+      setFetched(true);
     }
   }, [cookie.secret]);
 
