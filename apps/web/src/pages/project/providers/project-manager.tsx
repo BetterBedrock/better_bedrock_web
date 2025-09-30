@@ -2,6 +2,7 @@ import { Content } from "@tiptap/react";
 import { createContext, ReactNode, useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { DetailedProjectDto, UpdateProjectDto } from "~/lib/api";
+import { useAuth } from "~/providers/auth";
 import { useProject } from "~/providers/project";
 import { useUser } from "~/providers/user";
 
@@ -28,6 +29,7 @@ const ProjectManagerContext = createContext<ProjectManagerContextProps | undefin
 export const ProjectManagerProvider = ({ children }: ProjectManagerProviderProps) => {
   const { file } = useParams();
   const { getUserRating } = useUser();
+  const { user } = useAuth();
   const { fetchProjectDetails, fetchDraftDetails, saveProject } = useProject();
 
   const editorContent = useRef<Content | undefined>(undefined);
@@ -39,9 +41,13 @@ export const ProjectManagerProvider = ({ children }: ProjectManagerProviderProps
 
   const fetchSelectedProject = async (id: string, draft: boolean) => {
     const project = draft ? await fetchDraftDetails(id) : await fetchProjectDetails(id);
-    const rating = await getUserRating(id);
 
-    setUserRating(rating);
+    if (user) {
+      const rating = await getUserRating(id);
+
+      setUserRating(rating);
+    }
+
     setSelectedProject(project);
     setFetched(true);
     return project;
