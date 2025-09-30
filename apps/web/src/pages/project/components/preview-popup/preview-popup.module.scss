@@ -1,17 +1,5 @@
 @use "~/utils" as g;
 
-.container {
-  width: 100%;
-
-  .part {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: g.$padding-sm;
-    gap: g.$padding-xsm;
-  }
-}
-
 .voucher {
   padding-top: 1rem;
   width: 100%;
@@ -33,14 +21,6 @@
 
 .container {
   width: 100%;
-}
-
-.part {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: g.$padding-sm;
-  gap: g.$padding-xsm;
 }
 
 .links {

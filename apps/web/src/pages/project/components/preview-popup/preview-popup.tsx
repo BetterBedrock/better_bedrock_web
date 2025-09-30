@@ -1,5 +1,12 @@
 import { Popup } from "~/components/bedrock/popup";
-import { PreviewPopupFooter, PreviewPopupPlans, PreviewPopupRecommended, PreviewPopupTabs, PreviewPopupVoucher, styles, usePreviewPopup } from ".";
+import {
+  PreviewPopupFooter,
+  PreviewPopupPlans,
+  PreviewPopupRecommended,
+  PreviewPopupTabs,
+  PreviewPopupVoucher,
+  usePreviewPopup,
+} from ".";
 import { CardDivider } from "~/components/bedrock/card";
 import { ProjectDto, VoucherDto } from "~/lib/api";
 
@@ -38,8 +45,8 @@ export const PreviewPopup = ({ onClose, project }: PreviewPopupProps) => {
 
   return (
     <Popup onClose={onClose} title="Download Method">
-      <div className={styles.container}>
-        <div className={styles.part}>
+      <Popup.Wrapper>
+        <Popup.Part>
           <PreviewPopupTabs
             categories={categories}
             selectedTimeframe={selectedTimeframe}
@@ -52,7 +59,7 @@ export const PreviewPopup = ({ onClose, project }: PreviewPopupProps) => {
             useVoucher={useVoucher}
           />
           <PreviewPopupRecommended categories={categories} purchase={purchase} />
-        </div>
+        </Popup.Part>
 
         <CardDivider />
         <PreviewPopupPlans
@@ -64,7 +71,7 @@ export const PreviewPopup = ({ onClose, project }: PreviewPopupProps) => {
         />
         <CardDivider />
         <PreviewPopupFooter />
-      </div>
+      </Popup.Wrapper>
     </Popup>
   );
 };
