@@ -10,14 +10,9 @@ import { AnalyticsModule } from "~/analytics/analytics.module";
 import { ProjectModule } from "./project/project.module";
 import { UserModule } from "~/user/user.module";
 import { ReportModule } from "~/report/report.module";
-import { ConfigModule } from "@nestjs/config";
 
 @Module({
     imports: [
-        ConfigModule.forRoot({
-            isGlobal: true,
-            envFilePath: [`.env.${process.env.NODE_ENV}`, ".env"],
-        }),
         ThrottlerModule.forRoot({
             throttlers: [
                 {
