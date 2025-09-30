@@ -56,6 +56,8 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
   };
 
   useEffect(() => {
+    // Leave this as the only case where we pre-fetch something from the server on web load
+    // It is left like this to make sure visitors count updates
     fetchCheckoutOffers();
   }, []);
 
