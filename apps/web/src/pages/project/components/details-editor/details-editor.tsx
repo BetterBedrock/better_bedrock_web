@@ -23,7 +23,7 @@ export const DetailsEditor = () => {
   const { user } = useAuth();
   const { sendNotification } = useNotification();
   const { uploadFile } = useProject();
-  const { selectedProject, setSelectedProject, fetchSelectedProject } = useProjectManager();
+  const { selectedProject, setSelectedProject, fetchSelectedProject, handleSaveProject } = useProjectManager();
   if (!selectedProject) return;
 
   const uploadDownloadFile = async (file: File | undefined) => {
@@ -41,6 +41,8 @@ export const DetailsEditor = () => {
       label: "Successfully uploaded download file",
       type: "success",
     });
+
+    await handleSaveProject(selectedProject);
   };
 
   return (
