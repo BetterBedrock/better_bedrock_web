@@ -11,7 +11,7 @@ export const TutorialVideosGrid = ({ videos, deprected }: TutorialVideosGridProp
   <div className={styles.grid}>
     {videos.map((tutorial, index) => (
       <GridCard
-        key={tutorial.title}
+        key={tutorial.title + index}
         index={index + 1}
         title={tutorial.title}
         description={tutorial.description}

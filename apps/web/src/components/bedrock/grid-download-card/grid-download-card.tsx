@@ -68,8 +68,13 @@ export const GridDownloadCard = ({ className, tags, project, mode }: GridDownloa
 
           <div className={styles.details}>
             <Tag border={["top", "right"]} name={PROJECT_TYPES[project.type]} />
-            {tags?.map((tag) => (
-              <Tag border={["top", "right"]} name={tag} className={styles.special} />
+            {tags?.map((tag, index) => (
+              <Tag
+                key={`${tag}${index}`}
+                border={["top", "right"]}
+                name={tag}
+                className={styles.special}
+              />
             ))}
           </div>
         </div>
@@ -98,8 +103,9 @@ export const GridDownloadCard = ({ className, tags, project, mode }: GridDownloa
                 />
               </div>
               <div className={styles.tags2}>
-                {project.tags?.map((tag) => (
+                {project.tags?.map((tag, index) => (
                   <BedrockText
+                    key={`${tag.name}${index}`}
                     text={`#${tag.name}`}
                     type="p2"
                     textAlign="left"

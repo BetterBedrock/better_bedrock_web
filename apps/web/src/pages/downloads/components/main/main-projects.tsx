@@ -145,12 +145,14 @@ export const MainProjects = () => {
           floating
           className={styles.types}
           limit={true}
-          type="white"
+          type="green"
         >
           <ButtonGroup direction="vertical">{types}</ButtonGroup>
         </Collapsible>
 
-        <ButtonGroup direction="horizontal" className={styles.group}>{types}</ButtonGroup>
+        <ButtonGroup direction="horizontal" className={styles.group}>
+          {types}
+        </ButtonGroup>
         <Collapsible
           headerText={selectedOrder}
           contentText=""
@@ -159,8 +161,9 @@ export const MainProjects = () => {
           limit={true}
         >
           <ButtonGroup direction="vertical">
-            {Object.values(SearchOrder).map((type) => (
+            {Object.values(SearchOrder).map((type, index) => (
               <Button
+                key={index}
                 type="dark"
                 width="100%"
                 center

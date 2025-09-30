@@ -23,7 +23,8 @@ export const DetailsEditor = () => {
   const { user } = useAuth();
   const { sendNotification } = useNotification();
   const { uploadFile } = useProject();
-  const { selectedProject, setSelectedProject, fetchSelectedProject, handleSaveProject } = useProjectManager();
+  const { selectedProject, setSelectedProject, fetchSelectedProject, handleSaveProject } =
+    useProjectManager();
   if (!selectedProject) return;
 
   const uploadDownloadFile = async (file: File | undefined) => {
@@ -98,8 +99,9 @@ export const DetailsEditor = () => {
             </Button>
           </ButtonGroup>
           <div className={styles.tags}>
-            {(selectedProject?.tags ?? []).map((tag) => (
+            {(selectedProject?.tags ?? []).map((tag, index) => (
               <Tag
+                key={tag.name + index}
                 border={"all"}
                 name={tag.name}
                 deletable

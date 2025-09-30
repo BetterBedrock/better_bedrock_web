@@ -72,13 +72,14 @@ export const StatisticsCard = ({
         <Collapsible
           floating
           headerText={DATA_RANGE_OPTIONS.find((d) => d.label === category)?.text ?? "No Data Range"}
-          contentText={""}
+          contentText=""
           width="100%"
           limit
         >
           <ButtonGroup direction="vertical">
             {DATA_RANGE_OPTIONS.map((c) => (
               <Button
+                key={c.label}
                 type="dark"
                 width="100%"
                 isClicked={c.label === category}

@@ -1,6 +1,6 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { styles } from ".";
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { Input } from "~/components/bedrock/input";
 import { Button } from "~/components/bedrock/button";
 import { ProjectCommentDto, UserDto } from "~/lib/api";
@@ -59,7 +59,7 @@ export const Comment = ({
     content: string,
     reply: boolean = false,
   ) => (
-    <>
+    <Fragment key={commentId}>
       <Avatar className={styles.header}>
         <Avatar.Profile name={commentUser} size="medium" />
         <Avatar.Details name={commentUser} at bold className={styles.details}>
@@ -139,7 +139,7 @@ export const Comment = ({
           </ButtonGroup>
         </div>
       )}
-    </>
+    </Fragment>
   );
 
   return (

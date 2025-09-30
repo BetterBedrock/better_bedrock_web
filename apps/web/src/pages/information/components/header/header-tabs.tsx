@@ -14,7 +14,7 @@ export const HeaderTabs = ({ selectedCategory }: HeaderTabsProps) => (
   <div>
     <ButtonGroup>
       {informationData.map((c, index) => (
-        <Link link={Routes.INFORMATION + "/" + c.id} className={styles.link}>
+        <Link key={index} link={Routes.INFORMATION + "/" + c.id} className={styles.link}>
           <Button
             key={index}
             tabIndex={index}

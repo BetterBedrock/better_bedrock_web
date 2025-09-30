@@ -48,8 +48,8 @@ export const BarChart = ({ data, category }: BarChartProps) => {
   return (
     <div className={styles.chart}>
       <div className={styles.data}>
-        {convertedData.map((piece) => (
-          <div className={styles.piece}>
+        {convertedData.map((piece, index) => (
+          <div key={piece.name+index} className={styles.piece}>
             <Tooltip text={`${piece.name}\n${piece.value.toString()}`} className={styles.tooltip}>
               <Label type="white" style={{ height: `${piece.percentage}%` }} />
             </Tooltip>

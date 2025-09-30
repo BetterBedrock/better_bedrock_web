@@ -57,12 +57,13 @@ export const GridCard: React.FC<GridCardProps> = ({
                 {tags && (
                   <div className={styles.tagsWrapper}>
                     <div className={styles.tagsContainer}>
-                      {tags.map((tag) => {
+                      {tags.map((tag, index) => {
                         const selectedTag = tagData.find((t) => t.id === tag);
-                        if (!selectedTag) return <></>;
+                        if (!selectedTag) return;
 
                         return (
                           <BedrockText
+                            key={index}
                             text={selectedTag.name}
                             type={"p"}
                             textAlign="left"

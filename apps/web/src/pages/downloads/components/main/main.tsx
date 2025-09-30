@@ -22,7 +22,7 @@ export const Main = () => {
           <Banner
             type="info"
             message="Our creators get anti-bypass for ads & 100% of the ad revenue!"
-          />{" "}
+          />
           <BedrockText text="Projects" type="h1" color="white" font="Minecraft" textAlign="start" />
         </div>
         <CardDivider sub />

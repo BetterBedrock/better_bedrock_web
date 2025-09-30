@@ -137,22 +137,20 @@ export const Comments = () => {
         <div className={styles.editor}>
           <div className={styles.comments}>
             {comments?.length === 0 && <Banner type="neutral" message="No comments yet" />}
-            {comments?.map((comment, index) => (
-              <>
-                <Comment
-                  key={index}
-                  comment={comment}
-                  onReply={handlePostReply}
-                  user={user}
-                  onDelete={handleDeleteComment}
-                  subComments={
-                    comment.replies?.map((reply) => ({
-                      comment: reply,
-                      user: undefined,
-                    })) ?? []
-                  }
-                />
-              </>
+            {comments?.map((comment) => (
+              <Comment
+                key={comment.id}
+                comment={comment}
+                onReply={handlePostReply}
+                user={user}
+                onDelete={handleDeleteComment}
+                subComments={
+                  comment.replies?.map((reply) => ({
+                    comment: reply,
+                    user: undefined,
+                  })) ?? []
+                }
+              />
             ))}
           </div>
         </div>
