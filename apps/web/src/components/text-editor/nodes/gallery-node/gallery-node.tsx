@@ -14,8 +14,7 @@ export default function GalleryNodeView(props: any) {
   const [_, setIsEditing] = useState(editor.editable);
   const { uploadFile } = useProject();
   const { selectedProject } = useProjectManager();
-
-  console.log({ props });
+  
   return (
     <NodeViewWrapper className="tiptap-gallery-node">
       <Gallery
