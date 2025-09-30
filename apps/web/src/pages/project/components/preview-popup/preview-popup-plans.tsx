@@ -5,6 +5,7 @@ import { styles } from ".";
 import { CheckoutOptionGroupDto } from "~/lib/api";
 import { Link } from "~/components/link";
 import { useEffect, useState } from "react";
+import { Popup } from "~/components/bedrock/popup";
 
 interface PreviewPopupPlansProps {
   categories: CheckoutOptionGroupDto[] | undefined;
@@ -32,7 +33,7 @@ export const PreviewPopupPlans = ({
   }, []);
 
   return (
-    <div className={styles.part}>
+    <Popup.Part>
       {categories && (
         <BedrockText
           textAlign={"left"}
@@ -55,7 +56,7 @@ export const PreviewPopupPlans = ({
               onClick={() => purchase(item.priceId)}
             />
           ))}
-        <Link isExternalLink={true} link={linkUrl}>
+        <Link isExternalLink={true} link={linkUrl} hideStyles>
           <DownloadMethodCard
             buttonType="white"
             price="Free"
@@ -64,6 +65,6 @@ export const PreviewPopupPlans = ({
           />
         </Link>
       </ButtonGroup>
-    </div>
+    </Popup.Part>
   );
 };
