@@ -5,14 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { Routes } from "~/utils/routes";
 import { useProjectManager } from "~/pages/project/providers/project-manager";
 import { useAuth } from "~/providers/auth";
-import { useState } from "react";
 import { PreviewPopup } from "~/pages/project/components/preview-popup";
+import { PopupWrapper } from "~/components/bedrock/popup/popup-wrapper";
 
 export const DownloadButton = () => {
   const { user } = useAuth();
   const { generateDownload } = useDownload();
   const { selectedProject } = useProjectManager();
-  const [showPopup, setShowPopup] = useState(false);
 
   const instantDownload = selectedProject!.userId === user?.id || user?.admin;
 
@@ -20,23 +19,18 @@ export const DownloadButton = () => {
 
   const handleDownload = async () => {
     if (!instantDownload) {
-      setShowPopup((prev) => !prev);
       return;
     }
 
-    generateDownload(selectedProject!).then(() => {
-      navigate(Routes.FETCH);
-    });
+    await generateDownload(selectedProject!);
+    navigate(Routes.FETCH);
   };
 
   if (!selectedProject?.downloadFile) return <></>;
 
   return (
-    <>
-      {showPopup && <PreviewPopup onClose={() => setShowPopup(false)} project={selectedProject!} />}
-
+    <PopupWrapper ignore={instantDownload} popup={(close) => <PreviewPopup onClose={close} project={selectedProject!} />}>
       <Button
-        //   ref={ref}
         id="download"
         width="100%"
         type="green"
@@ -45,6 +39,6 @@ export const DownloadButton = () => {
       >
         <BedrockText text="Download" type="p" color="white" />
       </Button>
-    </>
+    </PopupWrapper>
   );
 };
