@@ -1,8 +1,11 @@
 import { Project } from "~/pages/project/project";
 import { ProjectManagerProvider } from "~/pages/project/providers/project-manager";
+import { DownloadProvider } from "~/providers/download";
 
 export const ProjectWrapper = () => (
-  <ProjectManagerProvider>
-    <Project />
-  </ProjectManagerProvider>
+  <DownloadProvider>
+    <ProjectManagerProvider>
+      <Project />
+    </ProjectManagerProvider>
+  </DownloadProvider>
 );
