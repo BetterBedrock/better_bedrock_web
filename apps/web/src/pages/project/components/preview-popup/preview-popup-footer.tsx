@@ -2,9 +2,10 @@ import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { styles } from ".";
 import { Link } from "~/components/link";
 import { Routes } from "~/utils/routes";
+import { Popup } from "~/components/bedrock/popup";
 
 export const PreviewPopupFooter = () => (
-  <div className={styles.part}>
+  <Popup.Part>
     <div className={styles.links}>
       <Link link={Routes.PRIVACY_POLICY}>
         <BedrockText text="Privacy Policy" type="p" />
@@ -14,5 +15,5 @@ export const PreviewPopupFooter = () => (
         <BedrockText text="Terms" type="p" />
       </Link>
     </div>
-  </div>
+  </Popup.Part>
 );
