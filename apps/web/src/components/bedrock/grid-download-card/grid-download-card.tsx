@@ -38,6 +38,13 @@ export const GridDownloadCard = ({ className, tags, project, mode }: GridDownloa
 
   return (
     <div className={clsx(styles.container, className)}>
+      <div className={styles.author}>
+        <Avatar className={styles.header} name={project.user.name}>
+          <Avatar.Profile name={project.user.name} size="small" link={false} />
+
+          <Avatar.Details name={project.user.name} link={false} at />
+        </Avatar>
+      </div>
       <Link link={link()} className={clsx(styles.link, styles.body)}>
         <div className={styles.background}>
           {!project.thumbnail || project.thumbnail === "" ? (
@@ -57,14 +64,6 @@ export const GridDownloadCard = ({ className, tags, project, mode }: GridDownloa
               className={styles.thumbnail}
             />
           )}
-
-          <div className={styles.author}>
-            <Avatar className={styles.header} name={project.user.name}>
-              <Avatar.Profile name={project.user.name} size="small" />
-
-              <Avatar.Details name={project.user.name} at />
-            </Avatar>
-          </div>
 
           <div className={styles.details}>
             <Tag border={["top", "right"]} name={PROJECT_TYPES[project.type]} />
