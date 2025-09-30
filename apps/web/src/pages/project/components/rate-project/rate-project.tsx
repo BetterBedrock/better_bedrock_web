@@ -2,8 +2,10 @@ import { Rating } from "~/components/rating";
 import { styles } from ".";
 import { useProjectManager } from "~/pages/project/providers/project-manager";
 import { useProject } from "~/providers/project";
+import { useAuth } from "~/providers/auth";
 
 export const RateProject = () => {
+  const { user } = useAuth();
   const { userRating, selectedProject, setSelectedProject } = useProjectManager();
   const { deleteRating, postRating } = useProject();
 
@@ -23,6 +25,8 @@ export const RateProject = () => {
     if (!newProjectRating) return;
     setSelectedProject((prev) => ({ ...prev!, rating: newProjectRating }));
   };
+
+  if(!user) return;
 
   return (
     <div className={styles.center}>
