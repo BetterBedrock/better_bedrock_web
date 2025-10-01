@@ -41,7 +41,7 @@ export const ReportCard = ({ report, lockClicking, height = "auto", onClick }: R
   }, [report]);
 
   if (!fetched) {
-    return <CircularProgressIndicator />;
+    return <CircularProgressIndicator center/>;
   }
 
   const name = reported ? reported.name : project ? project.title : "Unknown";
