@@ -14,6 +14,7 @@ export const Resolved = () => {
   if(reports.length === 0) {
     return <Banner message="No resolved reports" type="neutral"/>
   }
+  
   return (
     <div className={styles.projects}>
       {reports
