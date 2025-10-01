@@ -6,7 +6,7 @@ import { extname } from "path";
 import fs from "fs";
 import { ProjectRequest } from "~/common/types/project-request.type";
 
-export const IMAGE_EXTENSIONS = ["png", "jpg", "jpeg"];
+export const IMAGE_EXTENSIONS = ["png", "jpg", "jpeg", "gif", "webp"];
 export const MC_EXTENSIONS = [
     "mcworld",
     "mcproject",
