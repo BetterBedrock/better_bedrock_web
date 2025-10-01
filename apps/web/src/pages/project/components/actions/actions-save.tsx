@@ -2,7 +2,7 @@ import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
 
 interface ActionsSaveProps {
-  onClick: () => Promise<void>;
+  onClick: () => Promise<boolean>;
 }
 
 export const ActionsSave = ({ onClick }: ActionsSaveProps) => (

@@ -9,10 +9,7 @@ import { useProjectManager } from "~/pages/project/providers/project-manager";
 import { useProject } from "~/providers/project";
 
 export const Actions = () => {
-  const {
-    submitProject,
-    cancelSubmission,
-  } = useProject();
+  const { submitProject, cancelSubmission } = useProject();
   const { handleSaveProject, selectedProject, setSelectedProject } = useProjectManager();
 
   const handleSubmission = async () => {
@@ -24,6 +21,7 @@ export const Actions = () => {
 
       if (!submission) return;
       setSelectedProject((prev) => ({ ...prev!, submitted: true, error: null }));
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     } else {
       await cancelSubmission(selectedProject.id, selectedProject.title);
       setSelectedProject((prev) => ({ ...prev!, submitted: false }));
@@ -53,7 +51,6 @@ export const Actions = () => {
           <BedrockText text="Deletion Options" type="p" color="white" />
         </Button>
       </PopupWrapper>
-
     </ButtonGroup>
   );
 };
