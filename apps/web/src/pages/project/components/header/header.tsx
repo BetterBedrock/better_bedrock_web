@@ -24,14 +24,27 @@ interface HeaderProps {
 
 export const Header = ({ mode }: HeaderProps) => {
   const { user } = useAuth();
-  const { selectedProject } = useProjectManager();
+  const { selectedProject, downloadButtonRef } = useProjectManager();
   const navigate = useNavigate();
 
   const creator = selectedProject?.user;
 
   if (!selectedProject) return;
+
+  const handleScrollToButton = () => {
+    if (!downloadButtonRef.current) return;
+
+    downloadButtonRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
+  };
+
   return (
     <>
+      {selectedProject.submitted && (
+        <Banner
+          type="info"
+          message="The project has been submitted, and any edits are no longer saved. We will get back to you via email within 24 hours."
+        />
+      )}
       {selectedProject.error && (
         <Banner
           type="error"
@@ -42,7 +55,7 @@ export const Header = ({ mode }: HeaderProps) => {
                 type="p"
                 color="white"
                 font="Minecraft"
-                text={`Your project has been decline for the following reason: `}
+                text="Your project has been decline for the following reason:"
               />
               <BedrockText textAlign="start" type="p" color="white" text={selectedProject.error} />
             </>
@@ -103,13 +116,13 @@ export const Header = ({ mode }: HeaderProps) => {
             )}
           </Avatar>
           {mode === "view" && (
-            <Link link="#download">
-              {/**onClick={scrollToButton} */}
+            <Link>
               <BedrockText
                 text="Skip to download"
                 type="p"
                 color="white"
                 extraClassName={styles.skip}
+                onClick={handleScrollToButton}
               />
             </Link>
           )}

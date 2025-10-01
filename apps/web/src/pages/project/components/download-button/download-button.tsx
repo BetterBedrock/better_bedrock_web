@@ -11,7 +11,7 @@ import { PopupWrapper } from "~/components/bedrock/popup/popup-wrapper";
 export const DownloadButton = () => {
   const { user } = useAuth();
   const { generateDownload } = useDownload();
-  const { selectedProject } = useProjectManager();
+  const { selectedProject, downloadButtonRef } = useProjectManager();
 
   const instantDownload = selectedProject!.userId === user?.id || user?.admin;
 
@@ -29,8 +29,12 @@ export const DownloadButton = () => {
   if (!selectedProject?.downloadFile) return <></>;
 
   return (
-    <PopupWrapper ignore={instantDownload} popup={(close) => <PreviewPopup onClose={close} project={selectedProject!} />}>
+    <PopupWrapper
+      ignore={instantDownload}
+      popup={(close) => <PreviewPopup onClose={close} project={selectedProject!} />}
+    >
       <Button
+        ref={downloadButtonRef}
         id="download"
         width="100%"
         type="green"
