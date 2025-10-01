@@ -5,8 +5,8 @@ import banner4 from "~/assets/images/banners/bb4.png";
 import banner5 from "~/assets/images/banners/bb5.png";
 import banner6 from "~/assets/images/banners/bb6.png";
 
-import crosshairBackground12 from "~/assets/images/crosshair_backgrounds/12.png";
-import crosshairBackground13 from "~/assets/images/crosshair_backgrounds/13.png";
+import crosshairBackground12 from "~/assets/images/crosshair_backgrounds/12.webp";
+import crosshairBackground13 from "~/assets/images/crosshair_backgrounds/13.webp";
 
 export interface AboutSectionElement {
   title: string;

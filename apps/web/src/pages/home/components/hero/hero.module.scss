@@ -14,7 +14,7 @@ $header-height: 65dvh;
 .background {
   @include g.page-background(
     g.$background-linear-gradient,
-    "~/assets/images/crosshair_backgrounds/9.png"
+    "~/assets/images/crosshair_backgrounds/9.webp"
   );
 }
 
