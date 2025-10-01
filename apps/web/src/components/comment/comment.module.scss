@@ -24,6 +24,11 @@
     }
   }
 }
+
+.wrap {
+  overflow-wrap: anywhere;
+}
+
 .avatar {
   width: g.$icon-md;
   height: g.$icon-md;
