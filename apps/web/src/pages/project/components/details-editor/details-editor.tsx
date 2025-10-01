@@ -141,7 +141,7 @@ export const DetailsEditor = () => {
           <BedrockText
             text={
               selectedProject?.downloadFile
-                ? `Selected File Size: ${selectedProject.itemWeight}MB`
+                ? `Selected File Size: ${calcItemWeight(selectedProject.itemWeight)}MB`
                 : "No selected file yet"
             }
             type="p"

@@ -6,7 +6,7 @@ import { baseUrl } from "~/utils/url";
 import { Link } from "~/components/link";
 import { useNavigate } from "react-router-dom";
 
-const calcItemWeight = (itemWeight: number) => {
+export const calcItemWeight = (itemWeight: number) => {
   return itemWeight <= 0.1 ? "<0.0" : itemWeight.toFixed(1);
 };
 
