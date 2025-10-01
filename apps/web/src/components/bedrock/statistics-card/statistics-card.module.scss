@@ -11,9 +11,8 @@
 }
 
 .name {
-  -ms-word-break: break-all;
-  word-break: break-all;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .highlight {
@@ -31,5 +30,5 @@
 
 .header {
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }

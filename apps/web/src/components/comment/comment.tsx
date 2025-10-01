@@ -63,7 +63,7 @@ export const Comment = ({
       <Avatar className={styles.header}>
         <Avatar.Profile name={commentUser} size="medium" />
         <Avatar.Details name={commentUser} at bold className={styles.details}>
-          <BedrockText text={content} type="p" color="white" textAlign="start" />
+          <BedrockText text={content} type="p" color="white" textAlign="start" extraClassName={styles.wrap} />
           {user && reply && !isReplying && (
             <BedrockText
               text="Reply"

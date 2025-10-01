@@ -1,5 +1,5 @@
 import { styles } from ".";
-import { HTMLAttributes, ReactNode, useEffect, useState, forwardRef, useRef } from "react";
+import { HTMLAttributes, ReactNode, useEffect, useState, forwardRef } from "react";
 import clsx from "clsx";
 import bedrockClickSound from "~/assets/sounds/minecraft_click.mp3";
 
@@ -32,6 +32,7 @@ import RedUncheckedHover from "~/assets/ui/buttons/red/unchecked_hover.png";
 import RedChecked from "~/assets/ui/buttons/red/checked.png";
 import RedCheckedHover from "~/assets/ui/buttons/red/checked_hover.png";
 import RedCheckedDefault from "~/assets/ui/buttons/red/default.png";
+import useSound from "use-sound";
 
 export type ButtonType = "green" | "white" | "dark" | "gold" | "red";
 
@@ -76,31 +77,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
     const [preload, setPreload] = useState(false);
     const [isHeld, setIsHeld] = useState(false);
 
-    const audioRef = useRef<HTMLAudioElement | null>(null);
-
-    useEffect(() => {
-      if (playSound && !audioRef.current) {
-        audioRef.current = new Audio(bedrockClickSound);
-        audioRef.current.volume = 0.25;
-        audioRef.current.preload = "auto";
-      }
-
-      return () => {
-        if (audioRef.current) {
-          audioRef.current.src = "";
-          audioRef.current = null;
-        }
-      };
-    }, [playSound]);
-
-    const playClickSound = () => {
-      if (audioRef.current && playSound) {
-        audioRef.current.currentTime = 0;
-        audioRef.current.play().catch((e: unknown) => {
-          console.warn("Audio play failed:", e);
-        });
-      }
-    };
+    const [playClickSound] = useSound(bedrockClickSound, { volume: 0.25 });
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (lockClicking) return;
@@ -108,7 +85,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
       setIsHeld(true);
       handleSetIsToggled(false);
 
-      playClickSound();
+      if (playSound) playClickSound();
       if (onClick) onClick(e);
     };
 

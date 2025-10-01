@@ -27,14 +27,37 @@ $title-height: clamp(2.7em, 7vw, 6em);
 .title {
   text-wrap: nowrap;
   font-size: $title-height;
-  line-height: 2.5rem;
+  line-height: 1;
   width: min-content;
 
-  text-box-trim: trim-both;
-  text-box-edge: cap alphabetic;
+  display: inline-flex;
+  align-items: baseline;
 
   @media (max-width: g.$breakpoint-mobileL) {
     text-wrap: wrap;
+  }
+}
+
+.title {
+  text-wrap: nowrap;
+  font-size: $title-height;
+  width: min-content;
+
+  display: inline-flex;
+  align-items: baseline;
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    text-wrap: wrap;
+  }
+}
+
+@supports (text-box-trim: trim-both) {
+  .title {
+    display: block;
+    align-items: unset;
+
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
   }
 }
 
@@ -67,7 +90,17 @@ $title-height: clamp(2.7em, 7vw, 6em);
   flex-direction: column;
   gap: g.$padding-xsm;
   width: 100%;
-  height: 100%;
+
+  /* Lazy fix for firefox not implementing text-box-trim /shrug*/
+  height: 69%;
+  @media (max-width: g.$breakpoint-mobileM) {
+    height: 90%;
+  }
+
+  @supports (text-box-trim: trim-both) {
+    height: 100%;
+  }
+
   max-width: 40px;
 
   @media (max-width: g.$breakpoint-mobileL) {

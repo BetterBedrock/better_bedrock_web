@@ -59,7 +59,7 @@ export const TextEditor = ({ content, onChange, onUpload, editable }: TextEditor
         autocorrect: "off",
         autocapitalize: "off",
         "aria-label": "Main content area, start typing to enter text.",
-        class: "simple-editor",
+        class: styles.wrapper,
       },
     },
     extensions: [

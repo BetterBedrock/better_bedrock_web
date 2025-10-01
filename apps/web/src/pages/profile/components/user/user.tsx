@@ -10,6 +10,7 @@ import {
 import { useUserProfile } from "~/pages/profile/providers/user-profile";
 import { UserLinkvertiseInfo } from "~/pages/profile/components/user/user-linkvertise-info";
 import { useAuth } from "~/providers/auth";
+import clsx from "clsx";
 
 export const User = () => {
   const { selectedUser, rating } = useUserProfile();
@@ -27,11 +28,11 @@ export const User = () => {
               <UserProfileActions />
             </div>
             <UserProfileRating rating={rating} />
-            <BedrockText type="p" text={selectedUser!.bio} color="white" textAlign="left" extraClassName={styles.text} />
+            <BedrockText type="p" text={selectedUser!.bio} color="white" textAlign="left" extraClassName={clsx(styles.text, styles.wrap)} />
           </div>
         </div>
         <div className={styles.bio}>
-          <BedrockText type="p" text={selectedUser!.bio} color="white" textAlign="left" />
+          <BedrockText type="p" text={selectedUser!.bio} color="white" textAlign="left" extraClassName={styles.wrap}/>
         </div>
       </Card>
     </>

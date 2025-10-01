@@ -21,7 +21,7 @@ interface AvatarDetailsProps {
   at?: boolean;
   center?: boolean;
   children?: ReactNode;
-    link?: boolean;
+  link?: boolean;
   className?: string;
 }
 
@@ -50,7 +50,7 @@ Avatar.Profile = ({ size, name, className, link = true }: AvatarProfileProps) =>
   </Link>
 );
 
-Avatar.Details = ({ name, at, bold, className, children, link }: AvatarDetailsProps) => {
+Avatar.Details = ({ name, at, bold, className, children, link = true }: AvatarDetailsProps) => {
   return (
     <div className={clsx(styles.details, className && className)}>
       <Link link={link ? Routes.PROFILE + "/" + name : undefined} hideStyles>
