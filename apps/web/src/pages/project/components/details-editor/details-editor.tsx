@@ -8,20 +8,21 @@ import { Input } from "~/components/bedrock/input";
 import { Tag } from "~/components/bedrock/tag";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { styles } from ".";
-import { ProjectType } from "~/lib/api";
+import { ProjectType, TagNameDto } from "~/lib/api";
 import { HeaderTitle } from "~/pages/project/components/header";
 import { useProjectManager } from "~/pages/project/providers/project-manager";
 import { useNotification } from "~/providers/notification";
 import { useProject } from "~/providers/project";
 import { useAuth } from "~/providers/auth";
 import { InputSwitch } from "~/components/bedrock/input/input-switch";
+import { calcItemWeight } from "~/pages/downloads/components/better-bedrock";
 
 export const DetailsEditor = () => {
   const tagInputRef = useRef<HTMLInputElement>(null);
   const uploadFileRef = useRef<HTMLInputElement>(null);
 
   const { user } = useAuth();
-  const { sendNotification } = useNotification();
+  const { sendNotification, throwError } = useNotification();
   const { uploadFile } = useProject();
   const { selectedProject, setSelectedProject, fetchSelectedProject, handleSaveProject } =
     useProjectManager();
@@ -29,7 +30,9 @@ export const DetailsEditor = () => {
 
   const uploadDownloadFile = async (file: File | undefined) => {
     if (!selectedProject || !file) return;
-    await uploadFile(selectedProject!.id, file);
+    const uploadedFile = await uploadFile(selectedProject!.id, file);
+    if (!uploadedFile) return;
+
     const newProject = await fetchSelectedProject(selectedProject.id, true);
     setSelectedProject((prev) => ({
       ...prev!,
@@ -44,6 +47,62 @@ export const DetailsEditor = () => {
     });
 
     await handleSaveProject(selectedProject);
+  };
+
+  const handleCreateTag = async () => {
+    const tagName = tagInputRef.current?.value.trim();
+
+    if (selectedProject.tags.find((t) => t.name === tagName)) {
+      throwError(null, "Tag with this name is already attached to this project");
+      return;
+    }
+
+    if (!tagName) return;
+    const newSelectedProject = {
+      ...selectedProject!,
+      tags: [...(selectedProject?.tags ?? []), { name: tagName }],
+    };
+
+    const updateProject = await handleSaveProject(newSelectedProject);
+
+    if (!updateProject) {
+      return;
+    }
+
+    setSelectedProject(newSelectedProject);
+
+    if (!tagInputRef.current) return;
+    tagInputRef.current.value = "";
+  };
+
+  const handleDeleteTag = async (tag: TagNameDto) => {
+    const newProject = {
+      ...selectedProject!,
+      tags: selectedProject?.tags.filter((existingTag) => existingTag.name !== tag.name) ?? [],
+    };
+    setSelectedProject(newProject);
+    await handleSaveProject(newProject);
+  };
+
+  const handleUpdateType = async (key: string) => {
+    const newProject = { ...selectedProject!, type: key as ProjectType };
+    setSelectedProject(newProject);
+    await handleSaveProject(newProject);
+  };
+
+  const handleSwitchBetterBedrock = async () => {
+    const newProject = {
+      ...selectedProject!,
+      betterBedrockContent: !selectedProject?.betterBedrockContent,
+    };
+    setSelectedProject(newProject);
+    await handleSaveProject(newProject);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleCreateTag();
+    }
   };
 
   return (
@@ -61,12 +120,8 @@ export const DetailsEditor = () => {
             {Object.entries(PROJECT_TYPES).map(([key, label]) => (
               <Button
                 key={key}
-                // transparent
-                // toggled
                 type={key === selectedProject.type ? "green" : "white"}
-                onClick={() =>
-                  setSelectedProject((prev) => ({ ...prev!, type: key as ProjectType }))
-                }
+                onClick={async () => await handleUpdateType(key)}
                 isClicked={key === selectedProject.type}
                 isToggled={key === selectedProject.type}
                 center
@@ -85,16 +140,13 @@ export const DetailsEditor = () => {
         <div className={clsx(styles.editor, styles.size)}>
           <BedrockText text="Tags" type="p" color="white" textAlign="left" />
           <ButtonGroup className={styles.creator}>
-            <Input className={styles.input} placeholder="Tag Name" ref={tagInputRef} />
-            <Button
-              onClick={() => {
-                setSelectedProject((prev) => ({
-                  ...prev!,
-                  tags: [...(prev?.tags ?? []), { name: tagInputRef.current?.value ?? "" }],
-                }));
-              }}
-              center
-            >
+            <Input
+              className={styles.input}
+              placeholder="Tag Name"
+              ref={tagInputRef}
+              onKeyDown={handleKeyDown}
+            />
+            <Button onClick={handleCreateTag} center>
               <BedrockText text="Create" type="p" color="white" />
             </Button>
           </ButtonGroup>
@@ -102,15 +154,10 @@ export const DetailsEditor = () => {
             {(selectedProject?.tags ?? []).map((tag, index) => (
               <Tag
                 key={tag.name + index}
-                border={"all"}
+                border="all"
                 name={tag.name}
                 deletable
-                onDelete={() => {
-                  setSelectedProject((prev) => ({
-                    ...prev!,
-                    tags: prev?.tags.filter((existingTag) => existingTag.name !== tag.name) ?? [],
-                  }));
-                }}
+                onDelete={() => handleDeleteTag(tag)}
               />
             ))}
           </div>
@@ -125,12 +172,7 @@ export const DetailsEditor = () => {
               <InputSwitch
                 placeholder="Better Bedrock Content"
                 checked={selectedProject.betterBedrockContent}
-                onChange={() => {
-                  setSelectedProject((prev) => ({
-                    ...prev!,
-                    betterBedrockContent: !prev?.betterBedrockContent,
-                  }));
-                }}
+                onChange={handleSwitchBetterBedrock}
               />
             </div>
           </>
