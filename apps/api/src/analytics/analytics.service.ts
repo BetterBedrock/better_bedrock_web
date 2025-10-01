@@ -9,7 +9,30 @@ export class AnalyticsService {
     constructor(private prismaService: PrismaService) {}
 
     async analytics() {
-        return this.prismaService.analytics.findMany();
+        const topFileProjects = await this.prismaService.analytics.groupBy({
+            by: ["name"],
+            where: { type: "file" },
+            _sum: { value: true },
+            orderBy: {
+                _sum: { value: "desc" },
+            },
+            take: 10,
+        });
+
+        const topFileNames = topFileProjects.map((p) => p.name);
+
+        return this.prismaService.analytics.findMany({
+            where: {
+                OR: [
+                    { type: { not: "file" } },
+                    {
+                        type: "file",
+                        name: { in: topFileNames },
+                    },
+                ],
+            },
+            orderBy: { date: "asc" },
+        });
     }
 
     async projectAnalytics(projectId: string, search?: SearchOrder) {
