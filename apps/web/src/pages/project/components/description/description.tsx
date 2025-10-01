@@ -43,7 +43,6 @@ export const Description = ({ mode }: DescriptionProps) => {
           editable={true}
           content={selectedProject?.description}
           onChange={handleChange}
-          onUpload={() => handleSaveProject(selectedProject!)}
         />
       </div>
     </Card>
