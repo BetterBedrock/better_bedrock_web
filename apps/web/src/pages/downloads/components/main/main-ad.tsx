@@ -1,8 +1,7 @@
 import { MainBanner } from "~/pages/downloads/components/main/main-banner";
 import { styles } from ".";
-import BetterBedrockImage from "~/assets/images/crosshair_backgrounds/25.png";
-// import ExtensionsImage from "~/assets/images/crosshair_backgrounds/26.png";
-import SideProjectsImage from "~/assets/images/crosshair_backgrounds/27.png";
+import BetterBedrockImage from "~/assets/images/crosshair_backgrounds/25.webp";
+import SideProjectsImage from "~/assets/images/crosshair_backgrounds/27.webp";
 import { Routes } from "~/utils/routes";
 
 export const MainAd = () => {
