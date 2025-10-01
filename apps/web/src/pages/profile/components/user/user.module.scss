@@ -1,7 +1,8 @@
 @use "~/utils/_variables" as g;
 
-$profile-image-min-size: 120px;
-$profile-image-max-size: 150px;
+$profile-image-size-laptop: 150px;
+$profile-image-size-tablet: 120px;
+$profile-image-size-mobile: 80px;
 
 .wrapper {
   width: 100%;
@@ -11,7 +12,7 @@ $profile-image-max-size: 150px;
 }
 
 .card {
-  display:flex;
+  display: flex;
   flex-direction: column;
   padding: g.$padding-sm;
   gap: g.$padding-sm;
@@ -31,20 +32,22 @@ $profile-image-max-size: 150px;
 }
 
 .image {
-  min-width: $profile-image-min-size;
-  max-width: $profile-image-max-size;
   height: auto !important;
-  width: 100% !important;
+  width: $profile-image-size-laptop;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    width: $profile-image-size-tablet;
+  }
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    width: $profile-image-size-mobile;
+  }
 }
 
 .header {
   display: inline-flex;
   justify-content: space-between;
   width: 100%;
-}
-
-.user {
-  word-break: break-all;
 }
 
 .name {
