@@ -8,9 +8,10 @@ import { useUser } from "~/providers/user";
 
 interface ProjectManagerContextProps {
   editorContent: React.RefObject<Content | undefined>;
+  downloadButtonRef: React.RefObject<HTMLButtonElement | null>;
 
   fetchSelectedProject: (id: string, draft: boolean) => Promise<DetailedProjectDto | undefined>;
-  handleSaveProject: (project: UpdateProjectDto) => Promise<void>;
+  handleSaveProject: (project: UpdateProjectDto) => Promise<boolean>;
 
   fetched: boolean;
   selectedProject: DetailedProjectDto | undefined;
@@ -32,6 +33,7 @@ export const ProjectManagerProvider = ({ children }: ProjectManagerProviderProps
   const { user } = useAuth();
   const { fetchProjectDetails, fetchDraftDetails, saveProject } = useProject();
 
+  const downloadButtonRef = useRef<HTMLButtonElement>(null);
   const editorContent = useRef<Content | undefined>(undefined);
 
   const [userRating, setUserRating] = useState<number | undefined>(undefined);
@@ -53,15 +55,16 @@ export const ProjectManagerProvider = ({ children }: ProjectManagerProviderProps
     return project;
   };
 
-  const handleSaveProject = async (project: UpdateProjectDto) => {
-    if (!selectedProject) return;
+  const handleSaveProject = async (project: UpdateProjectDto): Promise<boolean> => {
+    if (!selectedProject) return false;
 
     project.description =
       typeof editorContent.current === "object" && editorContent.current !== null
         ? editorContent.current
         : {};
 
-    await saveProject(selectedProject.id, project);
+    const savedProject = await saveProject(selectedProject.id, project);
+    return savedProject ? true : false;
   };
 
   useEffect(() => {
@@ -79,6 +82,7 @@ export const ProjectManagerProvider = ({ children }: ProjectManagerProviderProps
         setSelectedProject,
         userRating,
         setUserRating,
+        downloadButtonRef,
       }}
     >
       {children}

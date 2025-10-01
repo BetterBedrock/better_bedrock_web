@@ -24,6 +24,7 @@ import {
   ToolbarButton,
   ToolbarButtonProps,
 } from "~/components/text-editor/primitive/toolbar-button";
+import { styles } from ".";
 
 export interface LinkMainProps {
   /**
@@ -118,7 +119,7 @@ const LinkMain: React.FC<LinkMainProps> = ({
         autoCapitalize="off"
       />
 
-      <div>
+      <div className={styles.actions}>
         <ToolbarButton
           type="button"
           onClick={setLink}

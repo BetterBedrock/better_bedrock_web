@@ -379,7 +379,9 @@ export class ProjectService {
 
     async update(project: ProjectDto, data: Partial<ProjectDto>) {
         if (project.submitted) {
-            throw new BadRequestException("Project has already been submitted");
+            throw new BadRequestException(
+                "The project has already been submitted, and edits are no longer saved",
+            );
         }
 
         const tags = data.tags?.map((tag) => tag.name) ?? [];
@@ -414,7 +416,9 @@ export class ProjectService {
 
     async submitForReview(project: ProjectDto) {
         if (project.submitted) {
-            throw new BadRequestException("Project has already been submitted");
+            throw new BadRequestException(
+                "The project has already been submitted, and edits are no longer saved.",
+            );
         }
 
         if (!(await this.existsDownloadFile(project.id))) {

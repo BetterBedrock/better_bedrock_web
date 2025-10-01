@@ -121,6 +121,7 @@ export const ActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
                     />
                   </div>
                 </Popup.Part>
+                <CardDivider />
               </>
             ) : (
               <>
@@ -137,8 +138,6 @@ export const ActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
             )}
           </>
         )}
-
-        <CardDivider />
 
         <Popup.Part>
           <ButtonGroup>

@@ -149,11 +149,6 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
   const saveProject = async (id: string, project: UpdateProjectDto) => {
     try {
       const { data } = await projectApi.projectControllerUpdate(id, project);
-      sendNotification({
-        type: "info",
-        title: data.title,
-        label: "Project has been saved",
-      });
       return data;
     } catch (err) {
       throwError(err, "Failed to save project");

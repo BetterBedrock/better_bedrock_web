@@ -6,6 +6,7 @@ import { Routes } from "~/utils/routes";
 import { useNotification } from "~/providers/notification";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 import { useEffect } from "react";
+import { useAuth } from "~/providers/auth";
 
 export type ProjectMode = "edit" | "view" | "review";
 
@@ -16,6 +17,7 @@ export const Project = () => {
 
   const navigate = useNavigate();
   const { throwError } = useNotification();
+  const { fetched: fetchedUser } = useAuth();
   const { selectedProject, fetched, fetchSelectedProject } = useProjectManager();
 
   useEffect(() => {
@@ -31,7 +33,7 @@ export const Project = () => {
     <main>
       <Section className={styles.background} extraClassName={styles.padding} fixed center>
         <div className={styles.card}>
-          {selectedProject && fetched ? (
+          {selectedProject && fetched && fetchedUser ? (
             <Outlet />
           ) : (
             <CircularProgressIndicator size="medium" center />

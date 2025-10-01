@@ -9,7 +9,7 @@
   flex-direction: column;
   border: g.$minecraftdepth solid rgb(30, 30, 31);
 
-  box-shadow: g.$minecraftdepth g.$minecraftdepth 0px 0px #373737;
+  box-shadow: g.$minecraftdepth g.$minecraftdepth 0px 0px g.$color-overlay-dark;
 }
 
 .background {
@@ -76,15 +76,6 @@
   padding-bottom: 0;
   color: g.$color-sbtn-click-on-focus-visible !important;
 }
-
-// .title {
-//   padding-top: 0;
-//   // white-space: pre-line;
-// }
-
-// .type {
-//   padding-bottom: 0;
-// }
 
 .tags {
   position: absolute;
@@ -161,7 +152,7 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: g.$padding-xsm;
+  column-gap: g.$padding-xsm;
 }
 .tag {
   color: g.$color-light-grey !important;
@@ -182,7 +173,6 @@
   flex-direction: row;
   flex-wrap: wrap;
 
-  justify-content: center;
   align-items: center;
   gap: g.$padding-xxsm;
 }
