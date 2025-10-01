@@ -47,8 +47,8 @@ export const ProjectsList = () => {
 
   return (
     <div className={styles.projects}>
-      {projects.map((project, index) => (
-        <GridDownloadCard key={index} project={project} mode="view" />
+      {projects.map((project) => (
+        <GridDownloadCard key={project.id} project={project} mode="view" />
       ))}
     </div>
   );

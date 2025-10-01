@@ -12,9 +12,9 @@ import { Banner } from "~/components/bedrock/banner";
 export const DraftsList = () => {
   const navigate = useNavigate();
 
-  const { selectedUser, drafts, setDrafts } = useUserProfile();
+  const { selectedUser, drafts, setDrafts, publishedProjects, setPublishedProjects } =
+    useUserProfile();
   const { fetchUserProjects } = useProject();
-  const [publishedProjects, setPublishedProjects] = useState<string[]>([]);
 
   const [fetchedUserId, setFetchedUserId] = useState(() => {
     if (selectedUser && drafts && drafts.length > 0) {
@@ -55,9 +55,9 @@ export const DraftsList = () => {
 
   return (
     <div className={styles.projects}>
-      {drafts.map((project, index) => (
+      {drafts.map((project) => (
         <GridDownloadCard
-          key={index}
+          key={project.id}
           project={project}
           mode="edit"
           tags={publishedProjects.includes(project.id) ? ["Published"] : []}
