@@ -8,6 +8,7 @@ import { PostCommentDto } from "~/comment/dto/post-comment.dto";
 import { ReplyToCommentDto } from "~/comment/dto/reply-to-comment.dto";
 import { PrismaService } from "~/prisma.service";
 import { ProjectService } from "~/project/project.service";
+import { UserDto } from "~/user/dto/user.dto";
 
 const commentInclude = {
     author: { select: { id: true, name: true } },
@@ -49,12 +50,12 @@ export class CommentService {
         });
     }
 
-    async deleteComment(commentId: string, userId: string) {
+    async deleteComment(commentId: string, user: UserDto) {
         const comment = await this.prismaService.comment.findUnique({ where: { id: commentId } });
 
         if (!comment) throw new NotFoundException("Comment not found");
 
-        if (comment.authorId !== userId) {
+        if (comment.authorId !== user.id && !user.admin) {
             throw new UnauthorizedException("You are not authorized to delete this comment");
         }
 

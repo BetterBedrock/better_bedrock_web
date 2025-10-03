@@ -298,7 +298,7 @@ export class ProjectController {
     @UseGuards(UserAuthGuard)
     @ApiBearerAuth()
     async deleteComment(@Param("id") commentId: string, @Req() req: AuthenticatedRequest) {
-        await this.commentService.deleteComment(commentId, req.user.id);
+        await this.commentService.deleteComment(commentId, req.user);
         return;
     }
 }
