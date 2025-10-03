@@ -63,7 +63,6 @@ export const Header = ({ mode }: HeaderProps) => {
         />
       )}
       <Card sub className={styles.information}>
-        {/* <HeroDescription download={download} /> */}
         <div className={clsx(styles.editor)}>
           <div className={styles.title}>
             <HeaderTitle title={selectedProject?.title ?? ""} />
