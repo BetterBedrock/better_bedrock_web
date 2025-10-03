@@ -103,7 +103,6 @@ export const TextEditor = ({ content, onChange, onUpload, editable }: TextEditor
             <TextEditorToolbar />
           </Toolbar>
         )}
-
         <EditorContent editor={editor} role="presentation" className={styles.content} />
       </EditorContext.Provider>
     </div>
