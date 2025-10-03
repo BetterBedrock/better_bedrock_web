@@ -75,8 +75,8 @@ export const Comment = ({
           )}
         </Avatar.Details>
 
-        <div>
-          {user && (user?.name !== commentUser || user.admin) && (
+        <div className={styles.icons}>
+          {user?.name !== commentUser || user.admin && (
             <PopupConfirmation
               description={`Are you sure you want to delete ${user.name === commentUser ? "this comment" : `${commentUser}'s comment`}?`}
               confirmType="red"
@@ -95,7 +95,7 @@ export const Comment = ({
               </Tooltip>
             </PopupConfirmation>
           )}
-          {user && user?.name !== commentUser && (
+          {user?.name !== commentUser && (
             <PopupConfirmation
               description={`Are you sure you want to report ${commentUser}'s comment?`}
               confirmText="Report"
