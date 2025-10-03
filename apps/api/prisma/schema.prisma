@@ -133,7 +133,7 @@ model Comment {
 
   projectId    String
   projectDraft Boolean
-  project      Project @relation(fields: [projectId, projectDraft], references: [id, draft])
+  project      Project @relation(fields: [projectId, projectDraft], references: [id, draft], onDelete: Cascade)
 
   parentId String?
   parent   Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
