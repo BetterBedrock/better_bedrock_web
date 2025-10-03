@@ -57,6 +57,7 @@ export const SimpleButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, Si
     const handleClick = () => {
       setClicked(true);
       if (onTap) onTap();
+      setClicked(false);
     };
 
     const commonStyle = {

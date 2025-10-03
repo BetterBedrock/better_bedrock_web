@@ -9,6 +9,10 @@
   display: flex;
   flex-direction: column;
   gap: g.$padding-xsm;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    flex-direction: column-reverse;
+  }
 }
 
 .content {
@@ -26,6 +30,11 @@
   width: 100%;
   display: inline-flex;
   justify-content: center;
+  overflow: auto;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    justify-content: start;
+  }
 }
 
 .content {

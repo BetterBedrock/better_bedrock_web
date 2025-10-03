@@ -325,7 +325,7 @@ export class ProjectService {
     }
 
     async userProjects(userId: string, user: UserDto | undefined = undefined) {
-        const all = user ? userId === user.id : false;
+        const all = user ? userId === user.id || user.admin : false;
 
         const projects = await this.prismaService.project.findMany({
             where: { userId, draft: all ? undefined : false },

@@ -5,6 +5,6 @@ export const TrailerDescription = () => (
     type="p"
     textAlign="center"
     color="white"
-    text="Learn how you can publish and earn up to 8.5€ per 1000 downloads with your projects"
+    text="Learn how you can publish your projects and earn up to 8.5€ per 1000 downloads — the highest rate offered across all sites."
   />
 );

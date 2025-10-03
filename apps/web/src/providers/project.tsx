@@ -47,7 +47,7 @@ interface ProjectContextProps {
     parentId: string,
     content: string,
   ) => Promise<ProjectCommentDto | undefined>;
-  deleteComment: (commentId: string) => Promise<void>;
+  deleteComment: (commentId: string) => Promise<boolean>;
 
   getComments: (projectId: string) => Promise<ProjectCommentDto[] | undefined>;
   postRating: (projectId: string, rating: number) => Promise<ProjectRatingDto | undefined>;
@@ -328,8 +328,10 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
         title: "Comment deleted",
         label: "The comment has been deleted",
       });
+      return true;
     } catch (err) {
       throwError(err, "Failed to delete comment");
+      return false;
     }
   };
 

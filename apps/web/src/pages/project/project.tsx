@@ -29,11 +29,12 @@ export const Project = () => {
     navigate(Routes.HOME);
     throwError(null, "Project with this id does not exist");
   }
+  
   return (
     <main>
       <Section className={styles.background} extraClassName={styles.padding} fixed center>
         <div className={styles.card}>
-          {selectedProject && fetched && fetchedUser ? (
+          {(selectedProject && fetched && fetchedUser) ? (
             <Outlet />
           ) : (
             <CircularProgressIndicator size="medium" center />
