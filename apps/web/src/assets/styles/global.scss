@@ -45,6 +45,11 @@
   color: #fff;
 }
 
+body.no-scroll,
+html.no-scroll {
+  overflow: hidden;
+}
+
 body {
   background-color: $color-card-background;
 }
