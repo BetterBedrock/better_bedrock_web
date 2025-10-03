@@ -14,7 +14,7 @@ import { baseUrl } from "~/utils/url";
 import { useParams } from "react-router-dom";
 import { useProject } from "~/providers/project";
 import { TextEditorToolbar } from "~/components/text-editor/text-editor-toolbar";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { GalleryExtension } from "~/components/text-editor/nodes/gallery-node/gallery-node-extension";
 
 interface TextEditorProps {
@@ -95,14 +95,64 @@ export const TextEditor = ({ content, onChange, onUpload, editable }: TextEditor
     },
   });
 
+  console.log({ editor });
+
+  useEffect(() => {
+    if (!editor || !toolbarRef.current) return;
+
+    const updateToolbarPosition = () => {
+      const { from } = editor.state.selection;
+      const caret = editor.view.coordsAtPos(from);
+
+      const toolbarEl = toolbarRef.current;
+      if (!toolbarEl) return;
+
+      const editorRect = editor.view.dom.getBoundingClientRect();
+      const offset = 12;
+      const toolbarHeight = toolbarEl.offsetHeight;
+
+      let top = caret.bottom - editorRect.top + offset;
+
+      const maxTop = editorRect.height - toolbarHeight - 8;
+      if (top > maxTop) {
+        top = caret.top - editorRect.top - toolbarHeight - offset;
+      }
+
+      toolbarEl.style.top = `${top}px`;
+      toolbarEl.style.visibility = "visible";
+    };
+
+    // Update on selection, transactions, scroll, resize
+    editor.on("selectionUpdate", updateToolbarPosition);
+    editor.on("transaction", updateToolbarPosition);
+    window.addEventListener("scroll", updateToolbarPosition, true);
+    window.addEventListener("resize", updateToolbarPosition);
+
+    updateToolbarPosition();
+
+    return () => {
+      editor.off("selectionUpdate", updateToolbarPosition);
+      editor.off("transaction", updateToolbarPosition);
+      window.removeEventListener("scroll", updateToolbarPosition, true);
+      window.removeEventListener("resize", updateToolbarPosition);
+    };
+  }, [editor, toolbarRef]);
+
   return (
     <div className={styles.editor}>
       <EditorContext.Provider value={{ editor }}>
         {editable && (
-          <Toolbar ref={toolbarRef}>
+          <Toolbar
+            ref={toolbarRef}
+            style={{
+              visibility: "hidden",
+              position: "absolute",
+            }}
+          >
             <TextEditorToolbar />
           </Toolbar>
         )}
+
         <EditorContent editor={editor} role="presentation" className={styles.content} />
       </EditorContext.Provider>
     </div>

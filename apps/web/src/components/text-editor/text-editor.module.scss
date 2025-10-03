@@ -5,6 +5,7 @@
 }
 
 .editor {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -27,6 +28,7 @@
   display: inline-flex;
   justify-content: center;
   overflow: auto;
+  left: 0;
 
   @media (max-width: g.$breakpoint-tablet) {
     justify-content: start;

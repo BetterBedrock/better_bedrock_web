@@ -5,6 +5,7 @@ import { UndoRedoButton } from "~/components/text-editor/ui/undo-redo-button";
 import { ListButton } from "~/components/text-editor/ui/list-button";
 
 import { styles } from ".";
+
 import { GalleryButton } from "~/components/text-editor/ui/gallery/gallery-button";
 
 export const TextEditorToolbar = () => (
