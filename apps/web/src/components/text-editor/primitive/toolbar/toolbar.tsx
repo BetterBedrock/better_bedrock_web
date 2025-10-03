@@ -1,6 +1,7 @@
 import { useComposedRef } from "~/hooks/use-composed-ref";
 import clsx from "clsx";
 import { styles, useToolbar } from ".";
+import { styles as descriptionStyles } from "~/pages/project/components/description";
 import { forwardRef, useRef, HTMLAttributes } from "react";
 
 export const Toolbar = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
@@ -12,7 +13,7 @@ export const Toolbar = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>
     return (
       <div
         ref={composedRef}
-        className={clsx(styles.card, className)}
+        className={clsx(styles.card, descriptionStyles.toolbar, className)}
         {...props}
       >
         {children}
