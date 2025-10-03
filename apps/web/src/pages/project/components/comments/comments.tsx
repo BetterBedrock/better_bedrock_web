@@ -78,7 +78,7 @@ export const Comments = () => {
 
   const handleDeleteComment = async (commentId: string) => {
     try {
-      await deleteComment(commentId);
+      if(!await deleteComment(commentId)) return;
 
       setComments(
         (prev) =>
