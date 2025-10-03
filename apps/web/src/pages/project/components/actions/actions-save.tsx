@@ -6,7 +6,7 @@ interface ActionsSaveProps {
 }
 
 export const ActionsSave = ({ onClick }: ActionsSaveProps) => (
-  <Button width="100%" type="green" onClick={onClick} center>
+  <Button width="100%" height="100%" type="green" onClick={onClick} center>
     <BedrockText text="Save" type="p" color="white" />
   </Button>
 );
