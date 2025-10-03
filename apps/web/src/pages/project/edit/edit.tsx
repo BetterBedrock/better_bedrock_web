@@ -16,9 +16,10 @@ export const Edit = () => {
   const { user } = useAuth();
   const { selectedProject } = useProjectManager();
 
-  if (user?.id !== selectedProject!.id && !user?.admin) {
+  if (user?.id !== selectedProject!.userId && !user?.admin) {
     navigate(Routes.PROJECT_PREVIEW + "/" + selectedProject?.id);
     throwError(null, "You don't have access to edit this project");
+    return;
   }
 
   return (
