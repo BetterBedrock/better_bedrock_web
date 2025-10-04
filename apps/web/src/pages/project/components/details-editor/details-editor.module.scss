@@ -37,3 +37,21 @@
 .picker {
   display: none;
 }
+
+.types {
+  display: none !important;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    display: flex !important;
+
+    > * {
+      max-lines: 1;
+    }
+  }
+}
+
+.group {
+  @media (max-width: g.$breakpoint-tablet) {
+    display: none;
+  }
+}

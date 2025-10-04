@@ -16,6 +16,7 @@ import { useProject } from "~/providers/project";
 import { useAuth } from "~/providers/auth";
 import { InputSwitch } from "~/components/bedrock/input/input-switch";
 import { calcItemWeight } from "~/pages/downloads/components/better-bedrock";
+import { Collapsible } from "~/components/bedrock/collapsible";
 
 export const DetailsEditor = () => {
   const tagInputRef = useRef<HTMLInputElement>(null);
@@ -105,6 +106,19 @@ export const DetailsEditor = () => {
     }
   };
 
+  const types = Object.entries(PROJECT_TYPES).map(([key, label]) => (
+    <Button
+      key={key}
+      type={key === selectedProject.type ? "green" : "white"}
+      onClick={async () => await handleUpdateType(key)}
+      isClicked={key === selectedProject.type}
+      isToggled={key === selectedProject.type}
+      center
+    >
+      <BedrockText text={label} color={key === selectedProject.type ? "white" : "black"} type="p" />
+    </Button>
+  ));
+
   return (
     <>
       <Card sub className={styles.information}>
@@ -116,23 +130,19 @@ export const DetailsEditor = () => {
         <div className={clsx(styles.editor, styles.size)}>
           <BedrockText text="Project Type" type="p" color="white" textAlign="left" />
 
-          <ButtonGroup>
-            {Object.entries(PROJECT_TYPES).map(([key, label]) => (
-              <Button
-                key={key}
-                type={key === selectedProject.type ? "green" : "white"}
-                onClick={async () => await handleUpdateType(key)}
-                isClicked={key === selectedProject.type}
-                isToggled={key === selectedProject.type}
-                center
-              >
-                <BedrockText
-                  text={label}
-                  color={key === selectedProject.type ? "white" : "black"}
-                  type="p"
-                />
-              </Button>
-            ))}
+          <Collapsible
+            headerText={PROJECT_TYPES[selectedProject.type as ProjectType]}
+            contentText=""
+            floating
+            className={styles.types}
+            limit={true}
+            type="green"
+          >
+            <ButtonGroup direction="vertical">{types}</ButtonGroup>
+          </Collapsible>
+
+          <ButtonGroup direction="horizontal" className={styles.group}>
+            {types}
           </ButtonGroup>
         </div>
 
