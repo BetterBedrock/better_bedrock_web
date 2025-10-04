@@ -41,7 +41,7 @@ export const StatisticsCard = ({
     <Card {...props}>
       <div className={styles.statistics}>
         <div className={styles.header}>
-          <div className={styles.title}>
+          <div>
             <BedrockText
               extraClassName={styles.name}
               type="p"
