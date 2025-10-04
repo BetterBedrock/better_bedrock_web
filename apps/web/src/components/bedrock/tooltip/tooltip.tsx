@@ -10,7 +10,7 @@ interface TooltipProps {
   hidden?: boolean;
 }
 
-export const Tooltip = ({ children, className, text, hidden }: TooltipProps) => {
+export const Tooltip = ({ children, className, text, hidden = false }: TooltipProps) => {
   const [visible, setVisible] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
