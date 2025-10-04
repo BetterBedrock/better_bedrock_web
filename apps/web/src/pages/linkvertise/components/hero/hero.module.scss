@@ -1,5 +1,48 @@
-@use "~/utils/_variables" as g;
+@use "~/utils" as g;
 
 .actions {
-    padding-top: g.$padding-sm;
+  padding-top: g.$padding-sm;
+}
+
+.statistics {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: g.$padding-sm;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: g.$padding-sm;
+}
+
+.card {
+  //   width: 100%;
+  flex: 1;
+  height: 100%;
+  align-items: start;
+  justify-content: start;
+
+  padding: g.$padding-xsm;
+  gap: g.$padding-xsm;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-xsm;
+  width: 100%;
+
+  @media (max-width: g.$breakpoint-laptop) {
+    gap: g.$padding-xxsm;
+  }
+}
+
+.video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: rgb(41, 41, 41);
 }

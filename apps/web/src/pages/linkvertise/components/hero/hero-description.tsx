@@ -4,6 +4,6 @@ export const HeroDescription = () => (
   <BedrockText
     type="p"
     color="white"
-    text="This path is invalid. Click the buttons below to navigate to the correct paths."
+    text="Learn how you can create your first project, and connect your linkvertise account to start earning money from your creation."
   />
 );

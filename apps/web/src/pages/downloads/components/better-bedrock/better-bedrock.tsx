@@ -65,13 +65,10 @@ export const BetterBedrock = () => {
 
   if (simpleCategories.length < 1) {
     return (
-      <>
-        <Banner
-          type="info"
-          message="Better Bedrock content is not yet prepared, please wait a while and refresh this site."
-        />
-        <CircularProgressIndicator size="medium" />
-      </>
+      <Banner
+        type="info"
+        message="Better Bedrock content is not yet prepared, please wait a while and refresh this site."
+      />
     );
   }
 

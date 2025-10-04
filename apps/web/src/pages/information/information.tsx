@@ -56,7 +56,7 @@ export interface InformationVideos {
   videos: InformationVideo[];
 }
 
-interface InformationFAQQuestion {
+export interface InformationFAQQuestion {
   question: string;
   answer: string;
 }
