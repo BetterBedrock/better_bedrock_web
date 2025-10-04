@@ -1,5 +1,9 @@
 @use "~/utils" as g;
 
+.tooltip {
+  position: relative;
+}
+
 .button {
   height: 100%;
   color: white;
