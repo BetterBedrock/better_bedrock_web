@@ -12,7 +12,7 @@ import { Banner } from "~/components/bedrock/banner";
 export const DraftsList = () => {
   const navigate = useNavigate();
 
-  const { selectedUser, drafts, setDrafts, publishedProjects, setPublishedProjects } =
+  const { selectedUser, drafts, setDrafts } =
     useUserProfile();
   const { fetchUserProjects } = useProject();
 
@@ -25,13 +25,12 @@ export const DraftsList = () => {
 
   const fetchDrafts = async (id: string) => {
     const data = await fetchUserProjects(id);
-
+    const published = data?.filter((d) => d.draft === false).map((d) => d.id) ?? [];
     setDrafts(
-      (data?.filter((d) => d.draft === true && !publishedProjects.includes(d.id)) ?? []).sort((a, b) =>
+      (data?.filter((d) => d.draft === true && !published.includes(d.id)) ?? []).sort((a, b) =>
         dayjs(a.lastChanged).isBefore(b.lastChanged) ? 1 : -1,
       ),
     );
-    setPublishedProjects(data?.filter((d) => d.draft === false).map((d) => d.id) ?? []);
     setFetchedUserId(id);
   };
 
@@ -56,7 +55,7 @@ export const DraftsList = () => {
 
   return (
     <div className={styles.projects}>
-      {drafts.filter((project) => project).map((project) => (
+      {drafts.map((project) => (
           <GridDownloadCard
             key={project.id}
             project={project}
