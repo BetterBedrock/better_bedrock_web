@@ -81,17 +81,24 @@ input[type="number"] {
 }
 
 @font-face {
-  font-family: "Minecraft";
-  src:
-    local("Minecraft"),
-    url(~/assets/fonts/minecraft/Minecraft-Normal.ttf) format("truetype");
-}
-
-@font-face {
   font-family: "Mojangles";
   src:
     local("Mojangles"),
     url(~/assets/fonts/mojangles/Mojangles.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "MojanglesBold";
+  src:
+    local("MojanglesBold"),
+    url(~/assets/fonts/mojangles/MojanglesBold.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "Minecraft";
+  src:
+    local("MinecraftTen"),
+    url(~/assets/fonts/minecraft/MinecraftTen.ttf) format("truetype");
 }
 
 @font-face {
