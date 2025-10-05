@@ -1010,6 +1010,12 @@ export interface SimpleProjectDto {
     'itemWeight': number;
     /**
      * 
+     * @type {boolean}
+     * @memberof SimpleProjectDto
+     */
+    'submitted': boolean;
+    /**
+     * 
      * @type {ProjectCreatorDto}
      * @memberof SimpleProjectDto
      */

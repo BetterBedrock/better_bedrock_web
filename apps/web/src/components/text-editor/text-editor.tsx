@@ -14,8 +14,10 @@ import { baseUrl } from "~/utils/url";
 import { useParams } from "react-router-dom";
 import { useProject } from "~/providers/project";
 import { TextEditorToolbar } from "~/components/text-editor/text-editor-toolbar";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GalleryExtension } from "~/components/text-editor/nodes/gallery-node/gallery-node-extension";
+import { TextSelection } from "@tiptap/pm/state";
+import { TextEditorImageToolbar } from "~/components/text-editor/text-editor-image-toolbar";
 
 interface TextEditorProps {
   content?: Content | undefined;
@@ -26,6 +28,7 @@ interface TextEditorProps {
 
 export const TextEditor = ({ content, onChange, onUpload, editable }: TextEditorProps) => {
   const toolbarRef = useRef<HTMLDivElement>(null);
+  const [imageToolbar, setImageToolbar] = useState(false);
 
   const { file: id } = useParams();
   const { uploadFile } = useProject();
@@ -102,10 +105,19 @@ export const TextEditor = ({ content, onChange, onUpload, editable }: TextEditor
 
     const updateToolbarPosition = () => {
       const { from } = editor.state.selection;
+      const { selection } = editor.state;
       const caret = editor.view.coordsAtPos(from);
 
       const toolbarEl = toolbarRef.current;
       if (!toolbarEl) return;
+
+      if (!(selection instanceof TextSelection)) {
+        setImageToolbar(true);
+        // toolbarEl.style.visibility = "hidden";
+        // return;
+      } else {
+        setImageToolbar(false);
+      }
 
       const editorRect = editor.view.dom.getBoundingClientRect();
       const offset = 12;
@@ -113,8 +125,10 @@ export const TextEditor = ({ content, onChange, onUpload, editable }: TextEditor
 
       let top = caret.bottom - editorRect.top + offset;
 
+      console.log({ selection: editor.state.selection });
+
       const maxTop = editorRect.height - toolbarHeight - 8;
-      if (top > maxTop) {
+      if (top > maxTop && from > 2) {
         top = caret.top - editorRect.top - toolbarHeight - offset;
       }
 
@@ -149,7 +163,7 @@ export const TextEditor = ({ content, onChange, onUpload, editable }: TextEditor
               position: "absolute",
             }}
           >
-            <TextEditorToolbar />
+            {imageToolbar ? <TextEditorImageToolbar /> : <TextEditorToolbar />}
           </Toolbar>
         )}
 

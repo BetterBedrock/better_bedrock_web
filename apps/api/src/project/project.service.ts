@@ -61,6 +61,7 @@ const simpleProjectSelect = {
     draft: true,
     userId: true,
     itemWeight: true,
+    submitted: true,
     user: {
         select: { name: true },
     },

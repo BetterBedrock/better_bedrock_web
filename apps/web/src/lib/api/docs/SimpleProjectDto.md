@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **draft** | **boolean** |  | [default to undefined]
 **userId** | **string** |  | [default to undefined]
 **itemWeight** | **number** |  | [default to undefined]
+**submitted** | **boolean** |  | [default to undefined]
 **user** | [**ProjectCreatorDto**](ProjectCreatorDto.md) |  | [default to undefined]
 **rating** | [**ProjectRatingDto**](ProjectRatingDto.md) |  | [default to undefined]
 
@@ -34,6 +35,7 @@ const instance: SimpleProjectDto = {
     draft,
     userId,
     itemWeight,
+    submitted,
     user,
     rating,
 };
