@@ -153,6 +153,7 @@ export const DetailsEditor = () => {
             <Input
               className={styles.input}
               placeholder="Tag Name"
+              maxLength={15}
               ref={tagInputRef}
               onKeyDown={handleKeyDown}
             />
