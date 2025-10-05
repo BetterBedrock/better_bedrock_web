@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Banner } from "~/components/bedrock/banner";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-download-card";
-import { styles } from "~/components/section-divider";
+import { styles } from ".";
 import { SimpleProjectDto } from "~/lib/api";
 import { useProject } from "~/providers/project";
 
