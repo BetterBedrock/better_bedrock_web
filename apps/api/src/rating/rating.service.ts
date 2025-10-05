@@ -53,7 +53,7 @@ export class RatingService {
 
     async getProfileRating(userId: string) {
         const agg = await this.prismaService.rating.aggregate({
-            where: { userId, projectDraft: false },
+            where: { project: { userId: userId }, projectDraft: false },
             _avg: { rating: true },
             _count: { _all: true },
         });
