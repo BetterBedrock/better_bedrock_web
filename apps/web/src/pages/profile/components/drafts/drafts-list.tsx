@@ -25,8 +25,9 @@ export const DraftsList = () => {
 
   const fetchDrafts = async (id: string) => {
     const data = await fetchUserProjects(id);
+
     setDrafts(
-      (data?.filter((d) => d.draft === true) ?? []).sort((a, b) =>
+      (data?.filter((d) => d.draft === true && !publishedProjects.includes(d.id)) ?? []).sort((a, b) =>
         dayjs(a.lastChanged).isBefore(b.lastChanged) ? 1 : -1,
       ),
     );
@@ -55,26 +56,15 @@ export const DraftsList = () => {
 
   return (
     <div className={styles.projects}>
-      {drafts.map((project) => {
-        const tags = [];
-
-        if (publishedProjects.includes(project.id)) {
-          tags.push("Published");
-        }
-
-        if(project.submitted) {
-          tags.push("Submitted");
-        }
-
-        return (
+      {drafts.filter((project) => project).map((project) => (
           <GridDownloadCard
             key={project.id}
             project={project}
             mode="edit"
-            tags={tags}
+            tags={project.submitted ? ["Submitted"] : []}
           />
-        );
-      })}
+        )
+      )}
     </div>
   );
 };
