@@ -1,6 +1,7 @@
 import { ReactNode, useState } from "react";
 import { styles } from ".";
 import React from "react";
+import clsx from "clsx";
 
 export interface BasePopupWrapperProps {
   close: () => void;
@@ -8,11 +9,12 @@ export interface BasePopupWrapperProps {
 
 interface PopupWrapperProps {
   children: ReactNode;
+  className?: string;
   ignore?: boolean;
   popup: (close: () => void) => ReactNode;
 }
 
-export const PopupWrapper = ({ children, popup, ignore }: PopupWrapperProps) => {
+export const PopupWrapper = ({ children, popup, className, ignore }: PopupWrapperProps) => {
   const [open, setOpen] = useState(false);
 
   const close = () => {
@@ -20,12 +22,12 @@ export const PopupWrapper = ({ children, popup, ignore }: PopupWrapperProps) => 
   };
 
   const handleOpen = () => {
-    if(ignore) return;
+    if (ignore) return;
     setOpen(true);
   };
 
   return (
-    <div className={styles.confirmation}>
+    <div className={clsx(styles.wrapper, className && className)}>
       <div onClick={handleOpen} style={{ cursor: "pointer" }}>
         {children}
       </div>
