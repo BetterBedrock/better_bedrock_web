@@ -66,7 +66,7 @@ export const Header = ({ mode }: HeaderProps) => {
         <div className={clsx(styles.editor)}>
           <div className={styles.title}>
             <HeaderTitle title={selectedProject?.title ?? ""} />
-            {user && user?.id === selectedProject.userId && mode === "view" && (
+            {user && user?.id !== selectedProject.userId && mode === "view" && (
               <PopupWrapper
                 className={styles.popup}
                 popup={(close) => (
