@@ -17,6 +17,7 @@ import { useAuth } from "~/providers/auth";
 import { InputSwitch } from "~/components/bedrock/input/input-switch";
 import { calcItemWeight } from "~/pages/downloads/components/better-bedrock";
 import { Collapsible } from "~/components/bedrock/collapsible";
+import { Banner } from "~/components/bedrock/banner";
 
 export const DetailsEditor = () => {
   const tagInputRef = useRef<HTMLInputElement>(null);
@@ -149,18 +150,22 @@ export const DetailsEditor = () => {
         <CardDivider sub />
         <div className={clsx(styles.editor, styles.size)}>
           <BedrockText text="Tags" type="p" color="white" textAlign="left" />
-          <ButtonGroup className={styles.creator}>
-            <Input
-              className={styles.input}
-              placeholder="Tag Name"
-              maxLength={15}
-              ref={tagInputRef}
-              onKeyDown={handleKeyDown}
-            />
-            <Button onClick={handleCreateTag} center>
-              <BedrockText text="Create" type="p" color="white" />
-            </Button>
-          </ButtonGroup>
+          {selectedProject.tags.length >= 5 ? (
+            <Banner type="neutral" message="You have reached the limit of tags, please remove older tags before creating new ones." />
+          ) : (
+            <ButtonGroup className={styles.creator}>
+              <Input
+                className={styles.input}
+                placeholder="Tag Name"
+                maxLength={15}
+                ref={tagInputRef}
+                onKeyDown={handleKeyDown}
+              />
+              <Button onClick={handleCreateTag} center>
+                <BedrockText text="Create" type="p" color="white" />
+              </Button>
+            </ButtonGroup>
+          )}
           <div className={styles.tags}>
             {(selectedProject?.tags ?? []).map((tag, index) => (
               <Tag
