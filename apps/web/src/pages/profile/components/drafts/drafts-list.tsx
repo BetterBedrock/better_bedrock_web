@@ -55,14 +55,26 @@ export const DraftsList = () => {
 
   return (
     <div className={styles.projects}>
-      {drafts.map((project) => (
-        <GridDownloadCard
-          key={project.id}
-          project={project}
-          mode="edit"
-          tags={publishedProjects.includes(project.id) ? ["Published"] : []}
-        />
-      ))}
+      {drafts.map((project) => {
+        const tags = [];
+
+        if (publishedProjects.includes(project.id)) {
+          tags.push("Published");
+        }
+
+        if(project.submitted) {
+          tags.push("Submitted");
+        }
+
+        return (
+          <GridDownloadCard
+            key={project.id}
+            project={project}
+            mode="edit"
+            tags={tags}
+          />
+        );
+      })}
     </div>
   );
 };
