@@ -17,6 +17,8 @@ import { Routes } from "~/utils/routes";
 import EditIcon from "~/assets/ui/tiptap-icons/8.png";
 import { PopupWrapper } from "~/components/bedrock/popup/popup-wrapper";
 import { Avatar } from "~/components/avatar";
+import { useProject } from "~/providers/project";
+import { useEffect, useState } from "react";
 
 interface HeaderProps {
   mode: ProjectMode;
@@ -26,6 +28,22 @@ export const Header = ({ mode }: HeaderProps) => {
   const { user } = useAuth();
   const { selectedProject, downloadButtonRef } = useProjectManager();
   const navigate = useNavigate();
+  const { fetchProjectsBasicInfo } = useProject();
+  const [isPublished, setIsPublished] = useState(false);
+
+  useEffect(() => {
+    if (mode === "edit") checkIfPublished();
+  }, [selectedProject]);
+
+  const checkIfPublished = async () => {
+    if (!selectedProject) return;
+
+    const details = await fetchProjectsBasicInfo([selectedProject.id]);
+
+    if (details && details?.length > 0) {
+      setIsPublished(true);
+    }
+  };
 
   const creator = selectedProject?.user;
 
@@ -39,6 +57,12 @@ export const Header = ({ mode }: HeaderProps) => {
 
   return (
     <>
+      {mode === "edit" && isPublished && (
+        <Banner
+          type="important"
+          message="You are editing a published project, to update your published project you need to submit changes with the button at the bottom of the page."
+        />
+      )}
       {selectedProject.submitted && (
         <Banner
           type="info"

@@ -15,9 +15,6 @@ import { Routes } from "~/utils/routes";
 interface UserProfileContextProps {
   ownsProfile: boolean;
 
-  publishedProjects: string[];
-  setPublishedProjects: React.Dispatch<React.SetStateAction<string[]>>;
-
   settingsOpen: boolean;
   setSettingsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 
@@ -52,8 +49,6 @@ export const UserProfileProvider = ({ children }: UserProfileProviderProps) => {
   const navigate = useNavigate();
   const { updateProfile, manageProfile, getProfileRating, findDetailedUser } = useUser();
   const { user } = useAuth();
-
-  const [publishedProjects, setPublishedProjects] = useState<string[]>([]);
 
   const [detailedUser, setDetailedUser] = useState<UserDto | undefined>();
   const [fetchedDetailedUser, setFetchedDetailedUser] = useState(false);
@@ -112,8 +107,6 @@ export const UserProfileProvider = ({ children }: UserProfileProviderProps) => {
   return (
     <UserProfileContext.Provider
       value={{
-        setPublishedProjects,
-        publishedProjects,
         detailedSelectedUser,
         ownsProfile,
         selectedUser,

@@ -7,8 +7,11 @@ import { ActionsDeletePopup } from "~/pages/project/components/actions/actions-d
 import { ActionsSave } from "~/pages/project/components/actions/actions-save";
 import { useProjectManager } from "~/pages/project/providers/project-manager";
 import { useProject } from "~/providers/project";
+import { styles } from ".";
+import { useNotification } from "~/providers/notification";
 
 export const Actions = () => {
+  const { sendNotification } = useNotification();
   const { submitProject, cancelSubmission } = useProject();
   const { handleSaveProject, selectedProject, setSelectedProject } = useProjectManager();
 
@@ -30,12 +33,24 @@ export const Actions = () => {
 
   return (
     <ButtonGroup>
-      <ActionsSave onClick={async () => await handleSaveProject(selectedProject!)} />
+      <ActionsSave
+        onClick={async () => {
+          if (!selectedProject) return false;
+          await handleSaveProject(selectedProject);
+          sendNotification({
+            type: "info",
+            label: "Project has been saved",
+            title: selectedProject.title,
+          });
+          return true;
+        }}
+      />
 
       <PopupConfirmation
         description="You are about to submit your project for verification process which will take up to 24h, if you are unsure, or want to make a change, you can alaways cancel the submission."
         confirmText="Submit"
         ignore={selectedProject?.submitted}
+        className={styles.button}
       >
         <Button width="100%" height="100%" type="white" onClick={handleSubmission} center>
           <BedrockText
@@ -46,7 +61,10 @@ export const Actions = () => {
         </Button>
       </PopupConfirmation>
 
-      <PopupWrapper popup={(close) => <ActionsDeletePopup close={close} />}>
+      <PopupWrapper
+        popup={(close) => <ActionsDeletePopup close={close} />}
+        className={styles.button}
+      >
         <Button width="100%" height="100%" type="red" center>
           <BedrockText text="Deletion Options" type="p" color="white" />
         </Button>

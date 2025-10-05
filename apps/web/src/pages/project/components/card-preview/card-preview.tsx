@@ -34,6 +34,7 @@ export const CardPreview = () => {
             description="Are you sure you want to publish this project?"
             confirmText="Publish"
             confirmType="gold"
+            className={styles.button}
           >
             <Button
               width="100%"
@@ -49,6 +50,7 @@ export const CardPreview = () => {
             </Button>
           </PopupConfirmation>
           <PopupWrapper
+            className={styles.button}
             popup={(close) => (
               <CardPreviewDeclinePopup
                 onCancel={close}

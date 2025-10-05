@@ -6,6 +6,7 @@ import React from "react";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { CardDivider } from "~/components/bedrock/card";
+import clsx from "clsx";
 
 type ClickableElementProps = {
   onClick?: (e: MouseEvent) => void;
@@ -43,6 +44,7 @@ interface PopupConfirmationProps {
   cancelText?: string;
   ignore?: boolean;
   confirmType?: ButtonType;
+  className?: string;
 }
 
 export const PopupConfirmation = ({
@@ -53,6 +55,7 @@ export const PopupConfirmation = ({
   confirmText = "Confirm",
   cancelText = "Cancel",
   confirmType = "green",
+  className,
 }: PopupConfirmationProps) => {
   const [open, setOpen] = useState(false);
   const [pendingAction, setPendingAction] = useState<(() => void) | null>(null);
@@ -82,7 +85,7 @@ export const PopupConfirmation = ({
   };
 
   return (
-    <div className={styles.confirmation}>
+    <div className={clsx(styles.confirmation, className && className)}>
       {enhancedChildren}
       {open && (
         <Popup title={title} onClose={handleCancel}>
