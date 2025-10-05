@@ -97,7 +97,6 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
 
   const fetchProjectsBasicInfo = async (ids: string[]): Promise<SimpleProjectDto[] | undefined> => {
     try {
-      console.log({ ids });
       const { data } = await projectApi.projectControllerProjectsBasicInfo({ ids });
       return data;
     } catch (err) {
