@@ -21,9 +21,9 @@ export const Project = () => {
   const { selectedProject, fetched, fetchSelectedProject } = useProjectManager();
 
   useEffect(() => {
-    if (!file) return;
+    if (!file || !fetchedUser) return;
     fetchSelectedProject(file, currentPage === "preview" ? false : true);
-  }, [file, currentPage]);
+  }, [file, currentPage, fetchedUser]);
 
   if (fetched && !selectedProject) {
     navigate(Routes.HOME);

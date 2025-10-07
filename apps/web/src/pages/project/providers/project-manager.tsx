@@ -1,6 +1,5 @@
 import { Content } from "@tiptap/react";
-import { createContext, ReactNode, useContext, useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { createContext, ReactNode, useContext, useRef, useState } from "react";
 import { DetailedProjectDto, UpdateProjectDto } from "~/lib/api";
 import { useAuth } from "~/providers/auth";
 import { useProject } from "~/providers/project";
@@ -28,7 +27,6 @@ interface ProjectManagerProviderProps {
 const ProjectManagerContext = createContext<ProjectManagerContextProps | undefined>(undefined);
 
 export const ProjectManagerProvider = ({ children }: ProjectManagerProviderProps) => {
-  const { file } = useParams();
   const { getUserRating } = useUser();
   const { user } = useAuth();
   const { fetchProjectDetails, fetchDraftDetails, saveProject } = useProject();
@@ -66,10 +64,6 @@ export const ProjectManagerProvider = ({ children }: ProjectManagerProviderProps
     const savedProject = await saveProject(selectedProject.id, project);
     return savedProject ? true : false;
   };
-
-  useEffect(() => {
-    if (!file) return;
-  }, [file]);
 
   return (
     <ProjectManagerContext.Provider

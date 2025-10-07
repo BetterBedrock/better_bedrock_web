@@ -26,7 +26,7 @@ export const RateProject = () => {
     setSelectedProject((prev) => ({ ...prev!, rating: newProjectRating }));
   };
 
-  if(!user) return;
+  if (!user) return;
 
   return (
     <div className={styles.center}>
