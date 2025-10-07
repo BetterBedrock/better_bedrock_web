@@ -1,6 +1,7 @@
 import { NodeViewProps } from "@tiptap/react";
 import { useRef, useState } from "react";
 import { isValidPosition } from "~/lib/tiptap-utils";
+import { useNotification } from "~/providers/notification";
 
 export interface FileItem {
   id: string;
@@ -15,6 +16,8 @@ export interface UploadOptions {
   props: NodeViewProps;
 }
 
+const maxSize = 50 * 1024 * 1024;
+
 export const useFileUpload = ({ props }: UploadOptions) => {
   const { limit } = props.node.attrs;
   const inputRef = useRef<HTMLInputElement>(null);
@@ -23,9 +26,16 @@ export const useFileUpload = ({ props }: UploadOptions) => {
 
   const { onError, onSuccess, upload } = options;
 
+  const { throwError } = useNotification();
+
   const [fileItems, setFileItems] = useState<FileItem[]>([]);
 
   const uploadFile = async (file: File): Promise<string | undefined> => {
+    if (file.size > maxSize) {
+      throwError(null, `File size exceeds maximum allowed (${maxSize / 1024 / 1024}MB)`);
+      return;
+    }
+
     const abortController = new AbortController();
     const fileId = crypto.randomUUID();
 

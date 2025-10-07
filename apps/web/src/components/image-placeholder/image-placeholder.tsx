@@ -53,7 +53,7 @@ export const ImagePlaceholder = ({ onUpload, src, pass, placeholder }: ImagePlac
             color="white"
             extraClassName={styles.ignore}
           />
-          <CircularProgressIndicator size="medium" />
+          <CircularProgressIndicator size="small" />
         </>
       )}
       <input ref={inputRef} type="file" className={styles.hidden} onChange={handleInputChange} />
