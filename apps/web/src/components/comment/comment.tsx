@@ -58,89 +58,99 @@ export const Comment = ({
     commentUser: string,
     content: string,
     reply: boolean = false,
-  ) => (
-    <Fragment key={commentId}>
-      <Avatar className={styles.header}>
-        <Avatar.Profile name={commentUser} size="medium" />
-        <Avatar.Details name={commentUser} at bold className={styles.details}>
-          <BedrockText text={content} type="p" color="white" textAlign="start" extraClassName={styles.wrap} />
-          {user && reply && !isReplying && (
+  ) => {
+    const canReport = user?.name !== commentUser;
+    const canDelete = user?.name !== commentUser || user?.admin;
+    return (
+      <Fragment key={commentId}>
+        <Avatar className={styles.header}>
+          <Avatar.Profile name={commentUser} size="medium" />
+          <Avatar.Details name={commentUser} at bold className={styles.details}>
             <BedrockText
-              text="Reply"
+              text={content}
               type="p"
+              color="white"
               textAlign="start"
-              extraClassName={styles.reply}
-              onClick={() => setIsReplying(true)}
+              extraClassName={styles.wrap}
             />
-          )}
-        </Avatar.Details>
+            {user && reply && !isReplying && (
+              <BedrockText
+                text="Reply"
+                type="p"
+                textAlign="start"
+                extraClassName={styles.reply}
+                onClick={() => setIsReplying(true)}
+              />
+            )}
+          </Avatar.Details>
 
-        <div className={styles.icons}>
-          {user?.name !== commentUser || user.admin && (
-            <PopupConfirmation
-              description={`Are you sure you want to delete ${user.name === commentUser ? "this comment" : `${commentUser}'s comment`}?`}
-              confirmType="red"
-              confirmText="Delete"
-            >
-              <Tooltip text="Delete this comment">
-                <SimpleButton
-                  transparent
-                  onClick={async () => {
-                    if (!user) return;
-                    await onDelete?.(commentId);
-                  }}
-                >
-                  <img src={Trash} className={styles.more} />
-                </SimpleButton>
-              </Tooltip>
-            </PopupConfirmation>
-          )}
-          {user?.name !== commentUser && (
-            <PopupConfirmation
-              description={`Are you sure you want to report ${commentUser}'s comment?`}
-              confirmText="Report"
-            >
-              <Tooltip text="Report this comment">
-                <SimpleButton
-                  transparent
-                  onClick={async () => {
-                    if (!user) return;
-                    const message = `User ${user.name} (${user.id}) has reported ${commentUser}'s (${commentUserId}) comment '${content}' under '${comment.projectId}' project.`;
-                    await reportUser(commentUserId, { message });
-                  }}
-                >
-                  <img src={ReportGlyph} className={styles.more} />
-                </SimpleButton>
-              </Tooltip>
-            </PopupConfirmation>
-          )}
-        </div>
-      </Avatar>
-      {isReplying && reply && (
-        <div className={styles.header}>
-          <ButtonGroup>
-            <Input
-              autoFocus={true}
-              onBlur={(e) => e.target.value === "" && setIsReplying(false)}
-              ref={inputRef}
-              placeholder="Response..."
-              onKeyDown={handleKeyDown}
-            />
-            <Button
-              type="green"
-              center
-              onClick={() => onReply?.(inputRef.current?.value ?? "", comment.id)}
-            >
-              <BedrockText color="white" type="p" text="Post" />
-            </Button>
-            <Button type="dark" center onClick={() => setIsReplying(false)}>
-              <img alt="Close" src={Exit} className={styles.icon} />
-            </Button>
-          </ButtonGroup>
-        </div>
-      )}
-    </Fragment>
-  );
+          <div className={styles.icons}>
+            {canDelete && (
+              <PopupConfirmation
+                description={`Are you sure you want to delete ${user?.name === commentUser ? "this comment" : `${commentUser}'s comment`}?`}
+                confirmType="red"
+                confirmText="Delete"
+              >
+                <Tooltip text="Delete this comment">
+                  <SimpleButton
+                    transparent
+                    onClick={async () => {
+                      if (!user) return;
+                      await onDelete?.(commentId);
+                    }}
+                  >
+                    <img src={Trash} className={styles.more} />
+                  </SimpleButton>
+                </Tooltip>
+              </PopupConfirmation>
+            )}
+            {canReport && (
+              <PopupConfirmation
+                description={`Are you sure you want to report ${commentUser}'s comment?`}
+                confirmText="Report"
+              >
+                <Tooltip text="Report this comment">
+                  <SimpleButton
+                    transparent
+                    onClick={async () => {
+                      if (!user) return;
+                      const message = `User ${user.name} (${user.id}) has reported ${commentUser}'s (${commentUserId}) comment '${content}' under '${comment.projectId}' project.`;
+                      await reportUser(commentUserId, { message });
+                    }}
+                  >
+                    <img src={ReportGlyph} className={styles.more} />
+                  </SimpleButton>
+                </Tooltip>
+              </PopupConfirmation>
+            )}
+          </div>
+        </Avatar>
+        {isReplying && reply && (
+          <div className={styles.header}>
+            <ButtonGroup>
+              <Input
+                autoFocus={true}
+                onBlur={(e) => e.target.value === "" && setIsReplying(false)}
+                ref={inputRef}
+                placeholder="Response..."
+                onKeyDown={handleKeyDown}
+              />
+              <Button
+                type="green"
+                center
+                onClick={() => onReply?.(inputRef.current?.value ?? "", comment.id)}
+              >
+                <BedrockText color="white" type="p" text="Post" />
+              </Button>
+              <Button type="dark" center onClick={() => setIsReplying(false)}>
+                <img alt="Close" src={Exit} className={styles.icon} />
+              </Button>
+            </ButtonGroup>
+          </div>
+        )}
+      </Fragment>
+    );
+  };
 
   return (
     <Card className={styles.card}>
