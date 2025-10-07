@@ -43,6 +43,8 @@ import { ProjectBasicInfoBodyDto } from "~/project/dto/project-basic-info-body.d
 import { Throttle } from "@nestjs/throttler";
 import { MailService } from "~/mail/mail.service";
 import { UserService } from "~/user/user.service";
+import { AnalyticsService } from "~/analytics/analytics.service";
+import { AnalyticsNames } from "~/analytics/constants/analytics-names";
 
 @Controller("project")
 export class ProjectController {
@@ -52,6 +54,7 @@ export class ProjectController {
         private commentService: CommentService,
         private mailService: MailService,
         private userService: UserService,
+        private analyticsService: AnalyticsService,
     ) {}
 
     @Post()
@@ -155,6 +158,7 @@ export class ProjectController {
     @ApiBearerAuth()
     async submit(@Param("id") _: string, @Req() req: ProjectRequest) {
         await this.projectService.submitForReview(req.project);
+        await this.analyticsService.incrementAnalytics(AnalyticsNames.submittedProjects, "general");
         return;
     }
 
@@ -179,6 +183,8 @@ export class ProjectController {
             req.project.id,
             req.project.title,
         );
+
+        await this.analyticsService.incrementAnalytics(AnalyticsNames.publishedProjects, "general");
         return;
     }
 
@@ -200,6 +206,7 @@ export class ProjectController {
             req.project.id,
             req.project.title,
         );
+        await this.analyticsService.incrementAnalytics(AnalyticsNames.declinedProjects, "general");
         return;
     }
 
