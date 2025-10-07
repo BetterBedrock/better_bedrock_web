@@ -98,8 +98,6 @@ export const TextEditor = ({ content, onChange, onUpload, editable }: TextEditor
     },
   });
 
-  console.log({ editor });
-
   useEffect(() => {
     if (!editor || !toolbarRef.current) return;
 
@@ -124,8 +122,6 @@ export const TextEditor = ({ content, onChange, onUpload, editable }: TextEditor
       const toolbarHeight = toolbarEl.offsetHeight;
 
       let top = caret.bottom - editorRect.top + offset;
-
-      console.log({ selection: editor.state.selection });
 
       const maxTop = editorRect.height - toolbarHeight - 8;
       if (top > maxTop && from > 2) {

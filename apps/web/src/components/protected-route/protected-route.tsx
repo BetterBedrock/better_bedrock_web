@@ -17,8 +17,6 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     return;
   }
 
-  console.log({fetched, user})
-
   if (fetched && !user?.admin) {
     sendNotification({
       title: "No access",
