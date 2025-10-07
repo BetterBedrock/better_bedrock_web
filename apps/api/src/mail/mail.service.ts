@@ -113,7 +113,7 @@ Better Bedrock Team`,
 
 We are pleased to inform you that your project, "${projectName}", has been approved after careful review. 
 
-You can view published version of your project right here: ${baseFrontendUrl}/project/view/${projectId}
+You can view published version of your project right here: ${baseFrontendUrl}/project/preview/${projectId}
 
 Congratulations on this achievement! We wish you luck with your project, and hope you get loads of downloads!
 

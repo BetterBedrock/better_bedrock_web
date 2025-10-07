@@ -59,7 +59,8 @@ export const Description = ({ mode }: DescriptionProps) => {
       <CardDivider sub />
       <div className={styles.editor}>
         <TextEditor
-          editable={true}
+          key={`${!selectedProject?.submitted}`}
+          editable={!selectedProject?.submitted}
           content={selectedProject?.description}
           onChange={handleChange}
         />

@@ -5,19 +5,33 @@ import { ImagePlaceholder } from "~/components/image-placeholder";
 import { baseUrl } from "~/utils/url";
 import { useProject } from "~/providers/project";
 import { HeaderTitle } from "~/pages/project/components/header";
+import { useNotification } from "~/providers/notification";
 
 export const Thumbnail = () => {
   const { uploadFile } = useProject();
   const { selectedProject, setSelectedProject, handleSaveProject } = useProjectManager();
+  const { throwError } = useNotification();
 
   const handleUploadThumbnail = async (file: File) => {
-    if (!selectedProject) return;
+    if (!selectedProject || !checkIfSubmitted()) return;
     const uploadedFile = await uploadFile(selectedProject.id, file);
     if (!uploadedFile) return;
     const newDraftProject = { ...selectedProject, thumbnail: uploadedFile.fileUrl };
     setSelectedProject(newDraftProject);
 
     await handleSaveProject(newDraftProject);
+  };
+
+  const checkIfSubmitted = () => {
+    if (selectedProject?.submitted) {
+      throwError(
+        null,
+        "The project has already been submitted, you cannot make any changes unless you cancel submission",
+      );
+      return false;
+    }
+
+    return true;
   };
 
   return (
