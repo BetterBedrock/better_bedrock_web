@@ -16,7 +16,7 @@ export interface UploadOptions {
 }
 
 export const useFileUpload = ({ props }: UploadOptions) => {
-  const { limit, maxSize } = props.node.attrs;
+  const { limit } = props.node.attrs;
   const inputRef = useRef<HTMLInputElement>(null);
   const extension = props.extension;
   const options = extension.options;
@@ -26,11 +26,6 @@ export const useFileUpload = ({ props }: UploadOptions) => {
   const [fileItems, setFileItems] = useState<FileItem[]>([]);
 
   const uploadFile = async (file: File): Promise<string | undefined> => {
-    if (file.size > maxSize) {
-      onError?.(new Error(`File size exceeds maximum allowed (${maxSize / 1024 / 1024}MB)`));
-      return;
-    }
-
     const abortController = new AbortController();
     const fileId = crypto.randomUUID();
 
@@ -74,11 +69,6 @@ export const useFileUpload = ({ props }: UploadOptions) => {
       return;
     } catch (error) {
       if (!abortController.signal.aborted) {
-        setFileItems((prev) =>
-          prev.map((item) =>
-            item.id === fileId ? { ...item, status: "error", progress: 0 } : item,
-          ),
-        );
         onError?.(error instanceof Error ? error : new Error("Upload failed"));
       }
       return;
@@ -99,7 +89,7 @@ export const useFileUpload = ({ props }: UploadOptions) => {
     const uploadPromises = files.map((file) => uploadFile(file));
     const results = await Promise.all(uploadPromises);
 
-    return results.filter((url): url is string => url !== null);
+    return results.filter((url): url is string => url !== null && url !== undefined);
   };
 
   const handleUpload = async (files: File[]) => {

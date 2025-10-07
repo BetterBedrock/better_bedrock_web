@@ -7,7 +7,6 @@ import { Highlight } from "@tiptap/extension-highlight";
 import { Selection } from "@tiptap/extensions";
 import { Toolbar } from "~/components/text-editor/primitive/toolbar";
 import { ImageUploadNode } from "~/components/text-editor/nodes/image-upload-node/image-upload-node-extension";
-import { MAX_FILE_SIZE } from "~/lib/tiptap-utils";
 import { styles } from ".";
 import { PrefixedImage } from "~/components/text-editor/nodes/image-node/prefixed-image-node";
 import { baseUrl } from "~/utils/url";
@@ -42,11 +41,8 @@ export const TextEditor = ({ content, onChange, onUpload, editable }: TextEditor
       throw new Error("No project id provided");
     }
 
-    if (file.size > MAX_FILE_SIZE) {
-      throw new Error(`File size exceeds maximum allowed (${MAX_FILE_SIZE / (1024 * 1024)}MB)`);
-    }
-
     const upload = await uploadFile(id!, file);
+    if (!upload) throw new Error("No file returned");
     onUpload?.();
 
     return upload!.fileUrl;
@@ -85,7 +81,6 @@ export const TextEditor = ({ content, onChange, onUpload, editable }: TextEditor
       Selection,
       ImageUploadNode.configure({
         accept: "image/*",
-        maxSize: MAX_FILE_SIZE,
         limit: 3,
         upload: handleImageUpload,
         onError: (error) => console.error("Upload failed:", error),

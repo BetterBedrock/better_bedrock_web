@@ -11,7 +11,6 @@ export type UploadFunction = (
 export interface ImageUploadNodeOptions {
   accept?: string
   limit?: number
-  maxSize?: number
   upload?: UploadFunction
   onError?: (error: Error) => void
   onSuccess?: (url: string) => void
@@ -38,7 +37,6 @@ export const ImageUploadNode = Node.create<ImageUploadNodeOptions>({
     return {
       accept: "image/*",
       limit: 1,
-      maxSize: 0,
       upload: undefined,
       onError: undefined,
       onSuccess: undefined,
@@ -52,9 +50,6 @@ export const ImageUploadNode = Node.create<ImageUploadNodeOptions>({
       },
       limit: {
         default: this.options.limit,
-      },
-      maxSize: {
-        default: this.options.maxSize,
       },
     }
   },
