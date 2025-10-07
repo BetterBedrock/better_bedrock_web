@@ -79,7 +79,6 @@ export const BetterBedrock = () => {
       {simpleCategories.map((category) => (
         <div key={category.title} className={styles.category}>
           <Heading title={category.title} description={category.description} />
-          {/* <MainActions buttons={category.buttons} /> */}
           <MainItemsList categoryId={categoryDownloads.id} category={category} />
         </div>
       ))}
