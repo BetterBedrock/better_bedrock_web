@@ -74,7 +74,10 @@ export const AnalyticsNames = {
     TotalDownloads: 'Total Downloads',
     VoucherDownloads: 'Voucher Downloads',
     AdDownloads: 'Ad Downloads',
-    GeneratedDownloads: 'Generated Downloads'
+    GeneratedDownloads: 'Generated Downloads',
+    SubmittedProjects: 'Submitted Projects',
+    PublishedProjects: 'Published Projects',
+    DeclinedProjects: 'Declined Projects'
 } as const;
 
 export type AnalyticsNames = typeof AnalyticsNames[keyof typeof AnalyticsNames];

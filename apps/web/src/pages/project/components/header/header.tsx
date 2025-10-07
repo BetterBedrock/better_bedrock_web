@@ -60,7 +60,7 @@ export const Header = ({ mode }: HeaderProps) => {
       {mode === "edit" && isPublished && (
         <Banner
           type="important"
-          message="You are editing a published project, to update your published project you need to submit changes with the button at the bottom of the page."
+          message="You’re editing a published project. To make your changes visible to the public, click the Submit Changes button at the bottom of the page."
         />
       )}
       {selectedProject.submitted && (

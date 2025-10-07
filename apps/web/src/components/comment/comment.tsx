@@ -59,7 +59,7 @@ export const Comment = ({
     content: string,
     reply: boolean = false,
   ) => {
-    const canReport = user?.name !== commentUser;
+    const canReport = user && user?.name !== commentUser;
     const canDelete = user?.name == commentUser || user?.admin;
     return (
       <Fragment key={commentId}>

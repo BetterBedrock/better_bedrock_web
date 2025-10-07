@@ -5,4 +5,7 @@ export enum AnalyticsNames {
     voucherDownloads = "Voucher Downloads",
     adDownloads = "Ad Downloads",
     generatedDownloads = "Generated Downloads",
+    submittedProjects = "Submitted Projects",
+    publishedProjects = "Published Projects",
+    declinedProjects = "Declined Projects",
 }

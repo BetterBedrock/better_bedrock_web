@@ -93,6 +93,21 @@ export const Statistics = () => {
         />
         <StatisticsCard name="Valid Vouchers" data={validVouchers} className={styles.card} />
         <StatisticsCard name="Used Vouchers" data={usedVouchers} className={styles.card} />
+        <StatisticsCard
+          name="Submitted Projects"
+          data={data[AnalyticsNames.SubmittedProjects]}
+          className={styles.card}
+        />
+        <StatisticsCard
+          name="Declined Projects"
+          data={data[AnalyticsNames.DeclinedProjects]}
+          className={styles.card}
+        />
+        <StatisticsCard
+          name="Published Projects"
+          data={data[AnalyticsNames.PublishedProjects]}
+          className={styles.card}
+        />
       </div>
     </div>
   );
