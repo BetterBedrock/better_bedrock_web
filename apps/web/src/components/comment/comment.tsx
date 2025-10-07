@@ -60,7 +60,7 @@ export const Comment = ({
     reply: boolean = false,
   ) => {
     const canReport = user?.name !== commentUser;
-    const canDelete = user?.name !== commentUser || user?.admin;
+    const canDelete = user?.name == commentUser || user?.admin;
     return (
       <Fragment key={commentId}>
         <Avatar className={styles.header}>
