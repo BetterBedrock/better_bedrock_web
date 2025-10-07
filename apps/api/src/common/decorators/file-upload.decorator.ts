@@ -1,10 +1,18 @@
-import { applyDecorators, UseInterceptors, BadRequestException } from "@nestjs/common";
+import {
+    applyDecorators,
+    UseInterceptors,
+    BadRequestException,
+    CallHandler,
+    ExecutionContext,
+    NestInterceptor,
+} from "@nestjs/common";
 import { ApiBody, ApiConsumes } from "@nestjs/swagger";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
 import { extname } from "path";
 import fs from "fs";
 import { ProjectRequest } from "~/common/types/project-request.type";
+import { Observable } from "rxjs";
 
 export const IMAGE_EXTENSIONS = ["png", "jpg", "jpeg", "gif", "webp"];
 export const MC_EXTENSIONS = [
@@ -87,6 +95,7 @@ export function FileUpload() {
                         fs.mkdirSync(uploadPath, { recursive: true });
 
                         const folderSize = getFolderSizeSync(uploadPath);
+
                         if (
                             !project.betterBedrockContent &&
                             folderSize >= MAX_FOLDER_SIZE[visibility]
@@ -110,7 +119,7 @@ export function FileUpload() {
                         cb(null, `${uniqueSuffix}.${ext}`);
                     },
                 }),
-                fileFilter: (req, file, cb) => {
+                fileFilter: (_, file, cb) => {
                     const ext = extname(file.originalname).replace(".", "").toLowerCase();
                     if (IMAGE_EXTENSIONS.includes(ext) || MC_EXTENSIONS.includes(ext)) {
                         cb(null, true);
@@ -123,8 +132,37 @@ export function FileUpload() {
                         );
                     }
                 },
-                limits: { fileSize: MAX_FOLDER_SIZE.private }, // still keep per-file size limit
+                limits: { fileSize: MAX_FOLDER_SIZE.private },
             }),
+            FolderSizeInterceptor,
         ),
     );
+}
+
+// Post-save interceptor (to verify folder size after file gets uploaded)
+class FolderSizeInterceptor implements NestInterceptor {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+        const req = context.switchToHttp().getRequest();
+        const file: Express.Multer.File = req.file;
+        const project = req.project;
+
+        if (file && project) {
+            const ext = extname(file.originalname).slice(1).toLowerCase();
+            const visibility = IMAGE_EXTENSIONS.includes(ext) ? "public" : "private";
+
+            const uploadPath = `./static/${visibility}/${project.id}/draft/`;
+            const folderSize = getFolderSizeSync(uploadPath);
+            const newSize = folderSize;
+
+            if (!project.betterBedrockContent && newSize > MAX_FOLDER_SIZE[visibility]) {
+                fs.unlinkSync(file.path);
+                throw new BadRequestException(
+                    `Upload folder exceeded max size of ${MAX_FOLDER_SIZE_MB[visibility]}MB for ${visibility} files`,
+                );
+            }
+        }
+
+        return next.handle();
+    }
 }
