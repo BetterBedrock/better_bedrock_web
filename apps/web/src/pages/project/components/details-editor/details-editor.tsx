@@ -31,6 +31,8 @@ export const DetailsEditor = () => {
   if (!selectedProject) return;
 
   const uploadDownloadFile = async (file: File | undefined) => {
+    if (!checkIfSubmitted()) return;
+
     if (!selectedProject || !file) return;
     const uploadedFile = await uploadFile(selectedProject!.id, file);
     if (!uploadedFile) return;
@@ -52,6 +54,8 @@ export const DetailsEditor = () => {
   };
 
   const handleCreateTag = async () => {
+    if (!checkIfSubmitted()) return;
+
     const tagName = tagInputRef.current?.value.trim();
 
     if (selectedProject.tags.find((t) => t.name === tagName)) {
@@ -78,6 +82,8 @@ export const DetailsEditor = () => {
   };
 
   const handleDeleteTag = async (tag: TagNameDto) => {
+    if (!checkIfSubmitted()) return;
+
     const newProject = {
       ...selectedProject!,
       tags: selectedProject?.tags.filter((existingTag) => existingTag.name !== tag.name) ?? [],
@@ -87,12 +93,16 @@ export const DetailsEditor = () => {
   };
 
   const handleUpdateType = async (key: string) => {
+    if (!checkIfSubmitted()) return;
+
     const newProject = { ...selectedProject!, type: key as ProjectType };
     setSelectedProject(newProject);
     await handleSaveProject(newProject);
   };
 
   const handleSwitchBetterBedrock = async () => {
+    if (!checkIfSubmitted()) return;
+
     const newProject = {
       ...selectedProject!,
       betterBedrockContent: !selectedProject?.betterBedrockContent,
@@ -105,6 +115,14 @@ export const DetailsEditor = () => {
     if (event.key === "Enter") {
       handleCreateTag();
     }
+  };
+
+  const checkIfSubmitted = () => {
+    if (selectedProject.submitted) {
+      throwError(null, "The project has already been submitted, you cannot make any changes unless you cancel submission");
+      return false;
+    }
+    return true;
   };
 
   const types = Object.entries(PROJECT_TYPES).map(([key, label]) => (
@@ -151,7 +169,10 @@ export const DetailsEditor = () => {
         <div className={clsx(styles.editor, styles.size)}>
           <BedrockText text="Tags" type="p" color="white" textAlign="left" />
           {selectedProject.tags.length >= 5 ? (
-            <Banner type="neutral" message="You have reached the limit of tags, please remove older tags before creating new ones." />
+            <Banner
+              type="neutral"
+              message="You have reached the limit of tags, please remove older tags before creating new ones."
+            />
           ) : (
             <ButtonGroup className={styles.creator}>
               <Input
