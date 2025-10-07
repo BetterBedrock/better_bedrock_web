@@ -12,7 +12,6 @@ import { Dashboard } from "~/pages/panel/dashboard";
 import { Preview as ProjectPreview } from "~/pages/project/preview";
 import { CheckoutProvider } from "~/providers/checkout";
 import { Invalid } from "~/pages/invalid";
-import { Latest } from "~/pages/latest";
 import { Cancel } from "~/pages/checkout/cancel";
 import { Success } from "~/pages/checkout/success";
 import { CookiesProvider } from "react-cookie";
@@ -105,7 +104,6 @@ export const App = () => (
                         </Route>
 
                         <Route path="*" element={<Invalid />} />
-                        <Route path="latest" element={<Latest />} />
                         <Route path="privacy-policy" element={<PrivacyPolicy />} />
                         <Route path="terms" element={<Terms />} />
                         <Route path="checkout">
