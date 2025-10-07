@@ -31,8 +31,8 @@ import { AnalyticsNames } from "~/analytics/constants/analytics-names";
 import { ProjectService } from "~/project/project.service";
 import { UserService } from "~/user/user.service";
 import { OptionalAuthGuard } from "~/auth/optional-auth.guard";
-import { AuthenticatedRequest } from "~/common/types/authenticated-request.type";
 import { ProjectDto } from "~/project/dto/project.dto";
+import { OptionalAuthenticatedRequest } from "~/common/types/optional-authenticated-request.type";
 
 @Controller("download")
 export class DownloadController {
@@ -99,7 +99,7 @@ export class DownloadController {
     @ApiBearerAuth()
     async verify(
         @Ip() ip: string,
-        @Req() req: AuthenticatedRequest,
+        @Req() req: OptionalAuthenticatedRequest,
         @Query() query: VerifyDownloadDto,
     ): Promise<ProjectDto> {
         const download = await this.downloadService.download({ ipAddress: ip });
@@ -123,7 +123,7 @@ export class DownloadController {
             : this.linkvertiseApiKey;
 
         if (!download.verified) {
-            if (project.userId !== req.user.id && !req.user.admin) {
+            if (project.userId !== req.user?.id && !req.user?.admin) {
                 if (query.code && !voucher) {
                     throw new UnauthorizedException("The voucher does not exist");
                 }

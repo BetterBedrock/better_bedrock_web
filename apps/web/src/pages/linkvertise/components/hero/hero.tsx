@@ -5,6 +5,7 @@ import { InformationFAQQuestion } from "~/pages/information";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Card } from "~/components/bedrock/card";
 import Markdown from "react-markdown";
+// import Markdown from "react-markdown";
 
 export const Hero = () => (
   <>
@@ -12,7 +13,6 @@ export const Hero = () => (
       <HeroTitle />
       <HeroDescription />
     </div>
-    {/* <HeroActions /> */}
     <div className={styles.video}>
       <iframe
         width="100%"
@@ -96,14 +96,29 @@ export const Hero = () => (
     </div>
 
     <div className={styles.section}>
-      <BedrockText
-        text="How to begin "
-        type="h2"
-        font="Minecraft"
-        color="white"
-        textAlign="center"
-      />
-      <Markdown>{tutorial}</Markdown>
+      <Card className={styles.card}>
+        <BedrockText
+          text="How to begin"
+          type="h2"
+          font="Minecraft"
+          color="white"
+          textAlign="start"
+        />
+        <Card sub className={styles.sub}>
+          <Markdown>{tutorialPart1}</Markdown>
+        </Card>
+        <Card sub className={styles.sub}>
+          <Markdown>{tutorialPart2}</Markdown>
+        </Card>
+        <Card sub className={styles.sub}>
+          <Markdown>{tutorialPart3}</Markdown>
+        </Card>
+        <Card sub className={styles.sub}>
+          <Markdown>{tutorialPart4}</Markdown>
+        </Card>
+
+        {/* <Markdown>{tutorial}</Markdown> */}
+      </Card>
     </div>
 
     <div className={styles.section}>
@@ -140,25 +155,169 @@ const questions: InformationFAQQuestion[] = [
 
 // Mention invalid linkvertise token and anti bypass
 
-const tutorial = `
-Lorem markdownum et hunc goodput cernis, ibi robora per Herse isto, post,
-contemptuque, domus; illi, hac. In quam Pittheus. Fontis tua. Dea quod flumina,
-nec flavescere coepti. Equos cum Othryn victa pater aliisque et Phoebi ignis
-laterum quas?
+const tutorialPart1 = `
+This tutorial will walk you through:
 
-Vetustis accersite moenibus [essem](#quibus-iam-tamen-fluctibus) iam [de
-certamine annum](#quibus-iam-tamen-fluctibus), omnique? Et nisi Colcha mala,
-suscitat *sed* Crotonis armataque sed, supplex capacibus amor. Tibi pensa placet
-prima falso Venulus; acta misit in factorum Cephenum, tene? Phoebo offensa,
-caecis? Fuit venit in sidebarClockKoffice picea!
+1.  Creating a BetterBedrock account
 
-O lupum quater et sed usa possumus e Quodsi Nesso Achilles alimentaque sensi;
-alimenta, rapta. Et o inter saevam sepulcrum arboribus, aura quid utque cavernis
-steriles **acernas exiliis**. Edidit mavult mihi frustra vident glacialis
-orandus neque avulsumque nec. Ut placuit imitamina hanc, ille Cyclopis foedera,
-hamis *clipeum*.
+2.  Connecting your Linkvertise account to receive **100% ad revenue**
 
-Non apro visa, quattuor instimulat Lycia. **Cunarum mihi latus** iramque
-sceleris, in corneaque pennis et manu est? Bello insula senior candentia cui
-furta nymphae pompa intremuere secutus.
+3.  Starting your first project
 `;
+
+const tutorialPart2 = `
+### Create a BetterBedrock Account
+
+1.  Go to [BetterBedrock Login](https://betterbedrock.com/login)
+
+2.  Sign up using your Google account`;
+
+const tutorialPart3 = `
+### Create & Configure Your Linkvertise Account
+
+To connect Linkvertise, you’ll need two things:
+
+-   User ID
+
+-   Anti-bypass Token
+
+#### Step A: Create a Linkvertise Publisher Account
+
+1.  Visit [Linkvertise Publisher](https://publisher.linkvertise.com/)
+
+2.  Sign up for a new account
+
+#### Step B: Find Your Linkvertise User ID
+
+1.  Log in to your Linkvertise Publisher account
+
+2.  Go to the [Affiliate Program](https://publisher.linkvertise.com/dashboard#affiliate)
+
+3.  Look at your AFFILIATE URL. Example:
+
+    \`\`\`
+    https://publisher.linkvertise.com/ac/1382868
+    \`\`\`
+
+    -   The number at the end (\`1382868\` in this example) is your User ID
+
+![alt text](src/assets/images/docs/linkvertise/linkvertise_id.png "Title")
+
+#### Step C: Enable Anti-Bypassing & Get Token
+
+1.  Go to [Settings](https://publisher.linkvertise.com/dashboard#account)
+
+2.  Enable the option “Use anti-bypassing”
+
+3.  Save your settings
+
+4.  You’ll now see your "Anti-bypass Token" (a 64-character string)
+`;
+
+const tutorialPart4 = `
+### Connect Linkvertise to BetterBedrock
+
+1.  Go to your **BetterBedrock profile**
+
+2.  Open **Settings** (click the gear icon next to your profile picture)
+
+3.  Enable **Custom Linkvertise**
+
+4.  Enter:
+
+    -   **Linkvertise User ID** (e.g., \`1382868\`)
+
+    -   **Anti-bypass Token** (64-character string)
+
+5.  Save your profile settings
+`;
+
+// const tutorial = `
+// This tutorial will walk you through:
+
+// 1.  Creating a BetterBedrock account
+
+// 2.  Connecting your Linkvertise account to receive **100% ad revenue**
+
+// 3.  Starting your first project
+
+// ----------
+
+// ### 1️⃣ Create a BetterBedrock Account
+
+// 1.  Go to [BetterBedrock Login](https://betterbedrock.com/login)
+
+// 2.  Sign up using your Google account
+
+// ----------
+
+// ### 2️⃣ Create & Configure Your Linkvertise Account
+
+// To connect Linkvertise, you’ll need two things:
+
+// -   User ID
+
+// -   Anti-bypass Token
+
+// #### Step A: Create a Linkvertise Publisher Account
+
+// 1.  Visit [Linkvertise Publisher](https://publisher.linkvertise.com/)
+
+// 2.  Sign up for a new account
+
+// #### Step B: Find Your Linkvertise User ID
+
+// 1.  Log in to your Linkvertise Publisher account
+
+// 2.  Go to the **Affiliate Program** page → [Affiliate Dashboard](https://publisher.linkvertise.com/dashboard#affiliate)
+
+// 3.  Look at your **Affiliate URL**. Example:
+
+//     \`\`\`
+//     https://publisher.linkvertise.com/ac/1382868
+//     \`\`\`
+
+//     -   The number at the end (\`1382868\` in this example) is your **User ID**
+
+// #### Step C: Enable Anti-Bypassing & Get Token
+
+// 1.  Go to **Settings** → [Account Settings](https://publisher.linkvertise.com/dashboard#account)
+
+// 2.  Enable the option **“Use anti-bypassing”**
+
+// 3.  Save your settings
+
+// 4.  You’ll now see your **Anti-bypass Token** (a 64-character string)
+
+// ----------
+
+// ### 3️⃣ Connect Linkvertise to BetterBedrock
+
+// 1.  Go to your **BetterBedrock profile**
+
+// 2.  Open **Settings** (click the gear icon next to your profile picture)
+
+// 3.  Enable **Custom Linkvertise**
+
+// 4.  Enter:
+
+//     -   **Linkvertise User ID** (e.g., \`1382868\`)
+
+//     -   **Anti-bypass Token** (64-character string)
+
+// 5.  Save your profile settings
+
+// ----------
+
+// ### 4️⃣ Create Your First Project
+
+// 1.  Go to [Create Project](https://betterbedrock.com/create)
+
+// 2.  Fill in your project details
+
+// 3.  Publish and start earning revenue 🎉
+
+// ----------
+
+// ✅ You’re all set! Your BetterBedrock account is now linked with Linkvertise, and you can start creating and monetizing projects
+// `;
