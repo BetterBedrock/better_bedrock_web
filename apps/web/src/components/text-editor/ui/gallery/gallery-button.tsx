@@ -27,7 +27,6 @@ export const GalleryButton: React.FC = () => {
         tooltip="Add gallery"
       >
         <TiptapIcon icon={ImageGalleryIcon} className="tiptap-button-icon" />
-        <span className="tiptap-button-text">Gallery</span>
       </ToolbarButton>
     </>
   );
