@@ -34,7 +34,7 @@
 }
 
 @mixin card-padding-y() {
-  padding-block: g.$padding-xsm;
+  padding-block: calc(g.$padding-xsm * 2.5);
 }
 
 @mixin no-drag() {

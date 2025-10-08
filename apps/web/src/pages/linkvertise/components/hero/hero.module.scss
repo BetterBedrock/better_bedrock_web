@@ -85,7 +85,8 @@
   }
 }
 
-.video {
+.video > * {
+  border: g.$minecraftdepth solid rgb(30, 30, 31);
   width: 100%;
   aspect-ratio: 16 / 9;
   background-color: rgb(41, 41, 41);
