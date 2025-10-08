@@ -4,10 +4,9 @@ import { InformationVideo } from "~/pages/information";
 
 interface TutorialVideosGridProps {
   videos: InformationVideo[];
-  deprected: boolean;
 }
 
-export const TutorialVideosGrid = ({ videos, deprected }: TutorialVideosGridProps) => (
+export const TutorialVideosGrid = ({ videos }: TutorialVideosGridProps) => (
   <div className={styles.grid}>
     {videos.map((tutorial, index) => (
       <GridCard
@@ -16,7 +15,7 @@ export const TutorialVideosGrid = ({ videos, deprected }: TutorialVideosGridProp
         title={tutorial.title}
         description={tutorial.description}
         link={tutorial.link}
-        tags={[...(tutorial.tags ?? []), ...(deprected ? ["deprected"] : [])]}
+        tags={[...(tutorial.tags ?? [])]}
       />
     ))}
   </div>

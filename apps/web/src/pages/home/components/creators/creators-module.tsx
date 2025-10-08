@@ -12,7 +12,7 @@ interface CreatorsModuleProps {
 }
 
 export const CreatorsModule = ({ title, description, contributors }: CreatorsModuleProps) => (
-  <div>
+  <div style={{width: "100%"}}>
     <ModuleTitle text={title} />
     <ModuleDescription text={description} />
     <ModuleContributorsList data={contributors} />

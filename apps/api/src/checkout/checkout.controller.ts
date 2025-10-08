@@ -124,6 +124,10 @@ export class CheckoutController {
                 AnalyticsNames.boughtVouchers,
                 "general",
             );
+            await this.analyticsService.incrementAnalytics(
+                AnalyticsNames.boughtVouchers,
+                "general",
+            );
         }
     }
 }

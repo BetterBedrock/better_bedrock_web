@@ -14,7 +14,7 @@ export const PreviewPopupRecommended = ({ categories, purchase }: PreviewPopupRe
         key={index}
         buttonType="green"
         color="white"
-        price={`€${item.priceOption.price}`}
+        price={`${item.priceOption.price}€`}
         label={item.priceOption.label}
         title={`${item.priceOption.title} (Recommended, monthly)`}
         onClick={() => purchase(item.priceId)}
