@@ -14,46 +14,46 @@ export type ProjectTypeKey = keyof typeof PROJECT_TYPES;
 export const DOWNLOADS_IDS = {
     betterBedrockClientV80: "better_bedrock_texture_pack_v8.0.mcpack",
 
-    betterBedrockClientV74: "better_bedrock_texture_pack_v7.4.mcpack",
-    betterBedrockClientV73: "better_bedrock_texture_pack_v7.3.mcpack",
-    betterBedrockClientV72: "better_bedrock_texture_pack_v7.2.mcpack",
-    betterBedrockClientV711: "better_bedrock_texture_pack_v7.1.1.mcpack",
-    betterBedrockClientV71: "better_bedrock_texture_pack_v7.1.mcpack",
-    betterBedrockClientV7: "better_bedrock_texture_pack_v7.0.mcpack",
+    betterBedrockClientV74: "better_bedrock_texture_pack_v7.4",
+    betterBedrockClientV73: "better_bedrock_texture_pack_v7.3",
+    betterBedrockClientV72: "better_bedrock_texture_pack_v7.2",
+    betterBedrockClientV711: "better_bedrock_texture_pack_v7.1.1",
+    betterBedrockClientV71: "better_bedrock_texture_pack_v7.1",
+    betterBedrockClientV7: "better_bedrock_texture_pack_v7.0",
     betterBedrockApp: "better_bedrock_app.apk",
     betterBedrockWindowsClientV1: "better_bedrock_client_v1.exe",
 
-    betterBedrockClientV6: "better_bedrock_client_v6.mcpack",
+    betterBedrockClientV6: "better_bedrock_client_v6",
 
-    betterBedrockClientV5ErrorFix: "better_bedrock_client_v5_error_fix_2.0.mcpack",
-    betterBedrockClientV5Patch: "better_bedrock_client_v5_patch.mcpack",
-    betterBedrockClientV5Config: "better_bedrock_client_v5_config.mcpack",
-    betterBedrockClientV5: "better_bedrock_client_v5.mcpack",
+    betterBedrockClientV5ErrorFix: "better_bedrock_client_v5_error_fix_2.0",
+    betterBedrockClientV5Patch: "better_bedrock_client_v5_patch",
+    betterBedrockClientV5Config: "better_bedrock_client_v5_config",
+    betterBedrockClientV5: "better_bedrock_client_v5",
 
-    betterBedrockClientV4Patch: "better_bedrock_client_v4_patch.mcpack",
-    betterBedrockClientV4Lite: "better_bedrock_client_v4_lite.mcpack",
-    betterBedrockClientV4: "better_bedrock_client_v4.mcpack",
+    betterBedrockClientV4Patch: "better_bedrock_client_v4_patch",
+    betterBedrockClientV4Lite: "better_bedrock_client_v4_lite",
+    betterBedrockClientV4: "better_bedrock_client_v4",
 
-    betterBedrockClientV3: "better_bedrock_client_v3.mcpack",
+    betterBedrockClientV3: "better_bedrock_client_v3",
 
-    betterBedrockClientV2: "better_bedrock_client_v2.mcpack",
+    betterBedrockClientV2: "better_bedrock_client_v2",
 
-    betterBedrockClientV1: "better_bedrock_client_v1.mcpack",
+    betterBedrockClientV1: "better_bedrock_client_v1",
 
-    betterBedrockBetterFogs: "better_bedrock_better_fogs.mcpack",
-    betterBedrockCleanGlass: "better_bedrock_clean_glass.mcpack",
-    betterBedrockCleanWater: "better_bedrock_clean_water.mcpack",
-    betterBedrockDarkMode: "better_bedrock_dark_mode.mcpack",
-    betterBedrockDarkUI: "better_bedrock_dark_ui.mcpack",
-    betterBedrockFullGrass: "better_bedrock_full_grass.mcpack",
-    betterBedrockLowFire: "better_bedrock_low_fire.mcpack",
-    betterBedrockWaypoints: "better_bedrock_waypoints.mcpack",
-    betterBedrockParticleLimiter: "better_bedrock_particle_limiter.mcpack",
+    betterBedrockBetterFogs: "better_bedrock_better_fogs",
+    betterBedrockCleanGlass: "better_bedrock_clean_glass",
+    betterBedrockCleanWater: "better_bedrock_clean_water",
+    betterBedrockDarkMode: "better_bedrock_dark_mode",
+    betterBedrockDarkUI: "better_bedrock_dark_ui",
+    betterBedrockFullGrass: "better_bedrock_full_grass",
+    betterBedrockLowFire: "better_bedrock_low_fire",
+    betterBedrockWaypoints: "better_bedrock_waypoints",
+    betterBedrockParticleLimiter: "better_bedrock_particle_limiter",
 };
 
 export const SIDE_PROJECTS_LIST = [
-    "better_bedrock_v8",
-    "dark_ui",
+    "murder_detector+",
+    "custom_sky_overlay",
 ];
 
 export const MAIN_LIST: DownloadsCategoryDto = {
@@ -83,7 +83,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     titleColor: "rgb(255, 255, 85)",
                     description:
                         "Adds ability to create vertical beams around world to improve positioning",
-                    projectId: DOWNLOADS_IDS.betterBedrockWaypoints,
+                    projectId: "waypoints",
                     buttonType: "dark",
                     imageAssetUrl: "/static/uploads/public/images/logo2.png",
 
@@ -92,7 +92,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     titleColor: "rgb(255, 255, 85)",
                     description:
                         "Changes all fogs to make them unlimited and better for visibility",
-                    projectId: DOWNLOADS_IDS.betterBedrockBetterFogs,
+                    projectId: "better_fogs",
                     buttonType: "dark", imageAssetUrl: "/static/uploads/public/images/logo2.png",
 
                 },
@@ -106,14 +106,14 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                 {
                     titleColor: "rgb(255, 255, 85)",
                     description: "Changes water textures to make them more clean and visible",
-                    projectId: DOWNLOADS_IDS.betterBedrockCleanWater,
+                    projectId: "clean_water",
                     buttonType: "dark", imageAssetUrl: "/static/uploads/public/images/logo2.png",
 
                 },
                 {
                     titleColor: "rgb(255, 170, 0)",
                     description: "Darker alternative to the vanilla textures",
-                    projectId: DOWNLOADS_IDS.betterBedrockDarkMode,
+                    projectId: "dark_mode",
                     buttonType: "dark", imageAssetUrl: "/static/uploads/public/images/logo3.png",
 
                 },
@@ -121,21 +121,21 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     titleColor: "rgb(255, 170, 0)",
                     description:
                         "Adds ability to limit particles by 3 options: Disabled, Minimal, All",
-                    projectId: DOWNLOADS_IDS.betterBedrockParticleLimiter,
+                    projectId: "particle_limiter",
                     buttonType: "dark", imageAssetUrl: "/static/uploads/public/images/logo3.png",
 
                 },
                 {
                     titleColor: "rgb(255, 170, 0)",
                     description: "Adds lower fire texture on HUD to improve visibility",
-                    projectId: DOWNLOADS_IDS.betterBedrockLowFire,
+                    projectId: "low_fire",
                     buttonType: "dark", imageAssetUrl: "/static/uploads/public/images/logo3.png",
 
                 },
                 {
                     titleColor: "rgb(255, 170, 0)",
                     description: "Changes grass textures to make them look connected",
-                    projectId: DOWNLOADS_IDS.betterBedrockFullGrass,
+                    projectId: "full_grass",
                     buttonType: "dark", imageAssetUrl: "/static/uploads/public/images/logo3.png",
 
                 },
@@ -143,7 +143,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     titleColor: "rgb(255, 170, 0)",
                     description:
                         "Changes glass textures to make them look connected and less distracting",
-                    projectId: DOWNLOADS_IDS.betterBedrockCleanGlass,
+                    projectId: "clean_glass",
                     buttonType: "dark", imageAssetUrl: "/static/uploads/public/images/logo3.png",
 
                 },
@@ -154,17 +154,17 @@ export const MAIN_LIST: DownloadsCategoryDto = {
             description:
                 "If you want to try older versions and enjoy old-school Better Bedrock B) then you have that possibility! Note that these packs, and software, are deprecated, and may not be stable. We also save main content, so you cannot find here older extension packs.",
             items: [
-                {
-                    description: "Archived and discontinued.",
-                    projectId: DOWNLOADS_IDS.betterBedrockApp,
-                    buttonType: "white", imageAssetUrl: "/static/uploads/public/images/favicon.png",
-                },
-                {
-                    description: "Archived and discontinued.",
-                    projectId: DOWNLOADS_IDS.betterBedrockWindowsClientV1,
-                    buttonType: "white", imageAssetUrl: "/static/uploads/public/images/favicon.png",
+                // {
+                //     description: "Archived and discontinued.",
+                //     projectId: DOWNLOADS_IDS.betterBedrockApp,
+                //     buttonType: "white", imageAssetUrl: "/static/uploads/public/images/favicon.png",
+                // },
+                // {
+                //     description: "Archived and discontinued.",
+                //     projectId: DOWNLOADS_IDS.betterBedrockWindowsClientV1,
+                //     buttonType: "white", imageAssetUrl: "/static/uploads/public/images/favicon.png",
 
-                },
+                // },
                 {
                     description: "Archived and discontinued.",
                     projectId: DOWNLOADS_IDS.betterBedrockClientV74,
