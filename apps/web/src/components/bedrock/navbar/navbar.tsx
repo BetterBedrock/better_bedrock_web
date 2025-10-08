@@ -54,8 +54,9 @@ export const Navbar = () => {
               <img alt="logo" src={FavIcon} className={styles.image} />
               <BedrockText
                 text="Better Bedrock"
-                type="h1"
+                type="p"
                 font="Minecraft"
+                headerSize
                 extraClassName={styles.heading}
               />
             </Link>

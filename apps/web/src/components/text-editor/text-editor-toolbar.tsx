@@ -7,14 +7,16 @@ import { ListButton } from "~/components/text-editor/ui/list-button";
 import { styles } from ".";
 
 import { GalleryButton } from "~/components/text-editor/ui/gallery/gallery-button";
+import { HeaderButton } from "~/components/text-editor/ui/header-button/header-button";
 
 export const TextEditorToolbar = () => (
   <div className={styles.toolbar}>
     <UndoRedoButton action="undo" />
     <UndoRedoButton action="redo" />
 
-    <ListButton type={"bulletList"} text={"Bullet List"} />
+    <ListButton type="bulletList" text="Bullet List" />
     <MarkButton type="bold" />
+    <HeaderButton />
     <MarkButton type="italic" />
     <MarkButton type="strike" />
     <MarkButton type="underline" />
@@ -22,7 +24,7 @@ export const TextEditorToolbar = () => (
 
     <LinkPopover />
 
-    <ImageUploadButton text="Image" />
+    <ImageUploadButton />
     <GalleryButton />
   </div>
 );

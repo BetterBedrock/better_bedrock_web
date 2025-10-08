@@ -50,8 +50,8 @@ export const GridDownloadCard = ({ className, tags, project, mode }: GridDownloa
           {!project.thumbnail || project.thumbnail === "" ? (
             <div className={styles.empty}>
               <BedrockText
-                text={"404 No Thumbnail"}
-                type="h1"
+                text="404 No Thumbnail"
+                type="h4"
                 font="Minecraft"
                 textAlign="center"
                 color="white"
@@ -95,7 +95,7 @@ export const GridDownloadCard = ({ className, tags, project, mode }: GridDownloa
                 )}
                 <BedrockText
                   text={project.title}
-                  type="h2"
+                  type="h3"
                   font="Minecraft"
                   textAlign="left"
                   color="white"

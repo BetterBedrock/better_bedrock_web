@@ -78,8 +78,8 @@ export const Gallery = ({
           {images.length < 1 ? (
             <div className={styles.empty}>
               <BedrockText
-                text={"No images provided"}
-                type="h2"
+                text="No images provided"
+                type="h3"
                 font="Minecraft"
                 textAlign="center"
                 color="white"

@@ -26,7 +26,7 @@ export const ModuleCard = ({ data }: ModuleCardProp) => {
           <div className={styles.title}>
             <BedrockText
               text={data.name}
-              type="h2"
+              type="h3"
               font="Minecraft"
               textAlign="left"
               color={data.creator ? "white" : "black"}

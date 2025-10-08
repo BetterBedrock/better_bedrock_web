@@ -51,7 +51,7 @@ export const StatisticsCard = ({
             />
             <BedrockText
               key={total}
-              type="h2"
+              type="h3"
               text={`${total.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 4 })}${suffix}`}
               textAlign="left"
               color="white"

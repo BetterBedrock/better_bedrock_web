@@ -10,7 +10,9 @@ export interface BedrockTextProps {
   selectable?: boolean;
   shadow?: boolean;
   strong?: boolean;
-  type: "h1" | "h2" | "h3" | "p" | "p2";
+  type: "h1" | "h2" | "h3" | "h4" | "p" | "p2";
+  headerSize?: boolean;
+  paragraphSize?: boolean;
   style?: React.CSSProperties;
   extraClassName?: string | string[];
   onClick?: () => void;
@@ -25,6 +27,8 @@ export const BedrockText = ({
   selectable = true,
   strong = false,
   shadow = false,
+  headerSize = false,
+  paragraphSize = false,
   margin,
   style,
   onClick,
@@ -42,6 +46,8 @@ export const BedrockText = ({
         onClick && styles.underline,
         strong && styles.strong,
         shadow && styles.shadow,
+        headerSize && styles.header,
+        paragraphSize && styles.paragraph,
         ...(Array.isArray(extraClassName) ? extraClassName : [extraClassName]),
       )}
       style={{

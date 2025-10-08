@@ -5,7 +5,6 @@ import { InformationFAQQuestion } from "~/pages/information";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Card } from "~/components/bedrock/card";
 import Markdown from "react-markdown";
-// import Markdown from "react-markdown";
 
 export const Hero = () => (
   <>
@@ -46,7 +45,7 @@ export const Hero = () => (
             />
             <BedrockText
               type="h2"
-              text="9$ / 1k downloads"
+              text="8.5€ / 1k downloads"
               textAlign="left"
               color="white"
               font="Minecraft"

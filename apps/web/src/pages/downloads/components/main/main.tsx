@@ -23,7 +23,14 @@ export const Main = () => {
             type="info"
             message="Our creators get anti-bypass for ads & 100% of the ad revenue!"
           />
-          <BedrockText text="Projects" type="h1" color="white" font="Minecraft" textAlign="start" />
+          <BedrockText
+            text="Projects"
+            type="h2"
+            color="white"
+            font="Minecraft"
+            textAlign="start"
+            headerSize
+          />
         </div>
         <CardDivider sub />
         <div className={styles.downloads}>
