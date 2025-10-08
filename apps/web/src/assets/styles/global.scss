@@ -131,7 +131,11 @@ section {
 }
 
 strong {
-  font-family: "Minecraft";
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  line-height: 1em;
+  font-weight: 500;
+  font-family: "MojanglesBold";
 }
 
 mark {
@@ -219,7 +223,8 @@ h3 {
   }
 }
 
-h1, h2 {
+h1,
+h2 {
   font-family: "Minecraft";
   font-weight: 400;
   font-size: 2.5rem;
