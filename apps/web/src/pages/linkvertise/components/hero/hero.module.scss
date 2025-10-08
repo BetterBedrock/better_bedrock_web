@@ -35,7 +35,6 @@
 .sub {
   display: flex;
   flex-direction: column;
-  gap: g.$padding-sm;
   overflow: hidden;
   @include g.card-padding-y;
 
