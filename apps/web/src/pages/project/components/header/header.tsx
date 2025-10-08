@@ -10,7 +10,7 @@ import ReportGlyph from "~/assets/images/glyphs/WarningGlyph.png";
 import { Link } from "~/components/link";
 import { useProjectManager } from "~/pages/project/providers/project-manager";
 import { useAuth } from "~/providers/auth";
-import { HeaderTitle, styles } from ".";
+import { styles } from ".";
 import { PopupReport } from "~/components/bedrock/popup/popup-report";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "~/utils/routes";
@@ -19,6 +19,7 @@ import { PopupWrapper } from "~/components/bedrock/popup/popup-wrapper";
 import { Avatar } from "~/components/avatar";
 import { useProject } from "~/providers/project";
 import { useEffect, useState } from "react";
+import { Tooltip } from "~/components/bedrock/tooltip";
 
 interface HeaderProps {
   mode: ProjectMode;
@@ -60,7 +61,7 @@ export const Header = ({ mode }: HeaderProps) => {
       {mode === "edit" && isPublished && (
         <Banner
           type="important"
-          message="You’re editing a published project. To make your changes visible to the public, click the Submit Changes button at the bottom of the page."
+          message="You’re editing a published project. To make your changes visible to the public, you need to Submit Changes for review once again."
         />
       )}
       {selectedProject.submitted && (
@@ -109,24 +110,29 @@ export const Header = ({ mode }: HeaderProps) => {
                   />
                 )}
               >
-                <SimpleButton transparent>
-                  <img src={ReportGlyph} className={styles.icon} />
-                </SimpleButton>
+                <Tooltip text="Report Project">
+                  <SimpleButton transparent>
+                    <img src={ReportGlyph} className={styles.icon} />
+                  </SimpleButton>
+                </Tooltip>
               </PopupWrapper>
             )}
             {user?.admin && mode !== "edit" && (
-              <SimpleButton
-                transparent
-                onClick={() => navigate(Routes.PROJECT_EDIT + "/" + selectedProject.id)}
-              >
-                <img src={EditIcon} className={styles.icon} />
-              </SimpleButton>
+              <Tooltip text="Edit Project">
+                <SimpleButton
+                  transparent
+                  onClick={() => navigate(Routes.PROJECT_EDIT + "/" + selectedProject.id)}
+                >
+                  <img src={EditIcon} className={styles.icon} />
+                </SimpleButton>
+              </Tooltip>
             )}
           </div>
           {mode === "view" && (
             <Rating
               rating={selectedProject.rating.average}
               suffix={`(${selectedProject.rating.count} All Project Ratings)`}
+              extraClassName={styles.rating}
             />
           )}
         </div>
