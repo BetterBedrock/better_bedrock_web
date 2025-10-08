@@ -29,6 +29,14 @@
   padding-block: g.$padding-xsm;
 }
 
+@mixin card-padding-x() {
+  padding-inline: calc(g.$padding-xsm * 2.5);
+}
+
+@mixin card-padding-y() {
+  padding-block: calc(g.$padding-xsm * 2.5);
+}
+
 @mixin no-drag() {
   -webkit-user-drag: none;
   user-select: none;

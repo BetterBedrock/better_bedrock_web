@@ -50,9 +50,9 @@
     outline: none;
     text-align: left !important;
 
-    > p:not(:first-child) {
-      margin-top: g.$padding-md;
-    }
+    // > p:not(:first-child) {
+    //   margin-top: g.$padding-md;
+    // }
 
     /* List Node */
     ol,

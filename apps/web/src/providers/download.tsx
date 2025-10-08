@@ -75,15 +75,10 @@ export const DownloadProvider = ({ children }: DownloadProviderProps) => {
     // Extract filename from headers (if present)
     const disposition = response.headers.get("Content-Disposition") || "";
     const filenameMatch = /filename\*=UTF-8''([^;]+)|filename="([^"]+)"/.exec(disposition);
-    let filename = filenameMatch
+    const filename = filenameMatch
       ? decodeURIComponent(filenameMatch[1] || filenameMatch[2])
       : "download";
-
-    // Ensure filename has an extension, otherwise default to .mcpack
-    if (!/\.[a-z0-9]+$/i.test(filename)) {
-      filename += ".mcpack";
-    }
-
+      
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
