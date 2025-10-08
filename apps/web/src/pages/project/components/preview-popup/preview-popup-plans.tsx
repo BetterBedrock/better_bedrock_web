@@ -50,7 +50,7 @@ export const PreviewPopupPlans = ({
             <DownloadMethodCard
               key={index}
               buttonType={item.priceOption.featured ? "gold" : "white"} // instead of green make it gold - use latest 9slice buttons
-              price={`${item.priceOption.price}$`}
+              price={`€${item.priceOption.price}`}
               label={item.priceOption.label}
               title={item.priceOption.title}
               onClick={() => purchase(item.priceId)}
