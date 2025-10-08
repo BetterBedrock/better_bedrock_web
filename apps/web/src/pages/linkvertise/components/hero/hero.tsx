@@ -44,7 +44,7 @@ export const Hero = () => (
               color="grey"
             />
             <BedrockText
-              type="h2"
+              type="h3"
               text="8.5€ / 1k downloads"
               textAlign="left"
               color="white"
@@ -63,7 +63,7 @@ export const Hero = () => (
               color="grey"
             />
             <BedrockText
-              type="h2"
+              type="h3"
               text="Anti-bypass"
               textAlign="left"
               color="white"
@@ -82,7 +82,7 @@ export const Hero = () => (
               color="grey"
             />
             <BedrockText
-              type="h2"
+              type="h3"
               text="Millions of visits"
               textAlign="left"
               color="white"
