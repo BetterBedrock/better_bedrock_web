@@ -5,9 +5,8 @@ export const TrailerVideo = () => (
     <iframe
       width="100%"
       height="100%"
-      // todo: update 
-      src="https://youtube.com/embed/4XSc0J0mrlU"
-      title="BETTER BEDROCK V8 RELEASE! The Best Utility Texture Pack for Minecraft Bedrock | Showcase Trailer"
+      src=""
+      title="Make Money With Your Texture Pack!"
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerPolicy="strict-origin-when-cross-origin"

@@ -8,7 +8,7 @@ export const Hero = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <BedrockText type="h1" text="CHECKOUT CANCELLED" color="white" font="MinecraftTen" />
+      <BedrockText type="h1" text="CHECKOUT CANCELLED" color="white" font="Minecraft" />
       <BedrockText
         type="p"
         color="white"

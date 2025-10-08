@@ -1,10 +1,6 @@
 import { Label } from "~/components/bedrock/label";
 import { styles } from ".";
-import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Tooltip } from "~/components/bedrock/tooltip";
-import { useState } from "react";
-import { Collapsible } from "~/components/bedrock/collapsible";
-import { Button } from "~/components/bedrock/button";
 
 export interface BarChartData {
   categories: BarChartCategory[];
@@ -22,15 +18,15 @@ interface BarChartPiece {
 }
 
 interface BarChartProps {
+  category: string;
   direction: "horizontal" | "vertical";
   data: BarChartData;
 }
 
-export const BarChart = ({ data }: BarChartProps) => {
+export const BarChart = ({ data, category }: BarChartProps) => {
   if (data.categories.length < 1) {
     return;
   }
-  const [category, setCategory] = useState(data.categories[0].name);
 
   const selectedCategory = data.categories.find((c) => category === c.name);
 
@@ -51,28 +47,10 @@ export const BarChart = ({ data }: BarChartProps) => {
 
   return (
     <div className={styles.chart}>
-      {data.categories.length > 0 && (
-        <Collapsible floating headerText={category} contentText={""}>
-          {data.categories.map((c) => (
-            <Button
-              type="dark"
-              width="100%"
-              isClicked={c.name === category}
-              onClick={() => setCategory(c.name)}
-              center
-            >
-              <BedrockText type="p" color="white" text={c.name} />
-            </Button>
-          ))}
-        </Collapsible>
-      )}
       <div className={styles.data}>
-        {convertedData.map((piece) => (
-          <div className={styles.piece}>
-            <Tooltip
-              text={`${piece.name}\n${piece.value.toString()}`}
-              className={styles.tooltip}
-            >
+        {convertedData.map((piece, index) => (
+          <div key={piece.name+index} className={styles.piece}>
+            <Tooltip text={`${piece.name}\n${piece.value.toString()}`} className={styles.tooltip}>
               <Label type="white" style={{ height: `${piece.percentage}%` }} />
             </Tooltip>
           </div>

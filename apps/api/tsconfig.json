@@ -21,8 +21,8 @@
         "noFallthroughCasesInSwitch": false,
         "esModuleInterop": true,
 
-        "module": "commonjs"
-        // "strict": true
+        "module": "commonjs",
+        "lib": ["esnext"]
     },
     "include": ["src"],
     "exclude": ["node_modules", "dist"]

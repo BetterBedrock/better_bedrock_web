@@ -2,7 +2,7 @@
 
 .tooltip {
   position: relative;
-  display: inline-block;
+  // display: inline-block;
 }
 
 .box {
@@ -13,6 +13,10 @@
   border-image-slice: 4 4 4 4 fill;
   border-image-width: 10px 10px 10px 10px;
   border-image-source: url("~/assets/ui/tooltip/purple_border.png");
+}
+
+.unlimited {
+  max-width: none;
 }
 
 .text {

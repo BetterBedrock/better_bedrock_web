@@ -6,11 +6,14 @@ import metadata from "./metadata";
 import { join } from "path";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import helmet from "helmet";
+import { ThrottlerExceptionFilter } from "~/common/filters/throttler-exception-filter";
 
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule, {
         rawBody: true,
     });
+
+    app.useGlobalFilters(new ThrottlerExceptionFilter());
 
     app.getHttpAdapter().getInstance().set("trust proxy", true);
 
@@ -38,7 +41,7 @@ async function bootstrap() {
     );
 
     app.use((req, res, next) => {
-        if (!req.path.startsWith("/static")) {
+        if (!req.path.startsWith("/static/public")) {
             res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
             res.setHeader("Pragma", "no-cache");
             res.setHeader("Expires", "0");
@@ -50,7 +53,6 @@ async function bootstrap() {
         .setTitle("Better Bedrock API")
         .setDescription("The API used for handling downloads from Better Bedrock site")
         .setVersion("1.0")
-        .addTag("download")
         .addBearerAuth()
         .build();
     const documentFactory = () => SwaggerModule.createDocument(app, config);
@@ -58,6 +60,8 @@ async function bootstrap() {
     await SwaggerModule.loadPluginMetadata(metadata);
     SwaggerModule.setup("documentation", app, documentFactory, {
         jsonDocumentUrl: "documentation/json",
+        ui: true,
+        raw: ["json"],
     });
 
     app.useStaticAssets(join(__dirname, "..", "static"), {

@@ -5,5 +5,5 @@ interface CardTitleProps {
 }
 
 export const CardTitle = ({ title }: CardTitleProps) => (
-  <BedrockText text={title} type="h1" font="MinecraftTen" color="white" textAlign="center" />
+  <BedrockText text={title} type="h2" font="Minecraft" color="white" textAlign="center" />
 );

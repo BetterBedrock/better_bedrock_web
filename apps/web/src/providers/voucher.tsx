@@ -1,13 +1,11 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext } from "react";
 import { useCookies } from "react-cookie";
 import { VoucherApi, Configuration, VoucherDto, CreateVoucher, UpdateVoucher } from "~/lib/api";
-import { useAuth } from "~/providers/auth";
 import { useNotification } from "~/providers/notification";
 import { baseUrl } from "~/utils/url";
 
 interface VoucherContextProps {
-  vouchers: VoucherDto[];
-  fetchVouchers: () => Promise<void>;
+  fetchVouchers: () => Promise<VoucherDto[] | undefined>;
   createVoucher: (voucher: CreateVoucher) => Promise<VoucherDto | undefined>;
   updateVoucher: (id: string, voucher: UpdateVoucher) => Promise<VoucherDto | undefined>;
 }
@@ -19,23 +17,21 @@ interface VoucherProviderProps {
 const VoucherContext = createContext<VoucherContextProps | undefined>(undefined);
 
 export const VoucherProvider = ({ children }: VoucherProviderProps) => {
-  const [vouchers, setVouchers] = useState<VoucherDto[]>([]);
-  const { authenticated } = useAuth();
-  const [cookie] = useCookies(["adminSecret"]);
+  const [cookie] = useCookies(["secret"]);
   const { throwError } = useNotification();
 
   const config = new Configuration({
     basePath: baseUrl,
-    accessToken: cookie.adminSecret,
+    accessToken: cookie.secret,
   });
 
   const voucherApi = new VoucherApi(config);
 
-  const fetchVouchers = async () => {
+  const fetchVouchers = async (): Promise<VoucherDto[] | undefined> => {
     try {
       const { data } = await voucherApi.voucherControllerVouchers();
 
-      setVouchers(data);
+      return data;
     } catch (err) {
       throwError(err, "Failed to fetch vouchers");
     }
@@ -43,15 +39,7 @@ export const VoucherProvider = ({ children }: VoucherProviderProps) => {
 
   const createVoucher = async (voucher: CreateVoucher) => {
     try {
-      if (vouchers.find((v) => v.code === voucher.code)) {
-        throwError(null, "Voucher with this code already exists");
-        return;
-      }
-
       const { data } = await voucherApi.voucherControllerCreate(voucher);
-
-      setVouchers((prev) => [...prev, data]);
-
       return data;
     } catch (err) {
       throwError(err, "Failed to create voucher");
@@ -60,38 +48,15 @@ export const VoucherProvider = ({ children }: VoucherProviderProps) => {
 
   const updateVoucher = async (id: string, voucher: UpdateVoucher) => {
     try {
-      if (vouchers.find((v) => v.code === voucher.code && id !== v.id)) {
-        throwError(null, "Voucher with this code already exists");
-        return;
-      }
-
       const { data } = await voucherApi.voucherControllerUpdate(id, voucher);
-
-      setVouchers((prev) =>
-        prev.map((v) =>
-          v.id === data.id
-            ? {
-                ...v,
-                ...data,
-              }
-            : v,
-        ),
-      );
-
       return data;
     } catch (err) {
       throwError(err, "Failed to create voucher");
     }
   };
 
-  useEffect(() => {
-    if (authenticated) {
-      fetchVouchers();
-    }
-  }, [authenticated]);
-
   return (
-    <VoucherContext.Provider value={{ updateVoucher, fetchVouchers, createVoucher, vouchers }}>
+    <VoucherContext.Provider value={{ updateVoucher, fetchVouchers, createVoucher }}>
       {children}
     </VoucherContext.Provider>
   );

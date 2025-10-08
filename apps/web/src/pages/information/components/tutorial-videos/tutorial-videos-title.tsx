@@ -2,9 +2,9 @@ import { BedrockText } from "~/components/bedrock/bedrock-text";
 
 export const TutorialVideosTitle = () => (
   <BedrockText
-    type="h1"
-    text="Tutorial Videos"
+    type="h2"
+    text={deprected ? "Tutorial Videos" : "Deprecated Tutorial Videos"}
     color="white"
-    font="MinecraftTen"
+    font="Minecraft"
   />
 );

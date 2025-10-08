@@ -26,8 +26,8 @@ export const ModuleCard = ({ data }: ModuleCardProp) => {
           <div className={styles.title}>
             <BedrockText
               text={data.name}
-              type="h2"
-              font="MinecraftTen"
+              type="h3"
+              font="Minecraft"
               textAlign="left"
               color={data.creator ? "white" : "black"}
               style={{ padding: "0 0.5rem 0 0" }}

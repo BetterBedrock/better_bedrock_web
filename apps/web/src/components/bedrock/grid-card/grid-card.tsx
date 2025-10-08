@@ -48,8 +48,8 @@ export const GridCard: React.FC<GridCardProps> = ({
               <div className={styles.imgWrapper}>
                 <BedrockText
                   text={(index && `#${index}`) || ""}
-                  type={"h1"}
-                  font="MinecraftTen"
+                  type="h4"
+                  font="Minecraft"
                   textAlign="left"
                   color="white"
                   style={{ position: "absolute" }}
@@ -57,12 +57,13 @@ export const GridCard: React.FC<GridCardProps> = ({
                 {tags && (
                   <div className={styles.tagsWrapper}>
                     <div className={styles.tagsContainer}>
-                      {tags.map((tag) => {
+                      {tags.map((tag, index) => {
                         const selectedTag = tagData.find((t) => t.id === tag);
-                        if (!selectedTag) return <></>;
+                        if (!selectedTag) return;
 
                         return (
                           <BedrockText
+                            key={index}
                             text={selectedTag.name}
                             type={"p"}
                             textAlign="left"
@@ -82,8 +83,8 @@ export const GridCard: React.FC<GridCardProps> = ({
       <div className={styles.texts}>
         <BedrockText
           text={title || ""}
-          type={"h2"}
-          font="MinecraftTen"
+          type="h3"
+          font="Minecraft"
           textAlign="left"
           color="white"
         />

@@ -11,11 +11,12 @@ import clsx from "clsx";
 import { Link } from "~/components/link";
 import { Routes } from "~/utils/routes";
 import { useAuth } from "~/providers/auth";
+import { Banner } from "~/components/bedrock/banner";
 
 export const Navbar = () => {
   const [expandedNavbar, setExpandedNavbar] = useState(false);
   const location = useLocation();
-  const { authenticated } = useAuth();
+  const { user } = useAuth();
 
   const handleExpandNavbar = (value?: boolean) => {
     setExpandedNavbar((prev) => (value !== undefined ? value : !prev));
@@ -24,75 +25,93 @@ export const Navbar = () => {
   // Determine which nav items to show
   const isPanelSection = location.pathname === "/panel" || location.pathname.startsWith("/panel/");
   const navItems =
-    isPanelSection && authenticated
+    isPanelSection && user?.admin
       ? [
           { name: "Dashboard", path: "/panel" },
           { name: "Analytics", path: "/panel/analytics" },
-          { name: "Voucher", path: "/panel/voucher" },
+          { name: "Vouchers", path: "/panel/vouchers" },
+          { name: "Projects", path: "/panel/projects" },
+          { name: "Reports", path: "/panel/reports" },
         ]
       : [
           { name: "Home", path: "/" },
-          { name: "Downloads", path: "/downloads/:main" },
+          { name: "Downloads", path: "/downloads/main" },
           { name: "Information", path: "/information/:general" },
-          { name: "Discord", path: "/discord" },
+          user
+            ? { name: "Profile", path: `/profile/${user.name}/:projects` }
+            : { name: "Login", path: "/login" },
         ];
 
   return (
-    <header className={styles.wrapper}>
-      <Label className={clsx(styles.label, expandedNavbar && styles.expanded)}>
-        <div className={clsx(styles.item, styles.mobile)}>
-          <Link className={clsx(styles.item)} link={Routes.HOME} hideStyles>
-            <img alt="logo" src={FavIcon} className={styles.image} />
-            <BedrockText
-              text="Better Bedrock"
-              type="h1"
-              font="MinecraftTen"
-              extraClassName={styles.heading}
-            />
-          </Link>
-          <SimpleButton height="100%" onTap={handleExpandNavbar} className={styles.menuButton}>
-            <div className={clsx("material-icons", styles.menu)}>menu</div>
-          </SimpleButton>
-        </div>
+    <>
+      {import.meta.env.VITE_FRONTEND_URL === "dev.betterbedrock.com" && (
+        <Banner type="info" message="This is a developer version of Better Bedrock Website" />
+      )}
+      <header className={styles.wrapper}>
+        <Label className={clsx(styles.label, expandedNavbar && styles.expanded)}>
+          <div className={clsx(styles.item, styles.mobile)}>
+            <Link className={clsx(styles.item)} link={Routes.HOME} hideStyles>
+              <img alt="logo" src={FavIcon} className={styles.image} />
+              <BedrockText
+                text="Better Bedrock"
+                type="p"
+                font="Minecraft"
+                headerSize
+                extraClassName={styles.heading}
+              />
+            </Link>
+            <SimpleButton
+              height="100%"
+              onTap={handleExpandNavbar}
+              className={styles.menuButton}
+              isClicked={expandedNavbar}
+            >
+              <div className={clsx("material-icons", styles.menu)}>menu</div>
+            </SimpleButton>
+          </div>
 
-        <div className={clsx(styles.item, styles.links)}>
-          {navItems.map(({ name, path }) => {
-            const navPaths = path.split("/");
-            const locationPaths = location.pathname.split("/");
+          <div className={clsx(styles.item, styles.links)}>
+            {navItems.map(({ name, path }) => {
+              const navPaths = path.split("/");
+              const locationPaths = location.pathname.split("/");
 
-            let finalNavPath;
+              let finalNavPath;
 
-            if (navPaths[1] === locationPaths[1]) {
-              finalNavPath = navPaths
-                .map((p, index) =>
-                  p.startsWith(":") ? (locationPaths[index] ?? p.replace(":", "")) : p,
-                )
-                .join("/");
-            } else {
-              finalNavPath = navPaths.map((p) => p.startsWith(":") ? p.replace(":", "") : p).join("/");
-            }
+              if (navPaths[1] === locationPaths[1]) {
+                finalNavPath = navPaths
+                  .map((p, index) =>
+                    p.startsWith(":") ? (locationPaths[index] ?? p.replace(":", "")) : p,
+                  )
+                  .join("/");
+              } else {
+                finalNavPath = navPaths
+                  .map((p) => (p.startsWith(":") ? p.replace(":", "") : p))
+                  .join("/");
+              }
 
-            const isActive = location.pathname === finalNavPath;
+              const isActive = location.pathname === finalNavPath;
 
-            return (
-              <nav key={path} className={styles.nav}>
-                <Link link={finalNavPath} hideStyles={true}>
-                  <SimpleButton
-                    key={name}
-                    width="100%"
-                    className={clsx(styles.button, isActive && styles.active)}
-                    onTap={() => {
-                      handleExpandNavbar(false);
-                    }}
-                  >
-                    <BedrockText text={name} type="p" extraClassName={styles.text} />
-                  </SimpleButton>
-                </Link>
-              </nav>
-            );
-          })}
-        </div>
-      </Label>
-    </header>
+              return (
+                <nav key={path} className={styles.nav}>
+                  <Link link={finalNavPath} hideStyles={true}>
+                    <SimpleButton
+                      key={name}
+                      width="100%"
+                      isClicked={isActive}
+                      className={styles.button}
+                      onTap={() => {
+                        handleExpandNavbar(false);
+                      }}
+                    >
+                      <BedrockText text={name} type="p" extraClassName={styles.text} />
+                    </SimpleButton>
+                  </Link>
+                </nav>
+              );
+            })}
+          </div>
+        </Label>
+      </header>
+    </>
   );
 };

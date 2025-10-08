@@ -1,13 +1,16 @@
+import { useGoogleLogin } from "@react-oauth/google";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { AuthApi, Configuration } from "~/lib/api";
+import { AuthApi, Configuration, UserDto } from "~/lib/api";
 import { useNotification } from "~/providers/notification";
 import { baseUrl } from "~/utils/url";
 
 interface AuthContextProps {
-  authenticated: boolean;
   fetched: boolean;
-  authenticate: (token: string) => Promise<void>;
+  user: UserDto | undefined;
+  setUser: React.Dispatch<React.SetStateAction<UserDto | undefined>>;
+  googleLogin: () => void;
+  logout: () => void;
 }
 
 interface AuthProviderProps {
@@ -17,39 +20,73 @@ interface AuthProviderProps {
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [authenticated, setAuthenticated] = useState(false);
   const [fetched, setFetched] = useState(false);
-  const [cookie, setCookie] = useCookies(["adminSecret"]);
-  const { throwError } = useNotification();
+  const [cookie, setCookie, removeCookie] = useCookies(["secret"]);
+  const { throwError, sendNotification } = useNotification();
+  const [user, setUser] = useState<UserDto | undefined>();
 
-  const authenticate = async (token: string) => {
-    try {
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
       const config = new Configuration({
         basePath: baseUrl,
-        accessToken: token,
       });
 
       const authApi = new AuthApi(config);
 
-      await authApi.authControllerAuthenticate();
+      try {
+        const { data } = await authApi.authControllerGoogleAuthorize({
+          token: tokenResponse.access_token,
+        });
+        setCookie("secret", data.token, { path: "/", secure: true, sameSite: "strict" });
+      } catch (err) {
+        throwError(err, "Failed to login with google");
+      }
+    },
+    onError: (errorResponse) => throwError(errorResponse, "Failed to login with google"),
+  });
 
-      setCookie("adminSecret", token);
-      setAuthenticated(true);
+  const authenticate = async (secret: string) => {
+    setFetched(false);
+    try {
+      const config = new Configuration({
+        basePath: baseUrl,
+        accessToken: secret,
+      });
+
+      const authApi = new AuthApi(config);
+      const { data } = await authApi.authControllerAuthenticate();
+      setUser(data);
     } catch (err) {
-      setAuthenticated(false);
       throwError(err, "Failed to authenticate");
+      logout();
     }
+
     setFetched(true);
   };
 
+  const logout = () => {
+    removeCookie("secret", { path: "/" });
+    setUser(undefined);
+
+    sendNotification({
+      type: "info",
+      title: "Logout",
+      label: "You have been logged out",
+    });
+
+    window.location.reload();
+  };
+
   useEffect(() => {
-    if (cookie.adminSecret && cookie.adminSecret !== "") {
-      authenticate(cookie.adminSecret);
+    if (cookie.secret && cookie.secret !== "") {
+      authenticate(cookie.secret);
+    } else {
+      setFetched(true);
     }
-  }, [cookie]);
+  }, [cookie.secret]);
 
   return (
-    <AuthContext.Provider value={{ fetched, authenticate, authenticated }}>
+    <AuthContext.Provider value={{ user, setUser, fetched, googleLogin, logout }}>
       {children}
     </AuthContext.Provider>
   );

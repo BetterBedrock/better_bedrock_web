@@ -1,49 +1,42 @@
-import { useState } from "react";
-import { MainActions, MainArchiveButton, MainItemsList, styles } from ".";
-import { useContent } from "~/providers/content";
-import { Heading } from "~/pages/downloads/components/heading";
-import { useNavigate, useParams } from "react-router-dom";
-import { Routes } from "~/utils/routes";
+import { Card, CardDivider } from "~/components/bedrock/card";
+import { styles } from ".";
+import { MainAd } from "~/pages/downloads/components/main/main-ad";
+import { MainProjects } from "~/pages/downloads/components/main/main-projects";
+import { BedrockText } from "~/components/bedrock/bedrock-text";
+import { Banner } from "~/components/bedrock/banner";
 
 export const Main = () => {
-  const { downloads, fetched } = useContent();
-  const [showArchived, setShowArchived] = useState(false);
-  const navigate = useNavigate();
-  const { category } = useParams();
-  const categoryDownloads = downloads?.categories.find((c) => c.id === category);
-
-  if (!fetched || !categoryDownloads) {
-    return;
-  }
-
-  const archivedCategory = categoryDownloads.lists.find((c) => c.title === "Archived");
-  const visibleCategories = showArchived
-    ? categoryDownloads.lists
-    : categoryDownloads.lists.filter((c) => c.title !== "Archived");
-
-  const handleSetActiveTab = (tab: string) => {
-    navigate(Routes.DOWNLOADS + "/" + tab);
-  };
-
   return (
     <>
-      {visibleCategories.map((category) => (
-        <div key={category.title} className={styles.category}>
-          <Heading title={category.title} description={category.description} />
-          <MainActions buttons={category.buttons} />
-          <MainItemsList categoryId={categoryDownloads.id} category={category} />
+      <Card sub className={styles.main}>
+        <div className={styles.downloads}>
+          <BedrockText text="Featured" type="h1" color="white" font="Minecraft" textAlign="start" />
         </div>
-      ))}
-
-      <div className={styles.footer}>
-        {archivedCategory && (
-          <MainArchiveButton
-            showArchived={showArchived}
-            setShowArchived={setShowArchived}
-            setActiveTab={handleSetActiveTab}
+        <CardDivider sub />
+        <div className={styles.downloads}>
+          <MainAd />
+        </div>
+      </Card>
+      <Card sub className={styles.main}>
+        <div className={styles.downloads}>
+          <Banner
+            type="info"
+            message="Our creators get anti-bypass for ads & 100% of the ad revenue!"
           />
-        )}
-      </div>
+          <BedrockText
+            text="Projects"
+            type="h2"
+            color="white"
+            font="Minecraft"
+            textAlign="start"
+            headerSize
+          />
+        </div>
+        <CardDivider sub />
+        <div className={styles.downloads}>
+          <MainProjects />
+        </div>
+      </Card>
     </>
   );
 };

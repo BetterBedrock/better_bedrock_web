@@ -7,6 +7,8 @@ node_modules
 
 # Local env files
 .env
+.env.production
+.env.development
 .env.local
 .env.development.local
 .env.test.local
@@ -34,10 +36,14 @@ yarn-debug.log*
 yarn-error.log*
 yarn.lock
 
+# Generated files
 apps/api/src/assets/downloads/*
+apps/api/static/private/*
+apps/api/static/public/*
 
 # Misc
 .DS_Store
 *.pem
 github_action
 github_action.pub
+todo.md

@@ -21,6 +21,10 @@ export const Footer = () => {
             <Link isExternalLink={true} link="https://github.com/BetterBedrock/better_bedrock_web">
               <BedrockText text="GitHub" type="p" />
             </Link>
+            <BedrockText text="|" type="p" />
+            <Link link={Routes.DISCORD}>
+              <BedrockText text="Discord" type="p" />
+            </Link>
           </div>
           <BedrockText
             text="Copyright © Better Bedrock | All rights reserved | Not affiliated with Mojang Studios"

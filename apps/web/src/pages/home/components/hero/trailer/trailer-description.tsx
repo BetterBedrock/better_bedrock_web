@@ -5,6 +5,6 @@ export const TrailerDescription = () => (
     type="p"
     textAlign="center"
     color="white"
-    text="Watch the showcase for more details about our latest Texture Pack!"
+    text="Learn how you can publish your projects and earn €8.5 per 1000 downloads on average — the highest rate offered across all sites."
   />
 );

@@ -2,10 +2,10 @@ import { BedrockText } from "~/components/bedrock/bedrock-text";
 
 export const TrailerTitle = () => (
   <BedrockText
-    type="h1"
+    type="h2"
     textAlign="center"
     color="white"
-    text="Latest Trailer"
-    font="MinecraftTen"
+    text="Make Money On Better Bedrock"
+    font="Minecraft"
   />
 );

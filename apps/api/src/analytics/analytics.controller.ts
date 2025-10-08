@@ -1,23 +1,32 @@
-import { Controller, Get, UseGuards } from "@nestjs/common";
-import { ApiTags, ApiOkResponse, ApiBearerAuth } from "@nestjs/swagger";
+import { Controller, ForbiddenException, Get, Param, Req, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth } from "@nestjs/swagger";
 import { AnalyticsService } from "~/analytics/analytics.service";
-import { AdminAuthGuard } from "~/auth/admin-auth.guard";
 import { AnalyticsDto } from "~/analytics/dto/analytics.dto";
+import { AdminAuthGuard } from "~/auth/admin-auth.guard";
+import { UserAuthGuard } from "~/auth/user-auth.guard";
+import { AuthenticatedRequest } from "~/common/types/authenticated-request.type";
 
-@ApiTags("analytics")
 @Controller("analytics")
-@ApiBearerAuth()
 export class AnalyticsController {
-    constructor(private readonly analyticsService: AnalyticsService) {}
+    constructor(private analyticsService: AnalyticsService) {}
 
     @Get()
-    @ApiOkResponse({
-        description: "Analytics about downloads, vouchers, and more",
-        type: AnalyticsDto,
-        isArray: true,
-    })
     @UseGuards(AdminAuthGuard)
-    async analytics(): Promise<AnalyticsDto[]> {
-        return await this.analyticsService.analytics();
+    @ApiBearerAuth()
+    analytics(): Promise<AnalyticsDto[]> {
+        return this.analyticsService.analytics();
+    }
+
+    @Get("/user/:id")
+    @UseGuards(UserAuthGuard)
+    @ApiBearerAuth()
+    user(@Req() req: AuthenticatedRequest, @Param("id") id: string): Promise<AnalyticsDto[]> {
+        const user = req.user;
+
+        if (user.id !== id && !user.admin) {
+            throw new ForbiddenException("You are not allowed to view this user's analytics");
+        }
+
+        return this.analyticsService.userAnalytics(id);
     }
 }

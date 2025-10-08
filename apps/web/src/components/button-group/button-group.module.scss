@@ -9,11 +9,6 @@
 
 .buttonGroup > :global(*) {
   position: relative;
-  z-index: 1;
-}
-.buttonGroup > :global(*:hover),
-.buttonGroup > :global(*:focus-within) {
-  z-index: 2;
 }
 
 .buttonGroup[data-direction="horizontal"],
@@ -21,8 +16,8 @@
   flex-direction: row;
 }
 
-.buttonGroup[data-direction="horizontal"] > :global(*:not(:first-child)),
-.buttonGroup[data-direction="responsive"] > :global(*:not(:first-child)) {
+.buttonGroup[data-direction="horizontal"] > *:not(:first-child),
+.buttonGroup[data-direction="responsive"] > *:not(:first-child) {
   margin-left: calc(-1 * g.$minecraftdepth);
 }
 
@@ -31,8 +26,8 @@
   gap: g.$padding-xsm;
 }
 
-.buttonGroup[data-direction="vertical"] > :global(*:not(:first-child)) {
-  margin-top: calc(-1 * math.floor(g.$minecraftdepth));
+.buttonGroup[data-direction="vertical"] > *:not(:first-child) {
+  margin-top: calc(-1 * g.$minecraftdepth);
 }
 
 @media (max-width: g.$breakpoint-mobileL) {
@@ -41,8 +36,8 @@
     gap: g.$padding-xsm;
   }
 
-  .buttonGroup[data-direction="responsive"] > :global(*:not(:first-child)) {
+  .buttonGroup[data-direction="responsive"] > *:not(:first-child) {
     margin-left: 0;
-    margin-top: calc(-1 * math.floor(g.$minecraftdepth));
+    margin-top: calc(-1 * g.$minecraftdepth);
   }
 }

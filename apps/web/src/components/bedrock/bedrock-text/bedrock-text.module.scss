@@ -1,20 +1,62 @@
+@use "~/utils" as g;
+
 p.p2 {
-    font-size: 1.2rem;
-    letter-spacing: 0.3px;
-    line-height: 1.2em;
+  font-size: 1.2rem;
+  letter-spacing: 0.3px;
+  line-height: 1.2em;
+}
+
+.header {
+  font-family: "Minecraft";
+  font-weight: 400;
+  font-size: 2.5rem;
+  letter-spacing: -0.015em;
+  line-height: 2.5rem;
+  color: white;
+
+  @media (max-width: g.$breakpoint-laptop) {
+    font-size: 2rem;
+    line-height: 2.2rem;
+  }
+
+  @media (max-width: g.$breakpoint-tablet) {
+    font-size: 1.75rem;
+    line-height: 2rem;
+  }
+}
+
+.paragraph {
+  font-family: "Mojangles";
+  text-align: left;
+  font-size: 1.25rem;
+  letter-spacing: 0.3px;
+  line-height: 1.2em;
+  color: white;
+
+  @media (max-width: g.$breakpoint-laptop) {
+    font-size: 1.125rem;
+  }
+
+  @media (max-width: g.$breakpoint-tablet) {
+    font-size: 1rem;
+  }
 }
 
 .strong {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .non_selectable {
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .underline {
-    cursor: pointer;
-    text-decoration: underline;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.shadow {
+  text-shadow: g.$text-shadow;
 }

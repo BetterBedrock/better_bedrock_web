@@ -1,24 +1,25 @@
-import { Controller, Get, UseGuards } from "@nestjs/common";
-import {
-    ApiBearerAuth,
-    ApiInternalServerErrorResponse,
-    ApiOkResponse,
-    ApiTags,
-    ApiUnauthorizedResponse,
-} from "@nestjs/swagger";
-import { AdminAuthGuard } from "~/auth/admin-auth.guard";
+import { Body, Controller, Get, Post, Req, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth } from "@nestjs/swagger";
+import { AuthService } from "~/auth/auth.service";
+import { AuthorizeDto } from "~/auth/dto/authorize.dto";
+import { JwtTokenDto } from "~/auth/dto/jwt-token.dto";
+import { UserAuthGuard } from "~/auth/user-auth.guard";
+import { AuthenticatedRequest } from "~/common/types/authenticated-request.type";
+import { UserDto } from "~/user/dto/user.dto";
 
-@ApiTags("auth")
 @Controller("auth")
 export class AuthController {
-    @Get()
-    @UseGuards(AdminAuthGuard)
+    constructor(private authService: AuthService) {}
+
+    @Post("google")
+    googleAuthorize(@Body() data: AuthorizeDto): Promise<JwtTokenDto> {
+        return this.authService.googleAuthorize(data);
+    }
+
+    @Get("me")
+    @UseGuards(UserAuthGuard)
     @ApiBearerAuth()
-    @ApiOkResponse({ description: "Successfully authenticated" })
-    @ApiInternalServerErrorResponse({ description: "Secret for admin panel is not set" })
-    @ApiUnauthorizedResponse({ description: "Could not authenticate" })
-    async authenticate() {
-        // No need to put anything, all authentication happens in AdminAuthGuard
-        return;
+    authenticate(@Req() req: AuthenticatedRequest): UserDto {
+        return req.user;
     }
 }

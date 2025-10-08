@@ -48,8 +48,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | Binary file stream |  -  |
-|**401** | Not verified for download |  -  |
-|**404** | File not found or does not exist on the server |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -68,7 +66,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new DownloadApi(configuration);
 
-let file: string; //Download ID to generate (default to undefined)
+let file: string; //Name of the file user wants to generate download for (default to undefined)
 
 const { status, data } = await apiInstance.downloadControllerGenerate(
     file
@@ -79,7 +77,7 @@ const { status, data } = await apiInstance.downloadControllerGenerate(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **file** | [**string**] | Download ID to generate | defaults to undefined|
+| **file** | [**string**] | Name of the file user wants to generate download for | defaults to undefined|
 
 
 ### Return type
@@ -99,13 +97,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**201** | Download record created. |  -  |
-|**404** | Requested file not found. |  -  |
+|**201** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **downloadControllerVerify**
-> DownloadsItemDto downloadControllerVerify()
+> ProjectDto downloadControllerVerify()
 
 
 ### Example
@@ -138,11 +135,11 @@ const { status, data } = await apiInstance.downloadControllerVerify(
 
 ### Return type
 
-**DownloadsItemDto**
+**ProjectDto**
 
 ### Authorization
 
-No authorization required
+[bearer](../README.md#bearer)
 
 ### HTTP request headers
 
@@ -153,13 +150,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Download verified successfully |  -  |
-|**401** | The voucher does not exist |  -  |
-|**403** | This voucher allows you to download only better bedrock content |  -  |
-|**404** | Download record not found for this IP or file not found |  -  |
-|**410** | The voucher has either expired or already been used |  -  |
-|**502** | Failed to verify with Linkvertise gateway |  -  |
-|**503** | Linkvertise service unavailable |  -  |
+|**201** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

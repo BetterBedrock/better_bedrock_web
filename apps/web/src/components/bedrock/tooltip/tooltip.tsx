@@ -7,9 +7,10 @@ interface TooltipProps {
   children: ReactNode;
   text?: string;
   className?: string;
+  hidden?: boolean;
 }
 
-export const Tooltip = ({ children, className, text }: TooltipProps) => {
+export const Tooltip = ({ children, className, text, hidden = false }: TooltipProps) => {
   const [visible, setVisible] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -18,13 +19,13 @@ export const Tooltip = ({ children, className, text }: TooltipProps) => {
   };
 
   const tooltipStyle: CSSProperties = {
-    position: 'fixed',
+    position: "fixed",
     top: position.y + 12,
     left: position.x + 12,
-    pointerEvents: 'none',
+    pointerEvents: "none",
     opacity: visible ? 1 : 0,
-    transform: visible ? 'translate(0, 0)' : 'translate(-50%, -10px)',
-    transition: 'opacity 0.25s ease, transform 0.25s ease',
+    transform: visible ? "translate(0, 0)" : "translate(-50%, -10px)",
+    transition: "opacity 0.25s ease, transform 0.25s ease",
     zIndex: 1000,
   };
 
@@ -37,15 +38,17 @@ export const Tooltip = ({ children, className, text }: TooltipProps) => {
     >
       {children}
 
-      <div style={tooltipStyle} className={styles.box}>
-        <BedrockText
-          text={text ?? "Tooltip text"}
-          extraClassName={styles.text}
-          color="white"
-          type="p"
-          textAlign="center"
-        />
-      </div>
+      {!hidden && (
+        <div style={tooltipStyle} className={styles.box}>
+          <BedrockText
+            text={text ?? "Tooltip text"}
+            extraClassName={styles.text}
+            color="white"
+            type="p"
+            textAlign="center"
+          />
+        </div>
+      )}
     </div>
   );
 };

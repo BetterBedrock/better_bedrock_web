@@ -1,0 +1,11 @@
+@use "~/utils" as g;
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: g.$padding-sm;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    grid-template-columns: 1fr;
+  }
+}

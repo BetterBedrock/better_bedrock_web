@@ -6,7 +6,7 @@ import { styles } from ".";
 export const Hero = () => {
   return (
     <>
-      <BedrockText type="h1" text="Terms" color="white" font="MinecraftTen" />
+      <BedrockText type="h1" text="Terms" color="white" font="Minecraft" />
       <div className={styles.markdown}>
         <ReactMarkdown>
           {`

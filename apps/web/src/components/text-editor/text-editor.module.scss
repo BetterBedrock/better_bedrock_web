@@ -1,0 +1,98 @@
+@use "~/utils" as g;
+
+.wrapper {
+  overflow: hidden;
+}
+
+.editor {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100px;
+  gap: g.$padding-xsm;
+}
+
+.content {
+  margin-top: g.$padding-sm;
+
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.toolbar {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  overflow: auto;
+  left: 0;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    justify-content: start;
+  }
+}
+
+.content {
+  /* Ensure each top-level node has relative positioning 
+   so absolutely positioned placeholders work correctly */
+
+  :global(.tiptap.ProseMirror) > * {
+    position: relative;
+  }
+
+  :global(.tiptap.ProseMirror) {
+    /* Paragraph Node */
+    white-space: pre-wrap;
+    outline: none;
+    text-align: left !important;
+
+    // > p:not(:first-child) {
+    //   margin-top: g.$padding-md;
+    // }
+
+    /* List Node */
+    ol,
+    ul {
+      margin-top: g.$padding-md;
+      margin-bottom: g.$padding-md;
+      padding-left: g.$padding-md;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      ol,
+      ul {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    li {
+      p {
+        margin-top: 0;
+        line-height: g.$line-height-lg;
+      }
+    }
+
+    ul {
+      list-style: disc;
+
+      ul {
+        list-style: circle;
+
+        ul {
+          list-style: square;
+        }
+      }
+    }
+  }
+}

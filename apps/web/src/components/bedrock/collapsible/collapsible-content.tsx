@@ -7,6 +7,7 @@ interface CollapsibleContentProps {
   contentText: string;
   children?: ReactNode;
   floating?: boolean;
+  limit?: boolean;
   contentHeight?: number | string;
 }
 
@@ -15,9 +16,10 @@ export const CollapsibleContent = ({
   children,
   contentHeight,
   floating,
+  limit,
 }: CollapsibleContentProps) => (
   <div
-    className={clsx(styles.frame, floating && styles.floating)}
+    className={clsx(styles.frame, floating && styles.floating, limit && styles.limit)}
     style={{ height: contentHeight }}
   >
     <div className={styles.content}>

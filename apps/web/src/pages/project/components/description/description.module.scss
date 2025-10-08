@@ -1,0 +1,33 @@
+@use "~/utils" as g;
+
+.editor {
+  @include g.card-margin();
+}
+
+.fullscreen {
+  position: fixed;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  z-index: 92;
+  top: 0;
+  left: 0;
+}
+
+.mode {
+  @media (min-width: g.$breakpoint-tablet) {
+    display: none;
+  }
+}
+
+.icon {
+  height: g.$icon-sm;
+  image-rendering: pixelated;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: g.$padding-xsm;
+}

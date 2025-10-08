@@ -2,15 +2,13 @@ import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate, useLocation } from "react-router-dom";
 import { VoucherDto } from "~/lib/api";
-import { useContent } from "~/providers/content";
-import { useNotification } from "~/providers/notification";
 import { AxiosError } from "axios";
 import { Routes } from "~/utils/routes";
+import { useDownload } from "~/providers/download";
 
 export const useHero = () => {
   const [cookie, _, removeCookie] = useCookies(["voucher"]);
-  const { verifyDownload, download, downloadProgress, downloadItem, downloading } = useContent();
-  const { sendNotification } = useNotification();
+  const { verifyDownload, download, downloadProgress, downloadItem, downloading } = useDownload();
   const [verified, setVerified] = useState(false);
   const navigate = useNavigate();
 
@@ -21,7 +19,6 @@ export const useHero = () => {
   useEffect(() => {
     //Timeout required because linkvertise servers are too slow /shrug
     const timer = setTimeout(async () => {
-      if (hash || cookie.voucher) {
         try {
           await verifyDownload(hash ?? undefined, (cookie.voucher as VoucherDto)?.code);
           setVerified(true);
@@ -34,13 +31,7 @@ export const useHero = () => {
           }
 
           console.log(err);
-        }
-      } else {
-        sendNotification({
-          title: "No Hash",
-          label: "You are missing hash in your link",
-          type: "error",
-        });
+        
       }
     }, 1000);
 

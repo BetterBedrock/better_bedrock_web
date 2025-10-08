@@ -3,7 +3,7 @@ import { Button } from "~/components/bedrock/button";
 
 export const Hero = () => (
   <div>
-    <BedrockText type="h1" text="Discord Redirect" color="white" font="MinecraftTen" />
+    <BedrockText type="h1" text="Discord Redirect" color="white" font="Minecraft" />
     <BedrockText
       type="p"
       color="white"

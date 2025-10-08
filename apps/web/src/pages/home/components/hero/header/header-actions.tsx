@@ -1,28 +1,24 @@
-import { useNavigate } from "react-router-dom";
 import { styles } from ".";
-import { Routes } from "~/utils/routes";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { Button } from "~/components/bedrock/button";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
+import { Link } from "~/components/link";
+import { Routes } from "~/utils/routes";
 
 export const HeroActions = () => {
-  const navigate = useNavigate();
   return (
     <div className={styles.actions}>
       <ButtonGroup direction="responsive">
-        <Button width="100%" type="green" onClick={() => navigate(Routes.DOWNLOADS)} center>
-          <BedrockText text="Download Now!" type="p" color="white" />
-        </Button>
-        <Button
-          width="100%"
-          type="white"
-          onClick={() =>
-            window.open("https://discord.gg/ZGK5WYXnEY", "_blank", "noopener,noreferrer")
-          }
-          center
-        >
-          <BedrockText text="Join Discord (+70k members!)" type="p" color="black" />
-        </Button>
+        <Link link={Routes.DOWNLOADS_MAIN} className={styles.link}>
+          <Button width="100%" type="green" center>
+            <BedrockText text="Downloads" type="p" color="white" />
+          </Button>
+        </Link>
+        <Link link={Routes.CREATE} className={styles.link}>
+          <Button width="100%" type="white" center>
+            <BedrockText text="Create A Project" type="p" color="black" />
+          </Button>
+        </Link>
       </ButtonGroup>
     </div>
   );

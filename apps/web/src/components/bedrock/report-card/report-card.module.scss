@@ -1,0 +1,34 @@
+@use "~/utils" as g;
+
+.content {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+.price {
+  flex-shrink: 0;
+}
+
+.description {
+  width: 100%;
+  align-items: start;
+}
+
+.details {
+  display: inline-flex;
+  align-items: start;
+  width: 100%;
+  gap: g.$padding-xsm;
+}
+
+.resolved {
+  color: g.$color-sbtn-click !important;
+}
+
+.unresolved {
+  color: g.$color-grey !important;
+}

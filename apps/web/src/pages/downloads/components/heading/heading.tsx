@@ -8,7 +8,7 @@ interface HeadingProps {
 
 export const Heading = ({ title, description }: HeadingProps) => (
   <>
-    <BedrockText type="h1" text={title} color="white" font="MinecraftTen" textAlign="center" />
+    <BedrockText type="h1" text={title} color="white" font="Minecraft" textAlign="center" />
     <BedrockText
       extraClassName={styles.description}
       type="p"

@@ -4,7 +4,7 @@
   @include g.no-drag();
 
   height: auto;
-  min-height: 3.5rem;
+  min-height: g.$buttonHeight;
 
   display: flex;
   flex-direction: column;
@@ -12,7 +12,7 @@
   align-items: end;
 
   @media (max-width: g.$breakpoint-tablet) {
-      min-height: 3.25rem;
+    min-height: 3.25rem;
   }
 }
 
@@ -57,5 +57,9 @@
     margin-top: calc(g.$minecraftdepth * 2);
 
     padding-bottom: g.$padding-xsm;
+  }
+
+  * {
+    margin-inline: g.$padding-xsm;
   }
 }

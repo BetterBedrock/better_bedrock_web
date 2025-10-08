@@ -14,13 +14,14 @@ export const HeaderTabs = ({ selectedCategory }: HeaderTabsProps) => (
   <div>
     <ButtonGroup>
       {informationData.map((c, index) => (
-        <Link link={Routes.INFORMATION + "/" + c.id} className={styles.link}>
+        <Link key={index} link={Routes.INFORMATION + "/" + c.id} className={styles.link}>
           <Button
             key={index}
             tabIndex={index}
+            isToggled={selectedCategory.id === c.id}
             isClicked={selectedCategory.id === c.id}
             width="100%"
-            height="auto"
+            height="100%"
             type="green"
             center
           >
