@@ -24,7 +24,7 @@ import { HttpService } from "@nestjs/axios";
 import { lastValueFrom } from "rxjs";
 import { VerifyDownloadDto } from "~/download/dto/verify-download.dto";
 import { createReadStream, promises as fs, Stats } from "fs";
-import path from "path";
+import path, { extname } from "path";
 import { VoucherService } from "~/voucher/voucher.service";
 import { SkipThrottle } from "@nestjs/throttler";
 import { AnalyticsNames } from "~/analytics/constants/analytics-names";
@@ -85,10 +85,12 @@ export class DownloadController {
 
         const fileStream = createReadStream(project.downloadFile);
 
+        const ext = extname(project.downloadFile);
+
         res.setHeader("Access-Control-Expose-Headers", "Content-Disposition, Content-Length");
         res.set({
             "Content-Type": "application/octet-stream",
-            "Content-Disposition": `attachment; filename="${download.file}"`,
+            "Content-Disposition": `attachment; filename="${download.file + ext}"`,
             "Content-Length": fileSize.toString(),
         });
         return new StreamableFile(fileStream);

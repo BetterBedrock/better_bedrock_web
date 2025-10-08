@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { PROJECT_TYPES } from "~/assets/content/better-bedrock";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
@@ -18,6 +18,7 @@ import { InputSwitch } from "~/components/bedrock/input/input-switch";
 import { calcItemWeight } from "~/pages/downloads/components/better-bedrock";
 import { Collapsible } from "~/components/bedrock/collapsible";
 import { Banner } from "~/components/bedrock/banner";
+import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 
 export const DetailsEditor = () => {
   const tagInputRef = useRef<HTMLInputElement>(null);
@@ -30,27 +31,39 @@ export const DetailsEditor = () => {
     useProjectManager();
   if (!selectedProject) return;
 
+  const [isUploading, setIsUploading] = useState(false);
+
+  if (!selectedProject) return null;
+
   const uploadDownloadFile = async (file: File | undefined) => {
     if (!checkIfSubmitted()) return;
-
     if (!selectedProject || !file) return;
-    const uploadedFile = await uploadFile(selectedProject!.id, file);
-    if (!uploadedFile) return;
 
-    const newProject = await fetchSelectedProject(selectedProject.id, true);
-    setSelectedProject((prev) => ({
-      ...prev!,
-      downloadFile: newProject!.downloadFile,
-      itemWeight: newProject!.itemWeight,
-    }));
+    try {
+      setIsUploading(true); // start spinner
 
-    sendNotification({
-      title: "Uploaded",
-      label: "Successfully uploaded download file",
-      type: "success",
-    });
+      const uploadedFile = await uploadFile(selectedProject.id, file);
+      if (!uploadedFile) return;
 
-    await handleSaveProject(selectedProject);
+      const newProject = await fetchSelectedProject(selectedProject.id, true);
+      setSelectedProject((prev) => ({
+        ...prev!,
+        downloadFile: newProject!.downloadFile,
+        itemWeight: newProject!.itemWeight,
+      }));
+
+      sendNotification({
+        title: "Uploaded",
+        label: "Successfully uploaded download file",
+        type: "success",
+      });
+
+      await handleSaveProject(selectedProject);
+    } catch (err) {
+      throwError(err, "Upload failed");
+    } finally {
+      setIsUploading(false); // stop spinner
+    }
   };
 
   const handleCreateTag = async () => {
@@ -119,7 +132,10 @@ export const DetailsEditor = () => {
 
   const checkIfSubmitted = () => {
     if (selectedProject.submitted) {
-      throwError(null, "The project has already been submitted, you cannot make any changes unless you cancel submission");
+      throwError(
+        null,
+        "The project has already been submitted, you cannot make any changes unless you cancel submission",
+      );
       return false;
     }
     return true;
@@ -233,16 +249,20 @@ export const DetailsEditor = () => {
             type="file"
             onChange={(e) => uploadDownloadFile(e.target.files?.[0])}
           />
-          <Button
-            width="100%"
-            type={selectedProject?.downloadFile ? "green" : "dark"}
-            onClick={() => {
-              uploadFileRef.current?.click();
-            }}
-            center
-          >
-            <BedrockText text="Upload Download File" type="p" color="white" />
-          </Button>
+          {isUploading ? (
+            <CircularProgressIndicator size="small" center />
+          ) : (
+            <Button
+              width="100%"
+              type={selectedProject?.downloadFile ? "green" : "dark"}
+              onClick={() => {
+                uploadFileRef.current?.click();
+              }}
+              center
+            >
+              <BedrockText text="Upload Download File" type="p" color="white" />
+            </Button>
+          )}
         </div>
       </Card>
     </>
