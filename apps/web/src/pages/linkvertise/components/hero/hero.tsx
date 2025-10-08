@@ -113,7 +113,7 @@ export const Hero = () => (
                 <BedrockText
                   extraClassName={styles.name}
                   type="p"
-                  text="Tens of thousands visits"
+                  text="Hundreds of thousands visits"
                   textAlign="left"
                   color="white"
                 />
