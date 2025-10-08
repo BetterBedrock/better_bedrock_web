@@ -98,7 +98,7 @@ export const UserSettingsForm = ({
                 type="p"
                 color="white"
               />
-              <Link link={Routes.HOME}>
+              <Link link={Routes.LINKVERTISE}>
                 <BedrockText
                   textAlign="start"
                   text="Learn how to make money with your projects"
