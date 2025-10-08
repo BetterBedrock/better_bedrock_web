@@ -10,7 +10,7 @@ export const HeaderButton = () => {
 
   const handleDelete = () => {
     if (!editor) return;
-    editor.chain().focus().toggleHeading({ level: 2 }).run();
+    editor.chain().focus().toggleHeading({ level: 3 }).run();
   };
 
   return (

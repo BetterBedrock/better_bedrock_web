@@ -17,6 +17,7 @@ import { useEffect, useRef, useState } from "react";
 import { GalleryExtension } from "~/components/text-editor/nodes/gallery-node/gallery-node-extension";
 import { TextSelection } from "@tiptap/pm/state";
 import { TextEditorImageToolbar } from "~/components/text-editor/text-editor-image-toolbar";
+import Heading from "@tiptap/extension-heading";
 
 interface TextEditorProps {
   content?: Content | undefined;
@@ -72,7 +73,11 @@ export const TextEditor = ({ content, onChange, onUpload, editable }: TextEditor
         },
         orderedList: false,
       }),
-      TextAlign.configure({ types: ["paragraph"] }),
+      Heading.configure({
+        levels: [3],
+      }),
+
+      TextAlign.configure({ types: ["paragraph", "heading"] }),
       Highlight.configure({ multicolor: false }),
       PrefixedImage.configure({
         prefix: baseUrl + "/",
@@ -97,29 +102,32 @@ export const TextEditor = ({ content, onChange, onUpload, editable }: TextEditor
     if (!editor || !toolbarRef.current) return;
 
     const updateToolbarPosition = () => {
-      const { from } = editor.state.selection;
-      const { selection } = editor.state;
-      const caret = editor.view.coordsAtPos(from);
+      const { state, view } = editor;
+      const { from } = state.selection;
+      const selection = state.selection;
 
+      const $from = state.doc.resolve(from);
+      const indexInParent = $from.index($from.depth - 1);
+
+      const caret = view.coordsAtPos(from);
       const toolbarEl = toolbarRef.current;
       if (!toolbarEl) return;
 
       if (!(selection instanceof TextSelection)) {
         setImageToolbar(true);
-        // toolbarEl.style.visibility = "hidden";
-        // return;
       } else {
         setImageToolbar(false);
       }
 
-      const editorRect = editor.view.dom.getBoundingClientRect();
+      const editorRect = view.dom.getBoundingClientRect();
       const offset = 12;
       const toolbarHeight = toolbarEl.offsetHeight;
 
       let top = caret.bottom - editorRect.top + offset;
 
       const maxTop = editorRect.height - toolbarHeight - 8;
-      if (top > maxTop && from > 2) {
+
+      if (top > maxTop && indexInParent > 0) {
         top = caret.top - editorRect.top - toolbarHeight - offset;
       }
 
