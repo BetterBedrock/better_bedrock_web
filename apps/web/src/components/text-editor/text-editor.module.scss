@@ -49,9 +49,9 @@
     white-space: pre-wrap;
     outline: none;
 
-    > p:not(:first-child) {
-      margin-top: g.$padding-md;
-    }
+    // > p:not(:first-child) {
+    //   margin-top: g.$padding-md;
+    // }
 
     /* List Node */
     ol,

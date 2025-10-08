@@ -28,20 +28,35 @@
   // align-items: start;
   // justify-content: start;
 
-  @include g.card-padding;
+  @include g.card-padding-y;
   gap: g.$padding-sm;
 }
 
 .sub {
   display: flex;
   flex-direction: column;
-  // gap: g.$padding-sm;
   overflow: hidden;
-  @include g.card-padding;
+  @include g.card-padding-y;
 
   & * {
     width: 100%;
   }
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  // gap: g.$padding-sm;
+  overflow: hidden;
+  @include g.card-padding-x;
+}
+
+.cardContainer .sub {
+  @include g.card-padding;
+}
+
+.cardTextWrapper {
+  padding: 0 2rem;
 }
 
 .markdownWrapper .sub {
@@ -70,7 +85,8 @@
   }
 }
 
-.video {
+.video > * {
+  border: g.$minecraftdepth solid rgb(30, 30, 31);
   width: 100%;
   aspect-ratio: 16 / 9;
   background-color: rgb(41, 41, 41);
