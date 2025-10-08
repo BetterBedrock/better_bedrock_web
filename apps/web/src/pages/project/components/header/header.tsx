@@ -56,6 +56,8 @@ export const Header = ({ mode }: HeaderProps) => {
     downloadButtonRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
   };
 
+  const canEdit = mode !== "edit" && (user?.admin || user?.id === selectedProject.userId);
+
   return (
     <>
       {mode === "edit" && isPublished && (
@@ -117,7 +119,7 @@ export const Header = ({ mode }: HeaderProps) => {
                 </Tooltip>
               </PopupWrapper>
             )}
-            {user?.admin && mode !== "edit" && (
+            {canEdit && (
               <Tooltip text="Edit Project">
                 <SimpleButton
                   transparent
