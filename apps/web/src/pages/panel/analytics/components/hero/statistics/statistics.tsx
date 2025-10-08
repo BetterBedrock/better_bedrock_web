@@ -55,7 +55,7 @@ export const Statistics = () => {
       <StatisticsCard
         name="Ads Estimated Revenue"
         data={parseFloat(estimatedProfit.toFixed(2))}
-        suffix="$"
+        suffix="€"
         showGraph={false}
         className={styles.card}
       />
