@@ -46,7 +46,7 @@ export const Hero = () => (
             <Card sub className={styles.sub}>
               <div>
                 <BedrockText
-                  type="h2"
+                  type="h3"
                   text="Proven Quality"
                   textAlign="left"
                   color="white"
@@ -65,7 +65,7 @@ export const Hero = () => (
             <Card sub className={styles.sub}>
               <div>
                 <BedrockText
-                  type="h2"
+                  type="h3"
                   text="Extra Protection"
                   textAlign="left"
                   color="white"
@@ -84,7 +84,7 @@ export const Hero = () => (
             <Card sub className={styles.sub}>
               <div>
                 <BedrockText
-                  type="h2"
+                  type="h3"
                   text="Average Earnings"
                   textAlign="left"
                   color="white"
@@ -103,7 +103,7 @@ export const Hero = () => (
             <Card sub className={styles.sub}>
               <div>
                 <BedrockText
-                  type="h2"
+                  type="h3"
                   text="Monthly Reach"
                   textAlign="left"
                   color="white"
@@ -122,7 +122,7 @@ export const Hero = () => (
             <Card sub className={styles.sub}>
               <div>
                 <BedrockText
-                  type="h2"
+                  type="h3"
                   text="Great Reputation"
                   textAlign="left"
                   color="white"
@@ -141,7 +141,7 @@ export const Hero = () => (
             <Card sub className={styles.sub}>
               <div>
                 <BedrockText
-                  type="h2"
+                  type="h3"
                   text="Single Game Focus"
                   textAlign="left"
                   color="white"
