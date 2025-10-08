@@ -48,6 +48,7 @@
     /* Paragraph Node */
     white-space: pre-wrap;
     outline: none;
+    text-align: left !important;
 
     > p:not(:first-child) {
       margin-top: g.$padding-md;
@@ -93,11 +94,5 @@
         }
       }
     }
-
-    /* Image */
-
-    // :global(.ProseMirror-selectednode) {
-    //   outline-color: var(--tt-brand-color-500);
-    // }
   }
 }
