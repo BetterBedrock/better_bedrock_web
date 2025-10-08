@@ -3,46 +3,49 @@ import { HeroTitle, HeroDescription } from ".";
 import { styles } from ".";
 import { InformationFAQQuestion } from "~/pages/information";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
-import { Card } from "~/components/bedrock/card";
+import { Card, CardDivider } from "~/components/bedrock/card";
 import Markdown from "react-markdown";
 import clsx from "clsx";
 
 export const Hero = () => (
   <>
-
     <div className={styles.section}>
-      <div>
-        <HeroTitle />
-        <HeroDescription />
-      </div>
-      <div className={styles.video}>
-        <iframe
-          width="100%"
-          height="100%"
-          src="" //TODO;
-          title="BETTER BEDROCK V8 RELEASE! The Best Utility Texture Pack for Minecraft Bedrock | Showcase Trailer"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        ></iframe>
-      </div>
+      <Card className={styles.card}>
+        <div className={styles.cardTextWrapper}>
+          <HeroTitle />
+          <HeroDescription />
+        </div>
+        <CardDivider />
+        <div className={clsx(styles.video, styles.cardContainer)}>
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://www.youtube.com/embed/DEQu3Q19ZMM" //TODO;
+            title="BETTER BEDROCK V8 RELEASE! The Best Utility Texture Pack for Minecraft Bedrock | Showcase Trailer"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </Card>
     </div>
 
     <div className={styles.section}>
-      <div>
-        <BedrockText
-          text="Reasons To Choose Us"
-          type="h2"
-          font="Minecraft"
-          color="white"
-          textAlign="center"
-        />
-        <BedrockText type="p" color="white" text={"Quick convincing information about us and our services."} />
-      </div>
       <div className={styles.statistics}>
         <Card className={styles.card}>
-          <div className={styles.grid}>
+          <div className={styles.cardTextWrapper}>
+            <BedrockText
+              text="Reasons To Choose Us"
+              type="h2"
+              font="Minecraft"
+              color="white"
+              textAlign="center"
+            />
+            <BedrockText type="p" color="white" text={"Quick convincing information about us and our services."} />
+          </div>
+          <CardDivider />
+          <div className={clsx(styles.grid, styles.cardContainer)}>
             <Card sub className={styles.sub}>
               <div>
                 <BedrockText
@@ -163,26 +166,30 @@ export const Hero = () => (
     </div>
 
     <div className={styles.section}>
-      <div>
-        <BedrockText text="FAQ" type="h2" font="Minecraft" color="white" textAlign="center" />
-        <BedrockText type="p" color="white" text={"General topic FAQ. If you still have questions, please check out our discord server!"} />
-      </div>
-      <div className={styles.question}>
-        {questions.map((question, index) => (
-          <Collapsible
-            key={question.question}
-            headerText={question.question}
-            contentText={question.answer}
-            width="100%"
-            indexTextRef={index + 1}
-          />
-        ))}
-      </div>
+      <Card className={styles.card}>
+        <div className={styles.cardTextWrapper}>
+          <BedrockText text="FAQ" type="h2" font="Minecraft" color="white" textAlign="center" />
+          <BedrockText type="p" color="white" text={"General topic FAQ. If you still have questions, please check out our discord server!"} />
+        </div>
+        <CardDivider />
+        <div className={clsx(styles.question, styles.cardContainer)}>
+          {questions.map((question, index) => (
+            <Collapsible
+              key={question.question}
+              headerText={question.question}
+              contentText={question.answer}
+              width="100%"
+              indexTextRef={index + 1}
+            />
+          ))}
+        </div>
+
+      </Card>
     </div>
 
 
     <div className={styles.section}>
-      <Card className={clsx(styles.card, styles.markdownWrapper)}>
+      <Card className={clsx(styles.card, styles.markdownWrapper, styles.cardContainer)}>
         <Card sub className={styles.sub}>
           <BedrockText
             text="How to begin?"

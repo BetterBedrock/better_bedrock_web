@@ -28,20 +28,36 @@
   // align-items: start;
   // justify-content: start;
 
-  @include g.card-padding;
+  @include g.card-padding-y;
   gap: g.$padding-sm;
 }
 
 .sub {
   display: flex;
   flex-direction: column;
-  // gap: g.$padding-sm;
+  gap: g.$padding-sm;
   overflow: hidden;
-  @include g.card-padding;
+  @include g.card-padding-y;
 
   & * {
     width: 100%;
   }
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  // gap: g.$padding-sm;
+  overflow: hidden;
+  @include g.card-padding-x;
+}
+
+.cardContainer .sub {
+  @include g.card-padding;
+}
+
+.cardTextWrapper {
+  padding: 0 2rem;
 }
 
 .markdownWrapper .sub {
