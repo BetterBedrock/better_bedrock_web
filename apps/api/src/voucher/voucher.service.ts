@@ -74,10 +74,4 @@ export class VoucherService {
             .slice(0, length)
             .toUpperCase();
     }
-
-    async findByCheckoutId(checkoutId: string): Promise<Voucher | null> {
-        return await this.prisma.voucher.findFirst({
-            where: { checkoutId },
-        });
-    }
 }
