@@ -184,25 +184,6 @@ li {
 h4 {
   font-family: "Minecraft";
   font-weight: 400;
-  font-size: 1.2rem;
-  letter-spacing: -0.015em;
-  line-height: 1.2rem;
-  color: white;
-
-  @media (max-width: $breakpoint-laptop) {
-    font-size: 1.1rem;
-    line-height: 1.15rem;
-  }
-
-  @media (max-width: $breakpoint-tablet) {
-    font-size: 0.9rem;
-    line-height: 1.05rem;
-  }
-}
-
-h3 {
-  font-family: "Minecraft";
-  font-weight: 400;
   font-size: 1.25rem;
   letter-spacing: -0.015em;
   line-height: 1.25rem;
@@ -219,7 +200,7 @@ h3 {
   }
 }
 
-h2 {
+h3 {
   font-family: "Minecraft";
   font-weight: 400;
   font-size: 1.75rem;
@@ -238,7 +219,7 @@ h2 {
   }
 }
 
-h1 {
+h1, h2 {
   font-family: "Minecraft";
   font-weight: 400;
   font-size: 2.5rem;
