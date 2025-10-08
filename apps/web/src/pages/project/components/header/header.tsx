@@ -89,7 +89,14 @@ export const Header = ({ mode }: HeaderProps) => {
       <Card sub className={styles.information}>
         <div className={clsx(styles.editor)}>
           <div className={styles.title}>
-            <HeaderTitle title={selectedProject?.title ?? ""} />
+            <BedrockText
+              text={selectedProject?.title ?? ""}
+              type="h1"
+              textAlign="start"
+              color="white"
+              font="Minecraft"
+              extraClassName={styles.text}
+            />
             {user && user?.id !== selectedProject.userId && mode === "view" && (
               <PopupWrapper
                 className={styles.popup}

@@ -5,5 +5,5 @@ interface ModuleTitleProps {
 }
 
 export const ModuleTitle = ({ text }: ModuleTitleProps) => (
-  <BedrockText text={text} type="h1" font="Minecraft" color="white" />
+  <BedrockText text={text} type="h2" font="Minecraft" color="white" />
 );

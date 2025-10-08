@@ -30,7 +30,7 @@ export const Tabs = () => {
         isClicked={currentPage === "projects"}
         onClick={() => handleTabClick("projects")}
       >
-        <BedrockText text="Projects" color="white" type="p" />
+        <BedrockText text="Projects" color="white" type="h2" font="Mojangles" paragraphSize />
       </Button>
       <Button
         type="dark"
@@ -39,7 +39,7 @@ export const Tabs = () => {
         isClicked={currentPage === "stats"}
         onClick={() => handleTabClick("stats")}
       >
-        <BedrockText text="Stats" color="white" type="p" />
+        <BedrockText text="Stats" color="white" type="h2" font="Mojangles" paragraphSize />
       </Button>
 
       <Button
@@ -49,7 +49,7 @@ export const Tabs = () => {
         isClicked={currentPage === "drafts"}
         onClick={() => handleTabClick("drafts")}
       >
-        <BedrockText text="Drafts" color="white" type="p" />
+        <BedrockText text="Drafts" color="white" type="h2" font="Mojangles" paragraphSize />
       </Button>
     </ButtonGroup>
   );

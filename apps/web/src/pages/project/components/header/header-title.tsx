@@ -8,7 +8,7 @@ interface HeaderTitleProps {
 export const HeaderTitle = ({ title }: HeaderTitleProps) => (
   <BedrockText
     text={title}
-    type="h1"
+    type="h2"
     textAlign="start"
     color="white"
     font="Minecraft"

@@ -19,7 +19,7 @@ export const MainBanner = ({ image, color, text, link, grid }: MainBannerProps) 
       <BedrockText
         extraClassName={styles.caption}
         text={text}
-        type="h1"
+        type="h2"
         font="Minecraft"
         textAlign="start"
         color={color}
