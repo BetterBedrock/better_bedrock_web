@@ -131,7 +131,7 @@ export class DownloadController {
             cSecret &&
             cSecret.trim().length > 0
         ) {
-            linkvertiseSecret = cId;
+            linkvertiseSecret = cSecret;
         }
 
         if (!download.verified) {
