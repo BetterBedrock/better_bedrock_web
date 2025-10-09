@@ -20,6 +20,7 @@ import { Avatar } from "~/components/avatar";
 import { useProject } from "~/providers/project";
 import { useEffect, useState } from "react";
 import { Tooltip } from "~/components/bedrock/tooltip";
+import { SubmittedOverlay } from "../submitted-overlay";
 
 interface HeaderProps {
   mode: ProjectMode;
@@ -91,6 +92,9 @@ export const Header = ({ mode }: HeaderProps) => {
         />
       )}
       <Card sub className={styles.information}>
+        {mode === "edit" && selectedProject.submitted && (
+          <SubmittedOverlay />
+        )}
         <div className={clsx(styles.editor)}>
           <div className={styles.title}>
             <BedrockText

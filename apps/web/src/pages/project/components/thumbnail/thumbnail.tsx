@@ -6,6 +6,7 @@ import { baseUrl } from "~/utils/url";
 import { useProject } from "~/providers/project";
 import { HeaderTitle } from "~/pages/project/components/header";
 import { useNotification } from "~/providers/notification";
+import { SubmittedOverlay } from "../submitted-overlay";
 
 export const Thumbnail = () => {
   const { uploadFile } = useProject();
@@ -35,7 +36,10 @@ export const Thumbnail = () => {
   };
 
   return (
-    <Card sub>
+    <Card sub style={{ position: "relative" }}>
+      {selectedProject!.submitted && (
+        <SubmittedOverlay />
+      )}
       <div className={styles.editor}>
         <HeaderTitle title="Thumbnail" />
       </div>

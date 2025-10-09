@@ -9,6 +9,8 @@ import { useProjectManager } from "~/pages/project/providers/project-manager";
 import { useAuth } from "~/providers/auth";
 import { useNotification } from "~/providers/notification";
 import { Routes } from "~/utils/routes";
+// import { BedrockText } from "~/components/bedrock/bedrock-text";
+// import { styles } from ".";
 
 export const Edit = () => {
   const navigate = useNavigate();

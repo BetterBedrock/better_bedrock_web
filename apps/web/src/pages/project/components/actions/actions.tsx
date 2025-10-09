@@ -33,18 +33,21 @@ export const Actions = () => {
 
   return (
     <ButtonGroup>
-      <ActionsSave
-        onClick={async () => {
-          if (!selectedProject) return false;
-          await handleSaveProject(selectedProject);
-          sendNotification({
-            type: "info",
-            label: "Project has been saved",
-            title: selectedProject.title,
-          });
-          return true;
-        }}
-      />
+      {!selectedProject!.submitted && (
+
+        <ActionsSave
+          onClick={async () => {
+            if (!selectedProject) return false;
+            await handleSaveProject(selectedProject);
+            sendNotification({
+              type: "info",
+              label: "Project has been saved",
+              title: selectedProject.title,
+            });
+            return true;
+          }}
+        />
+      )}
 
       <PopupConfirmation
         description="You are about to submit your project for verification process which will take up to 24h, if you are unsure, or want to make a change, you can alaways cancel the submission."

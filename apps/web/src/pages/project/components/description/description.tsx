@@ -9,6 +9,7 @@ import { Content } from "@tiptap/react";
 import { SimpleButton } from "~/components/bedrock/simple-button";
 import FullScreen from "~/assets/images/full_screen.png";
 import clsx from "clsx";
+import { SubmittedOverlay } from "../submitted-overlay";
 
 interface DescriptionProps {
   mode: ProjectMode;
@@ -47,7 +48,10 @@ export const Description = ({ mode }: DescriptionProps) => {
   };
 
   return mode === "edit" ? (
-    <Card sub className={fullScreen && styles.fullscreen}>
+    <Card sub className={fullScreen && styles.fullscreen} style={{position: "relative"}}>
+      {selectedProject!.submitted && (
+        <SubmittedOverlay />
+      )}
       <div className={clsx(styles.editor, styles.description)}>
         <div className={styles.title}>
           <HeaderTitle title="Description" />

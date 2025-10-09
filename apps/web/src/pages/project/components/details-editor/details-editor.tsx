@@ -19,6 +19,7 @@ import { calcItemWeight } from "~/pages/downloads/components/better-bedrock";
 import { Collapsible } from "~/components/bedrock/collapsible";
 import { Banner } from "~/components/bedrock/banner";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
+import { SubmittedOverlay } from "../submitted-overlay";
 
 export const DetailsEditor = () => {
   const tagInputRef = useRef<HTMLInputElement>(null);
@@ -156,7 +157,10 @@ export const DetailsEditor = () => {
 
   return (
     <>
-      <Card sub className={styles.information}>
+      <Card sub className={styles.information} style={{position: "relative"}}>
+        {selectedProject.submitted && (
+          <SubmittedOverlay />
+        )}
         <div className={clsx(styles.editor)}>
           <HeaderTitle title="Details" />
         </div>
