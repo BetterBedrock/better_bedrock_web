@@ -118,9 +118,11 @@ export const usePreviewPopup = ({ project, onClose }: usePreviewPopupProps) => {
   const getLinkvertiseId = async (): Promise<string> => {
     const creator = await findUserById(project.userId);
 
-    const linkvertiseId = creator?.customLinkvertise
-      ? (creator.linkvertiseId ?? import.meta.env.VITE_LINKVERTISE_ID)
-      : import.meta.env.VITE_LINKVERTISE_ID;
+    let linkvertiseId = import.meta.env.VITE_LINKVERTISE_ID;
+
+    if(creator?.customLinkvertise && creator?.linkvertiseId && creator.linkvertiseId.trim().length > 0) {
+      linkvertiseId = creator.linkvertiseId;
+    }
 
     return await getLinkvertiseUrl(linkvertiseId);
   };

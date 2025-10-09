@@ -47,7 +47,7 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
             <BedrockText
               color={titleColor ? titleColor : buttonType === "white" ? "black" : "white"}
               text={title ?? ""}
-              type={"h2"}
+              type="h3"
               font="Minecraft"
               textAlign="left"
               style={{ padding: "0 0.5rem 0 0" }}
