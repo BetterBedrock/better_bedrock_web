@@ -57,6 +57,7 @@ export const Header = ({ mode }: HeaderProps) => {
   };
 
   const canEdit = mode !== "edit" && (user?.admin || user?.id === selectedProject.userId);
+  const canReport = mode === "view" && user && user?.id !== selectedProject.userId
 
   return (
     <>
@@ -100,7 +101,7 @@ export const Header = ({ mode }: HeaderProps) => {
               font="Minecraft"
               extraClassName={styles.text}
             />
-            {user && user?.id !== selectedProject.userId && mode === "view" && (
+            {canReport && (
               <PopupWrapper
                 className={styles.popup}
                 popup={(close) => (
