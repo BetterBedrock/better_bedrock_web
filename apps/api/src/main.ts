@@ -65,7 +65,7 @@ async function bootstrap() {
     });
 
     app.useStaticAssets(join(__dirname, "..", "static"), {
-        prefix: "/static",
+        prefix: "/static/public",
     });
 
     app.useGlobalPipes(
