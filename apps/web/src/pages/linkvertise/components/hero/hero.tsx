@@ -20,8 +20,8 @@ export const Hero = () => (
           <iframe
             width="100%"
             height="100%"
-            src="https://www.youtube.com/embed/DEQu3Q19ZMM" //TODO;
-            title="BETTER BEDROCK V8 RELEASE! The Best Utility Texture Pack for Minecraft Bedrock | Showcase Trailer"
+            src="https://www.youtube.com/embed/92l1-LzJZxI"
+            title="Better Bedrock Projects: AD Revenue Tutorial | MCBE"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
@@ -42,7 +42,11 @@ export const Hero = () => (
               color="white"
               textAlign="center"
             />
-            <BedrockText type="p" color="white" text={"Quick convincing information about us and our services."} />
+            <BedrockText
+              type="p"
+              color="white"
+              text={"Quick convincing information about us and our services."}
+            />
           </div>
           <CardDivider />
           <div className={clsx(styles.grid, styles.cardContainer)}>
@@ -169,7 +173,13 @@ export const Hero = () => (
       <Card className={styles.card}>
         <div className={styles.cardTextWrapper}>
           <BedrockText text="FAQ" type="h2" font="Minecraft" color="white" textAlign="center" />
-          <BedrockText type="p" color="white" text={"General topic FAQ. If you still have questions, please check out our discord server!"} />
+          <BedrockText
+            type="p"
+            color="white"
+            text={
+              "General topic FAQ. If you still have questions, please check out our discord server!"
+            }
+          />
         </div>
         <CardDivider />
         <div className={clsx(styles.question, styles.cardContainer)}>
@@ -183,10 +193,8 @@ export const Hero = () => (
             />
           ))}
         </div>
-
       </Card>
     </div>
-
 
     <div className={styles.section}>
       <Card className={clsx(styles.card, styles.markdownWrapper, styles.cardContainer)}>
@@ -198,7 +206,14 @@ export const Hero = () => (
             color="white"
             textAlign="start"
           />
-          <BedrockText type="p" color="white" textAlign="left" text={"We recommend to check tutorial video above, however below are text instructions for configuring ADs revenue."} />
+          <BedrockText
+            type="p"
+            color="white"
+            textAlign="left"
+            text={
+              "We recommend to check tutorial video above, however below are text instructions for configuring ADs revenue."
+            }
+          />
         </Card>
         {/* <Card sub className={styles.sub}>
           <Markdown>{tutorialPart1}</Markdown>
@@ -225,23 +240,28 @@ export const Hero = () => (
 const questions: InformationFAQQuestion[] = [
   {
     question: "Why should you choose us?",
-    answer: "We provide extra layer of anti-bypass that actually works and generates more revenue for creators. This place is also visited by tens of thousands people per month that are mainly focused on Bedrock content making your projects even more recognizable. Overall proven quality of Better Bedrock and 3 years of active development by experienced people.",
+    answer:
+      "We provide extra layer of anti-bypass that actually works and generates more revenue for creators. This place is also visited by tens of thousands people per month that are mainly focused on Bedrock content making your projects even more recognizable. Overall proven quality of Better Bedrock and 3 years of active development by experienced people.",
   },
   {
     question: "How much money will I make?",
-    answer: "At the moment, we only provide earnings way through ADs, so we also rely on the information they provide, and it's €8.5 per 1000 downloads. Users can generate revenue even up to $70 per 1000 views! - linkvertise.",
+    answer:
+      "At the moment, we only provide earnings way through ADs, so we also rely on the information they provide, and it's €8.5 per 1000 downloads. Users can generate revenue even up to $70 per 1000 views! - linkvertise.",
   },
   {
     question: "Does the Anti-bypass work?",
-    answer: "Yes, all bypass services don't work with Better Bedrock links. Our special functions block these bypass tools, resulting in higher revenue!",
+    answer:
+      "Yes, all bypass services don't work with Better Bedrock links. Our special functions block these bypass tools, resulting in higher revenue!",
   },
   {
     question: "What do I need to do to receive money?",
-    answer: "To receive money you need to set up payout settings on linkvertise website; Local Bank Transfer / Sepa Transfer, Wire Transfer, PayPal. On our side we require you to set up User ID and Anti-bypass Token in account settings. To set up this entire functionality, follow tutorial above or text instructions below. Everything goes directly to your account without any operations here.",
+    answer:
+      "To receive money you need to set up payout settings on linkvertise website; Local Bank Transfer / Sepa Transfer, Wire Transfer, PayPal. On our side we require you to set up User ID and Anti-bypass Token in account settings. To set up this entire functionality, follow tutorial above or text instructions below. Everything goes directly to your account without any operations here.",
   },
   {
     question: "How to earn more money? (trick)",
-    answer: "Whenever you want to payout your earnings, make sure to do it on wallet with euro currency. This way you will avoid 1.9% to 3% FX fee ;)",
+    answer:
+      "Whenever you want to payout your earnings, make sure to do it on wallet with euro currency. This way you will avoid 1.9% to 3% FX fee ;)",
   },
 ];
 
