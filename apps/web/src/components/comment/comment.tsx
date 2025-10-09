@@ -138,7 +138,10 @@ export const Comment = ({
               <Button
                 type="green"
                 center
-                onClick={() => onReply?.(inputRef.current?.value ?? "", comment.id)}
+                onClick={() => {
+                  onReply?.(inputRef.current?.value ?? "", comment.id);
+                  setIsReplying(false);
+                }}
               >
                 <BedrockText color="white" type="p" text="Post" />
               </Button>
