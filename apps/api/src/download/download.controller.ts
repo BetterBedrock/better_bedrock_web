@@ -120,9 +120,19 @@ export class DownloadController {
         }
 
         const creator = await this.userService.userDetailedById(project.userId);
-        const linkvertiseSecret = creator.customLinkvertise
-            ? (creator.linkvertiseSecret ?? this.linkvertiseApiKey)
-            : this.linkvertiseApiKey;
+        let linkvertiseSecret = this.linkvertiseApiKey;
+        const cSecret = creator.linkvertiseSecret;
+        const cId = creator.linkvertiseId;
+
+        if (
+            creator?.customLinkvertise &&
+            cId &&
+            cId.trim().length > 0 &&
+            cSecret &&
+            cSecret.trim().length > 0
+        ) {
+            linkvertiseSecret = cId;
+        }
 
         if (!download.verified) {
             if (project.userId !== req.user?.id && !req.user?.admin) {
