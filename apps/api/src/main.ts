@@ -64,8 +64,8 @@ async function bootstrap() {
         raw: ["json"],
     });
 
-    app.useStaticAssets(join(__dirname, "..", "static"), {
-        prefix: "/static",
+    app.useStaticAssets(join(__dirname, "..", "static/public"), {
+        prefix: "/static/public",
     });
 
     app.useGlobalPipes(
