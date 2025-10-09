@@ -5,7 +5,7 @@ import { SearchOrder, SearchProjectsDto } from "~/lib/api";
 import { useProject } from "~/providers/project";
 import { styles } from ".";
 import { Input } from "~/components/bedrock/input";
-import { PROJECT_TYPES, ProjectTypeKey } from "~/assets/content/better-bedrock";
+import { SEARCH_PROJECT_TYPES, SearchProjectTypeKey } from "~/assets/content/better-bedrock";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 import { Button } from "~/components/bedrock/button";
 import { ButtonGroup } from "~/components/button-group/button-group";
@@ -17,7 +17,7 @@ export const MainProjects = () => {
 
   const [searchResults, setSearchResults] = useState<SearchProjectsDto | undefined>();
 
-  const [selectedType, setSelectedType] = useState<ProjectTypeKey>("texturepacks");
+  const [selectedType, setSelectedType] = useState<SearchProjectTypeKey>("all");
   const [selectedOrder, setSelectedOrder] = useState<string>(Object.values(SearchOrder)[0]);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -36,7 +36,12 @@ export const MainProjects = () => {
     else setLoadingMore(true);
 
     try {
-      const data = await search(selectedOrder as SearchOrder, selectedType, query, pageNum);
+      const data = await search(
+        selectedOrder as SearchOrder,
+        selectedType === "all" ? undefined : selectedType,
+        query,
+        pageNum,
+      );
       if (append && searchResults) {
         if (data) {
           setSearchResults({
@@ -122,11 +127,11 @@ export const MainProjects = () => {
     };
   }, [searchResults?.page, searchResults?.totalPages, loading, loadingMore, page]);
 
-  const types = Object.entries(PROJECT_TYPES).map(([key, label]) => (
+  const types = Object.entries(SEARCH_PROJECT_TYPES).map(([key, label]) => (
     <Button
       key={key}
       type={key === selectedType ? "green" : "white"}
-      onClick={() => setSelectedType(key as ProjectTypeKey)}
+      onClick={() => setSelectedType(key as SearchProjectTypeKey)}
       isClicked={key === selectedType}
       isToggled={key === selectedType}
       center
@@ -140,7 +145,7 @@ export const MainProjects = () => {
       <div className={styles.projects}>
         <Input ref={inputRef} placeholder="Search for a project" className={styles.searchbar} />
         <Collapsible
-          headerText={PROJECT_TYPES[selectedType]}
+          headerText={SEARCH_PROJECT_TYPES[selectedType]}
           contentText=""
           floating
           className={styles.types}
