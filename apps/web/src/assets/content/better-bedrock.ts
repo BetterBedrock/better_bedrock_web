@@ -1,5 +1,16 @@
 import { DownloadsCategoryDto } from "~/assets/content/dto/downloads-category.dto";
 
+export enum SEARCH_PROJECT_TYPES {
+    all = "All",
+    texturepacks = "Texture packs",
+    addons = "Addons",
+    scripts = "Scripts",
+    maps = "Maps",
+    skinPacks = "Skin packs",
+    other = "Other",
+}
+
+
 export enum PROJECT_TYPES {
     texturepacks = "Texture packs",
     addons = "Addons",
@@ -10,6 +21,7 @@ export enum PROJECT_TYPES {
 }
 
 export type ProjectTypeKey = keyof typeof PROJECT_TYPES;
+export type SearchProjectTypeKey = keyof typeof SEARCH_PROJECT_TYPES;
 
 export const DOWNLOADS_IDS = {
     betterBedrockClientV80: "better_bedrock_texture_pack_v8.0.mcpack",
