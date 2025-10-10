@@ -37,6 +37,8 @@ const MAX_FOLDER_SIZE = {
     private: MAX_FOLDER_SIZE_MB.private * 1024 * 1024,
 };
 
+const maxUploadSize = 100 * 1024 * 1024; // 100MB
+
 const getFolderSizeSync = (folderPath: string): number => {
     if (!fs.existsSync(folderPath)) return 0;
 
@@ -132,7 +134,7 @@ export function FileUpload() {
                         );
                     }
                 },
-                limits: { fileSize: MAX_FOLDER_SIZE.private },
+                limits: { fileSize: maxUploadSize },
             }),
             FolderSizeInterceptor,
         ),

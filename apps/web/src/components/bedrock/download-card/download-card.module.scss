@@ -28,13 +28,27 @@
   box-sizing: border-box;
 }
 
-.title {
+.main {
   display: flex;
   justify-content: space-between;
 }
 
-.title p:nth-child(2) {
+.main p:nth-child(2) {
   white-space: nowrap;
+}
+
+.title {
+  padding: 0 g.$padding-xsm 0 0;
+
+  // &.green {
+  //   color: rgb(29, 77, 19) !important;
+  // }
+  &.orange {
+    color: rgb(255, 165, 0) !important;
+  }
+  &.yellow {
+    color: rgb(255, 255, 85) !important;
+  }
 }
 
 .tags {
@@ -49,4 +63,10 @@
   padding: 0 0.5rem;
   background-color: rgb(35, 35, 35);
   display: inline;
+}
+
+.tag {
+  &.green {
+    background-color: rgb(29, 77, 19);
+  }
 }
