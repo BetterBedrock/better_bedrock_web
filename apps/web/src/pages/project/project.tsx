@@ -29,7 +29,7 @@ export const Project = () => {
     navigate(Routes.HOME);
     throwError(null, "Project with this id does not exist");
   }
-  
+
   return (
     <main>
       <Section className={styles.background} extraClassName={styles.padding} fixed center>
