@@ -1,4 +1,6 @@
-.bgOverlay {
+@use "~/utils" as g;
+
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -13,5 +15,5 @@
   pointer-events: auto;
   text-align: center;
   user-select: auto;
-  padding-inline: 1rem;
+  padding-inline: g.$padding-sm;
 }

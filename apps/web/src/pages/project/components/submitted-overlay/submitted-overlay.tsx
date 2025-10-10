@@ -2,10 +2,10 @@ import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { styles } from ".";
 
 export const SubmittedOverlay = () => (
-  <div className={styles.bgOverlay}>
+  <div className={styles.overlay}>
     <BedrockText
       type="h2"
-      text={"The project has been submitted"}
+      text="The project has been submitted"
       color="white"
       font="Minecraft"
     />
