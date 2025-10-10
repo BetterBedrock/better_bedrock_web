@@ -18,35 +18,4 @@
   gap: g.$padding-md;
   display: flex;
   flex-direction: column;
-
-  // &::after {
-  //   content: "";
-  //   position: absolute;
-  //   inset: 0;
-  //   z-index: 3;
-  //   pointer-events: none;
-  //   background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
-  // }
-
-  // > * {
-  //   position: relative;
-  //   z-index: 2;
-  //   pointer-events: none;
-  //   user-select: none;
-  // }
 }
-
-// .overlayText {
-//   position: absolute;
-//   inset: 0;
-//   z-index: 4;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   color: #fff;
-//   pointer-events: auto;
-//   text-align: center;
-//   user-select: auto;
-//   padding: 1rem;
-// }
