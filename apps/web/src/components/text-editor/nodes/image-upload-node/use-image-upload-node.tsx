@@ -16,7 +16,7 @@ export interface UploadOptions {
   props: NodeViewProps;
 }
 
-const maxSize = 50 * 1024 * 1024;
+const maxSize = 100 * 1024 * 1024;
 
 export const useFileUpload = ({ props }: UploadOptions) => {
   const { limit } = props.node.attrs;
