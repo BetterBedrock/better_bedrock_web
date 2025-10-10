@@ -54,9 +54,15 @@ export const Gallery = ({
 
   if (!show) return;
 
-  const moveBack = () => setStartingIndex((prev) => (prev - 1 + images.length) % images.length);
+  const moveBack = () => {
+    setStartingIndex((prev) => (prev - 1 + images.length) % images.length);
+    setSelectedImage((prev) => (prev - 1 + images.length) % images.length);
+  };
 
-  const moveForward = () => setStartingIndex((prev) => (prev + 1) % images.length);
+  const moveForward = () => {
+    setStartingIndex((prev) => (prev + 1) % images.length);
+    setSelectedImage((prev) => (prev + 1) % images.length);
+  };
 
   const displayedImages =
     images.length <= limit
