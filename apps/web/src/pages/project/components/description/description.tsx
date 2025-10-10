@@ -48,7 +48,7 @@ export const Description = ({ mode }: DescriptionProps) => {
   };
 
   return mode === "edit" ? (
-    <Card sub className={fullScreen && styles.fullscreen} style={{position: "relative"}}>
+    <Card sub className={clsx(styles.overlay, fullScreen && styles.fullscreen)}>
       {selectedProject!.submitted && (
         <SubmittedOverlay />
       )}

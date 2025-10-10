@@ -36,7 +36,7 @@ export const Thumbnail = () => {
   };
 
   return (
-    <Card sub style={{ position: "relative" }}>
+    <Card sub className={styles.overlay}>
       {selectedProject!.submitted && (
         <SubmittedOverlay />
       )}

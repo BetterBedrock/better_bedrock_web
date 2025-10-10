@@ -157,7 +157,7 @@ export const DetailsEditor = () => {
 
   return (
     <>
-      <Card sub className={styles.information} style={{position: "relative"}}>
+      <Card sub className={styles.information}>
         {selectedProject.submitted && (
           <SubmittedOverlay />
         )}
