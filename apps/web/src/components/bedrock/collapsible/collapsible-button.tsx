@@ -27,7 +27,7 @@ export const CollapsibleButton = ({
     className={styles.button}
   >
     <BedrockText
-      type="h1"
+      type="p"
       text={indexTextRef ? `${indexTextRef}. ${headerText}` : headerText}
       textAlign="left"
       color={type === "white" ? "black" : "white"}
