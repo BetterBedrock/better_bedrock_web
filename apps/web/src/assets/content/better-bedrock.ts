@@ -78,8 +78,8 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                 {
                     description: "Changes most BB textures to darker ones",
                     projectId: "dark_ui",
-                    buttonType: "white",
-                    type: "white",
+                    buttonType: "dark",
+                    type: "yellow",
                 },
                 {
                     description: "Changes grass textures to make them look connected",
