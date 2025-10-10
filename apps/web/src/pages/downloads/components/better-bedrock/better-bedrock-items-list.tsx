@@ -1,8 +1,6 @@
 import DownloadCard from "~/components/bedrock/download-card/download-card";
 import { SimpleCategory, styles } from ".";
-import logo from "~/assets/images/favicon.png";
 import { Routes } from "~/utils/routes";
-import { baseUrl } from "~/utils/url";
 import { Link } from "~/components/link";
 
 export const calcItemWeight = (itemWeight: number) => {
@@ -27,6 +25,7 @@ export const MainItemsList = ({ category }: MainItemsList) => {
         const item = category.categoryItems.find((i) => i.projectId === project.id);
 
         if (!item) return;
+
         return (
           <Link
             key={_itemIndex}
@@ -38,10 +37,8 @@ export const MainItemsList = ({ category }: MainItemsList) => {
               description={item.description}
               downloadSize={`${calcItemWeight(project.itemWeight)}MB`}
               buttonType={item.buttonType}
-              iconPath={item.imageAssetUrl ? `${baseUrl}${item.imageAssetUrl}` : logo}
               tags={project.tags.map((tag) => tag.name)}
-              tagBgColor={item.tagBgColor}
-              titleColor={item.titleColor}
+              type={item.type}
             />
           </Link>
         );

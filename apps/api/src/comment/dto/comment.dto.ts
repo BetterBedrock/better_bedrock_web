@@ -6,7 +6,7 @@ export class CommentDto {
     id: string;
 
     @IsString()
-    @MinLength(0)
+    @MinLength(1)
     @MaxLength(200)
     content: string;
 

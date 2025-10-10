@@ -1,5 +1,9 @@
 @use "~/utils" as g;
 
+.overlay {
+  position: relative;
+}
+
 .editor {
   @include g.card-margin();
 }

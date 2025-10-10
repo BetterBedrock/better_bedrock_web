@@ -32,11 +32,7 @@ export const Comments = () => {
   const handlePostComment = async () => {
     if (!selectedProject) return;
 
-    const content = commentInputRef.current?.value;
-
-    if (!content || content === "") {
-      throwError(null, "You need to provide a comment");
-    }
+    const content = commentInputRef.current?.value.trim();
 
     const comment = await postComment(selectedProject.id, content!);
     if (!comment) return;
@@ -49,11 +45,6 @@ export const Comments = () => {
 
   const handlePostReply = async (reply: string, parentId: string) => {
     if (!selectedProject) return;
-
-    if (!reply.trim()) {
-      throwError(null, "You need to provide a comment");
-      return;
-    }
 
     const newReply = await replyToComment(selectedProject.id, parentId, reply);
     if (!newReply) return;

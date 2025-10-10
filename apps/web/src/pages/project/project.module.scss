@@ -13,6 +13,7 @@
 }
 
 .card {
+  position: relative;
   width: 100%;
   gap: g.$padding-md;
   display: flex;

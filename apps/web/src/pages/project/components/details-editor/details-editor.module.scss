@@ -1,6 +1,7 @@
 @use "~/utils" as g;
 
 .information {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
