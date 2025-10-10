@@ -1,11 +1,15 @@
 import { BedrockText } from "../bedrock-text/bedrock-text";
 import { styles } from ".";
 import { ButtonType, Button } from "~/components/bedrock/button";
+import { DownloadsItemTypeKey } from "~/assets/content/dto/downloads-item.dto";
+import Icon1 from "~/assets/images/favicon.png";
+import Icon2 from "~/assets/images/logo2.png";
+import Icon3 from "~/assets/images/logo3.png";
+import clsx from "clsx";
 
 interface DownloadCardProp {
   title?: string;
   description?: string;
-  iconPath?: string;
   downloadSize?: string;
   buttonType?: ButtonType;
   playSound?: boolean;
@@ -13,14 +17,12 @@ interface DownloadCardProp {
   height?: string;
   onClick?: () => Promise<void>;
   tags?: string[];
-  titleColor?: string;
-  tagBgColor?: string;
+  type: DownloadsItemTypeKey;
 }
 
 const DownloadCard: React.FC<DownloadCardProp> = ({
   title,
   description,
-  iconPath,
   downloadSize,
   buttonType = "white",
   playSound = true,
@@ -28,9 +30,10 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
   height = "auto",
   onClick,
   tags,
-  titleColor,
-  tagBgColor = "rgb(35, 35, 35)"
+  type,
 }) => {
+  const iconPath =
+    type === "green" || type === "white" ? Icon1 : type === "yellow" ? Icon2 : Icon3;
   return (
     <Button
       width="100%"
@@ -43,14 +46,15 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
       <div className={styles.content}>
         <img alt="" src={iconPath} style={{ imageRendering: "pixelated" }} />
         <div className={styles.description}>
-          <div className={styles.title}>
+          <div className={styles.main}>
             <BedrockText
-              color={titleColor ? titleColor : buttonType === "white" ? "black" : "white"}
               text={title ?? ""}
               type="h3"
               font="Minecraft"
               textAlign="left"
               style={{ padding: "0 0.5rem 0 0" }}
+              color={buttonType === "white" ? "black" : "white"}
+              extraClassName={clsx(styles.title, styles[type])}
             />
             <BedrockText
               text={downloadSize ?? ""}
@@ -69,9 +73,7 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
           {tags && tags.length > 0 && (
             <div className={styles.tags}>
               {tags.map((tag) => (
-                <p key={tag} className={styles.tag} style={{
-                  backgroundColor: tagBgColor
-                }}>
+                <p key={tag} className={clsx(styles.tag, styles[type])}>
                   {tag}
                 </p>
               ))}
