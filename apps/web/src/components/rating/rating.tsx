@@ -8,6 +8,10 @@ import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { BedrockComponentProps } from "~/types";
 import clsx from "clsx";
 
+const formatRating = (value: number) => {
+  return (Number.isInteger(value) ? String(value) : value.toFixed(1));
+}
+
 interface RatingProps extends BedrockComponentProps {
   simple?: boolean;
   max?: number;
@@ -77,7 +81,8 @@ export const Rating: React.FC<RatingProps> = ({
     }
   };
 
-  const text = `${preview ?? selected}/${max}${suffix ? ` ${suffix}` : ""}`;
+  const preciseText = formatRating((preview ?? selected));
+  const text = `${preciseText}/${max}${suffix ? ` ${suffix}` : ""}`;
   const starStyles = clsx(styles.star, styles[size]);
 
   return (
@@ -88,7 +93,7 @@ export const Rating: React.FC<RatingProps> = ({
             <BedrockText extraClassName={styles.text} type="p" text={text} />
             {selectable ? (
               <button
-                aria-label={`Set rating (current ${selected} of ${max})`}
+                aria-label={`Set rating (current ${formatRating(selected)} of ${max})`}
                 type="button"
                 className={styles.starButton || ""}
                 onClick={() => handleClick(selected >= max ? 1 : max)}
