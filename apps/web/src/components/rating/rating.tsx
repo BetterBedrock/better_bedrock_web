@@ -77,7 +77,7 @@ export const Rating: React.FC<RatingProps> = ({
     }
   };
 
-  const text = `${preview ?? selected}/${max}${suffix ? ` ${suffix}` : ""}`;
+  const text = `${(preview ?? selected).toFixed(2)}/${max}${suffix ? ` ${suffix}` : ""}`;
   const starStyles = clsx(styles.star, styles[size]);
 
   return (
