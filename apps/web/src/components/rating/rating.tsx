@@ -8,8 +8,9 @@ import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { BedrockComponentProps } from "~/types";
 import clsx from "clsx";
 
-const formatNumber = (num: number, decimals: number) =>
-  Number(num.toFixed(decimals));
+const formatNumber = (num: number, decimals: number) => {
+  return Number(num.toFixed(decimals));
+}
 
 interface RatingProps extends BedrockComponentProps {
   simple?: boolean;
