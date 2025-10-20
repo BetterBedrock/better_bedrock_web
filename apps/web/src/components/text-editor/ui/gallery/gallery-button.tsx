@@ -1,11 +1,10 @@
-// src/components/text-editor/ui/gallery-button.tsx
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { EditorContext } from "@tiptap/react";
 import ImageGalleryIcon from "~/assets/ui/tiptap-icons/18.png";
 import { ToolbarButton } from "~/components/text-editor/primitive/toolbar-button";
 import { TiptapIcon } from "~/components/text-editor/tiptap-icon";
 
-export const GalleryButton: React.FC = () => {
+export const GalleryButton = () => {
   const { editor } = useContext(EditorContext);
 
   const handleCreateGallery = () => {

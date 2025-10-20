@@ -10,7 +10,7 @@ export const PreviewPopupFooter = () => (
       <Link link={Routes.PRIVACY_POLICY}>
         <BedrockText text="Privacy Policy" type="p" />
       </Link>
-      <BedrockText color={"white"} text="|" type="p" />
+      <BedrockText color="white" text="|" type="p" />
       <Link link={Routes.TERMS}>
         <BedrockText text="Terms" type="p" />
       </Link>

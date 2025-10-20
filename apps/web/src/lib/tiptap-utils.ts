@@ -28,12 +28,9 @@ export function cn(
  * Determines if the current platform is macOS
  * @returns boolean indicating if the current platform is Mac
  */
-export function isMac(): boolean {
-  return (
-    typeof navigator !== "undefined" &&
-    navigator.platform.toLowerCase().includes("mac")
-  )
-}
+export const isMac = (): boolean =>
+  typeof navigator !== "undefined" &&
+  navigator.platform.toLowerCase().includes("mac")
 
 /**
  * Formats a shortcut key based on the platform (Mac or non-Mac)

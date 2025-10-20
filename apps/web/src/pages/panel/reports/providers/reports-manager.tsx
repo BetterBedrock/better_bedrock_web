@@ -1,22 +1,30 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { ReportDto, DetailedUserDto, DetailedProjectDto } from "~/lib/api";
 import { useReport } from "~/providers/report";
 
 interface ReportsManagerContextProps {
   reports: ReportDto[] | undefined;
-  setReports: React.Dispatch<React.SetStateAction<ReportDto[] | undefined>>;
+  setReports: Dispatch<SetStateAction<ReportDto[] | undefined>>;
 
   selectedReport: ReportDto | null;
-  setSelectedReport: React.Dispatch<React.SetStateAction<ReportDto | null>>;
+  setSelectedReport: Dispatch<SetStateAction<ReportDto | null>>;
 
   reporter: DetailedUserDto | undefined;
-  setReporter: React.Dispatch<React.SetStateAction<DetailedUserDto | undefined>>;
+  setReporter: Dispatch<SetStateAction<DetailedUserDto | undefined>>;
 
   reported: DetailedUserDto | undefined;
-  setReported: React.Dispatch<React.SetStateAction<DetailedUserDto | undefined>>;
+  setReported: Dispatch<SetStateAction<DetailedUserDto | undefined>>;
 
   project: DetailedProjectDto | undefined;
-  setProject: React.Dispatch<React.SetStateAction<DetailedProjectDto | undefined>>;
+  setProject: Dispatch<SetStateAction<DetailedProjectDto | undefined>>;
 }
 
 interface ReportsManagerProviderProps {

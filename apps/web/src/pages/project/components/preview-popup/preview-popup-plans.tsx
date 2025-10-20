@@ -36,11 +36,11 @@ export const PreviewPopupPlans = ({
     <Popup.Part>
       {categories && (
         <BedrockText
-          textAlign={"left"}
-          color={"white"}
+          textAlign="left"
+          color="white"
           text={`Voucher period: ${selectedTimeframe}`}
           type="p2"
-          style={{ paddingBottom: "0.5rem" }}
+          extraClassName={styles.period}
         />
       )}
       <ButtonGroup direction="vertical" className={styles.group}>

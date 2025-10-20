@@ -23,29 +23,27 @@ export const DownloadMethodCard = ({
   lockClicking,
   height = "auto",
   onClick,
-}: DownloadMethodCardProp) => {
-  return (
-    <Button
-      width="100%"
-      height={height}
-      type={buttonType}
-      lockClicking={lockClicking}
-      playSound={playSound}
-      onClick={onClick}
-    >
-      <div className={styles.content}>
-        <BedrockText
-          text={price ?? ""}
-          type={"h1"}
-          font="Minecraft"
-          textAlign="left"
-          extraClassName={styles.price}
-          color={color}
-        />
-        <div className={styles.description}>
-          <BedrockText text={title ?? ""} type="p" textAlign="left" color={color} />
-        </div>
+}: DownloadMethodCardProp) => (
+  <Button
+    width="100%"
+    height={height}
+    type={buttonType}
+    lockClicking={lockClicking}
+    playSound={playSound}
+    onClick={onClick}
+  >
+    <div className={styles.content}>
+      <BedrockText
+        text={price ?? ""}
+        type="h1"
+        font="Minecraft"
+        textAlign="left"
+        extraClassName={styles.price}
+        color={color}
+      />
+      <div className={styles.description}>
+        <BedrockText text={title ?? ""} type="p" textAlign="left" color={color} />
       </div>
-    </Button>
-  );
-};
+    </div>
+  </Button>
+);

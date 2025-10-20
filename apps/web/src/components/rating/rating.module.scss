@@ -12,6 +12,12 @@
   color: g.$color-sbtn-click-on-focus-visible !important;
 }
 
+.button {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
 .star {
   image-rendering: pixelated;
   width: g.$icon-sm;

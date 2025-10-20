@@ -13,15 +13,13 @@ export const ButtonGroup = ({
   direction = "responsive",
   className,
   ...props
-}: ButtonGroupProps) => {
-  return (
-    <div
-      className={clsx(styles.buttonGroup, className)}
-      // The data-direction attribute is now driven by the prop
-      data-direction={direction}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-};
+}: ButtonGroupProps) => (
+  <div
+    className={clsx(styles.buttonGroup, className)}
+    // The data-direction attribute is now driven by the prop
+    data-direction={direction}
+    {...props}
+  >
+    {children}
+  </div>
+);

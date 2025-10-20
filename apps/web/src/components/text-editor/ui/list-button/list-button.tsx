@@ -3,7 +3,7 @@ import { useTiptapEditor } from "~/hooks/use-tiptap-editor";
 
 import type { UseListConfig } from "~/components/text-editor/ui/list-button";
 import { useList } from "~/components/text-editor/ui/list-button";
-import { forwardRef, useCallback } from "react";
+import { forwardRef, MouseEvent, useCallback } from "react";
 import { ToolbarButton, ToolbarButtonProps } from "~/components/text-editor/primitive/toolbar-button";
 
 export interface ListButtonProps extends Omit<ToolbarButtonProps, "type">, UseListConfig {
@@ -32,7 +32,7 @@ export const ListButton = forwardRef<HTMLButtonElement, ListButtonProps>(
     });
 
     const handleClick = useCallback(
-      (event: React.MouseEvent<HTMLButtonElement>) => {
+      (event: MouseEvent<HTMLButtonElement>) => {
         onClick?.(event);
         if (event.defaultPrevented) return;
         handleToggle();

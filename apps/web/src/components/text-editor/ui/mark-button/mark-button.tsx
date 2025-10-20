@@ -4,7 +4,7 @@ import { useTiptapEditor } from "~/hooks/use-tiptap-editor";
 import type { UseMarkConfig } from "~/components/text-editor/ui/mark-button";
 import { useMark } from "~/components/text-editor/ui/mark-button";
 
-import { forwardRef, useCallback } from "react";
+import { forwardRef, MouseEvent, useCallback } from "react";
 import { ToolbarButton, ToolbarButtonProps } from "~/components/text-editor/primitive/toolbar-button";
 
 export interface MarkButtonProps extends Omit<ToolbarButtonProps, "type">, UseMarkConfig {
@@ -35,7 +35,7 @@ export const MarkButton = forwardRef<HTMLButtonElement, MarkButtonProps>(
     });
 
     const handleClick = useCallback(
-      (event: React.MouseEvent<HTMLButtonElement>) => {
+      (event: MouseEvent<HTMLButtonElement>) => {
         onClick?.(event);
         if (event.defaultPrevented) return;
         handleMark();

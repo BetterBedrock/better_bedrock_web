@@ -1,6 +1,6 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { styles } from ".";
-import { Fragment, useRef, useState } from "react";
+import { Fragment, KeyboardEvent, useRef, useState } from "react";
 import { Input } from "~/components/bedrock/input";
 import { Button } from "~/components/bedrock/button";
 import { ProjectCommentDto, UserDto } from "~/lib/api";
@@ -41,7 +41,7 @@ export const Comment = ({
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Escape") {
       setIsReplying(false);
     }

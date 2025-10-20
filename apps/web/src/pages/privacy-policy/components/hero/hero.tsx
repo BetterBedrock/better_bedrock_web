@@ -1,4 +1,3 @@
-import React from "react";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { HeroMarkdown, styles } from ".";
 

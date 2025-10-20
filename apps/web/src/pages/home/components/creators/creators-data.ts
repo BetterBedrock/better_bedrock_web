@@ -1,6 +1,5 @@
 import XxDreamxXYT4286 from "~/assets/images/avatars/XxDreamxXYT4286.png";
 import bestfurth from "~/assets/images/avatars/bestfurth.png";
-// import Steve from "~/assets/images/avatars/Steve.png";
 
 export interface CreatorsListElement {
     profileId?: string;

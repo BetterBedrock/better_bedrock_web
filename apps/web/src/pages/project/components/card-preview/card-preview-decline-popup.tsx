@@ -1,8 +1,7 @@
 import { useRef } from "react";
 import { styles } from ".";
 import { Popup } from "~/components/bedrock/popup/popup";
-import { Button } from "~/components/bedrock/button"; // Assuming a Button component exists
-import React from "react";
+import { Button } from "~/components/bedrock/button";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Input } from "~/components/bedrock/input";

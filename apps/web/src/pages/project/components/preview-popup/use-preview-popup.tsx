@@ -1,5 +1,5 @@
 import { loadStripe } from "@stripe/stripe-js";
-import { useState, useEffect } from "react";
+import { useState, useEffect, KeyboardEvent } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { ProjectDto, VoucherDto } from "~/lib/api";
@@ -146,7 +146,7 @@ export const usePreviewPopup = ({ project, onClose }: usePreviewPopupProps) => {
     }
   }, []);
 
-  const handleKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
       await useVoucher();

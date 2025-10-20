@@ -1,5 +1,5 @@
-import { AboutSectionElement } from ".";
-import { styles } from ".";
+import clsx from "clsx";
+import { AboutSectionElement, styles } from ".";
 import { CardImage, CardHeader } from "./card";
 
 interface AboutCardProps {
@@ -8,17 +8,15 @@ interface AboutCardProps {
   index: number;
 }
 
-export const AboutCard = ({ item, index, direction }: AboutCardProps) => {
-  return (
-    <div
-      key={index}
-      className={styles.about}
-      style={{
-        flexDirection: index % 2 === (direction === "left" ? 0 : 1) ? "row" : "row-reverse",
-      }}
-    >
-      <CardImage item={item} index={index} direction={direction} />
-      <CardHeader item={item} />
-    </div>
-  );
-};
+export const AboutCard = ({ item, index, direction }: AboutCardProps) => (
+  <div
+    key={index}
+    className={clsx(
+      styles.about,
+      index % 2 === (direction === "left" ? 0 : 1) ? styles.row : styles.reverse,
+    )}
+  >
+    <CardImage item={item} index={index} direction={direction} />
+    <CardHeader item={item} />
+  </div>
+);

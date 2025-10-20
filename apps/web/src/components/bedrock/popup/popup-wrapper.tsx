@@ -1,6 +1,5 @@
 import { ReactNode, useState } from "react";
 import { styles } from ".";
-import React from "react";
 import clsx from "clsx";
 
 export interface BasePopupWrapperProps {
@@ -28,7 +27,7 @@ export const PopupWrapper = ({ children, popup, className, ignore }: PopupWrappe
 
   return (
     <div className={clsx(styles.wrapper, className && className)}>
-      <div onClick={handleOpen} style={{ cursor: "pointer" }}>
+      <div onClick={handleOpen} style={styles.selectable}>
         {children}
       </div>
       {open && popup(close)}

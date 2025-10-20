@@ -1,5 +1,4 @@
-// src/components/text-editor/ui/gallery-button.tsx
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { EditorContext } from "@tiptap/react";
 import HeaderIcon from "~/assets/images/header.webp";
 import { ToolbarButton } from "~/components/text-editor/primitive/toolbar-button";

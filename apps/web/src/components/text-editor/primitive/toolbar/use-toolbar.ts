@@ -1,8 +1,8 @@
 import { useMenuNavigation } from "~/hooks/use-menu-navigation";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, RefObject } from "react";
 
 
-export const useToolbar = (toolbarRef: React.RefObject<HTMLDivElement | null>) => {
+export const useToolbar = (toolbarRef: RefObject<HTMLDivElement | null>) => {
     const [items, setItems] = useState<HTMLElement[]>([]);
 
     const collectItems = useCallback(() => {

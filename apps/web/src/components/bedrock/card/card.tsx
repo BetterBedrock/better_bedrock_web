@@ -1,14 +1,14 @@
-import React from "react";
 import clsx from "clsx";
 import { styles } from ".";
+import { forwardRef, HTMLAttributes, ReactNode } from "react";
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
   sub?: boolean;
 }
 
-export const Card = React.forwardRef<HTMLDivElement, CardProps>(
+export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, children, sub, ...rest }, ref) => (
     <div ref={ref} className={clsx(styles.container, sub && styles.sub, className)} {...rest}>
       {children}

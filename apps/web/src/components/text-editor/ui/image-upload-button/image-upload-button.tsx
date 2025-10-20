@@ -4,7 +4,7 @@ import { useTiptapEditor } from "~/hooks/use-tiptap-editor";
 import type { UseImageUploadConfig } from "~/components/text-editor/ui/image-upload-button";
 import { useImageUpload } from "~/components/text-editor/ui/image-upload-button";
 
-import { forwardRef, useCallback } from "react";
+import { forwardRef, MouseEvent, useCallback } from "react";
 import {
   ToolbarButton,
   ToolbarButtonProps,
@@ -35,7 +35,7 @@ export const ImageUploadButton = forwardRef<HTMLButtonElement, ImageUploadButton
     });
 
     const handleClick = useCallback(
-      (event: React.MouseEvent<HTMLButtonElement>) => {
+      (event: MouseEvent<HTMLButtonElement>) => {
         onClick?.(event);
         if (event.defaultPrevented) return;
         handleImage();

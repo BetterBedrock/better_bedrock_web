@@ -1,5 +1,5 @@
 import { styles } from ".";
-import { HTMLAttributes, ReactNode, useEffect, useState, forwardRef } from "react";
+import { HTMLAttributes, ReactNode, useEffect, useState, forwardRef, MouseEvent } from "react";
 import clsx from "clsx";
 import bedrockClickSound from "~/assets/sounds/minecraft_click.mp3";
 
@@ -79,7 +79,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
 
     const [playClickSound] = useSound(bedrockClickSound, { volume: 0.25 });
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
       if (lockClicking) return;
 
       setIsHeld(true);

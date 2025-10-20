@@ -20,7 +20,7 @@ interface DownloadCardProp {
   type: DownloadsItemTypeKey;
 }
 
-const DownloadCard: React.FC<DownloadCardProp> = ({
+const DownloadCard = ({
   title,
   description,
   downloadSize,
@@ -31,9 +31,8 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
   onClick,
   tags,
   type,
-}) => {
-  const iconPath =
-    type === "green" || type === "white" ? Icon1 : type === "yellow" ? Icon2 : Icon3;
+}: DownloadCardProp) => {
+  const iconPath = type === "green" || type === "white" ? Icon1 : type === "yellow" ? Icon2 : Icon3;
   return (
     <Button
       width="100%"
@@ -44,7 +43,7 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
       onClick={onClick}
     >
       <div className={styles.content}>
-        <img alt="" src={iconPath} style={{ imageRendering: "pixelated" }} />
+        <img alt="" src={iconPath} />
         <div className={styles.description}>
           <div className={styles.main}>
             <BedrockText
@@ -52,7 +51,6 @@ const DownloadCard: React.FC<DownloadCardProp> = ({
               type="h3"
               font="Minecraft"
               textAlign="left"
-              style={{ padding: "0 0.5rem 0 0" }}
               color={buttonType === "white" ? "black" : "white"}
               extraClassName={clsx(styles.title, styles[type])}
             />

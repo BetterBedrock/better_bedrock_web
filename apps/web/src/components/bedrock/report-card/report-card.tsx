@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BedrockText } from "../bedrock-text/bedrock-text";
 import { styles } from ".";
 import { DetailedProjectDto, ReportDto, SimpleUserDto } from "~/lib/api";

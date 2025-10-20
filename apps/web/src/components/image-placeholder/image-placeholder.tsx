@@ -1,7 +1,7 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Card } from "~/components/bedrock/card";
 import { styles } from ".";
-import { useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 
 interface ImagePlaceholderProps {
@@ -19,7 +19,7 @@ export const ImagePlaceholder = ({ onUpload, src, pass, placeholder }: ImagePlac
     inputRef.current?.click();
   };
 
-  const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (pass) return;
     const file = e.target.files?.item(0);
 

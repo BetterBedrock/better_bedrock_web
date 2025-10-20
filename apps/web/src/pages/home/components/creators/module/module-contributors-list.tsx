@@ -1,6 +1,5 @@
 import { CreatorsListElement } from "../";
-import { styles } from ".";
-import { ModuleCard } from "~/pages/home/components/creators/module/module-card";
+import { styles, ModuleCard } from ".";
 
 interface ModuleContributorsListProps {
   data: CreatorsListElement[];

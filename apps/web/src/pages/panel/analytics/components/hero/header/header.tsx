@@ -1,4 +1,3 @@
-import React from "react";
 import { HeaderTitle, HeaderDescription, HeaderAction, styles } from ".";
 
 export const Header = () => (

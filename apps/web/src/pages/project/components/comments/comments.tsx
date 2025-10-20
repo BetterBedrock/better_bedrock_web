@@ -5,7 +5,7 @@ import { Input } from "~/components/bedrock/input";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { styles } from ".";
 import { ProjectCommentDto } from "~/lib/api";
-import { useEffect, useRef, useState } from "react";
+import { KeyboardEvent, useEffect, useRef, useState } from "react";
 import { useProjectManager } from "~/pages/project/providers/project-manager";
 import { useNotification } from "~/providers/notification";
 import { useProject } from "~/providers/project";
@@ -61,7 +61,7 @@ export const Comments = () => {
     );
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       handlePostComment();
     }
