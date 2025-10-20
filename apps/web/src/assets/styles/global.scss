@@ -85,6 +85,7 @@ input[type="number"] {
   src:
     local("Mojangles"),
     url(~/assets/fonts/mojangles/Mojangles.ttf) format("truetype");
+  font-display: swap;
 }
 
 @font-face {
@@ -92,6 +93,7 @@ input[type="number"] {
   src:
     local("MojanglesBold"),
     url(~/assets/fonts/mojangles/MojanglesBold.otf) format("truetype");
+  font-display: swap;
 }
 
 @font-face {
@@ -99,6 +101,7 @@ input[type="number"] {
   src:
     local("MinecraftTen"),
     url(~/assets/fonts/minecraft/MinecraftTen.ttf) format("truetype");
+  font-display: swap;
 }
 
 @font-face {
@@ -106,6 +109,7 @@ input[type="number"] {
   src:
     local("MinecraftFive"),
     url(~/assets/fonts/minecraft/MinecraftFive.ttf) format("truetype");
+  font-display: swap;
 }
 
 section {

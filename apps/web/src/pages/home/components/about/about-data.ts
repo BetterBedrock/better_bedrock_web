@@ -1,9 +1,9 @@
-import banner1 from "~/assets/images/banners/bb1.png";
-import banner2 from "~/assets/images/banners/bb2.png";
-import banner3 from "~/assets/images/banners/bb3.png";
-import banner4 from "~/assets/images/banners/bb4.png";
-import banner5 from "~/assets/images/banners/bb5.png";
-import banner6 from "~/assets/images/banners/bb6.png";
+import banner1 from "~/assets/images/banners/bb1.webp";
+import banner2 from "~/assets/images/banners/bb2.webp";
+import banner3 from "~/assets/images/banners/bb3.webp";
+import banner4 from "~/assets/images/banners/bb4.webp";
+import banner5 from "~/assets/images/banners/bb5.webp";
+import banner6 from "~/assets/images/banners/bb6.webp";
 
 import crosshairBackground12 from "~/assets/images/crosshair_backgrounds/12.webp";
 import crosshairBackground13 from "~/assets/images/crosshair_backgrounds/13.webp";
