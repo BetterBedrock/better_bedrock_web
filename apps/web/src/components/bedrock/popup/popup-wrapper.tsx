@@ -27,7 +27,7 @@ export const PopupWrapper = ({ children, popup, className, ignore }: PopupWrappe
 
   return (
     <div className={clsx(styles.wrapper, className && className)}>
-      <div onClick={handleOpen} style={styles.selectable}>
+      <div onClick={handleOpen} className={styles.selectable}>
         {children}
       </div>
       {open && popup(close)}
