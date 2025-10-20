@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import { useThrottledCallback } from "./use-throttled-callback"
 import { useEffect, useState } from "react"
 

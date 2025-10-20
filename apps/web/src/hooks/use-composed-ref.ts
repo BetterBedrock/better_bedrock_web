@@ -1,4 +1,3 @@
-import * as React from "react"
 import { RefObject, useCallback, useRef } from "react"
 
 type UserRef<T> =
