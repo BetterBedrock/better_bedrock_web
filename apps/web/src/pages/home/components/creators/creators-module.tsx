@@ -1,9 +1,5 @@
-import { CreatorsListElement } from ".";
-import {
-  ModuleContributorsList,
-  ModuleDescription,
-  ModuleTitle,
-} from "./module";
+import { CreatorsListElement, styles } from ".";
+import { ModuleContributorsList, ModuleDescription, ModuleTitle } from "./module";
 
 interface CreatorsModuleProps {
   title: string;
@@ -12,7 +8,7 @@ interface CreatorsModuleProps {
 }
 
 export const CreatorsModule = ({ title, description, contributors }: CreatorsModuleProps) => (
-  <div style={{width: "100%"}}>
+  <div className={styles.module}>
     <ModuleTitle text={title} />
     <ModuleDescription text={description} />
     <ModuleContributorsList data={contributors} />

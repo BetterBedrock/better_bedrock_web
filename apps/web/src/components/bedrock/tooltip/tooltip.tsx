@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode, useState } from "react";
+import { CSSProperties, MouseEvent, ReactNode, useState } from "react";
 import { styles } from ".";
 import clsx from "clsx";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
@@ -14,7 +14,7 @@ export const Tooltip = ({ children, className, text, hidden = false }: TooltipPr
   const [visible, setVisible] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     setPosition({ x: e.clientX, y: e.clientY });
   };
 

@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import type { Editor } from "@tiptap/react"
+import { RefObject, useEffect, useState } from "react"
 
 type Orientation = "horizontal" | "vertical" | "both"
 
@@ -13,7 +14,7 @@ interface MenuNavigationOptions<T> {
   /**
    * Reference to the container element for handling keyboard events.
    */
-  containerRef?: React.RefObject<HTMLElement | null>
+  containerRef?: RefObject<HTMLElement | null>
   /**
    * Search query that affects the selected item.
    */
@@ -61,11 +62,11 @@ export function useMenuNavigation<T>({
   orientation = "vertical",
   autoSelectFirstItem = true,
 }: MenuNavigationOptions<T>) {
-  const [selectedIndex, setSelectedIndex] = React.useState<number>(
+  const [selectedIndex, setSelectedIndex] = useState<number>(
     autoSelectFirstItem ? 0 : -1
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleKeyboardNavigation = (event: KeyboardEvent) => {
       if (!items.length) return false
 
@@ -183,7 +184,7 @@ export function useMenuNavigation<T>({
     orientation,
   ])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (query) {
       setSelectedIndex(autoSelectFirstItem ? 0 : -1)
     }

@@ -11,7 +11,6 @@
 .container > a {
   display: flex;
   border-bottom: g.$minecraftdepth solid rgb(30, 30, 31);
-
 }
 
 .container > a > div {
@@ -75,4 +74,8 @@
 .tagsContainer p {
   padding: 0.125rem 0.33rem;
   background-color: rgb(49, 50, 51);
+}
+
+.author {
+  position: absolute;
 }

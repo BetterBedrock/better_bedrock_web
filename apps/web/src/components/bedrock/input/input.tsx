@@ -1,11 +1,11 @@
-import { InputHTMLAttributes, forwardRef } from "react";
+import { ChangeEvent, InputHTMLAttributes, forwardRef } from "react";
 import { styles } from ".";
 import clsx from "clsx";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
   value?: string | number;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   className?: string;
 }
 

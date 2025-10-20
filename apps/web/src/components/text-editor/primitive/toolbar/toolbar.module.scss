@@ -1,7 +1,8 @@
 @use "~/utils" as g;
 
 .card {
-  position: sticky;
+  position: absolute;
+  visibility: hidden;
   position: -webkit-sticky;
   // top: calc(g.$navbar-height + g.$minecraftdepth);
   z-index: 2;

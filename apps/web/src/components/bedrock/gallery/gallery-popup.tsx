@@ -6,7 +6,7 @@ import { BasePopupWrapperProps } from "~/components/bedrock/popup/popup-wrapper"
 import { SimpleButton } from "~/components/bedrock/simple-button";
 import { styles } from ".";
 import { baseUrl } from "~/utils/url";
-import { useRef } from "react";
+import { ChangeEvent, useRef } from "react";
 import Exit from "~/assets/images/exit.png";
 
 interface GalleryPopupProps extends BasePopupWrapperProps {
@@ -27,7 +27,7 @@ export const GalleryPopup = ({
   const handleAddClick = () => {
     if (fileInputRef.current) fileInputRef.current.click();
   };
-  const handleFilesSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFilesSelected = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     onAddImages?.(e.target.files);
     e.target.value = "";
@@ -69,7 +69,7 @@ export const GalleryPopup = ({
             type="file"
             multiple
             accept="image/*"
-            style={{ display: "none" }}
+            className={styles.input}
             onChange={handleFilesSelected}
           />
           <Button

@@ -1,9 +1,9 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import { styles } from ".";
 import clsx from "clsx";
 
 interface LabelProps extends HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactNode;
+  children?: ReactNode;
   height?: string;
   width?: string;
   minHeight?: string;

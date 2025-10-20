@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import { styles } from ".";
 import clsx from "clsx";
 import { useMediaQuery } from "react-responsive";
@@ -42,7 +42,7 @@ class SeededRandom {
   }
 }
 
-export const SectionDivider: React.FC<SectionDividerProps> = ({
+export const SectionDivider = ({
   image,
   rows = 3,
   fullCenterRows = 1,
@@ -50,13 +50,23 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
   edgeProbability = 0.5,
   overlap,
   seed,
-}) => {
+}: SectionDividerProps) => {
   const isLaptop = useMediaQuery({ query: "(max-width: 1440px)" }); // Add query for laptop screens
   const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const isMobileSmall = useMediaQuery({ query: "(max-width: 480px)" }); // Adjust query for small mobile screens
 
-  const finalBlockSize = Math.round(isMobileSmall ? blockSize / 1.8 : isMobile ? blockSize / 1.6 : isTablet ? blockSize / 1.4 : isLaptop ? blockSize / 1.2 : blockSize);
+  const finalBlockSize = Math.round(
+    isMobileSmall
+      ? blockSize / 1.8
+      : isMobile
+        ? blockSize / 1.6
+        : isTablet
+          ? blockSize / 1.4
+          : isLaptop
+            ? blockSize / 1.2
+            : blockSize,
+  );
 
   const totalHeight = rows * finalBlockSize;
   const overlapOffset = overlap ?? totalHeight / 3;
@@ -155,10 +165,7 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
     <div
       ref={containerRef}
       style={{
-        position: "relative",
-        width: "100%",
         height: totalHeight,
-        overflow: "hidden",
         margin: `${-overlapOffset}px 0 ${-overlapOffset}px`,
       }}
       className={styles.wrapper}

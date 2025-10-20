@@ -1,4 +1,3 @@
-import React from "react";
 import { BedrockText } from "../bedrock-text/bedrock-text";
 
 import { styles } from ".";
@@ -24,7 +23,7 @@ export type TagsTypes =
   | "Feavideostured"
   | "Deprecated";
 
-export const GridCard: React.FC<GridCardProps> = ({
+export const GridCard = ({
   title,
   description,
   link = "https://www.youtube.com",
@@ -32,64 +31,56 @@ export const GridCard: React.FC<GridCardProps> = ({
   useCustomThumbnail = false,
   customThumbnailImageUrl,
   tags,
-}) => {
-  return (
-    <div className={styles.container}>
-      {useCustomThumbnail && (
-        <div className={styles.thumbnailWrapper}>
-          {customThumbnailImageUrl && <img src={customThumbnailImageUrl} alt="" />}
-        </div>
-      )}
-      {!useCustomThumbnail && (
-        <a href={link} rel="noopener noreferrer" target="_blank">
-          <div>
-            <img src={tutorialThumbnail} alt="" />
-            {index && (
-              <div className={styles.imgWrapper}>
-                <BedrockText
-                  text={(index && `#${index}`) || ""}
-                  type="h4"
-                  font="Minecraft"
-                  textAlign="left"
-                  color="white"
-                  style={{ position: "absolute" }}
-                />
-                {tags && (
-                  <div className={styles.tagsWrapper}>
-                    <div className={styles.tagsContainer}>
-                      {tags.map((tag, index) => {
-                        const selectedTag = tagData.find((t) => t.id === tag);
-                        if (!selectedTag) return;
-
-                        return (
-                          <BedrockText
-                            key={index}
-                            text={selectedTag.name}
-                            type={"p"}
-                            textAlign="left"
-                            style={{ backgroundColor: selectedTag.color }}
-                            color="#000"
-                          />
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        </a>
-      )}
-      <div className={styles.texts}>
-        <BedrockText
-          text={title || ""}
-          type="h3"
-          font="Minecraft"
-          textAlign="left"
-          color="white"
-        />
-        <BedrockText text={description ?? ""} type={"p"} textAlign="left" color="white" />
+}: GridCardProps) => (
+  <div className={styles.container}>
+    {useCustomThumbnail && (
+      <div className={styles.thumbnailWrapper}>
+        {customThumbnailImageUrl && <img src={customThumbnailImageUrl} alt="" />}
       </div>
+    )}
+    {!useCustomThumbnail && (
+      <a href={link} rel="noopener noreferrer" target="_blank">
+        <div>
+          <img src={tutorialThumbnail} alt="" />
+          {index && (
+            <div className={styles.imgWrapper}>
+              <BedrockText
+                text={(index && `#${index}`) || ""}
+                type="h4"
+                font="Minecraft"
+                textAlign="left"
+                color="white"
+                extraClassName={styles.author}
+              />
+              {tags && (
+                <div className={styles.tagsWrapper}>
+                  <div className={styles.tagsContainer}>
+                    {tags.map((tag, index) => {
+                      const selectedTag = tagData.find((t) => t.id === tag);
+                      if (!selectedTag) return;
+
+                      return (
+                        <BedrockText
+                          key={index}
+                          text={selectedTag.name}
+                          type="p"
+                          textAlign="left"
+                          style={{ backgroundColor: selectedTag.color }}
+                          color="#000"
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </a>
+    )}
+    <div className={styles.texts}>
+      <BedrockText text={title || ""} type="h3" font="Minecraft" textAlign="left" color="white" />
+      <BedrockText text={description ?? ""} type="p" textAlign="left" color="white" />
     </div>
-  );
-};
+  </div>
+);

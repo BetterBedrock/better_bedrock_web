@@ -1,6 +1,7 @@
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 import { styles } from ".";
 import { cn } from "~/lib/tiptap-utils";
+import { ComponentProps } from "react";
 
 export const Popover = PopoverPrimitive.Root;
 export const PopoverTrigger = PopoverPrimitive.Trigger;
@@ -10,7 +11,7 @@ export const PopoverContent = ({
   align = "center",
   sideOffset = 4,
   ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Content>) => (
+}: ComponentProps<typeof PopoverPrimitive.Content>) => (
   // <PopoverPrimitive.Portal>
     <PopoverPrimitive.Content
       align={align}

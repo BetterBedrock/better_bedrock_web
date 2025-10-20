@@ -2,11 +2,11 @@ import { SimpleButton } from "~/components/bedrock/simple-button";
 import { Tooltip } from "~/components/bedrock/tooltip";
 import clsx from "clsx";
 import { styles } from ".";
-import { forwardRef } from "react";
+import { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
 
-export interface ToolbarButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ToolbarButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
-  tooltip?: React.ReactNode;
+  tooltip?: ReactNode;
 }
 
 export const ToolbarButton = forwardRef<HTMLButtonElement, ToolbarButtonProps>(

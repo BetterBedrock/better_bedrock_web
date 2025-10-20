@@ -1,8 +1,7 @@
-import { ReactNode, useState, MouseEvent, cloneElement, ReactElement, Children } from "react";
+import { ReactNode, useState, MouseEvent, cloneElement, ReactElement, Children, isValidElement } from "react";
 import { styles } from ".";
 import { Popup } from "~/components/bedrock/popup/popup";
 import { Button, ButtonType } from "~/components/bedrock/button";
-import React from "react";
 import { ButtonGroup } from "~/components/button-group/button-group";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { CardDivider } from "~/components/bedrock/card";
@@ -17,7 +16,7 @@ export const useEnhanceTree = (
   handleChildClick: (originalOnClick?: (e: MouseEvent) => void) => (e: MouseEvent) => void,
 ) => {
   const enhanceTree = (node: ReactNode): ReactNode => {
-    if (!React.isValidElement(node)) return node;
+    if (!isValidElement(node)) return node;
 
     const element = node as ReactElement<ClickableElementProps>;
     const props: Partial<ClickableElementProps> = {};

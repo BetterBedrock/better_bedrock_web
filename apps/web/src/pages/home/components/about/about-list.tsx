@@ -1,5 +1,4 @@
-import React from "react";
-import { AboutSectionElement, AboutCard } from "~/pages/home/components/about";
+import { AboutSectionElement, AboutCard } from ".";
 
 interface AboutListProps {
   direction?: "left" | "right";

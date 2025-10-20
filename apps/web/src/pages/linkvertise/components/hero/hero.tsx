@@ -45,7 +45,7 @@ export const Hero = () => (
             <BedrockText
               type="p"
               color="white"
-              text={"Quick convincing information about us and our services."}
+              text="Quick convincing information about us and our services."
             />
           </div>
           <CardDivider />

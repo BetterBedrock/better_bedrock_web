@@ -1,15 +1,13 @@
-import React from "react";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import ReactMarkdown from "react-markdown";
 import { styles } from ".";
 
-export const Hero = () => {
-  return (
-    <>
-      <BedrockText type="h1" text="Terms" color="white" font="Minecraft" />
-      <div className={styles.markdown}>
-        <ReactMarkdown>
-          {`
+export const Hero = () => (
+  <>
+    <BedrockText type="h1" text="Terms" color="white" font="Minecraft" />
+    <div className={styles.markdown}>
+      <ReactMarkdown>
+        {`
 **Last Updated: August 5, 2025**
 
 ## Payment Rules
@@ -27,8 +25,7 @@ export const Hero = () => {
 
 * **Voucher Code Policy**: Publicly sharing voucher codes may lead to the code being banned and loss of access.
         `}
-        </ReactMarkdown>
-      </div>
-    </>
-  );
-};
+      </ReactMarkdown>
+    </div>
+  </>
+);

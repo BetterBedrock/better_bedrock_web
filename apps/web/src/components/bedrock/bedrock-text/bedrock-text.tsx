@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { styles } from ".";
+import { CSSProperties } from "react";
 
 export interface BedrockTextProps {
   text: string;
@@ -13,7 +14,7 @@ export interface BedrockTextProps {
   type: "h1" | "h2" | "h3" | "h4" | "p" | "p2";
   headerSize?: boolean;
   paragraphSize?: boolean;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   extraClassName?: string | string[];
   onClick?: () => void;
 }

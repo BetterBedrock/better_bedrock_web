@@ -1,23 +1,23 @@
 import { Content } from "@tiptap/react";
-import { createContext, ReactNode, useContext, useRef, useState } from "react";
+import { createContext, Dispatch, ReactNode, RefObject, SetStateAction, useContext, useRef, useState } from "react";
 import { DetailedProjectDto, UpdateProjectDto } from "~/lib/api";
 import { useAuth } from "~/providers/auth";
 import { useProject } from "~/providers/project";
 import { useUser } from "~/providers/user";
 
 interface ProjectManagerContextProps {
-  editorContent: React.RefObject<Content | undefined>;
-  downloadButtonRef: React.RefObject<HTMLButtonElement | null>;
+  editorContent: RefObject<Content | undefined>;
+  downloadButtonRef: RefObject<HTMLButtonElement | null>;
 
   fetchSelectedProject: (id: string, draft: boolean) => Promise<DetailedProjectDto | undefined>;
   handleSaveProject: (project: UpdateProjectDto) => Promise<boolean>;
 
   fetched: boolean;
   selectedProject: DetailedProjectDto | undefined;
-  setSelectedProject: React.Dispatch<React.SetStateAction<DetailedProjectDto | undefined>>;
+  setSelectedProject: Dispatch<SetStateAction<DetailedProjectDto | undefined>>;
 
   userRating: number | undefined;
-  setUserRating: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setUserRating: Dispatch<SetStateAction<number | undefined>>;
 }
 
 interface ProjectManagerProviderProps {

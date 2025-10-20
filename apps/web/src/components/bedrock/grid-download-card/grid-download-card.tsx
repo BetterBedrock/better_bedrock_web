@@ -13,6 +13,7 @@ import { ProjectMode } from "~/pages/project";
 import BBLogo from "~/assets/images/logo.png";
 import { Tooltip } from "~/components/bedrock/tooltip";
 import { Avatar } from "~/components/avatar";
+import { ReactNode } from "react";
 
 interface GridDownloadCardProps {
   project: SimpleProjectDto;
@@ -21,8 +22,8 @@ interface GridDownloadCardProps {
   title?: string;
   downloadSize?: string;
   thumbnail?: string;
-  description?: React.ReactNode;
-  actions?: React.ReactNode;
+  description?: ReactNode;
+  actions?: ReactNode;
   className?: string;
   useTopDivider?: boolean;
   tags?: string[];

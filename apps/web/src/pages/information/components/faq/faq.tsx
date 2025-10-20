@@ -1,4 +1,3 @@
-import React from "react";
 import { InformationTab } from "~/pages/information/information";
 import { styles, FAQTitle, FAQCollapsibleList, FAQDescription } from ".";
 

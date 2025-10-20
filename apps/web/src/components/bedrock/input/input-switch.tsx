@@ -1,5 +1,5 @@
 import { styles } from ".";
-import { InputHTMLAttributes, useState } from "react";
+import { ChangeEvent, InputHTMLAttributes, useState } from "react";
 import clsx from "clsx";
 import bedrockClickSound from "~/assets/sounds/minecraft_click.mp3";
 import useSound from "use-sound";
@@ -12,7 +12,7 @@ import ToggleOnHover from "~/assets/ui/toggle/on_hover.png";
 
 interface InputSwitchProps extends InputHTMLAttributes<HTMLInputElement> {
   checked?: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   className?: string;
 }
 
@@ -25,7 +25,7 @@ export const InputSwitch = ({ checked, onChange, className, ...props }: InputSwi
     if (onChange) {
       const event = {
         target: { checked: !checked, type: "checkbox", name: props.name },
-      } as React.ChangeEvent<HTMLInputElement>;
+      } as ChangeEvent<HTMLInputElement>;
       onChange(event);
     }
   };

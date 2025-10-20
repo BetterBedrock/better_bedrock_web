@@ -6,6 +6,7 @@ import {
   ButtonHTMLAttributes,
   AnchorHTMLAttributes,
   forwardRef,
+  Ref,
 } from "react";
 
 import { styles } from ".";
@@ -79,7 +80,7 @@ export const SimpleButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, Si
 
     return (
       <button
-        ref={ref as React.Ref<HTMLButtonElement>}
+        ref={ref as Ref<HTMLButtonElement>}
         type="button"
         className={commonClassName}
         style={commonStyle}

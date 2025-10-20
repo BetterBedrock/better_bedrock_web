@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { AnalyticsApi, AnalyticsDto, Configuration } from "~/lib/api";
 import { useAuth } from "~/providers/auth";
@@ -7,7 +7,7 @@ import { baseUrl } from "~/utils/url";
 
 interface AnalyticsContextProps {
   autoRefresh: boolean;
-  setAutoRefresh: React.Dispatch<React.SetStateAction<boolean>>;
+  setAutoRefresh: Dispatch<SetStateAction<boolean>>;
   fetchAnalytics: () => Promise<AnalyticsDto[] | undefined>;
   fetchUserAnalytics: (id: string) => Promise<AnalyticsDto[] | undefined>;
 }

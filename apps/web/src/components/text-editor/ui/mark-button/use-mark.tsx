@@ -13,7 +13,7 @@ import StrikeIcon from "~/assets/ui/tiptap-icons/6.png"
 import UnderlineIcon from "~/assets/ui/tiptap-icons/7.png"
 import HighlighterIcon from "~/assets/ui/tiptap-icons/8.png"
 import { TiptapIcon } from "~/components/text-editor/tiptap-icon"
-import React, { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 
 export type Mark =
   | "bold"
@@ -138,7 +138,7 @@ export function useMark(config: UseMarkConfig) {
     }
   }, [editor, type, hideWhenUnavailable])
 
-  const handleMark = React.useCallback(() => {
+  const handleMark = useCallback(() => {
     if (!editor) return false
 
     const success = toggleMark(editor, type)

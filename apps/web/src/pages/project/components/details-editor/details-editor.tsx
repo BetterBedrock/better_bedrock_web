@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useRef, useState } from "react";
+import { KeyboardEvent, useRef, useState } from "react";
 import { PROJECT_TYPES } from "~/assets/content/better-bedrock";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
@@ -125,7 +125,7 @@ export const DetailsEditor = () => {
     await handleSaveProject(newProject);
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       handleCreateTag();
     }
