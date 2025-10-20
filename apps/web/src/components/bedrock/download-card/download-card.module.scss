@@ -13,6 +13,7 @@
   flex-shrink: 0;
   width: clamp(1rem, 4.5rem, 6rem);
   aspect-ratio: 1 / 1;
+  image-rendering: pixelated;
 }
 
 .description {
@@ -40,9 +41,6 @@
 .title {
   padding: 0 g.$padding-xsm 0 0;
 
-  // &.green {
-  //   color: rgb(29, 77, 19) !important;
-  // }
   &.orange {
     color: rgb(255, 165, 0) !important;
   }

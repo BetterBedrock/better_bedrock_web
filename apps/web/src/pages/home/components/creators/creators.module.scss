@@ -10,3 +10,7 @@
 .padding {
   @include g.section-padding((top, bottom), g.$sectionsDividerPadding);
 }
+
+.module {
+  width: 100%;
+}

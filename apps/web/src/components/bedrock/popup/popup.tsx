@@ -4,10 +4,10 @@ import clsx from "clsx";
 import Exit from "~/assets/images/exit.png";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { SimpleButton } from "~/components/bedrock/simple-button";
-import { ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 
-interface PopupProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactNode;
+interface PopupProps extends HTMLAttributes<HTMLDivElement> {
+  children?: ReactNode;
   className?: string;
   title?: string;
   onClose?: () => void;

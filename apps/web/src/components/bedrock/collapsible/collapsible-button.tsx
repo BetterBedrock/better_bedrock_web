@@ -1,13 +1,14 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { styles } from ".";
 import { Button, ButtonType } from "~/components/bedrock/button";
+import { Dispatch, SetStateAction } from "react";
 
 interface CollapsibleButtonProps {
   indexTextRef?: string | number;
   headerText: string;
   type: ButtonType;
   isCollapsed: boolean;
-  setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
+  setCollapsed: Dispatch<SetStateAction<boolean>>;
 }
 
 export const CollapsibleButton = ({

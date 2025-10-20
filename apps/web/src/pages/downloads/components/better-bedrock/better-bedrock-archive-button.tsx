@@ -1,10 +1,11 @@
+import { Dispatch, SetStateAction } from "react";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
 import { ButtonGroup } from "~/components/button-group/button-group";
 
 interface MainArchiveButtonProps {
   showArchived: boolean;
-  setShowArchived: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowArchived: Dispatch<SetStateAction<boolean>>;
   setActiveTab: (tab: string) => void;
 }
 

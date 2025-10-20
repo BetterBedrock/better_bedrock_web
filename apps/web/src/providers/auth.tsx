@@ -1,5 +1,5 @@
 import { useGoogleLogin } from "@react-oauth/google";
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { AuthApi, Configuration, UserDto } from "~/lib/api";
 import { useNotification } from "~/providers/notification";
@@ -8,7 +8,7 @@ import { baseUrl } from "~/utils/url";
 interface AuthContextProps {
   fetched: boolean;
   user: UserDto | undefined;
-  setUser: React.Dispatch<React.SetStateAction<UserDto | undefined>>;
+  setUser: Dispatch<SetStateAction<UserDto | undefined>>;
   googleLogin: () => void;
   logout: () => void;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { KeyboardEvent, MouseEvent, useEffect, useState } from "react";
 import FilledStar from "~/assets/ui/star/filledStar.png";
 import EmptyStar from "~/assets/ui/star/emptyStar.png";
 import HalfFilledStar from "~/assets/ui/star/halfFilledStar.png";
@@ -24,7 +24,7 @@ interface RatingProps extends BedrockComponentProps {
   extraClassName?: string;
 }
 
-export const Rating: React.FC<RatingProps> = ({
+export const Rating = ({
   suffix,
   max = 5,
   rating = 1,
@@ -35,7 +35,7 @@ export const Rating: React.FC<RatingProps> = ({
   className = "",
   size = "small",
   extraClassName,
-}) => {
+}: RatingProps) => {
   const [selected, setSelected] = useState<number>(rating ?? 1);
   const [preview, setPreview] = useState<number | null>(null);
 
@@ -47,7 +47,7 @@ export const Rating: React.FC<RatingProps> = ({
     v >= i + 1 ? "full" : v > i && v < i + 1 ? "half" : "empty";
 
   // ⭐️ No half-selection — only integers
-  const handleMouseMove = (e: React.MouseEvent, index: number) =>
+  const handleMouseMove = (e: MouseEvent, index: number) =>
     selectable && setPreview(index + 1);
   const handleMouseLeave = () => selectable && setPreview(null);
 
@@ -65,7 +65,7 @@ export const Rating: React.FC<RatingProps> = ({
     onReset?.();
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+  const handleKeyDown = (e: KeyboardEvent, index: number) => {
     if (!selectable) return;
     const key = e.key;
     if (key === "Enter" || key === " ") {
@@ -81,7 +81,7 @@ export const Rating: React.FC<RatingProps> = ({
     }
   };
 
-  const text = `${formatNumber((preview ?? selected), 2)}/${max}${suffix ? ` ${suffix}` : ""}`;
+  const text = `${formatNumber(preview ?? selected, 2)}/${max}${suffix ? ` ${suffix}` : ""}`;
   const starStyles = clsx(styles.star, styles[size]);
 
   return (
@@ -118,14 +118,13 @@ export const Rating: React.FC<RatingProps> = ({
                 <button
                   key={i}
                   type="button"
-                  className={styles.starButton || ""}
+                  className={styles.button}
                   onMouseMove={(e) => handleMouseMove(e, i)}
                   onMouseLeave={handleMouseLeave}
                   onClick={() => handleClick(i + 1)}
                   onKeyDown={(e) => handleKeyDown(e, i)}
                   aria-label={`Set rating to ${i + 1}`}
                   aria-pressed={selected >= i + 1}
-                  style={{ padding: 0, border: "none", background: "transparent" }}
                 >
                   <img className={starStyles} src={src} alt={`${i + 1} star`} />
                 </button>

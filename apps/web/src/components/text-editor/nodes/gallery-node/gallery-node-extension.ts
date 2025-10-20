@@ -1,7 +1,7 @@
 // src/extensions/Gallery.ts
-import { Node, mergeAttributes } from '@tiptap/core'
-import { ReactNodeViewRenderer } from '@tiptap/react'
-import GalleryNodeView from '~/components/text-editor/nodes/gallery-node/gallery-node'
+import { Node, mergeAttributes } from "@tiptap/core";
+import { ReactNodeViewRenderer } from "@tiptap/react";
+import GalleryNodeView from "~/components/text-editor/nodes/gallery-node/gallery-node";
 
 export interface GalleryOptions {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

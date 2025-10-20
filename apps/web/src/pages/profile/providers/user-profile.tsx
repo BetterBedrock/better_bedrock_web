@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   UserDto,
@@ -16,16 +16,16 @@ interface UserProfileContextProps {
   ownsProfile: boolean;
 
   settingsOpen: boolean;
-  setSettingsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setSettingsOpen: Dispatch<SetStateAction<boolean>>;
 
   drafts: SimpleProjectDto[] | undefined;
-  setDrafts: React.Dispatch<React.SetStateAction<SimpleProjectDto[] | undefined>>;
+  setDrafts: Dispatch<SetStateAction<SimpleProjectDto[] | undefined>>;
 
   projects: SimpleProjectDto[] | undefined;
-  setProjects: React.Dispatch<React.SetStateAction<SimpleProjectDto[] | undefined>>;
+  setProjects: Dispatch<SetStateAction<SimpleProjectDto[] | undefined>>;
 
   analytics: AnalyticsDto[] | undefined;
-  setAnalytics: React.Dispatch<React.SetStateAction<AnalyticsDto[] | undefined>>;
+  setAnalytics: Dispatch<SetStateAction<AnalyticsDto[] | undefined>>;
 
   detailedSelectedUser: UserDto | undefined;
   user: UserDto | undefined;
@@ -33,7 +33,7 @@ interface UserProfileContextProps {
   rating: UserRatingDto | undefined;
 
   selectedUser: SimpleUserDto | undefined;
-  setSelectedUser: React.Dispatch<React.SetStateAction<SimpleUserDto | undefined>>;
+  setSelectedUser: Dispatch<SetStateAction<SimpleUserDto | undefined>>;
 
   handleProfileSave: (data: ManageProfileDto) => Promise<void>;
   fetchDetails: (userData?: SimpleUserDto) => Promise<void>;

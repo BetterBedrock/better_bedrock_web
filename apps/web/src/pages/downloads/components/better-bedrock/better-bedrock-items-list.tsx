@@ -17,32 +17,30 @@ export const openInNewTab = (url: string): void => {
   if (newWindow) newWindow.opener = null;
 };
 
-export const MainItemsList = ({ category }: MainItemsList) => {
-  return (
-    <div className={styles.list}>
-      {/* styles.grid */}
-      {category.items.map((project, _itemIndex) => {
-        const item = category.categoryItems.find((i) => i.projectId === project.id);
+export const MainItemsList = ({ category }: MainItemsList) => (
+  <div className={styles.list}>
+    {/* styles.grid */}
+    {category.items.map((project, _itemIndex) => {
+      const item = category.categoryItems.find((i) => i.projectId === project.id);
 
-        if (!item) return;
+      if (!item) return;
 
-        return (
-          <Link
-            key={_itemIndex}
-            link={Routes.PROJECT_PREVIEW + "/" + project.id}
-            className={styles.hide}
-          >
-            <DownloadCard
-              title={project.title}
-              description={item.description}
-              downloadSize={`${calcItemWeight(project.itemWeight)}MB`}
-              buttonType={item.buttonType}
-              tags={project.tags.map((tag) => tag.name)}
-              type={item.type}
-            />
-          </Link>
-        );
-      })}
-    </div>
-  );
-};
+      return (
+        <Link
+          key={_itemIndex}
+          link={Routes.PROJECT_PREVIEW + "/" + project.id}
+          className={styles.hide}
+        >
+          <DownloadCard
+            title={project.title}
+            description={item.description}
+            downloadSize={`${calcItemWeight(project.itemWeight)}MB`}
+            buttonType={item.buttonType}
+            tags={project.tags.map((tag) => tag.name)}
+            type={item.type}
+          />
+        </Link>
+      );
+    })}
+  </div>
+);

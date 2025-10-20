@@ -155,13 +155,7 @@ export const TextEditor = ({ content, onChange, onUpload, editable }: TextEditor
     <div className={styles.editor}>
       <EditorContext.Provider value={{ editor }}>
         {editable && (
-          <Toolbar
-            ref={toolbarRef}
-            style={{
-              visibility: "hidden",
-              position: "absolute",
-            }}
-          >
+          <Toolbar ref={toolbarRef}>
             {imageToolbar ? <TextEditorImageToolbar /> : <TextEditorToolbar />}
           </Toolbar>
         )}

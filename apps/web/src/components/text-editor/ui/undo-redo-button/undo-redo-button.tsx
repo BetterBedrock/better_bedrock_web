@@ -9,7 +9,7 @@ import {
   useUndoRedo,
 } from "~/components/text-editor/ui/undo-redo-button"
 
-import { forwardRef, useCallback } from "react"
+import { forwardRef, MouseEvent, useCallback } from "react"
 import { ToolbarButton, ToolbarButtonProps } from "~/components/text-editor/primitive/toolbar-button"
 
 export interface UndoRedoButtonProps
@@ -46,7 +46,7 @@ export const UndoRedoButton = forwardRef<
       })
 
     const handleClick = useCallback(
-      (event: React.MouseEvent<HTMLButtonElement>) => {
+      (event: MouseEvent<HTMLButtonElement>) => {
         onClick?.(event)
         if (event.defaultPrevented) return
         handleAction()
