@@ -61,7 +61,7 @@
     pointer-events: all;
     align-items: center;
     padding: g.$padding-xsm;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: g.$color-overlay-dark;
   }
 }
 

@@ -1,36 +1,27 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { DownloadMethodCard } from "~/components/bedrock/download-method-card/download-method-card";
 import { ButtonGroup } from "~/components/button-group/button-group";
-import { styles } from ".";
 import { CheckoutOptionGroupDto } from "~/lib/api";
 import { Link } from "~/components/link";
-import { useEffect, useState } from "react";
 import { Popup } from "~/components/bedrock/popup";
+
+import { styles, usePreviewPopupPlans, useCreateStripeSession } from ".";
 
 interface PreviewPopupPlansProps {
   categories: CheckoutOptionGroupDto[] | undefined;
   selectedTimeframe: string | undefined;
   download: () => Promise<void>;
   getLinkvertiseId: () => Promise<string>;
-  purchase: (priceId: string) => Promise<void>;
 }
 
 export const PreviewPopupPlans = ({
   categories,
   selectedTimeframe,
   download,
-  purchase,
   getLinkvertiseId,
 }: PreviewPopupPlansProps) => {
-  const [linkUrl, setLinkUrl] = useState<string>();
-
-  useEffect(() => {
-    const fetchLink = async () => {
-      const url = await getLinkvertiseId();
-      setLinkUrl(url);
-    };
-    fetchLink();
-  }, []);
+  const purchase = useCreateStripeSession();
+  const { linkUrl } = usePreviewPopupPlans({ getLinkvertiseId });
 
   return (
     <Popup.Part>
