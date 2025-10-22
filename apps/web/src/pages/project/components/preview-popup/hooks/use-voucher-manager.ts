@@ -1,4 +1,3 @@
-import { loadStripe } from "@stripe/stripe-js";
 import { useState, useEffect, KeyboardEvent } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
@@ -9,14 +8,13 @@ import { useNotification } from "~/providers/notification";
 import { useUser } from "~/providers/user";
 import { Routes } from "~/utils/routes";
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 interface usePreviewPopupProps {
   project: ProjectDto;
   onClose?: () => void;
 }
 
-export const usePreviewPopup = ({ project, onClose }: usePreviewPopupProps) => {
+export const useVoucherManager = ({ project, onClose }: usePreviewPopupProps) => {
   const { sendNotification } = useNotification();
   const navigate = useNavigate();
   const [cookie, setVoucher] = useCookies(["voucher"]);
@@ -25,7 +23,7 @@ export const usePreviewPopup = ({ project, onClose }: usePreviewPopupProps) => {
   const [selectedTimeframe, setSelectedTimeframe] = useState<string | undefined>(undefined);
 
   const { generateDownload, openLinkvertise, getLinkvertiseUrl } = useDownload();
-  const { createSession, offers, activateVoucher } = useCheckout();
+  const { offers, activateVoucher } = useCheckout();
   const { findUserById } = useUser();
 
   const isBetterBedrockItem = project.betterBedrockContent;
@@ -40,36 +38,6 @@ export const usePreviewPopup = ({ project, onClose }: usePreviewPopupProps) => {
         type: "success",
       });
       onClose?.();
-    }
-  };
-
-  const purchase = async (priceId: string) => {
-    try {
-      // 1. createSession should now return an object like { sessionId: 'cs_test_...' }
-      const session = await createSession(priceId);
-      if (!session || !session.checkoutId) {
-        console.error("Failed to create a checkout session.");
-        return;
-      }
-
-      const stripe = await stripePromise;
-      if (!stripe) {
-        console.error("Stripe.js has not loaded yet.");
-        return;
-      }
-
-      // 2. Use the sessionId directly
-      const { error } = await stripe.redirectToCheckout({
-        sessionId: session.checkoutId,
-      });
-
-      if (error) {
-        // If `redirectToCheckout` fails due to a browser issue or network error,
-        // display the error message to your customer.
-        console.error("Stripe redirectToCheckout error:", error.message);
-      }
-    } catch (error) {
-      console.error("An error occurred during the purchase process:", error);
     }
   };
 
@@ -163,7 +131,6 @@ export const usePreviewPopup = ({ project, onClose }: usePreviewPopupProps) => {
     useVoucher,
     download,
     getLinkvertiseId,
-    purchase,
     cookie,
   };
 };

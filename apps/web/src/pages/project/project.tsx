@@ -1,40 +1,21 @@
 import { Section } from "~/components/section";
 import { styles } from ".";
-import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
-import { useProjectManager } from "~/pages/project/providers/project-manager";
-import { Routes } from "~/utils/routes";
-import { useNotification } from "~/providers/notification";
+import { Outlet } from "react-router-dom";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
-import { useEffect } from "react";
-import { useAuth } from "~/providers/auth";
+import { useFetchSelectedProject } from "~/pages/project/hooks/use-fetch-selected-project";
+import { useProjectNotFoundRedirect } from "~/pages/project/hooks/use-project-not-found-redirect";
 
 export type ProjectMode = "edit" | "view" | "review";
 
 export const Project = () => {
-  const { file } = useParams();
-  const location = useLocation();
-  const currentPage = location.pathname.split("/")[2];
-
-  const navigate = useNavigate();
-  const { throwError } = useNotification();
-  const { fetched: fetchedUser } = useAuth();
-  const { selectedProject, fetched, fetchSelectedProject } = useProjectManager();
-
-  useEffect(() => {
-    if (!file || !fetchedUser) return;
-    fetchSelectedProject(file, currentPage === "preview" ? false : true);
-  }, [file, currentPage, fetchedUser]);
-
-  if (fetched && !selectedProject) {
-    navigate(Routes.HOME);
-    throwError(null, "Project with this id does not exist");
-  }
+  const { selectedProject, fetched, fetchedUser, notFound } = useFetchSelectedProject();
+  useProjectNotFoundRedirect(notFound);
 
   return (
     <main>
       <Section className={styles.background} extraClassName={styles.padding} fixed center>
         <div className={styles.card}>
-          {(selectedProject && fetched && fetchedUser) ? (
+          {selectedProject && fetched && fetchedUser ? (
             <Outlet />
           ) : (
             <CircularProgressIndicator size="medium" center />
