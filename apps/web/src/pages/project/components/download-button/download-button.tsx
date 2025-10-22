@@ -1,30 +1,12 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
-import { useDownload } from "~/providers/download";
-import { useNavigate } from "react-router-dom";
-import { Routes } from "~/utils/routes";
-import { useProjectManager } from "~/pages/project/providers/project-manager";
-import { useAuth } from "~/providers/auth";
 import { PreviewPopup } from "~/pages/project/components/preview-popup";
 import { PopupWrapper } from "~/components/bedrock/popup/popup-wrapper";
+import { useDownloadButton } from "~/pages/project/components/download-button/hooks/use-download-button";
 
 export const DownloadButton = () => {
-  const { user } = useAuth();
-  const { generateDownload } = useDownload();
-  const { selectedProject, downloadButtonRef } = useProjectManager();
-
-  const instantDownload = selectedProject!.userId === user?.id || user?.admin;
-
-  const navigate = useNavigate();
-
-  const handleDownload = async () => {
-    if (!instantDownload) {
-      return;
-    }
-
-    await generateDownload(selectedProject!);
-    navigate(Routes.FETCH);
-  };
+  const { handleDownload, downloadButtonRef, instantDownload, selectedProject } =
+    useDownloadButton();
 
   if (!selectedProject?.downloadFile) return <></>;
 
