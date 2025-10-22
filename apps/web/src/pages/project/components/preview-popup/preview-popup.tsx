@@ -5,7 +5,7 @@ import {
   PreviewPopupRecommended,
   PreviewPopupTabs,
   PreviewPopupVoucher,
-  useVoucherManager,
+  usePreviewPopup,
 } from ".";
 import { CardDivider } from "~/components/bedrock/card";
 import { ProjectDto, VoucherDto } from "~/lib/api";
@@ -25,11 +25,12 @@ export const PreviewPopup = ({ onClose, project }: PreviewPopupProps) => {
     setVoucherCode,
     useVoucher,
     download,
+    purchase,
     cookie,
     getLinkvertiseId,
-  } = useVoucherManager({ project, onClose });
+  } = usePreviewPopup({ project, onClose });
 
-  if (!cookie.voucher || selectedTimeframe === undefined) {
+  if (cookie.voucher || selectedTimeframe === undefined) {
     if (cookie.voucher satisfies VoucherDto) {
       const bbOnly = cookie.voucher.betterBedrockContentOnly;
       if (!bbOnly || (project.betterBedrockContent && bbOnly)) {
@@ -57,7 +58,7 @@ export const PreviewPopup = ({ onClose, project }: PreviewPopupProps) => {
             handleKeyDown={handleKeyDown}
             useVoucher={useVoucher}
           />
-          <PreviewPopupRecommended categories={categories} />
+          <PreviewPopupRecommended categories={categories} purchase={purchase} />
         </Popup.Part>
 
         <CardDivider />
@@ -65,6 +66,7 @@ export const PreviewPopup = ({ onClose, project }: PreviewPopupProps) => {
           categories={categories}
           selectedTimeframe={selectedTimeframe}
           download={download}
+          purchase={purchase}
           getLinkvertiseId={getLinkvertiseId}
         />
         <CardDivider />
