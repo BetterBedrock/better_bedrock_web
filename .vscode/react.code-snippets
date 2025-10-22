@@ -1,0 +1,41 @@
+{
+  "React Arrow Function Component": {
+    "prefix": "rfc",
+    "body": [
+      "export const ${1:ComponentName} = () => {",
+      "  return (",
+      "    <div>",
+      "      $3",
+      "    </div>",
+      "  );",
+      "};"
+    ],
+    "description": "Create a React functional component with TypeScript props"
+  },
+  "Hook Arrow Function": {
+    "prefix": "haf",
+    "body": [
+      "export const ${1:ComponentName} = () => {",
+      "  return {};",
+      "};"
+    ],
+    "description": "Create a React functional component with TypeScript props"
+  },
+  "React Arrow Function Component with Props": {
+    "prefix": "rfcprops",
+    "body": [
+      "interface ${1:ComponentName}Props {",
+      "  $2",
+      "}",
+      "",
+      "export const ${1:ComponentName} = (props: ${1:ComponentName}Props) => {",
+      "  return (",
+      "    <div>",
+      "      $3",
+      "    </div>",
+      "  );",
+      "};"
+    ],
+    "description": "Create a React functional component with TypeScript props"
+  },
+}
