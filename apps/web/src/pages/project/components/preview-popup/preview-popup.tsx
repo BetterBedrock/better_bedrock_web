@@ -29,7 +29,7 @@ export const PreviewPopup = ({ onClose, project }: PreviewPopupProps) => {
     getLinkvertiseId,
   } = useVoucherManager({ project, onClose });
 
-  if (cookie.voucher || selectedTimeframe === undefined) {
+  if (!cookie.voucher || selectedTimeframe === undefined) {
     if (cookie.voucher satisfies VoucherDto) {
       const bbOnly = cookie.voucher.betterBedrockContentOnly;
       if (!bbOnly || (project.betterBedrockContent && bbOnly)) {
