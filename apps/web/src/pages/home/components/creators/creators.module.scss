@@ -2,7 +2,7 @@
 
 .background {
   @include g.page-background(
-    linear-gradient(g.$color-overlay-dark, g.$color-overlay-dark),
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     "~/assets/images/crosshair_backgrounds/10.webp"
   );
 }

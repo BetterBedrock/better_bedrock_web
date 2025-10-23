@@ -4,11 +4,12 @@
   position: absolute;
   visibility: hidden;
   position: -webkit-sticky;
+  // top: calc(g.$navbar-height + g.$minecraftdepth);
   z-index: 2;
   display: flex;
   flex-direction: row;
   width: 100%;
-  background-color: g.$color-overlay-dark;
+  background-color: rgba(0, 0, 0, 0.6);
 
   transition:
     top 0.2s ease,

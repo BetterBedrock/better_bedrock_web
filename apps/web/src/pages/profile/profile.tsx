@@ -1,13 +1,40 @@
 import { Section } from "~/components/section";
-import { Outlet } from "react-router-dom";
+import { styles } from ".";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { Tabs } from "~/pages/profile/components/tabs";
+import { useUser } from "~/providers/user";
+import { useEffect } from "react";
+import { Routes } from "~/utils/routes";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
+import { useAuth } from "~/providers/auth";
 import { User } from "./components/user";
-
-import { styles, useProfile } from ".";
+import { useUserProfile } from "~/pages/profile/providers/user-profile";
 
 export const Profile = () => {
-  const { fetchedDetailedUser } = useProfile();
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const { findUserByName } = useUser();
+  const { user } = useAuth();
+  const { fetchDetails, setSelectedUser, fetchedDetailedUser } = useUserProfile();
+
+  const fetchSelectedUser = async (id: string) => {
+    const data = await findUserByName(id);
+    if (!data) {
+      navigate(Routes.HOME);
+      return;
+    }
+    setSelectedUser(data);
+    await fetchDetails(data);
+  };
+
+  useEffect(() => {
+    if (!id) {
+      navigate(Routes.HOME);
+      return;
+    }
+    fetchSelectedUser(id);
+  }, [id, user?.admin]);
 
   return (
     <main>

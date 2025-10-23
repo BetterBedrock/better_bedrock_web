@@ -1,10 +1,6 @@
 @use "variables" as g;
 @use "sass:meta";
 
-@mixin darken-background() {
-  background: linear-gradient(g.$color-overlay-dark, g.$color-overlay-dark);
-}
-
 @mixin page-background($background, $img-url) {
   background-image: $background, url(#{$img-url});
   background-repeat: no-repeat;
