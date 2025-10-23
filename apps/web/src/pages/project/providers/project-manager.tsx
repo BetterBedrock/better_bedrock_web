@@ -1,7 +1,17 @@
 import { Content } from "@tiptap/react";
-import { createContext, Dispatch, ReactNode, RefObject, SetStateAction, useContext, useRef, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  RefObject,
+  SetStateAction,
+  useContext,
+  useRef,
+  useState,
+} from "react";
 import { DetailedProjectDto, UpdateProjectDto } from "~/lib/api";
 import { useAuth } from "~/providers/auth";
+import { useNotification } from "~/providers/notification";
 import { useProject } from "~/providers/project";
 import { useUser } from "~/providers/user";
 
@@ -18,6 +28,8 @@ interface ProjectManagerContextProps {
 
   userRating: number | undefined;
   setUserRating: Dispatch<SetStateAction<number | undefined>>;
+
+  checkIfSubmitted: () => boolean;
 }
 
 interface ProjectManagerProviderProps {
@@ -28,6 +40,7 @@ const ProjectManagerContext = createContext<ProjectManagerContextProps | undefin
 
 export const ProjectManagerProvider = ({ children }: ProjectManagerProviderProps) => {
   const { getUserRating } = useUser();
+  const { throwError } = useNotification();
   const { user } = useAuth();
   const { fetchProjectDetails, fetchDraftDetails, saveProject } = useProject();
 
@@ -65,6 +78,17 @@ export const ProjectManagerProvider = ({ children }: ProjectManagerProviderProps
     return savedProject ? true : false;
   };
 
+  const checkIfSubmitted = () => {
+    if (selectedProject?.submitted) {
+      throwError(
+        null,
+        "The project has already been submitted, you cannot make any changes unless you cancel submission",
+      );
+      return false;
+    }
+    return true;
+  };
+
   return (
     <ProjectManagerContext.Provider
       value={{
@@ -77,6 +101,7 @@ export const ProjectManagerProvider = ({ children }: ProjectManagerProviderProps
         userRating,
         setUserRating,
         downloadButtonRef,
+        checkIfSubmitted,
       }}
     >
       {children}

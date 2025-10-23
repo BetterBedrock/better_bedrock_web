@@ -1,13 +1,14 @@
 import { DownloadMethodCard } from "~/components/bedrock/download-method-card/download-method-card";
 import { CheckoutOptionGroupDto } from "~/lib/api";
+import { useCreateStripeSession } from ".";
 
 interface PreviewPopupRecommendedProps {
   categories: CheckoutOptionGroupDto[] | undefined;
-  purchase: (priceId: string) => Promise<void>;
 }
 
-export const PreviewPopupRecommended = ({ categories, purchase }: PreviewPopupRecommendedProps) =>
-  categories?.[1]?.items
+export const PreviewPopupRecommended = ({ categories }: PreviewPopupRecommendedProps) => {
+  const purchase = useCreateStripeSession();
+  return categories?.[1]?.items
     .slice(1, 2)
     .map((item, index) => (
       <DownloadMethodCard
@@ -20,3 +21,4 @@ export const PreviewPopupRecommended = ({ categories, purchase }: PreviewPopupRe
         onClick={() => purchase(item.priceId)}
       />
     ));
+};
