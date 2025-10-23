@@ -1,30 +1,11 @@
 import { Rating } from "~/components/rating";
-import { styles } from ".";
-import { useProjectManager } from "~/pages/project/providers/project-manager";
-import { useProject } from "~/providers/project";
 import { useAuth } from "~/providers/auth";
+
+import { styles, useManageRating } from ".";
 
 export const RateProject = () => {
   const { user } = useAuth();
-  const { userRating, selectedProject, setSelectedProject } = useProjectManager();
-  const { deleteRating, postRating } = useProject();
-
-  const handleDeleteRating = async () => {
-    if (!selectedProject) return;
-
-    const newProjectRating = await deleteRating(selectedProject.id);
-    if (!newProjectRating) return;
-    setSelectedProject((prev) => ({ ...prev!, rating: newProjectRating }));
-  };
-
-  const handlePostRating = async (rating: number) => {
-    if (!selectedProject) return;
-
-    const newProjectRating = await postRating(selectedProject.id, rating);
-
-    if (!newProjectRating) return;
-    setSelectedProject((prev) => ({ ...prev!, rating: newProjectRating }));
-  };
+  const { userRating, handlePostRating, handleDeleteRating } = useManageRating();
 
   if (!user) return;
 
