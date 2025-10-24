@@ -1,17 +1,5 @@
 @use "~/utils" as g;
 
-.actions {
-  padding-top: g.$padding-sm;
-}
-
-.statistics {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  gap: g.$padding-sm;
-}
-
 .section {
   display: flex;
   flex-direction: column;
@@ -24,23 +12,16 @@
   flex-direction: column;
   width: 100%;
   flex: 1;
-  // height: 100%;
-  // align-items: start;
-  // justify-content: start;
 
   @include g.card-padding-y;
   gap: g.$padding-sm;
 }
 
-.sub {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  @include g.card-padding-y;
-
-  & * {
-    width: 100%;
-  }
+.video > * {
+  border: g.$minecraftdepth solid rgb(30, 30, 31);
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: rgb(41, 41, 41);
 }
 
 .cardContainer {
@@ -51,58 +32,10 @@
   @include g.card-padding-x;
 }
 
-.cardContainer .sub {
-  @include g.card-padding;
-}
-
 .cardTextWrapper {
   padding: 0 2rem;
 }
 
-.markdownWrapper .sub {
-  & * {
-    text-align: left;
-  }
-
-  h3 {
-    padding-top: 1rem;
-  }
-
-  img {
-    border: g.$minecraftdepth solid rgb(30, 30, 31);
-    margin-top: 1rem;
-  }
-}
-
-.question {
-  display: flex;
-  flex-direction: column;
-  gap: g.$padding-xsm;
-  width: 100%;
-
-  @media (max-width: g.$breakpoint-laptop) {
-    gap: g.$padding-xxsm;
-  }
-}
-
-.video > * {
-  border: g.$minecraftdepth solid rgb(30, 30, 31);
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background-color: rgb(41, 41, 41);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  // display: flex;
-  // flex-direction: column;
-  // width: 100%;
-  // flex: 1;
-  // height: 100%;
-  // align-items: start;
-  // justify-content: start;
-
-  // @include g.card-padding;
-  gap: g.$padding-sm;
+.actions {
+  padding-top: g.$padding-sm;
 }

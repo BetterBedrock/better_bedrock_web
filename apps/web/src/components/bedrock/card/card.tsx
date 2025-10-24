@@ -26,3 +26,11 @@ export const CardDivider = ({ sub }: CardDividerProps) => (
     <div className={clsx(styles.bottom, sub && styles.light)} />
   </div>
 );
+
+interface CardBodyProps {
+  children: ReactNode;
+}
+
+export const CardBody = ({ children }: CardBodyProps) => (
+  <div className={styles.body}>{children}</div>
+);

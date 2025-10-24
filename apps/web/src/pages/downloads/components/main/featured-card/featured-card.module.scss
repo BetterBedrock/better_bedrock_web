@@ -4,14 +4,6 @@
   width: 100%;
 }
 
-.downloads {
-  display: flex;
-  flex-direction: column;
-  padding: g.$padding-sm;
-  gap: g.$padding-sm;
-  width: 100%;
-}
-
 .ad {
   display: grid;
   grid-template-areas: "bb side";
@@ -71,71 +63,6 @@
 
     pointer-events: none;
   }
-}
-
-.list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: g.$padding-sm;
-
-  @media (max-width: g.$breakpoint-tablet) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.search {
-  width: 100%;
-  display: inline-flex;
-}
-
-.searchbar {
-  width: 100%;
-}
-
-.collapsible {
-  max-width: 300px;
-
-  > * {
-    max-lines: 1;
-  }
-}
-
-.types {
-  display: none !important;
-
-  @media (max-width: g.$breakpoint-tablet) {
-    display: flex !important;
-
-    > * {
-      max-lines: 1;
-    }
-  }
-}
-
-.group {
-  @media (max-width: g.$breakpoint-tablet) {
-    display: none;
-  }
-}
-
-.loader {
-  width: 100%;
-  gap: g.$padding-xsm;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.projects {
-  display: flex;
-  flex-direction: column;
-  gap: g.$padding-sm;
 }
 
 .link {

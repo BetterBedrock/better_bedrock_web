@@ -1,4 +1,4 @@
-import { InformationTab } from "~/pages/information/information";
+import { InformationTab } from "~/pages/information";
 import { styles, FAQTitle, FAQCollapsibleList, FAQDescription } from ".";
 
 interface FAQProps {

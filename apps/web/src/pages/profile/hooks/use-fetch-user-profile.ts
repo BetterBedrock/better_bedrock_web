@@ -5,7 +5,7 @@ import { useAuth } from "~/providers/auth";
 import { useUser } from "~/providers/user";
 import { Routes } from "~/utils/routes";
 
-export const useProfile = () => {
+export const useFetchUserProfile = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
