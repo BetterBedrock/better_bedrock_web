@@ -2,9 +2,9 @@ import clsx from "clsx";
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 import { Button } from "~/components/bedrock/button";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
-import { calcItemWeight } from "~/pages/downloads/components/better-bedrock";
 
 import { styles, useDetailsEditorDownloadFile } from ".";
+import { calculateItemDisplayWeight } from "~/utils/math";
 
 export const DetailsEditorDownloadFile = () => {
   const { selectedProject, uploadFileRef, uploadDownloadFile, isUploading } =
@@ -15,7 +15,7 @@ export const DetailsEditorDownloadFile = () => {
       <BedrockText
         text={
           selectedProject?.downloadFile
-            ? `Selected File Size: ${calcItemWeight(selectedProject.itemWeight)}MB`
+            ? `Selected File Size: ${calculateItemDisplayWeight(selectedProject.itemWeight)}MB`
             : "No selected file yet"
         }
         type="p"
