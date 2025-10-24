@@ -1,20 +1,17 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserProfile } from "~/pages/profile/providers/user-profile";
 import { useAnalytics } from "~/providers/analytics";
 import { Routes } from "~/utils/routes";
+import { useSimplifyAnalytics } from "~/hooks/use-simplify-analytics";
 
-export const useStats = () => {
+import { useFetchAnalyticsUserId } from ".";
+
+export const useFetchAnalytics = () => {
     const navigate = useNavigate();
     const { selectedUser, setAnalytics, analytics } = useUserProfile();
     const { fetchUserAnalytics } = useAnalytics();
-
-    const [fetchedUserId, setFetchedUserId] = useState(() => {
-        if (selectedUser && analytics && analytics.length > 0) {
-            return selectedUser.id;
-        }
-        return null;
-    });
+    const { fetchedUserId, setFetchedUserId } = useFetchAnalyticsUserId({ selectedUser, analytics });
 
     const fetchAnalytics = async (id: string) => {
         const data = await fetchUserAnalytics(id);
@@ -33,12 +30,7 @@ export const useStats = () => {
         }
     }, [selectedUser]);
 
-    const categories = analytics?.filter((value) => value.type === "file").map((value) => value.name);
-
-    const data = categories?.reduce((acc: { [key: string]: typeof analytics }, category) => {
-        acc[category] = analytics?.filter((a) => a.name === category);
-        return acc;
-    }, {});
+    const data = useSimplifyAnalytics({ analytics: analytics ?? [] });
 
     return { data, analytics };
 };

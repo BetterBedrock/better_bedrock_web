@@ -1,12 +1,11 @@
 import { StatisticsCard } from "~/components/bedrock/statistics-card";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 import { Banner } from "~/components/bedrock/banner";
-import { useStats } from "~/pages/profile/stats/use-stats";
 
-import { styles } from ".";
+import { styles, useFetchAnalytics } from ".";
 
 export const Stats = () => {
-  const { data, analytics } = useStats();
+  const { data, analytics } = useFetchAnalytics();
 
   if (!analytics) {
     return <CircularProgressIndicator className={styles.loading} size="medium" />;
