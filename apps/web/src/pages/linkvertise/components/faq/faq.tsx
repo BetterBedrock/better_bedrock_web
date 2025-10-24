@@ -1,13 +1,13 @@
 import { Card, CardDivider } from "~/components/bedrock/card";
 
-import { styles, HeroVideo, HeroHeading } from ".";
+import { FAQHeading, FAQList, styles } from ".";
 
-export const Hero = () => (
+export const FAQ = () => (
   <div className={styles.section}>
     <Card className={styles.card}>
-      <HeroHeading />
+      <FAQHeading />
       <CardDivider />
-      <HeroVideo />
+      <FAQList />
     </Card>
   </div>
 );

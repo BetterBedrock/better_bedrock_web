@@ -1,0 +1,59 @@
+@use "~/utils" as g;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: g.$padding-sm;
+}
+
+.statistics {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: g.$padding-sm;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+
+  @include g.card-padding-y;
+  gap: g.$padding-sm;
+}
+
+.cardTextWrapper {
+  padding: 0 2rem;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  // gap: g.$padding-sm;
+  overflow: hidden;
+  @include g.card-padding-x;
+}
+
+.cardContainer .sub {
+  @include g.card-padding;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: g.$padding-sm;
+}
+
+.sub {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  @include g.card-padding-y;
+
+  & * {
+    width: 100%;
+  }
+}
