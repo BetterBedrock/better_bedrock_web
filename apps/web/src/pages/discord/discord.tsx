@@ -1,12 +1,10 @@
 import { Section } from "~/components/section";
 import { Hero } from "./components/hero";
 import { styles } from ".";
-import { useEffect } from "react";
+import { useRedirectToDiscord } from "~/pages/discord/hooks";
 
 export const Discord = () => {
-  useEffect(() => {
-    window.location.href = "https://discord.gg/ZGK5WYXnEY";
-  }, []);
+  useRedirectToDiscord();
 
   return (
     <main>
