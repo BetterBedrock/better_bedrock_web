@@ -1,0 +1,216 @@
+@forward "@/app/utils";
+@use "@/app/utils" as *;
+
+* {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent; /* Firefox */
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  border: none;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+*,
+*::before,
+*::after {
+  -webkit-tap-highlight-color: transparent;
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::selection,
+::-moz-selection,
+::-o-selection,
+::-ms-selection,
+::-webkit-selection {
+  background: $color-selection;
+  color: #fff;
+}
+
+body.no-scroll,
+html.no-scroll {
+  overflow: hidden;
+}
+
+body {
+  background-color: $color-card-background;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+button,
+input[type="submit"],
+input[type="reset"] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-align: center;
+  flex: none;
+  width: 60%;
+  max-width: $breakpoint-laptopL;
+
+  @media (max-width: $breakpoint-laptopL) {
+    width: 60%;
+  }
+
+  @media (max-width: $breakpoint-laptop) {
+    width: 85%;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    width: 90%;
+  }
+}
+
+strong {
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  line-height: 1em;
+  font-weight: 500;
+  font-family: "MojanglesBold";
+}
+
+mark {
+  background-color: $color-selection;
+  color: black;
+}
+
+a {
+  color: $color-label-green-bright;
+}
+
+ol {
+  list-style-type: decimal;
+  padding-left: 2.5rem;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding-left: 1.5rem;
+  }
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 2.5rem;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding-left: 1.5rem;
+  }
+}
+
+p,
+code,
+ul,
+li {
+  font-family: "Mojangles";
+  text-align: left;
+  font-size: 1.25rem;
+  letter-spacing: 0.3px;
+  line-height: 1.2em;
+  color: white;
+
+  @media (max-width: $breakpoint-laptop) {
+    font-size: 1.125rem;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 1rem;
+  }
+}
+
+h4 {
+  font-family: "Minecraft";
+  font-weight: 400;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  line-height: 1.25rem;
+  color: white;
+
+  @media (max-width: $breakpoint-laptop) {
+    font-size: 1.125rem;
+    line-height: 1.2rem;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 1rem;
+    line-height: 1.1rem;
+  }
+}
+
+h3 {
+  font-family: "Minecraft";
+  font-weight: 400;
+  font-size: 1.75rem;
+  letter-spacing: 0.02em;
+  line-height: 1.75rem;
+  color: white;
+
+  @media (max-width: $breakpoint-laptop) {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 1.25rem;
+    line-height: 1.3rem;
+  }
+}
+
+h1,
+h2 {
+  font-family: "Minecraft";
+  font-weight: 400;
+  font-size: 2.5rem;
+  letter-spacing: 0.015em;
+  line-height: 2.5rem;
+  color: white;
+
+  @media (max-width: $breakpoint-laptop) {
+    font-size: 2rem;
+    line-height: 2.2rem;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 1.75rem;
+    line-height: 2rem;
+  }
+}

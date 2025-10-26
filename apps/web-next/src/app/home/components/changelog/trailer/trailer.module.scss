@@ -1,0 +1,8 @@
+@use "@/app/utils" as g;
+
+.video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: rgb(41, 41, 41);
+  margin-top: g.$padding-sm;
+}

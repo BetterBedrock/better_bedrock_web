@@ -1,0 +1,30 @@
+@use "@/app/utils" as g;
+
+.background {
+    @include g.page-background(
+        g.$background-linear-gradient,
+        "../../../public/images/crosshair_backgrounds/14.webp"
+      );
+    background-position: right center;
+}
+
+.padding {
+  @include g.section-padding((top, bottom), g.$sectionsDividerPadding);
+}
+
+.trailer {
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.resources {
+    width: 100%;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    margin-top: g.$padding-sm;
+}

@@ -1,0 +1,140 @@
+@use "@/app/utils" as g;
+
+$title-height: clamp(2.7em, 7vw, 6em);
+
+@mixin flex-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.heading {
+  @include flex-container();
+  gap: g.$padding-xxsm;
+  margin-bottom: g.$padding-sm;
+  // height: $title-height;
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    height: auto;
+  }
+}
+
+.actions {
+  @include flex-container();
+}
+
+.title {
+  text-wrap: nowrap;
+  font-size: $title-height;
+  line-height: 1;
+  width: min-content;
+
+  display: inline-flex;
+  align-items: baseline;
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    text-wrap: wrap;
+  }
+}
+
+.title {
+  text-wrap: nowrap;
+  font-size: $title-height;
+  width: min-content;
+
+  display: inline-flex;
+  align-items: baseline;
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    text-wrap: wrap;
+  }
+}
+
+@supports (text-box-trim: trim-both) {
+  .title {
+    display: block;
+    align-items: unset;
+
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+  }
+}
+
+.logo {
+  position: relative;
+  top: 0.09rem;
+  height: 75%;
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    display: none;
+  }
+}
+
+.reversed {
+  transform: scaleX(-1);
+}
+
+.description {
+  margin-bottom: g.$padding-sm;
+}
+
+.link {
+  width: 100%;
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.stripes {
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-xsm;
+  width: 100%;
+
+  /* Lazy fix for firefox not implementing text-box-trim /shrug*/
+  height: 69%;
+  @media (max-width: g.$breakpoint-mobileM) {
+    height: 90%;
+  }
+
+  @supports (text-box-trim: trim-both) {
+    height: 100%;
+  }
+
+  max-width: 40px;
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    margin-top: 0;
+    gap: g.$padding-sm;
+  }
+
+  &.left {
+    align-items: start;
+    justify-content: start;
+  }
+
+  &.right {
+    align-items: end;
+    justify-content: end;
+  }
+
+  .first {
+    background-color: #3c8527;
+    box-shadow: g.$text-shadow;
+    width: 100%;
+    height: 100%;
+  }
+  .second {
+    background-color: #3c8527;
+    box-shadow: g.$text-shadow;
+    width: 66%;
+    height: 100%;
+  }
+  .third {
+    background-color: #3c8527;
+    box-shadow: g.$text-shadow;
+
+    width: 33%;
+    height: 100%;
+  }
+}
