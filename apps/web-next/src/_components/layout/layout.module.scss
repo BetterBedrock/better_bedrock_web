@@ -1,0 +1,13 @@
+.notifications {
+  position: fixed;
+  padding-block: 5rem;
+  padding-inline: 1rem;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  pointer-events: none;
+}

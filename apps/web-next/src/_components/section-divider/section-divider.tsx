@@ -76,17 +76,11 @@ export const SectionDivider = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const [grid, setGrid] = useState<Cell[][]>([]);
 
-  const seedRef = useRef<string | null>(null);
-  if (seedRef.current === null) {
-    // eslint-disable-next-line react-hooks/purity
-    seedRef.current = seed || Date.now().toString();
-  }
-
   const generateGrid = () => {
     const width = containerRef.current?.offsetWidth || 0;
     const cols = Math.ceil(width / finalBlockSize);
 
-    const seedValue = `${seedRef.current}-${image}-${rows}-${fullCenterRows}-${finalBlockSize}-${edgeProbability}-${cols}`;
+    const seedValue = `${seed}-${image}-${rows}-${fullCenterRows}-${finalBlockSize}-${edgeProbability}-${cols}`;
     const hashedSeed = hashString(seedValue);
     const rng = new SeededRandom(hashedSeed);
 
@@ -153,6 +147,7 @@ export const SectionDivider = ({
   };
 
   useLayoutEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     generateGrid();
 
     const handleResize = () => {
