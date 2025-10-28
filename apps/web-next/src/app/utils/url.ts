@@ -1,2 +1,0 @@
-export const baseUrl = import.meta.env.VITE_DEBUG === "true" ? import.meta.env.VITE_LOCAL_BACKEND_URL : import.meta.env.VITE_BACKEND_URL;
-export const baseFrontendUrl = import.meta.env.VITE_DEBUG === "true" ? import.meta.env.VITE_LOCAL_FRONTEND_URL : import.meta.env.VITE_FRONTEND_URL;
