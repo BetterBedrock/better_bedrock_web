@@ -8,7 +8,7 @@ export const ProjectsCardType = () => {
   const { selectedType } = useProjectsCardSearch();
 
   const types = Object.entries(SEARCH_PROJECT_TYPES).map(([key, label]) => (
-    <ProjectsCardTypeButton key={key} label={label} />
+    <ProjectsCardTypeButton selectedKey={key} label={label} />
   ));
 
   return (

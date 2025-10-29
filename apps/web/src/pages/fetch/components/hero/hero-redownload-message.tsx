@@ -1,9 +1,12 @@
 import { BedrockText } from "~/components/bedrock/bedrock-text";
 
-import { useHero, styles } from ".";
+import { styles } from ".";
+import { useCookies } from "react-cookie";
+import { useDownload } from "~/providers/download";
 
 export const HeroRedownloadMessage = () => {
-  const { cookie, download } = useHero();
+  const [cookie] = useCookies(["voucher"]);
+  const { download } = useDownload();
 
   return (
     <BedrockText
