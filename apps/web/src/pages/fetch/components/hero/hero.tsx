@@ -4,11 +4,13 @@ import {
   HeroHeader,
   HeroLoading,
   styles,
-  useHero,
+  useStartDownload,
+  useFetchHash,
 } from ".";
 
 export const Hero = () => {
-  const { downloadItem, downloadProgress } = useHero();
+  const hash = useFetchHash();
+  const { downloadItem, downloadProgress } = useStartDownload({ hash });
 
   if (!downloadItem) {
     return <HeroLoading />;

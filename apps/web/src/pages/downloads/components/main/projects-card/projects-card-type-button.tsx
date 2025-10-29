@@ -5,22 +5,22 @@ import { Button } from "~/components/bedrock/button";
 import { useProjectsCardSearch } from ".";
 
 interface ProjectsCardTypeButtonProps {
-  key: string;
+  selectedKey: string;
   label: string;
 }
 
-export const ProjectsCardTypeButton = ({ key, label }: ProjectsCardTypeButtonProps) => {
+export const ProjectsCardTypeButton = ({ selectedKey, label }: ProjectsCardTypeButtonProps) => {
   const { selectedType, setSelectedType } = useProjectsCardSearch();
 
   return (
     <Button
-      type={key === selectedType ? "green" : "white"}
-      onClick={() => setSelectedType(key as SearchProjectTypeKey)}
-      isClicked={key === selectedType}
-      isToggled={key === selectedType}
+      type={selectedKey === selectedType ? "green" : "white"}
+      onClick={() => setSelectedType(selectedKey as SearchProjectTypeKey)}
+      isClicked={selectedKey === selectedType}
+      isToggled={selectedKey === selectedType}
       center
     >
-      <BedrockText text={label} color={key === selectedType ? "white" : "black"} type="p" />
+      <BedrockText text={label} color={selectedKey === selectedType ? "white" : "black"} type="p" />
     </Button>
   );
 };
