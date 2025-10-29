@@ -47,3 +47,4 @@ apps/api/static/public/*
 github_action
 github_action.pub
 todo.md
+package-lock.json

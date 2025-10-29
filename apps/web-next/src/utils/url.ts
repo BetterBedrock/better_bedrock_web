@@ -1,0 +1,2 @@
+export const baseUrl = process.env.VITE_DEBUG === "true" ? process.env.VITE_LOCAL_BACKEND_URL : process.env.VITE_BACKEND_URL;
+export const baseFrontendUrl = process.env.VITE_DEBUG === "true" ? process.env.VITE_LOCAL_FRONTEND_URL : process.env.VITE_FRONTEND_URL;

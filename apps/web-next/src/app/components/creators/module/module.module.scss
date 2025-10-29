@@ -1,0 +1,66 @@
+@use "@/utils" as g;
+
+$card-min-width: 150px;
+
+@mixin flex-container($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+.card {
+  flex: 1 1 $card-min-width;
+  @media (max-width: g.$breakpoint-tablet) {
+    flex: 0 0;
+  }
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  gap: g.$padding-xsm;
+  padding-top: g.$padding-sm;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.content {
+  @include flex-container(row, flex-start, flex-start);
+  width: 100%;
+  padding: g.$padding-xxsm;
+  box-sizing: border-box;
+  position: relative;
+
+  img {
+    flex-shrink: 0;
+    width: clamp(1rem, 4.5rem, 6rem);
+    aspect-ratio: 1 / 1;
+    image-rendering: pixelated;
+  }
+}
+
+.title {
+  @include flex-container(row, space-between, center);
+
+  p:nth-child(2) {
+    white-space: nowrap;
+  }
+}
+
+.description {
+  padding-inline-start: g.$padding-xsm;
+  width: 100%;
+
+  p {
+    margin: 0;
+  }
+}
+
+.creator {
+  padding: 0 g.$padding-sm 0 0;
+}
