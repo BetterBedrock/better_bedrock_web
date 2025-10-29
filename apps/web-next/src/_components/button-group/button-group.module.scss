@@ -1,0 +1,43 @@
+@use "sass:math";
+@use "@/utils" as g;
+
+.buttonGroup {
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.buttonGroup > :global(*) {
+  position: relative;
+}
+
+.buttonGroup[data-direction="horizontal"],
+.buttonGroup[data-direction="responsive"] {
+  flex-direction: row;
+}
+
+.buttonGroup[data-direction="horizontal"] > *:not(:first-child),
+.buttonGroup[data-direction="responsive"] > *:not(:first-child) {
+  margin-left: calc(-1 * g.$minecraftdepth);
+}
+
+.buttonGroup[data-direction="vertical"] {
+  flex-direction: column;
+  gap: g.$padding-xsm;
+}
+
+.buttonGroup[data-direction="vertical"] > *:not(:first-child) {
+  margin-top: calc(-1 * g.$minecraftdepth);
+}
+
+@media (max-width: g.$breakpoint-mobileL) {
+  .buttonGroup[data-direction="responsive"] {
+    flex-direction: column;
+    gap: g.$padding-xsm;
+  }
+
+  .buttonGroup[data-direction="responsive"] > *:not(:first-child) {
+    margin-left: 0;
+    margin-top: calc(-1 * g.$minecraftdepth);
+  }
+}

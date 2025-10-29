@@ -1,0 +1,54 @@
+@use "~/utils" as g;
+
+.main {
+  width: 100%;
+}
+
+.searchbar {
+  width: 100%;
+}
+
+.types {
+  display: none !important;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    display: flex !important;
+
+    > * {
+      max-lines: 1;
+    }
+  }
+}
+
+.group {
+  @media (max-width: g.$breakpoint-tablet) {
+    display: none;
+  }
+}
+
+.collapsible {
+  max-width: 300px;
+
+  > * {
+    max-lines: 1;
+  }
+}
+
+.loader {
+  width: 100%;
+  gap: g.$padding-xsm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: g.$padding-sm;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    grid-template-columns: 1fr;
+  }
+}

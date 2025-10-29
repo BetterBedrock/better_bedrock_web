@@ -4,10 +4,10 @@ import { Tabs } from "~/pages/profile/components/tabs";
 import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
 import { User } from "./components/user";
 
-import { styles, useProfile } from ".";
+import { styles, useFetchUserProfile } from ".";
 
 export const Profile = () => {
-  const { fetchedDetailedUser } = useProfile();
+  const { fetchedDetailedUser } = useFetchUserProfile();
 
   return (
     <main>

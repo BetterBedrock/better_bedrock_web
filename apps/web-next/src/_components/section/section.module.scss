@@ -1,0 +1,41 @@
+@use "@/utils" as g;
+
+.wrapper {
+  background-position: center;
+  background-size: cover, cover;
+  background-repeat: no-repeat, no-repeat;
+}
+
+// HACK: This fixes all of the issues related to background-attachment: fixed;\
+// No macos (buggy scrolling), on android (white background at the bottom of the page caused by search header)
+// And on windows fixes nothing bcs there was no problems /shrug
+.fixed {
+  z-index: -1;
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.center {
+  justify-content: center;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 100%;
+  min-height: calc(100dvh - (g.$navbar-height));
+  max-width: g.$breakpoint-laptopL;
+  min-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 3rem;
+
+  @media (max-width: g.$breakpoint-laptop) {
+    gap: 2rem;
+  }
+}
