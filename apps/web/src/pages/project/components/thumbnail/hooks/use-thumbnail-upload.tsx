@@ -7,7 +7,7 @@ export const useThumbnailUpload = () => {
     useProjectManager();
 
   const handleUploadThumbnail = async (file: File) => {
-    if (checkIfSubmitted()) return;
+    if (!checkIfSubmitted()) return;
 
     const uploadedFile = await uploadFile(selectedProject!.id, file);
 
