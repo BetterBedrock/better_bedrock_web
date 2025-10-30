@@ -1,4 +1,4 @@
-import { DownloadsListDto } from "~/assets/content/dto/downloads-list.dto";
+import { DownloadsListDto } from "@/public/content/dto/downloads-list.dto";
 
 export interface DownloadsCategoryDto {
     id: string;
