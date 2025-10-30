@@ -3,10 +3,10 @@ import {
   useNotification,
   Notification as BaseNotification,
   NotificationTypes,
-} from "@/app/_providers/notification";
+} from "@/_providers/notification";
 import { styles } from ".";
 import clsx from "clsx";
-import Exit from "~/assets/images/exit.png";
+import Exit from "@/public/images/exit.png";
 
 interface NotificationProps {
   notification: BaseNotification;
@@ -26,7 +26,7 @@ export const Notification = ({ notification }: NotificationProps) => {
         <div className={styles.column}>
           <img
             alt={`${notification.type} notification`}
-            src={icon.src}
+            src={icon}
             className={styles.icon}
           />
         </div>
