@@ -1,0 +1,34 @@
+@use "@/utils" as g;
+
+.statistics {
+  width: 100%;
+  height: 100%;
+  align-items: start;
+  justify-content: start;
+
+  padding: g.$padding-xsm;
+  gap: g.$padding-xsm;
+}
+
+.name {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.highlight {
+  animation: 1s ease-out 0s 1 highlight;
+}
+
+@keyframes highlight {
+  0% {
+    color: g.$color-selection;
+  }
+  100% {
+    color: g.$color-selection;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
