@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { createContext, ReactNode, useContext, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -67,10 +67,16 @@ type NotificationInput = Omit<Notification, "id" | "time" | "type"> & {
   type?: NotificationType;
 };
 
-const NotificationContext = createContext<NotificationContextProps | undefined>(undefined);
+const NotificationContext = createContext<NotificationContextProps | undefined>(
+  undefined
+);
 
-export const NotificationProvider = ({ children }: NotificationProviderProps) => {
-  const [notificationQueue, setNotificationQueue] = useState<Notification[]>([]);
+export const NotificationProvider = ({
+  children,
+}: NotificationProviderProps) => {
+  const [notificationQueue, setNotificationQueue] = useState<Notification[]>(
+    []
+  );
   const timers = useRef<Map<string, ReturnType<typeof setTimeout>>>(new Map());
 
   const throwError = (err: unknown, message: string): void => {
@@ -78,7 +84,10 @@ export const NotificationProvider = ({ children }: NotificationProviderProps) =>
     if (err instanceof AxiosError) {
       sendNotification({
         title: "Unexpected problem",
-        label: err.response?.data?.message?.message ?? err.response?.data?.message ?? message,
+        label:
+          err.response?.data?.message?.message ??
+          err.response?.data?.message ??
+          message,
         type: "error",
       });
       return;
@@ -121,12 +130,19 @@ export const NotificationProvider = ({ children }: NotificationProviderProps) =>
   };
 
   const closeNotification = (id: string) => {
-    setNotificationQueue((prev) => prev.filter((notification) => notification.id !== id));
+    setNotificationQueue((prev) =>
+      prev.filter((notification) => notification.id !== id)
+    );
   };
 
   return (
     <NotificationContext.Provider
-      value={{ notificationQueue, throwError, closeNotification, sendNotification }}
+      value={{
+        notificationQueue,
+        throwError,
+        closeNotification,
+        sendNotification,
+      }}
     >
       {children}
     </NotificationContext.Provider>
