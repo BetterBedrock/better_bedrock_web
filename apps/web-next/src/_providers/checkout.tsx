@@ -1,13 +1,29 @@
-"use client"
+"use client";
 
-import { VoucherDto, CheckoutOffersDto, Configuration, CheckoutApi } from "@/_lib/api";
+import {
+  VoucherDto,
+  CheckoutOffersDto,
+  Configuration,
+  CheckoutApi,
+} from "@/_lib/api";
 import { useNotification } from "@/_providers/notification";
 import { baseUrl } from "@/utils/url";
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface CheckoutContextProps {
-  createSession: (priceId: string) => Promise<{ checkoutId: string } | undefined>;
-  activateVoucher: (checkoutId?: string, code?: string) => Promise<VoucherDto | undefined>;
+  createSession: (
+    priceId: string
+  ) => Promise<{ checkoutId: string } | undefined>;
+  activateVoucher: (
+    checkoutId?: string,
+    code?: string
+  ) => Promise<VoucherDto | undefined>;
   fetchCheckoutOffers: () => void;
   offers: CheckoutOffersDto | undefined;
 }
@@ -16,10 +32,14 @@ interface CheckoutProviderProps {
   children: ReactNode;
 }
 
-const CheckoutContext = createContext<CheckoutContextProps | undefined>(undefined);
+const CheckoutContext = createContext<CheckoutContextProps | undefined>(
+  undefined
+);
 
 export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
-  const [offers, setOffers] = useState<CheckoutOffersDto | undefined>(undefined);
+  const [offers, setOffers] = useState<CheckoutOffersDto | undefined>(
+    undefined
+  );
   const { throwError } = useNotification();
 
   const config = new Configuration({
@@ -49,8 +69,11 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
 
   const activateVoucher = async (checkoutId?: string, code?: string) => {
     try {
-      const { data } = await checkoutApi.checkoutControllerActivate(checkoutId, code);
-      
+      const { data } = await checkoutApi.checkoutControllerActivate(
+        checkoutId,
+        code
+      );
+
       return data;
     } catch (err) {
       throwError(err, "Failed to activate voucher");
