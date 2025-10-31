@@ -1,0 +1,35 @@
+"use client";
+
+import { BedrockText } from "@/_components/bedrock-text";
+import { Button } from "@/_components/button";
+import { SearchProjectTypeKey } from "@/public/content/better-bedrock";
+
+import { useProjectsCardSearch } from ".";
+
+interface ProjectsCardTypeButtonProps {
+  selectedKey: string;
+  label: string;
+}
+
+export const ProjectsCardTypeButton = ({
+  selectedKey,
+  label,
+}: ProjectsCardTypeButtonProps) => {
+  const { selectedType, setSelectedType } = useProjectsCardSearch();
+
+  return (
+    <Button
+      type={selectedKey === selectedType ? "green" : "white"}
+      onClick={() => setSelectedType(selectedKey as SearchProjectTypeKey)}
+      isClicked={selectedKey === selectedType}
+      isToggled={selectedKey === selectedType}
+      center
+    >
+      <BedrockText
+        text={label}
+        color={selectedKey === selectedType ? "white" : "black"}
+        type="p"
+      />
+    </Button>
+  );
+};
