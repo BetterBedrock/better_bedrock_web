@@ -12,7 +12,7 @@ import netherrack from "@/public/images/netherrack.png";
 
 export default function Home() {
   return (
-    <main>
+    <>
       <Hero />
       <SectionDivider image={water} />
       <About sectionIndex={0} />
@@ -22,6 +22,6 @@ export default function Home() {
       <Changelog />
       <SectionDivider image={netherrack} />
       <Creators />
-    </main>
+    </>
   );
 }
