@@ -1,0 +1,22 @@
+@use "@/utils" as g;
+
+.grid {
+  gap: g.$padding-sm;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: g.$breakpoint-laptop) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: g.$padding-xsm;
+  }
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: g.$padding-xsm;
+  }
+}
+
+.heading {
+  padding-bottom: g.$padding-sm;
+}
