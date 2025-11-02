@@ -1,0 +1,81 @@
+@use "@/utils" as g;
+
+.background {
+  @include g.page-background(
+    g.$background-linear-gradient,
+    "../../public/images/crosshair_backgrounds/15.webp"
+  );
+}
+
+.padding {
+  @include g.section-padding((top, bottom));
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-md;
+}
+
+.profile {
+  padding: g.$padding-sm;
+  display: inline-flex;
+  gap: g.$padding-sm;
+  align-items: start;
+  width: 100%;
+  // grid-template-columns: repeat(2, 1fr);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.image {
+  width: 100%;
+  max-width: 150px;
+  aspect-ratio: 1/1;
+  image-rendering: pixelated;
+}
+
+.name {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.settings {
+  width: g.$icon-sm;
+  height: g.$icon-sm;
+  image-rendering: pixelated;
+}
+
+.part {
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-xsm;
+  padding: g.$padding-sm;
+}
+
+.input {
+  width: 100%;
+}
+
+.link {
+  color: g.$color-selection !important;
+}
+
+.error {
+  color: g.$color-red !important;
+}
+
+.icons {
+  display: inline-flex;
+}
+
+.report {
+  height: g.$icon-sm;
+  image-rendering: pixelated;
+}
