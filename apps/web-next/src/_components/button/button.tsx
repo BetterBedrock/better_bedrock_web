@@ -1,39 +1,8 @@
 "use client"
 
 import { styles } from ".";
-import { HTMLAttributes, ReactNode, useEffect, useState, forwardRef, MouseEvent } from "react";
+import { HTMLAttributes, ReactNode, useState, forwardRef, MouseEvent } from "react";
 import clsx from "clsx";
-// import bedrockClickSound from "@/public/sounds/minecraft_click.mp3";
-
-import WhiteUnchecked from "@/public/ui/buttons/white/unchecked.png";
-import WhiteUncheckedHover from "@/public/ui/buttons/white/unchecked_hover.png";
-import WhiteChecked from "@/public/ui/buttons/white/checked.png";
-import WhiteCheckedHover from "@/public/ui/buttons/white/checked_hover.png";
-import WhiteCheckedDefault from "@/public/ui/buttons/white/default.png";
-
-import GreenUnchecked from "@/public/ui/buttons/green/unchecked.png";
-import GreenUncheckedHover from "@/public/ui/buttons/green/unchecked_hover.png";
-import GreenChecked from "@/public/ui/buttons/green/checked.png";
-import GreenCheckedHover from "@/public/ui/buttons/green/checked_hover.png";
-import GreenCheckedDefault from "@/public/ui/buttons/green/default.png";
-
-import DarkUnchecked from "@/public/ui/buttons/dark/unchecked.png";
-import DarkUncheckedHover from "@/public/ui/buttons/dark/unchecked_hover.png";
-import DarkChecked from "@/public/ui/buttons/dark/checked.png";
-import DarkCheckedHover from "@/public/ui/buttons/dark/checked_hover.png";
-import DarkCheckedDefault from "@/public/ui/buttons/dark/default.png";
-
-import GoldUnchecked from "@/public/ui/buttons/gold/unchecked.png";
-import GoldUncheckedHover from "@/public/ui/buttons/gold/unchecked_hover.png";
-import GoldChecked from "@/public/ui/buttons/gold/checked.png";
-import GoldCheckedHover from "@/public/ui/buttons/gold/checked_hover.png";
-import GoldCheckedDefault from "@/public/ui/buttons/gold/default.png";
-
-import RedUnchecked from "@/public/ui/buttons/red/unchecked.png";
-import RedUncheckedHover from "@/public/ui/buttons/red/unchecked_hover.png";
-import RedChecked from "@/public/ui/buttons/red/checked.png";
-import RedCheckedHover from "@/public/ui/buttons/red/checked_hover.png";
-import RedCheckedDefault from "@/public/ui/buttons/red/default.png";
 import useSound from "use-sound";
 
 export type ButtonType = "green" | "white" | "dark" | "gold" | "red";
@@ -76,10 +45,9 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
   ) => {
     const [hover, setHover] = useState(false);
     const [clicked, setClicked] = useState(false);
-    const [preload, setPreload] = useState(false);
     const [isHeld, setIsHeld] = useState(false);
 
-    // const [playClickSound] = useSound(bedrockClickSound, { volume: 0.25 });
+    const [playClickSound] = useSound("/sounds/minecraft_click.mp3", { volume: 0.25 });
 
     const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
       if (lockClicking) return;
@@ -87,7 +55,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
       setIsHeld(true);
       handleSetIsToggled(false);
 
-      // if (playSound) playClickSound();
+      if (playSound) playClickSound();
       if (onClick) onClick(e);
     };
 
@@ -131,40 +99,40 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
     let unchecked, uncheckedHover, checked, checkedHover, toggled;
     switch (type) {
       case "gold":
-        unchecked = GoldUnchecked;
-        uncheckedHover = GoldUncheckedHover;
-        checked = GoldChecked;
-        checkedHover = GoldCheckedHover;
-        toggled = GoldCheckedDefault;
+        unchecked = "/ui/buttons/gold/unchecked.png";
+        uncheckedHover = "/ui/buttons/gold/unchecked_hover.png";
+        checked = "/ui/buttons/gold/checked.png";
+        checkedHover = "/ui/buttons/gold/checked_hover.png";
+        toggled = "/ui/buttons/gold/default.png";
         break;
       case "red":
-        unchecked = RedUnchecked;
-        uncheckedHover = RedUncheckedHover;
-        checked = RedChecked;
-        checkedHover = RedCheckedHover;
-        toggled = RedCheckedDefault;
+        unchecked = "/ui/buttons/red/unchecked.png";
+        uncheckedHover = "/ui/buttons/red/unchecked_hover.png";
+        checked = "/ui/buttons/red/checked.png";
+        checkedHover = "/ui/buttons/red/checked_hover.png";
+        toggled = "/ui/buttons/red/default.png";
         break;
       case "green":
-        unchecked = GreenUnchecked;
-        uncheckedHover = GreenUncheckedHover;
-        checked = GreenChecked;
-        checkedHover = GreenCheckedHover;
-        toggled = GreenCheckedDefault;
+        unchecked = "/ui/buttons/green/unchecked.png";
+        uncheckedHover = "/ui/buttons/green/unchecked_hover.png";
+        checked = "/ui/buttons/green/checked.png";
+        checkedHover = "/ui/buttons/green/checked_hover.png";
+        toggled = "/ui/buttons/green/default.png";
         break;
       case "dark":
-        unchecked = DarkUnchecked;
-        uncheckedHover = DarkUncheckedHover;
-        checked = DarkChecked;
-        checkedHover = DarkCheckedHover;
-        toggled = DarkCheckedDefault;
+        unchecked = "/ui/buttons/dark/unchecked.png";
+        uncheckedHover = "/ui/buttons/dark/unchecked_hover.png";
+        checked = "/ui/buttons/dark/checked.png";
+        checkedHover = "/ui/buttons/dark/checked_hover.png";
+        toggled = "/ui/buttons/dark/default.png";
         break;
       case "white":
       default:
-        unchecked = WhiteUnchecked;
-        uncheckedHover = WhiteUncheckedHover;
-        checked = WhiteChecked;
-        checkedHover = WhiteCheckedHover;
-        toggled = WhiteCheckedDefault;
+        unchecked = "/ui/buttons/white/unchecked.png";
+        uncheckedHover = "/ui/buttons/white/unchecked_hover.png";
+        checked = "/ui/buttons/white/checked.";
+        checkedHover = "/ui/buttons/white/checked_hover.png";
+        toggled = "/ui/buttons/white/default.png";
         break;
     }
 
@@ -176,25 +144,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
 
     if (isToggled) {
       hovering = toggled;
-      // finalClicked = toggled;
     }
-
-    useEffect(() => {
-      if (preload) return;
-
-      const images = [unchecked, uncheckedHover, checked, checkedHover];
-      const imageRefs = images.map((src) => {
-        const img = new window.Image();
-        img.src = src.src;
-        return img;
-      });
-
-      setPreload(true);
-
-      return () => {
-        imageRefs.forEach((img) => (img.src = ""));
-      };
-    }, [unchecked, uncheckedHover, checked, checkedHover, toggled, preload]);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const Component: any = summary ? "summary" : "button";
@@ -219,7 +169,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
         type={buttonType}
       >
         <div
-          style={{ borderImage: `url(${hovering.src})` }}
+          style={{ borderImage: `url(${hovering})` }}
           className={clsx(
             styles.button,
             finalClicked && styles.clicked,

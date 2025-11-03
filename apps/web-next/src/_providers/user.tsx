@@ -22,7 +22,10 @@ interface UserContextProps {
   findDetailedUser: (id: string) => Promise<DetailedUserDto | undefined>;
 
   updateProfile: (profile: UpdateProfileDto) => Promise<UserDto | undefined>;
-  manageProfile: (id: string, profile: ManageProfileDto) => Promise<UserDto | undefined>;
+  manageProfile: (
+    id: string,
+    profile: ManageProfileDto
+  ) => Promise<UserDto | undefined>;
   getProfileRating: (userId: string) => Promise<UserRatingDto | undefined>;
   getUserRating: (projectId: string) => Promise<number | undefined>;
 }
@@ -48,7 +51,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   const userApi = useMemo(() => new UserApi(config), [config]);
 
-  const findUserByName = async (name: string): Promise<SimpleUserDto | undefined> => {
+  const findUserByName = async (
+    name: string
+  ): Promise<SimpleUserDto | undefined> => {
     try {
       const { data } = await userApi.userControllerUserInfoByName(name);
       return data;
@@ -57,7 +62,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     }
   };
 
-  const findUserById = async (id: string): Promise<SimpleUserDto | undefined> => {
+  const findUserById = async (
+    id: string
+  ): Promise<SimpleUserDto | undefined> => {
     try {
       const { data } = await userApi.userControllerUserInfoById(id);
       return data;
@@ -66,7 +73,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     }
   };
 
-  const findDetailedUser = async (id: string): Promise<DetailedUserDto | undefined> => {
+  const findDetailedUser = async (
+    id: string
+  ): Promise<DetailedUserDto | undefined> => {
     try {
       const { data } = await userApi.userControllerDetailedUserInfo(id);
       return data;

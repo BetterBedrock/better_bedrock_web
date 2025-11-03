@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:next": "next dev",
+    "dev:next": "next dev --port 5173",
     "build:next": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:api": "openapi-generator-cli generate -g typescript-axios -i http://localhost:8084/documentation/json -o ./src/_lib/api --skip-validate-spec"
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.2",
+    "dayjs": "^1.11.19",
+    "isbot": "^5.1.31",
     "next": "16.0.0",
     "next-client-cookies": "^2.1.0",
     "react": "19.2.0",

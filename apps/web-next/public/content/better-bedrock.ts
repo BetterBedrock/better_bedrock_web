@@ -1,4 +1,4 @@
-import { DownloadsCategoryDto } from "~/assets/content/dto/downloads-category.dto";
+import { DownloadsCategoryDto } from "@/public/content/dto/downloads-category.dto";
 
 export enum SEARCH_PROJECT_TYPES {
     all = "All",

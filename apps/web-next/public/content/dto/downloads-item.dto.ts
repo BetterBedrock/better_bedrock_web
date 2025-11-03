@@ -1,4 +1,4 @@
-import { ButtonType } from "~/components/bedrock/button";
+import { ButtonType } from "@/_components/button";
 
 export enum DownloadsItemType {
     green = "green",

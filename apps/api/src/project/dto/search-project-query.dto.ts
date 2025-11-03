@@ -1,12 +1,14 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { ProjectType } from "@prisma/client";
 import { Type } from "class-transformer";
 import { IsEnum, IsNumber, IsOptional, IsString, MaxLength } from "class-validator";
 import { SearchOrder } from "~/project/dto/search-order.dto";
 
 export class SearchProjectsQueryDto {
     @IsOptional()
-    @IsString()
-    type?: string;
+    @IsEnum(ProjectType)
+    @ApiProperty({ enum: ProjectType, enumName: "ProjectType" })
+    type?: ProjectType;
 
     @IsOptional()
     @IsEnum(SearchOrder)

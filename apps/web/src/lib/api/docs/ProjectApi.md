@@ -862,14 +862,14 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ProjectApi(configuration);
 
+let type: ProjectType; // (optional) (default to undefined)
 let order: SearchOrder; // (optional) (default to undefined)
-let type: string; // (optional) (default to undefined)
 let text: string; // (optional) (default to undefined)
 let page: number; // (optional) (default to 1)
 
 const { status, data } = await apiInstance.projectControllerSearch(
-    order,
     type,
+    order,
     text,
     page
 );
@@ -879,8 +879,8 @@ const { status, data } = await apiInstance.projectControllerSearch(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
+| **type** | **ProjectType** |  | (optional) defaults to undefined|
 | **order** | **SearchOrder** |  | (optional) defaults to undefined|
-| **type** | [**string**] |  | (optional) defaults to undefined|
 | **text** | [**string**] |  | (optional) defaults to undefined|
 | **page** | [**number**] |  | (optional) defaults to 1|
 
