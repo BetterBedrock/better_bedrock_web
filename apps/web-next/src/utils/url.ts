@@ -1,2 +1,2 @@
-export const baseUrl = process.env.VITE_DEBUG === "true" ? process.env.VITE_LOCAL_BACKEND_URL : process.env.VITE_BACKEND_URL;
-export const baseFrontendUrl = process.env.VITE_DEBUG === "true" ? process.env.VITE_LOCAL_FRONTEND_URL : process.env.VITE_FRONTEND_URL;
+export const baseUrl = process.env.NEXT_PUBLIC_DEBUG == "true" ? process.env.NEXT_PUBLIC_LOCAL_BACKEND_URL : process.env.NEXT_PUBLIC_BACKEND_URL;
+export const baseFrontendUrl = process.env.NEXT_PUBLIC_DEBUG == "true" ? process.env.NEXT_PUBLIC_LOCAL_FRONTEND_URL : process.env.NEXT_PUBLIC_FRONTEND_URL;
