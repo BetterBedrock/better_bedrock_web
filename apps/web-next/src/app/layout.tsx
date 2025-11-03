@@ -2,6 +2,7 @@ import { Layout } from "@/_components/layout";
 import { AuthProvider } from "@/_providers/auth";
 import { CheckoutProvider } from "@/_providers/checkout";
 import { NotificationProvider } from "@/_providers/notification";
+import { ProjectProvider } from "@/_providers/project";
 import { UserProvider } from "@/_providers/user";
 import "@/public/styles/global.scss";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -61,19 +62,21 @@ export default function RootLayout({
         className={`relative ${mojangles.className} ${mojanglesBold.className} ${minecraft.className} ${minecraftFive.className}`}
       >
         <GoogleOAuthProvider clientId="268821429400-jlf4995gbmur5m3a3hg8qrpuu33dv0rs.apps.googleusercontent.com">
-          <NotificationProvider>
-            <CookiesProvider>
+          <CookiesProvider>
+            <NotificationProvider>
               <CheckoutProvider>
-                <AuthProvider>
-                  <UserProvider>
-                    <Layout>
-                      <main>{children}</main>
-                    </Layout>
-                  </UserProvider>
-                </AuthProvider>
+                <ProjectProvider>
+                  <AuthProvider>
+                    <UserProvider>
+                      <Layout>
+                        <main>{children}</main>
+                      </Layout>
+                    </UserProvider>
+                  </AuthProvider>
+                </ProjectProvider>
               </CheckoutProvider>
-            </CookiesProvider>
-          </NotificationProvider>
+            </NotificationProvider>
+          </CookiesProvider>
         </GoogleOAuthProvider>
       </body>
     </html>
