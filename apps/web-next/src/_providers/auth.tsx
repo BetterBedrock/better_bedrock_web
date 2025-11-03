@@ -1,6 +1,6 @@
 "use client";
 
-import { UserDto, Configuration, AuthApi } from "@/_lib/api";
+import { UserDto } from "@/_lib/api";
 import { useNotification } from "@/_providers/notification";
 import { useGoogleLogin } from "@react-oauth/google";
 import {
@@ -8,12 +8,13 @@ import {
   Dispatch,
   ReactNode,
   SetStateAction,
+  useCallback,
   useContext,
   useEffect,
   useState,
 } from "react";
 import { useCookies } from "next-client-cookies";
-import { baseUrl } from "@/utils/url";
+import { authenticateRequest, googleAuthorize } from "@/_services";
 
 interface AuthContextProps {
   fetched: boolean;
@@ -37,13 +38,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
-      const config = new Configuration({ basePath: baseUrl });
-      const authApi = new AuthApi(config);
-
       try {
-        const { data } = await authApi.authControllerGoogleAuthorize({
-          token: tokenResponse.access_token,
-        });
+        const { data } = await googleAuthorize(tokenResponse.access_token);
         cookies.set("secret", data.token, {
           path: "/",
           secure: true,
@@ -54,29 +50,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         throwError(err, "Failed to login with Google");
       }
     },
-    onError: (errorResponse) => throwError(errorResponse, "Failed to login with Google"),
+    onError: (errorResponse) =>
+      throwError(errorResponse, "Failed to login with Google"),
   });
 
-  const authenticate = async (secret: string) => {
-    setFetched(false);
-    try {
-      const config = new Configuration({
-        basePath: baseUrl,
-        accessToken: secret,
-      });
-
-      const authApi = new AuthApi(config);
-      const { data } = await authApi.authControllerAuthenticate();
-      setUser(data);
-    } catch (err) {
-      throwError(err, "Failed to authenticate");
-      logout();
-    } finally {
-      setFetched(true);
-    }
-  };
-
-  const logout = () => {
+  const logout = useCallback(() => {
     cookies.remove("secret");
     setUser(undefined);
 
@@ -87,7 +65,23 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     });
 
     window.location.reload();
-  };
+  }, [setUser, sendNotification, cookies]);
+
+  const authenticate = useCallback(
+    async (secret: string) => {
+      setFetched(false);
+      try {
+        const { data } = await authenticateRequest(secret);
+        setUser(data);
+      } catch (err) {
+        throwError(err, "Failed to authenticate");
+        logout();
+      } finally {
+        setFetched(true);
+      }
+    },
+    [setFetched, setUser, throwError, logout]
+  );
 
   useEffect(() => {
     const secret = cookies.get("secret");
@@ -96,10 +90,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     } else {
       setFetched(true);
     }
-  }, []);
+  }, [authenticate, cookies]);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, fetched, googleLogin, logout }}>
+    <AuthContext.Provider
+      value={{ user, setUser, fetched, googleLogin, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
