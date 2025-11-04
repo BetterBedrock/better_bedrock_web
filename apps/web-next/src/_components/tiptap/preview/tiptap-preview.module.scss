@@ -1,0 +1,72 @@
+@use "@/utils" as g;
+
+.content {
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.content {
+  /* Ensure each top-level node has relative positioning 
+   so absolutely positioned placeholders work correctly */
+
+  :global(.tiptap.ProseMirror) > * {
+    position: relative;
+  }
+
+  /* Paragraph Node */
+  * {
+    white-space: pre-wrap;
+    outline: none;
+    text-align: left !important;
+  }
+
+  p:empty::before {
+    content: "\00a0";
+    display: block;
+  }
+
+  /* List Node */
+  ol,
+  ul {
+    margin-top: g.$padding-md;
+    margin-bottom: g.$padding-md;
+    padding-left: g.$padding-md;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    ol,
+    ul {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  li {
+    p {
+      margin-top: 0;
+      line-height: g.$line-height-lg;
+    }
+  }
+
+  ul {
+    list-style: disc;
+
+    ul {
+      list-style: circle;
+
+      ul {
+        list-style: square;
+      }
+    }
+  }
+}
