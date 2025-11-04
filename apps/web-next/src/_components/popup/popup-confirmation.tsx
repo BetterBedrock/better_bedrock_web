@@ -1,4 +1,14 @@
-import { ReactNode, useState, MouseEvent, cloneElement, ReactElement, Children, isValidElement } from "react";
+"use client";
+
+import {
+  ReactNode,
+  useState,
+  MouseEvent,
+  cloneElement,
+  ReactElement,
+  Children,
+  isValidElement,
+} from "react";
 import clsx from "clsx";
 import { BedrockText } from "@/_components/bedrock-text";
 import { ButtonType, Button } from "@/_components/button";
@@ -13,7 +23,9 @@ type ClickableElementProps = {
 };
 
 export const useEnhanceTree = (
-  handleChildClick: (originalOnClick?: (e: MouseEvent) => void) => (e: MouseEvent) => void,
+  handleChildClick: (
+    originalOnClick?: (e: MouseEvent) => void
+  ) => (e: MouseEvent) => void
 ) => {
   const enhanceTree = (node: ReactNode): ReactNode => {
     if (!isValidElement(node)) return node;
@@ -60,13 +72,14 @@ export const PopupConfirmation = ({
   const [pendingAction, setPendingAction] = useState<(() => void) | null>(null);
 
   // Wrap any onClick with confirmation logic
-  const handleChildClick = (originalOnClick?: (e: MouseEvent) => void) => (e: MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleChildClick =
+    (originalOnClick?: (e: MouseEvent) => void) => (e: MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
 
-    setPendingAction(() => () => originalOnClick?.(e));
-    setOpen(true);
-  };
+      setPendingAction(() => () => originalOnClick?.(e));
+      setOpen(true);
+    };
 
   // Recursively enhance children
   const enhanceTree = useEnhanceTree(handleChildClick);
@@ -90,7 +103,12 @@ export const PopupConfirmation = ({
         <Popup title={title} onClose={handleCancel}>
           <div className={styles.container}>
             <div className={styles.part}>
-              <BedrockText type="p" text={description} textAlign="start" color="white" />
+              <BedrockText
+                type="p"
+                text={description}
+                textAlign="start"
+                color="white"
+              />
             </div>
 
             <CardDivider />
@@ -99,7 +117,12 @@ export const PopupConfirmation = ({
                 <Button onClick={handleCancel} type="white" center width="100%">
                   <BedrockText type="p" text={cancelText} color="black" />
                 </Button>
-                <Button onClick={handleConfirm} type={confirmType} center width="100%">
+                <Button
+                  onClick={handleConfirm}
+                  type={confirmType}
+                  center
+                  width="100%"
+                >
                   <BedrockText type="p" text={confirmText} color="white" />
                 </Button>
               </ButtonGroup>
