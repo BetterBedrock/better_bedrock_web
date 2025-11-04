@@ -1,0 +1,11 @@
+@use "@/utils" as g;
+
+.image {
+  width: 100%;
+  height: auto;
+  max-height: g.$breakpoint-tablet;
+  display: block;
+  content: "https://";
+  margin: g.$padding-md 0;
+  outline: g.$minecraftdepth solid transparent;
+}
