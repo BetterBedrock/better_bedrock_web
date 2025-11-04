@@ -10,6 +10,7 @@ interface LinkProps {
   hideStyles?: boolean;
   className?: string;
   onClick?: () => void;
+  scroll?: boolean;
 }
 
 export const Link = ({
@@ -19,6 +20,7 @@ export const Link = ({
   isExternalLink = false,
   className,
   onClick,
+  scroll,
 }: LinkProps) => {
   if (!link) return children;
 
@@ -37,6 +39,7 @@ export const Link = ({
       href={link}
       className={clsx(className && className, hideStyles && styles.hide)}
       onClick={onClick}
+      scroll={scroll}
     >
       {children}
     </NextRouterLink>
