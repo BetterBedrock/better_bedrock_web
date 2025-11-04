@@ -7,6 +7,10 @@
   gap: g.$padding-xxsm;
 }
 
+.selectable {
+  flex-direction: column !important;
+}
+
 .text {
   line-height: g.$icon-sm;
   color: g.$color-sbtn-click-on-focus-visible !important;

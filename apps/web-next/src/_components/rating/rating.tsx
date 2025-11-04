@@ -50,7 +50,6 @@ export const Rating = ({
   const getFill = (i: number, v: number) =>
     v >= i + 1 ? "full" : v > i && v < i + 1 ? "half" : "empty";
 
-  // ⭐️ No half-selection — only integers
   const handleMouseMove = (e: MouseEvent, index: number) =>
     selectable && setPreview(index + 1);
   const handleMouseLeave = () => selectable && setPreview(null);
@@ -90,7 +89,13 @@ export const Rating = ({
 
   return (
     <Tooltip text={text} className={extraClassName}>
-      <div className={clsx(styles.rating, className && className)}>
+      <div
+        className={clsx(
+          styles.rating,
+          selectable && styles.selectable,
+          className && className
+        )}
+      >
         {simple ? (
           <>
             <BedrockText extraClassName={styles.text} type="p" text={text} />
