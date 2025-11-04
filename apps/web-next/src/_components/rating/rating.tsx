@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { KeyboardEvent, MouseEvent, useEffect, useState } from "react";
 import FilledStar from "@/public/ui/star/filledStar.png";
@@ -11,8 +11,10 @@ import { BedrockText } from "@/_components/bedrock-text";
 import { Tooltip } from "@/_components/tooltip";
 
 const formatNumber = (num: number | undefined | null, decimals: number) => {
-  return typeof num === 'number' && !isNaN(num) ? Number(num.toFixed(decimals)) : 0;
-}
+  return typeof num === "number" && !isNaN(num)
+    ? Number(num.toFixed(decimals))
+    : 0;
+};
 
 interface RatingProps extends BedrockComponentProps {
   simple?: boolean;
@@ -38,10 +40,10 @@ export const Rating = ({
   size = "small",
   extraClassName,
 }: RatingProps) => {
-  const [selected, setSelected] = useState<number>(rating ?? 1);
+  const [selected, setSelected] = useState<number>(rating ?? 0);
   const [preview, setPreview] = useState<number | null>(null);
 
-  useEffect(() => setSelected(rating ?? 1), [rating]);
+  useEffect(() => setSelected(rating ?? 0), [rating]);
 
   const current = preview ?? selected;
 
@@ -100,7 +102,8 @@ export const Rating = ({
                 onClick={() => handleClick(selected >= max ? 1 : max)}
                 onKeyDown={(e) =>
                   e.key === "Enter" || e.key === " "
-                    ? (e.preventDefault(), handleClick(selected >= max ? 1 : max))
+                    ? (e.preventDefault(),
+                      handleClick(selected >= max ? 1 : max))
                     : null
                 }
               >
@@ -112,30 +115,50 @@ export const Rating = ({
           </>
         ) : (
           <>
-            {Array.from({ length: max }, (_, i) => {
-              const fill = getFill(i, current);
-              const src =
-                fill === "full" ? FilledStar : fill === "half" ? HalfFilledStar : EmptyStar;
-              return selectable ? (
-                <button
-                  key={i}
-                  type="button"
-                  className={styles.button}
-                  onMouseMove={(e) => handleMouseMove(e, i)}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => handleClick(i + 1)}
-                  onKeyDown={(e) => handleKeyDown(e, i)}
-                  aria-label={`Set rating to ${i + 1}`}
-                  aria-pressed={selected >= i + 1}
-                >
-                  <img className={starStyles} src={src.src} alt={`${i + 1} star`} />
-                </button>
-              ) : (
-                <img key={i} className={starStyles} src={src.src} alt={`${i + 1} star`} />
-              );
-            })}
+            <div>
+              {Array.from({ length: max }, (_, i) => {
+                const fill = getFill(i, current);
+                const src =
+                  fill === "full"
+                    ? FilledStar
+                    : fill === "half"
+                      ? HalfFilledStar
+                      : EmptyStar;
+                return selectable ? (
+                  <button
+                    key={i}
+                    type="button"
+                    className={styles.button}
+                    onMouseMove={(e) => handleMouseMove(e, i)}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={() => handleClick(i + 1)}
+                    onKeyDown={(e) => handleKeyDown(e, i)}
+                    aria-label={`Set rating to ${i + 1}`}
+                    aria-pressed={selected >= i + 1}
+                  >
+                    <img
+                      className={starStyles}
+                      src={src.src}
+                      alt={`${i + 1} star`}
+                    />
+                  </button>
+                ) : (
+                  <img
+                    key={i}
+                    className={starStyles}
+                    src={src.src}
+                    alt={`${i + 1} star`}
+                  />
+                );
+              })}
+            </div>
             {selectable && (
-              <BedrockText text="Reset Rating" onClick={handleReset} type="p" color="white" />
+              <BedrockText
+                text="Reset Rating"
+                onClick={handleReset}
+                type="p"
+                color="white"
+              />
             )}
           </>
         )}
