@@ -7,9 +7,9 @@ import {
   ReportApi,
 } from "@/_lib/api";
 import { useNotification } from "@/_providers/notification";
+import { useFetchSecret } from "@/hooks/use-fetch-secret";
 import { baseUrl } from "@/utils/url";
 import { createContext, ReactNode, useContext } from "react";
-import { useCookies } from "react-cookie";
 
 interface ReportContextProps {
   reportProject: (id: string, body: ReportProjectBodyDto) => Promise<void>;
@@ -26,11 +26,11 @@ interface ReportProviderProps {
 const ReportContext = createContext<ReportContextProps | undefined>(undefined);
 
 export const ReportProvider = ({ children }: ReportProviderProps) => {
-  const [cookie] = useCookies(["secret"]);
+  const secret = useFetchSecret();
 
   const config = new Configuration({
     basePath: baseUrl,
-    accessToken: cookie.secret,
+    accessToken: secret,
   });
   const reportApi = new ReportApi(config);
   const { throwError } = useNotification();
