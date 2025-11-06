@@ -32,3 +32,5 @@ export const updateProfileRequest = async (profile: UpdateProfileDto, secret: st
 
 export const manageProfileRequest = async (id: string, profile: ManageProfileDto, secret: string,) =>
     await userApi.userControllerManageProfile(id, profile, { headers: { "Authorization": `Bearer ${secret}` } })
+
+export const fetchUserProjectRatingRequest = async (id: string, secret: string) => userApi.userControllerUserRating(id, { headers: { "Authorization": `Bearer ${secret}` } });
