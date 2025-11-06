@@ -3,7 +3,11 @@ import { Section } from "@/_components/section";
 
 import { styles } from ".";
 
-export default function Page() {
+export interface SuccessPageProps {
+  searchParams: Promise<{ checkoutId: string }>;
+}
+
+export default function Success({ searchParams }: SuccessPageProps) {
   return (
     <Section
       className={styles.background}
@@ -11,7 +15,7 @@ export default function Page() {
       fixed
       center
     >
-      <Hero />
+      <Hero searchParams={searchParams} />
     </Section>
   );
 }
