@@ -1,5 +1,3 @@
-"use server";
-
 import { Card, CardBody, CardDivider } from "@/_components/card";
 
 import {
@@ -11,37 +9,20 @@ import {
   ProjectsCardSearchProvider,
   ProjectsCardTitle,
   ProjectsCardType,
+  fetchInitialProjects,
   styles,
 } from ".";
 
-import { isbot } from "isbot";
-import { headers } from "next/headers";
 import { MainProps } from "@/app/downloads/main/[[...page]]";
-import { fetchSearchResults } from "@/_lib/projects/fetch-search-results";
+import { checkIfIsBot } from "@/_lib/utils";
+
+export const revalidate = 60;
 
 export const ProjectsCard = async ({ params }: MainProps) => {
-  const headersList = await headers();
-  const ua = headersList.get("user-agent") || "";
-  const isBot = isbot(ua);
-
-  const loadedParmas = await params;
-
-  let currentPage = 1;
-
-  if (
-    loadedParmas.page &&
-    loadedParmas.page.length > 1 &&
-    loadedParmas.page[0] === "page"
-  ) {
-    currentPage = parseInt(loadedParmas.page[1], 10) || 1;
-  }
-
-  const searchResults = await fetchSearchResults(
-    undefined,
-    undefined,
-    undefined,
-    currentPage
-  );
+  const isBot = await checkIfIsBot();
+  const { currentPage, searchResults } = await fetchInitialProjects({
+    params: isBot ? await params : {},
+  });
 
   return (
     <Card sub className={styles.main}>

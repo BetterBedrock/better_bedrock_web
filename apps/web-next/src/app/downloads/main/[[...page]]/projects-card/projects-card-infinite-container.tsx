@@ -21,7 +21,7 @@ export const ProjectsCardInfiniteContainer = ({
   const items = projects?.items ?? [];
   const hasItems = items.length > 0;
 
-  if (loading && !projects) {
+  if (loading) {
     return <ProjectsCardLoader text="Fetching Projects..." />;
   }
 
