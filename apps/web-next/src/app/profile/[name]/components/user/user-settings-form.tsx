@@ -74,7 +74,6 @@ export const UserSettingsForm = ({
     router.refresh();
     onClose();
   });
-  // const onClickSubmit = handleSubmit(onSave);
 
   return (
     <Popup onClose={onClose} title="Account Settings">
