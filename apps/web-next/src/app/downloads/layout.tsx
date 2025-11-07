@@ -1,7 +1,7 @@
 import { Section } from "@/_components/section";
+import { ReactNode } from "react";
 
 import { styles } from ".";
-import { ReactNode } from "react";
 
 interface DownloadsLayoutProps {
   children: ReactNode;
