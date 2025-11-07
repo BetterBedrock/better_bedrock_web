@@ -1,4 +1,5 @@
-import { BedrockText } from "~/components/bedrock/bedrock-text";
+import { BedrockText } from "@/_components/bedrock-text";
+
 import { styles } from ".";
 
 interface HeadingDescriptionProps {
