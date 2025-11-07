@@ -1,16 +1,26 @@
 "use client";
 
 import { SearchProjectsDto, SearchOrder } from "@/_lib/api";
-import { useProject } from "@/_providers/project";
-import { useProjectsCardSearch } from "@/app/downloads/main/[[...page]]/projects-card/providers";
+import { fetchSearchResults } from "@/_lib/projects/fetch-search-results";
+import { SEARCH_PROJECT_TYPES } from "@/public/content/better-bedrock";
 import { useState, useRef, useEffect } from "react";
+
+import { useProjectsCardSearch } from "@/app/downloads/main/[[...page]]/projects-card";
 
 interface UseInfiniteProjectsFetchProps {
     searchResults: SearchProjectsDto;
 }
 
+const searchCache = new Map<string, SearchProjectsDto>();
+
+const getCacheKey = (type: string, order: string, query: string, page: number): string => {
+    return `${type}|${order}|${query}|${page}`;
+};
+
 export const useInfiniteProjectsFetch = ({ searchResults }: UseInfiniteProjectsFetchProps) => {
-    const { search } = useProject();
+    const firstCachedKey = getCacheKey(SEARCH_PROJECT_TYPES.all.toLowerCase(), SearchOrder.Newest, "", 1);
+    searchCache.set(firstCachedKey, searchResults);
+
     const { selectedOrder, selectedType, inputRef } = useProjectsCardSearch();
 
     const [projects, setProjects] = useState<SearchProjectsDto | undefined>(searchResults);
@@ -25,19 +35,45 @@ export const useInfiniteProjectsFetch = ({ searchResults }: UseInfiniteProjectsF
     const sentinelRef = useRef<HTMLDivElement | null>(null);
     const observerRef = useRef<IntersectionObserver | null>(null);
 
-    const didMountRef = useRef(false);
-
     const fetchProjects = async (query: string, pageNum = 1, append = false) => {
-        if (!append) setLoading(true);
-        else setLoadingMore(true);
+        const type = selectedType === "all" ? "all" : selectedType;
+        const cacheKey = getCacheKey(type, selectedOrder, query, pageNum);
+
+        const cachedData = searchCache.get(cacheKey);
+        if (cachedData) {
+            if (append && projects) {
+                setProjects({
+                    ...cachedData,
+                    items: [...(projects.items || []), ...(cachedData.items || [])],
+                    page: cachedData.page,
+                    total: cachedData.total ?? 0,
+                    totalPages: cachedData.totalPages ?? 1,
+                });
+            } else {
+                setProjects(cachedData);
+            }
+            setPage(pageNum);
+            return;
+        }
+
+        if (!append) {
+            setLoading(true);
+        } else {
+            setLoadingMore(true);
+        }
 
         try {
-            const data = await search(
-                selectedOrder as SearchOrder,
+            const data = await fetchSearchResults(
                 selectedType === "all" ? undefined : selectedType,
+                selectedOrder as SearchOrder,
                 query,
                 pageNum,
             );
+
+            if (data) {
+                searchCache.set(cacheKey, data);
+            }
+
             if (append && projects) {
                 if (data) {
                     setProjects({
@@ -61,18 +97,10 @@ export const useInfiniteProjectsFetch = ({ searchResults }: UseInfiniteProjectsF
     };
 
     useEffect(() => {
-        if (!didMountRef.current) {
-            didMountRef.current = true;
-            return;
-        }
-
         const query = inputRef.current?.value || "";
         setPage(1);
-        setProjects(undefined);
         fetchProjects(query, 1, false);
-    }, [selectedType, selectedOrder]);
 
-    useEffect(() => {
         const handleInputChange = () => {
             if (debounceTimer.current) {
                 clearTimeout(debounceTimer.current);
@@ -83,6 +111,7 @@ export const useInfiniteProjectsFetch = ({ searchResults }: UseInfiniteProjectsF
                 fetchProjects(query, 1, false);
             }, 500);
         };
+
         const inputEl = inputRef.current;
         inputEl?.addEventListener("input", handleInputChange);
         return () => {
@@ -128,5 +157,5 @@ export const useInfiniteProjectsFetch = ({ searchResults }: UseInfiniteProjectsF
         };
     }, [projects?.page, projects?.totalPages, loading, loadingMore, page]);
 
-    return { loading, projects, loadingMore, sentinelRef }
+    return { loading, projects, loadingMore, sentinelRef };
 };
