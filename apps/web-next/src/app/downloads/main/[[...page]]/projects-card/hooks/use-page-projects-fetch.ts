@@ -16,19 +16,17 @@ export const usePageProjectsFetch = ({ searchResults }: UsePageProjectsFetchProp
     const [projects, setProjects] = useState<SearchProjectsDto>(searchResults);
     const debounceTimer = useRef<NodeJS.Timeout | null>(null);
 
-    const fetchSearchResults = async (page?: number) => {
-        const data = await search(
-            selectedOrder as SearchOrder,
-            selectedType === "all" ? undefined : selectedType,
-            inputRef.current?.value || "",
-            page ?? searchResults.page,
-        );
-        if (data)
-            setProjects(data);
-    }
+    const fetchSearchResults = async (page?: number) => await search(
+        selectedOrder as SearchOrder,
+        selectedType === "all" ? undefined : selectedType,
+        inputRef.current?.value || "",
+        page ?? searchResults.page,
+    );
 
     useEffect(() => {
-        fetchSearchResults();
+        fetchSearchResults().then((data) => {
+            if (data) setProjects(data)
+        });
     }, [selectedOrder, selectedType]);
 
     useEffect(() => {
@@ -37,7 +35,9 @@ export const usePageProjectsFetch = ({ searchResults }: UsePageProjectsFetchProp
                 clearTimeout(debounceTimer.current);
             }
             debounceTimer.current = setTimeout(() => {
-                fetchSearchResults(1);
+                fetchSearchResults(1).then((data) => {
+                    if (data) setProjects(data)
+                });
             }, 500);
         };
         const inputEl = inputRef.current;
