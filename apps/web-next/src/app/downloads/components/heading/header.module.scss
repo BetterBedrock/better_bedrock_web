@@ -1,4 +1,4 @@
-@use "~/utils/_variables" as g;
+@use "@/utils" as g;
 
 .description {
   padding-bottom: g.$padding-sm;
