@@ -1,4 +1,4 @@
-import { Banner } from "~/components/bedrock/banner";
+import { Banner } from "@/_components/banner";
 
 export const SideProjectsBanner = () => (
   <Banner

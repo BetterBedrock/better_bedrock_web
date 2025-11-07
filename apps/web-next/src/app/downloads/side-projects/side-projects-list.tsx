@@ -1,5 +1,5 @@
-import { GridDownloadCard } from "~/components/bedrock/grid-download-card/grid-download-card";
-import { SimpleProjectDto } from "~/lib/api";
+import { GridDownloadCard } from "@/_components/grid-download-card";
+import { SimpleProjectDto } from "@/_lib/api";
 
 import { styles } from ".";
 
@@ -10,7 +10,7 @@ interface SideProjectsListProps {
 export const SideProjectsList = ({ projects }: SideProjectsListProps) => (
   <div className={styles.grid}>
     {projects.map((project) => (
-      <GridDownloadCard project={project} mode="view" />
+      <GridDownloadCard key={project.id} project={project} mode="view" />
     ))}
   </div>
 );
