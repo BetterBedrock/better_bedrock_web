@@ -2,6 +2,8 @@ import { calculateItemDisplayWeight } from "@/utils/math";
 import { Routes } from "@/utils/routes";
 import { Link } from "@/_components/link";
 
+import DownloadCard from "@/_components/download-card/download-card";
+
 import { SimpleCategory, styles } from ".";
 
 interface MainItemsList {
