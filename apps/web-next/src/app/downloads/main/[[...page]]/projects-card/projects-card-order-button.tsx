@@ -2,8 +2,9 @@
 
 import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
-import { useProjectsCardSearch } from ".";
 import { SearchOrder } from "@/_lib/api";
+
+import { useProjectsCardSearch } from ".";
 
 interface ProjectsCardOrderButtonProps {
   type: SearchOrder;

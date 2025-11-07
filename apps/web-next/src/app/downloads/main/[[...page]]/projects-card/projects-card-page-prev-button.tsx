@@ -2,6 +2,7 @@ import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
 import { Link } from "@/_components/link";
 import { Routes } from "@/utils/routes";
+
 import { styles } from ".";
 
 interface ProjectsCardPagePrevButtonProps {

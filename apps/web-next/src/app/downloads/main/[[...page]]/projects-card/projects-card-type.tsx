@@ -2,6 +2,7 @@
 
 import { ButtonGroup } from "@/_components/button-group/button-group";
 import { Collapsible } from "@/_components/collapsible";
+
 import {
   SEARCH_PROJECT_TYPES,
   SearchProjectTypeKey,

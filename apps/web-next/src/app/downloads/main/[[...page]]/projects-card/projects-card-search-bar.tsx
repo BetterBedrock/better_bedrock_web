@@ -1,4 +1,5 @@
 "use client";
+
 import { Input } from "@/_components/input";
 
 import { styles, useProjectsCardSearch } from ".";
