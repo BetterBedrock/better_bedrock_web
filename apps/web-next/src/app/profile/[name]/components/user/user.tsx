@@ -13,14 +13,17 @@ import {
 } from ".";
 
 import clsx from "clsx";
-import { SimpleUserDto, UserRatingDto } from "@/_lib/api";
+import { loadUserProfile } from "@/_lib/user/load-user-profile";
+import { loadUserRating } from "@/_lib/user/load-user-rating";
 
 interface UserProps {
-  selectedUser: SimpleUserDto;
-  rating: UserRatingDto;
+  params?: { name: string };
 }
 
-export const User = async ({ selectedUser, rating }: UserProps) => {
+export const User = async ({ params }: UserProps) => {
+  const selectedUser = await loadUserProfile(params?.name);
+  const rating = await loadUserRating(params?.name);
+
   return (
     <>
       <UserLinkvertiseInfo selectedUser={selectedUser} />
