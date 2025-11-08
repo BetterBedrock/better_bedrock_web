@@ -7,7 +7,7 @@ interface ProjectsListProps {
   params: { name: string };
 }
 
-export const revalidate = 60
+export const revalidate = 60;
 
 export const ProjectsList = async ({ params }: ProjectsListProps) => {
   const projects = await fetchUserProjects(params.name);
