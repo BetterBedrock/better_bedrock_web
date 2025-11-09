@@ -1,0 +1,16 @@
+@use "@/utils" as g;
+
+.editor {
+  @include g.card-margin();
+}
+
+.skip {
+  color: g.$color-selection !important;
+}
+
+.smooth {
+  scroll-behavior: smooth;
+  * {
+    scroll-behavior: smooth;
+  }
+}
