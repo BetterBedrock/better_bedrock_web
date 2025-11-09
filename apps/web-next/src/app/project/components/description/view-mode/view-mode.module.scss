@@ -1,0 +1,5 @@
+@use "@/utils" as g;
+
+.editor {
+  @include g.card-margin();
+}
