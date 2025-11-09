@@ -1,0 +1,37 @@
+@use "@/utils" as g;
+
+.voucher {
+  padding-top: 1rem;
+  width: 100%;
+  display: inline-flex;
+  gap: g.$padding-xsm;
+}
+
+.input {
+  width: 100%;
+}
+
+.group {
+  gap: g.$padding-xsm;
+}
+
+.action {
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+}
+
+.links {
+  display: inline-flex;
+  gap: g.$padding-xsm;
+}
+
+.period {
+  padding-bottom: g.$padding-sm;
+}
+
+.apply {
+  padding-bottom: g.$padding-xsm;
+}
