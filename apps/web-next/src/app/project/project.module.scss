@@ -1,0 +1,21 @@
+@use "@/utils" as g;
+
+.background {
+  @include g.page-background(
+    g.$background-linear-gradient,
+    "../../public/images/crosshair_backgrounds/16.webp"
+  );
+}
+
+.padding {
+  @include g.section-padding((top, bottom));
+  overflow: unset !important;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  gap: g.$padding-md;
+  display: flex;
+  flex-direction: column;
+}
