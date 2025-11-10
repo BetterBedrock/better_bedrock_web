@@ -5,13 +5,15 @@
   "scripts": {
     "dev:next": "next dev --port 5173",
     "build:next": "next build",
-    "start": "next start",
+    "start": "next start --port 5173",
     "lint": "eslint",
     "generate:api": "openapi-generator-cli generate -g typescript-axios -i http://localhost:8084/documentation/json -o ./src/_lib/api --skip-validate-spec"
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.2",
+    "@tiptap/static-renderer": "^3.10.2",
     "dayjs": "^1.11.19",
+    "html-react-parser": "^5.2.8",
     "isbot": "^5.1.31",
     "next": "16.0.0",
     "next-client-cookies": "^2.1.0",
@@ -21,6 +23,9 @@
     "use-sound": "^5.0.0"
   },
   "devDependencies": {
+    "@tiptap/pm": "^3.10.2",
+    "@tiptap/react": "^3.10.2",
+    "@tiptap/starter-kit": "^3.10.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
