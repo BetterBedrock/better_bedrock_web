@@ -30,7 +30,7 @@ export const Navbar = () => {
   const navItems =
     isPanelSection && user?.admin
       ? [
-          { name: "Dashboard", path: "/panel" },
+          { name: "Dashboard", path: "/panel/dashboard" },
           { name: "Analytics", path: "/panel/analytics" },
           { name: "Vouchers", path: "/panel/vouchers" },
           { name: "Projects", path: "/panel/projects" },
