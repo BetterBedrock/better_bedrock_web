@@ -1,16 +1,20 @@
-import { Configuration, ProjectApi, ProjectType, SearchOrder } from "@/_lib/api";
+import { Configuration, ProjectApi, ProjectType, SearchOrder, UpdateProjectDto } from "@/_lib/api";
+import { axiosCustomInstance } from "@/_lib/client";
 import { baseUrl } from "@/utils/url";
 
 const config = new Configuration({
     basePath: baseUrl,
 });
 
-const projectApi = new ProjectApi(config);
+const projectApi = new ProjectApi(config, undefined, axiosCustomInstance);
 
-export const fetchUserProjects = async (
+export const fetchUserProjectsRequest = async (
     id: string,
+    secret: string,
 ) =>
-    await projectApi.projectControllerUserProjects(id);
+    projectApi.projectControllerUserProjects(id, { headers: { Authorization: `Bearer ${secret}` } });
+
+export const fetchSubmittedProjectsRequest = async (secret: string) => projectApi.projectControllerSubmitted({ headers: { Authorization: `Bearer ${secret}` } });
 
 export const searchProjectsRequest = async (type?: ProjectType, order?: SearchOrder | undefined, text?: string, page?: number) => await projectApi.projectControllerSearch(
     type,
@@ -24,6 +28,7 @@ export const fetchProjectsBasicInfoRequest = async (ids: string[]) => await proj
 });
 
 export const fetchProjectDetailsRequest = async (id: string) => projectApi.projectControllerProjectDetails(id);
+export const fetchDraftDetailsRequest = async (id: string, secret: string) => projectApi.projectControllerDraftDetails(id, { headers: { Authorization: `Bearer ${secret}` } });
 
 export const deleteRatingRequest = async (id: string, secret: string) => await projectApi.projectControllerDeleteRating(id, { headers: { "Authorization": `Bearer ${secret}` } });
 export const postRatingRequest = async (id: string, rating: number, secret: string) => await projectApi.projectControllerRateProject(
@@ -31,6 +36,10 @@ export const postRatingRequest = async (id: string, rating: number, secret: stri
     rating,
     { headers: { Authorization: `Bearer ${secret}` } }
 );
+
+export const createProjectRequest = async (title: string, secret: string) => projectApi.projectControllerCreate({ title }, { headers: { Authorization: `Bearer ${secret}` } });
+
+export const updateProjectRequest = async (id: string, project: UpdateProjectDto, secret: string) => projectApi.projectControllerUpdate(id, project, { headers: { Authorization: `Bearer ${secret}` } });
 
 export const fetchCommentsRequest = async (id: string) => projectApi.projectControllerComments(id);
 export const deleteCommentRequest = async (id: string, secret: string) => projectApi.projectControllerDeleteComment(id, { headers: { Authorization: `Bearer ${secret}` } });
