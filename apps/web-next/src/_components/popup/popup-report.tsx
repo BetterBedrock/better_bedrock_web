@@ -5,6 +5,8 @@ import { Button } from "@/_components/button";
 import { CardDivider } from "@/_components/card";
 import { Input } from "@/_components/input";
 import { Popup } from "@/_components/popup/popup";
+import { reportProject } from "@/_lib/report/report-project";
+import { reportUser } from "@/_lib/report/report-user";
 import { useNotification } from "@/_providers/notification";
 import { ReportProvider, useReport } from "@/_providers/report";
 import { useRef } from "react";
@@ -24,7 +26,6 @@ export const PopupReport = (props: PopupReportComponentProps) => (
 );
 
 const PopupReportComponent = ({ id, name, type, defaultMessage, onClose }: PopupReportComponentProps) => {
-  const { reportProject, reportUser } = useReport();
   const { sendNotification } = useNotification();
   const inputRef = useRef<HTMLInputElement>(null);
 
