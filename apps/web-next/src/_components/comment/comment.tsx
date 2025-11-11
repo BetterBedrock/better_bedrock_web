@@ -18,7 +18,7 @@ import { PopupConfirmation } from "@/_components/popup/popup-confirmation";
 import { SimpleButton } from "@/_components/simple-button";
 import { Tooltip } from "@/_components/tooltip";
 import { ProjectCommentDto, UserDto } from "@/_lib/api";
-import { useReport } from "@/_providers/report";
+import { reportUser } from "@/_lib/report/report-user";
 
 interface CommentProps {
   comment: ProjectCommentDto;
@@ -38,7 +38,6 @@ export const Comment = ({
   className,
 }: CommentProps) => {
   const [isReplying, setIsReplying] = useState(false);
-  const { reportUser } = useReport();
 
   const inputRef = useRef<HTMLInputElement>(null);
 
