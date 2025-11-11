@@ -1,7 +1,7 @@
 import { CheckoutApi } from "@/_lib/api";
-import { baseApiConfig } from "@/_lib/client";
+import { axiosCustomInstance, baseApiConfig } from "@/_lib/client";
 
-const checkoutApi = new CheckoutApi(baseApiConfig);
+const checkoutApi = new CheckoutApi(baseApiConfig, undefined, axiosCustomInstance);
 
 export const activateVoucherRequest = async (checkoutId?: string, code?: string) => checkoutApi.checkoutControllerActivate(
     checkoutId,

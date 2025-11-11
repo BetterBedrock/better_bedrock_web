@@ -1,7 +1,7 @@
 import { DownloadApi } from "@/_lib/api";
-import { baseApiConfig } from "@/_lib/client";
+import { axiosCustomInstance, baseApiConfig } from "@/_lib/client";
 
-const downloadApi = new DownloadApi(baseApiConfig);
+const downloadApi = new DownloadApi(baseApiConfig, undefined, axiosCustomInstance);
 
 export const generateDownloadRequest = async (id: string) => downloadApi.downloadControllerGenerate(id);
 

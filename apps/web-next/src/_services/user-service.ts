@@ -1,11 +1,12 @@
 import { Configuration, ManageProfileDto, UpdateProfileDto, UserApi } from "@/_lib/api";
+import { axiosCustomInstance } from "@/_lib/client";
 import { baseUrl } from "@/utils/url";
 
 const config = new Configuration({
     basePath: baseUrl,
 });
 
-const userApi = new UserApi(config);
+const userApi = new UserApi(config, undefined, axiosCustomInstance);
 
 export const findUserByNameRequest = async (
     name: string,

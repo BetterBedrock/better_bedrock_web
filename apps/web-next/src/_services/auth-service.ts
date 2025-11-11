@@ -1,7 +1,7 @@
 import { AuthApi } from "@/_lib/api";
-import { baseApiConfig } from "@/_lib/client";
+import { axiosCustomInstance, baseApiConfig } from "@/_lib/client";
 
-const authApi = new AuthApi(baseApiConfig);
+const authApi = new AuthApi(baseApiConfig, undefined, axiosCustomInstance);
 
 export const authenticateRequest = (secret: string) => authApi.authControllerAuthenticate({
     headers: {
