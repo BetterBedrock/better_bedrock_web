@@ -1,0 +1,41 @@
+@use "@/utils" as g;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: g.$padding-sm;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+
+  @include g.card-padding-y;
+  gap: g.$padding-sm;
+}
+
+.video > * {
+  border: g.$minecraftdepth solid rgb(30, 30, 31);
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: rgb(41, 41, 41);
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  // gap: g.$padding-sm;
+  overflow: hidden;
+  @include g.card-padding-x;
+}
+
+.cardTextWrapper {
+  padding: 0 2rem;
+}
+
+.actions {
+  padding-top: g.$padding-sm;
+}

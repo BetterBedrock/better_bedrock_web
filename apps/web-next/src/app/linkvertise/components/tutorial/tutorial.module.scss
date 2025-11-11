@@ -1,0 +1,56 @@
+@use "@/utils" as g;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: g.$padding-sm;
+}
+
+.sub {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  @include g.card-padding-y;
+
+  & * {
+    width: 100%;
+  }
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  // gap: g.$padding-sm;
+  overflow: hidden;
+  @include g.card-padding-x;
+}
+
+.cardContainer .sub {
+  @include g.card-padding;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+
+  @include g.card-padding-y;
+  gap: g.$padding-sm;
+}
+
+.markdownWrapper .sub {
+  & * {
+    text-align: left;
+  }
+
+  h3 {
+    padding-top: 1rem;
+  }
+
+  img {
+    border: g.$minecraftdepth solid rgb(30, 30, 31);
+    margin-top: 1rem;
+  }
+}
