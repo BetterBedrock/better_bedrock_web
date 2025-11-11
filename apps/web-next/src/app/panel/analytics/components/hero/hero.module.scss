@@ -1,0 +1,8 @@
+@use "@/utils" as g;
+
+.wrapper {
+  width: 100%;
+  gap: g.$padding-sm;
+  display: flex;
+  flex-direction: column;
+}
