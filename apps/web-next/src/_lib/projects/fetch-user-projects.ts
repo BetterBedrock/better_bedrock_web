@@ -1,6 +1,8 @@
-import { fetchUserProjects as fetchUserProjectsRequest } from "@/_services/project-service";
+import { fetchSecret } from "@/_lib/user";
+import { fetchUserProjectsRequest } from "@/_services/project-service";
 
 export const fetchUserProjects = async (id: string) => {
-    const { data } = await fetchUserProjectsRequest(id);
-    return data;
+    const secret = await fetchSecret();
+    const { data } = await fetchUserProjectsRequest(id, secret);
+    return data.filter((d) => d.draft === false);
 }
