@@ -12,7 +12,6 @@ import { TextAlign } from "@tiptap/extension-text-align";
 import { Typography } from "@tiptap/extension-typography";
 import { Highlight } from "@tiptap/extension-highlight";
 import { Selection } from "@tiptap/extensions";
-import { useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { TextSelection } from "@tiptap/pm/state";
 import Heading from "@tiptap/extension-heading";
@@ -30,7 +29,6 @@ import { styles, TiptapImageToolbar, TiptapToolbar } from ".";
 
 interface TiptapEditorProps {
   content?: Content | undefined;
-  editable?: boolean;
   detailedProject: DetailedProjectDto;
   onChange?: (content: Content | undefined) => void;
   onUpload?: () => void;
@@ -40,14 +38,12 @@ export const TiptapEditor = ({
   content,
   onChange,
   onUpload,
-  editable,
   detailedProject,
 }: TiptapEditorProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const toolbarRef = useRef<HTMLDivElement>(null);
   const [imageToolbar, setImageToolbar] = useState(false);
 
-  const { file: id } = useParams();
   const { uploadFile } = useProject();
 
   const handleImageUpload = async (file: File): Promise<string> => {
@@ -55,11 +51,11 @@ export const TiptapEditor = ({
       throw new Error("No file provided");
     }
 
-    if (!id) {
+    if (!detailedProject.id) {
       throw new Error("No project id provided");
     }
 
-    const upload = await uploadFile(id!, file);
+    const upload = await uploadFile(detailedProject.id!, file);
     if (!upload) throw new Error("No file returned");
     onUpload?.();
 
@@ -67,10 +63,9 @@ export const TiptapEditor = ({
   };
 
   const editor = useEditor({
-    element: null,
-    immediatelyRender: true,
+    immediatelyRender: false,
     shouldRerenderOnTransaction: false,
-    editable: editable,
+    editable: true,
     editorProps: {
       attributes: {
         autocomplete: "off",
@@ -172,29 +167,20 @@ export const TiptapEditor = ({
     };
   }, [editor, toolbarRef]);
 
-  if(isLoading) return <CircularProgressIndicator size="small" />
-
   return (
-    <ProjectManagerProvider detailedProject={detailedProject}>
-      <div className={styles.editor}>
-        <EditorContext.Provider value={{ editor }}>
-          {editable && (
-            <Toolbar ref={toolbarRef}>
-              {imageToolbar ? (
-                <TiptapImageToolbar />
-              ) : (
-                <TiptapToolbar />
-              )}
-            </Toolbar>
-          )}
+    <div className={styles.editor}>
+      {isLoading && <CircularProgressIndicator size="medium" center />}
+      <EditorContext.Provider value={{ editor }}>
+        <Toolbar ref={toolbarRef}>
+          {imageToolbar ? <TiptapImageToolbar /> : <TiptapToolbar />}
+        </Toolbar>
 
-          <EditorContent
-            editor={editor}
-            role="presentation"
-            className={styles.content}
-          />
-        </EditorContext.Provider>
-      </div>
-    </ProjectManagerProvider>
+        <EditorContent
+          editor={editor}
+          role="presentation"
+          className={styles.content}
+        />
+      </EditorContext.Provider>
+    </div>
   );
 };
