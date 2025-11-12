@@ -4,12 +4,13 @@ import { styles } from ".";
 import { fetchUserAnalytics } from "@/_lib/analytics/fetch-user-analytics";
 import { notFound } from "next/navigation";
 import { simplifyAnalytics } from "@/_lib/analytics/simplify-analytics";
+import { fetchUserByName } from "@/_lib/user";
 
 interface StatsProps {
   params?: Promise<{ name: string }>;
 }
 
-export const revalidate = 60
+export const revalidate = 60;
 
 export default async function Stats({ params }: StatsProps) {
   const loadedParams = await params;
@@ -17,7 +18,11 @@ export default async function Stats({ params }: StatsProps) {
     notFound();
   }
 
-  const data = await fetchUserAnalytics(loadedParams.name);
+  const user = await fetchUserByName(loadedParams.name);
+  if (!user) {
+    notFound();
+  }
+  const data = await fetchUserAnalytics(user.id);
   const simplified = simplifyAnalytics({ analytics: data });
 
   if (Object.keys(simplified ?? []).length < 1) {

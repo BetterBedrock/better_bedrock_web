@@ -2,6 +2,8 @@ import { GridDownloadCard } from "@/_components/grid-download-card";
 
 import { styles, ProjectsListEmpty } from ".";
 import { fetchUserProjects } from "@/_lib/projects/fetch-user-projects";
+import { fetchUserByName } from "@/_lib/user";
+import { notFound } from "next/navigation";
 
 interface ProjectsListProps {
   params: { name: string };
@@ -10,7 +12,12 @@ interface ProjectsListProps {
 export const revalidate = 60;
 
 export const ProjectsList = async ({ params }: ProjectsListProps) => {
-  const projects = await fetchUserProjects(params.name);
+  const user = await fetchUserByName(params.name);
+  if (!user) {
+    notFound();
+  }
+
+  const projects = await fetchUserProjects(user.id);
 
   if (projects.length < 1) {
     return <ProjectsListEmpty />;
