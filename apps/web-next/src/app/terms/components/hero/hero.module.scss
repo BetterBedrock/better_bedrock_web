@@ -1,0 +1,17 @@
+@use "@/utils" as g;
+
+.markdown {
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    text-align: left;
+    font-family: Minecraft;
+    padding: g.$padding-md 0 g.$padding-xsm 0;
+  }
+
+  strong {
+    text-decoration: underline;
+    font-weight: 500;
+  }
+}

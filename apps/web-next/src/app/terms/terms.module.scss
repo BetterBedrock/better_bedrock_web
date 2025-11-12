@@ -1,0 +1,12 @@
+@use "@/utils" as g;
+
+.background {
+  @include g.page-background(
+    g.$background-linear-gradient,
+    "../../public/images/crosshair_backgrounds/24.webp"
+  );
+}
+
+.padding {
+  @include g.section-padding((top, bottom));
+}
