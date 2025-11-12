@@ -1,10 +1,10 @@
 {
-  "name": "web-next",
+  "name": "web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:next": "next dev --port 5173",
-    "build:next": "next build",
+    "dev": "next dev --port 5173",
+    "build": "next build",
     "start": "next start --port 5173",
     "lint": "eslint",
     "generate:api": "openapi-generator-cli generate -g typescript-axios -i http://localhost:8084/documentation/json -o ./src/_lib/api --skip-validate-spec"
