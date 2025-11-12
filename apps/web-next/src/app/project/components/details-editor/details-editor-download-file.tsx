@@ -1,10 +1,12 @@
+"use client";
+
 import clsx from "clsx";
-import { BedrockText } from "~/components/bedrock/bedrock-text";
-import { Button } from "~/components/bedrock/button";
-import { CircularProgressIndicator } from "~/components/bedrock/circular-progress-indicator";
+import { BedrockText } from "@/_components/bedrock-text";
+import { Button } from "@/_components/button";
+import { CircularProgressIndicator } from "@/_components/circular-progress-indicator";
+import { calculateItemDisplayWeight } from "@/utils/math";
 
 import { styles, useDetailsEditorDownloadFile } from ".";
-import { calculateItemDisplayWeight } from "~/utils/math";
 
 export const DetailsEditorDownloadFile = () => {
   const { selectedProject, uploadFileRef, uploadDownloadFile, isUploading } =

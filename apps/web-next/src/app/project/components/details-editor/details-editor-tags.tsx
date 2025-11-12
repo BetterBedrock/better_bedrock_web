@@ -1,10 +1,12 @@
+"use client";
+
 import clsx from "clsx";
-import { Banner } from "~/components/bedrock/banner";
-import { BedrockText } from "~/components/bedrock/bedrock-text";
-import { Button } from "~/components/bedrock/button";
-import { Input } from "~/components/bedrock/input";
-import { Tag } from "~/components/bedrock/tag";
-import { ButtonGroup } from "~/components/button-group/button-group";
+import { Banner } from "@/_components/banner";
+import { BedrockText } from "@/_components/bedrock-text";
+import { Button } from "@/_components/button";
+import { ButtonGroup } from "@/_components/button-group/button-group";
+import { Input } from "@/_components/input";
+import { Tag } from "@/_components/tag";
 
 import { styles, useDetailsEditorTags } from ".";
 

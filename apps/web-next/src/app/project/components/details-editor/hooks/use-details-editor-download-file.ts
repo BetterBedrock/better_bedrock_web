@@ -1,7 +1,9 @@
+"use client";
+
+import { useNotification } from "@/_providers/notification";
+import { useProject } from "@/_providers/project";
+import { useProjectManager } from "@/app/project/providers/project-manager";
 import { useRef, useState } from "react";
-import { useProjectManager } from "~/pages/project/providers/project-manager";
-import { useNotification } from "~/providers/notification";
-import { useProject } from "~/providers/project";
 
 export const useDetailsEditorDownloadFile = () => {
     const uploadFileRef = useRef<HTMLInputElement>(null);
@@ -11,9 +13,8 @@ export const useDetailsEditorDownloadFile = () => {
     const {
         selectedProject,
         setSelectedProject,
-        fetchSelectedProject,
         handleSaveProject,
-        checkIfSubmitted,
+        checkIfSubmitted, detailedProject
     } = useProjectManager();
 
     const [isUploading, setIsUploading] = useState(false);
@@ -28,11 +29,10 @@ export const useDetailsEditorDownloadFile = () => {
             const uploadedFile = await uploadFile(selectedProject.id, file);
             if (!uploadedFile) return;
 
-            const newProject = await fetchSelectedProject(selectedProject.id, true);
             setSelectedProject((prev) => ({
                 ...prev!,
-                downloadFile: newProject!.downloadFile,
-                itemWeight: newProject!.itemWeight,
+                downloadFile: detailedProject!.downloadFile,
+                itemWeight: detailedProject!.itemWeight,
             }));
 
             sendNotification({

@@ -2,6 +2,7 @@
 
 import { DetailedProjectDto, UserDto } from "@/_lib/api";
 import { generateDownload } from "@/_lib/downloads/generate-download";
+import { useNotification } from "@/_providers/notification";
 import { useFetchVoucher } from "@/hooks/use-fetch-voucher";
 import { Routes } from "@/utils/routes";
 import { useRouter } from "next/navigation";
@@ -10,6 +11,7 @@ export const useDownloadButton = (
   user: UserDto,
   detailedProject: DetailedProjectDto
 ) => {
+  const { sendNotification } = useNotification();
   const router = useRouter();
   const voucher = useFetchVoucher();
 
@@ -27,10 +29,24 @@ export const useDownloadButton = (
   const instantDownload = isCreatorOrAdmin || hasValidVoucher;
 
   const handleClick = async () => {
+    if (hasValidVoucher) {
+      sendNotification({
+        title: "Applied Voucher",
+        label: "You just used your voucher to download this content.",
+        type: "success",
+      });
+    } else if (voucher) {
+      sendNotification({
+        title: "Cannot Apply Voucher",
+        label: "Your voucher allows to download only better bedrock content without ads.",
+        type: "info",
+      });
+    }
+
     if (!instantDownload) return;
 
     await generateDownload(detailedProject.id);
-    router.push(Routes.HOME);
+    router.push(Routes.FETCH);
   };
 
   return { handleClick, instantDownload };

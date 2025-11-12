@@ -1,3 +1,5 @@
+"use client";
+
 import { useProject } from "@/_providers/project";
 import { useProjectManager } from "@/app/project/providers/project-manager";
 

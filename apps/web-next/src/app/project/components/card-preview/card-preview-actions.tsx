@@ -1,5 +1,4 @@
-import { ButtonGroup } from "~/components/button-group/button-group";
-
+import { ButtonGroup } from "@/_components/button-group/button-group";
 import { CardPreviewActionsDecline, CardPreviewActionsPublish, styles } from ".";
 
 export const CardPreviewActions = () => (

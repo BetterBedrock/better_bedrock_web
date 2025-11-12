@@ -1,6 +1,8 @@
+"use client";
+
+import { useProjectManager } from "@/app/project/providers/project-manager";
 import { Content } from "@tiptap/react";
 import { useState, useRef } from "react";
-import { useProjectManager } from "~/pages/project/providers/project-manager";
 
 export const useEditMode = () => {
     const { selectedProject, handleSaveProject, editorContent } = useProjectManager();
@@ -9,6 +11,7 @@ export const useEditMode = () => {
     const saveTimer = useRef<NodeJS.Timeout | null>(null);
 
     const handleChange = (data: Content | undefined) => {
+        // eslint-disable-next-line react-hooks/immutability
         editorContent.current = data;
 
         if (saveTimer.current) clearTimeout(saveTimer.current);

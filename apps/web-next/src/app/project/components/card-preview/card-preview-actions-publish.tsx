@@ -1,12 +1,14 @@
+"use client";
+
 import { useNavigate } from "react-router-dom";
-import { BedrockText } from "~/components/bedrock/bedrock-text";
-import { Button } from "~/components/bedrock/button";
-import { PopupConfirmation } from "~/components/bedrock/popup/popup-confirmation";
-import { useProjectManager } from "~/pages/project/providers/project-manager";
-import { useProject } from "~/providers/project";
-import { Routes } from "~/utils/routes";
 
 import { styles } from ".";
+import { BedrockText } from "@/_components/bedrock-text";
+import { Button } from "@/_components/button";
+import { PopupConfirmation } from "@/_components/popup/popup-confirmation";
+import { useProject } from "@/_providers/project";
+import { useProjectManager } from "@/app/project/providers/project-manager";
+import { Routes } from "@/utils/routes";
 
 export const CardPreviewActionsPublish = () => {
   const navigate = useNavigate();

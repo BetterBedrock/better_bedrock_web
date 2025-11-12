@@ -4,7 +4,7 @@ import { Popup } from "@/_components/popup";
 import { CheckoutOptionGroupDto } from "@/_lib/api";
 import { DownloadMethodCard } from "@/_components/download-method-card";
 
-import { styles, usePreviewPopupPlans, useCreateStripeSession } from ".";
+import { createStripeSession, styles, usePreviewPopupPlans } from ".";
 import { Link } from "@/_components/link";
 
 interface PreviewPopupPlansProps {
@@ -20,7 +20,6 @@ export const PreviewPopupPlans = ({
   download,
   getLinkvertiseId,
 }: PreviewPopupPlansProps) => {
-  const purchase = useCreateStripeSession();
   const { linkUrl } = usePreviewPopupPlans({ getLinkvertiseId });
 
   return (
@@ -44,7 +43,7 @@ export const PreviewPopupPlans = ({
               price={`${item.priceOption.price}€`}
               label={item.priceOption.label}
               title={item.priceOption.title}
-              onClick={() => purchase(item.priceId)}
+              onClick={async () => await createStripeSession(item.priceId)}
             />
           ))}
         <Link isExternalLink={true} link={linkUrl} hideStyles>

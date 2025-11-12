@@ -1,10 +1,12 @@
+"use client";
+
 import clsx from "clsx";
-import { PROJECT_TYPES } from "~/assets/content/better-bedrock";
-import { BedrockText } from "~/components/bedrock/bedrock-text";
-import { Collapsible } from "~/components/bedrock/collapsible";
-import { ButtonGroup } from "~/components/button-group/button-group";
-import { ProjectType } from "~/lib/api";
-import { Button } from "~/components/bedrock/button";
+import { BedrockText } from "@/_components/bedrock-text";
+import { Button } from "@/_components/button";
+import { ButtonGroup } from "@/_components/button-group/button-group";
+import { Collapsible } from "@/_components/collapsible";
+import { ProjectType } from "@/_lib/api";
+import { PROJECT_TYPES } from "@/public/content/better-bedrock";
 
 import { styles, useDetailsEditorProjectType } from ".";
 
@@ -30,7 +32,12 @@ export const DetailsEditorProjectType = () => {
 
   return (
     <div className={clsx(styles.editor, styles.size)}>
-      <BedrockText text="Project Type" type="p" color="white" textAlign="left" />
+      <BedrockText
+        text="Project Type"
+        type="p"
+        color="white"
+        textAlign="left"
+      />
 
       <Collapsible
         headerText={PROJECT_TYPES[selectedProject!.type as ProjectType]}

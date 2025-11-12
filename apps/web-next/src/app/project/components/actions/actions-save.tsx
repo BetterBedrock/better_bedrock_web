@@ -1,3 +1,5 @@
+"use client";
+
 import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
 

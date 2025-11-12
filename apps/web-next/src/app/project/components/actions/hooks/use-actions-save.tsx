@@ -1,3 +1,5 @@
+"use client";
+
 import { useNotification } from "@/_providers/notification";
 import { useActions } from "@/app/project/components";
 
@@ -17,4 +19,5 @@ export const useActionsSave = () => {
   };
 
   return { saveProject };
-}
+};
+  

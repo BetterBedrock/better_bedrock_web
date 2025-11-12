@@ -1,4 +1,6 @@
-import { useProjectManager } from "~/pages/project/providers/project-manager";
+"use client";
+
+import { useProjectManager } from "@/app/project/providers/project-manager";
 
 export const useDetailsEditorBetterBedrockContent = () => {
     const { selectedProject, setSelectedProject, handleSaveProject, checkIfSubmitted } =

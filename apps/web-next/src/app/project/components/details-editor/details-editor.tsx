@@ -1,22 +1,22 @@
 import clsx from "clsx";
-import { Card, CardDivider } from "~/components/bedrock/card";
-import { HeaderTitle } from "~/pages/project/components/header";
-import { useProjectManager } from "~/pages/project/providers/project-manager";
-import { useAuth } from "~/providers/auth";
+
 import { SubmittedOverlay } from "../submitted-overlay";
 
 import { DetailsEditorBetterBedrockContent, DetailsEditorDownloadFile, DetailsEditorProjectType, DetailsEditorTags, styles } from ".";
+import { Card, CardDivider } from "@/_components/card";
+import { HeaderTitle } from "@/app/project/components/header";
+import { DetailedProjectDto, UserDto } from "@/_lib/api";
 
-export const DetailsEditor = () => {
-  const { user } = useAuth();
-  const { selectedProject } = useProjectManager();
-  
-  if (!selectedProject) return;
+interface DetailsEditorProps {
+  detailedProject: DetailedProjectDto;
+  user: UserDto;
+}
 
+export const DetailsEditor = ({ detailedProject, user }: DetailsEditorProps) => {
   return (
     <>
       <Card sub className={styles.information}>
-        {selectedProject.submitted && <SubmittedOverlay />}
+        {detailedProject.submitted && <SubmittedOverlay />}
         <div className={clsx(styles.editor)}>
           <HeaderTitle title="Details" />
         </div>

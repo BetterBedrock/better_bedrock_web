@@ -24,15 +24,12 @@ export const useVoucherManager = ({ project, onClose }: usePreviewPopupProps) =>
 
   const { sendNotification } = useNotification();
 
-  const router = useRouter();
   const cookies = useCookies();
 
   const [voucherCode, setVoucherCode] = useState<string>("");
   const [selectedTimeframe, setSelectedTimeframe] = useState<string | undefined>(categories ? categories[0].title : undefined);
 
   const { findUserById } = useUser();
-
-  const isBetterBedrockItem = project.betterBedrockContent;
 
   const activate = async () => {
     const voucher = await activateVoucher(undefined, voucherCode);
@@ -47,37 +44,9 @@ export const useVoucherManager = ({ project, onClose }: usePreviewPopupProps) =>
     }
   };
 
-  const verifyVoucher = (): boolean => {
-    const voucher = useFetchVoucher();
-    if (!voucher) {
-      return false;
-    }
-
-    if (voucher.betterBedrockContentOnly && !isBetterBedrockItem) {
-      sendNotification({
-        title: "Cannot Apply Voucher",
-        label: "Your voucher allows to download only better bedrock content without ads.",
-        type: "info",
-      });
-
-      return false;
-    }
-    sendNotification({
-      title: "Applied Voucher",
-      label: "You just used your voucher to download this content.",
-      type: "success",
-    });
-
-    return true;
-  };
-
   const download = async () => {
     await generateDownload(project.id);
     const creator = await findUserById(project.userId);
-    if (verifyVoucher()) {
-      router.push(Routes.FETCH);
-      return;
-    }
 
     const linkvertiseId = creator?.customLinkvertise
       ? (creator.linkvertiseId ?? process.env.NEXT_PUBLIC_LINKVERTISE_ID)
@@ -97,14 +66,6 @@ export const useVoucherManager = ({ project, onClose }: usePreviewPopupProps) =>
 
     return await getLinkvertiseUrl(linkvertiseId ?? "");
   };
-
-  // useEffect(() => {
-  //   if (verifyVoucher()) {
-  //     generateDownload(project.id).then(() => {
-  //       router.push(Routes.FETCH);
-  //     });
-  //   }
-  // }, [project.id, router, verifyVoucher]);
 
   const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {

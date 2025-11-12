@@ -2,6 +2,7 @@ import { ProjectMode } from "@/_components/grid-download-card";
 // import { EditMode } from "@/app/project/components/description/edit-mode";
 import { ViewMode } from ".";
 import { DetailedProjectDto } from "@/_lib/api";
+import { EditMode } from "@/app/project/components/description/edit-mode";
 
 interface DescriptionProps {
   mode: ProjectMode;
@@ -9,15 +10,8 @@ interface DescriptionProps {
 }
 
 export const Description = ({ mode, detailedProject }: DescriptionProps) => {
-  // console.log({ detailedProject });
-  // const { editorContent } = useProjectManager();
-
-  // if (editorContent.current === undefined) {
-  //   editorContent.current = detailedProject.description;
-  // }
-
   return mode === "edit" ? (
-    <ViewMode detailedProject={detailedProject} />
+    <EditMode detailedProject={detailedProject} />
   ) : (
     <ViewMode detailedProject={detailedProject} />
   );

@@ -15,7 +15,7 @@ export const usePreviewPopupPlans = ({ getLinkvertiseId }: UsePreviewPopupPlansP
             setLinkUrl(url);
         };
         fetchLink();
-    }, []);
+    }, [getLinkvertiseId]);
 
     return { linkUrl };
 };

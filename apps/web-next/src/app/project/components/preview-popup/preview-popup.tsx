@@ -11,8 +11,6 @@ import {
   PreviewPopupVoucher,
   useVoucherManager,
 } from ".";
-import { useCookies } from "next-client-cookies";
-import { useFetchVoucher } from "@/hooks/use-fetch-voucher";
 
 interface PreviewPopupProps {
   project: ProjectDto;
