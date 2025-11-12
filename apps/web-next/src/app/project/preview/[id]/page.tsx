@@ -7,7 +7,6 @@ import { DownloadButton } from "@/app/project/components/download-button";
 import { Header } from "@/app/project/components/header";
 import { RateProject } from "@/app/project/components/rate-project";
 import { ProjectPageProps } from "@/app/project/layout";
-import { ProjectManagerProvider } from "@/app/project/providers/project-manager";
 import { notFound } from "next/navigation";
 
 export default async function Preview({ params }: ProjectPageProps) {
@@ -20,12 +19,9 @@ export default async function Preview({ params }: ProjectPageProps) {
   return (
     <>
       <Header mode="view" selectedProject={project} />
-      <ProjectManagerProvider detailedProject={project} user={user}>
-        <Description mode="view" detailedProject={project} />{" "}
-        <DownloadButton detailedProject={project} />
-        {user && <RateProject detailedProject={project} />}
-      </ProjectManagerProvider>
-
+      <Description mode="view" detailedProject={project} />{" "}
+      <DownloadButton detailedProject={project} user={user} />
+      {user && <RateProject detailedProject={project} />}
       <Comments detailedProject={project} />
     </>
   );
