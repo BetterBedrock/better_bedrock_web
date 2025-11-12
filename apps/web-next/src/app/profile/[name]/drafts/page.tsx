@@ -20,7 +20,7 @@ export default async function Drafts({ params }: DraftsProps) {
   return (
     <div className={styles.list}>
       {isOwner && <DraftsAction />}
-      <DraftsList name={loadedParams.name} />
+      <DraftsList name={selectedUser.name} />
     </div>
   );
 }
