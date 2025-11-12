@@ -4,6 +4,7 @@ export enum Routes {
     DOWNLOADS_SIDE_PROJECTS = "/downloads/side-projects",
     DOWNLOADS_MAIN = "/downloads/main",
     PANEL = "/panel",
+    PANEL_DASHBOARD = "/panel/dashboard",
     PANEL_ANALYTICS = "/panel/analytics",
     PANEL_VOUCHER = "/panel/voucher",
     PANEL_PROJECTS = "/panel/projects",
