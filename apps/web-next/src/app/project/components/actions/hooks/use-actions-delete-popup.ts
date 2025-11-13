@@ -4,11 +4,11 @@ import { useNotification } from "@/_providers/notification";
 import { useProject } from "@/_providers/project";
 import { useProjectManager } from "@/app/project/providers/project-manager";
 import { Routes } from "@/utils/routes";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const useActionsDeletePopup = () => {
-    const navigate = useNavigate();
+    const router = useRouter();
     const { sendNotification } = useNotification();
     const [existsProductionProject, setExistsProductionProject] = useState<boolean | undefined>(
         undefined,
@@ -55,7 +55,7 @@ export const useActionsDeletePopup = () => {
             type: "success",
         });
 
-        navigate(Routes.HOME);
+        router.push(Routes.HOME);
     };
 
     return { isLoading, deletePublishedOnly, existsProductionProject, deleteEverything, setDeleteEverything, setDeletePublishedOnly, disableDeleteButton, handleDelete, deleteOption };

@@ -1,6 +1,5 @@
 "use client";
 
-import { useNavigate } from "react-router-dom";
 import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
 import { PopupWrapper } from "@/_components/popup/popup-wrapper";
@@ -9,9 +8,10 @@ import { useProjectManager } from "@/app/project/providers/project-manager";
 import { Routes } from "@/utils/routes";
 
 import { CardPreviewDeclinePopup, styles } from ".";
+import { useRouter } from "next/navigation";
 
 export const CardPreviewActionsDecline = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const { decline } = useProject();
   const { selectedProject } = useProjectManager();
@@ -24,7 +24,7 @@ export const CardPreviewActionsDecline = () => {
           onCancel={close}
           onSubmit={async (reason) => {
             await decline(selectedProject!.id, selectedProject!.title, reason);
-            navigate(Routes.PANEL_PROJECTS);
+            router.push(Routes.PANEL_PROJECTS);
           }}
         />
       )}

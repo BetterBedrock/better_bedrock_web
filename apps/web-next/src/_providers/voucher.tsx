@@ -1,8 +1,9 @@
 import { VoucherDto, CreateVoucher, UpdateVoucher, Configuration, VoucherApi } from "@/_lib/api";
 import { useNotification } from "@/_providers/notification";
+import { useFetchSecret } from "@/hooks/use-fetch-secret";
 import { baseUrl } from "@/utils/url";
+import { useCookies } from "next-client-cookies";
 import { createContext, ReactNode, useContext } from "react";
-import { useCookies } from "react-cookie";
 
 interface VoucherContextProps {
   fetchVouchers: () => Promise<VoucherDto[] | undefined>;
@@ -17,12 +18,12 @@ interface VoucherProviderProps {
 const VoucherContext = createContext<VoucherContextProps | undefined>(undefined);
 
 export const VoucherProvider = ({ children }: VoucherProviderProps) => {
-  const [cookie] = useCookies(["secret"]);
+  const secret = useFetchSecret();
   const { throwError } = useNotification();
 
   const config = new Configuration({
     basePath: baseUrl,
-    accessToken: cookie.secret,
+    accessToken: secret,
   });
 
   const voucherApi = new VoucherApi(config);
