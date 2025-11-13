@@ -17,7 +17,7 @@ module.exports = {
     {
       name: "better-bedrock-web-dev",
       script: "yarn",
-      cwd: "./apps/web",
+      cwd: "./apps/web-next",
       args: "preview",
       watch: true,
     },
