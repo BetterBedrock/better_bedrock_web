@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 5173",
+    "dev": "next dev --port 3001",
     "build": "next build",
-    "preview": "next start --port 5173",
+    "preview": "next start --port 3001",
     "lint": "eslint",
     "generate:api": "openapi-generator-cli generate -g typescript-axios -i http://localhost:8084/documentation/json -o ./src/_lib/api --skip-validate-spec"
   },
