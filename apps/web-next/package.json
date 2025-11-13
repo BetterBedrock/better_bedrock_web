@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --port 5173",
     "build": "next build",
-    "start": "next start --port 5173",
+    "preview": "next start --port 5173",
     "lint": "eslint",
     "generate:api": "openapi-generator-cli generate -g typescript-axios -i http://localhost:8084/documentation/json -o ./src/_lib/api --skip-validate-spec"
   },
