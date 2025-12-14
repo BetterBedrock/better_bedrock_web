@@ -3,7 +3,6 @@
 import { DetailedProjectDto, UpdateProjectDto } from "@/_lib/api";
 import { updateProject } from "@/_lib/projects/update-project";
 import { useNotification } from "@/_providers/notification";
-import { useProject } from "@/_providers/project";
 import { Content } from "@tiptap/react";
 import {
   createContext,
