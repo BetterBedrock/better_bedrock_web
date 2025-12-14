@@ -12,7 +12,24 @@ import { CookiesProvider } from "next-client-cookies/server";
 import localFont from "next/font/local";
 
 export const metadata: Metadata = {
-  title: "Better Bedrock",
+  title: {
+    default:
+      "Minecraft PE Texture Packs, Scripts, Maps, Skins & More | Better Bedrock",
+    template: "%s | Better Bedrock",
+  },
+  description:
+    "Discover the best Minecraft PE texture packs, scripts, maps, skins, and more on Better Bedrock. Enhance your gaming experience with high-quality mods and resources.",
+  manifest: "/manifest.json",
+  openGraph: {
+    type: "website",
+    siteName: "Better Bedrock",
+    locale: "en_US",
+    url: "https://betterbedrock.com/",
+  },
+  icons: {
+    icon: "/favicon.png",
+    apple: "/apple-icon.png",
+  },
 };
 
 const mojangles = localFont({
