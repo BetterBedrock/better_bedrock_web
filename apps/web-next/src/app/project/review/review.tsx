@@ -1,12 +1,17 @@
-"use server";
-
 import { fetchLoggedUser } from "@/_lib/auth";
 import { fetchDraftsDetails } from "@/_lib/projects/fetch-draft-details";
-import { Header, Description } from "@/app/project/components";
 import { CardPreview } from "@/app/project/components/card-preview";
 import { DownloadButton } from "@/app/project/components/download-button";
 import { notFound } from "next/navigation";
 import { ProjectPageProps } from "@/app/project";
+import { Description } from "@/app/project/components/description";
+import { Header } from "@/app/project/components/header";
+
+export const metadata = {
+  title: "Review Submitted Project",
+  description:
+    "Admin review page for submitted projects.",
+};
 
 export default async function Review({ params }: ProjectPageProps) {
   const loadedParams = await params;
