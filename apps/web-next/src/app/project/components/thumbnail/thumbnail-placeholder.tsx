@@ -1,8 +1,8 @@
 "use client";
 
 import { ImagePlaceholder } from "@/_components/image-placeholder";
+import { useThumbnailUpload } from "@/app/project/components/thumbnail/hooks";
 import { baseUrl } from "@/utils/url";
-import { useThumbnailUpload } from ".";
 
 export const ThumbnailPlaceholder = () => {
   const { selectedProject, handleUploadThumbnail } = useThumbnailUpload();
