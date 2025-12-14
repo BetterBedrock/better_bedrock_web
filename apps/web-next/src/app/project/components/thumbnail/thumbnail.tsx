@@ -9,17 +9,15 @@ interface ThumbnailProps {
   detailedProject: DetailedProjectDto;
 }
 
-export const Thumbnail = ({ detailedProject }: ThumbnailProps) => {
-  return (
-    <Card sub className={styles.overlay}>
-      {detailedProject.submitted && <SubmittedOverlay />}
-      <div className={styles.editor}>
-        <HeaderTitle title="Thumbnail" />
-      </div>
-      <CardDivider sub />
-      <div className={styles.editor}>
-        <ThumbnailPlaceholder />
-      </div>
-    </Card>
-  );
-};
+export const Thumbnail = ({ detailedProject }: ThumbnailProps) => (
+  <Card sub className={styles.overlay}>
+    {detailedProject.submitted && <SubmittedOverlay />}
+    <div className={styles.editor}>
+      <HeaderTitle title="Thumbnail" />
+    </div>
+    <CardDivider sub />
+    <div className={styles.editor}>
+      <ThumbnailPlaceholder />
+    </div>
+  </Card>
+);
