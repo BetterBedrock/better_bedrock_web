@@ -1,14 +1,20 @@
 import { fetchLoggedUser } from "@/_lib/auth";
 import { fetchDraftsDetails } from "@/_lib/projects/fetch-draft-details";
-import { fetchProjectDetails } from "@/_lib/projects/fetch-project-details";
-import { DownloadProvider } from "@/_providers/download";
 import { ProjectPageProps } from "@/app/project";
-import { Header, Description, Actions } from "@/app/project/components";
+import { Actions } from "@/app/project/components/actions";
+import { Description } from "@/app/project/components/description";
 import { DetailsEditor } from "@/app/project/components/details-editor";
 import { DownloadButton } from "@/app/project/components/download-button";
+import { Header } from "@/app/project/components/header";
 import { Thumbnail } from "@/app/project/components/thumbnail";
 import { ProjectManagerProvider } from "@/app/project/providers/project-manager";
 import { notFound } from "next/navigation";
+
+export const metadata = {
+  title: "Edit Project",
+  description:
+    "Edit your Minecraft PE texture packs, scripts, maps, skins, and more on Better Bedrock.",
+};
 
 export default async function Edit({ params }: ProjectPageProps) {
   const loadedParams = await params;
