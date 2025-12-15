@@ -1,7 +1,6 @@
 import { useProject } from "@/_providers/project";
 import { useProjectManager } from "@/app/project/providers/project-manager";
 
-
 export const useThumbnailUpload = () => {
   const { uploadFile } = useProject();
   const { selectedProject, setSelectedProject, handleSaveProject, checkIfSubmitted } =
