@@ -1,3 +1,5 @@
+"use client";
+
 import { DownloadMethodCard } from "@/_components/download-method-card";
 import { CheckoutOptionGroupDto } from "@/_lib/api";
 import { createStripeSession } from "@/app/project/components/preview-popup/hooks";
@@ -8,8 +10,8 @@ interface PreviewPopupRecommendedProps {
 
 export const PreviewPopupRecommended = ({
   categories,
-}: PreviewPopupRecommendedProps) => {
-  return categories?.[1]?.items
+}: PreviewPopupRecommendedProps) =>
+  categories?.[1]?.items
     .slice(1, 2)
     .map((item, index) => (
       <DownloadMethodCard
@@ -22,4 +24,3 @@ export const PreviewPopupRecommended = ({
         onClick={async () => await createStripeSession(item.priceId)}
       />
     ));
-};
