@@ -1,0 +1,9 @@
+@use "@/utils" as g;
+
+.period {
+  padding-bottom: g.$padding-sm;
+}
+
+.group {
+  gap: g.$padding-xsm;
+}
