@@ -1,0 +1,6 @@
+@use "@/utils" as g;
+
+.links {
+  display: inline-flex;
+  gap: g.$padding-xsm;
+}
