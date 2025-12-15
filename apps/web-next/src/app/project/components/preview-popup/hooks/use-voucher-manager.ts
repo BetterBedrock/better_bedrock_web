@@ -6,12 +6,9 @@ import { generateDownload } from "@/_lib/downloads/generate-download";
 import { useCheckout } from "@/_providers/checkout";
 import { useNotification } from "@/_providers/notification";
 import { useUser } from "@/_providers/user";
-import { useFetchVoucher } from "@/hooks/use-fetch-voucher";
 import { getLinkvertiseUrl, openLinkvertise } from "@/utils/download";
-import { Routes } from "@/utils/routes";
 import { useCookies } from "next-client-cookies";
-import { useRouter } from "next/navigation";
-import { useState, useEffect, KeyboardEvent } from "react";
+import { useState, KeyboardEvent } from "react";
 
 interface usePreviewPopupProps {
   project: ProjectDto;
