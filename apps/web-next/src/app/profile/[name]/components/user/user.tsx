@@ -20,6 +20,14 @@ interface UserProps {
   params?: { name: string };
 }
 
+export async function generateMetadata({ params }: UserProps) {
+  const selectedUser = await loadUserProfile(params?.name);
+  return {
+    title: selectedUser ? `${selectedUser.name} - Profile` : "User Profile",
+    description: selectedUser.bio ?? "View the profile of a Better Bedrock user, showcasing their Minecraft PE texture packs, scripts, maps, skins, and more.",
+  };
+}
+
 export const User = async ({ params }: UserProps) => {
   const selectedUser = await loadUserProfile(params?.name);
   const rating = await loadUserRating(params?.name);
