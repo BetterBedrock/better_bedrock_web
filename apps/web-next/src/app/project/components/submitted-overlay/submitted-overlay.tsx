@@ -1,13 +1,8 @@
-import { BedrockText } from "@/_components/bedrock-text";
-import { styles } from ".";
+import { styles, SubmittedOverlayDescription, SubmittedOverlayTitle } from ".";
 
 export const SubmittedOverlay = () => (
   <div className={styles.overlay}>
-    <BedrockText type="h2" text="The project has been submitted" color="white" font="Minecraft" />
-    <BedrockText
-      type="p"
-      text="Any edits are no longer saved. To edit content, cancel submission"
-      color="white"
-    />
+    <SubmittedOverlayTitle />
+    <SubmittedOverlayDescription />
   </div>
 );
