@@ -1,7 +1,7 @@
 "use client";
 
 import { useNotification } from "@/_providers/notification";
-import { useActions } from "@/app/project/components";
+import { useActions } from "@/app/project/components/actions";
 
 export const useActionsSave = () => {
   const { sendNotification } = useNotification();
