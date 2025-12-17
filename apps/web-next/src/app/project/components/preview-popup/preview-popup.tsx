@@ -1,16 +1,18 @@
 "use client";
+
 import { CardDivider } from "@/_components/card";
 import { Popup } from "@/_components/popup";
-import { ProjectDto, VoucherDto } from "@/_lib/api";
+import { ProjectDto } from "@/_lib/api";
 
 import {
-  PreviewPopupFooter,
-  PreviewPopupPlans,
   PreviewPopupRecommended,
   PreviewPopupTabs,
-  PreviewPopupVoucher,
   useVoucherManager,
 } from ".";
+
+import { PreviewPopupFooter } from "./preview-popup-footer";
+import { PreviewPopupVoucher } from "./preview-popup-voucher";
+import { PreviewPopupPlans } from "./preview-popup-plans";
 
 interface PreviewPopupProps {
   project: ProjectDto;
