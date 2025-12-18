@@ -1,3 +1,0 @@
-export * from "./thumbnail";
-export * from "./thumbnail-placeholder";
-export { default as styles } from "./thumbnail.module.scss";
