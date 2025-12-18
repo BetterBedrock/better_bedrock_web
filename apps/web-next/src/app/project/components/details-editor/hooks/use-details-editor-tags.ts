@@ -1,5 +1,3 @@
-"use client";
-
 import { TagNameDto } from "@/_lib/api";
 import { useNotification } from "@/_providers/notification";
 import { useProjectManager } from "@/app/project/providers/project-manager";

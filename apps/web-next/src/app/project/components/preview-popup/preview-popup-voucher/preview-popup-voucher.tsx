@@ -1,5 +1,7 @@
+import styles from "./preview-popup-voucher.module.scss";
+import { PreviewPopupVoucherAction } from "@/app/project/components/preview-popup/preview-popup-voucher/preview-popup-voucher-action";
+import { PreviewPopupVoucherInput } from "@/app/project/components/preview-popup/preview-popup-voucher/preview-popup-voucher-input";
 import { KeyboardEvent, SetStateAction } from "react";
-import { styles, PreviewPopupVoucherInput, PreviewPopupVoucherAction } from ".";
 
 interface PreviewPopupVoucherProps {
   voucherCode: string;

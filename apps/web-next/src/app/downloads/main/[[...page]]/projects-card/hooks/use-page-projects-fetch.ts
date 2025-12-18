@@ -2,7 +2,7 @@
 
 import { SearchOrder, SearchProjectsDto } from "@/_lib/api";
 import { useProject } from "@/_providers/project";
-import { useProjectsCardSearch } from "@/app/downloads/main/[[...page]]/projects-card/providers";
+import { useProjectsCardSearch } from "@/app/downloads/main/[[...page]]/projects-card/providers/projects-card-search";
 import { useEffect, useRef, useState } from "react";
 
 interface UsePageProjectsFetchProps {

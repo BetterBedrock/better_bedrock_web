@@ -1,5 +1,5 @@
-import { AboutSectionElement } from "../";
-import { styles } from ".";
+import { AboutSectionElement } from "../about-data";
+import styles from "./card.module.scss";
 
 interface CardImage {
   item: AboutSectionElement;

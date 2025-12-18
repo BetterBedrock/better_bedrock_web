@@ -1,7 +1,7 @@
 import { Popup } from "@/_components/popup";
 import { CheckoutOptionGroupDto } from "@/_lib/api";
-
-import { PreviewPopupPlansPeriod, PreviewPopupPlansList } from ".";
+import { PreviewPopupPlansList } from "@/app/project/components/preview-popup/preview-popup-plans/preview-popup-plans-list";
+import { PreviewPopupPlansPeriod } from "@/app/project/components/preview-popup/preview-popup-plans/preview-popup-plans-period";
 
 interface PreviewPopupPlansProps {
   categories: CheckoutOptionGroupDto[] | undefined;

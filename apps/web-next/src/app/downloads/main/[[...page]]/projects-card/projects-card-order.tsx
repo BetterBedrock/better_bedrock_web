@@ -3,7 +3,9 @@
 import { ButtonGroup } from "@/_components/button-group/button-group";
 import { Collapsible } from "@/_components/collapsible";
 import { SearchOrder } from "@/_lib/api";
-import { styles, ProjectsCardOrderButton, useProjectsCardSearch } from ".";
+import { ProjectsCardOrderButton } from "./projects-card-order-button";
+import { useProjectsCardSearch } from "./providers/projects-card-search";
+import styles from "./projects-card.module.scss";
 
 export const ProjectsCardOrder = () => {
   const { selectedOrder } = useProjectsCardSearch();

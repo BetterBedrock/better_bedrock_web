@@ -6,7 +6,7 @@ import { fetchDetailedUser } from "@/_lib/user/fetch-detailed-user";
 import { UserActionReport } from "@/app/profile/[name]/components/user/user-action-report";
 import { UserActionSettings } from "@/app/profile/[name]/components/user/user-action-settings";
 
-import { styles } from ".";
+import styles from "./user.module.scss";
 
 interface UserProfileActionsProps {
   selectedUser: SimpleUserDto;

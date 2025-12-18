@@ -1,6 +1,6 @@
 import { Section } from "@/_components/section";
-import { NotFound as Not } from "@/app/components/not-found";
-import { styles } from "@/app/components/not-found";
+import { NotFound as Not } from "@/app/components/not-found/not-found";
+import styles from "@/app/components/not-found/not-found.module.scss";
 
 export const metadata = {
   title: "404 Not Found",

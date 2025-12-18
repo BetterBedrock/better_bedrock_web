@@ -1,5 +1,3 @@
-"use client";
-
 import { ProjectType } from "@/_lib/api";
 import { useProjectManager } from "@/app/project/providers/project-manager";
 

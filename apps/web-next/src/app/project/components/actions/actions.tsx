@@ -1,6 +1,8 @@
 import { ButtonGroup } from "@/_components/button-group/button-group";
-import { ActionsDelete, ActionsSave, ActionsSubmission, useActions } from ".";
 import { DetailedProjectDto } from "@/_lib/api";
+import { ActionsDelete } from "@/app/project/components/actions/actions-delete";
+import { ActionsSave } from "@/app/project/components/actions/actions-save";
+import { ActionsSubmission } from "@/app/project/components/actions/actions-submission";
 
 interface ActionsProps {
   detailedProject: DetailedProjectDto;

@@ -1,7 +1,8 @@
-import { Hero } from "./components/hero";
-import { styles } from ".";
-import { Files } from "./components/files";
+import { Hero } from "./components/hero/hero";
+import { Files } from "./components/files/files";
 import { Section } from "@/_components/section";
+
+import styles from "./analytics.module.scss";
 
 export default function Analytics() {
   return (

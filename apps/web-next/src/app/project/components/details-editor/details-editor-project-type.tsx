@@ -7,8 +7,9 @@ import { ButtonGroup } from "@/_components/button-group/button-group";
 import { Collapsible } from "@/_components/collapsible";
 import { ProjectType } from "@/_lib/api";
 import { PROJECT_TYPES } from "@/public/content/better-bedrock";
+import { useDetailsEditorProjectType } from "@/app/project/components/details-editor/hooks/use-details-editor-project-type";
 
-import { styles, useDetailsEditorProjectType } from ".";
+import styles from "./details-editor.module.scss";
 
 export const DetailsEditorProjectType = () => {
   const { handleUpdateType, selectedProject } = useDetailsEditorProjectType();

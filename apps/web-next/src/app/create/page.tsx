@@ -1,8 +1,8 @@
-import { Hero } from "./components/hero";
-import { guestRedirect } from "@/app/create/server";
+import { Hero } from "./components/hero/hero";
+import { guestRedirect } from "./server/guest-redirect";
 import { Section } from "@/_components/section";
 
-import { styles } from ".";
+import styles from "./creator.module.scss";
 
 export default async function Creator() {
   await guestRedirect();

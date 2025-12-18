@@ -1,15 +1,14 @@
 "use server";
 
 import { verifyDownload } from "@/_lib/downloads/verify-download";
-import {
-  HeroDownloadProgress,
-  HeroRedownloadMessage,
-  HeroHeader,
-  styles,
-} from ".";
 import { cookies } from "next/headers";
 import { VoucherDto } from "@/_lib/api";
 import { DownloadProvider } from "@/_providers/download";
+import { HeroHeader } from "./hero-header";
+import { HeroDownloadProgress } from "./hero-download-progress";
+import { HeroRedownloadMessage } from "./hero-redownload-message";
+
+import styles from "./hero.module.scss";
 
 interface HeroProps {
   hash?: string;

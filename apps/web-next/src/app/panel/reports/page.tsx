@@ -1,9 +1,11 @@
 "use client";
 
-import { Hero, HeroReportPopup } from "./components/hero";
-import { styles } from ".";
+import { Hero } from "./components/hero/hero";
+import { HeroReportPopup } from "./components/hero/hero-report-popup";
 import { useReportsManager } from "@/app/panel/reports/providers/reports-manager";
 import { Section } from "@/_components/section";
+
+import styles from "./reports.module.scss";
 
 export default function Reports() {
   const { selectedReport } = useReportsManager();

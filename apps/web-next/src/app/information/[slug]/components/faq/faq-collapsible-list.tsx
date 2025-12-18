@@ -1,7 +1,7 @@
 import { Collapsible } from "@/_components/collapsible";
-import { InformationTab } from "@/app/information/[slug]/data";
+import { InformationTab } from "@/app/information/[slug]/data/information-data";
 
-import { styles } from ".";
+import styles from "./faq.module.scss";
 
 interface FAQCollapsibleListProps {
   selectedCategory: InformationTab;

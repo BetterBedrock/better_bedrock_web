@@ -1,6 +1,5 @@
 "use client";
 
-import { styles } from ".";
 import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
 import { PopupConfirmation } from "@/_components/popup/popup-confirmation";
@@ -8,6 +7,8 @@ import { useProject } from "@/_providers/project";
 import { useProjectManager } from "@/app/project/providers/project-manager";
 import { Routes } from "@/utils/routes";
 import { useRouter } from "next/navigation";
+
+import styles from "./card-preview.module.scss";
 
 export const CardPreviewActionsPublish = () => {
   const router = useRouter();

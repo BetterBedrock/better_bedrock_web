@@ -3,7 +3,7 @@ import { Link } from "@/_components/link";
 import { Popup } from "@/_components/popup";
 import { Routes } from "@/utils/routes";
 
-import { styles } from ".";
+import styles from "./preview-popup-footer.module.scss";
 import { Fragment } from "react/jsx-runtime";
 
 const links = {

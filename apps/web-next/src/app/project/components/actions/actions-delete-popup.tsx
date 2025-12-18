@@ -9,8 +9,9 @@ import { InputSwitch } from "@/_components/input/input-switch";
 import { Popup } from "@/_components/popup";
 import { BasePopupWrapperProps } from "@/_components/popup/popup-wrapper";
 import { Tooltip } from "@/_components/tooltip";
+import { useActionsDeletePopup } from "@/app/project/components/actions/hooks/use-actions-delete-popup";
 
-import { styles, useActionsDeletePopup } from ".";
+import styles from "./actions-delete-popup.module.scss";
 
 export const ActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
   const {

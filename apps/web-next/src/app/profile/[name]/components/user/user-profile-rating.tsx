@@ -2,7 +2,7 @@ import { UserRatingDto } from "@/_lib/api";
 import clsx from "clsx";
 import { Rating } from "@/_components/rating";
 
-import { styles } from ".";
+import styles from "./user.module.scss";
 
 interface UserProfileRatingProps {
   rating: UserRatingDto | undefined;

@@ -1,6 +1,9 @@
+import { AboutSectionElement } from "./about-data";
+import { CardHeader } from "./card/card-header";
+import { CardImage } from "./card/card-image";
 import clsx from "clsx";
-import { AboutSectionElement, styles } from ".";
-import { CardImage, CardHeader } from "./card";
+
+import styles from "./about.module.scss";
 
 interface AboutCardProps {
   direction: "left" | "right";

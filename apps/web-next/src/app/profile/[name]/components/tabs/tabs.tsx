@@ -1,9 +1,10 @@
 "use server";
 
 import { ButtonGroup } from "@/_components/button-group/button-group";
-
-import { styles, TabsButton } from ".";
+import { TabsButton } from "./tabs-button";
 import { fetchLoggedUser } from "@/_lib/auth/fetch-logged-user";
+
+import styles from "./tabs.module.scss";
 
 interface TabsProps {
   params?: { name: string };

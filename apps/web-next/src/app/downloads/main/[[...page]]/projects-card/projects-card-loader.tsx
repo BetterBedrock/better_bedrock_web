@@ -1,7 +1,7 @@
 import { BedrockText } from "@/_components/bedrock-text";
 import { CircularProgressIndicator } from "@/_components/circular-progress-indicator";
 
-import { styles } from ".";
+import styles from "./projects-card.module.scss";
 
 interface ProjectsCardLoaderProps {
   text: string;

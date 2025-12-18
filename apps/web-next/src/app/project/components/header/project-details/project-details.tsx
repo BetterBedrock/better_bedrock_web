@@ -1,17 +1,13 @@
-"use server";
-
 import clsx from "clsx";
 import { ProjectMode } from "@/_components/grid-download-card";
 import { Rating } from "@/_components/rating";
-
-import {
-  ProjectDetailsEditButton,
-  ProjectDetailsReport,
-  ProjectDetailsTitle,
-  styles,
-} from ".";
 import { DetailedProjectDto } from "@/_lib/api";
 import { fetchLoggedUser } from "@/_lib/auth";
+import { ProjectDetailsReport } from "@/app/project/components/header/project-details/project-details-report";
+import { ProjectDetailsTitle } from "@/app/project/components/header/project-details/project-details-title";
+import { ProjectDetailsEditButton } from "@/app/project/components/header/project-details/project-details-edit-button";
+
+import styles from "./project-details.module.scss";
 
 interface ProjectDetailsProps {
   mode: ProjectMode;

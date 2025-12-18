@@ -7,7 +7,7 @@ import { ButtonGroup } from "@/_components/button-group/button-group";
 import { Input } from "@/_components/input";
 import { Popup } from "@/_components/popup";
 
-import { styles } from ".";
+import styles from "./card-preview.module.scss";
 
 interface CardPreviewDeclinePopupProps {
   onCancel: () => void;

@@ -1,4 +1,5 @@
-import { CREATORS, HELPERS, CreatorsModule } from ".";
+import { CREATORS, HELPERS } from "./creators-data";
+import { CreatorsModule } from "./creators-module";
 
 export const CreatorsModuleList = () => (
   <>

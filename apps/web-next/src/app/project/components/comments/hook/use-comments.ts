@@ -1,9 +1,7 @@
 "use client";
 
 import { DetailedProjectDto, ProjectCommentDto } from "@/_lib/api";
-import { useNotification } from "@/_providers/notification";
 import { useProject } from "@/_providers/project";
-import { useProjectManager } from "@/app/project/providers/project-manager";
 import { KeyboardEvent, useRef, useState } from "react";
 
 interface UseCommentsProps {

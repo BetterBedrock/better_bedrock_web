@@ -1,8 +1,9 @@
 
 import { StatisticsCard } from "@/_components/statistics-card";
 import { AnalyticsDto } from "@/_lib/api";
-import { styles } from ".";
 import { simplifyAnalytics } from "@/_lib/analytics";
+
+import styles from "./statistics.module.scss";
 
 interface StatisticsListProps {
   analytics?: AnalyticsDto[] | undefined;

@@ -1,6 +1,7 @@
 import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
-import { styles } from ".";
+
+import styles from "./vouchers.module.scss";
 
 interface VouchersActionProps {
   handleCreateVoucherClick: () => void;

@@ -2,7 +2,7 @@ import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
 import { ButtonGroup } from "@/_components/button-group/button-group";
 
-import { styles } from ".";
+import styles from "./changelog.module.scss";
 
 export const ChangelogActions = () => (
   <ButtonGroup className={styles.actions}>

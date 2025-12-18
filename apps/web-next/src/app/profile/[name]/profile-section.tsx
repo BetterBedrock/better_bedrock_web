@@ -1,6 +1,6 @@
-import { User } from "./components/user";
+import { User } from "./components/user/user";
 import { Section } from "@/_components/section";
-import { Tabs } from "@/app/profile/[name]/components/tabs";
+import { Tabs } from "@/app/profile/[name]/components/tabs/tabs";
 import { ReactNode } from "react";
 
 import styles from "./profile.module.scss";

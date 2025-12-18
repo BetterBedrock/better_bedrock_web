@@ -17,7 +17,6 @@ import { TextSelection } from "@tiptap/pm/state";
 import Heading from "@tiptap/extension-heading";
 import { useProject } from "@/_providers/project";
 import { baseUrl } from "@/utils/url";
-import { ProjectManagerProvider } from "@/app/project/providers/project-manager";
 import { DetailedProjectDto } from "@/_lib/api";
 import { CircularProgressIndicator } from "@/_components/circular-progress-indicator";
 import { GalleryExtension } from "@/_components/tiptap/nodes/gallery-node";

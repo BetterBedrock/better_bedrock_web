@@ -1,8 +1,9 @@
 import { Button } from "@/_components/button";
 
-import { styles } from ".";
 import { BedrockText } from "@/_components/bedrock-text";
-import { CreatorsListElement } from "@/app/components/creators";
+import { CreatorsListElement } from "@/app/components/creators/creators-data";
+
+import styles from "./module.module.scss";
 
 interface ModuleCardProp {
   data: CreatorsListElement;

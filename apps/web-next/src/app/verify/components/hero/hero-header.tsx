@@ -1,8 +1,9 @@
 "use server";
 
 import { ProjectDto } from "@/_lib/api";
-import { styles } from ".";
 import { BedrockText } from "@/_components/bedrock-text";
+
+import styles from "./hero.module.scss";
 
 interface HeroHeaderProps {
   project: ProjectDto;

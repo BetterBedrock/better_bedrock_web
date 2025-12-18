@@ -1,5 +1,6 @@
-import { CreatorsListElement } from "../";
-import { styles, ModuleCard } from ".";
+import { CreatorsListElement } from "@/app/components/creators/creators-data";
+import { ModuleCard } from "./module-card";
+import styles from "./module.module.scss";
 
 interface ModuleContributorsListProps {
   data: CreatorsListElement[];

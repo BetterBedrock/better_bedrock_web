@@ -5,8 +5,9 @@ import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
 import { CircularProgressIndicator } from "@/_components/circular-progress-indicator";
 import { calculateItemDisplayWeight } from "@/utils/math";
+import { useDetailsEditorDownloadFile } from "@/app/project/components/details-editor/hooks/use-details-editor-download-file";
 
-import { styles, useDetailsEditorDownloadFile } from ".";
+import styles from "./details-editor.module.scss";
 
 export const DetailsEditorDownloadFile = () => {
   const { selectedProject, uploadFileRef, uploadDownloadFile, isUploading } =

@@ -1,9 +1,10 @@
 "use client";
 
 import { Banner } from "@/_components/banner";
-import { styles } from ".";
 import { LoadingBar } from "@/_components/loading-bar";
 import { useDownload } from "@/_providers/download";
+
+import styles from "./hero.module.scss";
 
 export const HeroDownloadProgress = () => {
   const { downloadProgress } = useDownload();

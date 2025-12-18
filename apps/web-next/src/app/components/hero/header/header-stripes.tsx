@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { styles } from ".";
+import styles from "./header.module.scss";
 
 interface HeaderStripesProps {
   side: "left" | "right";

@@ -1,6 +1,6 @@
 import { Avatar } from "@/_components/avatar";
 
-import { styles } from ".";
+import styles from "./user.module.scss";
 
 interface UserProfilePicture {
   name: string;

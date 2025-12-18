@@ -1,10 +1,10 @@
 import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
 import { ButtonGroup } from "@/_components/button-group/button-group";
-import { InformationTab, informationData } from "@/app/information/[slug]/data";
+import { InformationTab, informationData } from "@/app/information/[slug]/data/information-data";
 import { Routes } from "@/utils/routes";
 
-import { styles } from ".";
+import styles from "./header.module.scss";
 import { Link } from "@/_components/link";
 
 interface HeaderTabsProps {

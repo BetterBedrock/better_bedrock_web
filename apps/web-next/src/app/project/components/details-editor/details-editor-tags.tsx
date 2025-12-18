@@ -7,8 +7,9 @@ import { Button } from "@/_components/button";
 import { ButtonGroup } from "@/_components/button-group/button-group";
 import { Input } from "@/_components/input";
 import { Tag } from "@/_components/tag";
+import { useDetailsEditorTags } from "@/app/project/components/details-editor/hooks/use-details-editor-tags";
 
-import { styles, useDetailsEditorTags } from ".";
+import styles from "./details-editor.module.scss";
 
 export const DetailsEditorTags = () => {
   const { handleCreateTag, tagInputRef, selectedProject, handleDeleteTag, handleKeyDown } =

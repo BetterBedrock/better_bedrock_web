@@ -2,13 +2,15 @@
 
 import { ButtonGroup } from "@/_components/button-group/button-group";
 import { Collapsible } from "@/_components/collapsible";
+import { ProjectsCardTypeButton } from "./projects-card-type-button";
+import { useProjectsCardSearch } from "./providers/projects-card-search";
 
 import {
   SEARCH_PROJECT_TYPES,
   SearchProjectTypeKey,
 } from "@/public/content/better-bedrock";
 
-import { ProjectsCardTypeButton, styles, useProjectsCardSearch } from ".";
+import styles from "./projects-card.module.scss";
 
 export const ProjectsCardType = () => {
   const { selectedType } = useProjectsCardSearch();

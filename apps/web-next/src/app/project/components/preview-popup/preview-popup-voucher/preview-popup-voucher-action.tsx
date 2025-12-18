@@ -1,7 +1,7 @@
 import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
 
-import { styles } from ".";
+import styles from "./preview-popup-voucher.module.scss";
 
 interface PreviewPopupVoucherActionProps {
   activate: () => Promise<void>;

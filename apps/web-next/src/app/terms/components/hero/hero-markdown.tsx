@@ -1,6 +1,6 @@
 import ReactMarkdown from "react-markdown";
 
-import { styles } from ".";
+import styles from "./hero.module.scss";
 
 export const HeroMarkdown = () => (
   <div className={styles.markdown}>

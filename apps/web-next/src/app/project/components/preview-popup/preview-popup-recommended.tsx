@@ -2,7 +2,7 @@
 
 import { DownloadMethodCard } from "@/_components/download-method-card";
 import { CheckoutOptionGroupDto } from "@/_lib/api";
-import { createStripeSession } from "@/app/project/components/preview-popup/hooks";
+import { createStripeSession } from "@/app/project/components/preview-popup/hooks/use-create-stripe-session";
 
 interface PreviewPopupRecommendedProps {
   categories: CheckoutOptionGroupDto[] | undefined;

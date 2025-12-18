@@ -1,8 +1,9 @@
 "use client";
 
 import { Input } from "@/_components/input";
+import { useProjectsCardSearch } from "./providers/projects-card-search";
 
-import { styles, useProjectsCardSearch } from ".";
+import styles from "./projects-card.module.scss";
 
 export const ProjectsCardSearchBar = () => {
   const { inputRef } = useProjectsCardSearch();

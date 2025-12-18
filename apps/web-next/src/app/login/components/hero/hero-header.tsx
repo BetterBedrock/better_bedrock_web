@@ -1,6 +1,6 @@
 import { BedrockText } from "@/_components/bedrock-text";
 
-import { styles } from ".";
+import styles from "./hero.module.scss";
 
 export const HeroHeader = () => (
   <div className={styles.header}>

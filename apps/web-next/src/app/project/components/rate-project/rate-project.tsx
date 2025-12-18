@@ -1,8 +1,8 @@
 import { Rating } from "@/_components/rating";
-import { styles } from ".";
 import { fetchUserProjectRating } from "@/_lib/user/fetch-user-project-rating";
 import { DetailedProjectDto } from "@/_lib/api";
-import { manageRating } from "@/app/project/components/rate-project/server";
+import { manageRating } from "@/app/project/components/rate-project/server/manage-rating";
+import styles from "./rate-project.module.scss";
 
 interface RateProjectProps {
   detailedProject: DetailedProjectDto;

@@ -1,7 +1,7 @@
 import { BedrockText } from "@/_components/bedrock-text";
 import { Card } from "@/_components/card";
 
-import { styles } from ".";
+import styles from "./reasons.module.scss";
 
 interface ReasonsGridItemProps {
   title: string;

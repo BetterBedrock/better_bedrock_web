@@ -2,19 +2,16 @@
 
 import { BedrockText } from "@/_components/bedrock-text";
 import { Card } from "@/_components/card";
-import { UserLinkvertiseInfo } from "@/app/profile/[name]/components/user/user-linkvertise-info";
-
-import {
-  styles,
-  UserProfileActions,
-  UserProfileName,
-  UserProfilePicture,
-  UserProfileRating,
-} from ".";
-
+import { UserLinkvertiseInfo } from "./user-linkvertise-info";
 import clsx from "clsx";
 import { loadUserProfile } from "@/_lib/user/load-user-profile";
 import { loadUserRating } from "@/_lib/user/load-user-rating";
+import { UserProfileActions } from "./user-profile-actions";
+import { UserProfileName } from "./user-profile-name";
+import { UserProfilePicture } from "./user-profile-picture";
+import { UserProfileRating } from "./user-profile-rating";
+
+import styles from "./user.module.scss";
 
 interface UserProps {
   params?: { name: string };

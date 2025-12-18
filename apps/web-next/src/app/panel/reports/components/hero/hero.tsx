@@ -1,8 +1,8 @@
-import { Header } from "./header";
-import { Resolved } from "@/app/panel/reports/components/hero/resolved";
-import { Unresolved } from "@/app/panel/reports/components/hero/unresolved";
+import { Header } from "./header/header";
+import { Resolved } from "./resolved/resolved";
+import { Unresolved } from "./unresolved/unresolved";
 
-import { styles } from ".";
+import styles from "./hero.module.scss";
 
 export const Hero = () => (
   <div className={styles.hero}>

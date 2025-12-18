@@ -1,5 +1,7 @@
 import { Card, CardDivider } from "@/_components/card";
-import { ReasonsGridList, ReasonsHeading, styles } from ".";
+import { ReasonsGridList } from "./reasons-grid-list";
+import { ReasonsHeading } from "./reasons-heading";
+import styles from "./reasons.module.scss";
 
 export const Reasons = () => (
   <div className={styles.section}>

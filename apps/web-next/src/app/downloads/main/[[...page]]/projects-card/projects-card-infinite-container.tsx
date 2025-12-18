@@ -1,12 +1,10 @@
 "use client";
 
 import { SearchProjectsDto } from "@/_lib/api";
-import {
-  ProjectsCardEmpty,
-  ProjectsCardList,
-  ProjectsCardLoader,
-  useInfiniteProjectsFetch,
-} from ".";
+import { useInfiniteProjectsFetch } from "./hooks/use-infinite-projects-fetch";
+import { ProjectsCardEmpty } from "./projects-card-empty";
+import { ProjectsCardList } from "./projects-card-list";
+import { ProjectsCardLoader } from "./projects-card-loader";
 
 interface ProjectsCardInfiniteContainerProps {
   searchResults: SearchProjectsDto;

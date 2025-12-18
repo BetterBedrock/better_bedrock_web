@@ -1,5 +1,6 @@
 import { fetchAllAnalytics } from "@/_lib/analytics/fetch-all-analytics";
-import { StatisticsList, styles } from ".";
+import { StatisticsList } from "./statistics-list";
+import styles from "./statistics.module.scss";
 
 export const Statistics = async () => {
   const analytics = await fetchAllAnalytics();

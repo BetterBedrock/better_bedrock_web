@@ -2,8 +2,7 @@
 
 import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
-
-import { useActionsSave } from ".";
+import { useActionsSave } from "@/app/project/components/actions/hooks/use-actions-save";
 
 export const ActionsSave = () => {
   const { saveProject } = useActionsSave();

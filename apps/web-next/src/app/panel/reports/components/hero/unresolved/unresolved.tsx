@@ -2,7 +2,8 @@ import { Banner } from "@/_components/banner";
 import { CircularProgressIndicator } from "@/_components/circular-progress-indicator";
 import { ReportCard } from "@/_components/report-card";
 import { useReportsManager } from "@/app/panel/reports/providers/reports-manager";
-import { styles } from ".";
+
+import styles from "./unresolved.module.scss";
 
 export const Unresolved = () => {
   const { setSelectedReport, reports } = useReportsManager();

@@ -3,16 +3,12 @@
 import { CardDivider } from "@/_components/card";
 import { Popup } from "@/_components/popup";
 import { ProjectDto } from "@/_lib/api";
-
-import {
-  PreviewPopupRecommended,
-  PreviewPopupTabs,
-  useVoucherManager,
-} from ".";
-
-import { PreviewPopupFooter } from "./preview-popup-footer";
-import { PreviewPopupVoucher } from "./preview-popup-voucher";
-import { PreviewPopupPlans } from "./preview-popup-plans";
+import { useVoucherManager } from "@/app/project/components/preview-popup/hooks/use-voucher-manager";
+import { PreviewPopupFooter } from "@/app/project/components/preview-popup/preview-popup-footer/preview-popup-footer";
+import { PreviewPopupPlans } from "@/app/project/components/preview-popup/preview-popup-plans/preview-popup-plans";
+import { PreviewPopupRecommended } from "@/app/project/components/preview-popup/preview-popup-recommended";
+import { PreviewPopupTabs } from "@/app/project/components/preview-popup/preview-popup-tabs";
+import { PreviewPopupVoucher } from "@/app/project/components/preview-popup/preview-popup-voucher/preview-popup-voucher";
 
 interface PreviewPopupProps {
   project: ProjectDto;

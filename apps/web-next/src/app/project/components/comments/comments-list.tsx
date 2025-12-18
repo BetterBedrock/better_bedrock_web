@@ -1,10 +1,10 @@
 import { Banner } from "@/_components/banner";
-import { styles } from ".";
 import { Comment } from "@/_components/comment";
 import { ProjectCommentDto, UserDto } from "@/_lib/api";
-import { fetchLoggedUser } from "@/_lib/auth";
 import { postComment } from "@/_lib/projects/post-comment";
 import { deleteComment } from "@/_lib/projects/delete-comment";
+
+import styles from "./comments.module.scss";
 
 interface CommentsListProps {
   comments: ProjectCommentDto[];

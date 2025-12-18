@@ -1,7 +1,11 @@
 import { fetchLoggedUser } from "@/_lib/auth/fetch-logged-user";
-import { styles, DraftsList, DraftsAction } from ".";
 import { notFound } from "next/navigation";
 import { loadUserProfile } from "@/_lib/user/load-user-profile";
+
+import { DraftsList } from "./drafts-list";
+import { DraftsAction } from "./drafts-action";
+
+import styles from "./drafts.module.scss";
 
 interface DraftsProps {
   params?: Promise<{ name: string }>;

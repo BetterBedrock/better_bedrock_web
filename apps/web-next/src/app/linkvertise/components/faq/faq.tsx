@@ -1,5 +1,7 @@
 import { Card, CardDivider } from "@/_components/card";
-import { FAQHeading, FAQList, styles } from ".";
+import { FAQHeading } from "./faq-heading";
+import { FAQList } from "./faq-list";
+import styles from "./faq.module.scss";
 
 export const FAQ = () => (
   <div className={styles.section}>

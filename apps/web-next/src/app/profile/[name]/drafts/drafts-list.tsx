@@ -1,10 +1,10 @@
 import { Banner } from "@/_components/banner";
 import { GridDownloadCard } from "@/_components/grid-download-card";
 import { fetchUserDrafts } from "@/_lib/projects/fetch-user-drafts";
-
-import { styles } from ".";
 import { fetchUserByName } from "@/_lib/user";
 import { notFound } from "next/navigation";
+
+import styles from "./drafts.module.scss";
 
 interface DraftsListProps {
   name: string;

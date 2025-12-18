@@ -1,7 +1,7 @@
 import { GridDownloadCard } from "@/_components/grid-download-card";
 import { SearchProjectsDto } from "@/_lib/api";
 
-import { styles } from ".";
+import styles from "./projects-card.module.scss";
 
 interface ProjectsCardListProps {
   searchResults: SearchProjectsDto;

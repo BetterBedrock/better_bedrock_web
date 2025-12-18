@@ -1,7 +1,7 @@
-import { Hero } from "./components/hero";
+import { Hero } from "./components/hero/hero";
 import { Section } from "@/_components/section";
 
-import { styles } from ".";
+import styles from "./success.module.scss";
 
 export interface SuccessPageProps {
   searchParams: Promise<{ checkoutId: string }>;

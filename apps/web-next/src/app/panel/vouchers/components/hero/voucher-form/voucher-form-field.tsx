@@ -1,9 +1,10 @@
 import { Control, FieldErrors } from "react-hook-form";
 import { BedrockText } from "@/_components/bedrock-text";
 import { VoucherDto } from "@/_lib/api";
-import { VoucherFormFieldController } from "@/app/panel/vouchers/components/hero/voucher-form/voucher-form-field-controller";
+import { VoucherFormFieldController } from "./voucher-form-field-controller";
+import { VoucherFormError } from "./voucher-form-error";
 
-import { styles, VoucherFormError } from ".";
+import styles from "./voucher-form.module.scss";
 
 interface VoucherFormFieldProps {
   name: keyof VoucherDto;

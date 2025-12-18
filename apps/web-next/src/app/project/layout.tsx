@@ -1,7 +1,7 @@
 import { Section } from "@/_components/section";
 import { ReactNode } from "react";
 
-import { styles } from ".";
+import styles from "./project.module.scss";
 
 export interface ProjectPageProps {
   params: Promise<{ id: string }>;

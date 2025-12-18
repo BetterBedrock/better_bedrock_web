@@ -1,6 +1,5 @@
 "use client";
 
-import { styles } from ".";
 import { useState } from "react";
 import z from "zod";
 import { Controller, useForm } from "react-hook-form";
@@ -21,6 +20,8 @@ import {
   updateProfileRequest,
 } from "@/_services/user-service";
 import { useFetchSecret } from "@/hooks/use-fetch-secret";
+
+import styles from "./user.module.scss";
 
 const schema = z.object({
   name: z.string(),

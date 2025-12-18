@@ -6,7 +6,8 @@ import { Button } from "@/_components/button";
 import { ButtonGroup } from "@/_components/button-group/button-group";
 import { Input } from "@/_components/input";
 
-import { styles, handleCreateProject } from ".";
+import { handleCreateProject } from "./server/handle-create-project";
+import styles from "./hero.module.scss";
 
 export const HeroActions = () => {
   const [title, setTitle] = useState("");

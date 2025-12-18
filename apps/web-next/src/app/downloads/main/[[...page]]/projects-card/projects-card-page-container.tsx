@@ -1,15 +1,14 @@
 "use client";
 
-import { ProjectsCardEmpty, ProjectsCardList, styles } from ".";
-
-import {
-  ProjectsCardPageNextButton,
-  usePageProjectsFetch,
-  ProjectsCardPagePrevButton,
-} from ".";
-
 import { ButtonGroup } from "@/_components/button-group/button-group";
 import { SearchProjectsDto } from "@/_lib/api";
+import { usePageProjectsFetch } from "./hooks/use-page-projects-fetch";
+import { ProjectsCardEmpty } from "./projects-card-empty";
+import { ProjectsCardList } from "./projects-card-list";
+import { ProjectsCardPageNextButton } from "./projects-card-page-next-button";
+import { ProjectsCardPagePrevButton } from "./projects-card-page-prev-button";
+
+import styles from "./projects-card.module.scss";
 
 interface ProjectsCardPageContainerProps {
   searchResults: SearchProjectsDto;

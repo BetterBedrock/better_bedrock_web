@@ -1,6 +1,7 @@
 import { Section } from "@/_components/section";
-import { styles } from ".";
 import { ReactNode } from "react";
+
+import styles from "./information.module.scss";
 
 interface InformationLayoutProps {
   children: ReactNode;

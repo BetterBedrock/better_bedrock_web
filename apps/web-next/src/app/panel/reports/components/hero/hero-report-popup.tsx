@@ -10,13 +10,13 @@ import { Popup } from "@/_components/popup";
 import { Rating } from "@/_components/rating";
 import { DetailedUserDto, DetailedProjectDto } from "@/_lib/api";
 import { useProject } from "@/_providers/project";
-import { useReport } from "@/_providers/report";
 import { useUser } from "@/_providers/user";
 import { useReportsManager } from "@/app/panel/reports/providers/reports-manager";
-import { styles } from ".";
 import { useEffect, useState } from "react";
 import { resolveReport } from "@/_lib/report/resolve-report";
 import { reOpenReport } from "@/_lib/report/re-open-report";
+
+import styles from "./hero.module.scss";
 
 export const HeroReportPopup = () => {
   const { findDetailedUser } = useUser();
@@ -29,20 +29,22 @@ export const HeroReportPopup = () => {
   const [project, setProject] = useState<DetailedProjectDto | undefined>();
   const [fetched, setFetched] = useState(false);
 
-  const fetchReportData = async () => {
-    setReporter(await findDetailedUser(selectedReport!.reporterId));
-    if (selectedReport!.reportedUserId) {
-      setReported(await findDetailedUser(selectedReport!.reportedUserId));
-    }
-
-    if (selectedReport!.reportedProjectId) {
-      setProject(await fetchProjectDetails(selectedReport!.reportedProjectId));
-    }
-
-    setFetched(true);
-  };
-
   useEffect(() => {
+    const fetchReportData = async () => {
+      setReporter(await findDetailedUser(selectedReport!.reporterId));
+      if (selectedReport!.reportedUserId) {
+        setReported(await findDetailedUser(selectedReport!.reportedUserId));
+      }
+
+      if (selectedReport!.reportedProjectId) {
+        setProject(
+          await fetchProjectDetails(selectedReport!.reportedProjectId)
+        );
+      }
+
+      setFetched(true);
+    };
+    
     fetchReportData();
   }, []);
 

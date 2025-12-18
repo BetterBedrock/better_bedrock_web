@@ -1,5 +1,3 @@
-"use client";
-
 import { ProjectDto } from "@/_lib/api";
 import { activateVoucher } from "@/_lib/checkout";
 import { generateDownload } from "@/_lib/downloads/generate-download";

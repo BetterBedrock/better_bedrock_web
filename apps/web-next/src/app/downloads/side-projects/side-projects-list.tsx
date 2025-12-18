@@ -1,7 +1,7 @@
 import { GridDownloadCard } from "@/_components/grid-download-card";
 import { SimpleProjectDto } from "@/_lib/api";
 
-import { styles } from ".";
+import styles from "./side-projects.module.scss";
 
 interface SideProjectsListProps {
   projects: SimpleProjectDto[];

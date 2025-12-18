@@ -2,8 +2,12 @@
 
 import { Banner } from "@/_components/banner";
 import { CircularProgressIndicator } from "@/_components/circular-progress-indicator";
-import { VoucherForm } from "@/app/panel/vouchers/components/hero/voucher-form";
-import { styles, useVouchers, VouchersAction, VouchersList } from ".";
+import { VoucherForm } from "@/app/panel/vouchers/components/hero/voucher-form/voucher-form";
+import { useVouchers } from "./use-vouchers";
+import { VouchersAction } from "./vouchers-action";
+import { VouchersList } from "./vouchers-list";
+
+import styles from "./vouchers.module.scss"
 
 export const Vouchers = () => {
   const {

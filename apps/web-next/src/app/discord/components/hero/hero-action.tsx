@@ -3,7 +3,7 @@
 import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
 import { Link } from "@/_components/link";
-import { useRedirectToDiscord } from "@/app/discord/hooks";
+import { useRedirectToDiscord } from "@/app/discord/hooks/use-redirect-to-discord";
 
 export const HeroAction = () => {
   useRedirectToDiscord();

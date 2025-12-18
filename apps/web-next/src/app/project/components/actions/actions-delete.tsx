@@ -3,8 +3,8 @@
 import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
 import { PopupWrapper } from "@/_components/popup/popup-wrapper";
-
-import { ActionsDeletePopup, styles } from ".";
+import { ActionsDeletePopup } from "@/app/project/components/actions/actions-delete-popup";
+import styles from "./actions.module.scss";
 
 export const ActionsDelete = () => (
   <PopupWrapper popup={(close) => <ActionsDeletePopup close={close} />} className={styles.button}>

@@ -1,6 +1,6 @@
 import { BedrockText } from "@/_components/bedrock-text";
 
-import { styles } from ".";
+import styles from "./preview-popup-plans.module.scss";
 
 interface PreviewPopupPlansPeriodProps {
   selectedTimeframe: string | undefined;

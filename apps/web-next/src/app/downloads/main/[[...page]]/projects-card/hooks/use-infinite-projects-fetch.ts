@@ -5,7 +5,7 @@ import { fetchSearchResults } from "@/_lib/projects/fetch-search-results";
 import { SEARCH_PROJECT_TYPES } from "@/public/content/better-bedrock";
 import { useState, useRef, useEffect } from "react";
 
-import { useProjectsCardSearch } from "@/app/downloads/main/[[...page]]/projects-card";
+import { useProjectsCardSearch } from "@/app/downloads/main/[[...page]]/projects-card/providers/projects-card-search";
 
 interface UseInfiniteProjectsFetchProps {
     searchResults: SearchProjectsDto;

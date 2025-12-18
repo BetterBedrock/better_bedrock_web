@@ -1,11 +1,11 @@
 import { Section } from "@/_components/section";
 
-import { FAQ } from "@/app/linkvertise/components/faq";
-import { Hero } from "@/app/linkvertise/components/hero";
-import { Reasons } from "@/app/linkvertise/components/reasons";
-import { Tutorial } from "@/app/linkvertise/components/tutorial";
+import { FAQ } from "./components/faq/faq";
+import { Hero } from "./components/hero/hero";
+import { Reasons } from "./components/reasons/reasons";
+import { Tutorial } from "./components/tutorial/tutorial";
 
-import { styles } from ".";
+import styles from "./linkvertise.module.scss";
 
 export default function Linkvertise() {
   return (

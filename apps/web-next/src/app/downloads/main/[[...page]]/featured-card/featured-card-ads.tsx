@@ -1,8 +1,10 @@
 import BetterBedrockImage from "@/public/images/crosshair_backgrounds/25.webp";
 import SideProjectsImage from "@/public/images/crosshair_backgrounds/27.webp";
 
-import { styles, FeaturedCardBanner } from ".";
 import { Routes } from "@/utils/routes";
+import { FeaturedCardBanner } from "@/app/downloads/main/[[...page]]/featured-card/featured-card-banner";
+
+import styles from "./featured-card.module.scss";
 
 export const FeaturedCardAds = () => (
   <div className={styles.ad}>

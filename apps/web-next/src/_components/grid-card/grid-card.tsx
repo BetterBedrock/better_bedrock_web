@@ -1,8 +1,9 @@
 import { BedrockText } from "../bedrock-text/bedrock-text";
 
-import { styles } from ".";
 import tutorialThumbnail from "@/public/images/tutorial-thumbnail-placeholder.png";
-import { tagData } from "@/app/information/[slug]";
+import { tagData } from "@/app/information/[slug]/data/information-data";
+
+import { styles } from ".";
 
 interface GridCardProps {
   title?: string;

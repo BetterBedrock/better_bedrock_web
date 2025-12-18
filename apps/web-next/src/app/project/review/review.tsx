@@ -1,11 +1,11 @@
 import { fetchLoggedUser } from "@/_lib/auth";
 import { fetchDraftsDetails } from "@/_lib/projects/fetch-draft-details";
-import { CardPreview } from "@/app/project/components/card-preview";
-import { DownloadButton } from "@/app/project/components/download-button";
+import { CardPreview } from "@/app/project/components/card-preview/card-preview";
+import { Description } from "@/app/project/components/description/description";
+import { DownloadButton } from "@/app/project/components/download-button/download-button";
+import { Header } from "@/app/project/components/header/header";
+import { ProjectPageProps } from "@/app/project/layout";
 import { notFound } from "next/navigation";
-import { ProjectPageProps } from "@/app/project";
-import { Description } from "@/app/project/components/description";
-import { Header } from "@/app/project/components/header";
 
 export const metadata = {
   title: "Review Submitted Project",

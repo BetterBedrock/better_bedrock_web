@@ -1,7 +1,7 @@
 import { Section } from "@/_components/section";
-import { Hero } from "@/app/discord/components/hero";
+import { Hero } from "./components/hero/hero";
 
-import { styles } from ".";
+import styles from "./discord.module.scss";
 
 export default function Discord() {
   return (

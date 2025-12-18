@@ -1,10 +1,11 @@
 import { Banner } from "@/_components/banner";
 import { StatisticsCard } from "@/_components/statistics-card";
-import { styles } from ".";
 import { fetchUserAnalytics } from "@/_lib/analytics/fetch-user-analytics";
 import { notFound } from "next/navigation";
 import { simplifyAnalytics } from "@/_lib/analytics/simplify-analytics";
 import { fetchUserByName } from "@/_lib/user";
+
+import styles from "./stats.module.scss";
 
 interface StatsProps {
   params?: Promise<{ name: string }>;

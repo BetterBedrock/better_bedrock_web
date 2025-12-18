@@ -1,7 +1,7 @@
-import { Hero } from "./components/hero";
+import { Hero } from "./components/hero/hero";
 import { Section } from "@/_components/section";
 
-import { styles } from ".";
+import styles from "./login.module.scss";
 
 export default function Login() {
   return (

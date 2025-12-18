@@ -1,7 +1,7 @@
 import { Section } from "@/_components/section";
-import { Hero } from "@/app/panel/projects/components/hero";
+import { Hero } from "./components/hero/hero";
 
-import { styles } from ".";
+import styles from "./projects.module.scss";
 
 export default function Projects() {
   return (

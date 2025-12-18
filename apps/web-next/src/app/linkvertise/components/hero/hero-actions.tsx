@@ -5,7 +5,7 @@ import { ButtonGroup } from "@/_components/button-group/button-group";
 import { Routes } from "@/utils/routes";
 import { Link } from "@/_components/link";
 
-import { styles } from ".";
+import styles from "./hero.module.scss";
 
 export const HeroActions = () => {
   return (

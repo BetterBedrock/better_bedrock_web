@@ -4,7 +4,6 @@ import {
   SimpleProjectDto,
   AnalyticsDto,
   UserDto,
-  UserRatingDto,
   SimpleUserDto,
   ManageProfileDto,
 } from "@/_lib/api";

@@ -1,5 +1,9 @@
-import { InformationVideos } from "@/app/information/[slug]";
-import { TutorialVideosTitle, TutorialVideosDescription, TutorialVideosGrid, styles } from ".";
+import { TutorialVideosDescription } from "./tutorial-videos-description";
+import { TutorialVideosGrid } from "./tutorial-videos-grid";
+import { TutorialVideosTitle } from "./tutorial-videos-title";
+import { InformationVideos } from "@/app/information/[slug]/data/information-data";
+
+import styles from "./tutorial-videos.module.scss";
 
 export interface TutorialVideosProps {
   videos: InformationVideos;

@@ -1,8 +1,11 @@
 import { Card, CardDivider } from "@/_components/card";
 import { ProjectMode } from "@/_components/grid-download-card";
-import { SubmittedOverlay } from "@/app/project/components/submitted-overlay";
-import { styles, AuthorDetails, ProjectDetails } from ".";
 import { DetailedProjectDto } from "@/_lib/api";
+import { AuthorDetails } from "@/app/project/components/header/author-details/author-details";
+import { ProjectDetails } from "@/app/project/components/header/project-details/project-details";
+import { SubmittedOverlay } from "@/app/project/components/submitted-overlay/submitted-overlay";
+
+import styles from "./header.module.scss";
 
 interface HeaderCardProps {
   mode: ProjectMode;

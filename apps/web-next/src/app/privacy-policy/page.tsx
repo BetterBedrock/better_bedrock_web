@@ -1,6 +1,7 @@
-import { Hero } from "./components/hero";
-import { styles } from ".";
+import { Hero } from "./components/hero/hero";
 import { Section } from "@/_components/section";
+
+import styles from "./privacy-policy.module.scss";
 
 export default function PrivacyPolicy() {
   return (

@@ -4,9 +4,8 @@ import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
 import { PopupWrapper } from "@/_components/popup/popup-wrapper";
 import { DetailedProjectDto, UserDto } from "@/_lib/api";
-import { PreviewPopup } from "@/app/project/components/preview-popup";
-
-import { useDownloadButton } from ".";
+import { useDownloadButton } from "@/app/project/components/download-button/hooks/use-download-button";
+import { PreviewPopup } from "@/app/project/components/preview-popup/preview-popup";
 
 interface DownloadButtonProps {
   user?: UserDto;

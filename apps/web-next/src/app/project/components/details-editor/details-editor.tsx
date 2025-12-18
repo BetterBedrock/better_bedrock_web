@@ -1,11 +1,17 @@
 import clsx from "clsx";
 
-import { SubmittedOverlay } from "../submitted-overlay";
+import { DetailsEditorBetterBedrockContent } from "@/app/project/components/details-editor/details-editor-better-bedrock-content";
+import { DetailsEditorDownloadFile } from "@/app/project/components/details-editor/details-editor-download-file";
+import { DetailsEditorProjectType } from "@/app/project/components/details-editor/details-editor-project-type";
+import { DetailsEditorTags } from "@/app/project/components/details-editor/details-editor-tags";
 
-import { DetailsEditorBetterBedrockContent, DetailsEditorDownloadFile, DetailsEditorProjectType, DetailsEditorTags, styles } from ".";
 import { Card, CardDivider } from "@/_components/card";
-import { HeaderTitle } from "@/app/project/components/header";
 import { DetailedProjectDto, UserDto } from "@/_lib/api";
+
+import { SubmittedOverlay } from "@/app/project/components/submitted-overlay/submitted-overlay";
+import { HeaderTitle } from "@/app/project/components/header/header-title";
+
+import styles from "./details-editor.module.scss";
 
 interface DetailsEditorProps {
   detailedProject: DetailedProjectDto;

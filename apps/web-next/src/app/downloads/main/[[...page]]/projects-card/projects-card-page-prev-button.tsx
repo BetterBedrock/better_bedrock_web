@@ -3,7 +3,7 @@ import { Button } from "@/_components/button";
 import { Link } from "@/_components/link";
 import { Routes } from "@/utils/routes";
 
-import { styles } from ".";
+import styles from "./projects-card.module.scss";
 
 interface ProjectsCardPagePrevButtonProps {
   currentPage: number;

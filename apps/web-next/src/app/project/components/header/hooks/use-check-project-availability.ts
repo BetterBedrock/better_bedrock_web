@@ -13,18 +13,18 @@ export const useCheckProjectAvailability = ({ mode, selectedProject }: UseHeader
   const [isPublished, setIsPublished] = useState(false);
 
   useEffect(() => {
+    const checkIfPublished = async () => {
+      if (!selectedProject) return;
+
+      const details = await fetchProjectsBasicInfo([selectedProject.id]);
+
+      if (details && details?.length > 0) {
+        setIsPublished(true);
+      }
+    };
+
     if (mode === "edit") checkIfPublished();
-  }, [selectedProject]);
-
-  const checkIfPublished = async () => {
-    if (!selectedProject) return;
-
-    const details = await fetchProjectsBasicInfo([selectedProject.id]);
-
-    if (details && details?.length > 0) {
-      setIsPublished(true);
-    }
-  };
+  }, [fetchProjectsBasicInfo, mode, selectedProject]);
 
   return isPublished;
 };

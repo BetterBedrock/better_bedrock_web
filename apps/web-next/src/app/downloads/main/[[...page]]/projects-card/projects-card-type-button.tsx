@@ -2,9 +2,8 @@
 
 import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
+import { useProjectsCardSearch } from "./providers/projects-card-search";
 import { SearchProjectTypeKey } from "@/public/content/better-bedrock";
-
-import { useProjectsCardSearch } from ".";
 
 interface ProjectsCardTypeButtonProps {
   selectedKey: string;

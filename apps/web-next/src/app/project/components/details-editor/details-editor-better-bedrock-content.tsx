@@ -4,8 +4,9 @@ import clsx from "clsx";
 import { BedrockText } from "@/_components/bedrock-text";
 import { CardDivider } from "@/_components/card";
 import { InputSwitch } from "@/_components/input/input-switch";
+import { useDetailsEditorBetterBedrockContent } from "@/app/project/components/details-editor/hooks/use-details-editor-better-bedrock-content";
 
-import { styles, useDetailsEditorBetterBedrockContent } from ".";
+import styles from "./details-editor.module.scss";
 
 export const DetailsEditorBetterBedrockContent = () => {
   const { handleSwitchBetterBedrock, selectedProject } = useDetailsEditorBetterBedrockContent();

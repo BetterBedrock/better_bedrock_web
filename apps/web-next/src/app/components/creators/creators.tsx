@@ -1,5 +1,6 @@
 import { Section } from "@/_components/section";
-import { styles, CreatorsModuleList } from ".";
+import { CreatorsModuleList } from "./creators-module-list";
+import styles from "./creators.module.scss";
 
 export const Creators = () => (
   <Section className={styles.background} extraClassName={styles.padding} center>

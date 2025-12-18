@@ -3,7 +3,7 @@ import { Routes } from "@/utils/routes";
 import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
 
-import { styles } from ".";
+import styles from "./hero.module.scss";
 
 export const HeroAction = () => (
   <Link link={Routes.HOME} hideStyles>

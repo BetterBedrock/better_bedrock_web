@@ -1,5 +1,6 @@
 import { BedrockText } from "@/_components/bedrock-text";
-import { styles } from ".";
+
+import styles from "./voucher-form.module.scss";
 
 interface VoucherFormErrorProps {
   message: string;

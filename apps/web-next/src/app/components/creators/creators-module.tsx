@@ -1,5 +1,8 @@
-import { CreatorsListElement, styles } from ".";
-import { ModuleContributorsList, ModuleDescription, ModuleTitle } from "./module";
+import { CreatorsListElement } from "./creators-data";
+import { ModuleContributorsList } from "./module/module-contributors-list";
+import { ModuleDescription } from "./module/module-description";
+import { ModuleTitle } from "./module/module-title";
+import styles from "./creators.module.scss";
 
 interface CreatorsModuleProps {
   title: string;

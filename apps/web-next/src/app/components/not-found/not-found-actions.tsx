@@ -4,7 +4,7 @@ import { ButtonGroup } from "@/_components/button-group/button-group";
 import { Link } from "@/_components/link";
 import { Routes } from "@/utils/routes";
 
-import { styles } from ".";
+import styles from "./not-found.module.scss";
 
 export const NotFoundActions = () => (
   <ButtonGroup className={styles.actions}>

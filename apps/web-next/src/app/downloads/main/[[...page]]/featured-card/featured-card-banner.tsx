@@ -3,7 +3,7 @@ import { BedrockText } from "@/_components/bedrock-text";
 import { Card } from "@/_components/card";
 import { Link } from "@/_components/link";
 
-import { styles } from ".";
+import styles from "./featured-card.module.scss";
 
 interface FeaturedCardBannerProps {
   image: string;

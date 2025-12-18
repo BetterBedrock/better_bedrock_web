@@ -1,9 +1,10 @@
 "use server";
 
-import { styles } from ".";
 import { fetchAllVouchers } from "@/_lib/voucher/fetch-all-vouchers";
 import { fetchAllAnalytics } from "@/_lib/analytics/fetch-all-analytics";
 import { StatisticsList } from "@/app/panel/analytics/components/hero/statistics/statistics-list";
+
+import styles from "./statistics.module.scss";
 
 export const Statistics = async () => {
   const vouchers = await fetchAllVouchers();

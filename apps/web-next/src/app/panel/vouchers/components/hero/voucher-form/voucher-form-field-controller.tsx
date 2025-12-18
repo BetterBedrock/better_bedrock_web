@@ -1,7 +1,8 @@
 import { Control, Controller } from "react-hook-form";
-import { styles } from ".";
 import { InputSwitch } from "@/_components/input/input-switch";
 import { Input } from "@/_components/input";
+
+import styles from "./voucher-form.module.scss";
 
 interface VoucherFormFieldControllerProps {
   name: string;

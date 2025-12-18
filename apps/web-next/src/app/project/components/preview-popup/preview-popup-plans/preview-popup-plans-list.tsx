@@ -4,12 +4,10 @@ import { ButtonGroup } from "@/_components/button-group/button-group";
 import { DownloadMethodCard } from "@/_components/download-method-card";
 import { Link } from "@/_components/link";
 import { CheckoutOptionGroupDto } from "@/_lib/api";
-import {
-  createStripeSession,
-  usePreviewPopupPlans,
-} from "@/app/project/components/preview-popup/hooks";
 
-import { styles } from ".";
+import styles from "./preview-popup-plans.module.scss";
+import { usePreviewPopupPlans } from "@/app/project/components/preview-popup/hooks/use-preview-popup-plans";
+import { createStripeSession } from "@/app/project/components/preview-popup/hooks/use-create-stripe-session";
 
 interface PreviewPopupPlansListProps {
   categories: CheckoutOptionGroupDto[] | undefined;

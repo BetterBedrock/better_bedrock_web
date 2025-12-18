@@ -1,5 +1,6 @@
-import { styles } from ".";
 import { YoutubeVideo } from "@/_components/youtube-video";
+
+import styles from "./hero.module.scss";
 
 export const HeroVideo = () => (
   <YoutubeVideo

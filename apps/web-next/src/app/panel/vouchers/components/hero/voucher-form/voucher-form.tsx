@@ -5,7 +5,8 @@ import { Button } from "@/_components/button";
 import { CardDivider } from "@/_components/card";
 import { Popup } from "@/_components/popup";
 import { VoucherDto, CreateVoucher } from "@/_lib/api";
-import { useVoucherForm, VoucherFormField } from ".";
+import { useVoucherForm } from "./hooks/use-voucher-form";
+import { VoucherFormField } from "./voucher-form-field";
 
 interface VoucherFormProps {
   voucher?: VoucherDto;

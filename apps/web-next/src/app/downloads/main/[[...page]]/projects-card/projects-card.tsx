@@ -1,20 +1,17 @@
 import { Card, CardBody, CardDivider } from "@/_components/card";
-
-import {
-  ProjectsCardBanner,
-  ProjectsCardInfiniteContainer,
-  ProjectsCardOrder,
-  ProjectsCardPageContainer,
-  ProjectsCardSearchBar,
-  ProjectsCardSearchProvider,
-  ProjectsCardTitle,
-  ProjectsCardType,
-  fetchInitialProjects,
-  styles,
-} from ".";
-
-import { MainProps } from "@/app/downloads/main/[[...page]]";
 import { checkIfIsBot } from "@/_lib/utils";
+import { MainProps } from "@/app/downloads/main/[[...page]]/page";
+import { ProjectsCardBanner } from "./projects-card-banner";
+import { ProjectsCardInfiniteContainer } from "./projects-card-infinite-container";
+import { ProjectsCardOrder } from "./projects-card-order";
+import { ProjectsCardPageContainer } from "./projects-card-page-container";
+import { ProjectsCardSearchBar } from "./projects-card-search-bar";
+import { ProjectsCardTitle } from "./projects-card-title";
+import { ProjectsCardType } from "./projects-card-type";
+import { ProjectsCardSearchProvider } from "./providers/projects-card-search";
+import { fetchInitialProjects } from "./server/fetch-initial-projects";
+
+import styles from "./projects-card.module.scss"
 
 export const revalidate = 60;
 

@@ -4,7 +4,7 @@ import { ButtonGroup } from "@/_components/button-group/button-group";
 import Link from "next/link";
 import { Routes } from "@/utils/routes";
 
-import { styles } from ".";
+import styles from "./header.module.scss";
 
 export const HeroActions = () => (
   <div className={styles.actions}>

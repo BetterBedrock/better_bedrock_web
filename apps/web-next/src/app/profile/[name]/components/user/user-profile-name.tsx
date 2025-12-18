@@ -1,6 +1,6 @@
 import { BedrockText } from "@/_components/bedrock-text";
 
-import { styles } from ".";
+import styles from "./user.module.scss";
 
 interface UserProfileNameProps {
   name: string;

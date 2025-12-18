@@ -1,5 +1,8 @@
 import { Section } from "@/_components/section";
-import { styles, aboutSectionsData, AboutList } from ".";
+import { aboutSectionsData } from "./about-data";
+import { AboutList } from "./about-list";
+
+import styles from "./about.module.scss";
 
 interface AboutProps {
   sectionIndex: 0 | 1;

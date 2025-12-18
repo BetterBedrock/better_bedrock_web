@@ -1,6 +1,6 @@
-import { Hero } from "./components/hero";
-import { styles } from ".";
 import { Section } from "@/_components/section";
+import { Hero } from "@/app/verify/components/hero/hero";
+import styles from "./verify.module.scss";
 
 interface FetchProps {
   searchParams: Promise<{

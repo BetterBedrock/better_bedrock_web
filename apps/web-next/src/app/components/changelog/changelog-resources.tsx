@@ -1,5 +1,8 @@
-import { ResourcesTitle, ResourcesDescription } from "./resources";
-import { ChangelogActions, styles } from ".";
+import { ChangelogActions } from "./changelog-actions";
+import { ResourcesDescription } from "./resources/resources-description";
+import { ResourcesTitle } from "./resources/resources-title";
+
+import styles from "./changelog.module.scss";
 
 export const ChangelogResources = () => (
   <div className={styles.resources}>

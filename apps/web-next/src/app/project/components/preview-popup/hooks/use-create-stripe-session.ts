@@ -1,5 +1,3 @@
-"use client";
-
 import { createSession } from "@/_lib/checkout";
 import { loadStripe } from "@stripe/stripe-js";
 

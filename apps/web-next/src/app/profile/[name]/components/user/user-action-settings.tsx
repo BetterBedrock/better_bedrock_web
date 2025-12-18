@@ -3,11 +3,10 @@
 import { PopupWrapper } from "@/_components/popup/popup-wrapper";
 import { SimpleButton } from "@/_components/simple-button";
 import { DetailedUserDto } from "@/_lib/api";
-import { UserSettingsForm } from "@/app/profile/[name]/components/user";
-
 import SettingsGlyph from "@/public/images/settings_glyph.png";
+import { UserSettingsForm } from "./user-settings-form";
 
-import { styles } from ".";
+import styles from "./user.module.scss";
 
 interface UserActionSettingsProps {
   detailedSelectedUser: DetailedUserDto;

@@ -1,7 +1,8 @@
-import { informationData } from "@/app/information/[slug]";
-import { FAQ } from "@/app/information/[slug]/components/faq";
-import { Header } from "@/app/information/[slug]/components/header";
-import { TutorialVideos } from "@/app/information/[slug]/components/tutorial-videos";
+import { FAQ } from ".//components/faq/faq";
+import { Header } from ".//components/header/header";
+import { TutorialVideos } from ".//components/tutorial-videos/tutorial-videos";
+
+import { informationData } from "./data/information-data";
 
 interface CategoriesProps {
   params: Promise<{ slug: string }>;

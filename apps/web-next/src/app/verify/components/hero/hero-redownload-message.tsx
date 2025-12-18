@@ -3,7 +3,7 @@
 import { useDownload } from "@/_providers/download";
 import { BedrockText } from "@/_components/bedrock-text";
 
-import { styles } from ".";
+import styles from "./hero.module.scss";
 
 interface HeroRedownloadMessageProps {
   voucher?: string;

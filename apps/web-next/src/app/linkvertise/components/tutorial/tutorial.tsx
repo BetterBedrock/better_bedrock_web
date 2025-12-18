@@ -1,6 +1,9 @@
 import clsx from "clsx";
-import { styles, TutorialHeading, TutorialParts } from ".";
+import { TutorialHeading } from "./tutorial-heading";
+import { TutorialParts } from "./tutorial-parts";
 import { Card } from "@/_components/card";
+
+import styles from "./tutorial.module.scss";
 
 export const Tutorial = () => (
   <div className={styles.section}>

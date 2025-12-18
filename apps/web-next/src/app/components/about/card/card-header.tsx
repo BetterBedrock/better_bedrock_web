@@ -1,5 +1,8 @@
-import { styles, CardDescription, CardTitle } from ".";
-import { AboutSectionElement } from "../";
+import { CardDescription } from "./card-description";
+import { CardTitle } from "./card-title";
+import { AboutSectionElement } from "../about-data";
+
+import styles from "./card.module.scss";
 
 interface CardHeaderProps {
   item: AboutSectionElement;

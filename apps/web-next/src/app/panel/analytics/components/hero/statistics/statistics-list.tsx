@@ -1,11 +1,11 @@
 import { AnalyticsDto, VoucherDto, AnalyticsNames } from "@/_lib/api";
-import {
-  calculateEstimatedProfit,
-  calculateVouchersStatistics,
-  styles,
-} from ".";
+
 import { StatisticsCard } from "@/_components/statistics-card";
 import { simplifyAnalytics } from "@/_lib/analytics";
+import { calculateEstimatedProfit } from "./server/calculate-estimated-profit";
+import { calculateVouchersStatistics } from "./server/calculate-vouchers-statistics";
+
+import styles from "./statistics.module.scss";
 
 interface StatisticsListProps {
   analytics: AnalyticsDto[];

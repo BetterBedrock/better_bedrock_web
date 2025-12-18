@@ -1,7 +1,7 @@
-import { InformationVideo } from "@/app/information/[slug]/data";
+import { InformationVideo } from "@/app/information/[slug]/data/information-data";
 import { GridCard } from "@/_components/grid-card";
 
-import { styles } from ".";
+import styles from "./tutorial-videos.module.scss";
 
 interface TutorialVideosGridProps {
   videos: InformationVideo[];

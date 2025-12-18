@@ -1,5 +1,7 @@
 import { BedrockText } from "@/_components/bedrock-text";
-import { styles, HeaderStripes } from ".";
+import { HeaderStripes } from "./header-stripes";
+
+import styles from "./header.module.scss";
 
 export const HeroTitle = () => (
   <span className={styles.heading}>

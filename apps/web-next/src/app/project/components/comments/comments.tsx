@@ -1,12 +1,15 @@
 "use server";
 
-import { CommentsList, CommentsPost, styles } from ".";
 import { Card, CardDivider } from "@/_components/card";
 import { ReportProvider } from "@/_providers/report";
-import { HeaderTitle } from "@/app/project/components/header";
 import { DetailedProjectDto } from "@/_lib/api";
 import { fetchComments } from "@/_lib/projects/fetch-comments";
 import { fetchLoggedUser } from "@/_lib/auth";
+import { HeaderTitle } from "@/app/project/components/header/header-title";
+import { CommentsList } from "@/app/project/components/comments/comments-list";
+import { CommentsPost } from "@/app/project/components/comments/comments-post";
+
+import styles from "./comments.module.scss";
 
 interface CommentsProps {
   detailedProject: DetailedProjectDto;

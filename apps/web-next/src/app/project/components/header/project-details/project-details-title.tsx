@@ -1,7 +1,7 @@
 import { BedrockText } from "@/_components/bedrock-text";
 import { DetailedProjectDto } from "@/_lib/api";
 
-import { styles } from ".";
+import styles from "./project-details.module.scss";
 
 interface ProjectDetailsTitleProps {
   detailedProject: DetailedProjectDto;
@@ -9,15 +9,13 @@ interface ProjectDetailsTitleProps {
 
 export const ProjectDetailsTitle = ({
   detailedProject,
-}: ProjectDetailsTitleProps) => {
-  return (
-    <BedrockText
-      text={detailedProject?.title ?? ""}
-      type="h1"
-      textAlign="start"
-      color="white"
-      font="Minecraft"
-      extraClassName={styles.text}
-    />
-  );
-};
+}: ProjectDetailsTitleProps) => (
+  <BedrockText
+    text={detailedProject?.title ?? ""}
+    type="h1"
+    textAlign="start"
+    color="white"
+    font="Minecraft"
+    extraClassName={styles.text}
+  />
+);

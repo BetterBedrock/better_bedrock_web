@@ -5,8 +5,10 @@ import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
 import { ButtonGroup } from "@/_components/button-group/button-group";
 import { Input } from "@/_components/input";
-import { useComments, styles } from ".";
 import { DetailedProjectDto, UserDto } from "@/_lib/api";
+import { useComments } from "@/app/project/components/comments/hook/use-comments";
+
+import styles from "./comments.module.scss";
 
 interface CommentsPostProps {
   user: UserDto | undefined;

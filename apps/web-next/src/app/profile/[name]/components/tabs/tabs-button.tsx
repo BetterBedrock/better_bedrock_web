@@ -4,9 +4,9 @@ import { BedrockText } from "@/_components/bedrock-text";
 import { Button } from "@/_components/button";
 import { Link } from "@/_components/link";
 import { Routes } from "@/utils/routes";
-
-import { styles } from ".";
 import { usePathname } from "next/navigation";
+
+import styles from "./tabs.module.scss";
 
 interface TabsButtonProps {
   text: string;

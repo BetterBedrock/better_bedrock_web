@@ -1,4 +1,5 @@
-import { AboutSectionElement, AboutCard } from ".";
+import { AboutCard } from "./about-card";
+import { AboutSectionElement } from "./about-data";
 
 interface AboutListProps {
   direction?: "left" | "right";

@@ -1,8 +1,9 @@
 import { Button } from "@/_components/button";
-import { styles } from ".";
 import { Routes } from "@/utils/routes";
 import { BedrockText } from "@/_components/bedrock-text";
 import { Link } from "@/_components/link";
+
+import styles from "./hero.module.scss";
 
 export const HeroAction = () => (
   <Link link={Routes.HOME} hideStyles>

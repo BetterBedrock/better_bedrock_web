@@ -1,4 +1,5 @@
-import { HeadingDescription, HeadingTitle } from ".";
+import { HeadingDescription } from "./heading-description";
+import { HeadingTitle } from "./heading-title";
 
 interface HeadingProps {
   title: string;

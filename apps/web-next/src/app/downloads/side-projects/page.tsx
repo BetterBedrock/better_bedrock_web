@@ -1,12 +1,15 @@
 import { SimpleProjectDto } from "@/_lib/api";
-import { Heading } from "@/app/downloads/components/heading";
 import { DownloadsItemDto } from "@/public/content/dto/downloads-item.dto";
 import { DownloadsListDto } from "@/public/content/dto/downloads-list.dto";
-
-import { SideProjectsBanner, SideProjectsList, styles } from ".";
 import { SIDE_PROJECTS_LIST } from "@/public/content/better-bedrock";
 
 import { fetchProjectsBasicInfo } from "@/_lib/projects";
+
+import { Heading } from "@/app/downloads/components/heading/heading";
+import { SideProjectsBanner } from "./side-projects-banner";
+import { SideProjectsList } from "./side-projects-list";
+
+import styles from "./side-projects.module.scss";
 
 export interface SimpleCategory extends Omit<DownloadsListDto, "items"> {
   items: SimpleProjectDto[];

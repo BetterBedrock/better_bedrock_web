@@ -1,5 +1,3 @@
-"use client";
-
 import { useProjectManager } from "@/app/project/providers/project-manager";
 import { Content } from "@tiptap/react";
 import { useState, useRef } from "react";

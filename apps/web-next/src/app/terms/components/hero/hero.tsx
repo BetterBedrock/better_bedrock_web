@@ -1,5 +1,5 @@
 import { BedrockText } from "@/_components/bedrock-text";
-import { HeroMarkdown } from ".";
+import { HeroMarkdown } from "./hero-markdown";
 
 export const Hero = () => (
   <>

@@ -1,4 +1,8 @@
-import { HeroAction, HeroDescription, HeroTitle, styles } from ".";
+import { HeroAction } from "./hero-action";
+import { HeroTitle } from "./hero-title";
+import { HeroDescription } from "./hero-description";
+
+import styles from "./hero.module.scss";
 
 export const Hero = () => (
   <div>

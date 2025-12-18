@@ -1,5 +1,7 @@
-import { SuccessPageProps } from "@/app/checkout/success";
-import { HeroAction, HeroDescription, HeroTitle } from ".";
+import { SuccessPageProps } from "@/app/checkout/success/page";
+import { HeroAction } from "./hero-action";
+import { HeroDescription } from "./hero-description";
+import { HeroTitle } from "./hero-title";
 import { activateVoucher } from "@/_lib/checkout/active-voucher";
 import { redirect } from "next/navigation";
 import { Routes } from "@/utils/routes";

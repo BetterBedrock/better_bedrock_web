@@ -4,12 +4,13 @@ import clsx from "clsx";
 import FullScreen from "@/public/images/full_screen.png";
 import { Card, CardDivider } from "@/_components/card";
 import { SimpleButton } from "@/_components/simple-button";
-import { HeaderTitle } from "@/app/project/components/header";
-import { SubmittedOverlay } from "@/app/project/components/submitted-overlay";
-
-import { styles, useEditMode } from ".";
+import { HeaderTitle } from "@/app/project/components/header/header-title";
 import { TiptapEditor } from "@/_components/tiptap/editor";
 import { DetailedProjectDto } from "@/_lib/api";
+import { useEditMode } from "@/app/project/components/description/edit-mode/hook/use-edit-mode";
+import { SubmittedOverlay } from "@/app/project/components/submitted-overlay/submitted-overlay";
+
+import styles from "./edit-mode.module.scss";
 
 interface EditModeProps {
   detailedProject: DetailedProjectDto;
@@ -18,7 +19,6 @@ interface EditModeProps {
 export const EditMode = ({ detailedProject }: EditModeProps) => {
   const { handleFullScreen, handleChange, fullScreen } = useEditMode();
 
-  console.log("Render EditMode");
   return (
     <Card sub className={clsx(styles.overlay, fullScreen && styles.fullscreen)}>
       {detailedProject.submitted && <SubmittedOverlay />}

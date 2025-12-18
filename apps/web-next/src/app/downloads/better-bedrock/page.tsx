@@ -1,16 +1,15 @@
 import { SimpleProjectDto } from "@/_lib/api";
-import { Heading } from "@/app/downloads/components/heading";
 import { DownloadsItemDto } from "@/public/content/dto/downloads-item.dto";
 import { DownloadsListDto } from "@/public/content/dto/downloads-list.dto";
 
-import {
-  BetterBedrockArchiveButton,
-  BetterBedrockItemsList,
-  BetterBedrockBanner,
-  styles,
-} from ".";
 import { fetchProjectsBasicInfo } from "@/_lib/projects/fetch-projects-basic-info";
 import { MAIN_LIST } from "@/public/content/better-bedrock";
+import { BetterBedrockArchiveButton } from "./better-bedrock-archive-button";
+import { BetterBedrockBanner } from "./better-bedrock-banner";
+import { BetterBedrockItemsList } from "./better-bedrock-items-list";
+import { Heading } from "@/app/downloads/components/heading/heading";
+
+import styles from "./better-bedrock.module.scss";
 
 export interface SimpleCategory extends Omit<DownloadsListDto, "items"> {
   items: SimpleProjectDto[];

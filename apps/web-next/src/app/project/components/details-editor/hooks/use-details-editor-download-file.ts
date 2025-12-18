@@ -1,5 +1,3 @@
-"use client";
-
 import { useNotification } from "@/_providers/notification";
 import { useProject } from "@/_providers/project";
 import { useProjectManager } from "@/app/project/providers/project-manager";
