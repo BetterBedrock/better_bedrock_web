@@ -4,7 +4,7 @@ import { useState } from "react";
 import { NodeViewWrapper } from "@tiptap/react";
 import { styles } from ".";
 import { useProject } from "@/_providers/project";
-import { useProjectManager } from "@/app/project/providers/project-manager";
+import { useProjectManager } from "@/app/(projects)/project/providers/project-manager";
 import { Gallery } from "@/_components/gallery";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

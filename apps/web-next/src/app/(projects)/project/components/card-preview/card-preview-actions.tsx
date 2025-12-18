@@ -1,0 +1,14 @@
+import { ButtonGroup } from "@/_components/button-group/button-group";
+import { CardPreviewActionsDecline } from "@/app/(projects)/project/components/card-preview/card-preview-actions-decline";
+import { CardPreviewActionsPublish } from "@/app/(projects)/project/components/card-preview/card-preview-actions-publish";
+
+import styles from "./card-preview.module.scss";
+
+export const CardPreviewActions = () => (
+  <div className={styles.editor}>
+    <ButtonGroup>
+      <CardPreviewActionsPublish />
+      <CardPreviewActionsDecline />
+    </ButtonGroup>
+  </div>
+);

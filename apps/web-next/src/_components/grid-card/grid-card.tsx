@@ -1,7 +1,7 @@
 import { BedrockText } from "../bedrock-text/bedrock-text";
 
 import tutorialThumbnail from "@/public/images/tutorial-thumbnail-placeholder.png";
-import { tagData } from "@/app/information/[slug]/data/information-data";
+import { tagData } from "@/app/(informations)/information/[slug]/data/information-data";
 
 import { styles } from ".";
 
@@ -36,7 +36,9 @@ export const GridCard = ({
   <div className={styles.container}>
     {useCustomThumbnail && (
       <div className={styles.thumbnailWrapper}>
-        {customThumbnailImageUrl && <img src={customThumbnailImageUrl} alt="" />}
+        {customThumbnailImageUrl && (
+          <img src={customThumbnailImageUrl} alt="" />
+        )}
       </div>
     )}
     {!useCustomThumbnail && (
@@ -80,8 +82,19 @@ export const GridCard = ({
       </a>
     )}
     <div className={styles.texts}>
-      <BedrockText text={title || ""} type="h3" font="Minecraft" textAlign="left" color="white" />
-      <BedrockText text={description ?? ""} type="p" textAlign="left" color="white" />
+      <BedrockText
+        text={title || ""}
+        type="h3"
+        font="Minecraft"
+        textAlign="left"
+        color="white"
+      />
+      <BedrockText
+        text={description ?? ""}
+        type="p"
+        textAlign="left"
+        color="white"
+      />
     </div>
   </div>
 );

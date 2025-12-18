@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { styles, useToolbar } from ".";
-import { default as descriptionStyles } from "@/app/project/components/description/description.module.scss";
+import { default as descriptionStyles } from "@/app/(projects)/project/components/description/description.module.scss";
 import { forwardRef, useRef, HTMLAttributes } from "react";
 import useComposedRef from "@/hooks/use-composed-ref";
 
