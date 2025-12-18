@@ -1,6 +1,6 @@
 import { BedrockText } from "@/_components/bedrock-text";
 
-import { styles } from ".";
+import styles from "./header.module.scss";
 
 interface HeadingDescriptionProps {
   description: string;

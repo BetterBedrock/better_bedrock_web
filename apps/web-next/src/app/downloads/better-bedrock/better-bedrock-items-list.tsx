@@ -1,10 +1,10 @@
 import { calculateItemDisplayWeight } from "@/utils/math";
 import { Routes } from "@/utils/routes";
 import { Link } from "@/_components/link";
-
+import { SimpleCategory } from "@/app/downloads/better-bedrock/page";
 import DownloadCard from "@/_components/download-card/download-card";
 
-import { SimpleCategory, styles } from ".";
+import styles from "./better-bedrock.module.scss";
 
 interface MainItemsList {
   categoryId: string;

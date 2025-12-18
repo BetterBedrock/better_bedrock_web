@@ -1,4 +1,4 @@
-import { InformationFAQQuestion } from "@/app/information/[slug]";
+import { InformationFAQQuestion } from "@/app/information/[slug]/data/information-data";
 
 export const linkvertiseFAQQuestions: InformationFAQQuestion[] = [
     {

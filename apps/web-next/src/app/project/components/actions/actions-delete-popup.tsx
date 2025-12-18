@@ -11,7 +11,7 @@ import { BasePopupWrapperProps } from "@/_components/popup/popup-wrapper";
 import { Tooltip } from "@/_components/tooltip";
 import { useActionsDeletePopup } from "@/app/project/components/actions/hooks/use-actions-delete-popup";
 
-import styles from "./actions-delete-popup.module.scss";
+import styles from "./actions.module.scss";
 
 export const ActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
   const {

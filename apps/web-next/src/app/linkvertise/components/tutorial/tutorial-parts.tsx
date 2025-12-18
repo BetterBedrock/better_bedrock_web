@@ -1,7 +1,7 @@
 import Markdown from "react-markdown";
 import { Card } from "@/_components/card";
 
-import { styles } from ".";
+import styles from "./tutorial.module.scss";
 
 export const TutorialParts = () => (
   <>
