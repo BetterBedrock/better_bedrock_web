@@ -3,7 +3,7 @@ import Summsatsuma from "@/public/images/avatars/sumssatsuma.png";
 import { styles } from ".";
 import clsx from "clsx";
 import { FC, ReactNode } from "react";
-import { BedrockComponentProps } from "@/types";
+import { BedrockComponentProps } from "@/types/components";
 import { Routes } from "@/utils/routes";
 import { Link } from "@/_components/link";
 import { BedrockText } from "@/_components/bedrock-text";

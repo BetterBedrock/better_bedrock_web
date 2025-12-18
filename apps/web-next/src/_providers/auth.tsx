@@ -14,7 +14,7 @@ import {
   useState,
 } from "react";
 import { useCookies } from "next-client-cookies";
-import { authenticateRequest, googleAuthorize } from "@/_services";
+import { authenticateRequest, googleAuthorize } from "@/_services/auth-service";
 
 interface AuthContextProps {
   fetched: boolean;

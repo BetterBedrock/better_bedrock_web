@@ -1,5 +1,5 @@
 import { fetchSecret } from "@/_lib/user";
-import { createProjectRequest } from "@/_services";
+import { createProjectRequest } from "@/_services/project-service";
 
 export const createProject = async (title: string) => {
     const secret = await fetchSecret();

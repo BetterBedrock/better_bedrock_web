@@ -1,4 +1,4 @@
-import { authenticateRequest } from "@/_services";
+import { authenticateRequest } from "@/_services/auth-service";
 import { cookies } from "next/headers";
 
 export const fetchLoggedUser = async () => {

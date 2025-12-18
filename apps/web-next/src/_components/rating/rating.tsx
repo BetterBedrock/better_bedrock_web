@@ -6,7 +6,7 @@ import EmptyStar from "@/public/ui/star/emptyStar.png";
 import HalfFilledStar from "@/public/ui/star/halfFilledStar.png";
 import { styles } from ".";
 import clsx from "clsx";
-import { BedrockComponentProps } from "@/types";
+import { BedrockComponentProps } from "@/types/components";
 import { BedrockText } from "@/_components/bedrock-text";
 import { Tooltip } from "@/_components/tooltip";
 

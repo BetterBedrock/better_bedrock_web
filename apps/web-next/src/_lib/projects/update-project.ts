@@ -2,7 +2,7 @@
 
 import { UpdateProjectDto } from "@/_lib/api";
 import { fetchSecret } from "@/_lib/user";
-import { updateProjectRequest } from "@/_services";
+import { updateProjectRequest } from "@/_services/project-service";
 
 export const updateProject = async (id: string, project: UpdateProjectDto) => {
     const secret = await fetchSecret();

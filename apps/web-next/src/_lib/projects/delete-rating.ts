@@ -1,7 +1,7 @@
 "use server";
 
 import { fetchSecret } from "@/_lib/user"
-import { deleteRatingRequest } from "@/_services";
+import { deleteRatingRequest } from "@/_services/project-service";
 
 export const deleteRating = async (id: string) => {
     const secret = await fetchSecret();

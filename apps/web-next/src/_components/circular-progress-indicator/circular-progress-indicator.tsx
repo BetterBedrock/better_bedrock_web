@@ -3,7 +3,7 @@ import { HTMLAttributes } from "react";
 import clsx from "clsx";
 
 import { styles } from ".";
-import { BedrockComponentProps } from "@/types";
+import { BedrockComponentProps } from "@/types/components";
 
 interface CircularProgressIndicatorProp
   extends HTMLAttributes<HTMLDivElement>,

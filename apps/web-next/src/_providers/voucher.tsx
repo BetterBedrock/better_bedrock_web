@@ -2,7 +2,6 @@ import { VoucherDto, CreateVoucher, UpdateVoucher, Configuration, VoucherApi } f
 import { useNotification } from "@/_providers/notification";
 import { useFetchSecret } from "@/hooks/use-fetch-secret";
 import { baseUrl } from "@/utils/url";
-import { useCookies } from "next-client-cookies";
 import { createContext, ReactNode, useContext } from "react";
 
 interface VoucherContextProps {
