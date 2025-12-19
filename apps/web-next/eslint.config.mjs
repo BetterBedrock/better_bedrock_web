@@ -26,7 +26,7 @@ const eslintConfig = defineConfig([
             "src/lib/**/*",
             "src/server/**/*",
             "src/providers/**/*",
-            "src/features/shared/*",
+            "src/features/shared/**/*",
           ],
         },
         {
