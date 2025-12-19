@@ -1,20 +1,3 @@
-@use "@/utils" as g;
-
-.grid {
-  gap: g.$padding-sm;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  @media (max-width: g.$breakpoint-tablet) {
-    grid-template-columns: repeat(1, 1fr);
-    gap: g.$padding-xsm;
-  }
-}
-
 .category {
   width: 100%;
-}
-
-.actions {
-  padding-bottom: g.$padding-sm;
 }

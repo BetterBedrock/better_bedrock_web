@@ -1,9 +1,7 @@
-import { fetchLoggedUser } from "@/lib/auth/fetch-logged-user";
-import { notFound } from "next/navigation";
-import { loadUserProfile } from "@/lib/user/load-user-profile";
-
-import { DraftsList } from "./drafts-list";
-import { DraftsAction } from "./drafts-action";
+import { DraftsAction } from "@/features/users/components/profile/drafts-action";
+import { GridDownloadCardList } from "@/components/grid-download-card-list/grid-download-card-list";
+import { Banner } from "@/components/banner";
+import { loadProfileDraftsPage } from "@/features/project/server/load-profile-drafts-page-data";
 
 import styles from "./drafts.module.scss";
 
@@ -12,19 +10,16 @@ interface DraftsProps {
 }
 
 export default async function Drafts({ params }: DraftsProps) {
-  const loadedParams = await params;
-
-  if (!loadedParams) notFound();
-
-  const user = await fetchLoggedUser();
-  const selectedUser = await loadUserProfile(loadedParams.name);
-
-  const isOwner = selectedUser?.id === user?.id;
+  const { isOwner, drafts } = await loadProfileDraftsPage(params);
 
   return (
     <div className={styles.list}>
       {isOwner && <DraftsAction />}
-      <DraftsList name={selectedUser.name} />
+      {drafts.length > 0 ? (
+        <GridDownloadCardList projects={drafts} mode="edit" />
+      ) : (
+        <Banner type="neutral" message="No draft projects available" />
+      )}
     </div>
   );
 }

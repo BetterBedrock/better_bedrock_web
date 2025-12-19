@@ -1,12 +1,12 @@
 import { fetchLoggedUser } from "@/lib/auth";
-import { fetchProjectDetails } from "@/lib/projects/fetch-project-details";
-import { Comments } from "@/app/(projects)/project/components/comments/comments";
-import { Description } from "@/app/(projects)/project/components/description/description";
-import { DownloadButton } from "@/app/(projects)/project/components/download-button/download-button";
-import { Header } from "@/app/(projects)/project/components/header/header";
-import { RateProject } from "@/app/(projects)/project/components/rate-project/rate-project";
-import { ProjectPageProps } from "@/app/(projects)/project/layout";
+import { fetchProjectDetails } from "@/features/project/server/fetch-project-details";
+import { Comments } from "@/features/project/components/comments/comments";
+import { Description } from "@/features/project/components/description/description";
+import { DownloadButton } from "@/features/project/components/download-button/download-button";
+import { Header } from "@/features/project/components/header/header";
+import { RateProject } from "@/features/project/components/rate-project/rate-project";
 import { notFound } from "next/navigation";
+import { ProjectPageProps } from "@/features/project/providers/project-manager";
 
 export const generateMetadata = async ({ params }: ProjectPageProps) => {
   const loadedParams = await params;

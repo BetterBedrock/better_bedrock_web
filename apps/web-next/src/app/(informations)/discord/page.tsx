@@ -1,17 +1,9 @@
-import { Section } from "@/components/section";
-import { Hero } from "./components/hero/hero";
-
-import styles from "./discord.module.scss";
+import { Hero } from "@/features/discord/components/hero/hero";
 
 export default function Discord() {
   return (
-    <Section
-      className={styles.background}
-      extraClassName={styles.padding}
-      fixed
-      center
-    >
+    <>
       <Hero />
-    </Section>
+    </>
   );
 }

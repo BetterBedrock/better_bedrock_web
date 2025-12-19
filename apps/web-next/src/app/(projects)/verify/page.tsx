@@ -1,32 +1,17 @@
-import { Section } from "@/components/section";
 import { Hero } from "@/features/verify/components/hero/hero";
-import styles from "./verify.module.scss";
 
-interface FetchProps {
+interface VerifyProps {
   searchParams: Promise<{
     hash?: string;
   }>;
 }
 
-export const metadata = {
-  title: "Download Content Verification",
-  description:
-    "Verify your session and begin downloading the best Minecraft PE texture packs, scripts, maps, skins, and more from Better Bedrock securely.",
-};
-
-export default async function Verify({ searchParams }: FetchProps) {
+export default async function Verify({ searchParams }: VerifyProps) {
   const hash = (await searchParams).hash;
 
   return (
-    <main>
-      <Section
-        className={styles.background}
-        extraClassName={styles.padding}
-        center
-        fixed
-      >
-        <Hero hash={hash} />
-      </Section>
-    </main>
+    <>
+      <Hero hash={hash} />
+    </>
   );
 }

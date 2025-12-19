@@ -16,6 +16,7 @@ import { Link } from "@/components/link";
 import { Tag } from "@/components/tag";
 import { Tooltip } from "@/components/tooltip";
 import { Rating } from "@/components/rating";
+import { calculateLastChangedHours } from "@/features/panel/projects/server/calculate-last-changed-hours";
 
 export type ProjectMode = "edit" | "view" | "review";
 
@@ -30,15 +31,20 @@ interface GridDownloadCardProps {
   actions?: ReactNode;
   className?: string;
   useTopDivider?: boolean;
-  tags?: string[];
 }
 
 export const GridDownloadCard = ({
   className,
-  tags,
   project,
   mode,
 }: GridDownloadCardProps) => {
+  const tagName =
+    mode === "edit" && project.submitted
+      ? "Submitted"
+      : mode === "review"
+        ? `${calculateLastChangedHours(project.lastChanged)}h ago`
+        : null;
+
   const link = () => {
     if (!mode) return;
     if (mode === "edit") return Routes.PROJECT_EDIT + "/" + project.id;
@@ -77,14 +83,13 @@ export const GridDownloadCard = ({
 
           <div className={styles.details}>
             <Tag border={["top", "right"]} name={PROJECT_TYPES[project.type]} />
-            {tags?.map((tag, index) => (
+            {tagName && (
               <Tag
-                key={`${tag}${index}`}
                 border={["top", "right"]}
-                name={tag}
+                name={tagName}
                 className={styles.special}
               />
-            ))}
+            )}
           </div>
         </div>
         <div className={styles.footer}>

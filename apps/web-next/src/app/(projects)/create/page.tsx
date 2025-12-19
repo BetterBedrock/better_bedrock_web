@@ -1,20 +1,12 @@
-import { Hero } from "./components/hero/hero";
-import { guestRedirect } from "./server/guest-redirect";
-import { Section } from "@/components/section";
-
-import styles from "./creator.module.scss";
+import { Hero } from "@/features/project/components/create/hero/hero";
+import { guestRedirect } from "@/features/users/server/guest-redirect";
 
 export default async function Creator() {
   await guestRedirect();
 
   return (
-    <Section
-      className={styles.background}
-      extraClassName={styles.padding}
-      fixed
-      center
-    >
+    <>
       <Hero />
-    </Section>
+    </>
   );
 }

@@ -1,34 +1,7 @@
 @use "@/utils" as g;
 
-.list {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
-  gap: g.$padding-sm;
-
-  @media (max-width: g.$breakpoint-laptop) {
-    gap: g.$padding-xsm;
-  }
-}
-
-.grid {
-  gap: g.$padding-sm;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  @media (max-width: g.$breakpoint-tablet) {
-    grid-template-columns: repeat(1, 1fr);
-    gap: g.$padding-xsm;
-  }
-}
-
 .category {
   width: 100%;
-}
-
-.actions {
-  padding-bottom: g.$padding-sm;
 }
 
 .footer {
@@ -36,9 +9,4 @@
   flex-direction: column;
   width: 100%;
   gap: g.$padding-xxsm;
-}
-
-.hide {
-  width: 100%;
-  text-decoration: none;
 }

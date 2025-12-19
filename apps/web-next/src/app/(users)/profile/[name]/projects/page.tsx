@@ -1,21 +1,17 @@
-import { notFound } from "next/navigation";
-import { ProjectsList } from "./projects-list";
-
-import styles from "./projects.module.scss";
+import { Banner } from "@/components/banner";
+import { GridDownloadCardList } from "@/components/grid-download-card-list/grid-download-card-list";
+import { loadProfileProjectsPageData } from "@/features/project/server/load-profile-projects-page-data";
 
 interface ProjectsProps {
   params?: Promise<{ name: string }>;
 }
 
 export default async function Projects({ params }: ProjectsProps) {
-  const loadedParams = await params;
-  if (!loadedParams) {
-    notFound();
+  const projects = await loadProfileProjectsPageData(params);
+
+  if (projects.length < 1) {
+    return <Banner type="neutral" message="No public projects available" />;
   }
 
-  return (
-    <div className={styles.list}>
-      <ProjectsList params={loadedParams} />
-    </div>
-  );
+  return <GridDownloadCardList projects={projects} />;
 }

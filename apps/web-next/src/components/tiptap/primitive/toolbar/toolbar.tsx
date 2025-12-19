@@ -2,7 +2,6 @@
 
 import clsx from "clsx";
 import { styles, useToolbar } from ".";
-import { default as descriptionStyles } from "@/app/(projects)/project/components/description/description.module.scss";
 import { forwardRef, useRef, HTMLAttributes } from "react";
 import useComposedRef from "@/hooks/use-composed-ref";
 
@@ -17,7 +16,7 @@ export const Toolbar = forwardRef<
   return (
     <div
       ref={composedRef}
-      className={clsx(styles.card, descriptionStyles.toolbar, className)}
+      className={clsx(styles.card, className)}
       {...props}
     >
       {children}

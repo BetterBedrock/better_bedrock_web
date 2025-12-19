@@ -3,11 +3,11 @@ import { DownloadsItemDto } from "@/public/content/dto/downloads-item.dto";
 import { DownloadsListDto } from "@/public/content/dto/downloads-list.dto";
 import { SIDE_PROJECTS_LIST } from "@/public/content/better-bedrock";
 
-import { fetchProjectsBasicInfo } from "@/lib/projects";
+import { fetchProjectsBasicInfo } from "@/features/project/server";
 
-import { Heading } from "@/app/(projects)/downloads/components/heading/heading";
-import { SideProjectsBanner } from "./side-projects-banner";
-import { SideProjectsList } from "./side-projects-list";
+import { GridDownloadCardList } from "@/components/grid-download-card-list/grid-download-card-list";
+import { SideProjectsHeading } from "@/features/project/components/side-projects/side-projects-heading";
+import { SideProjectsBanner } from "@/features/project/components/side-projects/side-projects-banner";
 
 import styles from "./side-projects.module.scss";
 
@@ -22,16 +22,13 @@ export default async function SideProjects() {
   const projects = await fetchProjectsBasicInfo(SIDE_PROJECTS_LIST);
 
   if (projects.length < 1) {
-    return <SideProjectsBanner />;
+    return <SideProjectsBanner />
   }
 
   return (
     <div className={styles.category}>
-      <Heading
-        title="Side Projects"
-        description="Enjoy playing Minecraft on a whole new level using latest version of the main texture pack!"
-      />
-      <SideProjectsList projects={projects} />
+      <SideProjectsHeading />
+      <GridDownloadCardList projects={projects} />
     </div>
   );
 }

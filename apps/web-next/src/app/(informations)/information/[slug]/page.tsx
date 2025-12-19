@@ -1,8 +1,8 @@
-import { FAQ } from "./components/faq/faq";
-import { Header } from "./components/header/header";
-import { TutorialVideos } from "./components/tutorial-videos/tutorial-videos";
+import { FAQ } from "@/features/information/components/faq/faq";
+import { Header } from "@/features/information/components/header/header";
+import { TutorialVideos } from "@/features/information/components/tutorial-videos/tutorial-videos";
 
-import { informationData } from "./data/information-data";
+import { informationData } from "@/features/information/data/information-data";
 
 interface CategoriesProps {
   params: Promise<{ slug: string }>;

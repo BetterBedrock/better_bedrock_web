@@ -1,13 +1,12 @@
 import { fetchLoggedUser } from "@/lib/auth";
-import { fetchDraftsDetails } from "@/lib/projects/fetch-draft-details";
-import { Actions } from "@/app/(projects)/project/components/actions/actions";
-import { Description } from "@/app/(projects)/project/components/description/description";
-import { DetailsEditor } from "@/app/(projects)/project/components/details-editor/details-editor";
-import { DownloadButton } from "@/app/(projects)/project/components/download-button/download-button";
-import { Header } from "@/app/(projects)/project/components/header/header";
-import { Thumbnail } from "@/app/(projects)/project/components/thumbnail/thumbnail";
-import { ProjectPageProps } from "@/app/(projects)/project/layout";
-import { ProjectManagerProvider } from "@/app/(projects)/project/providers/project-manager";
+import { fetchDraftsDetails } from "@/features/project/server/fetch-draft-details";
+import { Actions } from "@/features/project/components/actions/actions";
+import { Description } from "@/features/project/components/description/description";
+import { DetailsEditor } from "@/features/project/components/details-editor/details-editor";
+import { DownloadButton } from "@/features/project/components/download-button/download-button";
+import { Header } from "@/features/project/components/header/header";
+import { Thumbnail } from "@/features/project/components/thumbnail/thumbnail";
+import { ProjectManagerProvider, ProjectPageProps } from "@/features/project/providers/project-manager";
 import { notFound } from "next/navigation";
 
 export const metadata = {

@@ -10,19 +10,3 @@
 .padding {
   @include g.section-padding((top, bottom));
 }
-
-.header {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.tabs {
-  width: 100%;
-  display: flex;
-}
-
-.category {
-  width: 100%;
-}

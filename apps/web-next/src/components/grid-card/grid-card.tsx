@@ -1,7 +1,7 @@
 import { BedrockText } from "../bedrock-text/bedrock-text";
 
 import tutorialThumbnail from "@/public/images/tutorial-thumbnail-placeholder.png";
-import { tagData } from "@/app/(informations)/information/[slug]/data/information-data";
+import { tagData } from "@/features/information/data/information-data";
 
 import { styles } from ".";
 

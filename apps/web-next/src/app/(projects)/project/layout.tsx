@@ -3,15 +3,11 @@ import { ReactNode } from "react";
 
 import styles from "./project.module.scss";
 
-export interface ProjectPageProps {
-  params: Promise<{ id: string }>;
-}
-
-interface ProjectsLayoutProps {
+interface ProjectLayoutProps {
   children: ReactNode;
 }
 
-export default async function ProjectLayout({ children }: ProjectsLayoutProps) {
+export default async function ProjectLayout({ children }: ProjectLayoutProps) {
   return (
     <Section
       className={styles.background}

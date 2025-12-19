@@ -12,7 +12,7 @@ import { renderToHTMLString } from "@tiptap/static-renderer";
 import { PrefixedImage } from "@/components/tiptap/nodes/image-node";
 import { DetailedProjectDto } from "@/lib/api";
 import Heading from "@tiptap/extension-heading";
-import { ProjectManagerProvider } from "@/app/(projects)/project/providers/project-manager";
+import { ProjectManagerProvider } from "@/features/project/providers/project-manager";
 import { baseUrl } from "@/utils/url";
 
 import { styles, useTiptapPreviewHydrator } from ".";

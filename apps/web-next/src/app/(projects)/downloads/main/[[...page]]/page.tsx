@@ -1,5 +1,5 @@
-import { FeaturedCard } from "./featured-card/featured-card";
-import { ProjectsCard } from "./projects-card/projects-card";
+import { FeaturedCard } from "@/features/project/components/featured-card/featured-card";
+import { ProjectsCard } from "@/features/project/components/projects-card/projects-card";
 
 export interface MainProps {
   params: Promise<{ page?: string[] }>;
