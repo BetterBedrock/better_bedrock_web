@@ -20,7 +20,7 @@ const eslintConfig = defineConfig([
           type: "shared",
           pattern: [
             "src/components/**/*",
-            "src/data/**/*",
+            "src/utils/**/*",
             "src/services/**/*",
             "src/hooks/**/*",
             "src/lib/**/*",
