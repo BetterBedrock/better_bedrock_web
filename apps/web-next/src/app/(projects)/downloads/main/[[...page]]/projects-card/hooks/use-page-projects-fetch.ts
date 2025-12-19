@@ -1,7 +1,7 @@
 "use client";
 
-import { SearchOrder, SearchProjectsDto } from "@/_lib/api";
-import { useProject } from "@/_providers/project";
+import { SearchOrder, SearchProjectsDto } from "@/lib/api";
+import { useProject } from "@/providers/project";
 import { useProjectsCardSearch } from "@/app/(projects)/downloads/main/[[...page]]/projects-card/providers/projects-card-search";
 import { useEffect, useRef, useState } from "react";
 

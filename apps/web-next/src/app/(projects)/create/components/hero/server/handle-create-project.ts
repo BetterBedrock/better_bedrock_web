@@ -1,6 +1,6 @@
 "use server";
 
-import { createProject } from "@/_lib/projects/create-project"
+import { createProject } from "@/lib/projects/create-project"
 import { Routes } from "@/utils/routes";
 import { redirect } from "next/navigation";
 

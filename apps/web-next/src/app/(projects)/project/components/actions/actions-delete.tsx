@@ -1,8 +1,8 @@
 "use client";
 
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { PopupWrapper } from "@/_components/popup/popup-wrapper";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { PopupWrapper } from "@/components/popup/popup-wrapper";
 import { ActionsDeletePopup } from "@/app/(projects)/project/components/actions/actions-delete-popup";
 import styles from "./actions.module.scss";
 

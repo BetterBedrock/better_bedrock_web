@@ -1,8 +1,8 @@
 "use client";
 
-import { DetailedProjectDto, UpdateProjectDto } from "@/_lib/api";
-import { updateProject } from "@/_lib/projects/update-project";
-import { useNotification } from "@/_providers/notification";
+import { DetailedProjectDto, UpdateProjectDto } from "@/lib/api";
+import { updateProject } from "@/lib/projects/update-project";
+import { useNotification } from "@/providers/notification";
 import { Content } from "@tiptap/react";
 import {
   createContext,

@@ -1,7 +1,7 @@
 "use client";
 
-import { DownloadMethodCard } from "@/_components/download-method-card";
-import { CheckoutOptionGroupDto } from "@/_lib/api";
+import { DownloadMethodCard } from "@/components/download-method-card";
+import { CheckoutOptionGroupDto } from "@/lib/api";
 import { createStripeSession } from "@/app/(projects)/project/components/preview-popup/hooks/use-create-stripe-session";
 
 interface PreviewPopupRecommendedProps {

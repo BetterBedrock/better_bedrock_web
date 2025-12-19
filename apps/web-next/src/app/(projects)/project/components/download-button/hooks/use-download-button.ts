@@ -1,8 +1,8 @@
 "use client";
 
-import { DetailedProjectDto, UserDto } from "@/_lib/api";
-import { generateDownload } from "@/_lib/downloads/generate-download";
-import { useNotification } from "@/_providers/notification";
+import { DetailedProjectDto, UserDto } from "@/lib/api";
+import { generateDownload } from "@/lib/downloads/generate-download";
+import { useNotification } from "@/providers/notification";
 import { useFetchVoucher } from "@/hooks/use-fetch-voucher";
 import { Routes } from "@/utils/routes";
 import { useRouter } from "next/navigation";

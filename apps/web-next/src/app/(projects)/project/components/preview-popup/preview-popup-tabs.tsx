@@ -1,9 +1,9 @@
 "use client";
 
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { ButtonGroup } from "@/_components/button-group/button-group";
-import { CheckoutOptionGroupDto } from "@/_lib/api";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { ButtonGroup } from "@/components/button-group/button-group";
+import { CheckoutOptionGroupDto } from "@/lib/api";
 import { SetStateAction } from "react";
 
 interface PreviewPopupTabsProps {

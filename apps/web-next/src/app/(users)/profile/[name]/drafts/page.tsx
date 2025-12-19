@@ -1,6 +1,6 @@
-import { fetchLoggedUser } from "@/_lib/auth/fetch-logged-user";
+import { fetchLoggedUser } from "@/lib/auth/fetch-logged-user";
 import { notFound } from "next/navigation";
-import { loadUserProfile } from "@/_lib/user/load-user-profile";
+import { loadUserProfile } from "@/lib/user/load-user-profile";
 
 import { DraftsList } from "./drafts-list";
 import { DraftsAction } from "./drafts-action";

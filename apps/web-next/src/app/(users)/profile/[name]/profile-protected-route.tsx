@@ -1,4 +1,4 @@
-import { useAuth } from "@/_providers/auth";
+import { useAuth } from "@/providers/auth";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";

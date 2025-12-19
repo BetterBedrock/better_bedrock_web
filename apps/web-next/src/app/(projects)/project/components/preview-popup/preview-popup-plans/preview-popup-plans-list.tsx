@@ -1,9 +1,9 @@
 "use client";
 
-import { ButtonGroup } from "@/_components/button-group/button-group";
-import { DownloadMethodCard } from "@/_components/download-method-card";
-import { Link } from "@/_components/link";
-import { CheckoutOptionGroupDto } from "@/_lib/api";
+import { ButtonGroup } from "@/components/button-group/button-group";
+import { DownloadMethodCard } from "@/components/download-method-card";
+import { Link } from "@/components/link";
+import { CheckoutOptionGroupDto } from "@/lib/api";
 
 import styles from "./preview-popup-plans.module.scss";
 import { usePreviewPopupPlans } from "@/app/(projects)/project/components/preview-popup/hooks/use-preview-popup-plans";

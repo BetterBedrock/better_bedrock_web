@@ -1,14 +1,14 @@
 "use client";
 
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { ButtonGroup } from "@/_components/button-group/button-group";
-import { CardDivider } from "@/_components/card";
-import { CircularProgressIndicator } from "@/_components/circular-progress-indicator";
-import { InputSwitch } from "@/_components/input/input-switch";
-import { Popup } from "@/_components/popup";
-import { BasePopupWrapperProps } from "@/_components/popup/popup-wrapper";
-import { Tooltip } from "@/_components/tooltip";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { ButtonGroup } from "@/components/button-group/button-group";
+import { CardDivider } from "@/components/card";
+import { CircularProgressIndicator } from "@/components/circular-progress-indicator";
+import { InputSwitch } from "@/components/input/input-switch";
+import { Popup } from "@/components/popup";
+import { BasePopupWrapperProps } from "@/components/popup/popup-wrapper";
+import { Tooltip } from "@/components/tooltip";
 import { useActionsDeletePopup } from "@/app/(projects)/project/components/actions/hooks/use-actions-delete-popup";
 
 import styles from "./actions.module.scss";

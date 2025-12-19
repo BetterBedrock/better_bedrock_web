@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { AnalyticsProvider } from "@/_providers/analytics";
+import { AnalyticsProvider } from "@/providers/analytics";
 import { ProfileSection } from "@/app/(users)/profile/[name]/profile-section";
 
 interface ProfileProps {

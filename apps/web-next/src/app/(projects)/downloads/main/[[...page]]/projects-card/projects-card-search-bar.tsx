@@ -1,6 +1,6 @@
 "use client";
 
-import { Input } from "@/_components/input";
+import { Input } from "@/components/input";
 import { useProjectsCardSearch } from "./providers/projects-card-search";
 
 import styles from "./projects-card.module.scss";

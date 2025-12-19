@@ -2,11 +2,11 @@
 
 import clsx from "clsx";
 import FullScreen from "@/public/images/full_screen.png";
-import { Card, CardDivider } from "@/_components/card";
-import { SimpleButton } from "@/_components/simple-button";
+import { Card, CardDivider } from "@/components/card";
+import { SimpleButton } from "@/components/simple-button";
 import { HeaderTitle } from "@/app/(projects)/project/components/header/header-title";
-import { TiptapEditor } from "@/_components/tiptap/editor";
-import { DetailedProjectDto } from "@/_lib/api";
+import { TiptapEditor } from "@/components/tiptap/editor";
+import { DetailedProjectDto } from "@/lib/api";
 import { useEditMode } from "@/app/(projects)/project/components/description/edit-mode/hook/use-edit-mode";
 import { SubmittedOverlay } from "@/app/(projects)/project/components/submitted-overlay/submitted-overlay";
 

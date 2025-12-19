@@ -1,4 +1,4 @@
-import { Section } from "@/_components/section";
+import { Section } from "@/components/section";
 import { Hero } from "./components/hero/hero";
 
 import styles from "./projects.module.scss";

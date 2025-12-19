@@ -1,6 +1,6 @@
-import { Banner } from "@/_components/banner";
-import { CircularProgressIndicator } from "@/_components/circular-progress-indicator";
-import { ReportCard } from "@/_components/report-card";
+import { Banner } from "@/components/banner";
+import { CircularProgressIndicator } from "@/components/circular-progress-indicator";
+import { ReportCard } from "@/components/report-card";
 import { useReportsManager } from "@/app/(admin)/panel/reports/providers/reports-manager";
 
 import styles from "./unresolved.module.scss";

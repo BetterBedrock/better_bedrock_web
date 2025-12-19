@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { ButtonGroup } from "@/_components/button-group/button-group";
-import { Input } from "@/_components/input";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { ButtonGroup } from "@/components/button-group/button-group";
+import { Input } from "@/components/input";
 
 import { handleCreateProject } from "./server/handle-create-project";
 import styles from "./hero.module.scss";

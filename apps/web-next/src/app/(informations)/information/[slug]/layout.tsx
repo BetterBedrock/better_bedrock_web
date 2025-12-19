@@ -1,4 +1,4 @@
-import { Section } from "@/_components/section";
+import { Section } from "@/components/section";
 import { ReactNode } from "react";
 
 import styles from "./information.module.scss";

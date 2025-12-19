@@ -1,6 +1,6 @@
-import { BedrockText } from "@/_components/bedrock-text";
-import { Link } from "@/_components/link";
-import { Popup } from "@/_components/popup";
+import { BedrockText } from "@/components/bedrock-text";
+import { Link } from "@/components/link";
+import { Popup } from "@/components/popup";
 import { Routes } from "@/utils/routes";
 
 import styles from "./preview-popup-footer.module.scss";

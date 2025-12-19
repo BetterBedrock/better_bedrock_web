@@ -1,4 +1,4 @@
-import { ProjectType } from "@/_lib/api";
+import { ProjectType } from "@/lib/api";
 import { useProjectManager } from "@/app/(projects)/project/providers/project-manager";
 
 export const useDetailsEditorProjectType = () => {

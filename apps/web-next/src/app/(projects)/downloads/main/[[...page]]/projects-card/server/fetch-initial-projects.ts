@@ -1,5 +1,5 @@
-import { fetchSearchResults } from "@/_lib/projects/fetch-search-results";
-import { getCurrentPaginationPage } from "@/_lib/utils/get-current-pagination-page";
+import { fetchSearchResults } from "@/lib/projects/fetch-search-results";
+import { getCurrentPaginationPage } from "@/lib/utils/get-current-pagination-page";
 
 interface FetchInitialProjectsProps {
     params: { page?: string[] | undefined };

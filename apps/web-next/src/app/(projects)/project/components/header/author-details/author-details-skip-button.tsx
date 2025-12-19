@@ -1,7 +1,7 @@
-import { BedrockText } from "@/_components/bedrock-text";
+import { BedrockText } from "@/components/bedrock-text";
 
 import styles from "./author-details.module.scss";
-import { Link } from "@/_components/link";
+import { Link } from "@/components/link";
 
 export const AuthorDetailsSkipButton = () => (
   <Link link="#download" className={styles.smooth}>

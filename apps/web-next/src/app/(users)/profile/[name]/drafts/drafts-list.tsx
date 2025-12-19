@@ -1,7 +1,7 @@
-import { Banner } from "@/_components/banner";
-import { GridDownloadCard } from "@/_components/grid-download-card";
-import { fetchUserDrafts } from "@/_lib/projects/fetch-user-drafts";
-import { fetchUserByName } from "@/_lib/user";
+import { Banner } from "@/components/banner";
+import { GridDownloadCard } from "@/components/grid-download-card";
+import { fetchUserDrafts } from "@/lib/projects/fetch-user-drafts";
+import { fetchUserByName } from "@/lib/user";
 import { notFound } from "next/navigation";
 
 import styles from "./drafts.module.scss";
@@ -14,10 +14,10 @@ export const revalidate = 20;
 
 export const DraftsList = async ({ name }: DraftsListProps) => {
   const user = await fetchUserByName(name);
-  if(!user) {
+  if (!user) {
     notFound();
   }
-  
+
   const drafts = await fetchUserDrafts(user.id);
 
   if (drafts.length < 1) {

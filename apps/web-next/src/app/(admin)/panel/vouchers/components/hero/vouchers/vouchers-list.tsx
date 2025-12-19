@@ -1,12 +1,15 @@
-import { VoucherCard } from "@/_components/voucher-card";
-import { VoucherDto } from "@/_lib/api";
+import { VoucherCard } from "@/components/voucher-card";
+import { VoucherDto } from "@/lib/api";
 
 interface VouchersListProps {
   vouchers: VoucherDto[];
   handlePreviewVoucher: (voucher: VoucherDto) => Promise<void>;
 }
 
-export const VouchersList = ({ vouchers, handlePreviewVoucher }: VouchersListProps) =>
+export const VouchersList = ({
+  vouchers,
+  handlePreviewVoucher,
+}: VouchersListProps) =>
   vouchers.map((voucher) => (
     <VoucherCard
       key={voucher.id}

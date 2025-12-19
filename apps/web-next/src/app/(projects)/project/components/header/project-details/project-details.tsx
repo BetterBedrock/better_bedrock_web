@@ -1,8 +1,8 @@
 import clsx from "clsx";
-import { ProjectMode } from "@/_components/grid-download-card";
-import { Rating } from "@/_components/rating";
-import { DetailedProjectDto } from "@/_lib/api";
-import { fetchLoggedUser } from "@/_lib/auth";
+import { ProjectMode } from "@/components/grid-download-card";
+import { Rating } from "@/components/rating";
+import { DetailedProjectDto } from "@/lib/api";
+import { fetchLoggedUser } from "@/lib/auth";
 import { ProjectDetailsReport } from "@/app/(projects)/project/components/header/project-details/project-details-report";
 import { ProjectDetailsTitle } from "@/app/(projects)/project/components/header/project-details/project-details-title";
 import { ProjectDetailsEditButton } from "@/app/(projects)/project/components/header/project-details/project-details-edit-button";

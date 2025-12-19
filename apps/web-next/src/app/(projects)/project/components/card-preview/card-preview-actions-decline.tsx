@@ -1,9 +1,9 @@
 "use client";
 
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { PopupWrapper } from "@/_components/popup/popup-wrapper";
-import { useProject } from "@/_providers/project";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { PopupWrapper } from "@/components/popup/popup-wrapper";
+import { useProject } from "@/providers/project";
 import { CardPreviewDeclinePopup } from "@/app/(projects)/project/components/card-preview/card-preview-decline-popup";
 import { useProjectManager } from "@/app/(projects)/project/providers/project-manager";
 import { Routes } from "@/utils/routes";

@@ -1,4 +1,4 @@
-import { Card, CardDivider } from "@/_components/card";
+import { Card, CardDivider } from "@/components/card";
 import { ReasonsGridList } from "./reasons-grid-list";
 import { ReasonsHeading } from "./reasons-heading";
 import styles from "./reasons.module.scss";

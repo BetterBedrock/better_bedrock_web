@@ -1,6 +1,6 @@
 "use client";
 
-import { useNotification } from "@/_providers/notification";
+import { useNotification } from "@/providers/notification";
 import { useActions } from "./use-actions";
 
 export const useActionsSave = () => {
@@ -20,4 +20,3 @@ export const useActionsSave = () => {
 
   return { saveProject };
 };
-  

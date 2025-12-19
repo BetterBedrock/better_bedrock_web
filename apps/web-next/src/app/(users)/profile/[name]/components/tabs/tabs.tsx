@@ -1,8 +1,8 @@
 "use server";
 
-import { ButtonGroup } from "@/_components/button-group/button-group";
+import { ButtonGroup } from "@/components/button-group/button-group";
 import { TabsButton } from "./tabs-button";
-import { fetchLoggedUser } from "@/_lib/auth/fetch-logged-user";
+import { fetchLoggedUser } from "@/lib/auth/fetch-logged-user";
 
 import styles from "./tabs.module.scss";
 

@@ -1,5 +1,5 @@
-import { GridDownloadCard } from "@/_components/grid-download-card";
-import { SimpleProjectDto } from "@/_lib/api";
+import { GridDownloadCard } from "@/components/grid-download-card";
+import { SimpleProjectDto } from "@/lib/api";
 
 import styles from "./side-projects.module.scss";
 

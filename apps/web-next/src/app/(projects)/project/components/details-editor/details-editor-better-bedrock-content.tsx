@@ -1,9 +1,9 @@
 "use client";
 
 import clsx from "clsx";
-import { BedrockText } from "@/_components/bedrock-text";
-import { CardDivider } from "@/_components/card";
-import { InputSwitch } from "@/_components/input/input-switch";
+import { BedrockText } from "@/components/bedrock-text";
+import { CardDivider } from "@/components/card";
+import { InputSwitch } from "@/components/input/input-switch";
 import { useDetailsEditorBetterBedrockContent } from "@/app/(projects)/project/components/details-editor/hooks/use-details-editor-better-bedrock-content";
 
 import styles from "./details-editor.module.scss";

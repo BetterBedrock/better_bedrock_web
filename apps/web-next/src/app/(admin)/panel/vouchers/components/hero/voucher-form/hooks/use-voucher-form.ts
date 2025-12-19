@@ -1,6 +1,6 @@
 "use client";
 
-import { VoucherDto, CreateVoucher } from "@/_lib/api";
+import { VoucherDto, CreateVoucher } from "@/lib/api";
 import { INPUT_FORMAT } from "@/utils/date";
 import { zodResolver } from "@hookform/resolvers/zod";
 import dayjs from "dayjs";

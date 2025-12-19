@@ -1,5 +1,5 @@
-import { GridDownloadCard } from "@/_components/grid-download-card";
-import { SearchProjectsDto } from "@/_lib/api";
+import { GridDownloadCard } from "@/components/grid-download-card";
+import { SearchProjectsDto } from "@/lib/api";
 
 import styles from "./projects-card.module.scss";
 
@@ -10,7 +10,11 @@ interface ProjectsCardListProps {
 export const ProjectsCardList = ({ searchResults }: ProjectsCardListProps) => (
   <div className={styles.list}>
     {searchResults!.items.map((project, index) => (
-      <GridDownloadCard key={project.id ?? index} project={project} mode="view" />
+      <GridDownloadCard
+        key={project.id ?? index}
+        project={project}
+        mode="view"
+      />
     ))}
   </div>
 );

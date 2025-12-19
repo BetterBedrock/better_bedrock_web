@@ -1,11 +1,11 @@
 "use client";
 
-import { PopupReport } from "@/_components/popup/popup-report";
-import { PopupWrapper } from "@/_components/popup/popup-wrapper";
-import { SimpleButton } from "@/_components/simple-button";
-import { Tooltip } from "@/_components/tooltip";
+import { PopupReport } from "@/components/popup/popup-report";
+import { PopupWrapper } from "@/components/popup/popup-wrapper";
+import { SimpleButton } from "@/components/simple-button";
+import { Tooltip } from "@/components/tooltip";
 import ReportGlyph from "@/public/images/glyphs/WarningGlyph.png";
-import { DetailedProjectDto } from "@/_lib/api";
+import { DetailedProjectDto } from "@/lib/api";
 
 import styles from "./project-details.module.scss";
 

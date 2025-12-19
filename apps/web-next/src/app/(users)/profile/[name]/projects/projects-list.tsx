@@ -1,7 +1,7 @@
-import { GridDownloadCard } from "@/_components/grid-download-card";
+import { GridDownloadCard } from "@/components/grid-download-card";
 
-import { fetchUserProjects } from "@/_lib/projects/fetch-user-projects";
-import { fetchUserByName } from "@/_lib/user";
+import { fetchUserProjects } from "@/lib/projects/fetch-user-projects";
+import { fetchUserByName } from "@/lib/user";
 import { notFound } from "next/navigation";
 import { ProjectsListEmpty } from "./projects-list-empty";
 

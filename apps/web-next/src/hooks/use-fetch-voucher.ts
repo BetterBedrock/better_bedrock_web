@@ -1,6 +1,6 @@
 "use client";
 
-import { VoucherDto } from "@/_lib/api";
+import { VoucherDto } from "@/lib/api";
 import { useCookies } from "next-client-cookies"
 
 export const useFetchVoucher = (): VoucherDto | undefined => {

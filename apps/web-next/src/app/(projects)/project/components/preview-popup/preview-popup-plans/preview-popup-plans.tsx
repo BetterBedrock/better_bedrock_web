@@ -1,5 +1,5 @@
-import { Popup } from "@/_components/popup";
-import { CheckoutOptionGroupDto } from "@/_lib/api";
+import { Popup } from "@/components/popup";
+import { CheckoutOptionGroupDto } from "@/lib/api";
 import { PreviewPopupPlansList } from "@/app/(projects)/project/components/preview-popup/preview-popup-plans/preview-popup-plans-list";
 import { PreviewPopupPlansPeriod } from "@/app/(projects)/project/components/preview-popup/preview-popup-plans/preview-popup-plans-period";
 

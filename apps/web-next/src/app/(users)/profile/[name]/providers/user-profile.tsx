@@ -6,9 +6,9 @@ import {
   UserDto,
   SimpleUserDto,
   ManageProfileDto,
-} from "@/_lib/api";
-import { useAuth } from "@/_providers/auth";
-import { useUser } from "@/_providers/user";
+} from "@/lib/api";
+import { useAuth } from "@/providers/auth";
+import { useUser } from "@/providers/user";
 import { Routes } from "@/utils/routes";
 import {
   createContext,
@@ -60,8 +60,7 @@ export const UserProfileProvider = ({
   initialUser,
 }: UserProfileProviderProps) => {
   const router = useRouter();
-  const { updateProfile, manageProfile, findDetailedUser } =
-    useUser();
+  const { updateProfile, manageProfile, findDetailedUser } = useUser();
   const { user } = useAuth();
 
   const [detailedUser, setDetailedUser] = useState<UserDto | undefined>();

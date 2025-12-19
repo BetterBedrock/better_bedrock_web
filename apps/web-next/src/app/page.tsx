@@ -1,9 +1,9 @@
-import { SectionDivider } from "@/_components/section-divider";
+import { SectionDivider } from "@/components/section-divider";
 
-import { About } from "./components/about/about";
-import { Changelog } from "./components/changelog/changelog";
-import { Creators } from "./components/creators/creators";
-import { Hero } from "./components/hero/hero";
+import { About } from "@/features/home/components/about/about";
+import { Changelog } from "@/features/home/components/changelog/changelog";
+import { Creators } from "@/features/home/components/creators/creators";
+import { Hero } from "@/features/home/components/hero/hero";
 
 import sand from "@/public/images/sand.png";
 import water from "@/public/images/water.png";

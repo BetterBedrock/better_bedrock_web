@@ -1,4 +1,4 @@
-import { useAuth } from "@/_providers/auth";
+import { useAuth } from "@/providers/auth";
 
 export const useHandleGoogleLogin = () => {
     const { googleLogin } = useAuth();

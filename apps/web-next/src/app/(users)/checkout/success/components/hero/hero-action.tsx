@@ -1,7 +1,7 @@
-import { Button } from "@/_components/button";
+import { Button } from "@/components/button";
 import { Routes } from "@/utils/routes";
-import { BedrockText } from "@/_components/bedrock-text";
-import { Link } from "@/_components/link";
+import { BedrockText } from "@/components/bedrock-text";
+import { Link } from "@/components/link";
 
 import styles from "./hero.module.scss";
 

@@ -1,9 +1,9 @@
-import { Layout } from "@/_components/layout";
-import { AuthProvider } from "@/_providers/auth";
-import { CheckoutProvider } from "@/_providers/checkout";
-import { NotificationProvider } from "@/_providers/notification";
-import { ProjectProvider } from "@/_providers/project";
-import { UserProvider } from "@/_providers/user";
+import { Layout } from "@/components/layout";
+import { AuthProvider } from "@/providers/auth";
+import { CheckoutProvider } from "@/providers/checkout";
+import { NotificationProvider } from "@/providers/notification";
+import { ProjectProvider } from "@/providers/project";
+import { UserProvider } from "@/providers/user";
 import "@/public/styles/global.scss";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 

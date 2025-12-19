@@ -1,7 +1,7 @@
 "use client";
 
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
 import { useHandleGoogleLogin } from "./hook/use-handle-google-login";
 import { useRedirectLoggedUser } from "./hook/use-redirect-logged-user";
 

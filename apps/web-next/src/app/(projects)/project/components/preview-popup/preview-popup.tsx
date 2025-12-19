@@ -1,8 +1,8 @@
 "use client";
 
-import { CardDivider } from "@/_components/card";
-import { Popup } from "@/_components/popup";
-import { ProjectDto } from "@/_lib/api";
+import { CardDivider } from "@/components/card";
+import { Popup } from "@/components/popup";
+import { ProjectDto } from "@/lib/api";
 import { useVoucherManager } from "@/app/(projects)/project/components/preview-popup/hooks/use-voucher-manager";
 import { PreviewPopupFooter } from "@/app/(projects)/project/components/preview-popup/preview-popup-footer/preview-popup-footer";
 import { PreviewPopupPlans } from "@/app/(projects)/project/components/preview-popup/preview-popup-plans/preview-popup-plans";

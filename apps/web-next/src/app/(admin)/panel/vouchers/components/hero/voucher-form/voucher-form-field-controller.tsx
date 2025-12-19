@@ -1,6 +1,6 @@
 import { Control, Controller } from "react-hook-form";
-import { InputSwitch } from "@/_components/input/input-switch";
-import { Input } from "@/_components/input";
+import { InputSwitch } from "@/components/input/input-switch";
+import { Input } from "@/components/input";
 
 import styles from "./voucher-form.module.scss";
 
@@ -25,7 +25,8 @@ export const VoucherFormFieldController = ({
       render={({ field }) => {
         if (
           type === "checkbox" &&
-          (typeof field.value === "undefined" || typeof field.value === "boolean")
+          (typeof field.value === "undefined" ||
+            typeof field.value === "boolean")
         ) {
           return (
             <InputSwitch

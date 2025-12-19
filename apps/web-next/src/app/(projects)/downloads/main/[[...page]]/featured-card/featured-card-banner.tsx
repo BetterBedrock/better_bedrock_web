@@ -1,7 +1,7 @@
 import clsx from "clsx";
-import { BedrockText } from "@/_components/bedrock-text";
-import { Card } from "@/_components/card";
-import { Link } from "@/_components/link";
+import { BedrockText } from "@/components/bedrock-text";
+import { Card } from "@/components/card";
+import { Link } from "@/components/link";
 
 import styles from "./featured-card.module.scss";
 
@@ -13,7 +13,13 @@ interface FeaturedCardBannerProps {
   grid: "bb" | "extensions" | "side";
 }
 
-export const FeaturedCardBanner = ({ image, color, text, link, grid }: FeaturedCardBannerProps) => (
+export const FeaturedCardBanner = ({
+  image,
+  color,
+  text,
+  link,
+  grid,
+}: FeaturedCardBannerProps) => (
   <Card className={clsx(styles.banner, styles[grid])}>
     <Link link={link} className={styles.link}>
       <img src={image} className={styles.image} />

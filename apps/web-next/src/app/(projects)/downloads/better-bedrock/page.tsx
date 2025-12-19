@@ -1,8 +1,8 @@
-import { SimpleProjectDto } from "@/_lib/api";
+import { SimpleProjectDto } from "@/lib/api";
 import { DownloadsItemDto } from "@/public/content/dto/downloads-item.dto";
 import { DownloadsListDto } from "@/public/content/dto/downloads-list.dto";
 
-import { fetchProjectsBasicInfo } from "@/_lib/projects/fetch-projects-basic-info";
+import { fetchProjectsBasicInfo } from "@/lib/projects/fetch-projects-basic-info";
 import { MAIN_LIST } from "@/public/content/better-bedrock";
 import { BetterBedrockArchiveButton } from "./better-bedrock-archive-button";
 import { BetterBedrockBanner } from "./better-bedrock-banner";

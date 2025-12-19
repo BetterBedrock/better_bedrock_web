@@ -1,4 +1,4 @@
-import { BedrockText } from "@/_components/bedrock-text";
+import { BedrockText } from "@/components/bedrock-text";
 
 import styles from "./header.module.scss";
 
@@ -6,7 +6,9 @@ interface HeadingDescriptionProps {
   description: string;
 }
 
-export const HeadingDescription = ({ description }: HeadingDescriptionProps) => (
+export const HeadingDescription = ({
+  description,
+}: HeadingDescriptionProps) => (
   <BedrockText
     extraClassName={styles.description}
     type="p"

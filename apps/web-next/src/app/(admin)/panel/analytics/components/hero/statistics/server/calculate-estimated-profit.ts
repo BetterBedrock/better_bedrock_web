@@ -1,4 +1,4 @@
-import { AnalyticsDto } from "@/_lib/api";
+import { AnalyticsDto } from "@/lib/api";
 
 interface CalculateEstimatedProfitProps {
   data: {

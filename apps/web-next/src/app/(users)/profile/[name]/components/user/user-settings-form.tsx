@@ -4,21 +4,21 @@ import { useState } from "react";
 import z from "zod";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { CardDivider } from "@/_components/card";
-import { UserDto } from "@/_lib/api";
-import { useAuth } from "@/_providers/auth";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { CardDivider } from "@/components/card";
+import { UserDto } from "@/lib/api";
+import { useAuth } from "@/providers/auth";
 import { Routes } from "@/utils/routes";
-import { Popup } from "@/_components/popup";
-import { Input } from "@/_components/input";
-import { InputSwitch } from "@/_components/input/input-switch";
-import { Link } from "@/_components/link";
+import { Popup } from "@/components/popup";
+import { Input } from "@/components/input";
+import { InputSwitch } from "@/components/input/input-switch";
+import { Link } from "@/components/link";
 import { useRouter } from "next/navigation";
 import {
   manageProfileRequest,
   updateProfileRequest,
-} from "@/_services/user-service";
+} from "@/services/user-service";
 import { useFetchSecret } from "@/hooks/use-fetch-secret";
 
 import styles from "./user.module.scss";

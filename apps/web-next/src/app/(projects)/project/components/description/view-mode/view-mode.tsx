@@ -1,6 +1,6 @@
-import { Card, CardDivider } from "@/_components/card";
-import { DetailedProjectDto } from "@/_lib/api";
-import { TiptapPreview } from "@/_components/tiptap/preview";
+import { Card, CardDivider } from "@/components/card";
+import { DetailedProjectDto } from "@/lib/api";
+import { TiptapPreview } from "@/components/tiptap/preview";
 import { HeaderTitle } from "@/app/(projects)/project/components/header/header-title";
 
 import styles from "./view-mode.module.scss";

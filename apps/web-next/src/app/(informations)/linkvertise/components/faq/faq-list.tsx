@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Collapsible } from "@/_components/collapsible";
+import { Collapsible } from "@/components/collapsible";
 
 import { linkvertiseFAQQuestions } from "./data/faq-questions";
 import styles from "./faq.module.scss";

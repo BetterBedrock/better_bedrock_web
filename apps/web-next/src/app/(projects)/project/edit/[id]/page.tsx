@@ -1,5 +1,5 @@
-import { fetchLoggedUser } from "@/_lib/auth";
-import { fetchDraftsDetails } from "@/_lib/projects/fetch-draft-details";
+import { fetchLoggedUser } from "@/lib/auth";
+import { fetchDraftsDetails } from "@/lib/projects/fetch-draft-details";
 import { Actions } from "@/app/(projects)/project/components/actions/actions";
 import { Description } from "@/app/(projects)/project/components/description/description";
 import { DetailsEditor } from "@/app/(projects)/project/components/details-editor/details-editor";

@@ -1,7 +1,7 @@
 "use client";
 
-import { DetailedProjectDto, ProjectCommentDto } from "@/_lib/api";
-import { useProject } from "@/_providers/project";
+import { DetailedProjectDto, ProjectCommentDto } from "@/lib/api";
+import { useProject } from "@/providers/project";
 import { KeyboardEvent, useRef, useState } from "react";
 
 interface UseCommentsProps {

@@ -1,7 +1,7 @@
-import { Banner } from "@/_components/banner";
-import { CircularProgressIndicator } from "@/_components/circular-progress-indicator";
+import { Banner } from "@/components/banner";
+import { CircularProgressIndicator } from "@/components/circular-progress-indicator";
 import { useReportsManager } from "@/app/(admin)/panel/reports/providers/reports-manager";
-import { ReportCard } from "@/_components/report-card";
+import { ReportCard } from "@/components/report-card";
 
 import styles from "./resolved.module.scss";
 

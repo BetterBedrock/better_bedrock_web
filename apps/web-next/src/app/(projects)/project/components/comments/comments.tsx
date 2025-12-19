@@ -1,10 +1,10 @@
 "use server";
 
-import { Card, CardDivider } from "@/_components/card";
-import { ReportProvider } from "@/_providers/report";
-import { DetailedProjectDto } from "@/_lib/api";
-import { fetchComments } from "@/_lib/projects/fetch-comments";
-import { fetchLoggedUser } from "@/_lib/auth";
+import { Card, CardDivider } from "@/components/card";
+import { ReportProvider } from "@/providers/report";
+import { DetailedProjectDto } from "@/lib/api";
+import { fetchComments } from "@/lib/projects/fetch-comments";
+import { fetchLoggedUser } from "@/lib/auth";
 import { HeaderTitle } from "@/app/(projects)/project/components/header/header-title";
 import { CommentsList } from "@/app/(projects)/project/components/comments/comments-list";
 import { CommentsPost } from "@/app/(projects)/project/components/comments/comments-post";

@@ -1,4 +1,4 @@
-import { BedrockText } from "@/_components/bedrock-text";
+import { BedrockText } from "@/components/bedrock-text";
 
 import styles from "./voucher-form.module.scss";
 

@@ -1,7 +1,7 @@
 "use server";
 
-import { fetchAllVouchers } from "@/_lib/voucher/fetch-all-vouchers";
-import { fetchAllAnalytics } from "@/_lib/analytics/fetch-all-analytics";
+import { fetchAllVouchers } from "@/lib/voucher/fetch-all-vouchers";
+import { fetchAllAnalytics } from "@/lib/analytics/fetch-all-analytics";
 import { StatisticsList } from "@/app/(admin)/panel/analytics/components/hero/statistics/statistics-list";
 
 import styles from "./statistics.module.scss";

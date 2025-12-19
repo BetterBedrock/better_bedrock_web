@@ -1,12 +1,12 @@
 "use client";
 
 import clsx from "clsx";
-import { Banner } from "@/_components/banner";
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { ButtonGroup } from "@/_components/button-group/button-group";
-import { Input } from "@/_components/input";
-import { Tag } from "@/_components/tag";
+import { Banner } from "@/components/banner";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { ButtonGroup } from "@/components/button-group/button-group";
+import { Input } from "@/components/input";
+import { Tag } from "@/components/tag";
 import { useDetailsEditorTags } from "@/app/(projects)/project/components/details-editor/hooks/use-details-editor-tags";
 
 import styles from "./details-editor.module.scss";

@@ -1,4 +1,4 @@
-import { fetchAllAnalytics } from "@/_lib/analytics/fetch-all-analytics";
+import { fetchAllAnalytics } from "@/lib/analytics/fetch-all-analytics";
 import { StatisticsList } from "./statistics-list";
 import styles from "./statistics.module.scss";
 

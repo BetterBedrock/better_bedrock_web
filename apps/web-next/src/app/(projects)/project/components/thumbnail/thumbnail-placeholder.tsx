@@ -1,6 +1,6 @@
 "use client";
 
-import { ImagePlaceholder } from "@/_components/image-placeholder";
+import { ImagePlaceholder } from "@/components/image-placeholder";
 import { useThumbnailUpload } from "@/app/(projects)/project/components/thumbnail/hooks/use-thumbnail-upload";
 import { baseUrl } from "@/utils/url";
 

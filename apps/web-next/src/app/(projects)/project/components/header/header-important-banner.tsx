@@ -1,4 +1,4 @@
-import { Banner } from "@/_components/banner";
+import { Banner } from "@/components/banner";
 
 export const HeaderImportantBanner = () => (
   <Banner

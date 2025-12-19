@@ -1,5 +1,5 @@
-import { BedrockText } from "@/_components/bedrock-text";
-import { CircularProgressIndicator } from "@/_components/circular-progress-indicator";
+import { BedrockText } from "@/components/bedrock-text";
+import { CircularProgressIndicator } from "@/components/circular-progress-indicator";
 
 import styles from "./projects-card.module.scss";
 

@@ -1,4 +1,4 @@
-import { Card } from "@/_components/card";
+import { Card } from "@/components/card";
 
 import { TutorialDescription } from "./tutorial-description";
 import { TutorialTitle } from "./tutorial-title";

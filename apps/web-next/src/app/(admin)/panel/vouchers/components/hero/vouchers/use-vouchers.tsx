@@ -1,11 +1,11 @@
 "use client";
 
-import { CreateVoucher, VoucherDto } from "@/_lib/api";
-import { createVoucher } from "@/_lib/voucher/create-voucher";
-import { fetchAllVouchers } from "@/_lib/voucher/fetch-all-vouchers";
-import { updateVoucher } from "@/_lib/voucher/update-voucher";
-import { useAuth } from "@/_providers/auth";
-import { useNotification } from "@/_providers/notification";
+import { CreateVoucher, VoucherDto } from "@/lib/api";
+import { createVoucher } from "@/lib/voucher/create-voucher";
+import { fetchAllVouchers } from "@/lib/voucher/fetch-all-vouchers";
+import { updateVoucher } from "@/lib/voucher/update-voucher";
+import { useAuth } from "@/providers/auth";
+import { useNotification } from "@/providers/notification";
 import { useEffect, useState } from "react";
 
 export const useVouchers = () => {

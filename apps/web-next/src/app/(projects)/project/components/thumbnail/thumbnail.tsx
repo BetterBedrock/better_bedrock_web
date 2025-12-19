@@ -1,6 +1,6 @@
 import { ThumbnailPlaceholder } from "./thumbnail-placeholder";
-import { Card, CardDivider } from "@/_components/card";
-import { DetailedProjectDto } from "@/_lib/api";
+import { Card, CardDivider } from "@/components/card";
+import { DetailedProjectDto } from "@/lib/api";
 
 import styles from "./thumbnail.module.scss";
 import { HeaderTitle } from "@/app/(projects)/project/components/header/header-title";

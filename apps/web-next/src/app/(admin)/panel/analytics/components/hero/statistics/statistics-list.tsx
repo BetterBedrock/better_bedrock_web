@@ -1,7 +1,7 @@
-import { AnalyticsDto, VoucherDto, AnalyticsNames } from "@/_lib/api";
+import { AnalyticsDto, VoucherDto, AnalyticsNames } from "@/lib/api";
 
-import { StatisticsCard } from "@/_components/statistics-card";
-import { simplifyAnalytics } from "@/_lib/analytics";
+import { StatisticsCard } from "@/components/statistics-card";
+import { simplifyAnalytics } from "@/lib/analytics";
 import { calculateEstimatedProfit } from "./server/calculate-estimated-profit";
 import { calculateVouchersStatistics } from "./server/calculate-vouchers-statistics";
 

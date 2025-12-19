@@ -1,6 +1,6 @@
-import { Card, CardDivider } from "@/_components/card";
-import { ProjectMode } from "@/_components/grid-download-card";
-import { DetailedProjectDto } from "@/_lib/api";
+import { Card, CardDivider } from "@/components/card";
+import { ProjectMode } from "@/components/grid-download-card";
+import { DetailedProjectDto } from "@/lib/api";
 import { AuthorDetails } from "@/app/(projects)/project/components/header/author-details/author-details";
 import { ProjectDetails } from "@/app/(projects)/project/components/header/project-details/project-details";
 import { SubmittedOverlay } from "@/app/(projects)/project/components/submitted-overlay/submitted-overlay";

@@ -1,5 +1,5 @@
-import { Section } from "@/_components/section";
-import { Hero } from "@/app/(projects)/verify/components/hero/hero";
+import { Section } from "@/components/section";
+import { Hero } from "@/features/verify/components/hero/hero";
 import styles from "./verify.module.scss";
 
 interface FetchProps {

@@ -3,7 +3,7 @@
 import { Hero } from "./components/hero/hero";
 import { HeroReportPopup } from "./components/hero/hero-report-popup";
 import { useReportsManager } from "@/app/(admin)/panel/reports/providers/reports-manager";
-import { Section } from "@/_components/section";
+import { Section } from "@/components/section";
 
 import styles from "./reports.module.scss";
 

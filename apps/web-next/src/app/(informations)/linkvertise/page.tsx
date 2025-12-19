@@ -1,4 +1,4 @@
-import { Section } from "@/_components/section";
+import { Section } from "@/components/section";
 
 import { FAQ } from "./components/faq/faq";
 import { Hero } from "./components/hero/hero";

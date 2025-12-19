@@ -1,6 +1,6 @@
-import { UserRatingDto } from "@/_lib/api";
+import { UserRatingDto } from "@/lib/api";
 import clsx from "clsx";
-import { Rating } from "@/_components/rating";
+import { Rating } from "@/components/rating";
 
 import styles from "./user.module.scss";
 

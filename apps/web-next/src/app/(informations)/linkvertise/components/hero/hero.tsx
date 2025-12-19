@@ -1,4 +1,4 @@
-import { Card, CardDivider } from "@/_components/card";
+import { Card, CardDivider } from "@/components/card";
 
 import { HeroVideo } from "./hero-video";
 import { HeroHeading } from "./hero-heading";

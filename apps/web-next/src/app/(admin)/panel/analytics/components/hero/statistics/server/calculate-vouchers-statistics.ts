@@ -1,4 +1,4 @@
-import { VoucherDto } from "@/_lib/api";
+import { VoucherDto } from "@/lib/api";
 import dayjs from "dayjs";
 
 interface CalculateVouchersStatisticsProps {

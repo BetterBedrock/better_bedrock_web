@@ -1,8 +1,8 @@
-import { Banner } from "@/_components/banner";
-import { Comment } from "@/_components/comment";
-import { ProjectCommentDto, UserDto } from "@/_lib/api";
-import { postComment } from "@/_lib/projects/post-comment";
-import { deleteComment } from "@/_lib/projects/delete-comment";
+import { Banner } from "@/components/banner";
+import { Comment } from "@/components/comment";
+import { ProjectCommentDto, UserDto } from "@/lib/api";
+import { postComment } from "@/lib/projects/post-comment";
+import { deleteComment } from "@/lib/projects/delete-comment";
 
 import styles from "./comments.module.scss";
 

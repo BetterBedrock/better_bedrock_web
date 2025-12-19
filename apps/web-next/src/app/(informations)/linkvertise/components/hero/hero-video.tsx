@@ -1,4 +1,4 @@
-import { YoutubeVideo } from "@/_components/youtube-video";
+import { YoutubeVideo } from "@/components/youtube-video";
 
 import styles from "./hero.module.scss";
 

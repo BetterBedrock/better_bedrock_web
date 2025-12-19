@@ -1,11 +1,11 @@
-import { Banner } from "@/_components/banner";
-import { BedrockText } from "@/_components/bedrock-text";
+import { Banner } from "@/components/banner";
+import { BedrockText } from "@/components/bedrock-text";
 
 interface HeaderErrorBannerProps {
-    message: string;
+  message: string;
 }
 
-export const HeaderErrorBanner = ({message}: HeaderErrorBannerProps) => (
+export const HeaderErrorBanner = ({ message }: HeaderErrorBannerProps) => (
   <Banner
     type="error"
     message={

@@ -1,5 +1,5 @@
 import Markdown from "react-markdown";
-import { Card } from "@/_components/card";
+import { Card } from "@/components/card";
 
 import styles from "./tutorial.module.scss";
 

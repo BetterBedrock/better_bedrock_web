@@ -1,9 +1,9 @@
 "use client";
 
 import clsx from "clsx";
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { CircularProgressIndicator } from "@/_components/circular-progress-indicator";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { CircularProgressIndicator } from "@/components/circular-progress-indicator";
 import { calculateItemDisplayWeight } from "@/utils/math";
 import { useDetailsEditorDownloadFile } from "@/app/(projects)/project/components/details-editor/hooks/use-details-editor-download-file";
 

@@ -1,8 +1,8 @@
 "use client";
 
-import { PopupWrapper } from "@/_components/popup/popup-wrapper";
-import { SimpleButton } from "@/_components/simple-button";
-import { DetailedUserDto } from "@/_lib/api";
+import { PopupWrapper } from "@/components/popup/popup-wrapper";
+import { SimpleButton } from "@/components/simple-button";
+import { DetailedUserDto } from "@/lib/api";
 import SettingsGlyph from "@/public/images/settings_glyph.png";
 import { UserSettingsForm } from "./user-settings-form";
 

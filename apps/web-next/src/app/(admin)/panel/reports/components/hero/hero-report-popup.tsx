@@ -1,20 +1,20 @@
 "use client";
 
-import { Avatar } from "@/_components/avatar";
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { CardDivider, Card } from "@/_components/card";
-import { CircularProgressIndicator } from "@/_components/circular-progress-indicator";
-import { GridDownloadCard } from "@/_components/grid-download-card";
-import { Popup } from "@/_components/popup";
-import { Rating } from "@/_components/rating";
-import { DetailedUserDto, DetailedProjectDto } from "@/_lib/api";
-import { useProject } from "@/_providers/project";
-import { useUser } from "@/_providers/user";
+import { Avatar } from "@/components/avatar";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { CardDivider, Card } from "@/components/card";
+import { CircularProgressIndicator } from "@/components/circular-progress-indicator";
+import { GridDownloadCard } from "@/components/grid-download-card";
+import { Popup } from "@/components/popup";
+import { Rating } from "@/components/rating";
+import { DetailedUserDto, DetailedProjectDto } from "@/lib/api";
+import { useProject } from "@/providers/project";
+import { useUser } from "@/providers/user";
 import { useReportsManager } from "@/app/(admin)/panel/reports/providers/reports-manager";
 import { useEffect, useState } from "react";
-import { resolveReport } from "@/_lib/report/resolve-report";
-import { reOpenReport } from "@/_lib/report/re-open-report";
+import { resolveReport } from "@/lib/report/resolve-report";
+import { reOpenReport } from "@/lib/report/re-open-report";
 
 import styles from "./hero.module.scss";
 

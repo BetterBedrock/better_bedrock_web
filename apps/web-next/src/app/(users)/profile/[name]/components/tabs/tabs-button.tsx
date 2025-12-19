@@ -1,8 +1,8 @@
 "use client";
 
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { Link } from "@/_components/link";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { Link } from "@/components/link";
 import { Routes } from "@/utils/routes";
 import { usePathname } from "next/navigation";
 
@@ -15,7 +15,7 @@ interface TabsButtonProps {
 
 export const TabsButton = ({ text, name }: TabsButtonProps) => {
   const currentPage = usePathname().split("/").pop();
-  
+
   return (
     <Link
       link={`${Routes.PROFILE}/${name}/${text.toLowerCase()}`}

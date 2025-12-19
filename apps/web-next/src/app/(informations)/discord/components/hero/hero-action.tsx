@@ -1,8 +1,8 @@
 "use client";
 
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { Link } from "@/_components/link";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { Link } from "@/components/link";
 import { useRedirectToDiscord } from "@/app/(informations)/discord/hooks/use-redirect-to-discord";
 
 export const HeroAction = () => {

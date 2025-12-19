@@ -1,7 +1,7 @@
 "use server";
 
-import { GridDownloadCard } from "@/_components/grid-download-card";
-import { fetchSubmittedProjects } from "@/_lib/projects/fetch-submitted-projects";
+import { GridDownloadCard } from "@/components/grid-download-card";
+import { fetchSubmittedProjects } from "@/lib/projects/fetch-submitted-projects";
 import { calculateLastChangedHours } from "./server/calculate-last-changed-hours";
 import { ProjectsListEmpty } from "./projects-list-empty";
 
@@ -13,7 +13,7 @@ export const ProjectsList = async () => {
   if (projects.length === 0) {
     return <ProjectsListEmpty />;
   }
-  
+
   return (
     <div className={styles.list}>
       {projects.map((project, index) => (

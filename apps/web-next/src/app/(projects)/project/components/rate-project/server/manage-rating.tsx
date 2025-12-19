@@ -1,5 +1,5 @@
-import { deleteRating } from "@/_lib/projects/delete-rating";
-import { postRating } from "@/_lib/projects/post-rating";
+import { deleteRating } from "@/lib/projects/delete-rating";
+import { postRating } from "@/lib/projects/post-rating";
 
 export const manageRating = async (id: string) => {
   async function handleReset() {

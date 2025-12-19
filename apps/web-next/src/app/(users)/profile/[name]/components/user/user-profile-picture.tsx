@@ -1,4 +1,4 @@
-import { Avatar } from "@/_components/avatar";
+import { Avatar } from "@/components/avatar";
 
 import styles from "./user.module.scss";
 

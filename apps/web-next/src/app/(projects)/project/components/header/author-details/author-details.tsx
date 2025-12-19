@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import { ProjectMode } from "@/_components/grid-download-card";
-import { DetailedProjectDto } from "@/_lib/api";
+import { ProjectMode } from "@/components/grid-download-card";
+import { DetailedProjectDto } from "@/lib/api";
 import { AuthorDetailsAvatar } from "@/app/(projects)/project/components/header/author-details/author-details-avatar";
 import { AuthorDetailsSkipButton } from "@/app/(projects)/project/components/header/author-details/author-details-skip-button";
 

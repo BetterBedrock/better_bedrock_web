@@ -1,5 +1,5 @@
 import { InformationVideo } from "@/app/(informations)/information/[slug]/data/information-data";
-import { GridCard } from "@/_components/grid-card";
+import { GridCard } from "@/components/grid-card";
 
 import styles from "./tutorial-videos.module.scss";
 

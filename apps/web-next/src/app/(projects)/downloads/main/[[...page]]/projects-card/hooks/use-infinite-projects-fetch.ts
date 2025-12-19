@@ -1,7 +1,7 @@
 "use client";
 
-import { SearchProjectsDto, SearchOrder } from "@/_lib/api";
-import { fetchSearchResults } from "@/_lib/projects/fetch-search-results";
+import { SearchProjectsDto, SearchOrder } from "@/lib/api";
+import { fetchSearchResults } from "@/lib/projects/fetch-search-results";
 import { SEARCH_PROJECT_TYPES } from "@/public/content/better-bedrock";
 import { useState, useRef, useEffect } from "react";
 

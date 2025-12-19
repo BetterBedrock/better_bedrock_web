@@ -1,7 +1,7 @@
 "use client";
 
-import { Banner } from "@/_components/banner";
-import { CircularProgressIndicator } from "@/_components/circular-progress-indicator";
+import { Banner } from "@/components/banner";
+import { CircularProgressIndicator } from "@/components/circular-progress-indicator";
 import { VoucherForm } from "@/app/(admin)/panel/vouchers/components/hero/voucher-form/voucher-form";
 import { useVouchers } from "./use-vouchers";
 import { VouchersAction } from "./vouchers-action";

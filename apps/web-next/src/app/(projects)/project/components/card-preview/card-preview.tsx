@@ -1,5 +1,5 @@
-import { Card, CardDivider } from "@/_components/card";
-import { GridDownloadCard } from "@/_components/grid-download-card";
+import { Card, CardDivider } from "@/components/card";
+import { GridDownloadCard } from "@/components/grid-download-card";
 import { useProjectManager } from "@/app/(projects)/project/providers/project-manager";
 import { HeaderTitle } from "@/app/(projects)/project/components/header/header-title";
 import { CardPreviewActions } from "@/app/(projects)/project/components/card-preview/card-preview-actions";

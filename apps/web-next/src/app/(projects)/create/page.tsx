@@ -1,6 +1,6 @@
 import { Hero } from "./components/hero/hero";
 import { guestRedirect } from "./server/guest-redirect";
-import { Section } from "@/_components/section";
+import { Section } from "@/components/section";
 
 import styles from "./creator.module.scss";
 

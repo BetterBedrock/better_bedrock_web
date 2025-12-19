@@ -1,9 +1,9 @@
-import { ProjectDto } from "@/_lib/api";
-import { activateVoucher } from "@/_lib/checkout";
-import { generateDownload } from "@/_lib/downloads/generate-download";
-import { useCheckout } from "@/_providers/checkout";
-import { useNotification } from "@/_providers/notification";
-import { useUser } from "@/_providers/user";
+import { ProjectDto } from "@/lib/api";
+import { activateVoucher } from "@/lib/checkout";
+import { generateDownload } from "@/lib/downloads/generate-download";
+import { useCheckout } from "@/providers/checkout";
+import { useNotification } from "@/providers/notification";
+import { useUser } from "@/providers/user";
 import { getLinkvertiseUrl, openLinkvertise } from "@/utils/download";
 import { useCookies } from "next-client-cookies";
 import { useState, KeyboardEvent } from "react";

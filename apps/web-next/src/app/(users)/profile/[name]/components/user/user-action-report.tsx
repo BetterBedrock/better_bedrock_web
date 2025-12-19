@@ -1,8 +1,8 @@
 "use client";
 
-import { PopupReport } from "@/_components/popup/popup-report";
-import { PopupWrapper } from "@/_components/popup/popup-wrapper";
-import { SimpleButton } from "@/_components/simple-button";
+import { PopupReport } from "@/components/popup/popup-report";
+import { PopupWrapper } from "@/components/popup/popup-wrapper";
+import { SimpleButton } from "@/components/simple-button";
 import ReportGlyph from "@/public/images/glyphs/WarningGlyph.png";
 
 import styles from "./user.module.scss";

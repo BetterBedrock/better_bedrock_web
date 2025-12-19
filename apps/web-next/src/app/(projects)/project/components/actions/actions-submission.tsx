@@ -1,8 +1,8 @@
 "use client";
 
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { PopupConfirmation } from "@/_components/popup/popup-confirmation";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { PopupConfirmation } from "@/components/popup/popup-confirmation";
 import { useActions } from "@/app/(projects)/project/components/actions/hooks/use-actions";
 
 import styles from "./actions.module.scss";

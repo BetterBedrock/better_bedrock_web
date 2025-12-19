@@ -1,7 +1,6 @@
-
-import { StatisticsCard } from "@/_components/statistics-card";
-import { AnalyticsDto } from "@/_lib/api";
-import { simplifyAnalytics } from "@/_lib/analytics";
+import { StatisticsCard } from "@/components/statistics-card";
+import { AnalyticsDto } from "@/lib/api";
+import { simplifyAnalytics } from "@/lib/analytics";
 
 import styles from "./statistics.module.scss";
 

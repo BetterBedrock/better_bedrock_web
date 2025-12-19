@@ -1,11 +1,11 @@
 "use client";
 
-import { Banner } from "@/_components/banner";
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { ButtonGroup } from "@/_components/button-group/button-group";
-import { Input } from "@/_components/input";
-import { DetailedProjectDto, UserDto } from "@/_lib/api";
+import { Banner } from "@/components/banner";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { ButtonGroup } from "@/components/button-group/button-group";
+import { Input } from "@/components/input";
+import { DetailedProjectDto, UserDto } from "@/lib/api";
 import { useComments } from "@/app/(projects)/project/components/comments/hook/use-comments";
 
 import styles from "./comments.module.scss";

@@ -1,5 +1,5 @@
-import { BedrockText } from "@/_components/bedrock-text";
-import { DetailedProjectDto } from "@/_lib/api";
+import { BedrockText } from "@/components/bedrock-text";
+import { DetailedProjectDto } from "@/lib/api";
 
 import styles from "./project-details.module.scss";
 

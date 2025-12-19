@@ -1,7 +1,7 @@
 "use client";
 
-import { useNotification } from "@/_providers/notification";
-import { useProject } from "@/_providers/project";
+import { useNotification } from "@/providers/notification";
+import { useProject } from "@/providers/project";
 import { useProjectManager } from "@/app/(projects)/project/providers/project-manager";
 import { Routes } from "@/utils/routes";
 import { useRouter } from "next/navigation";

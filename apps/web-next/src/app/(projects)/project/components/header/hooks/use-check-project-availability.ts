@@ -1,6 +1,6 @@
-import { ProjectMode } from "@/_components/grid-download-card";
-import { DetailedProjectDto } from "@/_lib/api";
-import { useProject } from "@/_providers/project";
+import { ProjectMode } from "@/components/grid-download-card";
+import { DetailedProjectDto } from "@/lib/api";
+import { useProject } from "@/providers/project";
 import { useState, useEffect } from "react";
 
 interface UseHeaderProps {

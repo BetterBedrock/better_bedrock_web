@@ -1,5 +1,5 @@
-import { fetchLoggedUser } from "@/_lib/auth";
-import { fetchProjectDetails } from "@/_lib/projects/fetch-project-details";
+import { fetchLoggedUser } from "@/lib/auth";
+import { fetchProjectDetails } from "@/lib/projects/fetch-project-details";
 import { Comments } from "@/app/(projects)/project/components/comments/comments";
 import { Description } from "@/app/(projects)/project/components/description/description";
 import { DownloadButton } from "@/app/(projects)/project/components/download-button/download-button";

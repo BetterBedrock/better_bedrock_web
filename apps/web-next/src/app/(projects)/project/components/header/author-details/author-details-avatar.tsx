@@ -1,7 +1,7 @@
-import { Avatar } from "@/_components/avatar";
-import { CircularProgressIndicator } from "@/_components/circular-progress-indicator";
-import { Rating } from "@/_components/rating";
-import { DetailedProjectDto } from "@/_lib/api";
+import { Avatar } from "@/components/avatar";
+import { CircularProgressIndicator } from "@/components/circular-progress-indicator";
+import { Rating } from "@/components/rating";
+import { DetailedProjectDto } from "@/lib/api";
 
 interface AuthorDetailsAvatarProps {
   selectedProject: DetailedProjectDto;

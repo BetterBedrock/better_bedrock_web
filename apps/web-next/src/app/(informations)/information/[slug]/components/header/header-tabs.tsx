@@ -1,6 +1,6 @@
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { ButtonGroup } from "@/_components/button-group/button-group";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { ButtonGroup } from "@/components/button-group/button-group";
 import {
   InformationTab,
   informationData,
@@ -8,7 +8,7 @@ import {
 import { Routes } from "@/utils/routes";
 
 import styles from "./header.module.scss";
-import { Link } from "@/_components/link";
+import { Link } from "@/components/link";
 
 interface HeaderTabsProps {
   selectedCategory: InformationTab;

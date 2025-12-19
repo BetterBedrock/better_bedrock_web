@@ -1,4 +1,4 @@
-import { Input } from "@/_components/input";
+import { Input } from "@/components/input";
 import { KeyboardEvent, SetStateAction } from "react";
 
 import styles from "./preview-popup-voucher.module.scss";

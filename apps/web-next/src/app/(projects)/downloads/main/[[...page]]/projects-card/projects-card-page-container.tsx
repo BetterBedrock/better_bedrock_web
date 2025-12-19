@@ -1,7 +1,7 @@
 "use client";
 
-import { ButtonGroup } from "@/_components/button-group/button-group";
-import { SearchProjectsDto } from "@/_lib/api";
+import { ButtonGroup } from "@/components/button-group/button-group";
+import { SearchProjectsDto } from "@/lib/api";
 import { usePageProjectsFetch } from "./hooks/use-page-projects-fetch";
 import { ProjectsCardEmpty } from "./projects-card-empty";
 import { ProjectsCardList } from "./projects-card-list";

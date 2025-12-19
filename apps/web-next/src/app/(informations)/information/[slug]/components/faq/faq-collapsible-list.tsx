@@ -1,4 +1,4 @@
-import { Collapsible } from "@/_components/collapsible";
+import { Collapsible } from "@/components/collapsible";
 import { InformationTab } from "@/app/(informations)/information/[slug]/data/information-data";
 
 import styles from "./faq.module.scss";

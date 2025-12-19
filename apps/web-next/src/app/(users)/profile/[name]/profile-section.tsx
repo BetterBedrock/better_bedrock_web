@@ -1,5 +1,5 @@
 import { User } from "./components/user/user";
-import { Section } from "@/_components/section";
+import { Section } from "@/components/section";
 import { Tabs } from "@/app/(users)/profile/[name]/components/tabs/tabs";
 import { ReactNode } from "react";
 

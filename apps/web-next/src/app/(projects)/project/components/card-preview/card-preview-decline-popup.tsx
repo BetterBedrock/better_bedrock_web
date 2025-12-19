@@ -1,11 +1,11 @@
 "use client";
 
 import { useRef } from "react";
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { ButtonGroup } from "@/_components/button-group/button-group";
-import { Input } from "@/_components/input";
-import { Popup } from "@/_components/popup";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { ButtonGroup } from "@/components/button-group/button-group";
+import { Input } from "@/components/input";
+import { Popup } from "@/components/popup";
 
 import styles from "./card-preview.module.scss";
 

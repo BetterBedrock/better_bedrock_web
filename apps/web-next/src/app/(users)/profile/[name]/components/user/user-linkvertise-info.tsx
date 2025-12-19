@@ -1,6 +1,6 @@
-import { Banner } from "@/_components/banner";
-import { SimpleUserDto } from "@/_lib/api";
-import { fetchLoggedUser } from "@/_lib/auth/fetch-logged-user";
+import { Banner } from "@/components/banner";
+import { SimpleUserDto } from "@/lib/api";
+import { fetchLoggedUser } from "@/lib/auth/fetch-logged-user";
 
 interface UserLinkvertiseInfoProps {
   selectedUser?: SimpleUserDto;

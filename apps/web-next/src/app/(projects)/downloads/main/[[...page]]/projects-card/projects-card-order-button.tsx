@@ -1,8 +1,8 @@
 "use client";
 
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { SearchOrder } from "@/_lib/api";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { SearchOrder } from "@/lib/api";
 
 import { useProjectsCardSearch } from "./providers/projects-card-search";
 

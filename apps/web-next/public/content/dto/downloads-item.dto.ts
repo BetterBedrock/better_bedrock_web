@@ -1,4 +1,4 @@
-import { ButtonType } from "@/_components/button";
+import { ButtonType } from "@/components/button";
 
 export enum DownloadsItemType {
     green = "green",

@@ -1,11 +1,11 @@
 "use server";
 
-import { BedrockText } from "@/_components/bedrock-text";
-import { Card } from "@/_components/card";
+import { BedrockText } from "@/components/bedrock-text";
+import { Card } from "@/components/card";
 import { UserLinkvertiseInfo } from "./user-linkvertise-info";
 import clsx from "clsx";
-import { loadUserProfile } from "@/_lib/user/load-user-profile";
-import { loadUserRating } from "@/_lib/user/load-user-rating";
+import { loadUserProfile } from "@/lib/user/load-user-profile";
+import { loadUserRating } from "@/lib/user/load-user-rating";
 import { UserProfileActions } from "./user-profile-actions";
 import { UserProfileName } from "./user-profile-name";
 import { UserProfilePicture } from "./user-profile-picture";
@@ -21,7 +21,9 @@ export async function generateMetadata({ params }: UserProps) {
   const selectedUser = await loadUserProfile(params?.name);
   return {
     title: selectedUser ? `${selectedUser.name} - Profile` : "User Profile",
-    description: selectedUser.bio ?? "View the profile of a Better Bedrock user, showcasing their Minecraft PE texture packs, scripts, maps, skins, and more.",
+    description:
+      selectedUser.bio ??
+      "View the profile of a Better Bedrock user, showcasing their Minecraft PE texture packs, scripts, maps, skins, and more.",
   };
 }
 

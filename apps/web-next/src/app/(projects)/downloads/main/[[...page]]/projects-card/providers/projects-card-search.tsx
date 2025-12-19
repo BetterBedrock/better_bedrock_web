@@ -1,6 +1,6 @@
 "use client";
 
-import { SearchOrder } from "@/_lib/api";
+import { SearchOrder } from "@/lib/api";
 import { SearchProjectTypeKey } from "@/public/content/better-bedrock";
 import {
   createContext,

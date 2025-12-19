@@ -1,7 +1,7 @@
 "use client";
 
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
 import { useProjectsCardSearch } from "./providers/projects-card-search";
 import { SearchProjectTypeKey } from "@/public/content/better-bedrock";
 

@@ -1,5 +1,5 @@
-import { ProjectMode } from "@/_components/grid-download-card";
-import { DetailedProjectDto } from "@/_lib/api";
+import { ProjectMode } from "@/components/grid-download-card";
+import { DetailedProjectDto } from "@/lib/api";
 import { EditMode } from "@/app/(projects)/project/components/description/edit-mode/edit-mode";
 import { ViewMode } from "@/app/(projects)/project/components/description/view-mode/view-mode";
 

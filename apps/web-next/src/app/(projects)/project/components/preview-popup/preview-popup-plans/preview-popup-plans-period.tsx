@@ -1,4 +1,4 @@
-import { BedrockText } from "@/_components/bedrock-text";
+import { BedrockText } from "@/components/bedrock-text";
 
 import styles from "./preview-popup-plans.module.scss";
 
@@ -6,7 +6,9 @@ interface PreviewPopupPlansPeriodProps {
   selectedTimeframe: string | undefined;
 }
 
-export const PreviewPopupPlansPeriod = ({ selectedTimeframe }: PreviewPopupPlansPeriodProps) => (
+export const PreviewPopupPlansPeriod = ({
+  selectedTimeframe,
+}: PreviewPopupPlansPeriodProps) => (
   <BedrockText
     textAlign="left"
     color="white"

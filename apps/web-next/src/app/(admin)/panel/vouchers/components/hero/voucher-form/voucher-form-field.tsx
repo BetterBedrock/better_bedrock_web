@@ -1,6 +1,6 @@
 import { Control, FieldErrors } from "react-hook-form";
-import { BedrockText } from "@/_components/bedrock-text";
-import { VoucherDto } from "@/_lib/api";
+import { BedrockText } from "@/components/bedrock-text";
+import { VoucherDto } from "@/lib/api";
 import { VoucherFormFieldController } from "./voucher-form-field-controller";
 import { VoucherFormError } from "./voucher-form-error";
 
@@ -33,6 +33,8 @@ export const VoucherFormField = ({
       placeholder={placeholder}
     />
 
-    {errors[name] && <VoucherFormError message={errors[name]?.message as string} />}
+    {errors[name] && (
+      <VoucherFormError message={errors[name]?.message as string} />
+    )}
   </div>
 );

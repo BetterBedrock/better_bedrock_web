@@ -1,5 +1,5 @@
-import { TagNameDto } from "@/_lib/api";
-import { useNotification } from "@/_providers/notification";
+import { TagNameDto } from "@/lib/api";
+import { useNotification } from "@/providers/notification";
 import { useProjectManager } from "@/app/(projects)/project/providers/project-manager";
 import { KeyboardEvent, useRef } from "react";
 

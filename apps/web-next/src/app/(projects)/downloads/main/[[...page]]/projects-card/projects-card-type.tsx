@@ -1,7 +1,7 @@
 "use client";
 
-import { ButtonGroup } from "@/_components/button-group/button-group";
-import { Collapsible } from "@/_components/collapsible";
+import { ButtonGroup } from "@/components/button-group/button-group";
+import { Collapsible } from "@/components/collapsible";
 import { ProjectsCardTypeButton } from "./projects-card-type-button";
 import { useProjectsCardSearch } from "./providers/projects-card-search";
 

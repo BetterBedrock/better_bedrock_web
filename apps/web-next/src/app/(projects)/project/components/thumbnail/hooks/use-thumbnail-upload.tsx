@@ -1,4 +1,4 @@
-import { useProject } from "@/_providers/project";
+import { useProject } from "@/providers/project";
 import { useProjectManager } from "@/app/(projects)/project/providers/project-manager";
 
 export const useThumbnailUpload = () => {

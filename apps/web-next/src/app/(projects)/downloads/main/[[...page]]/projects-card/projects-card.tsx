@@ -1,5 +1,5 @@
-import { Card, CardBody, CardDivider } from "@/_components/card";
-import { checkIfIsBot } from "@/_lib/utils";
+import { Card, CardBody, CardDivider } from "@/components/card";
+import { checkIfIsBot } from "@/lib/utils";
 import { MainProps } from "@/app/(projects)/downloads/main/[[...page]]/page";
 import { ProjectsCardBanner } from "./projects-card-banner";
 import { ProjectsCardInfiniteContainer } from "./projects-card-infinite-container";

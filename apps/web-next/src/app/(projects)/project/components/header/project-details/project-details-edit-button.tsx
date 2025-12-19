@@ -1,10 +1,10 @@
-import { SimpleButton } from "@/_components/simple-button";
-import { Tooltip } from "@/_components/tooltip";
+import { SimpleButton } from "@/components/simple-button";
+import { Tooltip } from "@/components/tooltip";
 import EditIcon from "@/public/ui/tiptap-icons/8.png";
 import { Routes } from "@/utils/routes";
 
-import { DetailedProjectDto } from "@/_lib/api";
-import { Link } from "@/_components/link";
+import { DetailedProjectDto } from "@/lib/api";
+import { Link } from "@/components/link";
 
 import styles from "./project-details.module.scss";
 

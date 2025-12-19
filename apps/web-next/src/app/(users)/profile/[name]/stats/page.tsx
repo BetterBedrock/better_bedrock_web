@@ -1,9 +1,9 @@
-import { Banner } from "@/_components/banner";
-import { StatisticsCard } from "@/_components/statistics-card";
-import { fetchUserAnalytics } from "@/_lib/analytics/fetch-user-analytics";
+import { Banner } from "@/components/banner";
+import { StatisticsCard } from "@/components/statistics-card";
+import { fetchUserAnalytics } from "@/lib/analytics/fetch-user-analytics";
 import { notFound } from "next/navigation";
-import { simplifyAnalytics } from "@/_lib/analytics/simplify-analytics";
-import { fetchUserByName } from "@/_lib/user";
+import { simplifyAnalytics } from "@/lib/analytics/simplify-analytics";
+import { fetchUserByName } from "@/lib/user";
 
 import styles from "./stats.module.scss";
 

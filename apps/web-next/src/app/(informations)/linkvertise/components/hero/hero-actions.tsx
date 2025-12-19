@@ -1,9 +1,9 @@
-import { BedrockText } from "@/_components/bedrock-text";
-import { Button } from "@/_components/button";
-import { ButtonGroup } from "@/_components/button-group/button-group";
+import { BedrockText } from "@/components/bedrock-text";
+import { Button } from "@/components/button";
+import { ButtonGroup } from "@/components/button-group/button-group";
 
 import { Routes } from "@/utils/routes";
-import { Link } from "@/_components/link";
+import { Link } from "@/components/link";
 
 import styles from "./hero.module.scss";
 

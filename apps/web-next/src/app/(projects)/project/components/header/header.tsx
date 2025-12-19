@@ -1,5 +1,5 @@
-import { ProjectMode } from "@/_components/grid-download-card";
-import { DetailedProjectDto } from "@/_lib/api";
+import { ProjectMode } from "@/components/grid-download-card";
+import { DetailedProjectDto } from "@/lib/api";
 import { HeaderCard } from "@/app/(projects)/project/components/header/header-card";
 import { HeaderErrorBanner } from "@/app/(projects)/project/components/header/header-error-banner";
 import { HeaderInfoBanner } from "@/app/(projects)/project/components/header/header-info-banner";

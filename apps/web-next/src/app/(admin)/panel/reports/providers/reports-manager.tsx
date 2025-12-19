@@ -1,7 +1,7 @@
 "use client";
 
-import { ReportDto, DetailedUserDto, DetailedProjectDto } from "@/_lib/api";
-import { fetchAllReports } from "@/_lib/report/fetch-all-reports";
+import { ReportDto, DetailedUserDto, DetailedProjectDto } from "@/lib/api";
+import { fetchAllReports } from "@/lib/report/fetch-all-reports";
 import {
   createContext,
   Dispatch,

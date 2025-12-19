@@ -5,8 +5,8 @@ import { DetailsEditorDownloadFile } from "@/app/(projects)/project/components/d
 import { DetailsEditorProjectType } from "@/app/(projects)/project/components/details-editor/details-editor-project-type";
 import { DetailsEditorTags } from "@/app/(projects)/project/components/details-editor/details-editor-tags";
 
-import { Card, CardDivider } from "@/_components/card";
-import { DetailedProjectDto, UserDto } from "@/_lib/api";
+import { Card, CardDivider } from "@/components/card";
+import { DetailedProjectDto, UserDto } from "@/lib/api";
 
 import { SubmittedOverlay } from "@/app/(projects)/project/components/submitted-overlay/submitted-overlay";
 import { HeaderTitle } from "@/app/(projects)/project/components/header/header-title";

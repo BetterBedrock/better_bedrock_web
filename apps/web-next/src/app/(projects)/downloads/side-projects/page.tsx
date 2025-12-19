@@ -1,9 +1,9 @@
-import { SimpleProjectDto } from "@/_lib/api";
+import { SimpleProjectDto } from "@/lib/api";
 import { DownloadsItemDto } from "@/public/content/dto/downloads-item.dto";
 import { DownloadsListDto } from "@/public/content/dto/downloads-list.dto";
 import { SIDE_PROJECTS_LIST } from "@/public/content/better-bedrock";
 
-import { fetchProjectsBasicInfo } from "@/_lib/projects";
+import { fetchProjectsBasicInfo } from "@/lib/projects";
 
 import { Heading } from "@/app/(projects)/downloads/components/heading/heading";
 import { SideProjectsBanner } from "./side-projects-banner";

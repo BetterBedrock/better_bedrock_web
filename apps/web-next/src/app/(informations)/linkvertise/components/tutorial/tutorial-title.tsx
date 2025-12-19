@@ -1,5 +1,11 @@
-import { BedrockText } from "@/_components/bedrock-text";
+import { BedrockText } from "@/components/bedrock-text";
 
 export const TutorialTitle = () => (
-  <BedrockText text="How to begin?" type="h2" font="Minecraft" color="white" textAlign="start" />
+  <BedrockText
+    text="How to begin?"
+    type="h2"
+    font="Minecraft"
+    color="white"
+    textAlign="start"
+  />
 );

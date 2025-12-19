@@ -1,8 +1,8 @@
 "use server";
 
-import { fetchLoggedUser } from "@/_lib/auth/fetch-logged-user";
-import { SimpleUserDto } from "@/_lib/api";
-import { fetchDetailedUser } from "@/_lib/user/fetch-detailed-user";
+import { fetchLoggedUser } from "@/lib/auth/fetch-logged-user";
+import { SimpleUserDto } from "@/lib/api";
+import { fetchDetailedUser } from "@/lib/user/fetch-detailed-user";
 import { UserActionReport } from "@/app/(users)/profile/[name]/components/user/user-action-report";
 import { UserActionSettings } from "@/app/(users)/profile/[name]/components/user/user-action-settings";
 
