@@ -7,6 +7,10 @@ interface DiscordLayoutProps {
   children: ReactNode;
 }
 
+export const metadata = {
+  title: "Official Discord",
+};
+
 export default async function DiscordLayout({ children }: DiscordLayoutProps) {
   return (
     <Section
