@@ -5,7 +5,10 @@ import { Description } from "@/features/project/components/description/descripti
 import { DownloadButton } from "@/features/project/components/download-button/download-button";
 import { Header } from "@/features/project/components/header/header";
 import { notFound } from "next/navigation";
-import { ProjectPageProps } from "@/features/project/providers/project-manager";
+import {
+  ProjectManagerProvider,
+  ProjectPageProps,
+} from "@/features/project/providers/project-manager";
 
 export const metadata = {
   title: "Review Submitted Project",
@@ -26,7 +29,9 @@ export default async function Review({ params }: ProjectPageProps) {
       <Header mode="view" selectedProject={project} />
       <Description mode="view" detailedProject={project} />
       <DownloadButton detailedProject={project} />
-      <CardPreview />
+      <ProjectManagerProvider detailedProject={project}>
+        <CardPreview />
+      </ProjectManagerProvider>
     </>
   );
 }
