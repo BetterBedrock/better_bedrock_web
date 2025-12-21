@@ -1,5 +1,3 @@
-"use server";
-
 import { BedrockText } from "@/components/bedrock-text";
 import { Card } from "@/components/card";
 import { UserLinkvertiseInfo } from "./user-linkvertise-info";
@@ -29,7 +27,7 @@ export async function generateMetadata({ params }: UserProps) {
 
 export const User = async ({ params }: UserProps) => {
   const selectedUser = await loadUserProfile(params?.name);
-  const rating = await loadUserRating(params?.name);
+  const rating = await loadUserRating(selectedUser.id);
 
   return (
     <>

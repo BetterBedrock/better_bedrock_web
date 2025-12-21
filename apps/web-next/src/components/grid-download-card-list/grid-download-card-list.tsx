@@ -8,7 +8,7 @@ interface GridDownloadCardListProps {
 }
 
 
-export const GridDownloadCardList = ({ projects, mode }: GridDownloadCardListProps) => (
+export const GridDownloadCardList = ({ projects, mode = "view" }: GridDownloadCardListProps) => (
   <div className={styles.projects}>
     {projects.map((project) => (
       <GridDownloadCard key={project.id} project={project} mode={mode} />
