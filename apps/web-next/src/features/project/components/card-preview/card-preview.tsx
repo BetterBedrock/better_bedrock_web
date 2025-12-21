@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardDivider } from "@/components/card";
 import { GridDownloadCard } from "@/components/grid-download-card";
 import { useProjectManager } from "@/features/project/providers/project-manager";
