@@ -7,7 +7,7 @@ import { Header } from "@/features/project/components/header/header";
 import { RateProject } from "@/features/project/components/rate-project/rate-project";
 import { notFound } from "next/navigation";
 import { ProjectPageProps } from "@/features/project/providers/project-manager";
-import { baseFrontendUrl } from "@/utils/url";
+import { baseFrontendUrl, baseUrl } from "@/utils/url";
 import { capitalizeFirstLetter, extractFirstLinesFromTiptap, singularize } from "@/utils/string";
 
 export const generateMetadata = async ({ params }: ProjectPageProps) => {
@@ -28,7 +28,7 @@ export const generateMetadata = async ({ params }: ProjectPageProps) => {
     openGraph: {
       title,
       description,
-      images: `${baseFrontendUrl ?? ""}/${project.thumbnail}`,
+      images: `${baseUrl ?? ""}/${project.thumbnail}`,
     },
   };
 };
