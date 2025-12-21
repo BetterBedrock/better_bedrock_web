@@ -28,7 +28,7 @@ export const generateMetadata = async ({ params }: ProjectPageProps) => {
     openGraph: {
       title,
       description,
-      images: `${baseFrontendUrl ?? ""}/project.thumbnail`,
+      images: `${baseFrontendUrl ?? ""}/${project.thumbnail}`,
     },
   };
 };
