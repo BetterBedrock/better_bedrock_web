@@ -7,6 +7,12 @@ interface LoginLayoutProps {
   children: ReactNode;
 }
 
+export const metadata = {
+  title: "Login Access Your Account",
+  description:
+    "Log in to your account for fast, secure access to your profile, texture packs, addons, and drafts.",
+};
+
 export default async function LoginLayout({ children }: LoginLayoutProps) {
   return (
     <Section
