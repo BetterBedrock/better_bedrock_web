@@ -12,5 +12,5 @@ export const ProjectsList = async () => {
     return <ProjectsListEmpty />;
   }
 
-  return <GridDownloadCardList projects={projects} />;
+  return <GridDownloadCardList projects={projects} mode="review"/>;
 };
