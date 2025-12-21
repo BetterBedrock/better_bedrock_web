@@ -7,6 +7,8 @@ import { Header } from "@/features/project/components/header/header";
 import { RateProject } from "@/features/project/components/rate-project/rate-project";
 import { notFound } from "next/navigation";
 import { ProjectPageProps } from "@/features/project/providers/project-manager";
+import { baseFrontendUrl } from "@/utils/url";
+import { capitalizeFirstLetter, singularize } from "@/utils/string";
 
 export const generateMetadata = async ({ params }: ProjectPageProps) => {
   const loadedParams = await params;
@@ -14,15 +16,19 @@ export const generateMetadata = async ({ params }: ProjectPageProps) => {
 
   if (!project) return notFound();
 
+  const title = `${project.title} - ${capitalizeFirstLetter(singularize(project.type))}`;
+
+  const description =
+    project.description ??
+    "The best texture packs, scripts, maps, skins, and more for Minecraft PE on Better Bedrock.";
+
   return {
-    title: project.title,
-    description:
-      project.description ??
-      "The best texture packs, scripts, maps, skins, and more for Minecraft PE on Better Bedrock.",
+    title,
+    description,
     openGraph: {
-      title: project.title,
-      description: project.description,
-      images: project.thumbnail,
+      title,
+      description,
+      images: (baseFrontendUrl ?? "") + project.thumbnail,
     },
   };
 };

@@ -7,6 +7,10 @@ interface CreatorLayoutProps {
   children: ReactNode;
 }
 
+export const metadata = {
+  title: "Publish Your Texture Pack",
+};
+
 export default function CreatorLayout({ children }: CreatorLayoutProps) {
   return (
     <Section
