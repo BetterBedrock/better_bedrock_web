@@ -19,6 +19,7 @@ interface GalleryPopupProps extends BasePopupWrapperProps {
 }
 
 export const GalleryPopup = ({
+  close,
   images,
   onAddImages,
   onDeleteImage,
