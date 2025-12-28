@@ -12,13 +12,15 @@ import { renderToHTMLString } from "@tiptap/static-renderer";
 import { PrefixedImage } from "@/components/tiptap/nodes/image-node";
 import { DetailedProjectDto } from "@/lib/api";
 import Heading from "@tiptap/extension-heading";
-import { ProjectManagerProvider } from "@/features/project/providers/project-manager";
 import { baseUrl } from "@/utils/url";
 
 import { styles, useTiptapPreviewHydrator } from ".";
+// eslint-disable-next-line boundaries/element-types
+import { ProjectManagerProvider } from "@/features/project/providers/project-manager";
+import { validateTiptapContent } from "@/utils/tiptap";
 
 interface TiptapPreviewProps {
-  content?: Content | undefined;
+  content?: Content;
   detailedProject: DetailedProjectDto;
 }
 
@@ -26,6 +28,8 @@ export const TiptapPreview = ({
   content,
   detailedProject,
 }: TiptapPreviewProps) => {
+  const safeContent = validateTiptapContent(content);
+
   const html = renderToHTMLString({
     extensions: [
       StarterKit.configure({
@@ -50,7 +54,7 @@ export const TiptapPreview = ({
       Selection,
       GalleryExtension,
     ],
-    content: content as JSONContent,
+    content: safeContent as JSONContent,
   });
 
   const children = useTiptapPreviewHydrator({ html });
