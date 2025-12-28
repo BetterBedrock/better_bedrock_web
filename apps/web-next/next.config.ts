@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   images: {
     domains: ["i.ytimg.com"],
-  }
+  },
 };
 
 export default nextConfig;
