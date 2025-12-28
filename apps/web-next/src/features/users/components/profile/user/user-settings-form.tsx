@@ -50,7 +50,7 @@ export const UserSettingsForm = ({
 }: UserSettingsFormProps) => {
   const router = useRouter();
   const secret = useFetchSecret();
-  const { logout } = useAuth();
+  const { logout, setUser } = useAuth();
   const [showLinkvertiseOptions, setShowLinkvertiseOptions] = useState(
     user.customLinkvertise ?? false
   );
@@ -67,12 +67,18 @@ export const UserSettingsForm = ({
 
   const onClickSubmit = handleSubmit(async (profile) => {
     if (ownsProfile) {
-      await updateProfileRequest(profile, secret ?? "");
+      const { data } = await updateProfileRequest(profile, secret ?? "");
+      setUser(data);
     } else {
       await manageProfileRequest(user.id, profile, secret ?? "");
     }
 
-    router.refresh();
+    if (profile.name !== user.name) {
+      router.push(Routes.PROFILE + "/" + profile.name + "/projects");
+    } else {
+      router.refresh();
+    }
+
     onClose();
   });
 
