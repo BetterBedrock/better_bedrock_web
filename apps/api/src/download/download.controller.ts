@@ -26,7 +26,7 @@ import { VerifyDownloadDto } from "~/download/dto/verify-download.dto";
 import { createReadStream, promises as fs, Stats } from "fs";
 import path, { extname } from "path";
 import { VoucherService } from "~/voucher/voucher.service";
-import { SkipThrottle } from "@nestjs/throttler";
+import { SkipThrottle, Throttle } from "@nestjs/throttler";
 import { AnalyticsNames } from "~/analytics/constants/analytics-names";
 import { ProjectService } from "~/project/project.service";
 import { UserService } from "~/user/user.service";
@@ -45,7 +45,7 @@ export class DownloadController {
         private voucherService: VoucherService,
         private projectService: ProjectService,
         private userService: UserService,
-    ) {}
+    ) { }
 
     @Get()
     @SkipThrottle()
@@ -99,6 +99,12 @@ export class DownloadController {
     @Post("verify")
     @UseGuards(OptionalAuthGuard)
     @ApiBearerAuth()
+    @Throttle({
+        default: {
+            ttl: 60000,
+            limit: 50,
+        },
+    })
     async verify(
         @Ip() ip: string,
         @Req() req: OptionalAuthenticatedRequest,
