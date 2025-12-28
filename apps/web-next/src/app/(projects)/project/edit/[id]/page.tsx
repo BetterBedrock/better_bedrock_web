@@ -3,11 +3,14 @@ import { fetchDraftsDetails } from "@/features/project/server/fetch-draft-detail
 import { Actions } from "@/features/project/components/actions/actions";
 import { Description } from "@/features/project/components/description/description";
 import { DetailsEditor } from "@/features/project/components/details-editor/details-editor";
-import { DownloadButton } from "@/features/project/components/download-button/download-button";
 import { Header } from "@/features/project/components/header/header";
 import { Thumbnail } from "@/features/project/components/thumbnail/thumbnail";
-import { ProjectManagerProvider, ProjectPageProps } from "@/features/project/providers/project-manager";
+import {
+  ProjectManagerProvider,
+  ProjectPageProps,
+} from "@/features/project/providers/project-manager";
 import { notFound } from "next/navigation";
+import { Download } from "@/features/project/components/download/download";
 
 export const metadata = {
   title: "Edit Project",
@@ -27,7 +30,7 @@ export default async function Edit({ params }: ProjectPageProps) {
   return (
     <>
       <Header mode="edit" selectedProject={project} />
-      <DownloadButton detailedProject={project} user={user} />
+      <Download detailedProject={project} user={user} />
 
       <ProjectManagerProvider detailedProject={project}>
         <DetailsEditor detailedProject={project} user={user} />
