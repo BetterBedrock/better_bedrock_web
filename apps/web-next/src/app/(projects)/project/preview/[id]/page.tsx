@@ -2,22 +2,25 @@ import { fetchLoggedUser } from "@/lib/auth";
 import { fetchProjectDetails } from "@/features/project/server/fetch-project-details";
 import { Comments } from "@/features/project/components/comments/comments";
 import { Description } from "@/features/project/components/description/description";
-import { DownloadButton } from "@/features/project/components/download-button/download-button";
 import { Header } from "@/features/project/components/header/header";
 import { RateProject } from "@/features/project/components/rate-project/rate-project";
 import { notFound } from "next/navigation";
 import { ProjectPageProps } from "@/features/project/providers/project-manager";
-import { baseFrontendUrl, baseUrl } from "@/utils/url";
-import { capitalizeFirstLetter, extractFirstLinesFromTiptap, singularize } from "@/utils/string";
+import { baseUrl } from "@/utils/url";
+import {
+  capitalizeFirstLetter,
+  extractFirstLinesFromTiptap,
+  singularize,
+} from "@/utils/string";
+import { Download } from "@/features/project/components/download/download";
 
 export const generateMetadata = async ({ params }: ProjectPageProps) => {
   const loadedParams = await params;
-  const project = await fetchProjectDetails(loadedParams.id);
+  const { data } = await fetchProjectDetails(loadedParams.id);
 
-  if (!project) return notFound();
+  if (!data) return notFound();
 
-  const title = `${project.title} - ${capitalizeFirstLetter(singularize(project.type))}`;
-
+  const title = `${data.title} - ${capitalizeFirstLetter(singularize(data.type))}`;
   const description =
     extractFirstLinesFromTiptap(project.description) ??
     "The best texture packs, scripts, maps, skins, and more for Minecraft PE on Better Bedrock.";
@@ -36,17 +39,17 @@ export const generateMetadata = async ({ params }: ProjectPageProps) => {
 export default async function Preview({ params }: ProjectPageProps) {
   const loadedParams = await params;
   const user = await fetchLoggedUser();
-  const project = await fetchProjectDetails(loadedParams.id);
+  const { data } = await fetchProjectDetails(loadedParams.id);
 
-  if (!project) notFound();
+  if (!data) notFound();
 
   return (
     <>
-      <Header mode="view" selectedProject={project} />
-      <Description mode="view" detailedProject={project} />
-      <DownloadButton detailedProject={project} user={user} />
-      {user && <RateProject detailedProject={project} />}
-      <Comments detailedProject={project} />
+      <Header mode="view" selectedProject={data} />
+      <Description mode="view" detailedProject={data} />
+      <Download detailedProject={data} user={user} />
+      {user && <RateProject detailedProject={data} />}
+      <Comments detailedProject={data} />
     </>
   );
 }
