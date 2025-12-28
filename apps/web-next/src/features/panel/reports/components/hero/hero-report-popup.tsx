@@ -9,7 +9,6 @@ import { GridDownloadCard } from "@/components/grid-download-card";
 import { Popup } from "@/components/popup";
 import { Rating } from "@/components/rating";
 import { DetailedUserDto, DetailedProjectDto } from "@/lib/api";
-import { useProject } from "@/providers/project";
 import { useUser } from "@/providers/user";
 import { useReportsManager } from "@/features/panel/reports/providers/reports-manager";
 import { useEffect, useState } from "react";
@@ -17,11 +16,14 @@ import { resolveReport } from "@/lib/report/resolve-report";
 import { reOpenReport } from "@/lib/report/re-open-report";
 
 import styles from "./hero.module.scss";
+import { fetchProjectDetails } from "@/features/project/server/fetch-project-details";
+import { useNotification } from "@/providers/notification";
 
 export const HeroReportPopup = () => {
   const { findDetailedUser } = useUser();
+  const { throwError } = useNotification();
+  
   const { selectedReport, setSelectedReport, setReports } = useReportsManager();
-  const { fetchProjectDetails } = useProject();
 
   const isUserReport = !!selectedReport!.reportedUserId;
   const [reporter, setReporter] = useState<DetailedUserDto | undefined>();
@@ -37,9 +39,15 @@ export const HeroReportPopup = () => {
       }
 
       if (selectedReport!.reportedProjectId) {
-        setProject(
-          await fetchProjectDetails(selectedReport!.reportedProjectId)
+        const { data, error } = await fetchProjectDetails(
+          selectedReport!.reportedProjectId
         );
+        if (error) {
+          throwError(null, error);
+          return;
+        }
+
+        setProject(data);
       }
 
       setFetched(true);
