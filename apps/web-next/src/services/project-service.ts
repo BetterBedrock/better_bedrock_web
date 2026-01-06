@@ -45,3 +45,14 @@ export const fetchCommentsRequest = async (id: string) => projectApi.projectCont
 export const deleteCommentRequest = async (id: string, secret: string) => projectApi.projectControllerDeleteComment(id, { headers: { Authorization: `Bearer ${secret}` } });
 export const postCommentRequest = async (id: string, content: string, secret: string) => projectApi.projectControllerPostComment(id, { content }, { headers: { Authorization: `Bearer ${secret}` } });
 export const replyToCommentRequest = async (id: string, parentId: string, content: string, secret: string) => projectApi.projectControllerReplyToComment(id, parentId, { content }, { headers: { Authorization: `Bearer ${secret}` } });
+
+export const uploadFileRequest = async (id: string, file: File | undefined, secret: string) => projectApi.projectControllerUploadProjectFile(id, file, { headers: { Authorization: `Bearer ${secret}` } });
+
+export const declineProjectRequest = async (id: string, error: string, secret: string) => projectApi.projectControllerDecline(id, { error }, { headers: { Authorization: `Bearer ${secret}` } });
+export const publishProjectRequest = async (id: string, secret: string) => projectApi.projectControllerPublish(id, { headers: { Authorization: `Bearer ${secret}` } });
+
+export const deleteProjectRequest = async (id: string, secret: string) => projectApi.projectControllerDelete(id, { headers: { Authorization: `Bearer ${secret}` } });
+export const deleteProductionProjectRequest = async (id: string, secret: string) => projectApi.projectControllerDeleteProduction(id, { headers: { Authorization: `Bearer ${secret}` } });
+
+export const submitProjectRequest = async (id: string, secret: string) => projectApi.projectControllerSubmit(id, { headers: { Authorization: `Bearer ${secret}` } });
+export const cancelSubmissionRequest = async (id: string, secret: string) => projectApi.projectControllerCancelSubmission(id, { headers: { Authorization: `Bearer ${secret}` } });
