@@ -83,7 +83,7 @@ export const NotificationProvider = ({
     console.log({ err });
     if (err instanceof AxiosError) {
       sendNotification({
-        title: "Unexpected problem",
+        title: "Problem occurred",
         label:
           err.response?.data?.message?.message ??
           err.response?.data?.message ??
@@ -94,7 +94,7 @@ export const NotificationProvider = ({
     }
 
     sendNotification({
-      title: "Unexpected problem",
+      title: "Problem occurred",
       label: message,
       type: "error",
     });
