@@ -11,7 +11,7 @@ export const useRedirectLoggedUser = () => {
 
     useEffect(() => {
         if (user) {
-            router.push(`${Routes.PROFILE}/${user.name}`);
+            router.push(`${Routes.PROFILE}/${user.name}/projects`);
         }
     }, [user, router]);
 }

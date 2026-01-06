@@ -22,7 +22,7 @@ export const loadProfileStatsPageData = async (
   }
 
   if (user?.id !== selectedUser.id && !user?.admin) {
-    redirect(Routes.PROFILE + `/${name}/projects`);
+    redirect(Routes.PROFILE + `/${selectedUser.name}/projects`);
   }
 
   const data = await fetchUserAnalytics(selectedUser.id);

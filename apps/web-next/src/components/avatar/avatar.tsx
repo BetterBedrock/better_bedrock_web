@@ -37,7 +37,7 @@ interface AvatarProps {
 }
 
 export const Avatar = (({ children, name, className }) => (
-  <Link link={name && Routes.PROFILE + "/" + name} hideStyles>
+  <Link link={name && Routes.PROFILE + "/" + name + "/projects"} hideStyles>
     <div className={clsx(styles.avatar, className)}>{children}</div>
   </Link>
 )) as AvatarComponent;
@@ -49,7 +49,7 @@ Avatar.Profile = ({
   link = true,
 }: AvatarProfileProps) => (
   <Link
-    link={link ? Routes.PROFILE + "/" + name : undefined}
+    link={link ? Routes.PROFILE + "/" + name + "/projects" : undefined}
     className={(size && styles[size], className && className)}
   >
     <img
@@ -74,7 +74,7 @@ Avatar.Details = ({
 }: AvatarDetailsProps) => {
   return (
     <div className={clsx(styles.details, className && className)}>
-      <Link link={link ? Routes.PROFILE + "/" + name : undefined} hideStyles>
+      <Link link={link ? Routes.PROFILE + "/" + name + "/projects" : undefined} hideStyles>
         <BedrockText
           text={`${at ? "@" : ""}${name}`}
           type="p"
