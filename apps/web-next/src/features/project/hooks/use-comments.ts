@@ -1,7 +1,9 @@
 "use client";
 
+import { postComment } from "@/features/project/server/post-comment";
+import { replyToComment } from "@/features/project/server/reply-to-comment";
 import { DetailedProjectDto, ProjectCommentDto } from "@/lib/api";
-import { useProject } from "@/providers/project";
+import { useRouter } from "next/navigation";
 import { KeyboardEvent, useRef, useState } from "react";
 
 interface UseCommentsProps {
@@ -9,8 +11,9 @@ interface UseCommentsProps {
 }
 
 export const useComments = ({ detailedProject }: UseCommentsProps) => {
+    const router = useRouter();
+
     const commentInputRef = useRef<HTMLInputElement>(null);
-    const { postComment, replyToComment } = useProject();
     const [comments, setComments] = useState<ProjectCommentDto[] | undefined>(undefined);
 
     const handlePostComment = async () => {
@@ -22,23 +25,15 @@ export const useComments = ({ detailedProject }: UseCommentsProps) => {
         if (commentInputRef.current) {
             commentInputRef.current!.value = "";
         }
-        setComments((prev) => [...(prev ?? []), comment]);
+
+        router.refresh();
     };
 
     const handlePostReply = async (reply: string, parentId: string) => {
         const newReply = await replyToComment(detailedProject.id, parentId, reply);
         if (!newReply) return;
 
-        setComments((prev) =>
-            (prev ?? []).map((comment) =>
-                comment.id === parentId
-                    ? {
-                        ...comment,
-                        replies: [...(comment.replies ?? []), newReply], // immutably add reply
-                    }
-                    : comment,
-            ),
-        );
+        router.refresh();
     };
 
     const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {

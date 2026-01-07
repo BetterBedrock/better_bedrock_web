@@ -19,13 +19,14 @@ import { SimpleButton } from "@/components/simple-button";
 import { Tooltip } from "@/components/tooltip";
 import { ProjectCommentDto, UserDto } from "@/lib/api";
 import { reportUser } from "@/lib/report/report-user";
+import { useRouter } from "next/navigation";
 
 interface CommentProps {
   comment: ProjectCommentDto;
   user: UserDto | undefined;
   className?: string;
   subComments?: CommentProps[]; // For future use with nested comments
-  onReply?: (comment: string, parentId: string) => void;
+  onReply?: (projectId: string, parentId: string, comment: string) => void;
   onDelete?: (commentId: string) => Promise<void>;
 }
 
@@ -37,6 +38,7 @@ export const Comment = ({
   user,
   className,
 }: CommentProps) => {
+  const router = useRouter();
   const [isReplying, setIsReplying] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -48,7 +50,8 @@ export const Comment = ({
 
     if (event.key === "Enter") {
       setIsReplying(false);
-      onReply?.(inputRef.current?.value ?? "", comment.id);
+      onReply?.(comment.projectId, comment.id, inputRef.current?.value ?? "");
+      router.refresh();
     }
   };
 
@@ -97,6 +100,7 @@ export const Comment = ({
                     onClick={async () => {
                       if (!user) return;
                       await onDelete?.(commentId);
+                      router.refresh();
                     }}
                   >
                     <img src={Trash.src} className={styles.more} />
@@ -139,8 +143,13 @@ export const Comment = ({
                 type="green"
                 center
                 onClick={() => {
-                  onReply?.(inputRef.current?.value ?? "", comment.id);
+                  onReply?.(
+                    comment.projectId,
+                    comment.id,
+                    inputRef.current?.value ?? ""
+                  );
                   setIsReplying(false);
+                  router.refresh();
                 }}
               >
                 <BedrockText color="white" type="p" text="Post" />
