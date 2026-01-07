@@ -56,14 +56,18 @@ export const ProjectManagerProvider = ({
   const handleSaveProject = async (
     project: UpdateProjectDto
   ): Promise<boolean> => {
-    project.description =
-      typeof editorContent.current === "object" &&
-      editorContent.current !== null
-        ? editorContent.current
-        : {};
+    project.description = editorContent.current
+      ? JSON.parse(JSON.stringify(editorContent.current))
+      : {};
 
-    const savedProject = await updateProject(selectedProject.id, project);
-    return savedProject ? true : false;
+    const request = await updateProject(selectedProject.id, project);
+
+    if(request.error) {
+      throwError(null, request.error);
+      return false;
+    }
+
+    return request.data ? true : false;
   };
 
   const checkIfSubmitted = () => {
