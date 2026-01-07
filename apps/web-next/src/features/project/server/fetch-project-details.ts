@@ -3,7 +3,7 @@
 import { fetchProjectDetailsRequest } from "@/services/project-service"
 
 export const fetchProjectDetails = async (id: string) => {
-    const { data } = await fetchProjectDetailsRequest(id);
+    const { data, error } = await fetchProjectDetailsRequest(id);
 
-    return data;
+    return { data, error };
 }
