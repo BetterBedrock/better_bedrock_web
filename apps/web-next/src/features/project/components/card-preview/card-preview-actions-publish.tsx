@@ -9,11 +9,12 @@ import { Routes } from "@/utils/routes";
 import { useRouter } from "next/navigation";
 
 import styles from "./card-preview.module.scss";
+import { useNotification } from "@/providers/notification";
+import { publishProject } from "@/features/project/server/publish-project";
 
 export const CardPreviewActionsPublish = () => {
   const router = useRouter();
-
-  const { publish } = useProject();
+  const { sendNotification, throwError } = useNotification();
   const { selectedProject } = useProjectManager();
 
   return (
@@ -29,7 +30,19 @@ export const CardPreviewActionsPublish = () => {
         type="gold"
         center
         onClick={async () => {
-          await publish(selectedProject!.id, selectedProject!.title);
+          const { error } = await publishProject(selectedProject!.id);
+
+          if (error) {
+            throwError(null, error);
+            return;
+          }
+
+          sendNotification({
+            type: "success",
+            title: selectedProject!.title,
+            label: "The project has been published",
+          });
+
           router.push(Routes.PANEL_PROJECTS);
         }}
       >
