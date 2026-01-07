@@ -1,10 +1,10 @@
 "use client";
 
 import { SearchProjectsDto, SearchOrder } from "@/lib/api";
-import { fetchSearchResults } from "@/features/project/server/fetch-search-results";
 import { SEARCH_PROJECT_TYPES } from "@/public/content/better-bedrock";
 import { useState, useRef, useEffect } from "react";
 import { useProjectsCardSearch } from "@/features/project/providers/projects-card-search";
+import { searchProjects } from "@/features/project/server/search-projects";
 
 interface UseInfiniteProjectsFetchProps {
     searchResults: SearchProjectsDto;
@@ -62,7 +62,7 @@ export const useInfiniteProjectsFetch = ({ searchResults }: UseInfiniteProjectsF
         }
 
         try {
-            const data = await fetchSearchResults(
+            const data = await searchProjects(
                 selectedType === "all" ? undefined : selectedType,
                 selectedOrder as SearchOrder,
                 query,
