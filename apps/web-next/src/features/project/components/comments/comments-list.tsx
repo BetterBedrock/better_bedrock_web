@@ -1,10 +1,10 @@
 import { Banner } from "@/components/banner";
 import { Comment } from "@/components/comment";
 import { ProjectCommentDto, UserDto } from "@/lib/api";
-import { postComment } from "@/features/project/server/post-comment";
 import { deleteComment } from "@/features/project/server/delete-comment";
 
 import styles from "./comments.module.scss";
+import { replyToComment } from "@/features/project/server/reply-to-comment";
 
 interface CommentsListProps {
   comments: ProjectCommentDto[];
@@ -21,7 +21,7 @@ export const CommentsList = async ({ comments, user }: CommentsListProps) => (
         <Comment
           key={comment.id}
           comment={comment}
-          onReply={postComment}
+          onReply={replyToComment}
           user={user}
           onDelete={deleteComment}
           subComments={
