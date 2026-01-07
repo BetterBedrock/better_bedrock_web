@@ -1,4 +1,4 @@
-import { fetchSearchResults } from "@/features/project/server/fetch-search-results";
+import { searchProjects } from "@/features/project/server/search-projects";
 import { getCurrentPaginationPage } from "@/lib/utils/get-current-pagination-page";
 
 interface FetchInitialProjectsProps {
@@ -8,7 +8,7 @@ interface FetchInitialProjectsProps {
 export const fetchInitialProjects = async ({ params }: FetchInitialProjectsProps) => {
     const currentPage = getCurrentPaginationPage(params.page);
 
-    const searchResults = await fetchSearchResults(
+    const searchResults = await searchProjects(
         undefined,
         undefined,
         undefined,
