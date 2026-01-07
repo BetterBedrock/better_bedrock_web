@@ -1,8 +1,8 @@
 "use client";
 
 import { useProjectsCardSearch } from "@/features/project/providers/projects-card-search";
+import { searchProjects } from "@/features/project/server/search-projects";
 import { SearchOrder, SearchProjectsDto } from "@/lib/api";
-import { useProject } from "@/providers/project";
 import { useEffect, useRef, useState } from "react";
 
 interface UsePageProjectsFetchProps {
@@ -10,15 +10,14 @@ interface UsePageProjectsFetchProps {
 }
 
 export const usePageProjectsFetch = ({ searchResults }: UsePageProjectsFetchProps) => {
-    const { search } = useProject();
     const { selectedOrder, selectedType, inputRef } = useProjectsCardSearch();
 
     const [projects, setProjects] = useState<SearchProjectsDto>(searchResults);
     const debounceTimer = useRef<NodeJS.Timeout | null>(null);
 
-    const fetchSearchResults = async (page?: number) => await search(
-        selectedOrder as SearchOrder,
+    const fetchSearchResults = async (page?: number) => await searchProjects(
         selectedType === "all" ? undefined : selectedType,
+        selectedOrder as SearchOrder,
         inputRef.current?.value || "",
         page ?? searchResults.page,
     );
