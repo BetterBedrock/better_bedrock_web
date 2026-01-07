@@ -15,7 +15,6 @@ import { Selection } from "@tiptap/extensions";
 import { useEffect, useRef, useState } from "react";
 import { TextSelection } from "@tiptap/pm/state";
 import Heading from "@tiptap/extension-heading";
-import { useProject } from "@/providers/project";
 import { baseUrl } from "@/utils/url";
 import { DetailedProjectDto } from "@/lib/api";
 import { CircularProgressIndicator } from "@/components/circular-progress-indicator";
@@ -25,6 +24,7 @@ import { ImageUploadNode } from "@/components/tiptap/nodes/image-upload-node";
 import { Toolbar } from "@/components/tiptap/primitive/toolbar";
 
 import { styles, TiptapImageToolbar, TiptapToolbar } from ".";
+import { uploadFile } from "@/features/project/server/upload-file";
 
 interface TiptapEditorProps {
   content?: Content | undefined;
@@ -43,8 +43,6 @@ export const TiptapEditor = ({
   const toolbarRef = useRef<HTMLDivElement>(null);
   const [imageToolbar, setImageToolbar] = useState(false);
 
-  const { uploadFile } = useProject();
-
   const handleImageUpload = async (file: File): Promise<string> => {
     if (!file) {
       throw new Error("No file provided");
@@ -54,11 +52,12 @@ export const TiptapEditor = ({
       throw new Error("No project id provided");
     }
 
-    const upload = await uploadFile(detailedProject.id!, file);
-    if (!upload) throw new Error("No file returned");
+    const { data, error } = await uploadFile(detailedProject.id!, file);
+
+    if (!data || error) throw new Error("No file returned");
     onUpload?.();
 
-    return upload!.fileUrl;
+    return data.fileUrl;
   };
 
   const editor = useEditor({
