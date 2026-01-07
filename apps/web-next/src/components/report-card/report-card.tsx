@@ -7,8 +7,9 @@ import dayjs from "dayjs";
 import { Button } from "@/components/button";
 import { CircularProgressIndicator } from "@/components/circular-progress-indicator";
 import { ReportDto, SimpleUserDto, DetailedProjectDto } from "@/lib/api";
-import { useProject } from "@/providers/project";
 import { useUser } from "@/providers/user";
+import { fetchProjectDetails } from "@/features/project/server/fetch-project-details";
+import { useNotification } from "@/providers/notification";
 
 interface ReportCardProps {
   report: ReportDto;
@@ -25,27 +26,36 @@ export const ReportCard = ({
   onClick,
 }: ReportCardProps) => {
   const { findUserById } = useUser();
-  const { fetchProjectDetails } = useProject();
+  const { throwError } = useNotification();
   const [reporter, setReporter] = useState<SimpleUserDto | undefined>();
   const [reported, setReported] = useState<SimpleUserDto | undefined>();
   const [project, setProject] = useState<DetailedProjectDto | undefined>();
   const [fetched, setFetched] = useState(false);
 
-  const fetchDetails = async () => {
-    setReporter(await findUserById(report.reporterId));
-    if (report.reportedUserId) {
-      setReported(await findUserById(report.reportedUserId));
-    }
-
-    if (report.reportedProjectId) {
-      setProject(await fetchProjectDetails(report.reportedProjectId));
-    }
-
-    setFetched(true);
-  };
   useEffect(() => {
+    const fetchDetails = async () => {
+      setReporter(await findUserById(report.reporterId));
+      if (report.reportedUserId) {
+        setReported(await findUserById(report.reportedUserId));
+      }
+
+      if (report.reportedProjectId) {
+        const { data, error } = await fetchProjectDetails(
+          report.reportedProjectId
+        );
+        if (error) {
+          throwError(null, error);
+          return;
+        }
+
+        setProject(data);
+      }
+
+      setFetched(true);
+    };
+
     fetchDetails();
-  }, [report]);
+  }, [findUserById, report]);
 
   if (!fetched) {
     return <CircularProgressIndicator center />;
