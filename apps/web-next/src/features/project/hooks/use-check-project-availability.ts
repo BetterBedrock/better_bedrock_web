@@ -1,6 +1,6 @@
 import { ProjectMode } from "@/components/grid-download-card";
+import { fetchProjectsBasicInfo } from "@/features/project/server/fetch-projects-basic-info";
 import { DetailedProjectDto } from "@/lib/api";
-import { useProject } from "@/providers/project";
 import { useState, useEffect } from "react";
 
 interface UseHeaderProps {
@@ -9,7 +9,6 @@ interface UseHeaderProps {
 }
 
 export const useCheckProjectAvailability = ({ mode, selectedProject }: UseHeaderProps) => {
-  const { fetchProjectsBasicInfo } = useProject();
   const [isPublished, setIsPublished] = useState(false);
 
   useEffect(() => {
