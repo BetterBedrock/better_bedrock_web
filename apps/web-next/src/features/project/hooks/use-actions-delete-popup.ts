@@ -1,15 +1,17 @@
 "use client";
 
 import { useNotification } from "@/providers/notification";
-import { useProject } from "@/providers/project";
 import { useProjectManager } from "@/features/project/providers/project-manager";
 import { Routes } from "@/utils/routes";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { fetchProjectDetails } from "@/features/project/server/fetch-project-details";
+import { deleteProductionProject } from "@/features/project/server/delete-production-project";
+import { deleteProject } from "@/features/project/server/delete-project";
 
 export const useActionsDeletePopup = () => {
     const router = useRouter();
-    const { sendNotification } = useNotification();
+    const { sendNotification, throwError } = useNotification();
     const [existsProductionProject, setExistsProductionProject] = useState<boolean | undefined>(
         undefined,
     );
@@ -18,11 +20,10 @@ export const useActionsDeletePopup = () => {
     const [deletePublishedOnly, setDeletePublishedOnly] = useState(false);
 
     const { selectedProject } = useProjectManager();
-    const { deleteProject, deleteProductionProject, fetchProjectDetails } = useProject();
 
     useEffect(() => {
-        fetchProjectDetails(selectedProject!.id, false).then((data) =>
-            setExistsProductionProject(!!data),
+        fetchProjectDetails(selectedProject!.id).then((request) =>
+            setExistsProductionProject(!!request.data),
         );
     }, []);
 
@@ -44,9 +45,31 @@ export const useActionsDeletePopup = () => {
         if (!selectedProject) return;
 
         if (publicOnly) {
-            await deleteProductionProject(selectedProject.id, selectedProject.title);
+            const { error } = await deleteProductionProject(selectedProject.id);
+
+            if (error) {
+                throwError(null, error);
+                return;
+            }
+
+            sendNotification({
+                type: "info",
+                title: selectedProject.title,
+                label: "The public version of this project has been deleted",
+            });
         } else {
-            await deleteProject(selectedProject.id, selectedProject.title);
+            const { error } = await deleteProject(selectedProject.id);
+
+            if (error) {
+                throwError(null, error);
+                return;
+            }
+
+            sendNotification({
+                type: "info",
+                title: selectedProject.title,
+                label: "The project has been deleted",
+            });
         }
 
         sendNotification({
