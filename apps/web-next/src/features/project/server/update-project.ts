@@ -6,7 +6,8 @@ import { updateProjectRequest } from "@/services/project-service";
 
 export const updateProject = async (id: string, project: UpdateProjectDto) => {
     const secret = await fetchSecret();
-    const { data } = await updateProjectRequest(id, project, secret);
 
-    return data;
+    const { data, error } = await updateProjectRequest(id, project, secret);
+
+    return { data, error };
 }
