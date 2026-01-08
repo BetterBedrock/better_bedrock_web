@@ -2,17 +2,17 @@ import { useNotification } from "@/providers/notification";
 import { useProject } from "@/providers/project";
 import { useProjectManager } from "@/features/project/providers/project-manager";
 import { useRef, useState } from "react";
+import { uploadFile } from "@/features/project/server/upload-file";
 
 export const useDetailsEditorDownloadFile = () => {
     const uploadFileRef = useRef<HTMLInputElement>(null);
 
     const { sendNotification, throwError } = useNotification();
-    const { uploadFile } = useProject();
     const {
         selectedProject,
         setSelectedProject,
         handleSaveProject,
-        checkIfSubmitted, detailedProject
+        checkIfSubmitted,
     } = useProjectManager();
 
     const [isUploading, setIsUploading] = useState(false);
@@ -21,30 +21,30 @@ export const useDetailsEditorDownloadFile = () => {
         if (!checkIfSubmitted()) return;
         if (!selectedProject || !file) return;
 
-        try {
-            setIsUploading(true);
+        setIsUploading(true);
 
-            const uploadedFile = await uploadFile(selectedProject.id, file);
-            if (!uploadedFile) return;
+        const { data, error } = await uploadFile(selectedProject.id, file);
 
-            setSelectedProject((prev) => ({
-                ...prev!,
-                downloadFile: detailedProject!.downloadFile,
-                itemWeight: detailedProject!.itemWeight,
-            }));
-
-            sendNotification({
-                title: "Uploaded",
-                label: "Successfully uploaded download file",
-                type: "success",
-            });
-
-            await handleSaveProject(selectedProject);
-        } catch (err) {
-            throwError(err, "Upload failed");
-        } finally {
+        if (error) {
+            throwError(null, error);
             setIsUploading(false);
+            return;
         }
+
+        setSelectedProject((prev) => ({
+            ...prev!,
+            downloadFile: data.fileUrl,
+            itemWeight: file.size * 0.000001,
+        }));
+
+        sendNotification({
+            title: "Uploaded",
+            label: "Successfully uploaded download file",
+            type: "success",
+        });
+
+        await handleSaveProject(selectedProject);
+        setIsUploading(false);
     };
 
     return { uploadDownloadFile, selectedProject, uploadFileRef, isUploading };
