@@ -1,24 +1,24 @@
 "use client";
 
-import { DetailedProjectDto, UserDto } from "@/lib/api";
+import { DetailedProjectDto, UserDto, VoucherDto } from "@/lib/api";
 import { generateDownload } from "@/lib/downloads/generate-download";
 import { useNotification } from "@/providers/notification";
-import { useFetchVoucher } from "@/hooks/use-fetch-voucher";
 import { Routes } from "@/utils/routes";
+import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 
 export const useDownloadButton = (
   user: UserDto,
-  detailedProject: DetailedProjectDto
+  detailedProject: DetailedProjectDto,
+  voucher?: VoucherDto
 ) => {
   const { sendNotification } = useNotification();
   const router = useRouter();
-  const voucher = useFetchVoucher();
 
   const isCreatorOrAdmin =
     detailedProject.userId === user?.id || user?.admin === true;
 
-  const hasValidVoucher =
+  const isVoucherValidType =
     !!voucher &&
     (
       voucher.betterBedrockContentOnly === false ||
@@ -26,10 +26,14 @@ export const useDownloadButton = (
         detailedProject.betterBedrockContent === true)
     );
 
-  const instantDownload = isCreatorOrAdmin || hasValidVoucher;
+  const hasVoucherExpired = dayjs(voucher?.expiresAt).isBefore(dayjs());
+  const isVoucherUsed = (voucher?.downloadCount ?? 0) >= (voucher?.maxDownloads ?? 0);
 
+  const instantDownload = isCreatorOrAdmin || (isVoucherValidType && !hasVoucherExpired && !isVoucherUsed);
+
+  console.log({ voucher, isCreatorOrAdmin, isVoucherValidType, hasVoucherExpired, isVoucherUsed, instantDownload });
   const handleClick = async () => {
-    if (hasValidVoucher) {
+    if (isVoucherValidType) {
       sendNotification({
         title: "Applied Voucher",
         label: "You just used your voucher to download this content.",
@@ -41,6 +45,7 @@ export const useDownloadButton = (
         label: "Your voucher allows to download only better bedrock content without ads.",
         type: "info",
       });
+      return;
     }
 
     if (!instantDownload) return;
