@@ -1,11 +1,13 @@
+"use client";
+
+import { activateVoucher } from "@/features/project/server/activate-voucher";
 import { ProjectDto } from "@/lib/api";
-import { activateVoucher } from "@/lib/checkout";
 import { generateDownload } from "@/lib/downloads/generate-download";
 import { useCheckout } from "@/providers/checkout";
 import { useNotification } from "@/providers/notification";
 import { useUser } from "@/providers/user";
 import { getLinkvertiseUrl, openLinkvertise } from "@/utils/download";
-import { useCookies } from "next-client-cookies";
+import { useRouter } from "next/navigation";
 import { useState, KeyboardEvent } from "react";
 
 interface usePreviewPopupProps {
@@ -15,29 +17,14 @@ interface usePreviewPopupProps {
 
 export const useVoucherManager = ({ project, onClose }: usePreviewPopupProps) => {
   const { offers } = useCheckout();
+  const router = useRouter();
+  const { sendNotification, throwError } = useNotification();
   const categories = offers?.offers;
-
-  const { sendNotification } = useNotification();
-
-  const cookies = useCookies();
 
   const [voucherCode, setVoucherCode] = useState<string>("");
   const [selectedTimeframe, setSelectedTimeframe] = useState<string | undefined>(categories ? categories[0].title : undefined);
 
   const { findUserById } = useUser();
-
-  const activate = async () => {
-    const voucher = await activateVoucher(undefined, voucherCode);
-    if (voucher) {
-      cookies.set("voucher", JSON.stringify(voucher));
-      sendNotification({
-        title: "Voucher Activated",
-        label: "You succesfully activated your voucher",
-        type: "success",
-      });
-      onClose?.();
-    }
-  };
 
   const download = async () => {
     await generateDownload(project.id);
@@ -61,6 +48,26 @@ export const useVoucherManager = ({ project, onClose }: usePreviewPopupProps) =>
 
     return await getLinkvertiseUrl(linkvertiseId ?? "");
   };
+
+  const activate = async () => {
+    const voucher = await activateVoucher(undefined, voucherCode);
+
+    if (voucher?.error) {
+      throwError(null, voucher.error);
+      return;
+    }
+
+    if (voucher?.data) {
+      sendNotification({
+        title: "Voucher Activated",
+        label: "You successfully activated your voucher",
+        type: "success",
+      });
+
+      onClose?.();
+      // router.refresh();
+    }
+  }
 
   const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
