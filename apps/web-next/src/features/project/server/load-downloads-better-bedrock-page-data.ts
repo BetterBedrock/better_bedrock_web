@@ -22,10 +22,14 @@ export const loadDownloadsBetterBedrockPageData = async ({
       const data = await fetchProjectsBasicInfo(ids);
       if (!data || data.length < 1) continue;
 
+      const sortedData = data.sort((a, b) => {
+        return ids.indexOf(a.id) - ids.indexOf(b.id);
+      });
+
       categories.push({
         ...category,
         categoryItems: category.items,
-        items: data,
+        items: sortedData,
       });
     }
 
