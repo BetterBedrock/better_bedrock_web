@@ -25,6 +25,15 @@ export type SearchProjectTypeKey = keyof typeof SEARCH_PROJECT_TYPES;
 export const SIDE_PROJECTS_LIST = [
     "murder_detector",
     "custom_sky_overlay",
+    "settings_gap_remover",
+    "animated_hotbar_selector",
+    "marketplace_button_remover",
+    "durability_viewer",
+    "inventory_durability_viewer",
+    "better_chat",
+    "inventory_hud",
+    "dark_mode",
+    "hd_font"
 ];
 
 export const MAIN_LIST: DownloadsCategoryDto = {
