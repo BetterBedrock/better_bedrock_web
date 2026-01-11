@@ -26,32 +26,50 @@ export const TiptapPreview = ({
   content,
   detailedProject,
 }: TiptapPreviewProps) => {
-  const html = renderToHTMLString({
-    extensions: [
-      StarterKit.configure({
-        heading: false,
-        code: false,
-        horizontalRule: false,
-        link: {
-          openOnClick: false,
-          enableClickSelection: true,
-        },
-        orderedList: false,
-      }),
-      Heading.configure({
-        levels: [3],
-      }),
-      TextAlign.configure({ types: ["paragraph", "heading"] }),
-      Highlight.configure({ multicolor: false }),
-      PrefixedImage.configure({
-        prefix: baseUrl + "/",
-      }),
-      Typography,
-      Selection,
-      GalleryExtension,
-    ],
-    content: content as JSONContent,
-  });
+  if (!content) {
+    return (
+      <ProjectManagerProvider detailedProject={detailedProject}>
+        <div className={styles.content}>
+          <p>No description available.</p>
+        </div>
+      </ProjectManagerProvider>
+    );
+  }
+
+  let html: string;
+  try {
+    html = renderToHTMLString({
+      extensions: [
+        StarterKit.configure({
+          heading: false,
+          code: false,
+          horizontalRule: false,
+          orderedList: false,
+        }),
+        Heading.configure({
+          levels: [3],
+        }),
+        TextAlign.configure({ types: ["paragraph", "heading"] }),
+        Highlight.configure({ multicolor: false }),
+        PrefixedImage.configure({
+          prefix: baseUrl + "/",
+        }),
+        Typography,
+        Selection,
+        GalleryExtension,
+      ],
+      content: content as JSONContent,
+    });
+  } catch (error) {
+    console.error("Failed to render Tiptap content:", error);
+    return (
+      <ProjectManagerProvider detailedProject={detailedProject}>
+        <div className={styles.content}>
+          <p>Failed to load description.</p>
+        </div>
+      </ProjectManagerProvider>
+    );
+  }
 
   const children = useTiptapPreviewHydrator({ html });
 
