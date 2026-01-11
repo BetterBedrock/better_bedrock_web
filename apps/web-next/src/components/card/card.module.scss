@@ -13,6 +13,10 @@
     0px calc(g.$minecraftdepth * -1) 0px 0px inset #323232;
 }
 
+.fullWidth {
+  width: 100%;
+}
+
 .top {
   background-color: rgb(31, 31, 32);
   width: 100%;
@@ -35,8 +39,11 @@
 
 .body {
   @include g.card-padding();
-  gap: g.$padding-sm;
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.gap {
+  gap: calc(g.$padding-xsm * 2.5);
 }
