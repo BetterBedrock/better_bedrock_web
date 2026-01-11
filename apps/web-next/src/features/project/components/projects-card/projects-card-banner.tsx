@@ -9,7 +9,7 @@ export const ProjectsCardBanner = () => (
         Creators keep 100% of ad revenue and benefit from our anti-bypass system
         to maximize earnings.{" "}
         <Link href="/linkvertise" style={{ color: "inherit", textDecoration: "underline" }}>
-          Watch the tutorial to learn how!
+          Check this tutorial to learn how!
         </Link>
       </p>
     }
