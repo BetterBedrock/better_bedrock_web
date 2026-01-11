@@ -23,6 +23,7 @@ $header-height: 65dvh;
 }
 
 .header {
+  gap: 1rem;
   @include flex-container();
   height: $header-height;
 }
