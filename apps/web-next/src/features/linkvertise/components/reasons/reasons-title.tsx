@@ -2,7 +2,7 @@ import { BedrockText } from "@/components/bedrock-text";
 
 export const ReasonsTitle = () => (
   <BedrockText
-    text="Reasons To Choose Us"
+    text="Built by Creators, for Creators"
     type="h2"
     font="Minecraft"
     color="white"

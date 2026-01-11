@@ -1,21 +1,18 @@
-import clsx from "clsx";
-import { TutorialHeading } from "./tutorial-heading";
 import { TutorialParts } from "./tutorial-parts";
-import { Card } from "@/components/card";
+import { Card, CardBody, CardDivider } from "@/components/card";
 
-import styles from "./tutorial.module.scss";
+import { TutorialTitle } from "./tutorial-title";
+import { TutorialDescription } from "./tutorial-description";
 
 export const Tutorial = () => (
-  <div className={styles.section}>
-    <Card
-      className={clsx(
-        styles.card,
-        styles.markdownWrapper,
-        styles.cardContainer
-      )}
-    >
-      <TutorialHeading />
+  <Card fullWidth>
+    <CardBody>
+      <TutorialTitle />
+      <TutorialDescription />
+    </CardBody>
+    <CardDivider />
+    <CardBody>
       <TutorialParts />
-    </Card>
-  </div>
+    </CardBody>
+  </Card>
 );

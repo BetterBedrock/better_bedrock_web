@@ -1,41 +1,11 @@
 @use "@/utils" as g;
 
-.section {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: g.$padding-sm;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  flex: 1;
-
-  @include g.card-padding-y;
-  gap: g.$padding-sm;
-}
-
-.cardTextWrapper {
-  padding: 0 2rem;
-}
-
 .question {
   display: flex;
   flex-direction: column;
-  gap: g.$padding-xsm;
-  width: 100%;
+  gap: calc((g.$padding-xsm * 2.5) / 2);
 
   @media (max-width: g.$breakpoint-laptop) {
     gap: g.$padding-xxsm;
   }
-}
-
-.cardContainer {
-  display: flex;
-  flex-direction: column;
-  // gap: g.$padding-sm;
-  overflow: hidden;
-  @include g.card-padding-x;
 }
