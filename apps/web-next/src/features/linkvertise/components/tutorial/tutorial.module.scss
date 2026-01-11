@@ -4,26 +4,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: g.$padding-sm;
-}
-
-.sub {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  @include g.card-padding-y;
-
-  & * {
-    width: 100%;
-  }
-}
-
-.cardContainer {
-  display: flex;
-  flex-direction: column;
-  // gap: g.$padding-sm;
-  overflow: hidden;
-  @include g.card-padding-x;
+  gap: calc(g.$padding-xsm * 2.5);
 }
 
 .cardContainer .sub {

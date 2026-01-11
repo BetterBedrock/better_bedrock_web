@@ -50,7 +50,7 @@
 .list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: g.$padding-sm;
+  gap: calc(g.$padding-xsm * 2.5);
 
   @media (max-width: g.$breakpoint-tablet) {
     grid-template-columns: 1fr;
