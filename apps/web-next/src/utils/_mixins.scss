@@ -30,7 +30,7 @@
 
 @mixin card-padding() {
   padding-inline: calc(g.$padding-xsm * 2.5);
-  padding-block: g.$padding-xsm;
+  padding-block: calc(g.$padding-xsm * 2.5);
 }
 
 @mixin card-padding-x() {
