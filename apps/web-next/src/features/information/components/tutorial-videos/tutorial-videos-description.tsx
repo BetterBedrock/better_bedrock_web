@@ -1,11 +1,5 @@
 import { BedrockText } from "@/components/bedrock-text";
 
-interface TutorialVideosDescriptionProps {
-  description: string;
-}
-
-export const TutorialVideosDescription = ({
-  description,
-}: TutorialVideosDescriptionProps) => (
-  <BedrockText type="p" color="white" text={description} />
+export const TutorialVideosDescription = () => (
+  <BedrockText type="p" color="white" text="Complete step-by-step installation and setup tutorials for Better Bedrock. Browse our guides by selecting your platform above." />
 );

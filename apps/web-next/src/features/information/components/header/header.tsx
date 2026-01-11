@@ -1,4 +1,6 @@
+import { Card, CardBody, CardDivider } from "@/components/card";
 import { InformationTab } from "@/features/shared/types/information";
+
 import { HeaderDescription } from "./header-description";
 import { HeaderTabs } from "./header-tabs";
 import { HeaderTitle } from "./header-title";
@@ -8,9 +10,14 @@ interface HeaderProps {
 }
 
 export const Header = ({ selectedCategory }: HeaderProps) => (
-  <div>
-    <HeaderTitle />
-    <HeaderDescription />
-    <HeaderTabs selectedCategory={selectedCategory} />
-  </div>
+  <Card fullWidth>
+    <CardBody>
+      <HeaderTitle />
+      <HeaderDescription />
+    </CardBody>
+    <CardDivider />
+    <CardBody>
+      <HeaderTabs selectedCategory={selectedCategory} />
+    </CardBody>
+  </Card>
 );
