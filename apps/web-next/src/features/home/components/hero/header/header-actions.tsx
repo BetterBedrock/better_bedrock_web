@@ -16,7 +16,7 @@ export const HeroActions = () => (
       </Link>
       <Link href={Routes.CREATE} className={styles.link}>
         <Button width="100%" type="white" center>
-          <BedrockText text="Create A Project" type="p" color="black" />
+          <BedrockText text="Create a project" type="p" color="black" />
         </Button>
       </Link>
     </ButtonGroup>

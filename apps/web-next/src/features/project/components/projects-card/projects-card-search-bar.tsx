@@ -10,6 +10,7 @@ export const ProjectsCardSearchBar = () => {
 
   return (
     <Input
+        sub
       ref={inputRef}
       placeholder="Search for a project"
       className={styles.searchbar}
