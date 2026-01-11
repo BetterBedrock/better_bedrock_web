@@ -9,7 +9,14 @@
   flex-direction: column;
   border: g.$minecraftdepth solid rgb(30, 30, 31);
 
-  box-shadow: g.$minecraftdepth g.$minecraftdepth 0px 0px g.$color-overlay-dark;
+  box-shadow: g.$minecraftdepth g.$minecraftdepth 0px 0px g.$color-overlay-card-light;
+  transition: transform 0.15s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translate(calc(g.$minecraftdepth * -2), calc(g.$minecraftdepth * -2));
+    }
+  }
 }
 
 .background {
