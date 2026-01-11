@@ -16,20 +16,26 @@ export const PreviewPopupTabs = ({
   categories,
   selectedTimeframe,
   setSelectedTimeframe,
-}: PreviewPopupTabsProps) => (
-  <ButtonGroup>
-    {categories!.map((category, index) => (
-      <Button
-        key={index}
-        type="dark"
-        width="100%"
-        height="auto"
-        isClicked={selectedTimeframe === category.title}
-        onClick={() => setSelectedTimeframe(category.title)}
-        center
-      >
-        <BedrockText color="white" type="p" text={category.title} />
-      </Button>
-    ))}
-  </ButtonGroup>
-);
+}: PreviewPopupTabsProps) => {
+  if (!categories || categories.length === 0) {
+    return null;
+  }
+
+  return (
+    <ButtonGroup>
+      {categories.map((category, index) => (
+        <Button
+          key={index}
+          type="dark"
+          width="100%"
+          height="auto"
+          isClicked={selectedTimeframe === category.title}
+          onClick={() => setSelectedTimeframe(category.title)}
+          center
+        >
+          <BedrockText color="white" type="p" text={category.title} />
+        </Button>
+      ))}
+    </ButtonGroup>
+  );
+};
