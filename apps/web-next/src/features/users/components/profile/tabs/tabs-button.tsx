@@ -24,13 +24,13 @@ export const TabsButton = ({ text, name }: TabsButtonProps) => {
     >
       <Button
         width="100%"
-        type="dark"
+        type="white"
         center
         isClicked={currentPage === text.toLowerCase()}
       >
         <BedrockText
           text={text}
-          color="white"
+          color="black"
           type="h2"
           font="Mojangles"
           paragraphSize
