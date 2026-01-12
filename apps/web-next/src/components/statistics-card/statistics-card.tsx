@@ -2,11 +2,11 @@
 
 import { BedrockText } from "@/components/bedrock-text";
 import { ButtonGroup } from "@/components/button-group/button-group";
-import { Card } from "@/components/card";
+import { Card, CardBody, CardDivider } from "@/components/card";
 import { FData, StatisticsCardProps, styles, transformToFData } from ".";
 
 import { Button } from "../button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Collapsible } from "@/components/collapsible";
 import { BarChart } from "@/components/bar-chart";
 
@@ -26,7 +26,24 @@ export const StatisticsCard = ({
   suffix = "",
   ...props
 }: StatisticsCardProps) => {
+  const LOCAL_STORAGE_KEY = `statisticsCard_toggleGraph_${name}`;
   const [toggleGraph, setToggleGraph] = useState(true);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (stored !== null) {
+      setToggleGraph(stored === "true");
+    }
+    setLoaded(true);
+  }, [LOCAL_STORAGE_KEY]);
+
+  useEffect(() => {
+    if (loaded) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, String(toggleGraph));
+    }
+  }, [toggleGraph, LOCAL_STORAGE_KEY, loaded]);
+
   const [category, setCategory] = useState(DATA_RANGE_OPTIONS[0].label);
 
   let total = 0;
@@ -40,71 +57,82 @@ export const StatisticsCard = ({
   }
 
   return (
-    <Card {...props}>
-      <div className={styles.statistics}>
-        <div className={styles.header}>
-          <div>
-            <BedrockText
-              extraClassName={styles.name}
-              type="p"
-              text={name}
-              textAlign="left"
-              color="grey"
-            />
-            <BedrockText
-              key={total}
-              type="h3"
-              text={`${total.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 4 })}${suffix}`}
-              textAlign="left"
-              color="white"
-              font="Minecraft"
-              extraClassName={styles.highlight}
-            />
-          </div>
-          {showGraph && fdata && (
-            <Button
-              width="auto"
-              type="white"
-              onClick={() => setToggleGraph(!toggleGraph)}
-              center
-            >
-              <BedrockText
-                text={toggleGraph ? "Hide Chart" : "Show Chart"}
-                type="p"
-                color="black"
-              />
-            </Button>
-          )}
-        </div>
-        <Collapsible
-          floating
-          headerText={
-            DATA_RANGE_OPTIONS.find((d) => d.label === category)?.text ??
-            "No Data Range"
-          }
-          contentText=""
-          width="100%"
-          limit
-        >
-          <ButtonGroup direction="vertical">
-            {DATA_RANGE_OPTIONS.map((c) => (
-              <Button
-                key={c.label}
-                type="dark"
+    <Card {...props} sub>
+      <CardBody smallerPadding>
+        <BedrockText
+          extraClassName={styles.name}
+          type="h3"
+          text={name.replace('_', " ")}
+          textAlign="left"
+          color="white"
+          font="Minecraft"
+        />
+        <BedrockText
+          key={total}
+          type="p"
+          text={`${total.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 4 })}${suffix}`}
+          textAlign="left"
+          color="white"
+          extraClassName={styles.highlight}
+        />
+      </CardBody>
+      {fdata && loaded && (
+        <><CardDivider sub />
+          <CardBody>
+            <div className={styles.buttons}>
+              <Collapsible
+                className={styles.collapsible}
+                floating
+                headerText={
+                  DATA_RANGE_OPTIONS.find((d) => d.label === category)?.text ??
+                  "No Data Range"
+                }
+                contentText=""
                 width="100%"
-                isClicked={c.label === category}
-                onClick={() => setCategory(c.label)}
-                center
+                limit
               >
-                <BedrockText type="p" color="white" text={c.text} />
-              </Button>
-            ))}
-          </ButtonGroup>
-        </Collapsible>
-        {toggleGraph && showGraph && fdata && (
-          <BarChart direction="horizontal" data={fdata} category={category} />
-        )}
-      </div>
+                <ButtonGroup direction="vertical">
+                  {DATA_RANGE_OPTIONS.map((c) => (
+                    <Button
+                      key={c.label}
+                      type="dark"
+                      width="100%"
+                      isClicked={c.label === category}
+                      onClick={() => setCategory(c.label)}
+                      center
+                    >
+                      <BedrockText type="p" color="white" text={c.text} />
+                    </Button>
+                  ))}
+                </ButtonGroup>
+              </Collapsible>
+              {showGraph && (
+                <Button
+                  className={styles.chartButton}
+                  type="white"
+                  onClick={() => setToggleGraph((prev) => !prev)}
+                  center
+                >
+                  <BedrockText
+                    text={toggleGraph ? "Hide" : "Show"}
+                    type="p"
+                    color="black"
+                  />
+                </Button>
+              )}
+            </div>
+          </CardBody>
+        </>)}
+      {toggleGraph && showGraph && fdata && loaded && (
+        <>
+          <CardDivider sub />
+          <CardBody >
+            {fdata && (
+              <BarChart direction="horizontal" data={fdata} category={category} />
+            )}
+          </CardBody>
+        </>
+      )}
     </Card>
   );
 };

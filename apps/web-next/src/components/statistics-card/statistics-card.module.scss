@@ -1,15 +1,5 @@
 @use "@/utils" as g;
 
-.statistics {
-  width: 100%;
-  height: 100%;
-  align-items: start;
-  justify-content: start;
-
-  padding: g.$padding-xsm;
-  gap: g.$padding-xsm;
-}
-
 .name {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
@@ -28,7 +18,50 @@
   }
 }
 
-.header {
+.buttons {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  align-items: stretch;
+
+  // css for longer text - keep it to not experiment in the future
+  // @media (max-width: g.$breakpoint-mobileL) {
+  @media (max-width: g.$breakpoint-mobileS) {
+    flex-direction: column;
+    gap: calc(g.$padding-xsm * 1.25);
+  }
+}
+
+.chartButton {
+  z-index: 1;
+  // css for longer text - keep it to not experiment in the future
+  // max-width: 170px;
+
+  // @media (max-width: g.$breakpoint-laptopL) {
+  //   max-width: 100px;
+  // }
+
+  // @media (max-width: g.$breakpoint-laptop) {
+  //   max-width: 170px;
+  // }
+
+  // @media (max-width: g.$breakpoint-tablet) {
+  //   max-width: 100px;
+  // }
+
+  // @media (max-width: g.$breakpoint-mobileL) {
+  //   max-width: none;
+  // }
+
+  > * {
+    max-lines: 1;
+  }
+}
+
+.collapsible {
+  flex: 1;
+  // css for longer text - keep it to not experiment in the future
+  // @media (min-width: g.$breakpoint-mobileL) {
+  @media (min-width: g.$breakpoint-mobileS) {
+    margin-right: calc(g.$minecraftdepth * -1);
+  }
 }
