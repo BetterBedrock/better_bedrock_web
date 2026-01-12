@@ -1,14 +1,5 @@
 @use "@/utils" as g;
 
-.list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: start;
-  align-items: start;
-  gap: g.$padding-xsm;
-}
-
 .button {
   width: 100%;
 }
