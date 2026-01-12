@@ -31,3 +31,7 @@ $header-height: 65dvh;
 .trailer {
   @include flex-container();
 }
+
+.videoContainer {
+  margin-top: calc(g.$padding-xsm * 2.5);
+}
