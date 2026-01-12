@@ -42,6 +42,7 @@ export const Collapsible = ({
       style={{ width: width }}
     >
       <details
+        className={styles.details}
         itemScope
         itemProp="mainEntity"
         itemType="https://schema.org/Question"
