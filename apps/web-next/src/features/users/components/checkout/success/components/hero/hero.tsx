@@ -2,9 +2,9 @@ import { SuccessPageProps } from "@/app/(users)/checkout/success/page";
 import { HeroAction } from "./hero-action";
 import { HeroDescription } from "./hero-description";
 import { HeroTitle } from "./hero-title";
-import { activateVoucher } from "@/features/project/hooks/use-active-voucher";
 import { redirect } from "next/navigation";
 import { Routes } from "@/utils/routes";
+import { activateVoucher } from "@/features/project/server/activate-voucher";
 
 export const Hero = async ({ searchParams }: SuccessPageProps) => {
   const fetchedParams = await searchParams;
