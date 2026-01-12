@@ -9,6 +9,7 @@
 }
 
 .types {
+  z-index: 1;
   display: none !important;
 
   @media (max-width: g.$breakpoint-tablet) {
@@ -46,7 +47,7 @@
 .filters {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: (g.$padding-xsm * 1.25);
 }
 
 .searchbarContainer {
