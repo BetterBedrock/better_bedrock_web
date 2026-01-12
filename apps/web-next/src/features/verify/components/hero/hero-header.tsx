@@ -1,18 +1,13 @@
 "use server";
 
-import { DetailedProjectDto } from "@/lib/api";
+import { ProjectDto } from "@/lib/api";
 import { BedrockText } from "@/components/bedrock-text";
 
-import styles from "./hero.module.scss";
-
 interface HeroHeaderProps {
-  project: DetailedProjectDto;
+  project: ProjectDto;
 }
 
-export const HeroHeader = async ({ project }: HeroHeaderProps) => {
-  const creatorName = project.user?.name ?? "Unknown";
-
-  return (
+export const HeroHeader = async ({ project }: HeroHeaderProps) => (
     <>
       <BedrockText
         type="h1"
@@ -23,8 +18,7 @@ export const HeroHeader = async ({ project }: HeroHeaderProps) => {
       <BedrockText
         type="p"
         color="white"
-        text={`Project: ${project.title} by @${creatorName}`}
+        text={`Project: ${project.title} by @TODO`}
       />
     </>
   );
-};
