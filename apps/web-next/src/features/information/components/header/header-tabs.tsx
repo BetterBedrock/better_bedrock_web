@@ -30,10 +30,10 @@ export const HeaderTabs = ({ selectedCategory }: HeaderTabsProps) => (
             isClicked={selectedCategory.id === c.id}
             width="100%"
             height="100%"
-            type="green"
+            type="white"
             center
           >
-            <BedrockText text={c.name} color="white" type="p" />
+            <BedrockText text={c.name} color="black" type="p" />
           </Button>
         </Link>
       ))}
