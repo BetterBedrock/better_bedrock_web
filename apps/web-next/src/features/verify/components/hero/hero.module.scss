@@ -1,21 +1,14 @@
 @use "@/utils" as g;
 
-.hero {
+.content {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: g.$padding-sm;
+  gap: calc(g.$padding-xsm * 2.5);
 }
 
-.header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.label {
+.retryLabel {
   @include g.no-drag();
 }
 
@@ -28,11 +21,8 @@
   opacity: 0;
   pointer-events: none;
   animation: fadeIn 0.25s ease forwards;
-  animation-delay: 5s;
+  animation-delay: 0.25s;
 
-  &.visible {
-    animation-delay: 0s;
-  }
 }
 
 @keyframes fadeIn {

@@ -12,9 +12,8 @@ export default async function Verify({ searchParams }: VerifyProps) {
 
   return (
     <>
-    {/* todo: zrobic lepszy layout, hero na dole wrzucic w Card, CardBody itd. */}
-      <PartnerCard />
       <Hero hash={hash} />
+      <PartnerCard onlyImage />
     </>
   );
 }

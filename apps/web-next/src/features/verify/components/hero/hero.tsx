@@ -10,6 +10,7 @@ import { HeroDownloadProgress } from "./hero-download-progress";
 import { HeroRedownloadMessage } from "./hero-redownload-message";
 
 import styles from "./hero.module.scss";
+import { Card, CardBody, CardDivider } from "@/components/card";
 
 interface HeroProps {
   hash?: string;
@@ -25,13 +26,20 @@ export const Hero = async ({ hash }: HeroProps) => {
   ) as DetailedProjectDto; //The type assertion 'as DetailedProjectDto' is unsafe. If 'verifyDownload' returns a different type or null, this will cause runtime errors. Add proper type guards or handle the case where the result may not be a DetailedProjectDto.
 
   return (
-    <div className={styles.hero}>
-      <HeroHeader project={downloadItem} />
-      <DownloadProvider downloadItem={downloadItem}>
-        <HeroCreatorBanner creatorName={downloadItem.user?.name} />
-        <HeroDownloadProgress />
-        <HeroRedownloadMessage />
-      </DownloadProvider>
-    </div>
+    <Card fullWidth>
+      <CardBody>
+        <HeroHeader project={downloadItem} />
+      </CardBody>
+      <CardDivider />
+      <CardBody>
+        <div className={styles.content}>
+          <DownloadProvider downloadItem={downloadItem}>
+            <HeroCreatorBanner creatorName={downloadItem.user?.name} />
+            <HeroDownloadProgress />
+            <HeroRedownloadMessage />
+          </DownloadProvider>
+        </div>
+      </CardBody>
+    </Card>
   );
 };

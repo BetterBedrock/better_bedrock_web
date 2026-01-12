@@ -10,7 +10,7 @@ export const HeroCreatorBanner = ({ creatorName }: HeroCreatorBannerProps) => (
     type="info"
     message={
       <p style={{ textAlign: "center" }}>
-        Did you know? @{creatorName ?? "Unknown"} just earned money from the ads you watched. You can do the same! Upload your project and start earning.{" "}
+        Monetize your content and earn revenue from ADs like @{creatorName ?? "Unknown"}. You can do the same - upload your project and start earning now!{" "}
         <Link href="/linkvertise" style={{ color: "inherit", textDecoration: "underline" }}>
           Check this tutorial to see how.
         </Link>

@@ -16,9 +16,14 @@ export const HeroRedownloadMessage = ({
 }: HeroRedownloadMessageProps) => {
   const { download, downloadProgress } = useDownload();
   const [visible, setVisible] = useState(false);
+  const [delayed, setDelayed] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
 
-  // Show immediately when download completes (removes animation delay from retry text)
+  useEffect(() => {
+    const timeout = setTimeout(() => setDelayed(true), 4750);
+    return () => clearTimeout(timeout);
+  }, []);
+
   useEffect(() => {
     if (downloadProgress === 100) {
       setVisible(true);
@@ -27,18 +32,25 @@ export const HeroRedownloadMessage = ({
 
   const handleRetry = () => {
     setVisible(false);
-    setAnimationKey((prev) => prev + 1); // Reset CSS animation by adding a new key
+    setDelayed(false);
+    setAnimationKey((prev) => prev + 1);
     download(voucher);
   };
 
-  return (
+  const htmlElement = (
     <BedrockText
       key={animationKey}
       type="p"
       color="white"
-      extraClassName={clsx(styles.label, styles.redownload, visible && styles.visible)}
+      extraClassName={clsx(styles.retryLabel, styles.redownload)}
       text="Problems with the download? Click to retry!"
       onClick={handleRetry}
     />
+  );
+
+  return (
+    <>
+      {(visible || delayed) && htmlElement}
+    </>
   );
 };
