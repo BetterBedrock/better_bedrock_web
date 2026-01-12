@@ -9,6 +9,7 @@ import { HeroRedownloadMessage } from "./hero-redownload-message";
 import styles from "./hero.module.scss";
 import { redirect } from "next/navigation";
 import { Routes } from "@/utils/routes";
+import { Card, CardBody, CardDivider } from "@/components/card";
 
 interface HeroProps {
   hash?: string;
@@ -21,24 +22,17 @@ export const Hero = async ({ hash }: HeroProps) => {
   const downloadItem = await verifyDownload(hash ?? undefined, voucher);
 
   if (!downloadItem) {
-    redirect(Routes.DOWNLOADS_MAIN);
+    redirect(Routes.DOWNLOADS_MAIN); //TODO
   }
 
   return (
-    <Card fullWidth>
-      <CardBody>
-        <HeroHeader project={downloadItem} />
-      </CardBody>
-      <CardDivider />
-      <CardBody>
-        <div className={styles.content}>
-          <DownloadProvider downloadItem={downloadItem}>
-            <HeroCreatorBanner creatorName={downloadItem.user?.name} />
-            <HeroDownloadProgress />
-            <HeroRedownloadMessage />
-          </DownloadProvider>
-        </div>
-      </CardBody>
-    </Card>
+    <div className={styles.hero}>
+      <HeroHeader project={downloadItem} />
+      <DownloadProvider downloadItem={downloadItem}>
+        <HeroCreatorBanner creatorName={"TODO"} />
+        <HeroDownloadProgress />
+        <HeroRedownloadMessage />
+      </DownloadProvider>
+    </div>
   );
 };
