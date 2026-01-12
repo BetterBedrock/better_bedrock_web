@@ -11,13 +11,6 @@ $profile-image-size-mobile: 80px;
   gap: g.$padding-md;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  padding: g.$padding-sm;
-  gap: g.$padding-sm;
-}
-
 .profile {
   display: inline-flex;
   gap: g.$padding-sm;
@@ -125,4 +118,14 @@ $profile-image-size-mobile: 80px;
 
 .wrap {
   overflow-wrap: anywhere;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: calc(g.$padding-xsm * 2.5);
+}
+
+.profileCardBody {
+  padding-right: calc(g.$padding-xsm * 1.25) !important;
 }

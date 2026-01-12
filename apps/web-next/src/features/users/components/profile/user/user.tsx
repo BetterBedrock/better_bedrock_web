@@ -1,5 +1,5 @@
 import { BedrockText } from "@/components/bedrock-text";
-import { Card } from "@/components/card";
+import { Card, CardBody } from "@/components/card";
 import { UserLinkvertiseInfo } from "./user-linkvertise-info";
 import clsx from "clsx";
 import { loadUserProfile } from "@/lib/user/load-user-profile";
@@ -30,29 +30,31 @@ export const User = async ({ params }: UserProps) => {
   const rating = await loadUserRating(selectedUser.id);
 
   return (
-    <>
+    <div className={styles.container}>
       <UserLinkvertiseInfo selectedUser={selectedUser} />
-      <Card className={styles.card}>
-        <div className={styles.profile}>
-          <UserProfilePicture name={selectedUser!.name} />
-          <div className={styles.info}>
-            <div className={styles.header}>
-              <UserProfileName
-                name={selectedUser!.name}
-                banned={selectedUser!.banned}
+      <Card sub>
+        <CardBody className={styles.profileCardBody} smallerPadding >
+          <div className={styles.profile}>
+            <UserProfilePicture name={selectedUser!.name} />
+            <div className={styles.info}>
+              <div className={styles.header}>
+                <UserProfileName
+                  name={selectedUser!.name}
+                  banned={selectedUser!.banned}
+                />
+                <UserProfileActions selectedUser={selectedUser} />
+              </div>
+              <UserProfileRating rating={rating} />
+              <BedrockText
+                type="p"
+                text={selectedUser!.bio}
+                color="white"
+                textAlign="left"
+                extraClassName={clsx(styles.text, styles.wrap)}
               />
-              <UserProfileActions selectedUser={selectedUser} />
             </div>
-            <UserProfileRating rating={rating} />
-            <BedrockText
-              type="p"
-              text={selectedUser!.bio}
-              color="white"
-              textAlign="left"
-              extraClassName={clsx(styles.text, styles.wrap)}
-            />
           </div>
-        </div>
+        </CardBody>
         <div className={styles.bio}>
           <BedrockText
             type="p"
@@ -63,6 +65,6 @@ export const User = async ({ params }: UserProps) => {
           />
         </div>
       </Card>
-    </>
+    </div>
   );
 };
