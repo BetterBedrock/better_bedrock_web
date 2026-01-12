@@ -10,10 +10,3 @@
 .padding {
   @include g.section-padding((top, bottom));
 }
-
-.wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: g.$padding-md;
-}

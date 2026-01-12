@@ -8,6 +8,7 @@ import { User } from "@/features/users/components/profile/user/user";
 import { notFound } from "next/navigation";
 import { fetchUserByName } from "@/lib/user";
 import styles from "./profile.module.scss";
+import { Card, CardBody, CardDivider } from "@/components/card";
 
 interface ProfileProps {
   children: ReactNode;
@@ -56,11 +57,21 @@ export default async function LayoutProfile({
         extraClassName={styles.padding}
         fixed
       >
-        <div className={styles.wrapper}>
-          <User params={resolvedParams} />
-          <Tabs params={resolvedParams} />
-          {children}
-        </div>
+        <Card fullWidth>
+          <CardBody>
+            <User params={resolvedParams} />
+          </CardBody>
+        </Card>
+
+        <Card fullWidth>
+          <CardBody>
+            <Tabs params={resolvedParams} />
+          </CardBody>
+          <CardDivider />
+          <CardBody>
+            {children}
+          </CardBody>
+        </Card>
       </Section>
     </AnalyticsProvider>
   );
