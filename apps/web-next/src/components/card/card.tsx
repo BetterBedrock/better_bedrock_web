@@ -31,10 +31,14 @@ export const CardDivider = ({ sub }: CardDividerProps) => (
 interface CardBodyProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   gap?: boolean;
+  smallerGap?: boolean;
+  smallerPadding?: boolean;
+  noPaddingBottom?: boolean;
+  className?: string;
 }
 
-export const CardBody = ({ children, gap, ...rest }: CardBodyProps) => (
-  <div className={clsx(styles.body, gap && styles.gap)} {...rest}>{children}</div>
+export const CardBody = ({ children, gap, smallerGap, smallerPadding, noPaddingBottom, className, ...rest }: CardBodyProps) => (
+  <div className={clsx(children && styles.body, gap && styles.gap, smallerGap && styles.smallerGap, smallerPadding && styles.smallerPadding, noPaddingBottom && styles.noPaddingBottom, className)} {...rest}>{children}</div>
 );
 
 Card.displayName = "Card";

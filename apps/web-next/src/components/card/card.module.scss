@@ -47,3 +47,15 @@
 .gap {
   gap: calc(g.$padding-xsm * 2.5);
 }
+
+.smallerGap {
+  gap: calc(g.$padding-xsm * 1.25);
+}
+
+.smallerPadding {
+  padding-block: calc(g.$padding-xsm * 1.25) !important;
+}
+
+.noPaddingBottom {
+  padding-bottom: 0 !important;
+}
