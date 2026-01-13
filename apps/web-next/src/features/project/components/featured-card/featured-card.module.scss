@@ -1,15 +1,13 @@
 @use "@/utils" as g;
 
-.ad {
+.buttons {
   display: grid;
   grid-template-areas: "bb side";
   grid-template-columns: 1fr 1fr;
   gap: calc(g.$padding-xsm * 2.5);
 
   @media (max-width: g.$breakpoint-tablet) {
-    grid-template-areas:
-      "bb"
-      "side";
+    grid-template-areas: "bb" "side";
     grid-template-columns: 1fr;
   }
 }
