@@ -49,7 +49,7 @@ This is an open-source repository for **Better Bedrock** Project. It contains fr
 
 ### 1\. 🍴 Fork & Clone
 
-    # Fork the repository on GitHub, then:
+    # Fork the repository on GitHub, and then:
     git clone https://github.com/your-username/better-bedrock-web.git
     cd better-bedrock-web
     
