@@ -6,13 +6,13 @@
   box-sizing: border-box;
   font-family: "Mojangles";
 
-  overflow: none;
+  overflow: visible;
   display: flex;
   justify-content: center;
   align-items: center;
   width: min-content;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.125s ease;
 
   &:focus-visible {
     outline: none;
@@ -39,7 +39,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding: 0.5rem;
+  padding-inline: calc(g.$padding-xsm * 2.5);
+  @media (max-width: g.$breakpoint-tablet) {
+    padding-inline: calc(g.$padding-xsm * 1.25);
+  }
 }
 
 .active {
