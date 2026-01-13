@@ -4,6 +4,7 @@ import { InformationTab } from "@/features/shared/types/information";
 import { HeaderDescription } from "./header-description";
 import { HeaderTabs } from "./header-tabs";
 import { HeaderTitle } from "./header-title";
+import { PartnerImage } from "@/components/partner-image";
 
 interface HeaderProps {
   selectedCategory: InformationTab;
@@ -18,6 +19,10 @@ export const Header = ({ selectedCategory }: HeaderProps) => (
     <CardDivider />
     <CardBody>
       <HeaderTabs selectedCategory={selectedCategory} />
+    </CardBody>
+    <CardDivider />
+    <CardBody>
+      <PartnerImage />
     </CardBody>
   </Card>
 );
