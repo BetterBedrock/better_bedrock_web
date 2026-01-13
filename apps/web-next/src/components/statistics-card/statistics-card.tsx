@@ -76,63 +76,56 @@ export const StatisticsCard = ({
           extraClassName={styles.highlight}
         />
       </CardBody>
-      {fdata && loaded && (
-        <><CardDivider sub />
-          <CardBody>
-            <div className={styles.buttons}>
-              <Collapsible
-                className={styles.collapsible}
-                floating
-                headerText={
-                  DATA_RANGE_OPTIONS.find((d) => d.label === category)?.text ??
-                  "No Data Range"
-                }
-                contentText=""
-                width="100%"
-                limit
+      {fdata && loaded && (<>
+        <CardDivider sub />
+        <CardBody gap>
+          <div className={styles.buttons}>
+            <Collapsible
+              className={styles.collapsible}
+              floating
+              headerText={
+                DATA_RANGE_OPTIONS.find((d) => d.label === category)?.text ??
+                "No Data Range"
+              }
+              contentText=""
+              width="100%"
+              limit
+            >
+              <ButtonGroup direction="vertical">
+                {DATA_RANGE_OPTIONS.map((c) => (
+                  <Button
+                    key={c.label}
+                    type="dark"
+                    width="100%"
+                    isClicked={c.label === category}
+                    onClick={() => setCategory(c.label)}
+                    center
+                  >
+                    <BedrockText type="p" color="white" text={c.text} />
+                  </Button>
+                ))}
+              </ButtonGroup>
+            </Collapsible>
+            {showGraph && (
+              <Button
+                className={styles.chartButton}
+                type="white"
+                onClick={() => setToggleGraph((prev) => !prev)}
+                center
               >
-                <ButtonGroup direction="vertical">
-                  {DATA_RANGE_OPTIONS.map((c) => (
-                    <Button
-                      key={c.label}
-                      type="dark"
-                      width="100%"
-                      isClicked={c.label === category}
-                      onClick={() => setCategory(c.label)}
-                      center
-                    >
-                      <BedrockText type="p" color="white" text={c.text} />
-                    </Button>
-                  ))}
-                </ButtonGroup>
-              </Collapsible>
-              {showGraph && (
-                <Button
-                  className={styles.chartButton}
-                  type="white"
-                  onClick={() => setToggleGraph((prev) => !prev)}
-                  center
-                >
-                  <BedrockText
-                    text={toggleGraph ? "Hide" : "Show"}
-                    type="p"
-                    color="black"
-                  />
-                </Button>
-              )}
-            </div>
-          </CardBody>
-        </>)}
-      {toggleGraph && showGraph && fdata && loaded && (
-        <>
-          <CardDivider sub />
-          <CardBody >
-            {fdata && (
-              <BarChart direction="horizontal" data={fdata} category={category} />
+                <BedrockText
+                  text={toggleGraph ? "Hide" : "Show"}
+                  type="p"
+                  color="black"
+                />
+              </Button>
             )}
-          </CardBody>
-        </>
-      )}
+          </div>
+          {toggleGraph && showGraph && loaded && (
+            <BarChart direction="horizontal" data={fdata} category={category} />
+          )}
+        </CardBody>
+      </>)}
     </Card>
   );
 };
