@@ -9,6 +9,7 @@ import { notFound } from "next/navigation";
 import { fetchUserByName } from "@/lib/user";
 import styles from "./profile.module.scss";
 import { Card, CardBody, CardDivider } from "@/components/card";
+import { fetchLoggedUser } from "@/lib/auth";
 
 interface ProfileProps {
   children: ReactNode;
@@ -50,6 +51,11 @@ export default async function LayoutProfile({
 }: ProfileProps) {
   const resolvedParams = await params;
 
+  const user = await fetchLoggedUser();
+  const name = resolvedParams?.name;
+
+  const visible = user?.name === name || user?.admin;
+
   return (
     <AnalyticsProvider>
       <Section
@@ -65,12 +71,10 @@ export default async function LayoutProfile({
 
         <Card fullWidth>
           <CardBody>
-            <Tabs params={resolvedParams} />
+            {visible && <Tabs params={resolvedParams} />}
           </CardBody>
-          <CardDivider />
-          <CardBody>
-            {children}
-          </CardBody>
+          {visible && <CardDivider />}
+          <CardBody>{children}</CardBody>
         </Card>
       </Section>
     </AnalyticsProvider>
