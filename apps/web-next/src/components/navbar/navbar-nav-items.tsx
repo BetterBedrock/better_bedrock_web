@@ -72,6 +72,7 @@ export const NavbarNavItems = ({ onNavClick, isMobile = false }: NavbarNavItemsP
                             {isMobile && index === 0 && <NavbarDivider type="horizontal" />}
                             {!isMobile && <NavbarDivider />}
                             <SimpleButton
+                                navPaddings
                                 key={name}
                                 width="100%"
                                 isClicked={isActive}

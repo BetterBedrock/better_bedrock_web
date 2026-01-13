@@ -39,7 +39,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding: calc(g.$padding-xsm * 1.25);
+}
+
+.childNav {
   padding-inline: calc(g.$padding-xsm * 2.5);
+  padding-block: 0;
   @media (max-width: g.$breakpoint-tablet) {
     padding-inline: calc(g.$padding-xsm * 1.25);
   }
