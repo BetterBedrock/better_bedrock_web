@@ -59,3 +59,11 @@
 .noPaddingBottom {
   padding-bottom: 0 !important;
 }
+
+.negativeMarginTop {
+  margin-top: calc(g.$minecraftdepth * -1) !important;
+}
+
+.negativeMarginBottom {
+  margin-bottom: calc(g.$minecraftdepth * -1) !important;
+}

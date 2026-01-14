@@ -7,11 +7,14 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
   sub?: boolean;
   fullWidth?: boolean;
+  negativeMarginTop?: boolean;
+  negativeMarginBottom?: boolean;
+
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className, children, sub, fullWidth, ...rest }, ref) => (
-    <div ref={ref} className={clsx(styles.container, sub && styles.sub, fullWidth && styles.fullWidth, className)} {...rest}>
+  ({ className, children, sub, fullWidth, negativeMarginTop, negativeMarginBottom, ...rest }, ref) => (
+    <div ref={ref} className={clsx(styles.container, sub && styles.sub, fullWidth && styles.fullWidth, negativeMarginTop && styles.negativeMarginTop, negativeMarginBottom && styles.negativeMarginBottom, className)} {...rest}>
       {children}
     </div>
   ),
