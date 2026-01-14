@@ -1,5 +1,4 @@
 import { useNotification } from "@/providers/notification";
-import { useProject } from "@/providers/project";
 import { useProjectManager } from "@/features/project/providers/project-manager";
 import { useRef, useState } from "react";
 import { uploadFile } from "@/features/project/server/upload-file";
