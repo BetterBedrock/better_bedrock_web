@@ -3,11 +3,10 @@
 import { activateVoucher } from "@/features/project/server/activate-voucher";
 import { ProjectDto } from "@/lib/api";
 import { generateDownload } from "@/lib/downloads/generate-download";
+import { fetchUserById } from "@/lib/user/fetch-user-by-id";
 import { useCheckout } from "@/providers/checkout";
 import { useNotification } from "@/providers/notification";
-import { useUser } from "@/providers/user";
 import { getLinkvertiseUrl, openLinkvertise } from "@/utils/download";
-import { useRouter } from "next/navigation";
 import { useState, KeyboardEvent } from "react";
 
 interface usePreviewPopupProps {
@@ -17,18 +16,15 @@ interface usePreviewPopupProps {
 
 export const useVoucherManager = ({ project, onClose }: usePreviewPopupProps) => {
   const { offers } = useCheckout();
-  const router = useRouter();
   const { sendNotification, throwError } = useNotification();
   const categories = offers?.offers;
 
   const [voucherCode, setVoucherCode] = useState<string>("");
   const [selectedTimeframe, setSelectedTimeframe] = useState<string | undefined>(categories ? categories[0].title : undefined);
 
-  const { findUserById } = useUser();
-
   const download = async () => {
     await generateDownload(project.id);
-    const creator = await findUserById(project.userId);
+    const creator = await fetchUserById(project.userId);
 
     const linkvertiseId = creator?.customLinkvertise
       ? (creator.linkvertiseId ?? process.env.NEXT_PUBLIC_LINKVERTISE_ID)
@@ -38,7 +34,7 @@ export const useVoucherManager = ({ project, onClose }: usePreviewPopupProps) =>
   };
 
   const getLinkvertiseId = async (): Promise<string> => {
-    const creator = await findUserById(project.userId);
+    const creator = await fetchUserById(project.userId);
 
     let linkvertiseId = process.env.NEXT_PUBLIC_LINKVERTISE_ID;
 
