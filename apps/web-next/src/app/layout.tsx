@@ -2,8 +2,6 @@ import { Layout } from "@/components/layout";
 import { AuthProvider } from "@/providers/auth";
 import { CheckoutProvider } from "@/providers/checkout";
 import { NotificationProvider } from "@/providers/notification";
-import { ProjectProvider } from "@/providers/project";
-import { UserProvider } from "@/providers/user";
 import "@/public/styles/global.scss";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
@@ -82,15 +80,11 @@ export default function RootLayout({
           <CookiesProvider>
             <NotificationProvider>
               <CheckoutProvider>
-                <ProjectProvider>
-                  <AuthProvider>
-                    <UserProvider>
-                      <Layout>
-                        <main>{children}</main>
-                      </Layout>
-                    </UserProvider>
-                  </AuthProvider>
-                </ProjectProvider>
+                <AuthProvider>
+                  <Layout>
+                    <main>{children}</main>
+                  </Layout>
+                </AuthProvider>
               </CheckoutProvider>
             </NotificationProvider>
           </CookiesProvider>
