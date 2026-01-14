@@ -8,7 +8,6 @@ import {
   ManageProfileDto,
 } from "@/lib/api";
 import { useAuth } from "@/providers/auth";
-import { useUser } from "@/providers/user";
 import { Routes } from "@/utils/routes";
 import {
   createContext,
@@ -19,6 +18,8 @@ import {
   useState,
 } from "react";
 import { useRouter } from "next/navigation";
+import { fetchDetailedUser, updateProfile } from "@/lib/user";
+import { manageProfile } from "@/lib/user/manage-profile";
 
 interface UserProfileContextProps {
   ownsProfile: boolean;
@@ -60,7 +61,6 @@ export const UserProfileProvider = ({
   initialUser,
 }: UserProfileProviderProps) => {
   const router = useRouter();
-  const { updateProfile, manageProfile, findDetailedUser } = useUser();
   const { user } = useAuth();
 
   const [detailedUser, setDetailedUser] = useState<UserDto | undefined>();
@@ -87,7 +87,7 @@ export const UserProfileProvider = ({
     if (!targetUser) return;
 
     if (user?.admin) {
-      const data = await findDetailedUser(targetUser.id);
+      const data = await fetchDetailedUser(targetUser.id);
       setDetailedUser(data);
     }
 
