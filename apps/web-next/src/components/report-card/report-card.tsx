@@ -7,9 +7,9 @@ import dayjs from "dayjs";
 import { Button } from "@/components/button";
 import { CircularProgressIndicator } from "@/components/circular-progress-indicator";
 import { ReportDto, SimpleUserDto, DetailedProjectDto } from "@/lib/api";
-import { useUser } from "@/providers/user";
 import { fetchProjectDetails } from "@/features/project/server/fetch-project-details";
 import { useNotification } from "@/providers/notification";
+import { fetchUserById } from "@/lib/user/fetch-user-by-id";
 
 interface ReportCardProps {
   report: ReportDto;
@@ -25,7 +25,6 @@ export const ReportCard = ({
   height = "auto",
   onClick,
 }: ReportCardProps) => {
-  const { findUserById } = useUser();
   const { throwError } = useNotification();
   const [reporter, setReporter] = useState<SimpleUserDto | undefined>();
   const [reported, setReported] = useState<SimpleUserDto | undefined>();
@@ -34,9 +33,9 @@ export const ReportCard = ({
 
   useEffect(() => {
     const fetchDetails = async () => {
-      setReporter(await findUserById(report.reporterId));
+      setReporter(await fetchUserById(report.reporterId));
       if (report.reportedUserId) {
-        setReported(await findUserById(report.reportedUserId));
+        setReported(await fetchUserById(report.reportedUserId));
       }
 
       if (report.reportedProjectId) {
@@ -55,7 +54,7 @@ export const ReportCard = ({
     };
 
     fetchDetails();
-  }, [findUserById, report]);
+  }, [fetchUserById, report]);
 
   if (!fetched) {
     return <CircularProgressIndicator center />;
