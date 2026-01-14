@@ -2,7 +2,7 @@
 
 import { BedrockText } from "@/components/bedrock-text";
 import { Button } from "@/components/button";
-import { CardDivider } from "@/components/card";
+import { Card, CardBody } from "@/components/card";
 import { Popup } from "@/components/popup";
 import { VoucherDto, CreateVoucher } from "@/lib/api";
 import { useVoucherForm } from "../../../hooks/use-voucher-form";
@@ -32,24 +32,35 @@ export const VoucherForm = ({
       <Popup.Wrapper>
         <form onSubmit={onClickSubmit}>
           <Popup.Part>
-            {fields.map(({ name, label, type, placeholder }) => (
-              <VoucherFormField
-                key={label}
-                errors={errors}
-                control={control}
-                name={name}
-                label={label}
-                type={type}
-                placeholder={placeholder}
-              />
-            ))}
+            <Card>
+              <CardBody>
+                <Popup.Content>
+                  {fields.map(({ name, label, type, placeholder }) => (
+                    <VoucherFormField
+                      key={label}
+                      errors={errors}
+                      control={control}
+                      name={name}
+                      label={label}
+                      type={type}
+                      placeholder={placeholder}
+                    />
+                  ))}
+                </Popup.Content>
+              </CardBody>
+            </Card>
           </Popup.Part>
 
-          <CardDivider />
           <Popup.Part>
-            <Button buttonType="submit" type="green" center>
-              <BedrockText color="white" type="p" text="Confirm" />
-            </Button>
+            <Card sub negativeMarginTop>
+              <CardBody>
+                <Popup.Content>
+                  <Button buttonType="submit" type="green" center>
+                    <BedrockText color="white" type="p" text="Confirm" />
+                  </Button>
+                </Popup.Content>
+              </CardBody>
+            </Card>
           </Popup.Part>
         </form>
       </Popup.Wrapper>
