@@ -2,13 +2,12 @@
 
 import { BedrockText } from "@/components/bedrock-text";
 import { Button } from "@/components/button";
-import { Card, CardBody, CardDivider } from "@/components/card";
+import { Card, CardBody } from "@/components/card";
 import { Input } from "@/components/input";
 import { Popup } from "@/components/popup/popup";
 import { reportProject } from "@/lib/report/report-project";
 import { reportUser } from "@/lib/report/report-user";
 import { useNotification } from "@/providers/notification";
-import { ReportProvider, useReport } from "@/providers/report";
 import { useRef } from "react";
 
 interface PopupReportComponentProps {
@@ -20,9 +19,7 @@ interface PopupReportComponentProps {
 }
 
 export const PopupReport = (props: PopupReportComponentProps) => (
-  <ReportProvider>
-    <PopupReportComponent {...props} />
-  </ReportProvider>
+  <PopupReportComponent {...props} />
 );
 
 const PopupReportComponent = ({
@@ -70,7 +67,11 @@ const PopupReportComponent = ({
                   textAlign="start"
                   color="white"
                 />
-                <Input ref={inputRef} placeholder="Message" value={defaultMessage} />
+                <Input
+                  ref={inputRef}
+                  placeholder="Message"
+                  value={defaultMessage}
+                />
               </Popup.Content>
             </CardBody>
           </Card>
