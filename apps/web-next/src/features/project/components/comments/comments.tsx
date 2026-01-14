@@ -1,7 +1,4 @@
-"use server";
-
 import { Card, CardDivider } from "@/components/card";
-import { ReportProvider } from "@/providers/report";
 import { DetailedProjectDto } from "@/lib/api";
 import { fetchComments } from "@/features/project/server/fetch-comments";
 import { fetchLoggedUser } from "@/lib/auth";
@@ -19,15 +16,13 @@ export const Comments = async ({ detailedProject }: CommentsProps) => {
   const comments = await fetchComments(detailedProject.id);
   const user = await fetchLoggedUser();
   return (
-    <ReportProvider>
-      <Card sub>
-        <div className={styles.editor}>
-          <HeaderTitle title="Comments" />
-        </div>
-        <CardDivider sub />
-        <CommentsPost user={user} detailedProject={detailedProject} />
-        <CommentsList comments={comments} user={user} />
-      </Card>
-    </ReportProvider>
+    <Card sub>
+      <div className={styles.editor}>
+        <HeaderTitle title="Comments" />
+      </div>
+      <CardDivider sub />
+      <CommentsPost user={user} detailedProject={detailedProject} />
+      <CommentsList comments={comments} user={user} />
+    </Card>
   );
 };
