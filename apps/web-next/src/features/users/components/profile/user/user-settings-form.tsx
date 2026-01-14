@@ -127,20 +127,12 @@ export const UserSettingsForm = ({
             </div>
 
             <div>
-              <BedrockText
-                textAlign="start"
-                text="Custom Linkvertise (allows you to receive 100% of ad money to your account)"
-                type="p"
-                color="white"
-              />
-              <Link link={Routes.LINKVERTISE}>
-                <BedrockText
-                  textAlign="start"
-                  text="Learn how to make money with your projects"
-                  type="p2"
-                  extraClassName={styles.link}
-                />
+                    <p className={styles.linkvertiseInfo}>
+                      Monetization System - receive 100% revenue from ADs.{" "}
+                      <Link link={Routes.LINKVERTISE} className={styles.link}>
+                        Check this tutorial for more information!
               </Link>
+                    </p>
               <Controller
                 name="customLinkvertise"
                 control={control}
