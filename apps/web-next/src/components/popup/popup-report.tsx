@@ -2,7 +2,7 @@
 
 import { BedrockText } from "@/components/bedrock-text";
 import { Button } from "@/components/button";
-import { CardDivider } from "@/components/card";
+import { Card, CardBody, CardDivider } from "@/components/card";
 import { Input } from "@/components/input";
 import { Popup } from "@/components/popup/popup";
 import { reportProject } from "@/lib/report/report-project";
@@ -61,19 +61,30 @@ const PopupReportComponent = ({
     <Popup title="Report" onClose={onClose}>
       <Popup.Wrapper>
         <Popup.Part>
-          <BedrockText
-            type="p"
-            text={`You are about to report ${name}, what is your reasoning behind this report?`}
-            textAlign="start"
-            color="white"
-          />
-          <Input ref={inputRef} placeholder="Message" value={defaultMessage} />
+          <Card>
+            <CardBody>
+              <Popup.Content>
+                <BedrockText
+                  type="p"
+                  text={`You are about to report ${name}, what is your reasoning behind this report?`}
+                  textAlign="start"
+                  color="white"
+                />
+                <Input ref={inputRef} placeholder="Message" value={defaultMessage} />
+              </Popup.Content>
+            </CardBody>
+          </Card>
         </Popup.Part>
-        <CardDivider />
         <Popup.Part>
-          <Button onClick={handleReport} type="green" center width="100%">
-            <BedrockText type="p" text="Report" color="white" />
-          </Button>
+          <Card sub negativeMarginTop>
+            <CardBody>
+              <Popup.Content>
+                <Button onClick={handleReport} type="green" center width="100%">
+                  <BedrockText type="p" text="Report" color="white" />
+                </Button>
+              </Popup.Content>
+            </CardBody>
+          </Card>
         </Popup.Part>
       </Popup.Wrapper>
     </Popup>
