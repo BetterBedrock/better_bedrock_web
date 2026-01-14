@@ -12,7 +12,7 @@ export default async function Stats({ params }: StatsProps) {
   const simplified = await loadProfileStatsPageData(params);
 
   if (Object.keys(simplified ?? []).length < 1) {
-    return <Banner type="info" message="No statistics available." />;
+    return <Banner type="neutral" message="No statistics available." />;
   }
 
   return <StatisticsList data={simplified} />;
