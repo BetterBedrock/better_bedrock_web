@@ -11,7 +11,7 @@ import z from "zod";
 const schema = z.object({
   id: z.string().optional(),
   checkoutId: z.string().nullable().optional(),
-  email: z.string().email(),
+  email: z.email(),
   code: z.string(),
   expiresAt: z.string(),
   createdAt: z.string().optional(),
