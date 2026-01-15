@@ -1,5 +1,5 @@
-import { fetchUserRatingRequest } from "@/services/user-service";
-import { Routes } from "@/utils/routes";
+import { fetchUserRatingRequest } from "@/entities/user/api/user-service";
+import { Routes } from "@/shared/model/routes";
 import { notFound, redirect } from "next/navigation";
 
 export const loadUserRating = async (id?: string) => {
@@ -13,4 +13,4 @@ export const loadUserRating = async (id?: string) => {
     } catch (_) {
         notFound();
     }
-}
+};
