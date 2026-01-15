@@ -33,7 +33,7 @@ export default async function BetterBedrock({
   return (
     <>
       {simpleCategories.map((category) => (
-        <Card fullWidth>
+        <Card key={category.title} fullWidth>
           <CardBody>
             <Heading title={category.title} description={category.description} />
           </CardBody>
