@@ -10,7 +10,7 @@ export default async function Main({ params }: MainProps) {
   return (
     <>
       <FeaturedCard />
-      <ContentCard />
+      {/* <ContentCard /> */}
       <ProjectsCard params={params} />
     </>
   );
