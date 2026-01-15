@@ -1,0 +1,22 @@
+@use "@/shared/ui" as g;
+
+.outer {
+  width: 100%;
+  height: 1.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: calc(g.$minecraftdepth * 2) g.$minecraftdepth;
+  position: relative;
+  border: g.$minecraftdepth solid white;
+  padding: g.$minecraftdepth;
+  box-sizing: border-box;
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: white;
+}

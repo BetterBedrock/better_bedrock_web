@@ -1,0 +1,92 @@
+@use "@/shared/ui" as g;
+
+.action {
+  width: 100%;
+}
+
+.main {
+  width: 100%;
+}
+
+.types {
+  z-index: 1;
+  display: none !important;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    display: flex !important;
+  }
+}
+
+.group {
+  display: flex;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    display: none !important;
+  }
+}
+
+.loader {
+  width: 100%;
+  gap: g.$padding-xsm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: calc(g.$padding-xsm * 2.5);
+
+  @media (max-width: g.$breakpoint-tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: (g.$padding-xsm * 1.25);
+}
+
+.searchbarContainer {
+  display: flex;
+  align-items: center;
+}
+
+.searchbar {
+  width: 100%;
+
+  @media (min-width: g.$breakpoint-tablet) {
+    margin-right: calc(g.$minecraftdepth * -1);
+  }
+}
+
+.collapsible {
+  min-width: 250px;
+
+  @media (max-width: g.$breakpoint-laptopL) {
+    min-width: 200px;
+  }
+
+  > * {
+    max-lines: 1;
+  }
+}
+
+.orderHalf {
+  display: flex !important;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    display: none !important;
+  }
+}
+
+.orderFull {
+  display: none !important;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    display: flex !important;
+  }
+}
