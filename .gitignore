@@ -34,7 +34,6 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-yarn.lock
 
 # Generated files
 apps/api/src/assets/downloads/*
