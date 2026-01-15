@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import { styles } from ".";
 import clsx from "clsx";
 import { useMediaQuery } from "react-responsive";
-import { StaticImageData } from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 interface SectionDividerProps {
   image: StaticImageData;
@@ -54,10 +54,24 @@ export const SectionDivider = ({
   overlap,
   seed,
 }: SectionDividerProps) => {
-  const isLaptop = useMediaQuery({ query: "(max-width: 1440px)" }); // Add query for laptop screens
-  const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
-  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
-  const isMobileSmall = useMediaQuery({ query: "(max-width: 480px)" }); // Adjust query for small mobile screens
+  const useSafeMediaQuery = (query: string) => {
+    const [matches, setMatches] = useState(false);
+
+    useEffect(() => {
+      const media = window.matchMedia(query);
+      setMatches(media.matches);
+      const listener = () => setMatches(media.matches);
+      media.addEventListener("change", listener);
+      return () => media.removeEventListener("change", listener);
+    }, [query]);
+
+    return matches;
+  };
+
+  const isLaptop = useSafeMediaQuery("(max-width: 1440px)");
+  const isTablet = useSafeMediaQuery("(max-width: 1024px)");
+  const isMobile = useSafeMediaQuery("(max-width: 768px)");
+  const isMobileSmall = useSafeMediaQuery("(max-width: 480px)");
 
   const finalBlockSize = Math.round(
     isMobileSmall
@@ -72,6 +86,7 @@ export const SectionDivider = ({
   );
 
   const totalHeight = rows * finalBlockSize;
+
   const overlapOffset = overlap ?? totalHeight / 3;
   const containerRef = useRef<HTMLDivElement>(null);
   const [grid, setGrid] = useState<Cell[][]>([]);
@@ -92,7 +107,10 @@ export const SectionDivider = ({
 
     // initialize grid
     const newGrid: Cell[][] = Array.from({ length: rows }, () =>
-      Array.from({ length: cols }, (_, c) => ({ x: c * finalBlockSize, render: false })),
+      Array.from({ length: cols }, (_, c) => ({
+        x: c * finalBlockSize,
+        render: false,
+      })),
     );
 
     // fill full center rows
@@ -128,7 +146,10 @@ export const SectionDivider = ({
     for (let r = 0; r < rows - 1; r++) {
       for (let c = 0; c < cols - 1; c++) {
         // skip sanitize if any involved row is fully filled
-        if ((r >= startFull && r <= endFull) || (r + 1 >= startFull && r + 1 <= endFull)) {
+        if (
+          (r >= startFull && r <= endFull) ||
+          (r + 1 >= startFull && r + 1 <= endFull)
+        ) {
           continue;
         }
         if (
@@ -180,13 +201,15 @@ export const SectionDivider = ({
         >
           {row.map((cell, c) =>
             cell.render ? (
-              <img
+              <Image
                 key={c}
                 src={image.src}
+                alt="Section Divider Block"
+                width={finalBlockSize}
+                height={finalBlockSize}
+                unoptimized
                 style={{
                   left: cell.x,
-                  width: finalBlockSize,
-                  height: finalBlockSize,
                 }}
                 className={clsx(styles.block)}
               />
