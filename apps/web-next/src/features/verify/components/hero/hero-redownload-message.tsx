@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useDownload } from "@/providers/download";
+import { useDownload } from "@/features/verify/providers/download";
 import { BedrockText } from "@/components/bedrock-text";
 import clsx from "clsx";
 
@@ -48,9 +48,5 @@ export const HeroRedownloadMessage = ({
     />
   );
 
-  return (
-    <>
-      {(visible || delayed) && htmlElement}
-    </>
-  );
+  return <>{(visible || delayed) && htmlElement}</>;
 };
