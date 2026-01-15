@@ -1,0 +1,65 @@
+@use "@/shared/ui" as g;
+
+.collapsible {
+  display: flex;
+  flex-direction: column;
+
+  &.floating {
+    position: relative;
+    display: inline-block;
+  }
+}
+
+.frame {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  background-color: rgb(58, 59, 60);
+  border: g.$minecraftdepth solid rgb(30, 30, 31);
+  border-top: none;
+  width: 100%;
+
+  &.floating {
+    z-index: 5;
+    position: absolute;
+    display: block;
+  }
+
+  &.limit {
+    max-height: 200px !important;
+    overflow: auto;
+  }
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  font-size: 0px;
+  text-align: left;
+  color: white;
+  border-top: 0;
+  padding: g.$padding-sm;
+}
+
+.button {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.contentText {
+  word-break: break-word; /* Does this even exist? */
+}
+
+.buttonText {
+  width: 100%;
+}
+
+.details {
+  height: 100%;
+}

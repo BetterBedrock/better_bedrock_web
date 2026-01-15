@@ -1,0 +1,24 @@
+@use "@/shared/ui" as g;
+
+.tooltip {
+  position: relative;
+  // display: inline-block;
+}
+
+.box {
+  max-width: g.$breakpoint-mobileS;
+  min-width: 50px;
+  padding: calc((g.$minecraftdepth * 2) + g.$padding-xxsm + 1px);
+  image-rendering: pixelated;
+  border-image-slice: 4 4 4 4 fill;
+  border-image-width: 10px 10px 10px 10px;
+  border-image-source: url("../../../../public/ui/tooltip/purple_border.png");
+}
+
+.unlimited {
+  max-width: none;
+}
+
+.text {
+  white-space: pre-wrap;
+}

@@ -1,0 +1,69 @@
+@use "@/shared/ui" as g;
+
+.container {
+  background-color: #323232;
+  border: g.$minecraftdepth solid rgb(30, 30, 31);
+}
+
+.sub {
+  background-color: #494949 !important;
+  padding-block: g.$minecraftdepth;
+  box-shadow:
+    0px g.$minecraftdepth 0px 0px inset #5a5a5a,
+    0px calc(g.$minecraftdepth * -1) 0px 0px inset #323232;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.top {
+  background-color: rgb(31, 31, 32);
+  width: 100%;
+  height: g.$minecraftdepth;
+
+  &.light {
+    background-color: rgb(50, 50, 50);
+  }
+}
+
+.bottom {
+  background-color: rgb(60, 61, 62);
+  width: 100%;
+  height: g.$minecraftdepth;
+
+  &.light {
+    background-color: rgb(90, 90, 90);
+  }
+}
+
+.body {
+  @include g.card-padding();
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.gap {
+  gap: calc(g.$padding-xsm * 2.5);
+}
+
+.smallerGap {
+  gap: calc(g.$padding-xsm * 1.25);
+}
+
+.smallerPadding {
+  padding-block: calc(g.$padding-xsm * 1.25) !important;
+}
+
+.noPaddingBottom {
+  padding-bottom: 0 !important;
+}
+
+.negativeMarginTop {
+  margin-top: calc(g.$minecraftdepth * -1) !important;
+}
+
+.negativeMarginBottom {
+  margin-bottom: calc(g.$minecraftdepth * -1) !important;
+}

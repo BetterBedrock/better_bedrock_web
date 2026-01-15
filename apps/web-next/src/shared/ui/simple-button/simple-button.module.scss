@@ -1,0 +1,71 @@
+@use "@/shared/ui" as g;
+
+.wrapper {
+  @include g.no-drag();
+  background-color: g.$color-sbtn-background;
+  box-sizing: border-box;
+  font-family: "Mojangles";
+
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min-content;
+  cursor: pointer;
+  transition: background-color 0.125s ease;
+
+  &:focus-visible {
+    outline: none;
+    background-color: g.$color-sbtn-click-on-focus-visible;
+  }
+
+  &:active {
+    background-color: g.$color-sbtn-click;
+  }
+
+  * {
+    @include g.no-drag();
+  }
+}
+
+.child {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: calc(g.$padding-xsm * 1.25);
+}
+
+.childNav {
+  padding-inline: calc(g.$padding-xsm * 2.5);
+  padding-block: 0;
+  @media (max-width: g.$breakpoint-tablet) {
+    padding-inline: calc(g.$padding-xsm * 1.25);
+  }
+}
+
+.active {
+  background-color: g.$color-sbtn-click;
+
+  &.transparent {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.transparent {
+  background-color: transparent;
+
+  &:focus-visible {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  &:active {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
