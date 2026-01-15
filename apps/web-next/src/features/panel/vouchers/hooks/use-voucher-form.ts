@@ -15,8 +15,8 @@ const schema = z.object({
   code: z.string(),
   expiresAt: z.string(),
   createdAt: z.string().optional(),
-  maxDownloads: z.coerce.number().min(0),
-  downloadCount: z.coerce.number().min(0),
+  maxDownloads: z.coerce.number().min(0) as z.ZodNumber,
+  downloadCount: z.coerce.number().min(0) as z.ZodNumber,
   betterBedrockContentOnly: z.boolean().default(false),
   blocked: z.boolean().default(false),
 });
