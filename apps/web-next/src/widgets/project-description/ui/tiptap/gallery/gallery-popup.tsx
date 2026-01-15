@@ -1,0 +1,108 @@
+"use client";
+
+import { BedrockText } from "@/shared/ui/bedrock-text";
+import { Button } from "@/shared/ui/button";
+import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Popup } from "@/shared/ui/popup";
+import { BasePopupWrapperProps } from "@/shared/ui/popup/popup-wrapper";
+import { SimpleButton } from "@/shared/ui/simple-button";
+import { baseUrl } from "@/shared/lib/url";
+import { styles } from ".";
+import { ChangeEvent, useRef } from "react";
+import Exit from "@/public/images/exit.png";
+
+interface GalleryPopupProps extends BasePopupWrapperProps {
+  images: string[];
+  onDeleteImage?: (index: number) => void;
+  onAddImages?: (files: FileList) => void;
+  maxImages?: number;
+}
+
+export const GalleryPopup = ({
+  close,
+  images,
+  onAddImages,
+  onDeleteImage,
+  maxImages = 10,
+}: GalleryPopupProps) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const handleAddClick = () => {
+    if (fileInputRef.current) fileInputRef.current.click();
+  };
+  const handleFilesSelected = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
+    onAddImages?.(e.target.files);
+    e.target.value = "";
+  };
+
+  return (
+    <Popup title="Edit Gallery" onClose={close}>
+      <Popup.Wrapper>
+        {images.length > 0 && (
+          <>
+            <Popup.Part>
+              <Card>
+                <CardBody>
+                  <Popup.Content>
+                    <div className={styles.list}>
+                      {images.map((src, idx) => (
+                        <div key={src} className={styles.wrapper}>
+                          <img
+                            src={baseUrl + "/" + src}
+                            alt={`Edit ${idx + 1}`}
+                            className={styles.image}
+                          />
+                          <SimpleButton
+                            onClick={() => onDeleteImage?.(idx)}
+                            transparent
+                            className={styles.delete}
+                            width="100%"
+                            height="100%"
+                          >
+                            <img
+                              alt="Close"
+                              src={Exit.src}
+                              className={styles.icon}
+                            />
+                          </SimpleButton>
+                        </div>
+                      ))}
+                    </div>
+                  </Popup.Content>
+                </CardBody>
+              </Card>
+            </Popup.Part>
+            <CardDivider />
+          </>
+        )}
+        <Popup.Part>
+          <Card sub negativeMarginTop>
+            <CardBody>
+              <Popup.Content>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  className={styles.input}
+                  onChange={handleFilesSelected}
+                />
+                <Button
+                  type={images.length >= maxImages ? "dark" : "green"}
+                  center
+                  onClick={handleAddClick}
+                >
+                  <BedrockText
+                    text={`Add Images (${images.length} / ${maxImages})`}
+                    type="p"
+                    color="white"
+                  />
+                </Button>
+              </Popup.Content>
+            </CardBody>
+          </Card>
+        </Popup.Part>
+      </Popup.Wrapper>
+    </Popup>
+  );
+};

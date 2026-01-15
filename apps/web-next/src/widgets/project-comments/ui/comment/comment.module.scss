@@ -1,0 +1,78 @@
+@use "@/shared/ui" as g;
+
+.card {
+  @include g.card-padding();
+}
+
+.header {
+  align-items: start;
+  justify-content: start;
+  padding-block: g.$padding-xsm;
+
+  &:not(:first-child) {
+    padding-left: g.$padding-lg;
+    @media (max-width: g.$breakpoint-tablet) {
+      padding-left: g.$padding-md;
+    }
+
+    @media (max-width: g.$breakpoint-mobileL) {
+      padding-left: g.$padding-sm;
+    }
+
+    @media (max-width: g.$breakpoint-mobileM) {
+      padding-left: g.$padding-xsm;
+    }
+  }
+}
+
+.wrap {
+  overflow-wrap: anywhere;
+}
+
+.avatar {
+  width: g.$icon-md;
+  height: g.$icon-md;
+  image-rendering: pixelated;
+}
+
+.comment {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-xxsm;
+}
+
+.reply {
+  color: g.$color-light-grey !important;
+}
+
+.icon {
+  position: relative;
+  height: g.$exit-button-size;
+  width: g.$exit-button-size;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.details {
+  width: 100%;
+}
+
+.name {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.more {
+  position: relative;
+  height: g.$icon-sm;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  cursor: pointer;
+}

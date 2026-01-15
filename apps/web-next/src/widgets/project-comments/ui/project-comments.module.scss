@@ -1,0 +1,21 @@
+@use "@/shared/ui" as g;
+
+.editor {
+  @include g.card-margin();
+
+  &.size {
+    display: flex;
+    flex-direction: column;
+    gap: g.$padding-xxsm;
+  }
+}
+
+.input {
+  width: 100%;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-xsm;
+}

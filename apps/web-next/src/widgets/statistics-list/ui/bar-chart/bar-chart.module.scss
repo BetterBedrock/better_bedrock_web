@@ -1,0 +1,68 @@
+@use "@/shared/ui" as g;
+
+.chart {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  border: g.$minecraftdepth solid rgb(30, 30, 31);
+  background-color: #2f2f30;
+
+  gap: g.$padding-sm;
+}
+
+.data {
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+  gap: g.$padding-xsm;
+  margin: calc(g.$padding-xsm * 1.25);
+
+  background: repeating-linear-gradient(
+    to bottom,
+    #48494a75,
+    #48494a75 g.$minecraftdepth,
+    transparent g.$minecraftdepth,
+    transparent calc(25% - 0.5px)
+  );
+
+  @media (max-width: g.$breakpoint-tablet) {
+    gap: g.$padding-xxsm;
+  }
+}
+
+.label {
+  display: flex;
+  flex-direction: row;
+}
+
+.text {
+  display: block;
+  @media (max-width: g.$breakpoint-tablet) {
+    font-size: 0;
+    display: block;
+    &::first-letter {
+      font-size: large;
+    }
+  }
+}
+
+.piece {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  flex: 1;
+  justify-content: center;
+}
+
+.tooltip {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+}
