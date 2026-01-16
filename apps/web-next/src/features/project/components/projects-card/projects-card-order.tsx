@@ -6,8 +6,9 @@ import { SearchOrder } from "@/lib/api";
 import { ProjectsCardOrderButton } from "./projects-card-order-button";
 import { useProjectsCardSearch } from "../../providers/projects-card-search";
 import styles from "./projects-card.module.scss";
+import { clsx } from "clsx";
 
-export const ProjectsCardOrder = () => {
+export const ProjectsCardOrder = ({ className }: { className?: string }) => {
   const { selectedOrder } = useProjectsCardSearch();
 
   return (
@@ -15,7 +16,7 @@ export const ProjectsCardOrder = () => {
       headerText={selectedOrder}
       contentText=""
       floating
-      className={styles.collapsible}
+      className={clsx(styles.collapsible, className)}
       limit={true}
     >
       <ButtonGroup direction="vertical">

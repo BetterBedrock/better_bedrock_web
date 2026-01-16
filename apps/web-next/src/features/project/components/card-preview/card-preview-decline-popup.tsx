@@ -8,6 +8,7 @@ import { Input } from "@/components/input";
 import { Popup } from "@/components/popup";
 
 import styles from "./card-preview.module.scss";
+import { Card, CardBody } from "@/components/card/card";
 
 interface CardPreviewDeclinePopupProps {
   onCancel: () => void;
@@ -24,26 +25,41 @@ export const CardPreviewDeclinePopup = ({
     <Popup title="Decline Project" onClose={onCancel}>
       <Popup.Wrapper>
         <Popup.Part>
-          <BedrockText
-            type="p"
-            text="You are about to decline this project, what is your reasoning?"
-            textAlign="start"
-            color="white"
-          />
-          <Input ref={inputRef} placeholder="Reason" />
-          <ButtonGroup className={styles.group}>
-            <Button onClick={onCancel} type="white" center width="100%">
-              <BedrockText type="p" text="Cancel" color="black" />
-            </Button>
-            <Button
-              onClick={() => onSubmit(inputRef.current?.value ?? "")}
-              type="red"
-              center
-              width="100%"
-            >
-              <BedrockText type="p" text="Decline" color="white" />
-            </Button>
-          </ButtonGroup>
+          <Card>
+            <CardBody>
+              <Popup.Content>
+                <BedrockText
+                  type="p"
+                  text="You are about to decline this project, what is your reasoning?"
+                  textAlign="start"
+                  color="white"
+                />
+                <Input ref={inputRef} placeholder="Reason" />
+              </Popup.Content>
+            </CardBody>
+          </Card>
+        </Popup.Part>
+
+        <Popup.Part>
+          <Card sub negativeMarginTop>
+            <CardBody>
+              <Popup.Content>
+                <ButtonGroup className={styles.group}>
+                  <Button onClick={onCancel} type="white" center width="100%">
+                    <BedrockText type="p" text="Cancel" color="black" />
+                  </Button>
+                  <Button
+                    onClick={() => onSubmit(inputRef.current?.value ?? "")}
+                    type="red"
+                    center
+                    width="100%"
+                  >
+                    <BedrockText type="p" text="Decline" color="white" />
+                  </Button>
+                </ButtonGroup>
+              </Popup.Content>
+            </CardBody>
+          </Card>
         </Popup.Part>
       </Popup.Wrapper>
     </Popup>

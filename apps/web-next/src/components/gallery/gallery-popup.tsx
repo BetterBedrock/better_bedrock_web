@@ -2,7 +2,7 @@
 
 import { BedrockText } from "@/components/bedrock-text";
 import { Button } from "@/components/button";
-import { CardDivider } from "@/components/card";
+import { Card, CardBody, CardDivider } from "@/components/card";
 import { Popup } from "@/components/popup";
 import { BasePopupWrapperProps } from "@/components/popup/popup-wrapper";
 import { SimpleButton } from "@/components/simple-button";
@@ -41,50 +41,62 @@ export const GalleryPopup = ({
         {images.length > 0 && (
           <>
             <Popup.Part>
-              <div className={styles.list}>
-                {images.map((src, idx) => (
-                  <div key={src} className={styles.wrapper}>
-                    <img
-                      src={baseUrl + "/" + src}
-                      alt={`Edit ${idx + 1}`}
-                      className={styles.image}
-                    />
-                    <SimpleButton
-                      onClick={() => onDeleteImage?.(idx)}
-                      transparent
-                      className={styles.delete}
-                      width="100%"
-                      height="100%"
-                    >
-                      <img alt="Close" src={Exit.src} className={styles.icon} />
-                    </SimpleButton>
-                  </div>
-                ))}
-              </div>
+              <Card>
+                <CardBody>
+                  <Popup.Content>
+                    <div className={styles.list}>
+                      {images.map((src, idx) => (
+                        <div key={src} className={styles.wrapper}>
+                          <img
+                            src={baseUrl + "/" + src}
+                            alt={`Edit ${idx + 1}`}
+                            className={styles.image}
+                          />
+                          <SimpleButton
+                            onClick={() => onDeleteImage?.(idx)}
+                            transparent
+                            className={styles.delete}
+                            width="100%"
+                            height="100%"
+                          >
+                            <img alt="Close" src={Exit.src} className={styles.icon} />
+                          </SimpleButton>
+                        </div>
+                      ))}
+                    </div>
+                  </Popup.Content>
+                </CardBody>
+              </Card>
             </Popup.Part>
             <CardDivider />
           </>
         )}
         <Popup.Part>
-          <input
-            ref={fileInputRef}
-            type="file"
-            multiple
-            accept="image/*"
-            className={styles.input}
-            onChange={handleFilesSelected}
-          />
-          <Button
-            type={images.length >= maxImages ? "dark" : "green"}
-            center
-            onClick={handleAddClick}
-          >
-            <BedrockText
-              text={`Add Images (${images.length} / ${maxImages})`}
-              type="p"
-              color="white"
-            />
-          </Button>
+          <Card sub negativeMarginTop>
+            <CardBody>
+              <Popup.Content>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  className={styles.input}
+                  onChange={handleFilesSelected}
+                />
+                <Button
+                  type={images.length >= maxImages ? "dark" : "green"}
+                  center
+                  onClick={handleAddClick}
+                >
+                  <BedrockText
+                    text={`Add Images (${images.length} / ${maxImages})`}
+                    type="p"
+                    color="white"
+                  />
+                </Button>
+              </Popup.Content>
+            </CardBody>
+          </Card>
         </Popup.Part>
       </Popup.Wrapper>
     </Popup>

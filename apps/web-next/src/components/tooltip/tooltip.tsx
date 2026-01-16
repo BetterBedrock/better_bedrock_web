@@ -32,7 +32,7 @@ export const Tooltip = ({
     pointerEvents: "none",
     opacity: visible ? 1 : 0,
     transform: visible ? "translate(0, 0)" : "translate(-50%, -10px)",
-    transition: "opacity 0.25s ease, transform 0.25s ease",
+    transition: "opacity 0.15s ease, transform 0.15s ease",
     zIndex: 1000,
   };
 

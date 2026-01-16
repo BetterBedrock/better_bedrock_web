@@ -1,11 +1,12 @@
 @use "@/utils" as g;
 
 .chart {
-  padding-top: 1rem;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: auto;
+  border: g.$minecraftdepth solid rgb(30, 30, 31);
+  background-color: #2F2F30;
 
   gap: g.$padding-sm;
 }
@@ -15,13 +16,12 @@
   flex-direction: row;
   height: 200px;
   gap: g.$padding-xsm;
-  padding-inline: g.$padding-sm;
+  margin: calc(g.$padding-xsm * 1.25);
 
   background: repeating-linear-gradient(
     to bottom,
-    rgba(g.$color-grey, 0.25),
-    // 50% opacity
-    rgba(g.$color-grey, 0.25) g.$minecraftdepth,
+    #48494a75,
+    #48494a75 g.$minecraftdepth,
     transparent g.$minecraftdepth,
     transparent calc(25% - 0.5px)
   );

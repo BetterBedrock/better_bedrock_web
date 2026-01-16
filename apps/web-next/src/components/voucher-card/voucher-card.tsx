@@ -17,33 +17,38 @@ export const VoucherCard = ({
   lockClicking,
   height = "auto",
   onClick,
-}: VoucherCardProps) => (
-  <Button
-    width="100%"
-    height={height}
-    type="white"
-    lockClicking={lockClicking}
-    playSound={playSound}
-    onClick={onClick}
-  >
-    <div className={styles.content}>
-      <BedrockText
-        text={voucher.code}
-        type="h1"
-        font="Minecraft"
-        textAlign="left"
-        extraClassName={styles.price}
-      />
-      <div className={styles.description}>
-        <strong>
-          <BedrockText text={voucher.email} type="p" textAlign="left" />
-        </strong>
+}: VoucherCardProps) => {
+  const isExpired = voucher.expiresAt && new Date(voucher.expiresAt) < new Date();
+  return (
+    <Button
+      width="100%"
+      height={height}
+      type={isExpired ? "red" : "white"}
+      lockClicking={lockClicking}
+      playSound={playSound}
+      onClick={onClick}
+    >
+      <div className={styles.content}>
         <BedrockText
-          text={`Usage - ${voucher.downloadCount} / ${voucher.maxDownloads}`}
-          type="p2"
+          text={voucher.code}
+          type="h1"
+          font="Minecraft"
           textAlign="left"
+          extraClassName={styles.price}
+          color={isExpired ? "white" : undefined}
         />
+        <div className={styles.description}>
+          <strong>
+            <BedrockText text={voucher.email} type="p" textAlign="left" color={isExpired ? "white" : undefined} />
+          </strong>
+          <BedrockText
+            text={`Usage - ${voucher.downloadCount} / ${voucher.maxDownloads}`}
+            type="p2"
+            textAlign="left"
+            color={isExpired ? "white" : undefined}
+          />
+        </div>
       </div>
-    </div>
-  </Button>
-);
+    </Button>
+  );
+};

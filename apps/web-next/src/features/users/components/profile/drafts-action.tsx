@@ -6,7 +6,7 @@ import { Routes } from "@/utils/routes";
 export const DraftsAction = () => (
   <Link link={Routes.CREATE} hideStyles>
     <Button width="100%" type="green" center>
-      <BedrockText text="Create A Project" type="p" color="white" />
+      <BedrockText text="Create a project" type="p" color="white" />
     </Button>
   </Link>
 );

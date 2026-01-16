@@ -1,8 +1,17 @@
+import Link from "next/link";
 import { Banner } from "@/components/banner";
 
 export const ProjectsCardBanner = () => (
   <Banner
     type="info"
-    message="Our creators get anti-bypass for ads & 100% of the ad revenue!"
+    message={
+      <p style={{ textAlign: "center" }}>
+        Creators keep 100% of ad revenue and benefit from our anti-bypass system
+        to maximize earnings.{" "}
+        <Link href="/linkvertise" style={{ color: "inherit", textDecoration: "underline" }}>
+          Check this tutorial to learn how!
+        </Link>
+      </p>
+    }
   />
 );

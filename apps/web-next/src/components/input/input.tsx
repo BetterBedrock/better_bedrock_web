@@ -7,18 +7,19 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value?: string | number;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   className?: string;
+  sub?: boolean;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
-    { placeholder = "Enter text", value, onChange, className, ...props },
+    { placeholder = "Enter text", value, onChange, className, sub, ...props },
     ref
   ) => (
     <input
       ref={ref}
       value={value}
       onChange={onChange}
-      className={clsx(styles.input, className)}
+      className={clsx(styles.input, sub && styles.sub, className)}
       placeholder={placeholder}
       {...props}
     />

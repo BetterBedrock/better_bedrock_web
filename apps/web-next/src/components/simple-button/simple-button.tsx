@@ -26,6 +26,7 @@ type CommonProps = {
   className?: string;
   extraClassName?: string;
   transparent?: boolean;
+  navPaddings?: boolean;
 };
 
 type ButtonOnlyProps = ButtonHTMLAttributes<HTMLButtonElement> & CommonProps;
@@ -48,6 +49,7 @@ export const SimpleButton = forwardRef<
       style,
       className,
       extraClassName,
+      navPaddings,
       ...props
     },
     ref
@@ -81,7 +83,7 @@ export const SimpleButton = forwardRef<
     );
 
     const child = (
-      <div className={clsx(styles.child, extraClassName && extraClassName)}>
+      <div className={clsx(navPaddings && styles.childNav, styles.child, extraClassName && extraClassName)}>
         {children}
       </div>
     );

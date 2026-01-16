@@ -130,7 +130,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
       default:
         unchecked = "/ui/buttons/white/unchecked.png";
         uncheckedHover = "/ui/buttons/white/unchecked_hover.png";
-        checked = "/ui/buttons/white/checked.";
+        checked = "/ui/buttons/white/checked.png";
         checkedHover = "/ui/buttons/white/checked_hover.png";
         toggled = "/ui/buttons/white/default.png";
         break;

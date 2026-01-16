@@ -26,6 +26,7 @@ export const UserProfileActions = async ({
         <UserActionReport id={selectedUser.id} name={selectedUser.name} />
       )}
       {detailedSelectedUser && (
+        // TODO: doesnt show when normal user is logged in??? it should display settings
         <UserActionSettings
           detailedSelectedUser={detailedSelectedUser}
           admin={user?.admin ?? false}

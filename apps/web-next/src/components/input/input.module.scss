@@ -18,6 +18,17 @@
   color: #b1b2b5;
 }
 
+.sub {
+  background-color: #3D3E3F;
+  box-shadow: 
+    0 g.$minecraftdepth 0 0 #313233 inset,
+    0 calc(g.$minecraftdepth * -1) 0 0 #565759 inset;
+
+  &::placeholder {
+    color: #c5c5c5;
+  }
+}
+
 .switch {
   cursor: pointer;
   position: relative;

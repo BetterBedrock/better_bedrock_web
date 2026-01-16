@@ -4,7 +4,6 @@ export const TutorialDescription = () => (
   <BedrockText
     type="p"
     color="white"
-    textAlign="left"
-    text="We recommend to check tutorial video above, however below are text instructions for configuring ADs revenue."
+    text="Watch the video tutorial above or follow the step-by-step guide below to configure your Linkvertise revenue."
   />
 );

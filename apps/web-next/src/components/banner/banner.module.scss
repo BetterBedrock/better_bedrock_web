@@ -2,7 +2,7 @@
 
 .banner {
   width: 100%;
-  @include g.card-padding();
+  padding: g.$padding-xsm;
 }
 
 .info {

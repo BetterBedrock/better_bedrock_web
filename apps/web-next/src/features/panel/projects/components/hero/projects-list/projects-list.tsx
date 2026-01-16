@@ -4,13 +4,16 @@ import { fetchSubmittedProjects } from "@/features/project/server/fetch-submitte
 import { ProjectsListEmpty } from "./projects-list-empty";
 
 import { GridDownloadCardList } from "@/components/grid-download-card-list/grid-download-card-list";
+import { Card, CardBody } from "@/components/card/card";
 
 export const ProjectsList = async () => {
   const projects = await fetchSubmittedProjects();
 
-  if (projects.length === 0) {
-    return <ProjectsListEmpty />;
-  }
-
-  return <GridDownloadCardList projects={projects} mode="review"/>;
+  return (
+    <Card fullWidth>
+      <CardBody>
+        {(projects.length === 0) ? <ProjectsListEmpty /> : <GridDownloadCardList projects={projects} mode="review" />}
+      </CardBody>
+    </Card>
+  );
 };

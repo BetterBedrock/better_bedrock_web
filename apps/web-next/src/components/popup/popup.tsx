@@ -10,6 +10,7 @@ import { styles } from ".";
 interface PopupComponent extends FC<PopupProps> {
   Part: FC<PopupWrapperProps>;
   Wrapper: FC<PopupWrapperProps>;
+  Content: FC<PopupWrapperProps>;
 }
 
 interface PopupProps extends HTMLAttributes<HTMLDivElement> {
@@ -21,26 +22,25 @@ interface PopupProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Popup = (({ children, onClose, className, title }: PopupProps) => (
   <div className={styles.popup} onClick={onClose}>
-    <Card
-      className={clsx(styles.body, className && className)}
-      onClick={(e) => e.stopPropagation()}
-    >
-      <div className={styles.header}>
-        <SimpleButton onClick={onClose} transparent className={styles.close}>
-          <img alt="Close" src={Exit.src} className={styles.icon} />
-        </SimpleButton>
-        {title && (
-          <BedrockText
-            text={title}
-            font="Minecraft"
-            type="h3"
-            color="white"
-            textAlign="center"
-          />
-        )}
+    <div className={styles.body} onClick={(e) => e.stopPropagation()}>
+      <div className={styles.headerContainer}>
+        <div className={styles.header}>
+          <SimpleButton onClick={onClose} transparent className={styles.close}>
+            <img alt="Close" src={Exit.src} className={styles.icon} />
+          </SimpleButton>
+          {title && (
+            <BedrockText
+              text={title}
+              font="Minecraft"
+              type="h3"
+              color="white"
+              textAlign="center"
+            />
+          )}
+        </div>
       </div>
       {children}
-    </Card>
+    </div>
   </div>
 )) as PopupComponent;
 
@@ -56,5 +56,10 @@ Popup.Part = ({ children }: PopupWrapperProps) => (
   <div className={styles.part}>{children}</div>
 );
 
+Popup.Content = ({ children }: PopupWrapperProps) => (
+  <div className={styles.content}>{children}</div>
+);
+
 Popup.Wrapper.displayName = "Popup.Wrapper";
 Popup.Part.displayName = "Popup.Part";
+Popup.Content.displayName = "Popup.Content";

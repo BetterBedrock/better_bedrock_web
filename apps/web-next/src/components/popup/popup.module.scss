@@ -7,11 +7,11 @@
   z-index: 100;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.65);
   display: flex;
   justify-content: center;
   padding: g.$padding-lg 0;
-  align-items: start;
+  align-items: center;
   max-height: 100%;
   overflow: auto;
 }
@@ -20,9 +20,8 @@
   z-index: 93;
   pointer-events: auto;
   height: auto;
-  // min-height: g.$breakpoint-mobileS;
 
-  width: 50%;
+  width: 40%;
   max-width: g.$breakpoint-laptopL;
 
   @media (max-width: g.$breakpoint-laptopL) {
@@ -30,11 +29,15 @@
   }
 
   @media (max-width: g.$breakpoint-laptop) {
-    width: 80%;
+    width: 65%;
   }
 
   @media (max-width: g.$breakpoint-tablet) {
-    width: 85%;
+    width: 75%;
+  }
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    width: 90%;
   }
 }
 
@@ -42,7 +45,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: g.$padding-xsm;
+  right: 0;
 
   .icon {
     position: relative;
@@ -58,7 +61,7 @@
 
 .header {
   position: relative;
-  padding: g.$padding-xsm;
+  padding-block: g.$padding-xsm;
   display: flex;
   width: 100%;
   border: g.$minecraftdepth solid rgb(86, 87, 89);
@@ -68,6 +71,11 @@
   justify-content: center;
 }
 
+.headerContainer {
+  border: g.$minecraftdepth solid rgb(30, 30, 31);
+  margin-bottom: calc(g.$minecraftdepth * -1);
+}
+
 .container {
   width: 100%;
 
@@ -75,8 +83,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: g.$padding-sm;
-    gap: g.$padding-xsm;
+    // padding: g.$padding-sm;
+    gap: calc(g.$padding-xsm * 1.25);
   }
 }
 
@@ -91,4 +99,10 @@
 
 .selectable {
   cursor: pointer;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: calc(g.$padding-xsm * 1.25);
 }

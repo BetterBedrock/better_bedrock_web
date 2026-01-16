@@ -1,239 +1,293 @@
 import { VideoTag, InformationTab } from "@/features/shared/types/information";
 
 export const tagData: VideoTag[] = [
-    {
-        id: "featured",
-        name: "Featured",
-        color: "rgb(255, 232, 102)",
-    },
-    {
-        id: "deprected",
-        name: "Deprected",
-        color: "rgb(255, 63, 63)",
-    },
-    {
-        id: "all-devices",
-        name: "All Devices",
-        color: "rgb(140, 179, 255)",
-    },
-    {
-        id: "mobile",
-        name: "Mobile",
-        color: "rgb(140, 179, 255)",
-    },
-    {
-        id: "pc",
-        name: "PC",
-        color: "rgb(140, 179, 255)",
-    },
-    {
-        id: "console",
-        name: "Console",
-        color: "rgb(140, 179, 255)",
-    },
-    {
-        id: "pc-console",
-        name: "PC/Console",
-        color: "rgb(140, 179, 255)",
-    },
+  {
+    id: "featured",
+    name: "Featured",
+    color: "rgb(255, 232, 102)",
+  },
+  {
+    id: "deprecated",
+    name: "Deprecated",
+    color: "rgb(255, 63, 63)",
+  },
+  {
+    id: "all-devices",
+    name: "All Devices",
+    color: "rgb(140, 179, 255)",
+  },
+  {
+    id: "mobile",
+    name: "Mobile",
+    color: "rgb(140, 179, 255)",
+  },
+  {
+    id: "pc",
+    name: "PC",
+    color: "rgb(140, 179, 255)",
+  },
+  {
+    id: "console",
+    name: "Console",
+    color: "rgb(140, 179, 255)",
+  },
+  {
+    id: "pc-console",
+    name: "PC/Console",
+    color: "rgb(140, 179, 255)",
+  },
 ];
 
 export const informationData: InformationTab[] = [
-    {
-        id: "general",
-        name: "General",
-        faq: {
-            description: "General topic FAQ. If you still have questions, please check out our Discord server!",
-            questions: [
-                {
-                    question: "Are all Better Bedrock content safe?",
-                    answer: "DEFINITELY YES! The Texture Pack doesn't contain any harmful files or executables. We also DO NOT collect any data from our users. This project exists since 3 years and we never put here any malicious files or anything. You can track whole history on our discord or on youtube @axmbro. Here you will find all previous versions, starting with version 1, as proof of security and reputation!",
-                },
-                {
-                    question: "Is it available on the Marketplace?",
-                    answer: "No, and probably it will never be. The Texture Pack is available only on our website and we do not plan to publish it here, because you wouldn't be able to adjust the config. And that's the main issue and reason.",
-                },
-                {
-                    question: "Why do my Mod Menu options reset?",
-                    answer: "To save these options and adjust extra ones use config. Scroll down to Tutorials section and follow steps from here.",
-                },
-                {
-                    question: "Why you cannot just save config in game?",
-                    answer: "Unfortunately game doesn't provide any functions to change files and actually save mods states through UI. We are forced to manage it through config file, and adjusting it manually. There is no way to change it right now...",
-                },
-                {
-                    question: "What devices are supported by Better Bedrock?",
-                    answer: "The Texture Pack is available for all devices that are able to import Texture Packs.",
-                },
-                {
-                    question: "How do I open the Mod Menu?",
-                    answer: `Simply open the pause menu and double click the "Mod Menu" button in bottom left corner.`,
-                },
-                {
-                    question: "How do I download Better Bedrock content?",
-                    answer: "Simply navigate to downloads page and click item you want to download!",
-                },
-                {
-                    question: "Why I cannot see Mod Menu button?",
-                    answer: "It's because you probably use 'UI Mode with Mods', and therefore button is hidden and it's intentional. If you use controller input, then mod menu is only available to click in the 'Controler Mode'. Generally make sure to read the description of subpack options to understand how each mdoe work and what they do.",
-                },
-                {
-                    question: "Where are the tutorial videos?",
-                    answer: "Just scroll down a bit! And make sure to select proper option at the top for your topic.",
-                },
-                {
-                    question: `Why did the free download process fail?`,
-                    answer: `It's due to several potential issues. Here are some possible reasons: 1. You used bypass services to skip the ads. 2. While downloading one file from our website, you clicked to begin another download - wait patiently. 3. You waited too long on the linkvertise page before clicking button "Get Better Bedrock" to redirect. 4. You changed your ip address (or used a VPN) while being on our site. 5. Your internet connection was too slow to send a request to our servers. Minimum download speed: ~0.33MB/s. 6. You have adblockers or any extensions blocking requests to our servers. (Browsers such as Brave, or Safari can also sometimes prevent requests) 7. You have blocked popups so the download page cannot open.`,
-                },
-                {
-                    question: `Why doesn't the free download open another window?`,
-                    answer: `You probably have blocked popups so the download page cannot open, we recommend to disable it or try using other download methods :3 Also if your page is loading too long, then make sure you have disabled adblockers.`,
-                },
-                {
-                    question: "What is a subpack?",
-                    answer: `A subpack is Minecraft name for texture pack options. To access it, open settings, go to "Global Resources", select "ACTIVE" tab, select Better Bedrock and then click gear icon in bottom right corner.`,
-                },
-                {
-                    question: "What Mods won't be added to Better Bedrock Texture Pack?",
-                    answer: "This is list of features that are impossible to add, or may be a bit useless, or simply may cause performance issues: 1. Autosprint 2. Zoom 3. Motion blur 4. Freelook 6. Pocket UI support 7. Small gui scale support (0) 8. Item physics 9. Injector/launcher 10. Very accurate fps/cps/combo counters 11. Small chunk render (1/2) 12. Chunk border 13. Player hitbox 14. Health indicator 15. Actually working Minimap 16. 3D player models 17. 'Free' Hacks (fake texts etc.) 18. Clickable links on HUD chat 19. Dynamic lighting and things related to shaders 20. Nametags in 3rd person 21. Dynamic lighting and things related to shaders 22. Armor Hud durability in HUD 23. Friend List 24. Auto GG 25. Replay Mod 26. In-game night vision 27. Custom buttons on hud (like quick drop etc.) 28. Sound subtitles 29. Pack display 30. Voice Mod",
-                },
-                {
-                    question: "When will the new versions be released?",
-                    answer: "New content will be always announced on our Discord server at #announcements. Make sure to join us to stay updated!",
-                },
-                {
-                    question: "Can I become a helper on Discord?",
-                    answer: "In short, we see no need for more helpers on our Discord server. If we need more people, we will let you know at #announcements on our Discord server.",
-                },
-            ],
+  {
+    id: "general",
+    name: "General",
+    faq: {
+      questions: [
+        {
+          question: "Is Better Bedrock Safe?",
+          answer:
+            "Yes, Better Bedrock is 100% safe and malware-free! For over 3 years, we have provided secure content without any data tracking. Check our proven reputation and download history on Discord or YouTube (@axmbro) to see why thousands of users trust us.",
         },
-
-        videos: {
-            description: "List of general topic videos that explain the features and tools provided by Better Bedrock. TUTORIALS ARE DIFFERENT FOR EACH CATEGORY!",
-            videos: [
-                {
-                    title: "Download stuff from webiste",
-                    description: "Simple tutorial about downloading process.",
-                    link: "https://youtu.be/bHlLB_tksi0",
-                    tags: ["all-devices", "featured"],
-                },
-                {
-                    title: "How to use waypoints",
-                    description: "Download extension pack and follow steps in pack description.",
-                    link: "https://youtu.be/HLJQOW-TkeU",
-                    tags: ["all-devices", "featured"],
-                },
-                {
-                    title: "Enable Controller Mode",
-                    description: "Use the subpack options to set the desired mode.",
-                    link: "https://youtu.be/1wpWo-kY8UE",
-                    tags: ["all-devices"],
-                },
-            ],
+        {
+          question: "Why do my Mod Menu options reset?",
+          answer:
+            "Mod Menu changes are temporary. To save your settings permanently, you must edit the config file. Visit the information page for a video tutorial.",
         },
+        {
+          question: "How to save Better Bedrock settings?",
+          answer:
+            "Visit the information page for a video tutorial. The game doesn't support UI-to-file saving, manual config is the way to go! Simply edit your config file to lock in your favorite features. It's a quick, one-time setup that ensures your Better Bedrock experience is exactly how you like it.",
+        },
+        {
+          question: "Video Tutorials and Setup Guides",
+          answer:
+            "All our video guides are located in the Tutorials section below. Scroll down and choose your topic from the top selection menu for instant help.",
+        },
+        {
+          question: "What type of content we provide?",
+          answer:
+            "Our main focus is Better Bedrock Texture pack and it's extension packs. We offer just texture packs - no apps for any device. We also allow people to post their projects directly on our platform - by ADs system crators receive revenue. Check betterbedrock.com/linkvertise for more information.",
+        },
+        {
+          question: "Is there any app for Phone or Computer?",
+          answer:
+            "No, our main focus is on providing texture packs for Minecraft Bedrock Edition.",
+        },
+        {
+          question: "Why does some mods break?",
+          answer:
+          "Usually the heavy mods may disappear or not not function properly. It's mostly because of using many texture packs at once, if it's a thing then try to disable these packs or use BB alone. Usually it's related with compelx packs and unfortuantely there is not any fix for this. Also make sure to follow correct packs order - visible in resource packs settings tab."
+        },
+        {
+          question: "Does the Better Bedrock Texture Pack break achievements?",
+          answer:
+            "No, due fact that it's just texture pack, it doesn't affect achievements in any way. You can use it without worry. It applies to main texture pack and extensions.",
+        },
+        {
+          question: "Which devices support Better Bedrock?",
+          answer:
+            "Better Bedrock works on all platforms that run Minecraft Bedrock Edition, including Windows, Android, iOS, and consoles.",
+        },
+        {
+          question: "How to Open Better Bedrock Mod Menu?",
+          answer:
+            "Open your pause screen and double-click the 'Mod Menu' button in the bottom-left corner.",
+        },
+        {
+          question: "Mod Menu button is not showing?",
+          answer:
+            "Try to change the subpack option to 'Mode: Default'. If you are using a controller, switch to 'Mode: Controller' to see the button. Always check the subpack option descriptions to understand how each setting functions. If none of these solutions work, please try to use only this pack.",
+        },
+        {
+          question: "Where to report a bug?",
+          answer:
+            "You can report bugs on our official Discord server in the #bug-reports channel. Please provide as much detail as possible to help us resolve the issue.",
+        },
+        {
+          question: "I have an idea for a new feature! Where should I share it?",
+          answer:
+            "We love hearing your ideas! Please share your feature requests in the #suggestions channel on our Discord server.",
+        },
+        {
+          question: "Troubleshooting free download issues",
+          answer:
+            "Downloads often fail due to IP changes, adblockers, or browser restrictions in Brave or Safari. For a successful download, use a stable connection, do not use bypassers, enable popups, and follow the redirect instructions without skipping ads.",
+        },
+        {
+          question: "Fix not opening download window",
+          answer:
+            "Blocked popups are the main reason the download window won't open. Enable them in your browser and turn off adblockers to ensure a smooth transition to the download file.",
+        },
+        {
+          question: "Unsupported Features and Mods list",
+          answer:
+            "We do not support mods that require injectors or external launchers. Some of them are also not possible due to game limits, here is the list: 1. Autosprint 2. Zoom 3. Motion blur 4. Freelook 5. Pocket UI support 6. Small GUI scale support (0) 7. Item physics 8. Injector/launcher 9. Very accurate FPS/CPS/combo counters 10. Small chunk render (1/2) 11. Chunk border 12. Player hitbox 13. Health indicator 14. Actually working Minimap 15. 3D player models 16. 'Free' Hacks (fake texts etc.) 17. Clickable links on HUD chat 18. Dynamic lighting and things related to shaders 19. Nametags in 3rd person 20. Armor HUD durability in HUD 21. Friend List 22. Auto GG 23. Replay Mod 24. In-game night vision 25. Custom buttons on HUD (like quick drop etc.) 26. Sound subtitles 27. Pack display 28. Voice Mod",
+        },
+        {
+          question: "What is a subpack?",
+          answer:
+            "Subpacks are Minecraft's way of providing texture pack customization. You can access these options by clicking the gear icon on the Better Bedrock pack within your Global Resources 'Active' menu.",
+        },
+        {
+          question: "Can I get Better Bedrock on the Marketplace?",
+          answer:
+            "No, Better Bedrock is a website-exclusive! We stay off the Marketplace, because it does not support essential features that we use. Download it directly from us to enjoy the full, unrestricted version of the pack.",
+        },
+        {
+          question: "When is the next Better Bedrock update coming out?",
+          answer:
+            "Want the latest Better Bedrock updates? Every new version is announced first on our official Discord server in the #announcements channel. Join the community to never miss a release!",
+        },
+        {
+          question: "How to Join the Better Bedrock Discord Staff Team",
+          answer:
+            "Our Discord helper team is currently full. Stay tuned to the #announcements channel on our server to be the first to know when we open applications for new staff members.",
+        },
+      ],
     },
 
-    {
-        id: "mobile",
-        name: "Mobile Devices",
-        faq: {
-            description: "Mobile devices FAQ. If you still have questions, please check out our Discord server!",
-            questions: [
-                {
-                    question: "Why can't I open Inventory Screen",
-                    answer: "This issue usually appears when pocket UI is used. We do not fully support this mode and we recommend using second one - the classic UI. To change it open sttings, navigate to video, scroll down until you see UI Profile option, then click and change to classic UI, problem should be resolved.",
-                },
-                {
-                    question: "Why are hearts not visible?",
-                    answer: "We do not support pocket UI, please change it to classic UI",
-                },
-            ],
+    videos: {
+      description:
+        "Step-by-step video guides for general category. Switch tabs above to find tutorials for your device.",
+      videos: [
+        {
+          title: "How to Download Packs?",
+          description: "Quick guide for download & installation.",
+          link: "https://youtu.be/bHlLB_tksi0",
+          tags: ["all-devices", "featured"],
         },
+        {
+          title: "Waypoints Setup",
+          description: "Install the extension & follow the steps.",
+          link: "https://youtu.be/HLJQOW-TkeU",
+          tags: ["all-devices", "featured"],
+        },
+        {
+          title: "Enable Controller Mode",
+          description: "Use the subpacks to set the modes.",
+          link: "https://youtu.be/1wpWo-kY8UE",
+          tags: ["all-devices"],
+        },
+      ],
+    },
+  },
 
-        videos: {
-            description: "List of videos for mobile devices designed to explain the features and tools that Better Bedrock provides. TUTORIALS ARE DIFFERENT FOR EACH CATEGORY!",
-            videos: [
-                {
-                    title: "Download and import the Texture Packs",
-                    description: "Classic installation tutorial.",
-                    link: "https://youtu.be/dOTW4ffn9rA",
-                    tags: ["mobile"],
-                },
-                {
-                    title: "Manually edit config",
-                    description: "Everything is explained in video. All ways, tools etc.",
-                    link: "https://youtu.be/rPNfW_swUp4",
-                    tags: ["mobile", "featured"],
-                },
-                {
-                    title: "Edit config before importing pack",
-                    description: "It's optional way to save config - may be used to import pack to console.",
-                    link: "https://youtu.be/OIuGRJk_rbA",
-                    tags: ["mobile", "featured"],
-                },
-            ],
+  {
+    id: "mobile",
+    name: "Mobile Devices",
+    faq: {
+      questions: [
+        {
+          question: "I can't use data folder during config editing?",
+          answer:
+            "This is a strict limit of phone operating system - they don't allow access to certain directories. Therefore, you need to use pre-config editing method. It's available below as tutorial video.",
         },
+        {
+          question: "How to fix inventory not opening?",
+          answer:
+            "It's likely due to using Pocket UI. Switch your UI Profile to 'Classic' in the Video settings for full compatibility and a better experience.",
+        },
+        {
+          question: "Why are my hearts and hunger bar missing?",
+          answer:
+            "They are only visible in Classic UI. Switch your UI Profile from Pocket to Classic in Settings > Video.",
+        },
+      ],
     },
 
-    {
-        id: "other",
-        name: "PC/Other Devices",
-        faq: {
-            description: "PC/Other devices FAQ. If you still have questions, please check out our Discord server!",
-            questions: [
-                {
-                    question: "(CONSOLE) How to download packs on console.",
-                    answer: `At the beginning XBOX is more flexible than PS, so playstation may be more limited and less accessible. For xbox, open browser, search for this website, download pack and try to import it, or just transfer packs from other device to xbox and through files either run it by minecraft or put in files. If this won't help, then I we recommend to check out this tutorial: https://youtu.be/cHkiufOsRrY`,
-                },
-                {
-                    question: "(CONSOLE) How to change config on console.",
-                    answer: `There isn't any way to adjust config on consoles, because it requires editing txt pack files, but there is one way. In short, open "Mobile Devices" tab and search for "Edit config before importing pack" or #3 tutorial video. Follow this until you see part about zipping created folder. After that you need to put this created file, firstly named something.zip and then something.mcpack, to console files and open BB from here. Yes we know that it's slow process, but we still provide methods to use our pack on consoles. We recommend adjusting config on phone or console and then changing this on PC/Phone like on tutorial.`,
-                },
-                {
-                    question: "(Controller) Why is the Mod Menu button missing?",
-                    answer: `If you use pack without subpack option selected to "Controller Mode", then that's the reason. Enable this option and make sure to read important note about this mode - in short, controller input is really problematic and there isn't any way to make it work perfectly.`,
-                },
-                {
-                    question: "(Controller) Why is the Mod Menu visible in the background on container screens?",
-                    answer: `Container Screens means e.g. inventory screen or pause screen, it's just in background and It's common problem when using controller input and "Controller Mode" subpack. Again, controller input is really problematic and there isn't any way to make it work perfectly and that's why we recommend adjusting config and using other Modes to prevent this behavior.`,
-                },
-            ],
+    videos: {
+      description:
+        "Step-by-step video guides for mobile category. Switch tabs above to find tutorials for your device.",
+      videos: [
+        {
+          title: "Pack Installation and Import",
+          description: "Fast guide to import .mcpack files.",
+          link: "https://youtu.be/dOTW4ffn9rA",
+          tags: ["mobile"],
         },
-
-        videos: {
-            description: "List of videos for PC/Other devices designed to explain the features and tools that Better Bedrock provides. TUTORIALS ARE DIFFERENT FOR EACH CATEGORY!",
-            videos: [
-                {
-                    title: "Download and import the Texture Packs",
-                    description: "Classic installation tutorial.",
-                    link: "https://youtu.be/QV67l-vrlSI",
-                    tags: ["pc"],
-                },
-                {
-                    title: "Manually edit config",
-                    description: "Save mod states on PC.",
-                    link: "https://youtu.be/QG9vJq6UPGA",
-                    tags: ["pc", "featured"],
-                },
-                {
-                    title: "Manually edit config on console",
-                    description: "Save mod states on console.",
-                    link: "https://youtu.be/cHkiufOsRrY",
-                    tags: ["console"],
-                },
-                {
-                    title: "Set up autosprint",
-                    description: "Simple bind change that works on PC.",
-                    link: "https://youtu.be/O3D6bNQW-Lc",
-                    tags: ["pc"],
-                },
-                {
-                    title: "Create custom theme",
-                    description: "More complex tutorial about all theme customization available in BB.",
-                    link: "https://youtu.be/GRQahMrdEoY",
-                    tags: ["pc"],
-                },
-            ],
+        {
+          title: "Manual Config Guide",
+          description: "Save or edit mod states in the config.",
+          link: "https://youtu.be/rPNfW_swUp4",
+          tags: ["mobile", "featured"],
         },
+        {
+          title: "Pre-edit Config Guide",
+          description:
+            "Optional method for editing config if the first method fails.",
+          link: "https://youtu.be/OIuGRJk_rbA",
+          tags: ["mobile", "featured"],
+        },
+      ],
     },
+  },
+
+  {
+    id: "other",
+    name: "PC/Other Devices",
+    faq: {
+      questions: [
+        {
+          question: "(CONSOLE) How to Get Better Bedrock on Xbox and PS4/PS5?",
+          answer:
+            "While Xbox is more accessible for file imports, PlayStation users may face more restrictions. For the most reliable and up-to-date methods, check tutorial videos below.",
+        },
+        {
+          question: "(CONSOLE) How to change config on Xbox and PlayStation?",
+          answer:
+            "Customizing Better Bedrock on consoles requires a workaround. Check 'Pre-edit config guide' to prepare your files on a mobile device or PC before transferring them. This manual process is the only way to get custom settings on Xbox and PS4/PS5. Find this tutorial in mobile section.",
+        },
+        {
+          question: "(Controller) How to fix missing mod menu button?",
+          answer:
+            "It's usually caused by an incorrect Subpack. Please use 'Mode: Controller' to see this Mod Menu button. Check your Global Resources settings and adjust this option.",
+        },
+        {
+          question:
+            "(Controller) How to Fix Mod Menu Ghosting on Container Screens?",
+          answer:
+            "If the Mod Menu remains visible while browsing your inventory, it's a known conflict between custom UI layers and Minecraft's Controller Mode. To ensure a clean interface, try adjusting your configuration via a mobile device or PC and using the standard UI subpack instead.",
+        },
+      ],
+    },
+
+    videos: {
+      description:
+        "Step-by-step video guides for pc/other devices category. Switch tabs above to find tutorials for your device.",
+      videos: [
+        {
+          title: "Pack Installation and Import",
+          description: "Fast guide to import .mcpack files.",
+          link: "https://youtu.be/QV67l-vrlSI",
+          tags: ["pc"],
+        },
+        {
+          title: "Manual Config Guide",
+          description: "Save or edit mod states in the config.",
+          link: "https://youtu.be/QG9vJq6UPGA",
+          tags: ["pc", "featured"],
+        },
+        {
+          title: "Pre-edit Config on Console",
+          description: "Optional method for editing config on console.",
+          link: "https://youtu.be/cHkiufOsRrY",
+          tags: ["console"],
+        },
+        {
+          title: "Enable Autosprint",
+          description: "Adjust keybinds to always sprint on PC.",
+          link: "https://youtu.be/O3D6bNQW-Lc",
+          tags: ["pc"],
+        },
+        {
+          title: "Create Custom Themes",
+          description:
+            "Advanced guide for full UI customization in Better Bedrock.",
+          link: "https://youtu.be/GRQahMrdEoY",
+          tags: ["pc"],
+        },
+      ],
+    },
+  },
 ];
