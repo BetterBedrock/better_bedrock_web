@@ -1,11 +1,10 @@
-import clsx from "clsx";
 import { Collapsible } from "@/components/collapsible";
 
 import { linkvertiseFAQQuestions } from "../../data/faq-questions";
 import styles from "./faq.module.scss";
 
 export const FAQList = () => (
-  <div className={clsx(styles.question, styles.cardContainer)}>
+  <div className={styles.question}>
     {linkvertiseFAQQuestions.map((question, index) => (
       <Collapsible
         key={question.question}

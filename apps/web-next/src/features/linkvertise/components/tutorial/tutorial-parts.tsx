@@ -1,78 +1,71 @@
 import Markdown from "react-markdown";
-import { Card } from "@/components/card";
+import { Card, CardBody } from "@/components/card";
 
 import styles from "./tutorial.module.scss";
 
 export const TutorialParts = () => (
-  <>
+  <div className={styles.parts}>
     <Card sub className={styles.sub}>
-      <Markdown>{tutorialPart2}</Markdown>
+      <CardBody>
+        <Markdown>{tutorialPart1}</Markdown>
+      </CardBody>
     </Card>
     <Card sub className={styles.sub}>
-      <Markdown>{tutorialPart3}</Markdown>
+      <CardBody>
+        <Markdown>{tutorialPart2}</Markdown>
+      </CardBody>
     </Card>
     <Card sub className={styles.sub}>
-      <Markdown>{tutorialPart4}</Markdown>
+      <CardBody>
+        <Markdown>{tutorialPart3}</Markdown>
+      </CardBody>
     </Card>
     <Card sub className={styles.sub}>
-      <Markdown>{tutorialPart5}</Markdown>
+      <CardBody>
+        <Markdown>{tutorialPart4}</Markdown>
+      </CardBody>
     </Card>
-  </>
+  </div>
 );
 
+const tutorialPart1 = `
+## 1. Better Bedrock Authentication
+- Access the [Login Page](https://betterbedrock.com/login).
+- Authenticate using your **Google account** for instant profile creation.
+`;
+
 const tutorialPart2 = `
-## BetterBedrock Account
-
-1.  Go to [Login Page](https://betterbedrock.com/login)
-
-2.  Sign up using your Google account`;
+## 2. Linkvertise Publisher Setup
+- Register an account at the [Linkvertise Publisher Portal](https://publisher.linkvertise.com/).
+- This account acts as your **primary wallet** where all ad revenue is accumulated.
+`;
 
 const tutorialPart3 = `
-## Linkvertise Account
-- Go to [Linkvertise Publisher](https://publisher.linkvertise.com/)
-- Create account
+## 3. Extracting Technical Credentials
+
+*Step 1:* Locate your Linkvertise User ID
+1. Log in to your [Publisher Dashboard](https://publisher.linkvertise.com/).
+2. Navigate to the [Affiliate Program](https://publisher.linkvertise.com/dashboard#affiliate) tab.
+3. Identify your **Affiliate URL**.
+   - Format: \`https://publisher.linkvertise.com/ac/1382868\`
+   - The numerical string at the end (**1382868**) is your unique **User ID**.
+
+*Step 2:* Generate Anti-Bypass Security Token
+1. Open your [Account Settings](https://publisher.linkvertise.com/dashboard#account).
+2. Locate and toggle the "**Use anti-bypassing**" option.
+3. **Save settings** to commit changes.
+4. Copy the newly generated "**Anti-bypass Token**" (a secure 64-character string).
 `;
 
 const tutorialPart4 = `
-## Setting up values
-### Step 1
-Find Your Linkvertise User ID
-1.  Log in to your [Linkvertise Publisher](https://publisher.linkvertise.com/) account
+## 4. Finalizing Integration
+1. Return to your **BetterBedrock Profile**.
+2. Click the **Settings (Gear Icon)** adjacent to your avatar.
+3. Enable the **Custom Linkvertise** toggle.
+4. Input your credentials:
+   - **Linkvertise User ID**: Your numerical ID from Step 1.
+   - **Anti-bypass Token**: The 64-character security string.
+5. Click **Save Profile Settings**.
 
-2.  Go to the [Affiliate Program](https://publisher.linkvertise.com/dashboard#affiliate)
-
-3.  Look at your AFFILIATE URL. 
-    - Example: https://publisher.linkvertise.com/ac/**1382868**
-    - The number at the end (**1382868** in this example) **is your User ID**
-
-### Step 2
-Enable Anti-Bypassing & Get Token
-
-1.  Go to [Settings](https://publisher.linkvertise.com/dashboard#account)
-
-2.  Enable the option “**Use anti-bypassing**”
-
-3.  Save your settings
-
-4.  You’ll now see your "**Anti-bypass Token**" (a 64-character string)
-`;
-
-const tutorialPart5 = `
-## Connect Linkvertise to BetterBedrock
-
-1.  Go to your **BetterBedrock profile**
-
-2.  Open **Settings** (click the gear icon next to your profile picture)
-
-3.  Enable **Custom Linkvertise**
-
-4.  Enter:
-
-    -   **Linkvertise User ID** (e.g., \`1382868\`)
-
-    -   **Anti-bypass Token** (64-character string)
-
-5.  Save your profile settings
-
-### And you are done!
+**Configuration Complete.** Your projects are now protected and monetized.
 `;

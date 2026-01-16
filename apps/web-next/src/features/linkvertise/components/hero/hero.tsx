@@ -1,16 +1,17 @@
-import { Card, CardDivider } from "@/components/card";
-
+import { Card, CardBody, CardDivider } from "@/components/card";
 import { HeroVideo } from "./hero-video";
-import { HeroHeading } from "./hero-heading";
-
-import styles from "./hero.module.scss";
+import { HeroTitle } from "./hero-title";
+import { HeroDescription } from "./hero-description";
 
 export const Hero = () => (
-  <div className={styles.section}>
-    <Card className={styles.card}>
-      <HeroHeading />
-      <CardDivider />
+  <Card fullWidth>
+    <CardBody>
+      <HeroTitle />
+      <HeroDescription />
+    </CardBody>
+    <CardDivider />
+    <CardBody>
       <HeroVideo />
-    </Card>
-  </div>
+    </CardBody>
+  </Card>
 );

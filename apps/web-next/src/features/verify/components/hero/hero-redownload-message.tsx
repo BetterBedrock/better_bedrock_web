@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useDownload } from "@/providers/download";
 import { BedrockText } from "@/components/bedrock-text";
+import clsx from "clsx";
 
 import styles from "./hero.module.scss";
 
@@ -12,15 +14,43 @@ interface HeroRedownloadMessageProps {
 export const HeroRedownloadMessage = ({
   voucher,
 }: HeroRedownloadMessageProps) => {
-  const { download } = useDownload();
+  const { download, downloadProgress } = useDownload();
+  const [visible, setVisible] = useState(false);
+  const [delayed, setDelayed] = useState(false);
+  const [animationKey, setAnimationKey] = useState(0);
 
-  return (
+  useEffect(() => {
+    const timeout = setTimeout(() => setDelayed(true), 4750);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
+    if (downloadProgress === 100) {
+      setVisible(true);
+    }
+  }, [downloadProgress]);
+
+  const handleRetry = () => {
+    setVisible(false);
+    setDelayed(false);
+    setAnimationKey((prev) => prev + 1);
+    download(voucher);
+  };
+
+  const htmlElement = (
     <BedrockText
+      key={animationKey}
       type="p"
       color="white"
-      extraClassName={styles.label}
-      text="Download did not start? Click here!"
-      onClick={() => download(voucher)}
+      extraClassName={clsx(styles.retryLabel, styles.redownload)}
+      text="Problems with the download? Click to retry!"
+      onClick={handleRetry}
     />
+  );
+
+  return (
+    <>
+      {(visible || delayed) && htmlElement}
+    </>
   );
 };

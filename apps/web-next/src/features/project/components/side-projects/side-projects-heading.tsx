@@ -3,6 +3,6 @@ import { Heading } from "@/features/project/components/downloads-heading/downloa
 export const SideProjectsHeading = () => (
   <Heading
     title="Side Projects"
-    description="Enjoy playing Minecraft on a whole new level using latest version of the main texture pack!"
+    description="Discover our portfolio. Enhance your Minecraft experience with extra features and content!"
   />
 );

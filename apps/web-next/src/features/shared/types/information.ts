@@ -10,11 +10,10 @@ export interface InformationTab {
     name: string;
     faq: InformationFAQ;
     videos?: InformationVideos;
-    deprectedVideos?: InformationVideos;
+    deprecatedVideos?: InformationVideos;
 }
 
 interface InformationFAQ {
-    description: string;
     questions: InformationFAQQuestion[];
 }
 

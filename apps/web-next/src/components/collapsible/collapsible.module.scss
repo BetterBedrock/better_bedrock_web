@@ -15,7 +15,7 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 
-  background-color: rgb(47, 47, 48);
+  background-color: rgb(58, 59, 60);
   border: g.$minecraftdepth solid rgb(30, 30, 31);
   border-top: none;
   width: 100%;
@@ -58,4 +58,8 @@
 
 .buttonText {
   width: 100%;
+}
+
+.details {
+  height: 100%;
 }

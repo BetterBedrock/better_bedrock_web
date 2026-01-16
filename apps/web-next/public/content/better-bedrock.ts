@@ -56,7 +56,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
         {
             title: "Extensions",
             description:
-                "Extra packs that enhance your gameplay even further. Make sure to put these packs in correct order. Yellow ones require main BB pack to work, while orange ones can be used without it.",
+                "Exploer extra packs that enhance your gameplay even further. Make sure to put these packs in correct order. Yellow ones require main BB pack to work, while orange ones can be used without it.",
             items: [
                 {
                     description:

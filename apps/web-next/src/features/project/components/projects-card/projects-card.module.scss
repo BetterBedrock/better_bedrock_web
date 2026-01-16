@@ -8,33 +8,20 @@
   width: 100%;
 }
 
-.searchbar {
-  width: 100%;
-}
-
 .types {
+  z-index: 1;
   display: none !important;
 
   @media (max-width: g.$breakpoint-tablet) {
     display: flex !important;
-
-    > * {
-      max-lines: 1;
-    }
   }
 }
 
 .group {
+  display: flex;
+
   @media (max-width: g.$breakpoint-tablet) {
-    display: none;
-  }
-}
-
-.collapsible {
-  max-width: 300px;
-
-  > * {
-    max-lines: 1;
+    display: none !important;
   }
 }
 
@@ -50,9 +37,56 @@
 .list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: g.$padding-sm;
+  gap: calc(g.$padding-xsm * 2.5);
 
   @media (max-width: g.$breakpoint-tablet) {
     grid-template-columns: 1fr;
+  }
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: (g.$padding-xsm * 1.25);
+}
+
+.searchbarContainer {
+  display: flex;
+  align-items: center;
+}
+
+.searchbar {
+  width: 100%;
+
+  @media (min-width: g.$breakpoint-tablet) {
+    margin-right: calc(g.$minecraftdepth * -1);
+  }
+}
+
+.collapsible {
+  min-width: 250px;
+
+  @media (max-width: g.$breakpoint-laptopL) {
+    min-width: 200px;
+  }
+
+  > * {
+    max-lines: 1;
+  }
+}
+
+.orderHalf {
+  display: flex !important;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    display: none !important;
+  }
+}
+
+.orderFull {
+  display: none !important;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    display: flex !important;
   }
 }

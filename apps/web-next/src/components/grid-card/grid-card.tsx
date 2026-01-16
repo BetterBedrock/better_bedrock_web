@@ -81,20 +81,22 @@ export const GridCard = ({
         </div>
       </a>
     )}
-    <div className={styles.texts}>
-      <BedrockText
-        text={title || ""}
-        type="h3"
-        font="Minecraft"
-        textAlign="left"
-        color="white"
-      />
-      <BedrockText
-        text={description ?? ""}
-        type="p"
-        textAlign="left"
-        color="white"
-      />
+    <div className={styles.descContainer}>
+      <div className={styles.desc}>
+        <BedrockText
+          text={title || ""}
+          type="h3"
+          font="Minecraft"
+          textAlign="left"
+          color="white"
+        />
+        <BedrockText
+          text={description ?? ""}
+          type="p"
+          textAlign="left"
+          color="white"
+        />
+      </div>
     </div>
   </div>
 );

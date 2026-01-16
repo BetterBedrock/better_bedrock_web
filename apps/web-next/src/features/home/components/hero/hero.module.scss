@@ -23,10 +23,15 @@ $header-height: 65dvh;
 }
 
 .header {
+  gap: 1rem;
   @include flex-container();
   height: $header-height;
 }
 
 .trailer {
   @include flex-container();
+}
+
+.videoContainer {
+  margin-top: calc(g.$padding-xsm * 2.5);
 }

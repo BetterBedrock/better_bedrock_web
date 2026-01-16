@@ -1,6 +1,7 @@
 import { BedrockText } from "@/components/bedrock-text";
 import { ButtonType, Button } from "@/components/button";
 import { Dispatch, SetStateAction } from "react";
+import Image from "next/image";
 
 import { styles } from ".";
 
@@ -35,10 +36,12 @@ export const CollapsibleButton = ({
       color={type === "white" ? "black" : "white"}
       extraClassName={styles.buttonText}
     />
-    <BedrockText
-      type="p"
-      text={isCollapsed ? "-" : "+"}
-      color={type === "white" ? "black" : "white"}
+    <Image
+      src={isCollapsed ? "/images/arrow_up.png" : "/images/arrow_down.png"}
+      alt={isCollapsed ? "Collapse" : "Expand"}
+      width={21}
+      height={12}
+      style={{ flexShrink: 0 }}
     />
   </Button>
 );

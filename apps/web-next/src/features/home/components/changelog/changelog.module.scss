@@ -28,3 +28,7 @@
     flex-direction: row;
     margin-top: g.$padding-sm;
 }
+
+.videoContainer {
+  margin-top: calc(g.$padding-xsm * 2.5);
+}

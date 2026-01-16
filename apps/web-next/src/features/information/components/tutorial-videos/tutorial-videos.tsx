@@ -1,22 +1,22 @@
+import { Card, CardBody, CardDivider } from "@/components/card";
 import { InformationVideos } from "@/features/shared/types/information";
 import { TutorialVideosDescription } from "./tutorial-videos-description";
 import { TutorialVideosGrid } from "./tutorial-videos-grid";
 import { TutorialVideosTitle } from "./tutorial-videos-title";
-
-import styles from "./tutorial-videos.module.scss";
 
 export interface TutorialVideosProps {
   videos: InformationVideos;
 }
 
 export const TutorialVideos = ({ videos }: TutorialVideosProps) => (
-  <div>
-    <div className={styles.heading}>
+  <Card fullWidth>
+    <CardBody>
       <TutorialVideosTitle />
-      <TutorialVideosDescription
-        description={videos.description ?? "No description available."}
-      />
-    </div>
-    <TutorialVideosGrid videos={videos.videos} />
-  </div>
+      <TutorialVideosDescription />
+    </CardBody>
+    <CardDivider />
+    <CardBody>
+      <TutorialVideosGrid videos={videos.videos} />
+    </CardBody>
+  </Card>
 );

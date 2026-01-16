@@ -1,17 +1,26 @@
 import { Card, CardBody, CardDivider } from "@/components/card";
-import { FeaturedCardAds } from "@/features/project/components/featured-card/featured-card-ads";
+import { FeaturedCardButtons } from "@/features/project/components/featured-card/featured-card-buttons";
 import { FeaturedCardTitle } from "@/features/project/components/featured-card/featured-card-title";
+import { fetchInitialProjects } from "../../server/fetch-initial-projects";
+import { PartnerImage } from "@/components/partner-image";
 
-import styles from "./featured-card.module.scss";
+export const FeaturedCard = async () => {
+  const { searchResults } = await fetchInitialProjects({ params: { page: [] } });
+  const items = searchResults.items.slice(0, 5);
 
-export const FeaturedCard = () => (
-  <Card sub className={styles.main}>
-    <CardBody>
-      <FeaturedCardTitle />
-    </CardBody>
-    <CardDivider sub />
-    <CardBody>
-      <FeaturedCardAds />
-    </CardBody>
-  </Card>
-);
+  return (
+    <Card fullWidth>
+      <CardBody>
+        <FeaturedCardTitle />
+      </CardBody>
+      <CardDivider />
+      <CardBody>
+        <FeaturedCardButtons />
+      </CardBody>
+      <CardDivider />
+      <CardBody>
+        <PartnerImage />
+      </CardBody>
+    </Card>
+  );
+};

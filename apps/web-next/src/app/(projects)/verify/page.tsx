@@ -1,3 +1,4 @@
+import { PartnerCard } from "@/components/partner-card/partner-card";
 import { Hero } from "@/features/verify/components/hero/hero";
 
 interface VerifyProps {
@@ -12,6 +13,7 @@ export default async function Verify({ searchParams }: VerifyProps) {
   return (
     <>
       <Hero hash={hash} />
+      <PartnerCard onlyImage />
     </>
   );
 }

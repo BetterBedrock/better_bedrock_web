@@ -25,17 +25,22 @@ export const ProjectsCard = async ({ params }: ProjectsCardProps) => {
   });
 
   return (
-    <Card sub className={styles.main}>
-      <CardBody>
-        <ProjectsCardBanner />
-        <ProjectsCardTitle />
-      </CardBody>
-      <CardDivider sub />
-      <CardBody>
-        <ProjectsCardSearchProvider>
-          <ProjectsCardSearchBar />
-          <ProjectsCardType />
-          <ProjectsCardOrder />
+    <Card fullWidth>
+      <ProjectsCardSearchProvider>
+        <CardBody gap>
+          <ProjectsCardTitle />
+        </CardBody>
+        <CardDivider />
+        <CardBody gap>
+          <div className={styles.filters}>
+            <ProjectsCardSearchBar />
+            <ProjectsCardType />
+            <ProjectsCardOrder className={styles.orderFull} />
+          </div>
+        </CardBody>
+        <CardDivider />
+        <CardBody gap style={{ paddingBottom: "0" }}>
+          <ProjectsCardBanner />
           {isBot ? (
             <ProjectsCardPageContainer
               currentPage={currentPage}
@@ -44,8 +49,8 @@ export const ProjectsCard = async ({ params }: ProjectsCardProps) => {
           ) : (
             <ProjectsCardInfiniteContainer searchResults={searchResults} />
           )}
-        </ProjectsCardSearchProvider>
-      </CardBody>
+        </CardBody>
+      </ProjectsCardSearchProvider>
     </Card>
   );
 };

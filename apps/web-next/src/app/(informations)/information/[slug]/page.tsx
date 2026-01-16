@@ -1,5 +1,5 @@
-import { FAQ } from "@/features/information/components/faq/faq";
 import { Header } from "@/features/information/components/header/header";
+import { FAQ } from "@/features/information/components/faq/faq";
 import { TutorialVideos } from "@/features/information/components/tutorial-videos/tutorial-videos";
 
 import { informationData } from "@/features/information/data/information-data";
@@ -9,22 +9,21 @@ interface CategoriesProps {
 }
 
 export default async function Categories({ params }: CategoriesProps) {
-  // useVerifyExistingInfo();
   const loadedParams = await params;
-  const selectedCategegory = informationData.find(
+  const selectedCategory = informationData.find(
     (c) => c.id === loadedParams.slug
   );
 
-  if (!selectedCategegory) {
+  if (!selectedCategory) {
     return;
   }
 
   return (
     <>
-      <Header selectedCategory={selectedCategegory} />
-      <FAQ selectedCategory={selectedCategegory} />
-      {selectedCategegory.videos && (
-        <TutorialVideos videos={selectedCategegory.videos} />
+      <Header selectedCategory={selectedCategory} />
+      <FAQ selectedCategory={selectedCategory} />
+      {selectedCategory.videos && (
+        <TutorialVideos videos={selectedCategory.videos} />
       )}
     </>
   );

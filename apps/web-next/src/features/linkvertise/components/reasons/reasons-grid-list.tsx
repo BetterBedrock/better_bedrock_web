@@ -3,27 +3,30 @@ import { ReasonsGridItem } from "./reasons-grid-item";
 import styles from "./reasons.module.scss";
 
 export const ReasonsGridList = () => (
-  <div className={clsx(styles.grid, styles.cardContainer)}>
+  <div className={styles.grid}>
     <ReasonsGridItem
-      title="Proven Quality"
-      description="3 years of development"
-    />
-    <ReasonsGridItem title="Extra Protection" description="AD Anti-bypass" />
-    <ReasonsGridItem
-      title="Average Earnings"
-      description="€8.5 per 1000 downloads"
+      title="Proven Experience"
+      description="3 years of active development and platform optimization."
     />
     <ReasonsGridItem
-      title="Monthly Reach"
-      description="Hundreds of thousands of visits"
+      title="Advanced Anti-bypass"
+      description="Built-in protection against bypasses to maximize earnings."
     />
     <ReasonsGridItem
-      title="Great Reputation"
-      description="Known from excellent creations"
+      title="Top-Tier CPM"
+      description="High-efficiency monetization with an average of €8.5 per 1000 downloads."
     />
     <ReasonsGridItem
-      title="Single Game Focus"
-      description="Minecraft Bedrock Edition"
+      title="Global Traffic Hub"
+      description="Reach a massive audience with hundreds of thousands of unique monthly visits."
+    />
+    <ReasonsGridItem
+      title="Verified Industry Leader"
+      description="A reputation built on years of delivering elite Minecraft Bedrock content."
+    />
+    <ReasonsGridItem
+      title="Bedrock Dedicated"
+      description="Zero distractions. We are fully specialized in the Minecraft Bedrock ecosystem."
     />
   </div>
 );

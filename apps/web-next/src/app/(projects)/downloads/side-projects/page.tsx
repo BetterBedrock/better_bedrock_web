@@ -3,7 +3,7 @@ import { SideProjectsHeading } from "@/features/project/components/side-projects
 import { SideProjectsBanner } from "@/features/project/components/side-projects/side-projects-banner";
 import { loadDownloadsSideProjectsPageData } from "@/features/project/server/load-downloads-side-projects-page-data";
 
-import styles from "./side-projects.module.scss";
+import { Card, CardBody, CardDivider } from "@/components/card/card";
 
 export const revalidate = 300;
 
@@ -15,9 +15,14 @@ export default async function SideProjects() {
   }
 
   return (
-    <div className={styles.category}>
-      <SideProjectsHeading />
-      <GridDownloadCardList projects={projects} />
-    </div>
+    <Card fullWidth>
+      <CardBody>
+        <SideProjectsHeading />
+      </CardBody>
+      <CardDivider />
+      <CardBody>
+        <GridDownloadCardList projects={projects} />
+      </CardBody>
+    </Card>
   );
 }

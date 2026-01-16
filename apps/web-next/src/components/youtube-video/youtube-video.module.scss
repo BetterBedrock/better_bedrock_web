@@ -1,11 +1,11 @@
 @use "@/utils" as g;
 
 .video {
+  border: g.$minecraftdepth solid rgb(30, 30, 31);
   position: relative;
   width: 100%;
   overflow: hidden;
   aspect-ratio: 16 / 9;
-  margin-top: g.$padding-sm;
 }
 
 .icon {

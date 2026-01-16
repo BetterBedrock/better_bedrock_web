@@ -1,9 +1,5 @@
 import { BedrockText } from "@/components/bedrock-text";
 
-interface FAQDescriptionProps {
-  description: string;
-}
-
-export const FAQDescription = ({ description }: FAQDescriptionProps) => (
-  <BedrockText type="p" color="white" text={description} />
+export const FAQDescription = () => (
+  <BedrockText type="p" color="white" text="Quick solutions to common issues. Get instant answers to the most frequent questions from our community." />
 );

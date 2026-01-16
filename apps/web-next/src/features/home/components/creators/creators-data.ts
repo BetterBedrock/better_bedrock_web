@@ -1,4 +1,4 @@
-import XxDreamxXYT4286 from "@/public/images/avatars/bestfurth.png";
+import XxDreamxXYT4286 from "@/public/images/avatars/XxDreamxXYT4286.png";
 import bestfurth from "@/public/images/avatars/bestfurth.png";
 
 export interface CreatorsListElement {

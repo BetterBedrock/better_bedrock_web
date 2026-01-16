@@ -13,7 +13,7 @@
 .question {
   display: flex;
   flex-direction: column;
-  gap: g.$padding-xsm;
+  gap: calc(g.$padding-xsm * 1.25);
 
   @media (max-width: g.$breakpoint-laptop) {
     gap: g.$padding-xxsm;

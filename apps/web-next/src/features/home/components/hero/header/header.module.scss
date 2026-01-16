@@ -12,7 +12,6 @@ $title-height: clamp(2.7em, 7vw, 6em);
 .heading {
   @include flex-container();
   gap: g.$padding-xxsm;
-  margin-bottom: g.$padding-sm;
   // height: $title-height;
 
   @media (max-width: g.$breakpoint-mobileL) {
@@ -73,10 +72,6 @@ $title-height: clamp(2.7em, 7vw, 6em);
 
 .reversed {
   transform: scaleX(-1);
-}
-
-.description {
-  margin-bottom: g.$padding-sm;
 }
 
 .link {

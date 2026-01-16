@@ -6,6 +6,7 @@ import { Heading } from "@/features/project/components/downloads-heading/downloa
 import { loadDownloadsBetterBedrockPageData } from "@/features/project/server/load-downloads-better-bedrock-page-data";
 
 import styles from "./better-bedrock.module.scss";
+import { Card, CardBody, CardDivider } from "@/components/card/card";
 
 export interface BetterBedrockProps {
   searchParams?: Promise<{ archived?: boolean }>;
@@ -26,18 +27,24 @@ export default async function BetterBedrock({
     return <BetterBedrockBanner />;
   }
 
+  // unused
   const archivedCategory = simpleCategories.find((c) => c.title === "Archived");
 
   return (
     <>
       {simpleCategories.map((category) => (
-        <div key={category.title} className={styles.category}>
-          <Heading title={category.title} description={category.description} />
-          <BetterBedrockItemsList
-            categoryId={categoryDownloads.id}
-            category={category}
-          />
-        </div>
+        <Card fullWidth>
+          <CardBody>
+            <Heading title={category.title} description={category.description} />
+          </CardBody>
+          <CardDivider />
+          <CardBody>
+            <BetterBedrockItemsList
+              categoryId={categoryDownloads.id}
+              category={category}
+            />
+          </CardBody>
+        </Card>
       ))}
 
       {archivedCategory && (
