@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { AnalyticsProvider } from "@/providers/analytics";
 import { Section } from "@/components/section";
 
 import { Tabs } from "@/features/users/components/profile/tabs/tabs";
@@ -57,26 +56,22 @@ export default async function LayoutProfile({
   const visible = user?.name === name || user?.admin;
 
   return (
-    <AnalyticsProvider>
-      <Section
-        className={styles.background}
-        extraClassName={styles.padding}
-        fixed
-      >
-        <Card fullWidth>
-          <CardBody>
-            <User params={resolvedParams} />
-          </CardBody>
-        </Card>
+    <Section
+      className={styles.background}
+      extraClassName={styles.padding}
+      fixed
+    >
+      <Card fullWidth>
+        <CardBody>
+          <User params={resolvedParams} />
+        </CardBody>
+      </Card>
 
-        <Card fullWidth>
-          <CardBody>
-            {visible && <Tabs params={resolvedParams} />}
-          </CardBody>
-          {visible && <CardDivider />}
-          <CardBody>{children}</CardBody>
-        </Card>
-      </Section>
-    </AnalyticsProvider>
+      <Card fullWidth>
+        <CardBody>{visible && <Tabs params={resolvedParams} />}</CardBody>
+        {visible && <CardDivider />}
+        <CardBody>{children}</CardBody>
+      </Card>
+    </Section>
   );
 }

@@ -3,7 +3,6 @@
 import { BedrockText } from "@/components/bedrock-text";
 import { Button } from "@/components/button";
 import { PopupConfirmation } from "@/components/popup/popup-confirmation";
-import { useProject } from "@/providers/project";
 import { useProjectManager } from "@/features/project/providers/project-manager";
 import { Routes } from "@/utils/routes";
 import { useRouter } from "next/navigation";

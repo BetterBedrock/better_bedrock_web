@@ -9,7 +9,6 @@ import { GridDownloadCard } from "@/components/grid-download-card";
 import { Popup } from "@/components/popup";
 import { Rating } from "@/components/rating";
 import { DetailedUserDto, DetailedProjectDto } from "@/lib/api";
-import { useUser } from "@/providers/user";
 import { useReportsManager } from "@/features/panel/reports/providers/reports-manager";
 import { useEffect, useState } from "react";
 import { resolveReport } from "@/lib/report/resolve-report";
@@ -18,9 +17,9 @@ import { reOpenReport } from "@/lib/report/re-open-report";
 import styles from "./hero.module.scss";
 import { fetchProjectDetails } from "@/features/project/server/fetch-project-details";
 import { useNotification } from "@/providers/notification";
+import { fetchDetailedUser } from "@/lib/user";
 
 export const HeroReportPopup = () => {
-  const { findDetailedUser } = useUser();
   const { throwError } = useNotification();
   
   const { selectedReport, setSelectedReport, setReports } = useReportsManager();
@@ -33,9 +32,9 @@ export const HeroReportPopup = () => {
 
   useEffect(() => {
     const fetchReportData = async () => {
-      setReporter(await findDetailedUser(selectedReport!.reporterId));
+      setReporter(await fetchDetailedUser(selectedReport!.reporterId));
       if (selectedReport!.reportedUserId) {
-        setReported(await findDetailedUser(selectedReport!.reportedUserId));
+        setReported(await fetchDetailedUser(selectedReport!.reportedUserId));
       }
 
       if (selectedReport!.reportedProjectId) {

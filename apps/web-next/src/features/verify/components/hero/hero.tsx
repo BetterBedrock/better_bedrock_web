@@ -1,6 +1,6 @@
 import { verifyDownload } from "@/lib/downloads/verify-download";
 import { cookies } from "next/headers";
-import { DownloadProvider } from "@/providers/download";
+import { DownloadProvider } from "@/features/verify/providers/download";
 import { HeroHeader } from "./hero-header";
 import { HeroCreatorBanner } from "./hero-creator-banner";
 import { HeroDownloadProgress } from "./hero-download-progress";
@@ -28,8 +28,8 @@ export const Hero = async ({ hash }: HeroProps) => {
   return (
     <div className={styles.hero}>
       <HeroHeader project={downloadItem} />
+      <HeroCreatorBanner creatorName={"TODO"} />
       <DownloadProvider downloadItem={downloadItem}>
-        <HeroCreatorBanner creatorName={"TODO"} />
         <HeroDownloadProgress />
         <HeroRedownloadMessage />
       </DownloadProvider>
