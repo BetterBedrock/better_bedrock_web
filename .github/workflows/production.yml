@@ -40,7 +40,7 @@ jobs:
             echo "📦 Pulling latest code..."
             git pull origin main
             echo "📋 Installing dependencies..."
-            npx yarn install
+            npx yarn install --frozen-lockfile
             echo "🗄️ Running database operations..."
             cd apps/api
             npx yarn prisma generate

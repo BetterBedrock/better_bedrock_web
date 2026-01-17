@@ -23,7 +23,8 @@ export class ProjectOwnerGuard implements CanActivate {
         const { user, params } = req;
         const projectId = params?.id;
 
-        if (!projectId) throw new BadRequestException("Project ID is required");
+        if (!projectId || typeof projectId !== "string")
+            throw new BadRequestException("Project ID is required");
 
         const project = await this.prismaService.project.findUnique({
             where: { id_draft: { id: projectId, draft: true } },
