@@ -1,7 +1,10 @@
 "use client";
 
 import { useState } from "react";
+
 import { Label } from "../label";
+import FavIcon from "@/public/images/favicon.png";
+
 import styles from "./navbar.module.scss";
 import clsx from "clsx";
 import { Banner } from "@/components/banner";
@@ -11,41 +14,46 @@ import { Link } from "@/components/link";
 import { useAuth } from "@/providers/auth";
 import { Routes } from "@/utils/routes";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 
 export const Navbar = () => {
   const [expandedNavbar, setExpandedNavbar] = useState(false);
+  const location = usePathname();
+  const { user } = useAuth();
 
   const handleExpandNavbar = (value?: boolean) => {
     setExpandedNavbar((prev) => (value !== undefined ? value : !prev));
   };
 
-  const pcLayout = (
-    <div className={clsx(styles.buttonsWrapper, styles.links)}>
-      <NavbarNavItems
-        onNavClick={() => handleExpandNavbar(false)}
-        isMobile={false}
-      />
-    </div>
-  );
+  // Determine which nav items to show
+  const isPanelSection =
+    location === "/panel" || location.startsWith("/panel/");
+  const navItems =
+    isPanelSection && user?.admin
+      ? [
+          { name: "Dashboard", path: "/panel/dashboard" },
+          { name: "Analytics", path: "/panel/analytics" },
+          { name: "Vouchers", path: "/panel/vouchers" },
+          { name: "Projects", path: "/panel/projects" },
+          { name: "Reports", path: "/panel/reports" },
+        ]
+      : [
+          { name: "Home", path: "/" },
+          { name: "Downloads", path: "/downloads/main" },
+          { name: "Information", path: "/information/:general" },
+          user
+            ? { name: "Profile", path: `/profile/${user.name}/:projects` }
+            : { name: "Login", path: "/login" },
+        ];
 
-  const mobileLayout = (
-    <div className={clsx(styles.buttonsWrapper, styles.expandedMenuLayout)}>
-      <NavbarNavItems
-        onNavClick={() => handleExpandNavbar(false)}
-        isMobile={true}
-      />
-    </div>
-  );
   return (
     <>
-      {process.env.NEXT_PUBLIC_FRONTEND_URL === "dev.betterbedrock.com" && (
+      {process.env.VITE_FRONTEND_URL === "dev.betterbedrock.com" && (
         <Banner
           type="info"
           message="This is a developer version of Better Bedrock Website"
         />
       )}
-      <header className={styles.container}>
+      <header className={styles.wrapper}>
         <Label
           className={clsx(styles.label, expandedNavbar && styles.expanded)}
         >
@@ -66,7 +74,7 @@ export const Navbar = () => {
               className={styles.menuButton}
               isClicked={expandedNavbar}
             >
-              <Image src="/svgs/menu.svg" height={24} width={24} alt="menu" />
+              <div className={clsx("material-icons", styles.menu)}>menu</div>
             </SimpleButton>
           </div>
 
@@ -117,7 +125,6 @@ export const Navbar = () => {
             })}
           </div>
         </Label>
-        {expandedNavbar && <div className={styles.expandedMenu}>{mobileLayout}</div>}
       </header>
     </>
   );

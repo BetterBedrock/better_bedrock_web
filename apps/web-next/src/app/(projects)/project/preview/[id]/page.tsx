@@ -22,7 +22,7 @@ export const generateMetadata = async ({ params }: ProjectPageProps) => {
 
   const title = `${data.title} - ${capitalizeFirstLetter(singularize(data.type))}`;
   const description =
-    extractFirstLinesFromTiptap(project.description) ??
+    extractFirstLinesFromTiptap(data.description) ??
     "The best texture packs, scripts, maps, skins, and more for Minecraft PE on Better Bedrock.";
 
   return {
@@ -31,7 +31,7 @@ export const generateMetadata = async ({ params }: ProjectPageProps) => {
     openGraph: {
       title,
       description,
-      images: `${baseUrl ?? ""}/${project.thumbnail}`,
+      images: `${baseUrl ?? ""}/${data.thumbnail}`,
     },
   };
 };
