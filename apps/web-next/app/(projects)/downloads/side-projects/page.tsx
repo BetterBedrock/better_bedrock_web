@@ -1,1 +1,1 @@
-export { SideProjectsPage as default } from "@/pages/downloads/side-projects";
+export { SideProjectsPage as default } from "@/pages/downloads";

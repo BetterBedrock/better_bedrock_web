@@ -1,6 +1,7 @@
 import { HTMLAttributes, ReactNode } from "react";
-import { styles } from ".";
 import clsx from "clsx";
+
+import styles from "./section.module.scss";
 
 interface SectionProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;

@@ -3,7 +3,7 @@ import { ButtonType, Button } from "@/shared/ui/button";
 import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 
-import { styles } from ".";
+import styles from "./collapsible.module.scss";
 
 interface CollapsibleButtonProps {
   indexTextRef?: string | number;

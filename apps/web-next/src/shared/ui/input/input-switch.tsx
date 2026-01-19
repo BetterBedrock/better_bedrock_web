@@ -1,6 +1,6 @@
 "use client"
 
-import { styles } from ".";
+import styles from "./input.module.scss";
 import { ChangeEvent, InputHTMLAttributes, useState } from "react";
 import clsx from "clsx";
 import useSound from "use-sound";

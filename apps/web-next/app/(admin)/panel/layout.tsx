@@ -1,4 +1,4 @@
-import { fetchLoggedUser } from "@/lib/auth";
+import { fetchLoggedUser } from "@/entities/auth";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 

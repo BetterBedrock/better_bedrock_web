@@ -1,5 +1,7 @@
+import { LayoutFooter } from "@/shared/ui/layout/layout-footer";
+import { LayoutNavbar } from "@/shared/ui/layout/layout-navbar";
+import { LayoutNotification } from "@/shared/ui/layout/layout-notification";
 import { ReactNode } from "react";
-import { LayoutNavbar, LayoutFooter, LayoutNotification } from ".";
 
 interface LayoutProps {
   children: ReactNode;

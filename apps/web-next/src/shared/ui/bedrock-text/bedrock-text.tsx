@@ -1,12 +1,20 @@
 import clsx from "clsx";
-import { styles } from ".";
 import { CSSProperties } from "react";
+
+import styles from "./bedrock-text.module.scss";
 
 export interface BedrockTextProps {
   text: string;
   font?: string;
   color?: string;
-  textAlign?: "left" | "right" | "center" | "justify" | "start" | "end" | undefined;
+  textAlign?:
+    | "left"
+    | "right"
+    | "center"
+    | "justify"
+    | "start"
+    | "end"
+    | undefined;
   margin?: string;
   selectable?: boolean;
   shadow?: boolean;

@@ -1,6 +1,7 @@
 import { GridDownloadCard, ProjectMode } from "@/shared/ui/grid-download-card";
+import { SimpleProjectDto } from "@/shared/lib/openapi";
+
 import styles from "./grid-download-card-list.module.scss";
-import { SimpleProjectDto } from "@/shared/api/openapi";
 
 interface GridDownloadCardListProps {
   projects: SimpleProjectDto[];

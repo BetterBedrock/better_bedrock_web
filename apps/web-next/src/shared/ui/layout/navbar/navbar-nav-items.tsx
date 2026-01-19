@@ -3,9 +3,9 @@ import { SimpleButton } from "@/shared/ui/simple-button";
 import { Link } from "@/shared/ui/link";
 import { NavbarDivider } from "./navbar-divider";
 import styles from "./navbar.module.scss";
-import { useAuth } from "@/shared/model/auth";
+import { useAuth } from "../../../../../app/providers/auth";
 import { usePathname } from "next/navigation";
-import { UserDto } from "@/shared/api/openapi";
+import { UserDto } from "@/shared/lib/openapi";
 
 interface NavItem {
   name: string;

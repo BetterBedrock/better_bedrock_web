@@ -1,1 +1,4 @@
-export { EditPage as default, metadata } from "@/pages/project/edit/[id]";
+export {
+  EditPage as default,
+  editPageMetadata as metadata,
+} from "@/pages/project";

@@ -1,0 +1,1 @@
+export { fetchLoggedUser } from "./api/fetch-logged-user";

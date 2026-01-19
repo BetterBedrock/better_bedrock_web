@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { ReactNode } from "react";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 
-import { styles } from ".";
+import styles from "./banner.module.scss";
 
 type BannerType = "info" | "neutral" | "important" | "error";
 

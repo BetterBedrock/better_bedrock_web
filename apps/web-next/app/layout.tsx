@@ -1,7 +1,7 @@
 import { Layout } from "@/shared/ui/layout";
-import { AuthProvider } from "@/shared/model/auth";
-import { CheckoutProvider } from "@/shared/model/checkout";
-import { NotificationProvider } from "@/shared/model/notification";
+import { AuthProvider } from "./providers/auth";
+import { CheckoutProvider } from "./providers/checkout";
+import { NotificationProvider } from "./providers/notification";
 import "@/public/styles/global.scss";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 

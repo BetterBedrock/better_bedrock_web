@@ -3,9 +3,9 @@ import {
     ManageProfileDto,
     UpdateProfileDto,
     UserApi,
-} from "@/shared/api/openapi";
-import { axiosCustomInstance } from "@/shared/api/client";
-import { baseUrl } from "@/shared/lib/url";
+} from "@/shared/lib/openapi";
+import { axiosCustomInstance } from "@/shared/lib/utils";
+import { baseUrl } from "@/shared/lib/utils";
 
 const config = new Configuration({
     basePath: baseUrl,

@@ -1,3 +1,3 @@
-import { Navbar } from "@/shared/ui/layout/navbar";
+import { Navbar } from "./navbar/navbar";
 
 export const LayoutNavbar = () => <Navbar />;

@@ -1,2 +1,1 @@
-export * from "./section";
-export { default as styles } from "./section.module.scss";
+export { Section } from "./section";

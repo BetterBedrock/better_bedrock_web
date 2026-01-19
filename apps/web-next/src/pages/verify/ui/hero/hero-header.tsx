@@ -1,6 +1,6 @@
 "use server";
 
-import { ProjectDto } from "@/shared/api/openapi";
+import { ProjectDto } from "@/shared/lib/openapi";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 
 interface HeroHeaderProps {

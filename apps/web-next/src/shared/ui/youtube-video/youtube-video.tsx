@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import { styles } from ".";
+import styles from "./youtube-video.module.scss";
 import clsx from "clsx";
 
 interface YoutubeVideoProps {

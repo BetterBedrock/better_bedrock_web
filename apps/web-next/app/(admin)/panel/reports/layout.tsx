@@ -1,7 +1,7 @@
-import { ReportsManagerProvider } from "@/pages/panel/reports/model/reports-manager";
+import { ReportsManagerProvider } from "@/pages/panel/model/reports-manager";
 import { ReactNode } from "react";
 
-import { styles } from "@/pages/panel/reports";
+import { reportsPageStyles } from "@/pages/panel";
 import { Section } from "@/shared/ui/section";
 
 interface ReportsLayoutProps {
@@ -12,8 +12,8 @@ export default function ReportsLayout({ children }: ReportsLayoutProps) {
   return (
     <ReportsManagerProvider>
       <Section
-        className={styles.background}
-        extraClassName={styles.padding}
+        className={reportsPageStyles.background}
+        extraClassName={reportsPageStyles.padding}
         fixed
       >
         {children}

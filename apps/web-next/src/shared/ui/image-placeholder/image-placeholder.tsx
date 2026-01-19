@@ -5,7 +5,7 @@ import { Card } from "@/shared/ui/card";
 import { CircularProgressIndicator } from "@/shared/ui/circular-progress-indicator";
 import { ChangeEvent, useRef, useState } from "react";
 
-import { styles } from ".";
+import styles from "./image-placeholder.module.scss";
 
 interface ImagePlaceholderProps {
   onUpload?: (file: File) => Promise<void>;

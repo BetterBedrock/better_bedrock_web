@@ -1,5 +1,5 @@
-import { AuthApi } from "@/shared/api/openapi";
-import { axiosCustomInstance, baseApiConfig } from "@/shared/api/client";
+import { AuthApi } from "@/shared/lib/openapi";
+import { axiosCustomInstance, baseApiConfig } from "@/shared/lib/utils";
 
 const authApi = new AuthApi(baseApiConfig, undefined, axiosCustomInstance);
 
@@ -10,7 +10,7 @@ export const authenticateRequest = (secret: string) =>
         },
     });
 
-export const googleAuthorize = (token: string) =>
+export const googleAuthorizeRequest = (token: string) =>
     authApi.authControllerGoogleAuthorize({
         token: token,
     });

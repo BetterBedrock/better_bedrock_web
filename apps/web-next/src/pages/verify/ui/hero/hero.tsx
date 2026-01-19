@@ -1,4 +1,4 @@
-import { verifyDownload } from "@/lib/downloads/verify-download";
+import { verifyDownload } from "@/entities/download";
 import { cookies } from "next/headers";
 import { DownloadProvider } from "@/pages/verify/model/download";
 import { HeroHeader } from "./hero-header";
@@ -8,8 +8,7 @@ import { HeroRedownloadMessage } from "./hero-redownload-message";
 
 import styles from "./hero.module.scss";
 import { redirect } from "next/navigation";
-import { Routes } from "@/shared/model/routes";
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Routes } from "@/shared/lib/utils";
 
 interface HeroProps {
   hash?: string;

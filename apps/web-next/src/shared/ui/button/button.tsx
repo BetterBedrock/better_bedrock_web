@@ -1,9 +1,10 @@
 "use client"
 
-import { styles } from ".";
 import { HTMLAttributes, ReactNode, useState, forwardRef, MouseEvent } from "react";
 import clsx from "clsx";
 import useSound from "use-sound";
+
+import styles from "./button.module.scss";
 
 export type ButtonType = "green" | "white" | "dark" | "gold" | "red";
 

@@ -1,7 +1,7 @@
 import { Section } from "@/shared/ui/section";
 import { ReactNode } from "react";
 
-import { styles } from "@/pages/checkout/success";
+import { successPageStyles } from "@/pages/checkout";
 
 interface SuccessLayoutProps {
   children: ReactNode;
@@ -14,8 +14,8 @@ export const metadata = {
 export default async function SuccessLayout({ children }: SuccessLayoutProps) {
   return (
     <Section
-      className={styles.background}
-      extraClassName={styles.padding}
+      className={successPageStyles.background}
+      extraClassName={successPageStyles.padding}
       fixed
       center
     >

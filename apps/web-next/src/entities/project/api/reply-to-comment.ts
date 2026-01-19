@@ -1,6 +1,6 @@
 "use server";
 
-import { fetchSecret } from "@/lib/user";
+import { fetchSecret } from "@/shared/lib/auth";
 import { replyToCommentRequest } from "@/entities/project/api/project-service";
 
 export const replyToComment = async (

@@ -1,1 +1,0 @@
-export { ProjectRateProject } from "./ui/project-rate-project";

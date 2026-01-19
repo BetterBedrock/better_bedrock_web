@@ -1,5 +1,5 @@
-import { CheckoutApi } from "@/shared/api/openapi";
-import { axiosCustomInstance, baseApiConfig } from "@/shared/api/client";
+import { CheckoutApi } from "@/shared/lib/openapi";
+import { axiosCustomInstance, baseApiConfig } from "@/shared/lib/utils";
 
 const checkoutApi = new CheckoutApi(
     baseApiConfig,

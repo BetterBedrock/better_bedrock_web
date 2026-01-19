@@ -1,4 +1,4 @@
-import { YoutubeVideo } from "@/shared/ui/youtube-video/youtube-video";
+import { YoutubeVideo } from "@/shared/ui/youtube-video";
 import styles from "../changelog.module.scss";
 
 export const TrailerVideo = () => (

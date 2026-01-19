@@ -5,7 +5,7 @@ import { NavbarDivider } from "./navbar-divider";
 import FavIcon from "@/public/images/favicon.png";
 import styles from "./navbar.module.scss";
 import clsx from "clsx";
-import { Routes } from "@/shared/model/routes";
+import { Routes } from "@/shared/lib/utils";
 
 interface NavbarLogoProps {
   expandedNavbar: boolean;

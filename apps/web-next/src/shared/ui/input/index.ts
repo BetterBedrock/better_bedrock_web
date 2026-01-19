@@ -1,2 +1,2 @@
-export * from "./input";
-export {default as styles} from "./input.module.scss";
+export { Input } from "./input";
+export { InputSwitch } from "./input-switch";

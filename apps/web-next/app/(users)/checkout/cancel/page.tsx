@@ -1,1 +1,1 @@
-export { CancelPage as default } from "@/pages/checkout/cancel";
+export { CancelPage as default } from "@/pages/checkout";

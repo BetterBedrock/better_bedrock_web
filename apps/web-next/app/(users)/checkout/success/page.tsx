@@ -1,1 +1,1 @@
-export { SuccessPage as default } from "@/pages/checkout/success";
+export { SuccessPage as default } from "@/pages/checkout";

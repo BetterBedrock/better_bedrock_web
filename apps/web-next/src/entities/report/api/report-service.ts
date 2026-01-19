@@ -1,7 +1,7 @@
 "use server";
 
-import { ReportApi, ReportProjectBodyDto } from "@/shared/api/openapi";
-import { axiosCustomInstance, baseApiConfig } from "@/shared/api/client";
+import { ReportApi, ReportProjectBodyDto } from "@/shared/lib/openapi";
+import { axiosCustomInstance, baseApiConfig } from "@/shared/lib/utils";
 
 const reportApi = new ReportApi(baseApiConfig, undefined, axiosCustomInstance);
 

@@ -1,7 +1,7 @@
 import { Section } from "@/shared/ui/section";
 import { ReactNode } from "react";
 
-import { styles } from "@/pages/panel/dashboard";
+import { dashboardPageStyles } from "@/pages/panel";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -10,8 +10,8 @@ interface DashboardLayoutProps {
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <Section
-      className={styles.background}
-      extraClassName={styles.padding}
+      className={dashboardPageStyles.background}
+      extraClassName={dashboardPageStyles.padding}
       fixed
       center
     >

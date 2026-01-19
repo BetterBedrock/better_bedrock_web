@@ -1,14 +1,20 @@
 "use client";
 
-import { BedrockText, styles } from "@/shared/ui/bedrock-text";
-import { ButtonGroup } from "@/shared/ui/button-group/button-group";
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { ButtonGroup } from "@/shared/ui/button-group";
 
 import { useState, useEffect } from "react";
-import { Collapsible } from "@/shared/ui/collapsible";
-import { FData, StatisticsCardProps, transformToFData } from "@/widgets/statistics-list/ui/statistics-card/use-statistics-card";
+import {
+  FData,
+  StatisticsCardProps,
+  transformToFData,
+} from "@/widgets/statistics-list/ui/statistics-card/use-statistics-card";
+import { BarChart } from "../bar-chart/bar-chart";
+import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
-import { BarChart } from "@/widgets/statistics-list/ui/bar-chart/bar-chart";
+import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Collapsible } from "@/shared/ui/collapsible";
+
+import styles from "./statistics-card.module.scss";
 
 export const DATA_RANGE_OPTIONS = [
   { label: "7d", text: "Last 7 Days" },

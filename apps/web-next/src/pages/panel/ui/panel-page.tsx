@@ -1,4 +1,4 @@
-import { Routes } from "@/shared/model/routes";
+import { Routes } from "@/shared/lib/utils";
 import { redirect } from "next/navigation";
 
 export const PanelPage = () => {

@@ -11,8 +11,8 @@ import { Banner } from "@/shared/ui/banner";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { SimpleButton } from "@/shared/ui/simple-button";
 import { Link } from "@/shared/ui/link";
-import { useAuth } from "@/shared/model/auth";
-import { Routes } from "@/shared/model/routes";
+import { useAuth } from "../../../../../app/providers/auth";
+import { Routes } from "@/shared/lib/utils";
 import { usePathname } from "next/navigation";
 
 export const Navbar = () => {

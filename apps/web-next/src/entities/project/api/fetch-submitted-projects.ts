@@ -1,11 +1,11 @@
 "use server";
 
-import { fetchSecret } from "@/lib/user";
-import { fetchSubmittedProjectsRequest } from "@/entities/project/api/project-service";
+import { fetchSecret } from "@/shared/lib/auth";
+import { fetchSubmittedProjectssRequest } from "@/entities/project/api/project-service";
 
 export const fetchSubmittedProjects = async () => {
     const secret = await fetchSecret();
 
-    const { data } = await fetchSubmittedProjectsRequest(secret);
+    const { data } = await fetchSubmittedProjectssRequest(secret);
     return data;
 };

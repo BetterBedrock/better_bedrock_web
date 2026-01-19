@@ -1,1 +1,0 @@
-export { ProjectThumbnail } from "./ui/project-thumbnail";

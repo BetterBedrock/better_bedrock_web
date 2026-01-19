@@ -1,9 +1,18 @@
 import { searchProjects } from "@/entities/project/api/search-projects";
-import { getCurrentPaginationPage } from "@/lib/utils/get-current-pagination-page";
 
 interface FetchInitialProjectsProps {
     params: { page?: string[] | undefined };
 }
+
+export const getCurrentPaginationPage = (page?: string[] | undefined) => {
+    let currentPage = 1;
+
+    if (page && page.length > 1 && page[0] === "page") {
+        currentPage = parseInt(page[1], 10) || 1;
+    }
+
+    return currentPage;
+};
 
 export const fetchInitialProjects = async ({
     params,

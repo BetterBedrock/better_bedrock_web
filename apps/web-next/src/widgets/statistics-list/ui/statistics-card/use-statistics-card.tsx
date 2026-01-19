@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import { HTMLAttributes } from "react";
-import { AnalyticsDto } from "@/shared/api/openapi";
+import { AnalyticsDto } from "@/shared/lib/openapi";
 
 dayjs.extend(utc);
 dayjs.extend(advancedFormat);

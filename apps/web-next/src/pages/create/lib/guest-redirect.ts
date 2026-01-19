@@ -1,5 +1,5 @@
-import { fetchLoggedUser } from "@/lib/auth";
-import { Routes } from "@/shared/model/routes";
+import { fetchLoggedUser } from "@/entities/auth";
+import { Routes } from "@/shared/lib/utils";
 import { redirect } from "next/navigation";
 
 export const guestRedirect = async () => {

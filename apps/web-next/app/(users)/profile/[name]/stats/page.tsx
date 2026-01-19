@@ -1,1 +1,1 @@
-export { StatsPage as default } from "@/pages/profile/[name]/stats";
+export { StatsPage as default } from "@/pages/profile";

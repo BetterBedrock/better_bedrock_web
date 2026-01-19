@@ -1,1 +1,1 @@
-export { BetterBedrockPage as default } from "@/pages/downloads/better-bedrock";
+export { BetterBedrockPage as default } from "@/pages/downloads";

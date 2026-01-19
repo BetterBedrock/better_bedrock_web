@@ -1,4 +1,4 @@
-import { ProjectType, SearchOrder } from "@/shared/api/openapi";
+import { ProjectType, SearchOrder } from "@/shared/lib/openapi";
 import { searchProjectsRequest } from "@/entities/project/api/project-service";
 
 export const searchProjects = async (

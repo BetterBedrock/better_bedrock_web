@@ -1,1 +1,1 @@
-export { InformationPage as default } from "@/pages/information/[slug]";
+export { InformationPage as default } from "@/pages/information";

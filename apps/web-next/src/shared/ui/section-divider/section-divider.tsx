@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useLayoutEffect, useEffect } from "react";
-import { styles } from ".";
+import styles from "./section-divider.module.scss";
 import clsx from "clsx";
 import { useMediaQuery } from "react-responsive";
 import Image, { StaticImageData } from "next/image";

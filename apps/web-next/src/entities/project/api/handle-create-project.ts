@@ -1,7 +1,7 @@
 "use server";
 
 import { createProject } from "@/entities/project/api/create-project";
-import { Routes } from "@/shared/model/routes";
+import { Routes } from "@/shared/lib/utils";
 import { redirect } from "next/navigation";
 
 export const handleCreateProject = async (title: string) => {

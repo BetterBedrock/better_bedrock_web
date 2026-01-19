@@ -1,7 +1,7 @@
 import { Section } from "@/shared/ui/section";
 import { ReactNode } from "react";
 
-import { styles } from "@/pages/panel/vouchers";
+import { vouchersPageStyles } from "@/pages/panel";
 
 interface VouchersLayoutProps {
   children: ReactNode;
@@ -10,8 +10,8 @@ interface VouchersLayoutProps {
 export default function VouchersLayout({ children }: VouchersLayoutProps) {
   return (
     <Section
-      className={styles.background}
-      extraClassName={styles.padding}
+      className={vouchersPageStyles.background}
+      extraClassName={vouchersPageStyles.padding}
       fixed
     >
       {children}

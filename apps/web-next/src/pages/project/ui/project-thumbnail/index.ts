@@ -1,0 +1,1 @@
+export { ProjectThumbnail } from "./project-thumbnail";
