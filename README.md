@@ -1,7 +1,7 @@
-[![License: NCSL](https://img.shields.io/badge/License-NonCommercial-red.svg)](LICENSE)
-[![Open Source? YES](https://img.shields.io/badge/Open%20Source-Yes-brightgreen.svg)](LICENSE)
-[![Free to Use](https://img.shields.io/badge/Free%20to%20Use-Yes-brightgreen.svg)](LICENSE)
-[![Commercial Use](https://img.shields.io/badge/Commercial%20Use-No-red.svg)](LICENSE)
+[![Feature-Sliced Design][shields-fsd-feature]](https://feature-sliced.github.io/documentation/)
+
+[shields-fsd-feature]: https://img.shields.io/badge/Feature--Sliced-Design?style=for-the-badge&labelColor=262224&color=F2F2F2&logoWidth=10&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAaCAYAAAC3g3x9AAAACXBIWXMAAALFAAACxQGJ1n/vAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABISURBVHgB7dKxCQAgDETR00EcwYEc0IEcwUUUBbsggikCuVekDHwSQFlYo/Y88KmktndFWMdk2cl5wSsbxGSZw8dm8pX9ZHUTdIYgGbPdU2QAAAAASUVORK5CYII=
+[![License: NCSL](https://img.shields.io/badge/License-NonCommercial-red.svg)](LICENSE) [![Open Source? YES](https://img.shields.io/badge/Open%20Source-Yes-brightgreen.svg)](LICENSE) [![Free to Use](https://img.shields.io/badge/Free%20to%20Use-Yes-brightgreen.svg)](LICENSE) [![Commercial Use](https://img.shields.io/badge/Commercial%20Use-No-red.svg)](LICENSE)
 
 This is an open-source repository for **Better Bedrock** Project. It contains frontend and the backend of the website used by hundreds of thousands of people. This repository follows a Turborepo monorepo structure with separate frontend and backend packages, built with modern frameworks and tools. It provides a clean developer workflow, integrated PostgreSQL database, and easy environment configuration. 🚀
 
