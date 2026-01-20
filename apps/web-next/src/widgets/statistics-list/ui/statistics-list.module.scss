@@ -1,0 +1,13 @@
+@use "@/shared/ui" as g;
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  justify-content: start;
+  align-items: start;
+  gap: g.$padding-sm;
+
+  @media (max-width: g.$breakpoint-laptop) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}

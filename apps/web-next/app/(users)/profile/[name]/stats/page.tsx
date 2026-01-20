@@ -1,0 +1,1 @@
+export { StatsPage as default } from "@/pages/profile/[name]/stats";

@@ -1,0 +1,6 @@
+@use "@/shared/ui" as g;
+
+.links {
+  display: inline-flex;
+  gap: g.$padding-xsm;
+}

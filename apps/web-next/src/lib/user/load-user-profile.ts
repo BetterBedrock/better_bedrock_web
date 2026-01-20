@@ -1,5 +1,5 @@
 import { fetchUserByName } from "@/lib/user/fetch-user-by-name";
-import { Routes } from "@/utils/routes";
+import { Routes } from "@/shared/model/routes";
 import { notFound, redirect } from "next/navigation";
 
 export const loadUserProfile = async (name?: string) => {
@@ -17,4 +17,4 @@ export const loadUserProfile = async (name?: string) => {
     } catch (_) {
         notFound();
     }
-}
+};

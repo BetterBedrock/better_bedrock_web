@@ -1,1 +1,1 @@
-export * from "./fetch-logged-user";
+export * from "../../shared/api/fetch-logged-user";

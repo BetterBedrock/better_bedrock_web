@@ -1,5 +1,5 @@
 import { fetchSecret } from "@/lib/user";
-import { verifyDownloadRequest } from "@/services/downloads-service";
+import { verifyDownloadRequest } from "@/entities/downloads/api/downloads-service";
 
 export const verifyDownload = async (hash?: string, code?: string) => {
     const secret = await fetchSecret();
@@ -10,4 +10,4 @@ export const verifyDownload = async (hash?: string, code?: string) => {
     } catch (_) {
         return null;
     }
-}
+};

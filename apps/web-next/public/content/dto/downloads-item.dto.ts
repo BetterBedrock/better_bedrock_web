@@ -1,4 +1,4 @@
-import { ButtonType } from "@/components/button";
+import { ButtonType } from "@/shared/ui/button";
 
 export enum DownloadsItemType {
     green = "green",
@@ -15,4 +15,3 @@ export interface DownloadsItemDto {
     description: string;
     type: DownloadsItemTypeKey;
 }
-

@@ -1,0 +1,1 @@
+export { ProjectDetailsEditor } from "./ui/project-details-editor";

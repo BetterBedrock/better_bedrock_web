@@ -1,7 +1,0 @@
-@use "@/utils" as g;
-
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: g.$padding-sm;
-}

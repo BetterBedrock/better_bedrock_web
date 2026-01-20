@@ -1,5 +1,5 @@
-@forward "@/utils";
-@use "@/utils" as *;
+@forward "@/shared/ui";
+@use "@/shared/ui" as *;
 
 * {
   scrollbar-width: thin; /* Firefox */

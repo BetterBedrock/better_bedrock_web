@@ -1,8 +1,0 @@
-@use "@/utils" as g;
-
-.projects {
-  width: 100%;
-  display: grid;
-  gap: calc(g.$padding-xsm * 2.5);
-  grid-template-columns: repeat(2, 1fr);
-}

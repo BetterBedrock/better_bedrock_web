@@ -1,0 +1,32 @@
+@use "@/shared/ui" as g;
+
+.background {
+  background-position: center center;
+  padding-block: g.$sectionsDividerPadding;
+}
+
+.inner {
+  overflow: unset;
+
+  @media (max-width: g.$breakpoint-laptop) {
+    gap: 3rem !important;
+  }
+}
+
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    flex-direction: column !important;
+  }
+}
+
+.row {
+  flex-direction: row;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
