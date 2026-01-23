@@ -4,7 +4,18 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
   images: {
+    dangerouslyAllowLocalIP: true,
     domains: ["i.ytimg.com"],
+
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "8084",
+        pathname: "/**",
+      },
+    ],
+
   },
 };
 
