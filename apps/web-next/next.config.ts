@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   images: {
     dangerouslyAllowLocalIP: true,
-    domains: ["i.ytimg.com"],
+    domains: ["i.ytimg.com", "api.betterbedrock.com"],
 
     remotePatterns: [
       {
