@@ -8,6 +8,7 @@ import { ButtonType, Button } from "@/shared/ui/button";
 import { DownloadsItemTypeKey } from "@/public/content/dto/downloads-item.dto";
 
 import { styles } from ".";
+import Image from "next/image";
 
 interface DownloadCardProp {
   title?: string;
@@ -50,7 +51,7 @@ const DownloadCard = ({
       onClick={onClick}
     >
       <div className={styles.content}>
-        <img alt="" src={iconPath.src} />
+        <Image height={72} width={72} unoptimized alt="Download Content Image" src={iconPath.src} />
         <div className={styles.description}>
           <div className={styles.main}>
             <BedrockText
