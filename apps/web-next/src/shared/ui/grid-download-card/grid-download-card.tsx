@@ -18,6 +18,7 @@ import { Rating } from "@/shared/ui/rating";
 import { calculateLastChangedHours } from "@/shared/ui/grid-download-card/calculate-last-changed-hours";
 
 import styles from "./grid-download-card.module.scss";
+import Image from "next/image";
 
 export type ProjectMode = "edit" | "view" | "review";
 
@@ -53,6 +54,8 @@ export const GridDownloadCard = ({
     return Routes.PROJECT_PREVIEW + "/" + project.id;
   };
 
+  console.log({baseUrl})
+
   return (
     <div className={clsx(styles.container, className)}>
       <div className={styles.author}>
@@ -75,7 +78,9 @@ export const GridDownloadCard = ({
               />
             </div>
           ) : (
-            <img
+            <Image
+              width={960}
+              height={540}
               src={baseUrl + "/" + project.thumbnail}
               alt={`Thumbnail for ${project.title}`}
               className={styles.thumbnail}
