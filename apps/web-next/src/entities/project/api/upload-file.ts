@@ -1,6 +1,6 @@
 "use server";
 
-import { fetchSecret } from "@/lib/user";
+import { fetchSecret } from "@/shared/lib/auth";
 import { uploadFileRequest } from "@/entities/project/api/project-service";
 
 export const uploadFile = async (id: string, file: File | undefined) => {

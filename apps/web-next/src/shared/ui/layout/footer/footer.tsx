@@ -1,9 +1,9 @@
 import { Label } from "../../label";
 import { BedrockText } from "../../bedrock-text/bedrock-text";
 import { Link } from "@/shared/ui/link";
-import { Routes } from "@/shared/model/routes";
+import { Routes } from "@/shared/lib/utils";
 
-import { styles } from ".";
+import styles from "./footer.module.scss";
 
 export const Footer = () => (
   <footer>

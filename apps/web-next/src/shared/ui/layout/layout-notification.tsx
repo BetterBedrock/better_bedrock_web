@@ -1,9 +1,9 @@
 "use client";
 
-import { Notification } from "@/shared/ui/layout/notification";
-import { useNotification } from "@/shared/model/notification";
+import { Notification } from "./notification/notification";
+import { useNotification } from "@/app/providers/notification";
 
-import { styles } from ".";
+import styles from "./layout.module.scss";
 
 export const LayoutNotification = () => {
   const { notificationQueue } = useNotification();

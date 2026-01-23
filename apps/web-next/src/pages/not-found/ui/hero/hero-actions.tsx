@@ -1,8 +1,8 @@
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
-import { ButtonGroup } from "@/shared/ui/button-group/button-group";
+import { ButtonGroup } from "@/shared/ui/button-group";
 import { Link } from "@/shared/ui/link";
-import { Routes } from "@/shared/model/routes";
+import { Routes } from "@/shared/lib/utils";
 
 import styles from "./hero.module.scss";
 

@@ -1,7 +1,7 @@
 import { Section } from "@/shared/ui/section";
 import { ReactNode } from "react";
 
-import { styles } from "@/pages/panel/analytics";
+import { analyticsPageStyles } from "@/pages/panel";
 
 interface AnalyticsLayoutProps {
   children: ReactNode;
@@ -10,8 +10,8 @@ interface AnalyticsLayoutProps {
 export default function AnalyticsLayout({ children }: AnalyticsLayoutProps) {
   return (
     <Section
-      className={styles.background}
-      extraClassName={styles.padding}
+      className={analyticsPageStyles.background}
+      extraClassName={analyticsPageStyles.padding}
       fixed
       center
     >

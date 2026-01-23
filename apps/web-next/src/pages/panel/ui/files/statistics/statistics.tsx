@@ -1,0 +1,13 @@
+import { fetchAllAnalytics } from "@/entities/analytic";
+import { StatisticsList } from "./statistics-list";
+import styles from "./statistics.module.scss";
+
+export const Statistics = async () => {
+  const analytics = await fetchAllAnalytics();
+
+  return (
+    <div className={styles.data}>
+      <StatisticsList analytics={analytics} />
+    </div>
+  );
+};

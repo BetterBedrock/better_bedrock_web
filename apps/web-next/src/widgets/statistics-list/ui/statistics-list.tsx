@@ -1,6 +1,6 @@
 import { StatisticsCard } from "./statistics-card/statistics-card";
 import styles from "./statistics-list.module.scss";
-import { AnalyticsDto } from "@/shared/api/openapi";
+import { AnalyticsDto } from "@/shared/lib/openapi";
 
 interface StatisticsListProps {
   data: {

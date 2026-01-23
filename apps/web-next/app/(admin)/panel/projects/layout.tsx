@@ -1,7 +1,7 @@
 import { Section } from "@/shared/ui/section";
 import { ReactNode } from "react";
 
-import { styles } from "@/pages/panel/projects";
+import { projectsPageStyles } from "@/pages/panel";
 
 interface ProjectsLayoutProps {
   children: ReactNode;
@@ -10,8 +10,8 @@ interface ProjectsLayoutProps {
 export default function ProjectsLayout({ children }: ProjectsLayoutProps) {
   return (
     <Section
-      className={styles.background}
-      extraClassName={styles.padding}
+      className={projectsPageStyles.background}
+      extraClassName={projectsPageStyles.padding}
       fixed
     >
       {children}

@@ -1,6 +1,6 @@
 "use server";
 
-import { fetchSecret } from "@/lib/user";
+import { fetchSecret } from "@/shared/lib/auth";
 import { postCommentRequest } from "@/entities/project/api/project-service";
 
 export const postComment = async (id: string, content: string) => {

@@ -5,18 +5,19 @@ import CardLayout from "@/public/ui/card/card_button.png";
 import BBLogo from "@/public/images/logo.png";
 
 import { ReactNode } from "react";
-import { SimpleProjectDto } from "@/shared/api/openapi";
+import { SimpleProjectDto } from "@/shared/lib/openapi";
 import { PROJECT_TYPES } from "@/public/content/better-bedrock";
-import { Routes } from "@/shared/model/routes";
-import { baseUrl } from "@/shared/lib/url";
+import { Routes } from "@/shared/lib/utils";
+import { baseUrl } from "@/shared/lib/utils";
 
-import { styles } from ".";
 import { Avatar } from "@/shared/ui/avatar";
 import { Link } from "@/shared/ui/link";
 import { Tag } from "@/shared/ui/tag";
 import { Tooltip } from "@/shared/ui/tooltip";
 import { Rating } from "@/shared/ui/rating";
 import { calculateLastChangedHours } from "@/shared/ui/grid-download-card/calculate-last-changed-hours";
+
+import styles from "./grid-download-card.module.scss";
 
 export type ProjectMode = "edit" | "view" | "review";
 

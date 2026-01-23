@@ -1,2 +1,1 @@
-export * from "./avatar";
-export { default as styles } from "./avatar.module.scss";
+export { Avatar } from "./avatar";

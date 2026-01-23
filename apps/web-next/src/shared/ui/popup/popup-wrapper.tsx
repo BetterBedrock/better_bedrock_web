@@ -1,7 +1,7 @@
 "use client"
 
 import { ReactNode, useState } from "react";
-import { styles } from ".";
+import styles from "./popup.module.scss";
 import clsx from "clsx";
 
 export interface BasePopupWrapperProps {

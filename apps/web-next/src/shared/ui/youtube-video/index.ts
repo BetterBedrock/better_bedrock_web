@@ -1,2 +1,1 @@
-export * from "./youtube-video";
-export { default as styles } from "./youtube-video.module.scss";
+export { YoutubeVideo } from "./youtube-video";

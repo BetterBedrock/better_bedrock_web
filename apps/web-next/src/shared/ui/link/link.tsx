@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { ReactNode } from "react";
 import { default as NextRouterLink } from "next/link";
-import { styles } from ".";
+import styles from "./link.module.scss";
 
 interface LinkProps {
   link?: string;

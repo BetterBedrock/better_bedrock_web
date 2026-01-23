@@ -1,15 +1,15 @@
 import { ReactNode } from "react";
 import { Section } from "@/shared/ui/section";
 
-import { Tabs } from "@/pages/profile/[name]/ui/tabs/tabs";
-import { User } from "@/pages/profile/[name]/ui/user/user";
+import { Tabs } from "@/pages/profile/ui/tabs/tabs";
+import { User } from "@/pages/profile/ui/user/user";
 
 import { notFound } from "next/navigation";
-import { fetchUserByName } from "@/lib/user";
 import { Card, CardBody, CardDivider } from "@/shared/ui/card";
-import { fetchLoggedUser } from "@/lib/auth";
 
-import { styles } from "@/pages/profile/[name]/index";
+import { styles } from "@/pages/profile/index";
+import { fetchLoggedUser } from "@/entities/auth";
+import { fetchUserByName } from "@/entities/user";
 
 interface ProfileProps {
   children: ReactNode;

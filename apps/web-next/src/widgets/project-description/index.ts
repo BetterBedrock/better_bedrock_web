@@ -1,1 +1,0 @@
-export { ProjectDescription } from "./ui/project-description";

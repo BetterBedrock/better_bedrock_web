@@ -1,6 +1,6 @@
 "use server";
 
-import { fetchSecret } from "@/lib/user";
+import { fetchSecret } from "@/shared/lib/auth";
 import { fetchUserProjectsRequest } from "@/entities/project/api/project-service";
 
 export const fetchUserProjects = async (id: string) => {

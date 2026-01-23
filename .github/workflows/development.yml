@@ -45,6 +45,8 @@ jobs:
             cd apps/api
             npx yarn prisma generate
             npx yarn prisma migrate deploy
+            echo "📐 Running Linters & Steiger..."
+            npx yarn steiger
             cd ${{ secrets.DEV_APP_DIR }}
             echo "🔄 Stopping services..."
             pm2 stop better-bedrock-web-dev || true

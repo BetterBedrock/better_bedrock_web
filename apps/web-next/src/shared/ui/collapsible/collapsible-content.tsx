@@ -1,7 +1,8 @@
-import { styles } from ".";
 import { ReactNode } from "react";
 import clsx from "clsx";
 import { BedrockText } from "@/shared/ui/bedrock-text";
+
+import styles from "./collapsible.module.scss";
 
 interface CollapsibleContentProps {
   contentText: string;

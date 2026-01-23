@@ -1,6 +1,6 @@
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
-import { ButtonGroup } from "@/shared/ui/button-group/button-group";
+import { ButtonGroup } from "@/shared/ui/button-group";
 
 import styles from "./changelog.module.scss";
 

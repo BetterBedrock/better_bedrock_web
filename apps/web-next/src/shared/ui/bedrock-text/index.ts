@@ -1,2 +1,1 @@
-export * from "./bedrock-text";
-export { default as styles } from "./bedrock-text.module.scss";
+export { BedrockText } from "./bedrock-text";

@@ -1,7 +1,7 @@
 import { Section } from "@/shared/ui/section";
 import { ReactNode } from "react";
 
-import { styles } from "@/pages/information/[slug]";
+import { styles } from "@/pages/information";
 
 interface InformationLayoutProps {
   children: ReactNode;

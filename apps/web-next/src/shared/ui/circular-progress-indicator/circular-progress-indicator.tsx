@@ -1,9 +1,9 @@
 import CircularProgressIndicatorSVG from "@/public/svgs/circularProgressIndicator.svg";
 import { HTMLAttributes } from "react";
 import clsx from "clsx";
+import { BedrockComponentProps } from "@/shared/lib/utils";
 
-import { styles } from ".";
-import { BedrockComponentProps } from "@/shared/model/components";
+import styles from "./circular-progress-indicator.module.scss";
 
 interface CircularProgressIndicatorProp
   extends HTMLAttributes<HTMLDivElement>, BedrockComponentProps {

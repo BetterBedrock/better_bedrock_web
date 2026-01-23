@@ -1,7 +1,7 @@
 import { Section } from "@/shared/ui/section";
 import { ReactNode } from "react";
 
-import { styles } from "@/pages/checkout/cancel";
+import { cancelPageStyles } from "@/pages/checkout";
 
 interface CancelLayoutProps {
   children: ReactNode;
@@ -14,8 +14,8 @@ export const metadata = {
 export default async function CancelLayout({ children }: CancelLayoutProps) {
   return (
     <Section
-      className={styles.background}
-      extraClassName={styles.padding}
+      className={cancelPageStyles.background}
+      extraClassName={cancelPageStyles.padding}
       fixed
       center
     >

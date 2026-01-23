@@ -1,9 +1,12 @@
 "use client";
 
 import { ReactNode, useState } from "react";
-import { CollapsibleButton, CollapsibleContent, styles } from ".";
+import styles from "./collapsible.module.scss";
+
 import clsx from "clsx";
 import { ButtonType } from "@/shared/ui/button";
+import { CollapsibleButton } from "./collapsible-button";
+import { CollapsibleContent } from "./collapsible-content";
 
 interface CollapsibleProp {
   headerText: string;

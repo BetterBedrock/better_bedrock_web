@@ -1,2 +1,1 @@
-export * from "./link";
-export { default as styles } from "./link.module.scss";
+export { Link } from "./link";

@@ -1,2 +1,1 @@
-export * from "./card";
-export {default as styles} from "./card.module.scss";
+export { Card, CardDivider, CardBody } from "./card"

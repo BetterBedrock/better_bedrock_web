@@ -11,7 +11,7 @@ import {
   Ref,
 } from "react";
 
-import { styles } from ".";
+import styles from "./simple-button.module.scss";
 import clsx from "clsx";
 
 type CommonProps = {

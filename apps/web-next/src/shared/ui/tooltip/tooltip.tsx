@@ -1,7 +1,7 @@
 "use client";
 
 import { CSSProperties, MouseEvent, ReactNode, useState } from "react";
-import { styles } from ".";
+import styles from "./tooltip.module.scss";
 import clsx from "clsx";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 

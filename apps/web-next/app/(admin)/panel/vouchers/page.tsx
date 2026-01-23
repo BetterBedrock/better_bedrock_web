@@ -1,1 +1,1 @@
-export { VouchersPage as default } from "@/pages/panel/vouchers";
+export { VouchersPage as default } from "@/pages/panel/ui/vouchers-page";

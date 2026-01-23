@@ -1,6 +1,7 @@
 import clsx from "clsx";
-import { styles } from ".";
 import { forwardRef, HTMLAttributes, ReactNode } from "react";
+
+import styles from "./card.module.scss";
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;

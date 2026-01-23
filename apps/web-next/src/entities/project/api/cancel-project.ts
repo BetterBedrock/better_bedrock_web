@@ -1,6 +1,6 @@
 "use server";
 
-import { fetchSecret } from "@/lib/user";
+import { fetchSecret } from "@/shared/lib/auth";
 import { cancelSubmissionRequest } from "@/entities/project/api/project-service";
 
 export const cancelProject = async (id: string) => {

@@ -1,1 +1,4 @@
-export { PreviewPage as default, generateMetadata } from "@/pages/project/preview/[id]";
+export {
+  PreviewPage as default,
+  generateMetadata,
+} from "@/pages/project";

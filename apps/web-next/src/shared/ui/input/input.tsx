@@ -1,5 +1,5 @@
 import { ChangeEvent, InputHTMLAttributes, forwardRef } from "react";
-import { styles } from ".";
+import styles from "./input.module.scss";
 import clsx from "clsx";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

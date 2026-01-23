@@ -1,4 +1,4 @@
-import { InformationFAQQuestion } from "@/shared/model/information";
+import { InformationFAQQuestion } from "@/shared/lib/information";
 
 export const linkvertiseFAQQuestions: InformationFAQQuestion[] = [
   {

@@ -1,3 +1,3 @@
-import { Footer } from "@/shared/ui/layout/footer";
+import { Footer } from "./footer/footer";
 
 export const LayoutFooter = () => <Footer />;

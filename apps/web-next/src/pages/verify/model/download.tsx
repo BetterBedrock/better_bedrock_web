@@ -7,9 +7,9 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useNotification } from "@/shared/model/notification";
-import { baseUrl } from "@/shared/lib/url";
-import { ProjectDto } from "@/shared/api/openapi";
+import { useNotification } from "@/app/providers/notification";
+import { baseUrl } from "@/shared/lib/utils";
+import { ProjectDto } from "@/shared/lib/openapi";
 
 interface DownloadContextProps {
   downloading: boolean;

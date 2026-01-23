@@ -4,11 +4,12 @@ import { KeyboardEvent, MouseEvent, useEffect, useState } from "react";
 import FilledStar from "@/public/ui/star/filledStar.png";
 import EmptyStar from "@/public/ui/star/emptyStar.png";
 import HalfFilledStar from "@/public/ui/star/halfFilledStar.png";
-import { styles } from ".";
 import clsx from "clsx";
-import { BedrockComponentProps } from "@/shared/model/components";
+import { BedrockComponentProps } from "@/shared/lib/utils";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Tooltip } from "@/shared/ui/tooltip";
+
+import styles from "./rating.module.scss";
 
 const formatNumber = (num: number | undefined | null, decimals: number) => {
   return typeof num === "number" && !isNaN(num)

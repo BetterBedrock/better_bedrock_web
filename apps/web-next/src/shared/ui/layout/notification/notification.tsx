@@ -3,8 +3,8 @@ import {
   useNotification,
   Notification as BaseNotification,
   NotificationTypes,
-} from "@/shared/model/notification";
-import { styles } from ".";
+} from "../../../../../app/providers/notification";
+import styles from "./notification.module.scss";
 import clsx from "clsx";
 import Exit from "@/public/images/exit.png";
 

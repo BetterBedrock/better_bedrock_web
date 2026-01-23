@@ -5,7 +5,7 @@ import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Card } from "@/shared/ui/card";
 import { SimpleButton } from "@/shared/ui/simple-button";
 
-import { styles } from ".";
+import styles from "./popup.module.scss";
 
 interface PopupComponent extends FC<PopupProps> {
   Part: FC<PopupWrapperProps>;

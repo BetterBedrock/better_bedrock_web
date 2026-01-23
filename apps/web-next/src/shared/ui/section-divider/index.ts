@@ -1,2 +1,1 @@
-export * from "./section-divider";
-export { default as styles } from "./section-divider.module.scss";
+export { SectionDivider } from "./section-divider";

@@ -1,12 +1,13 @@
 import Steve from "@/public/images/avatars/Steve.png";
 import Summsatsuma from "@/public/images/avatars/sumssatsuma.png";
-import { styles } from ".";
 import clsx from "clsx";
 import { FC, ReactNode } from "react";
-import { BedrockComponentProps } from "@/shared/model/components";
-import { Routes } from "@/shared/model/routes";
+import { BedrockComponentProps } from "@/shared/lib/utils";
+import { Routes } from "@/shared/lib/utils";
 import { Link } from "@/shared/ui/link";
 import { BedrockText } from "@/shared/ui/bedrock-text";
+
+import styles from "./avatar.module.scss";
 
 interface AvatarComponent extends FC<AvatarProps> {
   Profile: FC<AvatarProfileProps>;

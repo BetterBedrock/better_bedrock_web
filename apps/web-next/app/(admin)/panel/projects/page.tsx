@@ -1,1 +1,1 @@
-export { ProjectsPage as default } from "@/pages/project";
+export { ProjectsPage as default } from "@/pages/panel";

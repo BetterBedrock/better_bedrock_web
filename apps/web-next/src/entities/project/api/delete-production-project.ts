@@ -1,6 +1,6 @@
 "use server";
 
-import { fetchSecret } from "@/lib/user";
+import { fetchSecret } from "@/shared/lib/auth";
 import { deleteProductionProjectRequest } from "@/entities/project/api/project-service";
 
 export const deleteProductionProject = async (id: string) => {

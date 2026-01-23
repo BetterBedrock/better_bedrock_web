@@ -1,5 +1,5 @@
 import { BedrockText } from "@/shared/ui/bedrock-text";
-import { styles } from ".";
+import styles from "./tag.module.scss";
 import clsx from "clsx";
 import { ReactNode } from "react";
 

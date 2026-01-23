@@ -4,9 +4,9 @@ import {
     ProjectType,
     SearchOrder,
     UpdateProjectDto,
-} from "@/shared/api/openapi";
-import { axiosCustomInstance } from "@/shared/api/client";
-import { baseUrl } from "@/shared/lib/url";
+} from "@/shared/lib/openapi";
+import { axiosCustomInstance } from "@/shared/lib/utils";
+import { baseUrl } from "@/shared/lib/utils";
 
 const config = new Configuration({
     basePath: baseUrl,
@@ -19,7 +19,7 @@ export const fetchUserProjectsRequest = async (id: string, secret: string) =>
         headers: { Authorization: `Bearer ${secret}` },
     });
 
-export const fetchSubmittedProjectsRequest = async (secret: string) =>
+export const fetchSubmittedProjectssRequest = async (secret: string) =>
     projectApi.projectControllerSubmitted({
         headers: { Authorization: `Bearer ${secret}` },
     });

@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
-import { ButtonGroup } from "@/shared/ui/button-group/button-group";
+import { ButtonGroup } from "@/shared/ui/button-group";
 import { Input } from "@/shared/ui/input";
 
-import { handleCreateProject } from "../../../../entities/project/api/handle-create-project";
+import { handleCreateProject } from "@/entities/project";
 import styles from "./hero.module.scss";
 
 export const HeroActions = () => {

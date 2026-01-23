@@ -12,10 +12,11 @@ import {
 import clsx from "clsx";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { ButtonType, Button } from "@/shared/ui/button";
-import { ButtonGroup } from "@/shared/ui/button-group/button-group";
+import { ButtonGroup } from "@/shared/ui/button-group";
 import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Popup } from "@/shared/ui/popup/popup";
 
-import { Popup, styles } from ".";
+import styles from "./popup.module.scss";
 
 type ClickableElementProps = {
   onClick?: (e: MouseEvent) => void;

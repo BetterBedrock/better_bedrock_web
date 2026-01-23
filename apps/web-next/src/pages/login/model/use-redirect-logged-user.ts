@@ -1,7 +1,7 @@
 "use client";
 
-import { useAuth } from "@/shared/model/auth";
-import { Routes } from "@/shared/model/routes";
+import { useAuth } from "../../../../app/providers/auth";
+import { Routes } from "@/shared/lib/utils";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
