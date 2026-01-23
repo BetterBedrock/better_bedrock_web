@@ -45,6 +45,8 @@ jobs:
             cd apps/api
             npx yarn prisma generate
             npx yarn prisma migrate deploy
+            cd ${{ secrets.DEV_APP_DIR }}
+            cd apps/web-next
             echo "📐 Running Linters & Steiger..."
             npx yarn steiger
             cd ${{ secrets.DEV_APP_DIR }}
