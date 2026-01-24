@@ -1,10 +1,6 @@
 @use "@/shared/ui" as g;
 
 .background {
-  @include g.page-background(
-    g.$background-linear-gradient,
-    "../../../public/images/crosshair_backgrounds/14.webp"
-  );
   background-position: right center;
 }
 

@@ -11,13 +11,6 @@ $header-height: 65dvh;
   align-items: center;
 }
 
-.background {
-  @include g.page-background(
-    g.$background-linear-gradient,
-    "../../../public/images/crosshair_backgrounds/9.webp"
-  );
-}
-
 .padding {
   @include g.section-padding(bottom, g.$sectionsDividerPadding);
 }

@@ -1,12 +1,5 @@
 @use "@/shared/ui" as g;
 
-.background {
-  @include g.page-background(
-    linear-gradient(g.$color-overlay-dark, g.$color-overlay-dark),
-    "../../../public/images/crosshair_backgrounds/10.webp"
-  );
-}
-
 .padding {
   @include g.section-padding((top, bottom), g.$sectionsDividerPadding);
 }
