@@ -16,10 +16,10 @@ export const metadata = {
 export default async function LoginLayout({ children }: LoginLayoutProps) {
   return (
     <Section
-      className={styles.background}
       extraClassName={styles.padding}
       fixed
       center
+      src="/images/crosshair_backgrounds/6.webp"
     >
       {children}
     </Section>

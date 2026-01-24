@@ -18,10 +18,10 @@ export default function LinkvertiseLayout({
 }: LinkvertiseLayoutProps) {
   return (
     <Section
-      className={styles.background}
       extraClassName={styles.padding}
       fixed
       center
+      src="/images/crosshair_backgrounds/22.webp"
     >
       {children}
     </Section>

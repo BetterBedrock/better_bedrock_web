@@ -10,10 +10,10 @@ interface AnalyticsLayoutProps {
 export default function AnalyticsLayout({ children }: AnalyticsLayoutProps) {
   return (
     <Section
-      className={analyticsPageStyles.background}
       extraClassName={analyticsPageStyles.padding}
       fixed
       center
+      src="/images/crosshair_backgrounds/6.webp"
     >
       {children}
     </Section>

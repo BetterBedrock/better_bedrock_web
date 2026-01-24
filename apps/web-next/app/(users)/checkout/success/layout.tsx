@@ -14,10 +14,10 @@ export const metadata = {
 export default async function SuccessLayout({ children }: SuccessLayoutProps) {
   return (
     <Section
-      className={successPageStyles.background}
       extraClassName={successPageStyles.padding}
       fixed
       center
+      src="/images/crosshair_backgrounds/6.webp"
     >
       {children}
     </Section>

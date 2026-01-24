@@ -10,9 +10,9 @@ interface VouchersLayoutProps {
 export default function VouchersLayout({ children }: VouchersLayoutProps) {
   return (
     <Section
-      className={vouchersPageStyles.background}
       extraClassName={vouchersPageStyles.padding}
       fixed
+      src="/images/crosshair_backgrounds/6.webp"
     >
       {children}
     </Section>

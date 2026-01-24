@@ -10,9 +10,9 @@ interface DownloadsLayoutProps {
 export default function DownloadsLayout({ children }: DownloadsLayoutProps) {
   return (
     <Section
-      className={styles.background}
       extraClassName={styles.padding}
       fixed
+      src="/images/crosshair_backgrounds/16.webp"
     >
       {children}
     </Section>

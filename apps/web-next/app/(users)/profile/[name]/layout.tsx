@@ -58,9 +58,9 @@ export default async function LayoutProfile({
 
   return (
     <Section
-      className={styles.background}
       extraClassName={styles.padding}
       fixed
+      src="/images/crosshair_backgrounds/15.webp"
     >
       <Card fullWidth>
         <CardBody>
