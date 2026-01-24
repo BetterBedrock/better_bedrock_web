@@ -1,0 +1,1 @@
+export { getBackgroundImage } from "./get-background-image";
