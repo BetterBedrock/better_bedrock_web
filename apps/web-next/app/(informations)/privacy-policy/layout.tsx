@@ -12,10 +12,10 @@ export default function PrivacyPolicyLayout({
 }: PrivacyPolicyLayoutProps) {
   return (
     <Section
-      className={styles.background}
       extraClassName={styles.padding}
       fixed
       center
+      src="/images/crosshair_backgrounds/24.webp"
     >
       {children}
     </Section>

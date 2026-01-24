@@ -14,10 +14,10 @@ export const metadata = {
 export default function CreatorLayout({ children }: CreatorLayoutProps) {
   return (
     <Section
-      className={styles.background}
       extraClassName={styles.padding}
       fixed
       center
+      src="/images/crosshair_backgrounds/6.webp"
     >
       {children}
     </Section>

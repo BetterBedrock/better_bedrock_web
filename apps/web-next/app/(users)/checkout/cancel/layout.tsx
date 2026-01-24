@@ -14,10 +14,10 @@ export const metadata = {
 export default async function CancelLayout({ children }: CancelLayoutProps) {
   return (
     <Section
-      className={cancelPageStyles.background}
       extraClassName={cancelPageStyles.padding}
       fixed
       center
+      src="/images/crosshair_backgrounds/6.webp"
     >
       {children}
     </Section>

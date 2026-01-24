@@ -14,10 +14,10 @@ export const metadata = {
 export default async function DiscordLayout({ children }: DiscordLayoutProps) {
   return (
     <Section
-      className={styles.background}
       extraClassName={styles.padding}
       fixed
       center
+      src="/images/crosshair_backgrounds/20.webp"
     >
       {children}
     </Section>

@@ -16,10 +16,10 @@ export const About = ({ sectionIndex }: AboutProps) => {
     <Section
       className={styles.background}
       extraClassName={styles.inner}
-      style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${backgroundImage})`,
-      }}
       center
+      dark
+      gradientBackground={false}
+      src={backgroundImage}
     >
       <AboutList
         items={elements}

@@ -16,10 +16,10 @@ export const metadata = {
 export default async function VerifyLayout({ children }: VerifyLayoutProps) {
   return (
     <Section
-      className={styles.background}
       extraClassName={styles.padding}
       center
       fixed
+      src="/images/crosshair_backgrounds/11.webp"
     >
       {children}
     </Section>

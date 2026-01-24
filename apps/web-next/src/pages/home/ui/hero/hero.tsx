@@ -5,7 +5,12 @@ import { HeroTrailer } from "./hero-trailer";
 import styles from "./hero.module.scss";
 
 export const Hero = () => (
-  <Section className={styles.background} extraClassName={styles.padding} center>
+  <Section
+    extraClassName={styles.padding}
+    center
+    src="/images/crosshair_backgrounds/9.webp"
+    gradientBackground={true}
+  >
     <HeroHeader />
     <HeroTrailer />
   </Section>

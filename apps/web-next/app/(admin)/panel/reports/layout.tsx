@@ -12,9 +12,9 @@ export default function ReportsLayout({ children }: ReportsLayoutProps) {
   return (
     <ReportsManagerProvider>
       <Section
-        className={reportsPageStyles.background}
         extraClassName={reportsPageStyles.padding}
         fixed
+        src="/images/crosshair_backgrounds/6.webp"
       >
         {children}
       </Section>

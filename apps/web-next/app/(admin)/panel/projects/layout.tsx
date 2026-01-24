@@ -10,9 +10,9 @@ interface ProjectsLayoutProps {
 export default function ProjectsLayout({ children }: ProjectsLayoutProps) {
   return (
     <Section
-      className={projectsPageStyles.background}
       extraClassName={projectsPageStyles.padding}
       fixed
+      src="/images/crosshair_backgrounds/6.webp"
     >
       {children}
     </Section>

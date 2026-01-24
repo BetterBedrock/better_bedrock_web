@@ -16,10 +16,10 @@ export const metadata = {
 export default function TermsLayout({ children }: TermsLayoutProps) {
   return (
     <Section
-      className={styles.background}
       extraClassName={styles.padding}
       fixed
       center
+      src="/images/crosshair_backgrounds/24.webp"
     >
       {children}
     </Section>

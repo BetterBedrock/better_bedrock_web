@@ -6,10 +6,10 @@ import styles from "./hero.module.scss";
 
 export const Hero = () => (
   <Section
-    className={styles.background}
     extraClassName={styles.padding}
     fixed
     center
+    src="/images/crosshair_backgrounds/6.webp"
   >
     <div>
       <HeroTitle />

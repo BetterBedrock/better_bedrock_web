@@ -16,9 +16,9 @@ export default function InformationLayout({
 }: InformationLayoutProps) {
   return (
     <Section
-      className={styles.background}
       extraClassName={styles.padding}
       fixed
+      src="/images/crosshair_backgrounds/11.webp"
     >
       {children}
     </Section>
