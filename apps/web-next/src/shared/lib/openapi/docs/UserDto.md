@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**monetizationType** | [**MonetizationType**](MonetizationType.md) |  | [default to undefined]
 **id** | **string** |  | [default to undefined]
 **googleId** | **string** |  | [default to undefined]
 **email** | **string** |  | [default to undefined]
@@ -13,9 +14,10 @@ Name | Type | Description | Notes
 **bio** | **string** |  | [default to undefined]
 **banned** | **boolean** |  | [default to undefined]
 **createdAt** | **string** |  | [default to undefined]
-**customLinkvertise** | **boolean** |  | [default to undefined]
 **linkvertiseId** | **string** |  | [default to undefined]
 **linkvertiseSecret** | **string** |  | [default to undefined]
+**lootlabsSecret** | **string** |  | [default to undefined]
+**lootlabsLinkId** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -23,6 +25,7 @@ Name | Type | Description | Notes
 import { UserDto } from './api';
 
 const instance: UserDto = {
+    monetizationType,
     id,
     googleId,
     email,
@@ -31,9 +34,10 @@ const instance: UserDto = {
     bio,
     banned,
     createdAt,
-    customLinkvertise,
     linkvertiseId,
     linkvertiseSecret,
+    lootlabsSecret,
+    lootlabsLinkId,
 };
 ```
 

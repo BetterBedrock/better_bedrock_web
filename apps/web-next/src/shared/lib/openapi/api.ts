@@ -374,6 +374,12 @@ export interface DetailedProjectDto {
 export interface DetailedUserDto {
     /**
      * 
+     * @type {MonetizationType}
+     * @memberof DetailedUserDto
+     */
+    'monetizationType': MonetizationType | null;
+    /**
+     * 
      * @type {string}
      * @memberof DetailedUserDto
      */
@@ -422,12 +428,6 @@ export interface DetailedUserDto {
     'createdAt': string;
     /**
      * 
-     * @type {boolean}
-     * @memberof DetailedUserDto
-     */
-    'customLinkvertise': boolean;
-    /**
-     * 
      * @type {string}
      * @memberof DetailedUserDto
      */
@@ -440,10 +440,37 @@ export interface DetailedUserDto {
     'linkvertiseSecret': string | null;
     /**
      * 
+     * @type {string}
+     * @memberof DetailedUserDto
+     */
+    'lootlabsSecret': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DetailedUserDto
+     */
+    'lootlabsLinkId': string | null;
+    /**
+     * 
      * @type {UserRatingDto}
      * @memberof DetailedUserDto
      */
     'rating': UserRatingDto;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface GenerateDownloadResponseDto
+ */
+export interface GenerateDownloadResponseDto {
+    /**
+     * URL to where user should be redirected to
+     * @type {string}
+     * @memberof GenerateDownloadResponseDto
+     */
+    'url': string;
 }
 /**
  * 
@@ -472,6 +499,12 @@ export interface JwtTokenDto {
 export interface ManageProfileDto {
     /**
      * 
+     * @type {MonetizationType}
+     * @memberof ManageProfileDto
+     */
+    'monetizationType': MonetizationType | null;
+    /**
+     * 
      * @type {string}
      * @memberof ManageProfileDto
      */
@@ -496,10 +529,16 @@ export interface ManageProfileDto {
     'linkvertiseSecret': string | null;
     /**
      * 
-     * @type {boolean}
+     * @type {string}
      * @memberof ManageProfileDto
      */
-    'customLinkvertise': boolean;
+    'lootlabsSecret': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ManageProfileDto
+     */
+    'lootlabsLinkId': string | null;
     /**
      * 
      * @type {boolean}
@@ -507,6 +546,22 @@ export interface ManageProfileDto {
      */
     'banned': boolean;
 }
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const MonetizationType = {
+    Linkvertise: 'linkvertise',
+    Lootlabs: 'lootlabs'
+} as const;
+
+export type MonetizationType = typeof MonetizationType[keyof typeof MonetizationType];
+
+
 /**
  * 
  * @export
@@ -1070,16 +1125,16 @@ export interface SimpleUserDto {
     'createdAt': string;
     /**
      * 
-     * @type {boolean}
+     * @type {string}
      * @memberof SimpleUserDto
      */
-    'customLinkvertise': boolean;
+    'linkvertiseId': string | null;
     /**
      * 
      * @type {string}
      * @memberof SimpleUserDto
      */
-    'linkvertiseId': string | null;
+    'lootlabsLinkId': string | null;
 }
 /**
  * 
@@ -1100,6 +1155,12 @@ export interface TagNameDto {
  * @interface UpdateProfileDto
  */
 export interface UpdateProfileDto {
+    /**
+     * 
+     * @type {MonetizationType}
+     * @memberof UpdateProfileDto
+     */
+    'monetizationType': MonetizationType | null;
     /**
      * 
      * @type {string}
@@ -1126,11 +1187,19 @@ export interface UpdateProfileDto {
     'linkvertiseSecret': string | null;
     /**
      * 
-     * @type {boolean}
+     * @type {string}
      * @memberof UpdateProfileDto
      */
-    'customLinkvertise': boolean;
+    'lootlabsSecret': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateProfileDto
+     */
+    'lootlabsLinkId': string | null;
 }
+
+
 /**
  * 
  * @export
@@ -1246,6 +1315,12 @@ export interface UploadFileDto {
 export interface UserDto {
     /**
      * 
+     * @type {MonetizationType}
+     * @memberof UserDto
+     */
+    'monetizationType': MonetizationType | null;
+    /**
+     * 
      * @type {string}
      * @memberof UserDto
      */
@@ -1294,12 +1369,6 @@ export interface UserDto {
     'createdAt': string;
     /**
      * 
-     * @type {boolean}
-     * @memberof UserDto
-     */
-    'customLinkvertise': boolean;
-    /**
-     * 
      * @type {string}
      * @memberof UserDto
      */
@@ -1310,7 +1379,21 @@ export interface UserDto {
      * @memberof UserDto
      */
     'linkvertiseSecret': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    'lootlabsSecret': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    'lootlabsLinkId': string | null;
 }
+
+
 /**
  * 
  * @export
@@ -2183,7 +2266,7 @@ export const DownloadApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async downloadControllerGenerate(file: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async downloadControllerGenerate(file: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenerateDownloadResponseDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.downloadControllerGenerate(file, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DownloadApi.downloadControllerGenerate']?.[localVarOperationServerIndex]?.url;
@@ -2226,7 +2309,7 @@ export const DownloadApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        downloadControllerGenerate(file: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        downloadControllerGenerate(file: string, options?: RawAxiosRequestConfig): AxiosPromise<GenerateDownloadResponseDto> {
             return localVarFp.downloadControllerGenerate(file, options).then((request) => request(axios, basePath));
         },
         /**

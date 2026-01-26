@@ -21,8 +21,10 @@ docs/DeclineProjectDto.md
 docs/DetailedProjectDto.md
 docs/DetailedUserDto.md
 docs/DownloadApi.md
+docs/GenerateDownloadResponseDto.md
 docs/JwtTokenDto.md
 docs/ManageProfileDto.md
+docs/MonetizationType.md
 docs/PostCommentParamsDto.md
 docs/PriceOptionDto.md
 docs/ProjectApi.md
