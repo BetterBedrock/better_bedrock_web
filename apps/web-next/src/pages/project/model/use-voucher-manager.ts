@@ -28,30 +28,14 @@ export const useVoucherManager = ({
   >(categories ? categories[0].title : undefined);
 
   const download = async () => {
-    await generateDownload(project.id);
-    const creator = await fetchUserById(project.userId);
+    const data = await generateDownload(project.id);
 
-    const linkvertiseId = creator?.customLinkvertise
-      ? (creator.linkvertiseId ?? process.env.NEXT_PUBLIC_LINKVERTISE_ID)
-      : process.env.NEXT_PUBLIC_LINKVERTISE_ID;
-
-    await openLinkvertise(linkvertiseId ?? "");
-  };
-
-  const getLinkvertiseId = async (): Promise<string> => {
-    const creator = await fetchUserById(project.userId);
-
-    let linkvertiseId = process.env.NEXT_PUBLIC_LINKVERTISE_ID;
-
-    if (
-      creator?.customLinkvertise &&
-      creator?.linkvertiseId &&
-      creator.linkvertiseId.trim().length > 0
-    ) {
-      linkvertiseId = creator.linkvertiseId;
+    if (!data.url) {
+      throwError(null, "There was a problem with the download link. Please report it on our discord.");
+      return;
     }
 
-    return await getLinkvertiseUrl(linkvertiseId ?? "");
+    window.open(data.url.toString(), "_blank");
   };
 
   const activate = async () => {
@@ -90,6 +74,5 @@ export const useVoucherManager = ({
     setVoucherCode,
     activate,
     download,
-    getLinkvertiseId,
   };
 };
