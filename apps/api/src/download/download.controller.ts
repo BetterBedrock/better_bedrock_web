@@ -20,8 +20,6 @@ import { AnalyticsService } from "~/analytics/analytics.service";
 import { Response } from "express";
 import { DownloadService } from "~/download/download.service";
 import { GenerateDownloadDto } from "~/download/dto/generate-download.dto";
-import { HttpService } from "@nestjs/axios";
-import { lastValueFrom } from "rxjs";
 import { VerifyDownloadDto } from "~/download/dto/verify-download.dto";
 import { createReadStream, promises as fs, Stats } from "fs";
 import path, { extname } from "path";
@@ -33,19 +31,23 @@ import { UserService } from "~/user/user.service";
 import { OptionalAuthGuard } from "~/auth/optional-auth.guard";
 import { ProjectDto } from "~/project/dto/project.dto";
 import { OptionalAuthenticatedRequest } from "~/common/types/optional-authenticated-request.type";
+import { MonetizationType } from "@prisma/client";
+import { MonetizationService } from "~/monetization/monetization.service";
+import { GenerateDownloadResponseDto } from "~/download/dto/generate-download-response.dto";
 
 @Controller("download")
 export class DownloadController {
-    private readonly linkvertiseApiKey = process.env.LINKVERTISE_API_KEY;
+    private readonly monetizationApiKey = process.env.MONETIZATION_API_KEY;
+    private readonly monetizationApiMethod = process.env.MONETIZATION_API_METHOD;
 
     constructor(
-        private http: HttpService,
         private downloadService: DownloadService,
         private analyticsService: AnalyticsService,
         private voucherService: VoucherService,
         private projectService: ProjectService,
         private userService: UserService,
-    ) { }
+        private monetizationService: MonetizationService,
+    ) {}
 
     @Get()
     @SkipThrottle()
@@ -126,22 +128,14 @@ export class DownloadController {
         }
 
         const creator = await this.userService.userDetailedById(project.userId);
-        let linkvertiseSecret = this.linkvertiseApiKey;
-        const cSecret = creator.linkvertiseSecret;
-        const cId = creator.linkvertiseId;
-
-        if (
-            creator?.customLinkvertise &&
-            cId &&
-            cId.trim().length > 0 &&
-            cSecret &&
-            cSecret.trim().length > 0
-        ) {
-            linkvertiseSecret = cSecret;
-        }
+        const { finalSecret } = this.monetizationService.resolveCreatorMonetization(creator);
 
         if (!download.verified) {
-            if (project.userId !== req.user?.id && !req.user?.admin) {
+            if (
+                query.hash !== download.hash &&
+                project.userId !== req.user?.id &&
+                !req.user?.admin
+            ) {
                 if (query.code && !voucher) {
                     throw new UnauthorizedException("The voucher does not exist");
                 }
@@ -184,44 +178,19 @@ export class DownloadController {
                 }
 
                 if (!voucher) {
-                    const url = `https://publisher.linkvertise.com/api/v1/anti_bypassing?token=${linkvertiseSecret}&hash=${query.hash}`;
-
-                    try {
-                        const response$ = this.http.post(
-                            url,
-                            {}, // no body
-                            {
-                                headers: {
-                                    "Access-Control-Allow-Origin": "*",
-                                    "Access-Control-Allow-Methods": "POST",
-                                    "Access-Control-Allow-Headers": "Content-Type, Authorization",
-                                },
-                            },
-                        );
-                        const { data, status } = await lastValueFrom(response$);
-
-                        if (status !== 200 || !data.status) {
-                            throw new HttpException(
-                                "Failed to verify with Linkvertise gateway.",
-                                HttpStatus.BAD_GATEWAY,
-                            );
-                        }
-                    } catch (err) {
-                        if (err instanceof HttpException) {
-                            throw err;
-                        }
-
-                        throw new HttpException(
-                            "Linkvertise service unavailable.",
-                            HttpStatus.SERVICE_UNAVAILABLE,
-                        );
-                    }
-
+                    await this.monetizationService.linkvertiseVerifyHash(finalSecret, query.hash);
                     await this.analyticsService.incrementAnalytics(
                         AnalyticsNames.adDownloads,
                         "general",
                     );
                 }
+            }
+
+            if (query.hash === download.hash) {
+                await this.analyticsService.incrementAnalytics(
+                    AnalyticsNames.adDownloads,
+                    "general",
+                );
             }
 
             await this.downloadService.updateDownload({
@@ -230,13 +199,15 @@ export class DownloadController {
             });
         }
 
-        // Logger.error(canViewDraft);
         const detailedProject = await this.projectService.projectDetails(project.id, includeDraft);
         return { ...project, ...detailedProject };
     }
 
     @Post("generate")
-    async generate(@Ip() ip, @Query() query: GenerateDownloadDto) {
+    async generate(
+        @Ip() ip,
+        @Query() query: GenerateDownloadDto,
+    ): Promise<GenerateDownloadResponseDto> {
         const project = await this.projectService.findOne(query.file);
         if (!project) {
             throw new NotFoundException(`Requested file not found`);
@@ -248,7 +219,11 @@ export class DownloadController {
             await this.downloadService.deleteDownload({ ipAddress: ip });
         }
 
-        await this.downloadService.createDownload({
+        const creator = await this.userService.userDetailedById(project.userId);
+        const { finalSecret, finalMethod, finalId } =
+            this.monetizationService.resolveCreatorMonetization(creator);
+
+        const newDownload = await this.downloadService.createDownload({
             ipAddress: ip,
             file: query.file,
         });
@@ -257,5 +232,25 @@ export class DownloadController {
             AnalyticsNames.generatedDownloads,
             "general",
         );
+
+        let finalUrl = "https://betterbedrock.com/verify";
+        switch (finalMethod) {
+            case MonetizationType.linkvertise:
+                if (!finalId) break;
+
+                finalUrl = await this.monetizationService.linkvertiseEncodeUrl(finalId);
+                break;
+            case MonetizationType.lootlabs: {
+                const hashedUrl = await this.monetizationService.lootlabsEncodeUrl(
+                    finalSecret,
+                    newDownload.hash ?? undefined,
+                );
+
+                finalUrl = `https://loot-link.com/s?${finalId}&data=${hashedUrl}`;
+                break;
+            }
+        }
+
+        return { url: finalUrl };
     }
 }
