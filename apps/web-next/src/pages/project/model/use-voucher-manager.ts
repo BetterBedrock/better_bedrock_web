@@ -4,10 +4,8 @@ import { activateVoucher } from "@/entities/checkout";
 import { ProjectDto } from "@/shared/lib/openapi";
 import { useCheckout } from "@/app/providers/checkout";
 import { useNotification } from "@/app/providers/notification";
-import { getLinkvertiseUrl, openLinkvertise } from "@/shared/lib/utils";
 import { useState, KeyboardEvent } from "react";
 import { generateDownload } from "@/entities/download";
-import { fetchUserById } from "@/entities/user";
 
 interface usePreviewPopupProps {
   project: ProjectDto;
