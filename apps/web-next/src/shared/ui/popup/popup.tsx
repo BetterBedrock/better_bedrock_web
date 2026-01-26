@@ -1,11 +1,10 @@
-import clsx from "clsx";
 import Exit from "@/public/images/exit.png";
 import { FC, HTMLAttributes, ReactNode } from "react";
 import { BedrockText } from "@/shared/ui/bedrock-text";
-import { Card } from "@/shared/ui/card";
 import { SimpleButton } from "@/shared/ui/simple-button";
 
 import styles from "./popup.module.scss";
+import { Card } from "@/shared/ui/card";
 
 interface PopupComponent extends FC<PopupProps> {
   Part: FC<PopupWrapperProps>;
@@ -22,7 +21,7 @@ interface PopupProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Popup = (({ children, onClose, className, title }: PopupProps) => (
   <div className={styles.popup} onClick={onClose}>
-    <div className={styles.body} onClick={(e) => e.stopPropagation()}>
+    <Card className={styles.body} onClick={(e) => e.stopPropagation()}>
       <div className={styles.headerContainer}>
         <div className={styles.header}>
           <SimpleButton onClick={onClose} transparent className={styles.close}>
@@ -40,7 +39,7 @@ export const Popup = (({ children, onClose, className, title }: PopupProps) => (
         </div>
       </div>
       {children}
-    </div>
+    </Card>
   </div>
 )) as PopupComponent;
 

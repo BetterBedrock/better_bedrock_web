@@ -52,7 +52,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **downloadControllerGenerate**
-> downloadControllerGenerate()
+> GenerateDownloadResponseDto downloadControllerGenerate()
 
 
 ### Example
@@ -82,7 +82,7 @@ const { status, data } = await apiInstance.downloadControllerGenerate(
 
 ### Return type
 
-void (empty response body)
+**GenerateDownloadResponseDto**
 
 ### Authorization
 
@@ -91,7 +91,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details

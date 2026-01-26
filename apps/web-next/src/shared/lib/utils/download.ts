@@ -1,12 +1,5 @@
 import { baseFrontendUrl } from "@/shared/lib/utils";
 
-export const openLinkvertise = async (linkvertiseId: string) => {
-    const link = await getLinkvertiseUrl(linkvertiseId);
-    const finalUri = new URL(link);
-
-    window.open(finalUri.toString(), "_blank");
-};
-
 export const getLinkvertiseUrl = async (
     linkvertiseId: string,
 ): Promise<string> => {

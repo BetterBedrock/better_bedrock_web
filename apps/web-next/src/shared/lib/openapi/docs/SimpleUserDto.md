@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **bio** | **string** |  | [default to undefined]
 **banned** | **boolean** |  | [default to undefined]
 **createdAt** | **string** |  | [default to undefined]
-**customLinkvertise** | **boolean** |  | [default to undefined]
 **linkvertiseId** | **string** |  | [default to undefined]
+**lootlabsLinkId** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -24,8 +24,8 @@ const instance: SimpleUserDto = {
     bio,
     banned,
     createdAt,
-    customLinkvertise,
     linkvertiseId,
+    lootlabsLinkId,
 };
 ```
 

@@ -10,7 +10,7 @@ import { CollapsibleContent } from "./collapsible-content";
 
 interface CollapsibleProp {
   headerText: string;
-  contentText: string;
+  contentText?: string;
   children?: ReactNode;
   width?: number | string;
   contentHeight?: number | string;
@@ -23,7 +23,7 @@ interface CollapsibleProp {
 
 export const Collapsible = ({
   headerText,
-  contentText,
+  contentText = "",
   children,
   width,
   contentHeight,

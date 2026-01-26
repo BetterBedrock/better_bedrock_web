@@ -25,7 +25,6 @@ export const PreviewPopup = ({ onClose, project }: PreviewPopupProps) => {
     setVoucherCode,
     activate,
     download,
-    getLinkvertiseId,
   } = useVoucherManager({ project, onClose });
 
   return (
@@ -51,7 +50,6 @@ export const PreviewPopup = ({ onClose, project }: PreviewPopupProps) => {
           categories={categories}
           selectedTimeframe={selectedTimeframe}
           download={download}
-          getLinkvertiseId={getLinkvertiseId}
         />
         <CardDivider />
         <PreviewPopupFooter />

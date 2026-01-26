@@ -5,7 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "windows"]
   engineType    = "binary"
 }
@@ -17,6 +17,7 @@ datasource db {
 
 model Download {
   ipAddress String   @id
+  hash      String?  @default(uuid())
   createdAt DateTime @default(now())
   file      String
   verified  Boolean  @default(false)
@@ -40,6 +41,11 @@ enum AnalyticsType {
   general
 }
 
+enum MonetizationType {
+  linkvertise
+  lootlabs
+}
+
 model Analytics {
   id    String        @id @default(cuid())
   type  AnalyticsType
@@ -58,9 +64,12 @@ model User {
 
   admin Boolean @default(false)
 
-  customLinkvertise Boolean @default(false)
+  monetizationType  MonetizationType? @default(linkvertise)
   linkvertiseId     String?
   linkvertiseSecret String?
+
+  lootlabsSecret String?
+  lootlabsLinkId String?
 
   bio       String
   banned    Boolean   @default(false)
@@ -107,8 +116,8 @@ model Project {
   user   User   @relation(fields: [userId], references: [id])
 
   comments Comment[]
-  ratings   Rating[]
-  reports Report[] @relation("ReportTargetProject")
+  ratings  Rating[]
+  reports  Report[]  @relation("ReportTargetProject")
 
   @@id([id, draft])
   @@unique([id, draft])
@@ -175,13 +184,13 @@ model Report {
   reporter   User   @relation("ReportReporter", fields: [reporterId], references: [id])
 
   reportedUserId String?
-  reportedUser   User?    @relation("ReportTargetUser", fields: [reportedUserId], references: [id])
+  reportedUser   User?   @relation("ReportTargetUser", fields: [reportedUserId], references: [id])
 
   reportedProjectId    String?
   reportedProjectDraft Boolean?
   reportedProject      Project? @relation("ReportTargetProject", fields: [reportedProjectId, reportedProjectDraft], references: [id, draft], onDelete: Cascade)
 
-  message   String
+  message String
 
   resolved   Boolean   @default(false)
   resolvedAt DateTime?

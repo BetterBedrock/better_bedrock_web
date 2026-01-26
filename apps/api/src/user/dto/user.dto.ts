@@ -1,8 +1,11 @@
+import { ApiProperty } from "@nestjs/swagger";
+import { MonetizationType } from "@prisma/client";
 import { Type } from "class-transformer";
 import {
     IsBoolean,
     IsDate,
     IsEmail,
+    IsEnum,
     IsOptional,
     IsString,
     MaxLength,
@@ -38,8 +41,14 @@ export class UserDto {
     @Type(() => Date)
     createdAt: Date;
 
-    @IsBoolean()
-    customLinkvertise: boolean;
+    @IsEnum(MonetizationType)
+    @IsOptional()
+    @ApiProperty({
+        enum: MonetizationType,
+        enumName: "MonetizationType",
+        example: MonetizationType.linkvertise,
+    })
+    monetizationType: MonetizationType | null;
 
     @IsString()
     @IsOptional()
@@ -50,4 +59,14 @@ export class UserDto {
     @IsOptional()
     @MaxLength(64)
     linkvertiseSecret: string | null;
+
+    @IsString()
+    @IsOptional()
+    @MaxLength(64)
+    lootlabsSecret: string | null;
+
+    @IsString()
+    @IsOptional()
+    @MaxLength(10)
+    lootlabsLinkId: string | null;
 }

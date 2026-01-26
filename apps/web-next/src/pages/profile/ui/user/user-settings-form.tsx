@@ -7,9 +7,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
 import { Card, CardBody } from "@/shared/ui/card";
-import { UserDto } from "@/shared/lib/openapi";
+import { MonetizationType, UserDto } from "@/shared/lib/openapi";
 import { useAuth } from "@/app/providers/auth";
-import { Routes } from "@/shared/lib/utils";
+import { capitalizeFirstLetter, Routes } from "@/shared/lib/utils";
 import { Popup } from "@/shared/ui/popup";
 import { Input, InputSwitch } from "@/shared/ui/input";
 import { Link } from "@/shared/ui/link";
@@ -17,13 +17,17 @@ import { useRouter } from "next/navigation";
 import { manageProfile, updateProfile } from "@/entities/user";
 
 import styles from "./user.module.scss";
+import { Collapsible } from "@/shared/ui/collapsible";
+import { ButtonGroup } from "@/shared/ui/button-group";
 
 const schema = z.object({
   name: z.string(),
   bio: z.string(),
-  customLinkvertise: z.boolean(),
+  monetizationType: z.enum(MonetizationType).nullable(),
   linkvertiseId: z.string().nullable(),
   linkvertiseSecret: z.string().nullable(),
+  lootlabsLinkId: z.string().nullable(),
+  lootlabsSecret: z.string().nullable(),
   banned: z.boolean(),
 });
 
@@ -45,8 +49,8 @@ export const UserSettingsForm = ({
 }: UserSettingsFormProps) => {
   const router = useRouter();
   const { logout, setUser } = useAuth();
-  const [showLinkvertiseOptions, setShowLinkvertiseOptions] = useState(
-    user.customLinkvertise ?? false,
+  const [monetizationType, setMonetizationType] = useState(
+    user.monetizationType,
   );
 
   const {
@@ -59,7 +63,9 @@ export const UserSettingsForm = ({
     resolver: zodResolver(schema),
   });
 
+  console.log({ errors });
   const onClickSubmit = handleSubmit(async (profile) => {
+    console.log({ profile });
     if (ownsProfile) {
       const user = await updateProfile(profile);
       setUser(user);
@@ -139,22 +145,41 @@ export const UserSettingsForm = ({
                       </Link>
                     </p>
                     <Controller
-                      name="customLinkvertise"
+                      name="monetizationType"
                       control={control}
                       render={({ field }) => (
-                        <InputSwitch
-                          placeholder="Custom Linkvertise"
-                          checked={field.value}
-                          onChange={(e) => {
-                            field.onChange(e.target.checked);
-                            setShowLinkvertiseOptions(e.target.checked);
-                          }}
-                        />
+                        <Collapsible
+                          headerText={capitalizeFirstLetter(
+                            monetizationType ?? "None",
+                          )}
+                        >
+                          {Object.values(MonetizationType).map((mT, key) => (
+                            <ButtonGroup key={key}>
+                              <Button
+                                onClick={() => {
+                                  field.onChange(mT);
+                                  setMonetizationType(mT);
+                                }}
+                                buttonType="button"
+                                isClicked={mT === monetizationType}
+                                center
+                                type="white"
+                                width="100%"
+                              >
+                                <BedrockText
+                                  type="p"
+                                  color="#000"
+                                  text={capitalizeFirstLetter(mT)}
+                                />
+                              </Button>
+                            </ButtonGroup>
+                          ))}
+                        </Collapsible>
                       )}
                     />
                   </div>
 
-                  {showLinkvertiseOptions && (
+                  {monetizationType === "linkvertise" && (
                     <>
                       <div className={styles.input}>
                         <BedrockText
@@ -201,6 +226,58 @@ export const UserSettingsForm = ({
                             text={
                               errors["linkvertiseSecret"]?.message as string
                             }
+                            textAlign="start"
+                          />
+                        )}
+                      </div>
+                    </>
+                  )}
+
+                  {monetizationType === "lootlabs" && (
+                    <>
+                      <div className={styles.input}>
+                        <BedrockText
+                          textAlign="start"
+                          text="Lootlabs Link Id"
+                          type="p"
+                          color="white"
+                        />
+                        <Input
+                          sub
+                          placeholder="Id"
+                          className={styles.input}
+                          {...register("lootlabsLinkId")}
+                        />
+
+                        {errors["lootlabsLinkId"] && (
+                          <BedrockText
+                            type="p2"
+                            extraClassName={styles.error}
+                            text={errors["lootlabsLinkId"]?.message as string}
+                            textAlign="start"
+                          />
+                        )}
+                      </div>
+                      <div className={styles.input}>
+                        <BedrockText
+                          textAlign="start"
+                          text="Lootlabs API Token"
+                          type="p"
+                          color="white"
+                        />
+                        <Input
+                          sub
+                          placeholder="Token"
+                          className={styles.input}
+                          type="password"
+                          {...register("lootlabsSecret")}
+                        />
+
+                        {errors["lootlabsSecret"] && (
+                          <BedrockText
+                            type="p2"
+                            extraClassName={styles.error}
+                            text={errors["lootlabsSecret"]?.message as string}
                             textAlign="start"
                           />
                         )}

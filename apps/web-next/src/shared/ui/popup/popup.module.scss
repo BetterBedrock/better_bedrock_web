@@ -11,7 +11,7 @@
   display: flex;
   justify-content: center;
   padding: g.$padding-lg 0;
-  align-items: center;
+  align-items: flex-start;
   max-height: 100%;
   overflow: auto;
 }
