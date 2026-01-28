@@ -79,24 +79,18 @@ export const HeroReportsPopup = () => {
 
     return (
       <Popup.Part>
-        <Card>
-          <CardBody>
-            <Popup.Content>
-              <Avatar>
-                <Avatar.Profile name={reporter.name} size="medium" />
-                <Avatar.Details name={reporter.name} at>
-                  {<Rating simple rating={reporter.rating.average} />}
-                </Avatar.Details>
-              </Avatar>
-              <BedrockText
-                type="p"
-                text={selectedReport!.message}
-                textAlign="start"
-                color="white"
-              />
-            </Popup.Content>
-          </CardBody>
-        </Card>
+        <Avatar>
+          <Avatar.Profile name={reporter.name} size="medium" />
+          <Avatar.Details name={reporter.name} at>
+            {<Rating simple rating={reporter.rating.average} />}
+          </Avatar.Details>
+        </Avatar>
+        <BedrockText
+          type="p"
+          text={selectedReport!.message}
+          textAlign="start"
+          color="white"
+        />
       </Popup.Part>
     );
   };
@@ -109,33 +103,21 @@ export const HeroReportsPopup = () => {
         {baseReport()}
         <CardDivider />
         <Popup.Part>
-          <Card>
-            <CardBody>
-              <Popup.Content>
-                <GridDownloadCard project={project} mode="view" />
-              </Popup.Content>
-            </CardBody>
-          </Card>
+          <GridDownloadCard project={project} mode="view" />
         </Popup.Part>
         <Popup.Part>
-          <Card>
-            <CardBody>
-              <Popup.Content>
-                <Button
-                  type={selectedReport!.resolved ? "white" : "green"}
-                  center
-                  width="100%"
-                  onClick={handleResolveButton}
-                >
-                  <BedrockText
-                    text={selectedReport!.resolved ? "Reopen" : "Resolve"}
-                    type="p"
-                    color={selectedReport!.resolved ? "black" : "white"}
-                  />
-                </Button>
-              </Popup.Content>
-            </CardBody>
-          </Card>
+          <Button
+            type={selectedReport!.resolved ? "white" : "green"}
+            center
+            width="100%"
+            onClick={handleResolveButton}
+          >
+            <BedrockText
+              text={selectedReport!.resolved ? "Reopen" : "Resolve"}
+              type="p"
+              color={selectedReport!.resolved ? "black" : "white"}
+            />
+          </Button>
         </Popup.Part>
       </>
     );
@@ -148,40 +130,28 @@ export const HeroReportsPopup = () => {
       <>
         {baseReport()}
         <Popup.Part>
-          <Card>
-            <CardBody>
-              <Popup.Content>
-                {/* <Card className={styles.profile}> */}
-                <Avatar>
-                  <Avatar.Profile name={reported.name} size="medium" />
-                  <Avatar.Details name={reported.name} at>
-                    <Rating simple rating={reported.rating.average} />
-                  </Avatar.Details>
-                </Avatar>
-                {/* </Card> */}
-              </Popup.Content>
-            </CardBody>
-          </Card>
+          {/* <Card className={styles.profile}> */}
+          <Avatar>
+            <Avatar.Profile name={reported.name} size="medium" />
+            <Avatar.Details name={reported.name} at>
+              <Rating simple rating={reported.rating.average} />
+            </Avatar.Details>
+          </Avatar>
+          {/* </Card> */}
         </Popup.Part>
         <Popup.Part>
-          <Card sub negativeMarginTop>
-            <CardBody>
-              <Popup.Content>
-                <Button
-                  type={selectedReport!.resolved ? "white" : "green"}
-                  center
-                  width="100%"
-                  onClick={handleResolveButton}
-                >
-                  <BedrockText
-                    text={selectedReport!.resolved ? "Reopen" : "Resolve"}
-                    type="p"
-                    color={selectedReport!.resolved ? "black" : "white"}
-                  />
-                </Button>
-              </Popup.Content>
-            </CardBody>
-          </Card>
+          <Button
+            type={selectedReport!.resolved ? "white" : "green"}
+            center
+            width="100%"
+            onClick={handleResolveButton}
+          >
+            <BedrockText
+              text={selectedReport!.resolved ? "Reopen" : "Resolve"}
+              type="p"
+              color={selectedReport!.resolved ? "black" : "white"}
+            />
+          </Button>
         </Popup.Part>
       </>
     );

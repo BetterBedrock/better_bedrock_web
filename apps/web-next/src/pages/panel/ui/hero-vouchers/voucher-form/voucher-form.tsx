@@ -32,35 +32,23 @@ export const VoucherForm = ({
       <Popup.Wrapper>
         <form onSubmit={onClickSubmit}>
           <Popup.Part>
-            <Card>
-              <CardBody>
-                <Popup.Content>
-                  {fields.map(({ name, label, type, placeholder }) => (
-                    <VoucherFormField
-                      key={label}
-                      errors={errors}
-                      control={control}
-                      name={name}
-                      label={label}
-                      type={type}
-                      placeholder={placeholder}
-                    />
-                  ))}
-                </Popup.Content>
-              </CardBody>
-            </Card>
+            {fields.map(({ name, label, type, placeholder }) => (
+              <VoucherFormField
+                key={label}
+                errors={errors}
+                control={control}
+                name={name}
+                label={label}
+                type={type}
+                placeholder={placeholder}
+              />
+            ))}
           </Popup.Part>
 
           <Popup.Part>
-            <Card sub negativeMarginTop>
-              <CardBody>
-                <Popup.Content>
-                  <Button buttonType="submit" type="green" center>
-                    <BedrockText color="white" type="p" text="Confirm" />
-                  </Button>
-                </Popup.Content>
-              </CardBody>
-            </Card>
+            <Button buttonType="submit" type="green" center>
+              <BedrockText color="white" type="p" text="Confirm" />
+            </Button>
           </Popup.Part>
         </form>
       </Popup.Wrapper>

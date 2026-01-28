@@ -25,41 +25,29 @@ export const ProjectCardPreviewDeclinePopup = ({
     <Popup title="Decline Project" onClose={onCancel}>
       <Popup.Wrapper>
         <Popup.Part>
-          <Card>
-            <CardBody>
-              <Popup.Content>
-                <BedrockText
-                  type="p"
-                  text="You are about to decline this project, what is your reasoning?"
-                  textAlign="start"
-                  color="white"
-                />
-                <Input ref={inputRef} placeholder="Reason" />
-              </Popup.Content>
-            </CardBody>
-          </Card>
+          <BedrockText
+            type="p"
+            text="You are about to decline this project, what is your reasoning?"
+            textAlign="start"
+            color="white"
+          />
+          <Input ref={inputRef} placeholder="Reason" />
         </Popup.Part>
 
         <Popup.Part>
-          <Card sub negativeMarginTop>
-            <CardBody>
-              <Popup.Content>
-                <ButtonGroup className={styles.group}>
-                  <Button onClick={onCancel} type="white" center width="100%">
-                    <BedrockText type="p" text="Cancel" color="black" />
-                  </Button>
-                  <Button
-                    onClick={() => onSubmit(inputRef.current?.value ?? "")}
-                    type="red"
-                    center
-                    width="100%"
-                  >
-                    <BedrockText type="p" text="Decline" color="white" />
-                  </Button>
-                </ButtonGroup>
-              </Popup.Content>
-            </CardBody>
-          </Card>
+          <ButtonGroup className={styles.group}>
+            <Button onClick={onCancel} type="white" center width="100%">
+              <BedrockText type="p" text="Cancel" color="black" />
+            </Button>
+            <Button
+              onClick={() => onSubmit(inputRef.current?.value ?? "")}
+              type="red"
+              center
+              width="100%"
+            >
+              <BedrockText type="p" text="Decline" color="white" />
+            </Button>
+          </ButtonGroup>
         </Popup.Part>
       </Popup.Wrapper>
     </Popup>

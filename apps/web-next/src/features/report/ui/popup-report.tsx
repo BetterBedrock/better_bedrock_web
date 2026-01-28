@@ -57,34 +57,18 @@ const PopupReportComponent = ({
     <Popup title="Report" onClose={onClose}>
       <Popup.Wrapper>
         <Popup.Part>
-          <Card>
-            <CardBody>
-              <Popup.Content>
-                <BedrockText
-                  type="p"
-                  text={`You are about to report ${name}, what is your reasoning behind this report?`}
-                  textAlign="start"
-                  color="white"
-                />
-                <Input
-                  ref={inputRef}
-                  placeholder="Message"
-                  value={defaultMessage}
-                />
-              </Popup.Content>
-            </CardBody>
-          </Card>
+          <BedrockText
+            type="p"
+            text={`You are about to report ${name}, what is your reasoning behind this report?`}
+            textAlign="start"
+            color="white"
+          />
+          <Input ref={inputRef} placeholder="Message" value={defaultMessage} />
         </Popup.Part>
         <Popup.Part>
-          <Card sub negativeMarginTop>
-            <CardBody>
-              <Popup.Content>
-                <Button onClick={handleReport} type="green" center width="100%">
-                  <BedrockText type="p" text="Report" color="white" />
-                </Button>
-              </Popup.Content>
-            </CardBody>
-          </Card>
+          <Button onClick={handleReport} type="green" center width="100%">
+            <BedrockText type="p" text="Report" color="white" />
+          </Button>
         </Popup.Part>
       </Popup.Wrapper>
     </Popup>

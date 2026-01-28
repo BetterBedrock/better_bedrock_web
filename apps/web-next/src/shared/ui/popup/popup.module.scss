@@ -78,14 +78,13 @@
 
 .container {
   width: 100%;
+}
 
-  .part {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    // padding: g.$padding-sm;
-    gap: calc(g.$padding-xsm * 1.25);
-  }
+.part {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: calc(g.$padding-xsm * 1.25);
 }
 
 .group {
@@ -99,10 +98,4 @@
 
 .selectable {
   cursor: pointer;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: calc(g.$padding-xsm * 1.25);
 }
