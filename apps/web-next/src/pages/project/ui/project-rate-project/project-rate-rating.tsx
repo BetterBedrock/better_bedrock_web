@@ -1,7 +1,7 @@
 "use client";
 
 import { deleteRating, postRating } from "@/entities/project";
-import { Rating } from "@/shared/ui/rating/rating";
+import { Rating } from "@/shared/ui/rating";
 
 import styles from "./project-rate-project.module.scss";
 
