@@ -4,12 +4,12 @@ import { BedrockText } from "@/shared/ui/bedrock-text";
 import { SimpleButton } from "@/shared/ui/simple-button";
 
 import styles from "./popup.module.scss";
-import { Card } from "@/shared/ui/card";
+import { Card, CardBody } from "@/shared/ui/card";
 
 interface PopupComponent extends FC<PopupProps> {
   Part: FC<PopupWrapperProps>;
+  Footer: FC<PopupWrapperProps>;
   Wrapper: FC<PopupWrapperProps>;
-  Content: FC<PopupWrapperProps>;
 }
 
 interface PopupProps extends HTMLAttributes<HTMLDivElement> {
@@ -21,7 +21,7 @@ interface PopupProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Popup = (({ children, onClose, className, title }: PopupProps) => (
   <div className={styles.popup} onClick={onClose}>
-    <Card className={styles.body} onClick={(e) => e.stopPropagation()}>
+    <div className={styles.body} onClick={(e) => e.stopPropagation()}>
       <div className={styles.headerContainer}>
         <div className={styles.header}>
           <SimpleButton onClick={onClose} transparent className={styles.close}>
@@ -39,7 +39,7 @@ export const Popup = (({ children, onClose, className, title }: PopupProps) => (
         </div>
       </div>
       {children}
-    </Card>
+    </div>
   </div>
 )) as PopupComponent;
 
@@ -52,13 +52,21 @@ Popup.Wrapper = ({ children }: PopupWrapperProps) => (
 );
 
 Popup.Part = ({ children }: PopupWrapperProps) => (
-  <div className={styles.part}>{children}</div>
+  <Card negativeMarginBottom>
+    <CardBody>
+      <div className={styles.part}>{children}</div>
+    </CardBody>
+  </Card>
 );
 
-Popup.Content = ({ children }: PopupWrapperProps) => (
-  <div className={styles.content}>{children}</div>
+Popup.Footer = ({ children }: PopupWrapperProps) => (
+  <Card sub>
+    <CardBody>
+      <div className={styles.part}>{children}</div>
+    </CardBody>
+  </Card>
 );
 
 Popup.Wrapper.displayName = "Popup.Wrapper";
 Popup.Part.displayName = "Popup.Part";
-Popup.Content.displayName = "Popup.Content";
+Popup.Footer.displayName = "Popup.Footer";
