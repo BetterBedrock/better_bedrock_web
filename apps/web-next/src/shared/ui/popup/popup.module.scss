@@ -76,17 +76,6 @@
   margin-bottom: calc(g.$minecraftdepth * -1);
 }
 
-.container {
-  width: 100%;
-}
-
-.part {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: calc(g.$padding-xsm * 1.25);
-}
-
 .group {
   width: 100%;
 }
