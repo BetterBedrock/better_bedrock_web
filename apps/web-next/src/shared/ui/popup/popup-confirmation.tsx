@@ -13,8 +13,7 @@ import clsx from "clsx";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { ButtonType, Button } from "@/shared/ui/button";
 import { ButtonGroup } from "@/shared/ui/button-group";
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
-import { Popup } from "@/shared/ui/popup/popup";
+import { Popup } from "@/shared/ui/popup";
 
 import styles from "./popup.module.scss";
 
@@ -102,53 +101,32 @@ export const PopupConfirmation = ({
       {enhancedChildren}
       {open && (
         <Popup title={title} onClose={handleCancel}>
-          <div className={styles.container}>
-            <div className={styles.part}>
-              <Card>
-                <CardBody>
-                  <Popup.Content>
-                    <BedrockText
-                      type="p"
-                      text={description}
-                      textAlign="start"
-                      color="white"
-                    />
-                  </Popup.Content>
-                </CardBody>
-              </Card>
-            </div>
+          <Popup.Wrapper>
+            <Popup.Part>
+              <BedrockText
+                type="p"
+                text={description}
+                textAlign="start"
+                color="white"
+              />
+            </Popup.Part>
 
-            <div className={styles.part}>
-              <Card sub negativeMarginTop>
-                <CardBody>
-                  <Popup.Content>
-                    <ButtonGroup className={styles.group}>
-                      <Button
-                        onClick={handleCancel}
-                        type="white"
-                        center
-                        width="100%"
-                      >
-                        <BedrockText type="p" text={cancelText} color="black" />
-                      </Button>
-                      <Button
-                        onClick={handleConfirm}
-                        type={confirmType}
-                        center
-                        width="100%"
-                      >
-                        <BedrockText
-                          type="p"
-                          text={confirmText}
-                          color="white"
-                        />
-                      </Button>
-                    </ButtonGroup>
-                  </Popup.Content>
-                </CardBody>
-              </Card>
-            </div>
-          </div>
+            <Popup.Part>
+              <ButtonGroup className={styles.group}>
+                <Button onClick={handleCancel} type="white" center width="100%">
+                  <BedrockText type="p" text={cancelText} color="black" />
+                </Button>
+                <Button
+                  onClick={handleConfirm}
+                  type={confirmType}
+                  center
+                  width="100%"
+                >
+                  <BedrockText type="p" text={confirmText} color="white" />
+                </Button>
+              </ButtonGroup>
+            </Popup.Part>
+          </Popup.Wrapper>
         </Popup>
       )}
     </div>
