@@ -10,7 +10,6 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   fullWidth?: boolean;
   negativeMarginTop?: boolean;
   negativeMarginBottom?: boolean;
-
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
