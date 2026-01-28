@@ -41,66 +41,50 @@ export const GalleryPopup = ({
         {images.length > 0 && (
           <>
             <Popup.Part>
-              <Card>
-                <CardBody>
-                  <Popup.Content>
-                    <div className={styles.list}>
-                      {images.map((src, idx) => (
-                        <div key={src} className={styles.wrapper}>
-                          <img
-                            src={baseUrl + "/" + src}
-                            alt={`Edit ${idx + 1}`}
-                            className={styles.image}
-                          />
-                          <SimpleButton
-                            onClick={() => onDeleteImage?.(idx)}
-                            transparent
-                            className={styles.delete}
-                            width="100%"
-                            height="100%"
-                          >
-                            <img
-                              alt="Close"
-                              src={Exit.src}
-                              className={styles.icon}
-                            />
-                          </SimpleButton>
-                        </div>
-                      ))}
-                    </div>
-                  </Popup.Content>
-                </CardBody>
-              </Card>
+              <div className={styles.list}>
+                {images.map((src, idx) => (
+                  <div key={src} className={styles.wrapper}>
+                    <img
+                      src={baseUrl + "/" + src}
+                      alt={`Edit ${idx + 1}`}
+                      className={styles.image}
+                    />
+                    <SimpleButton
+                      onClick={() => onDeleteImage?.(idx)}
+                      transparent
+                      className={styles.delete}
+                      width="100%"
+                      height="100%"
+                    >
+                      <img alt="Close" src={Exit.src} className={styles.icon} />
+                    </SimpleButton>
+                  </div>
+                ))}
+              </div>
             </Popup.Part>
             <CardDivider />
           </>
         )}
         <Popup.Part>
-          <Card sub negativeMarginTop>
-            <CardBody>
-              <Popup.Content>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  multiple
-                  accept="image/*"
-                  className={styles.input}
-                  onChange={handleFilesSelected}
-                />
-                <Button
-                  type={images.length >= maxImages ? "dark" : "green"}
-                  center
-                  onClick={handleAddClick}
-                >
-                  <BedrockText
-                    text={`Add Images (${images.length} / ${maxImages})`}
-                    type="p"
-                    color="white"
-                  />
-                </Button>
-              </Popup.Content>
-            </CardBody>
-          </Card>
+          <input
+            ref={fileInputRef}
+            type="file"
+            multiple
+            accept="image/*"
+            className={styles.input}
+            onChange={handleFilesSelected}
+          />
+          <Button
+            type={images.length >= maxImages ? "dark" : "green"}
+            center
+            onClick={handleAddClick}
+          >
+            <BedrockText
+              text={`Add Images (${images.length} / ${maxImages})`}
+              type="p"
+              color="white"
+            />
+          </Button>
         </Popup.Part>
       </Popup.Wrapper>
     </Popup>

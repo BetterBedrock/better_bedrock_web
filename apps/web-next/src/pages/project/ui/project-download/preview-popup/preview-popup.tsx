@@ -45,13 +45,11 @@ export const PreviewPopup = ({ onClose, project }: PreviewPopupProps) => {
           <PreviewPopupRecommended categories={categories} />
         </Popup.Part>
 
-        <CardDivider />
         <PreviewPopupPlans
           categories={categories}
           selectedTimeframe={selectedTimeframe}
           download={download}
         />
-        <CardDivider />
         <PreviewPopupFooter />
       </Popup.Wrapper>
     </Popup>
