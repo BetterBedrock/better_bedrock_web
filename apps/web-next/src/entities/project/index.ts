@@ -21,4 +21,4 @@ export { replyToComment } from "./api/reply-to-comment";
 export { searchProjects } from "./api/search-projects";
 export { submitProject } from "./api/submit-project";
 export { updateProject } from "./api/update-project";
-export { uploadFile } from "./api/upload-file";
+export { uploadFile } from "./model/upload-file";
