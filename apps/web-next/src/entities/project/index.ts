@@ -13,7 +13,6 @@ export { fetchProjectsBasicInfo } from "./api/fetch-projects-basic-info";
 export { fetchSubmittedProjects } from "./api/fetch-submitted-projects";
 export { fetchUserDrafts } from "./api/fetch-user-drafts";
 export { fetchUserProjects } from "./api/fetch-user-projects";
-export { handleCreateProject } from "./api/handle-create-project";
 export { postComment } from "./api/post-comment";
 export { postRating } from "./api/post-rating";
 export { publishProject } from "./api/publish-project";
