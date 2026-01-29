@@ -6,7 +6,7 @@ interface HeroHeaderProps {
   creator: SimpleUserDto;
 }
 
-export const HeroHeader = async ({ project, creator }: HeroHeaderProps) => (
+export const HeroHeader = ({ project, creator }: HeroHeaderProps) => (
   <div>
     <BedrockText type="h1" text="DOWNLOADING" color="white" font="Minecraft" />
     <BedrockText
