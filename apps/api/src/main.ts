@@ -75,7 +75,10 @@ async function bootstrap() {
         }),
     );
 
-    app.enableCors();
+    app.enableCors({
+        origin: ["https://betterbedrock.com", "https://dev.betterbedrock.com"],
+        credentials: true,
+    });
 
     await app.listen(process.env.PORT ?? 8084);
 }
