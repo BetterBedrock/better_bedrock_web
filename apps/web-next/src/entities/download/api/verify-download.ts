@@ -1,4 +1,4 @@
-"use server";
+"use client";
 
 import { fetchSecret } from "@/shared/lib/auth";
 import { verifyDownloadRequest } from "./downloads-service";
