@@ -1,6 +1,9 @@
 @use "@/shared/ui" as g;
 
 .content {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  overflow: hidden;
   width: 100%;
   margin: 0 auto;
   height: 100%;
