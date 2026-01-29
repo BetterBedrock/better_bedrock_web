@@ -1,3 +1,5 @@
+"use server";
+
 import { fetchSecret } from "@/shared/lib/auth";
 import { fetchDetailedUserRequest } from "@/entities/user/api/user-service";
 

@@ -1,3 +1,5 @@
+"use server";
+
 import { ManageProfileDto } from "@/shared/lib/openapi";
 import { manageProfileRequest } from "@/entities/user/api/user-service";
 import { fetchSecret } from "@/shared/lib/auth";

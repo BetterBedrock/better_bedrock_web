@@ -1,3 +1,5 @@
+"use server";
+
 import { fetchUserRatingRequest } from "@/entities/user/api/user-service";
 import { Routes } from "@/shared/lib/utils";
 import { notFound, redirect } from "next/navigation";

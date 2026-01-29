@@ -1,3 +1,5 @@
+"use server";
+
 import { fetchSecret } from "@/shared/lib/auth";
 import { fetchUserProjectsRequest } from "@/entities/project/api/project-service";
 import dayjs from "dayjs";

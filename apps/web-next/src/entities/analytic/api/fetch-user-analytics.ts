@@ -1,3 +1,5 @@
+"use server";
+
 import { fetchSecret } from "@/shared/lib/auth";
 import { fetchUserAnalyticsRequest } from "@/entities/analytic/api/analytics-service";
 

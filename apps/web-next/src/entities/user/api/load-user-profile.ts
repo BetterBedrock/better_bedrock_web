@@ -1,3 +1,5 @@
+"use server";
+
 import { fetchUserByName } from "@/entities/user";
 import { Routes } from "@/shared/lib/utils";
 import { notFound, redirect } from "next/navigation";

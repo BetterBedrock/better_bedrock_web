@@ -1,3 +1,5 @@
+"use server";
+
 import { generateDownloadRequest } from "./downloads-service";
 
 export const generateDownload = async (id: string) => {
