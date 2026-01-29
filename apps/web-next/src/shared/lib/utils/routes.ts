@@ -13,7 +13,7 @@ export enum Routes {
     PROJECT_REVIEW = "/project/review",
     PROJECT_PREVIEW = "/project/preview",
     LOGIN = "/login",
-    LINKVERTISE = "/linkvertise",
+    MONETIZATION = "/monetization",
     INFORMATION = "/information",
     FETCH = "/verify",
     PROFILE = "/profile",

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Banner } from "@/shared/ui/banner";
+import { Routes } from "@/shared/lib/utils";
 
 export const ProjectsCardBanner = () => (
   <Banner
@@ -9,7 +10,7 @@ export const ProjectsCardBanner = () => (
         Creators keep 100% of ad revenue and benefit from our anti-bypass system
         to maximize earnings.{" "}
         <Link
-          href="/linkvertise"
+          href={Routes.MONETIZATION}
           style={{ color: "inherit", textDecoration: "underline" }}
         >
           Check this tutorial to learn how!
