@@ -1,8 +1,11 @@
 import { Banner } from "@/shared/ui/banner";
 import { SimpleUserDto } from "@/shared/lib/openapi";
 import { fetchLoggedUser } from "@/entities/auth";
-import Link from "next/link";
+import { Routes } from "@/shared/lib/utils";
+import { BedrockText } from "@/shared/ui/bedrock-text";
+
 import styles from "./user.module.scss";
+import { Link } from "@/shared/ui/link";
 
 interface UserLinkvertiseInfoProps {
   selectedUser?: SimpleUserDto;
@@ -22,17 +25,14 @@ export const UserLinkvertiseInfo = async ({
       <Banner
         type="info"
         message={
-          <p style={{ textAlign: "center" }}>
+          <BedrockText textAlign="center">
             Almost there! Unlock 100% of your ad revenue now. Finish your AD
             provider setup in profile settings and start earning from your
             downloads!{" "}
-            <Link
-              href="/linkvertise"
-              style={{ color: "inherit", textDecoration: "underline" }}
-            >
+            <Link link={Routes.MONETIZATION} className={styles.link}>
               Check this tutorial page to learn how!
             </Link>
-          </p>
+          </BedrockText>
         }
       />
     </div>
