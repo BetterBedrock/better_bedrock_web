@@ -19,10 +19,10 @@ export const FeaturedCard = async () => {
       <CardBody>
         <FeaturedCardButtons />
       </CardBody>
-      <CardDivider />
+      {/* <CardDivider />
       <CardBody>
         <PartnerImage />
-      </CardBody>
+      </CardBody> */}
     </Card>
   );
 };

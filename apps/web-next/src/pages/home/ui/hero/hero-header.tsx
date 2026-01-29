@@ -9,6 +9,6 @@ export const HeroHeader = () => (
     <HeroTitle />
     <HeroDescription />
     <HeroActions />
-    <PartnerImage />
+    {/* <PartnerImage /> */}
   </div>
 );

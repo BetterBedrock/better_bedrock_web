@@ -13,7 +13,7 @@ export const VerifyPage = async ({ searchParams }: VerifyPageProps) => {
   return (
     <>
       <Hero hash={hash} />
-      <PartnerCard onlyImage />
+      {/* <PartnerCard onlyImage /> */}
     </>
   );
 };
