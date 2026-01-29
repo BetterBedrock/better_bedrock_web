@@ -20,9 +20,9 @@ export const Header = ({ selectedCategory }: HeaderProps) => (
     <CardBody>
       <HeaderTabs selectedCategory={selectedCategory} />
     </CardBody>
-    <CardDivider />
+    {/* <CardDivider />
     <CardBody>
       <PartnerImage />
-    </CardBody>
+    </CardBody> */}
   </Card>
 );
