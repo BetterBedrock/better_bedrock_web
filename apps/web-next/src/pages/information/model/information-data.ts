@@ -67,7 +67,7 @@ export const informationData: InformationTab[] = [
         {
           question: "What type of content we provide?",
           answer:
-            "Our main focus is Better Bedrock Texture pack and it's extension packs. We offer just texture packs - no apps for any device. We also allow people to post their projects directly on our platform - by ADs system crators receive revenue. Check betterbedrock.com/linkvertise for more information.",
+            "Our main focus is Better Bedrock Texture pack and it's extension packs. We offer just texture packs - no apps for any device. We also allow people to post their projects directly on our platform - by ADs system crators receive revenue. Check betterbedrock.com/monetization for more information.",
         },
         {
           question: "Is there any app for Phone or Computer?",

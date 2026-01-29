@@ -6,12 +6,11 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
-import { Card, CardBody } from "@/shared/ui/card";
 import { MonetizationType, UserDto } from "@/shared/lib/openapi";
 import { useAuth } from "@/app/providers/auth";
 import { capitalizeFirstLetter, Routes } from "@/shared/lib/utils";
 import { Popup } from "@/shared/ui/popup";
-import { Input, InputSwitch } from "@/shared/ui/input";
+import { Input } from "@/shared/ui/input";
 import { Link } from "@/shared/ui/link";
 import { useRouter } from "next/navigation";
 import { manageProfile, updateProfile } from "@/entities/user";
@@ -63,9 +62,7 @@ export const UserSettingsForm = ({
     resolver: zodResolver(schema),
   });
 
-  console.log({ errors });
   const onClickSubmit = handleSubmit(async (profile) => {
-    console.log({ profile });
     if (ownsProfile) {
       const user = await updateProfile(profile);
       setUser(user);
@@ -137,7 +134,7 @@ export const UserSettingsForm = ({
             <div>
               <p className={styles.linkvertiseInfo}>
                 Monetization System - receive 100% revenue from ADs.{" "}
-                <Link link={Routes.LINKVERTISE} className={styles.link}>
+                <Link link={Routes.MONETIZATION} className={styles.link}>
                   Check this tutorial for more information!
                 </Link>
               </p>

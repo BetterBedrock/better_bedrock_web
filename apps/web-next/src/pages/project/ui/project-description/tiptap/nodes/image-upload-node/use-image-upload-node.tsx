@@ -56,7 +56,7 @@ export const useFileUpload = ({ props }: UploadOptions) => {
 
     try {
       if (!upload) {
-        throw new Error("Upload function is not defined");
+        throwError(null, "Upload function is not defined");
       }
 
       const url = await upload(
@@ -71,7 +71,10 @@ export const useFileUpload = ({ props }: UploadOptions) => {
         abortController.signal,
       );
 
-      if (!url) throw new Error("Upload failed: No URL returned");
+      if (!url) {
+        throwError(null, "Upload failed: No URL returned");
+        return;
+      }
 
       if (!abortController.signal.aborted) {
         setFileItems((prev) =>
@@ -87,9 +90,7 @@ export const useFileUpload = ({ props }: UploadOptions) => {
 
       return;
     } catch (error) {
-      if (!abortController.signal.aborted) {
-        onError?.(error instanceof Error ? error : new Error("Upload failed"));
-      }
+      throwError(error, typeof error === "string" ? error : "Upload failed");
       return;
     }
   };

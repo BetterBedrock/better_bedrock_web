@@ -25,6 +25,7 @@ import { Toolbar } from "@/pages/project/ui/project-description/tiptap/primitive
 
 import { styles, TiptapImageToolbar, TiptapToolbar } from ".";
 import { uploadFile } from "@/entities/project";
+import { useNotification } from "@/app/providers/notification";
 
 interface TiptapEditorProps {
   content?: Content | undefined;
@@ -39,6 +40,7 @@ export const TiptapEditor = ({
   onUpload,
   detailedProject,
 }: TiptapEditorProps) => {
+  const { throwError } = useNotification();
   const [isLoading, setIsLoading] = useState(true);
   const toolbarRef = useRef<HTMLDivElement>(null);
   const [imageToolbar, setImageToolbar] = useState(false);
@@ -54,7 +56,7 @@ export const TiptapEditor = ({
 
     const { data, error } = await uploadFile(detailedProject.id!, file);
 
-    if (!data || error) throw new Error("No file returned");
+    if (!data || error) throw error;
     onUpload?.();
 
     return data.fileUrl;
@@ -99,7 +101,7 @@ export const TiptapEditor = ({
         accept: "image/*",
         limit: 3,
         upload: handleImageUpload,
-        onError: (error) => console.error("Upload failed:", error),
+        onError: (error) => throwError(error, error.message),
       }),
       GalleryExtension,
     ],

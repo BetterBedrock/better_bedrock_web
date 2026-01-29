@@ -6,6 +6,6 @@ export const guestRedirect = async () => {
     const user = await fetchLoggedUser();
 
     if (!user) {
-        redirect(Routes.LINKVERTISE);
+        redirect(Routes.MONETIZATION);
     }
 };

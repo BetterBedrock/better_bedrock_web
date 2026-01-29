@@ -31,15 +31,7 @@ export const useDownloadButton = (
   const instantDownload =
     isCreatorOrAdmin ||
     (isVoucherValidType && !hasVoucherExpired && !isVoucherUsed);
-
-  console.log({
-    voucher,
-    isCreatorOrAdmin,
-    isVoucherValidType,
-    hasVoucherExpired,
-    isVoucherUsed,
-    instantDownload,
-  });
+    
   const handleClick = async () => {
     if (isVoucherValidType) {
       sendNotification({
