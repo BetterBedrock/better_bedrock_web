@@ -1,10 +1,10 @@
 import clsx from "clsx";
-import { CSSProperties } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 import styles from "./bedrock-text.module.scss";
 
 export interface BedrockTextProps {
-  text: string;
+  text?: string;
   font?: string;
   color?: string;
   textAlign?:
@@ -25,6 +25,7 @@ export interface BedrockTextProps {
   style?: CSSProperties;
   extraClassName?: string | string[];
   onClick?: () => void;
+  children?: ReactNode;
 }
 
 export const BedrockText = ({
@@ -41,6 +42,7 @@ export const BedrockText = ({
   margin,
   style,
   onClick,
+  children,
   extraClassName = [],
 }: BedrockTextProps) => {
   const Tag = type === "p2" ? "p" : type;
@@ -69,6 +71,7 @@ export const BedrockText = ({
       onClick={onClick}
     >
       {text}
+      {children}
     </Tag>
   );
 };
