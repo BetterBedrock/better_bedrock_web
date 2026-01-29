@@ -54,8 +54,6 @@ export const GridDownloadCard = ({
     return Routes.PROJECT_PREVIEW + "/" + project.id;
   };
 
-  console.log({baseUrl})
-
   return (
     <div className={clsx(styles.container, className)}>
       <div className={styles.author}>
