@@ -4,6 +4,6 @@ export const ResourcesDescription = () => (
   <BedrockText
     type="p"
     color="white"
-    text="Check FAQ and tutorial videos in information page or directly join discord for latest news or check news history!"
+    text="Explore tutorials and solve common issues via our Information Page. For the latest changelogs, news history, and community discussions, hop into our Discord server!"
   />
 );

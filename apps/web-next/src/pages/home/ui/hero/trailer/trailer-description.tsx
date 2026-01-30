@@ -5,6 +5,6 @@ export const TrailerDescription = () => (
     type="p"
     textAlign="center"
     color="white"
-    text="Learn how you can publish your projects and earn €8.5 per 1000 downloads on average — the highest rate offered across all sites."
+    text="Create, share, and get paid. With earning potential up to $70 CPM and a massive audience of Bedrock players, there is no better place to publish your Addons and Texture Packs. See how easy it is to get started:"
   />
 );

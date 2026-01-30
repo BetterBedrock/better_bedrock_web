@@ -23,21 +23,21 @@ export const aboutSectionsData: AboutSectionData[] = [
   {
     elements: [
       {
-        title: "Gameplay on Another Level",
+        title: "Elite Gameplay Experience",
         description:
-          "Improved experience with HUD mods, making gameplay more immersive and strategic!",
+          "Dominate the game with advanced HUD mods. Gain a strategic advantage with real-time info right on your screen.",
         image: banner1.src,
       },
       {
-        title: "Mod Menu",
+        title: "Ultimate Control Center",
         description:
-          "Fully customizable mods and adjustable HUD elements that provide essential information!",
+          "Fully customizable Mod Menu. Toggle features, move HUD elements, and tailor the interface to your exact playstyle.",
         image: banner2.src,
       },
       {
-        title: "Custom UIs",
+        title: "Sleek Visual Overhaul",
         description:
-          "Revamped custom UIs offer a refreshed design, giving Minecraft's main screens a sleek and updated look!",
+          "Say goodbye to the boring vanilla look. Enjoy a completely revamped, modern dark-themed interface across all menus.",
         image: banner3.src,
       },
     ],
@@ -46,21 +46,21 @@ export const aboutSectionsData: AboutSectionData[] = [
   {
     elements: [
       {
-        title: "Many Extension Packs",
+        title: "Limitless Customization",
         description:
-          "Extra packs like Waypoints, Better Fogs, and Dark Mode are designed to improve your Minecraft experience!",
+          "Take it further with exclusive extension packs like Waypoints, Better Fogs, and Dark Mode to maximize your experience.",
         image: banner4.src,
       },
       {
-        title: "Config System",
+        title: "Save & Load Instantly",
         description:
-          "After you figure out mods, you are able to save all their states and edit some extra global options!",
+          "Don't lose your setup. Easily configure global options and save your perfect mod profiles for any situation.",
         image: banner5.src,
       },
       {
-        title: "Platform Support",
+        title: "Play Anywhere",
         description:
-          "And at the end of the day, you can use this Texture Pack on computer, later on your phone and finally on a friend's Console!",
+          "One pack, all devices. Seamlessly switch between PC, Mobile, and Console without losing quality or features.",
         image: banner6.src,
       },
     ],

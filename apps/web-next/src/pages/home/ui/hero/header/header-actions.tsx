@@ -11,12 +11,12 @@ export const HeroActions = () => (
     <ButtonGroup direction="responsive">
       <Link href={Routes.DOWNLOADS_MAIN} className={styles.link}>
         <Button width="100%" type="green" center>
-          <BedrockText text="Downloads" type="p" color="white" />
+          <BedrockText text="Explore Projects" type="p" color="white" />
         </Button>
       </Link>
-      <Link href={Routes.CREATE} className={styles.link}>
+      <Link href={Routes.DOWNLOADS_BETTERBEDROCK} className={styles.link}>
         <Button width="100%" type="white" center>
-          <BedrockText text="Create a project" type="p" color="black" />
+          <BedrockText text="Get Better Bedrock" type="p" color="black" />
         </Button>
       </Link>
     </ButtonGroup>

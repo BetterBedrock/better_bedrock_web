@@ -5,7 +5,7 @@ export const TrailerTitle = () => (
     type="h2"
     textAlign="center"
     color="white"
-    text="Make Money On Better Bedrock"
+    text="Turn Your Passion Into Profit"
     font="Minecraft"
   />
 );

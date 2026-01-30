@@ -4,13 +4,13 @@ import { CreatorsModule } from "./creators-module";
 export const CreatorsModuleList = () => (
   <>
     <CreatorsModule
-      title="CREATORS"
-      description="Meet the creators behind the project! Initially created by AmBro and later expanded by iDarkQ. Check out the parts they worked on below!"
+      title="The Minds Behind Better Bedrock"
+      description="Founded by AmBro and evolved to new heights by iDarkQ. Discover the visionaries who built the most advanced Bedrock ecosystem from the ground up."
       contributors={CREATORS}
     />
     <CreatorsModule
-      title="HELPERS"
-      description="Meet the Better Bedrock helpers. They have significantly contributed to developing many features for the Texture Pack."
+      title="Community Heroes"
+      description="Meet the dedicated support team that keeps our community alive. They work tirelessly on Discord to assist users, solve problems, and maintain a welcoming environment for everyone."
       contributors={HELPERS}
     />
   </>
