@@ -18,6 +18,8 @@ import { manageProfile, updateProfile } from "@/entities/user";
 import styles from "./user.module.scss";
 import { Collapsible } from "@/shared/ui/collapsible";
 import { ButtonGroup } from "@/shared/ui/button-group";
+import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Banner } from "@/shared/ui/banner";
 
 const schema = z.object({
   name: z.string(),
@@ -81,9 +83,9 @@ export const UserSettingsForm = ({
 
   return (
     <Popup onClose={onClose} title="Account Settings">
-      <Popup.Wrapper>
-        <form onSubmit={onClickSubmit}>
-          <Popup.Part>
+      <form onSubmit={onClickSubmit}>
+        <Card negativeMarginBottom>
+          <CardBody smallerGap>
             <div className={styles.input}>
               <BedrockText
                 textAlign="start"
@@ -105,8 +107,8 @@ export const UserSettingsForm = ({
                   textAlign="start"
                 />
               )}
-            </div>
 
+            </div>
             <div className={styles.input}>
               <BedrockText
                 textAlign="start"
@@ -130,14 +132,30 @@ export const UserSettingsForm = ({
                 />
               )}
             </div>
+          </CardBody>
+
+          <CardDivider />
+
+          <CardBody smallerGap>
+            <Banner
+              type="info"
+              message={
+                <p className={styles.linkvertiseInfo}>
+                  Monetization System - receive 100% revenue from ADs.{" "}
+                  <Link link={Routes.MONETIZATION} className={styles.link}>
+                    Check this tutorial for more information!
+                  </Link>
+                </p>
+              }
+            />
 
             <div>
-              <p className={styles.linkvertiseInfo}>
-                Monetization System - receive 100% revenue from ADs.{" "}
-                <Link link={Routes.MONETIZATION} className={styles.link}>
-                  Check this tutorial for more information!
-                </Link>
-              </p>
+              <BedrockText
+                textAlign="start"
+                text="Monetization Type"
+                type="p"
+                color="white"
+              />
               <Controller
                 name="monetizationType"
                 control={control}
@@ -147,9 +165,10 @@ export const UserSettingsForm = ({
                       monetizationType ?? "None",
                     )}
                   >
-                    {Object.values(MonetizationType).map((mT, key) => (
-                      <ButtonGroup key={key}>
+                    <div className={styles.monetizationTypeCollapsible}>
+                      {Object.values(MonetizationType).map((mT, key) => (
                         <Button
+                          key={key}
                           onClick={() => {
                             field.onChange(mT);
                             setMonetizationType(mT);
@@ -166,13 +185,12 @@ export const UserSettingsForm = ({
                             text={capitalizeFirstLetter(mT)}
                           />
                         </Button>
-                      </ButtonGroup>
-                    ))}
+                      ))}
+                    </div>
                   </Collapsible>
                 )}
               />
             </div>
-
             {monetizationType === "linkvertise" && (
               <>
                 <div className={styles.input}>
@@ -276,9 +294,11 @@ export const UserSettingsForm = ({
                 </div>
               </>
             )}
-          </Popup.Part>
+          </CardBody>
+        </Card>
 
-          <Popup.Footer>
+        <Card sub >
+          <CardBody smallerGap>
             {admin && (
               <Controller
                 name="banned"
@@ -308,9 +328,9 @@ export const UserSettingsForm = ({
                 <BedrockText type="p" text="Logout" color="white" />
               </Button>
             )}
-          </Popup.Footer>
-        </form>
-      </Popup.Wrapper>
+          </CardBody>
+        </Card>
+      </form>
     </Popup>
   );
 };
