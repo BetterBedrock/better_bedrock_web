@@ -1,10 +1,15 @@
 import { HeroLoginButton } from "@/pages/login/ui/hero/hero-login-button";
 import { HeroHeader } from "./hero-header";
-import styles from "./hero.module.scss";
+import { Card, CardBody, CardDivider } from "@/shared/ui/card";
 
 export const Hero = () => (
-  <div className={styles.wrapper}>
-    <HeroHeader />
-    <HeroLoginButton />
-  </div>
+  <Card fullWidth>
+    <CardBody>
+      <HeroHeader />
+    </CardBody>
+    <CardDivider />
+    <CardBody>
+      <HeroLoginButton />
+    </CardBody>
+  </Card>
 );

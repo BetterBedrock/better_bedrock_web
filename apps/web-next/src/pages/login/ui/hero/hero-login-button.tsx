@@ -18,7 +18,7 @@ export const HeroLoginButton = () => {
       className={styles.actions}
       center
     >
-      <BedrockText color="white" text="Google Login" type="p" />
+      <BedrockText color="white" text="Sign in with Google" type="p" />
     </Button>
   );
 };
