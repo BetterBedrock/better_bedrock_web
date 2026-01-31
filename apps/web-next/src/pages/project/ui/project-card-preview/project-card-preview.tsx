@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardDivider } from "@/shared/ui/card";
+import { Card, CardBody, CardDivider } from "@/shared/ui/card";
 import { GridDownloadCard } from "@/shared/ui/grid-download-card";
 import { ProjectHeaderTitle } from "@/pages/project/ui/project-header";
 import { ProjectCardPreviewActions } from "./project-card-preview-actions";
@@ -12,18 +12,20 @@ export const ProjectCardPreview = () => {
   const { selectedProject } = useProjectManager();
 
   return (
-    <Card sub>
-      <div className={styles.editor}>
+    <Card>
+      <CardBody>
         <ProjectHeaderTitle title="Review" />
-      </div>
-      <CardDivider sub />
-      <div className={styles.editor}>
+      </CardBody>
+      <CardDivider />
+      <CardBody>
         {selectedProject && (
           <GridDownloadCard project={{ ...selectedProject }} />
         )}
-      </div>
-      <CardDivider sub />
-      <ProjectCardPreviewActions />
+      </CardBody>
+      <CardDivider />
+      <CardBody>
+        <ProjectCardPreviewActions />
+      </CardBody>
     </Card>
   );
 };
