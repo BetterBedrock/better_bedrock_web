@@ -70,6 +70,10 @@
     min-width: 200px;
   }
 
+  @media (max-width: g.$breakpoint-tablet) {
+    min-width: 0px;
+  }
+
   > * {
     max-lines: 1;
   }
