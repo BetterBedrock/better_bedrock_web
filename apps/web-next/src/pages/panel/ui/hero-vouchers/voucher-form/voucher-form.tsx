@@ -29,9 +29,9 @@ export const VoucherForm = ({
       title={voucher ? "Edit Voucher" : "Create Voucher"}
       onClose={onClose}
     >
-      <Popup.Wrapper>
-        <form onSubmit={onClickSubmit}>
-          <Popup.Part>
+      <form onSubmit={onClickSubmit}>
+        <Card negativeMarginBottom>
+          <CardBody gapSize="lg">
             {fields.map(({ name, label, type, placeholder }) => (
               <VoucherFormField
                 key={label}
@@ -43,15 +43,17 @@ export const VoucherForm = ({
                 placeholder={placeholder}
               />
             ))}
-          </Popup.Part>
+          </CardBody>
+        </Card>
 
-          <Popup.Part>
+        <Card sub >
+          <CardBody gapSize="md">
             <Button buttonType="submit" type="green" center>
               <BedrockText color="white" type="p" text="Confirm" />
             </Button>
-          </Popup.Part>
-        </form>
-      </Popup.Wrapper>
+          </CardBody>
+        </Card>
+      </form>
     </Popup>
   );
 };
