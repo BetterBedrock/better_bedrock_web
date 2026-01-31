@@ -4,6 +4,6 @@ export const HeaderDescription = () => (
   <BedrockText
     type="p"
     color="white"
-    text="Full list of all reports on users and projects"
+    text="Full list of all reports on users and projects."
   />
 );
