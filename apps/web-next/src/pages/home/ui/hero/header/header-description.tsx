@@ -7,7 +7,7 @@ export const HeroDescription = () => (
       type="p"
       textAlign="center"
       color="white"
-      text="Is the source for the most powerful, customizable, useful and free Texture Packs where creators make 100% of the ad revenue!"
+      text="Is the most powerful and customizable texture pack for Minecraft Bedrock Edition, now evolving into a dedicated platform where creators can share their projects and earn ad revenue."
     />
   </div>
 );
