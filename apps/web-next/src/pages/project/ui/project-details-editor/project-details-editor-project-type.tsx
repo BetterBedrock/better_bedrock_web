@@ -10,6 +10,7 @@ import { PROJECT_TYPES } from "@/public/content/better-bedrock";
 import { useDetailsEditorProjectType } from "@/pages/project/model/use-details-editor-project-type";
 
 import styles from "./project-details-editor.module.scss";
+import { CardWrapper } from "@/shared/ui/card";
 
 export const ProjectDetailsEditorProjectType = () => {
   const { handleUpdateType, selectedProject } = useDetailsEditorProjectType();
@@ -32,7 +33,7 @@ export const ProjectDetailsEditorProjectType = () => {
   ));
 
   return (
-    <>
+    <CardWrapper>
       <BedrockText
         text="Project Type"
         type="p"
@@ -54,6 +55,6 @@ export const ProjectDetailsEditorProjectType = () => {
       <ButtonGroup direction="horizontal" className={styles.group}>
         {types}
       </ButtonGroup>
-    </>
+    </CardWrapper >
   );
 };

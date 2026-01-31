@@ -27,28 +27,20 @@ export const ProjectDetailsEditor = ({
         </CardBody>
 
         <CardDivider />
-        <CardBody smallerGap>
+        <CardBody gapSize="lg">
           <ProjectDetailsEditorProjectType />
-        </CardBody>
-
-        <CardDivider />
-        <CardBody smallerGap>
           <ProjectDetailsEditorTags />
+          <ProjectDetailsEditorDownloadFile />
         </CardBody>
 
         {user?.admin && (
           <>
             <CardDivider />
-            <CardBody smallerGap>
+            <CardBody gapSize="sm">
               <ProjectDetailsEditorBetterBedrockContent />
             </CardBody>
           </>
         )}
-
-        <CardDivider />
-        <CardBody smallerGap>
-          <ProjectDetailsEditorDownloadFile />
-        </CardBody>
       </Card>
     </>
   );
