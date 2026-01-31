@@ -52,19 +52,21 @@ Popup.Wrapper = ({ children }: PopupWrapperProps) => (
 );
 
 Popup.Part = ({ children }: PopupWrapperProps) => (
-  <Card negativeMarginBottom>
-    <CardBody>
-      <div className={styles.part}>{children}</div>
-    </CardBody>
-  </Card>
+  <div className={styles.part}>{children}</div>
+  // <Card negativeMarginBottom>
+  //   <CardBody>
+  //     <div className={styles.part}>{children}</div>
+  //   </CardBody>
+  // </Card>
 );
 
 Popup.Footer = ({ children }: PopupWrapperProps) => (
-  <Card sub>
-    <CardBody>
-      <div className={styles.part}>{children}</div>
-    </CardBody>
-  </Card>
+  <div className={styles.part}>{children}</div>
+  // <Card sub>
+  //   <CardBody>
+  //     <div className={styles.part}>{children}</div>
+  //   </CardBody>
+  // </Card>
 );
 
 Popup.Wrapper.displayName = "Popup.Wrapper";
