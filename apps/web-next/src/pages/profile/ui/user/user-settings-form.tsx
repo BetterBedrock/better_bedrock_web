@@ -18,7 +18,7 @@ import { manageProfile, updateProfile } from "@/entities/user";
 import styles from "./user.module.scss";
 import { Collapsible } from "@/shared/ui/collapsible";
 import { ButtonGroup } from "@/shared/ui/button-group";
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card, CardBody, CardDivider, CardWrapper } from "@/shared/ui/card";
 import { Banner } from "@/shared/ui/banner";
 
 const schema = z.object({
@@ -85,8 +85,8 @@ export const UserSettingsForm = ({
     <Popup onClose={onClose} title="Account Settings">
       <form onSubmit={onClickSubmit}>
         <Card negativeMarginBottom>
-          <CardBody smallerGap>
-            <div className={styles.input}>
+          <CardBody gapSize="lg">
+            <CardWrapper>
               <BedrockText
                 textAlign="start"
                 text="Username"
@@ -107,9 +107,9 @@ export const UserSettingsForm = ({
                   textAlign="start"
                 />
               )}
+            </CardWrapper>
 
-            </div>
-            <div className={styles.input}>
+            <CardWrapper>
               <BedrockText
                 textAlign="start"
                 text="Bio"
@@ -131,25 +131,27 @@ export const UserSettingsForm = ({
                   textAlign="start"
                 />
               )}
-            </div>
+            </CardWrapper>
           </CardBody>
 
           <CardDivider />
 
-          <CardBody smallerGap>
+          <CardBody gapSize="lg">
             <Banner
               type="info"
               message={
-                <p className={styles.linkvertiseInfo}>
-                  Monetization System - receive 100% revenue from ADs.{" "}
-                  <Link link={Routes.MONETIZATION} className={styles.link}>
-                    Check this tutorial for more information!
-                  </Link>
-                </p>
+                <div>
+                  <p className={styles.bannerText}>
+                    Monetization System - receive 100% revenue from ADs.{" "}
+                    <Link link={Routes.MONETIZATION} className={styles.link}>
+                      Check this tutorial for more information!
+                    </Link>
+                  </p>
+                </div>
               }
             />
 
-            <div>
+            <CardWrapper>
               <BedrockText
                 textAlign="start"
                 text="Monetization Type"
@@ -190,10 +192,11 @@ export const UserSettingsForm = ({
                   </Collapsible>
                 )}
               />
-            </div>
+            </CardWrapper>
+
             {monetizationType === "linkvertise" && (
               <>
-                <div className={styles.input}>
+                <CardWrapper>
                   <BedrockText
                     textAlign="start"
                     text="Linkvertise User Id"
@@ -215,8 +218,9 @@ export const UserSettingsForm = ({
                       textAlign="start"
                     />
                   )}
-                </div>
-                <div className={styles.input}>
+                </CardWrapper>
+
+                <CardWrapper>
                   <BedrockText
                     textAlign="start"
                     text="Linkvertise Anti-bypass Token"
@@ -239,13 +243,13 @@ export const UserSettingsForm = ({
                       textAlign="start"
                     />
                   )}
-                </div>
+                </CardWrapper>
               </>
             )}
 
             {monetizationType === "lootlabs" && (
               <>
-                <div className={styles.input}>
+                <CardWrapper>
                   <BedrockText
                     textAlign="start"
                     text="Lootlabs Link Id"
@@ -267,8 +271,9 @@ export const UserSettingsForm = ({
                       textAlign="start"
                     />
                   )}
-                </div>
-                <div className={styles.input}>
+                </CardWrapper>
+
+                <CardWrapper>
                   <BedrockText
                     textAlign="start"
                     text="Lootlabs API Token"
@@ -291,7 +296,7 @@ export const UserSettingsForm = ({
                       textAlign="start"
                     />
                   )}
-                </div>
+                </CardWrapper>
               </>
             )}
           </CardBody>

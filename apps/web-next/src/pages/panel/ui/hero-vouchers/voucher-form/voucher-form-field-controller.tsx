@@ -47,6 +47,7 @@ export const VoucherFormFieldController = ({
         ) {
           return (
             <Input
+              sub
               type={type}
               placeholder={placeholder}
               className={styles.input}

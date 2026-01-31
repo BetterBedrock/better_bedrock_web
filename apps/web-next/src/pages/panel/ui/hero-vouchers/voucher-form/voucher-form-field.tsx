@@ -5,6 +5,7 @@ import { VoucherFormFieldController } from "./voucher-form-field-controller";
 import { VoucherFormError } from "./voucher-form-error";
 
 import styles from "./voucher-form.module.scss";
+import { CardWrapper } from "@/shared/ui/card";
 
 interface VoucherFormFieldProps {
   name: keyof VoucherDto;
@@ -24,7 +25,7 @@ export const VoucherFormField = ({
   control,
   errors,
 }: VoucherFormFieldProps) => (
-  <div className={styles.field} key={name}>
+  <CardWrapper key={name}>
     <BedrockText textAlign="start" text={label} type="p" color="white" />
     <VoucherFormFieldController
       name={name}
@@ -36,5 +37,5 @@ export const VoucherFormField = ({
     {errors[name] && (
       <VoucherFormError message={errors[name]?.message as string} />
     )}
-  </div>
+  </CardWrapper>
 );

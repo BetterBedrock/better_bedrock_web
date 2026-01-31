@@ -15,8 +15,7 @@ export const UserLinkvertiseInfo = async ({
   selectedUser,
 }: UserLinkvertiseInfoProps) => {
   const user = await fetchLoggedUser();
-  const shouldShow =
-    user?.id === selectedUser?.id && !selectedUser?.linkvertiseId;
+  const shouldShow = user?.id === (selectedUser?.id && !selectedUser?.linkvertiseId) || (selectedUser?.id && !selectedUser?.lootlabsLinkId);
 
   if (!shouldShow) return null;
 

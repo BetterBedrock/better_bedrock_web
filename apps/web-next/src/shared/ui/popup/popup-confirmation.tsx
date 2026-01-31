@@ -16,6 +16,7 @@ import { ButtonGroup } from "@/shared/ui/button-group";
 import { Popup } from "@/shared/ui/popup";
 
 import styles from "./popup.module.scss";
+import { Card, CardBody } from "../card/card";
 
 type ClickableElementProps = {
   onClick?: (e: MouseEvent) => void;
@@ -101,17 +102,18 @@ export const PopupConfirmation = ({
       {enhancedChildren}
       {open && (
         <Popup title={title} onClose={handleCancel}>
-          <Popup.Wrapper>
-            <Popup.Part>
+          <Card negativeMarginBottom>
+            <CardBody>
               <BedrockText
                 type="p"
                 text={description}
                 textAlign="start"
                 color="white"
               />
-            </Popup.Part>
-
-            <Popup.Part>
+            </CardBody>
+          </Card>
+          <Card sub>
+            <CardBody>
               <ButtonGroup className={styles.group}>
                 <Button onClick={handleCancel} type="white" center width="100%">
                   <BedrockText type="p" text={cancelText} color="black" />
@@ -125,10 +127,11 @@ export const PopupConfirmation = ({
                   <BedrockText type="p" text={confirmText} color="white" />
                 </Button>
               </ButtonGroup>
-            </Popup.Part>
-          </Popup.Wrapper>
+            </CardBody>
+          </Card>
         </Popup>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };

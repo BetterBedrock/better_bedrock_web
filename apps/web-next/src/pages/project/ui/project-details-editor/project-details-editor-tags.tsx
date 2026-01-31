@@ -10,6 +10,7 @@ import { Tag } from "@/shared/ui/tag";
 import { useDetailsEditorTags } from "@/pages/project/model/use-details-editor-tags";
 
 import styles from "./project-details-editor.module.scss";
+import { CardWrapper } from "@/shared/ui/card";
 
 export const ProjectDetailsEditorTags = () => {
   const {
@@ -21,7 +22,7 @@ export const ProjectDetailsEditorTags = () => {
   } = useDetailsEditorTags();
 
   return (
-    <>
+    <CardWrapper>
       <BedrockText text="Tags, no need to add #" type="p" color="white" textAlign="left" />
       {selectedProject!.tags.length >= 5 ? (
         <Banner
@@ -54,6 +55,6 @@ export const ProjectDetailsEditorTags = () => {
           />
         ))}
       </div>
-    </>
+    </CardWrapper>
   );
 };
