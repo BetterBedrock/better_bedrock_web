@@ -3,7 +3,7 @@ import { DetailedProjectDto } from "@/shared/lib/openapi";
 
 import styles from "./project-thumbnail.module.scss";
 import { SubmittedOverlay } from "@/shared/ui/submitted-overlay";
-import { Card, CardDivider } from "@/shared/ui/card";
+import { Card, CardBody, CardDivider } from "@/shared/ui/card";
 import { ProjectHeaderTitle } from "@/pages/project/ui/project-header";
 
 interface ProjectThumbnailProps {
@@ -13,14 +13,14 @@ interface ProjectThumbnailProps {
 export const ProjectThumbnail = ({
   detailedProject,
 }: ProjectThumbnailProps) => (
-  <Card sub className={styles.overlay}>
+  <Card className={styles.overlay}>
     {detailedProject.submitted && <SubmittedOverlay />}
-    <div className={styles.editor}>
+    <CardBody>
       <ProjectHeaderTitle title="Thumbnail" />
-    </div>
-    <CardDivider sub />
-    <div className={styles.editor}>
+    </CardBody>
+    <CardDivider />
+    <CardBody>
       <ProjectThumbnailPlaceholder />
-    </div>
+    </CardBody>
   </Card>
 );

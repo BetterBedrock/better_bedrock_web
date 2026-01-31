@@ -133,6 +133,7 @@ export const Comment = ({
           <div className={styles.header}>
             <ButtonGroup>
               <Input
+                sub
                 autoFocus={true}
                 onBlur={(e) => e.target.value === "" && setIsReplying(false)}
                 ref={inputRef}
@@ -165,7 +166,7 @@ export const Comment = ({
   };
 
   return (
-    <Card className={styles.card}>
+    <Card sub className={styles.card}>
       <div className={clsx(styles.comment, className && className)}>
         {getComment(
           comment.id,

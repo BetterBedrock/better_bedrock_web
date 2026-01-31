@@ -1,7 +1,8 @@
 @use "@/shared/ui" as g;
 
 .editor {
-  @include g.card-margin();
+  // @include g.card-margin();
+  @include g.card-padding();
 
   &.size {
     display: flex;
@@ -17,5 +18,5 @@
 .comments {
   display: flex;
   flex-direction: column;
-  gap: g.$padding-xsm;
+  gap: calc(g.$padding-xsm * 1.25);
 }

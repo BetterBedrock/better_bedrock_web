@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import FullScreen from "@/public/images/full_screen.png";
-import { Card, CardDivider } from "@/shared/ui/card";
+import { Card, CardBody, CardDivider } from "@/shared/ui/card";
 import { SimpleButton } from "@/shared/ui/simple-button";
 import { ProjectHeaderTitle } from "@/pages/project/ui/project-header";
 import { TiptapEditor } from "../tiptap/editor";
@@ -20,9 +20,9 @@ export const EditMode = ({ detailedProject }: EditModeProps) => {
   const { handleFullScreen, handleChange, fullScreen } = useEditMode();
 
   return (
-    <Card sub className={clsx(styles.overlay, fullScreen && styles.fullscreen)}>
+    <Card className={clsx(styles.overlay, fullScreen && styles.fullscreen)}>
       {detailedProject.submitted && <SubmittedOverlay />}
-      <div className={styles.editor}>
+      <CardBody>
         <div className={styles.title}>
           <ProjectHeaderTitle title="Description" />
           <SimpleButton
@@ -33,16 +33,16 @@ export const EditMode = ({ detailedProject }: EditModeProps) => {
             <img src={FullScreen.src} className={styles.icon} />
           </SimpleButton>
         </div>
-      </div>
-      <CardDivider sub />
-      <div className={styles.editor}>
+      </CardBody>
+      <CardDivider />
+      <CardBody>
         <TiptapEditor
           detailedProject={detailedProject}
           key={`${!detailedProject.submitted}`}
           content={detailedProject.description}
           onChange={handleChange}
         />
-      </div>
+      </CardBody>
     </Card>
   );
 };

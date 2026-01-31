@@ -33,12 +33,10 @@ export const Vouchers = () => {
         <VouchersAction handleCreateVoucherClick={handleCreateVoucherClick} />
       </CardBody>
       <CardDivider />
-      <CardBody noPaddingBottom>
-        {vouchers?.length === 0 && (
-          <Banner message="No vouchers found" type="neutral" />
-        )}
-      </CardBody>
       <CardBody smallerGap>
+        {vouchers?.length === 0 && (
+          <Banner message="No vouchers found." type="neutral" />
+        )}
         {vouchers ? (
           <VouchersList
             vouchers={vouchers}

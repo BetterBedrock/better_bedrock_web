@@ -1,4 +1,4 @@
-import { Card, CardDivider } from "@/shared/ui/card";
+import { Card, CardBody, CardDivider } from "@/shared/ui/card";
 import { DetailedProjectDto } from "@/shared/lib/openapi";
 import { AuthorDetails } from "@/pages/project/ui/project-header/author-details/author-details";
 import { ProjectDetails } from "@/pages/project/ui/project-header/project-details/project-details";
@@ -17,13 +17,17 @@ export const ProjectHeaderCard = ({
   selectedProject,
 }: ProjectHeaderCardProps) => {
   return (
-    <Card sub className={styles.information}>
+    <Card className={styles.information}>
       {mode === "edit" && selectedProject!.submitted && <SubmittedOverlay />}
-      <ProjectDetails mode={mode} detailedProject={selectedProject} />
+      <CardBody>
+        <ProjectDetails mode={mode} detailedProject={selectedProject} />
+      </CardBody>
 
-      <CardDivider sub />
+      <CardDivider />
 
-      <AuthorDetails mode={mode} selectedProject={selectedProject} />
+      <CardBody>
+        <AuthorDetails mode={mode} selectedProject={selectedProject} />
+      </CardBody>
     </Card>
   );
 };

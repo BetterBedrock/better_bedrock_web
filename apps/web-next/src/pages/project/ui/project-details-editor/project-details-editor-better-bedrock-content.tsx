@@ -14,21 +14,18 @@ export const ProjectDetailsEditorBetterBedrockContent = () => {
 
   return (
     <>
-      <CardDivider sub />
-      <div className={clsx(styles.editor, styles.size)}>
-        <BedrockText
-          text="Better Bedrock Content"
-          type="p"
-          color="white"
-          textAlign="left"
-        />
+      <BedrockText
+        text="Better Bedrock Content"
+        type="p"
+        color="white"
+        textAlign="left"
+      />
 
-        <InputSwitch
-          placeholder="Better Bedrock Content"
-          checked={selectedProject!.betterBedrockContent}
-          onChange={handleSwitchBetterBedrock}
-        />
-      </div>
+      <InputSwitch
+        placeholder="Better Bedrock Content"
+        checked={selectedProject!.betterBedrockContent}
+        onChange={handleSwitchBetterBedrock}
+      />
     </>
   );
 };

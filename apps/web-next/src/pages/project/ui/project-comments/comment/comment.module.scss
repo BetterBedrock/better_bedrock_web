@@ -36,14 +36,14 @@
 }
 
 .comment {
+  word-break: break-all;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: g.$padding-xxsm;
 }
 
 .reply {
-  color: g.$color-light-grey !important;
+  color: g.$color-green !important;
 }
 
 .icon {

@@ -26,7 +26,7 @@ export const ProjectDetails = async ({
     mode === "view" && user && user?.id !== detailedProject.userId;
 
   return (
-    <div className={clsx(styles.editor)}>
+    <div >
       <div className={styles.title}>
         <ProjectDetailsTitle detailedProject={detailedProject} />
         {canReport && (

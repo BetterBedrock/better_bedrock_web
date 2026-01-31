@@ -17,7 +17,7 @@ export const ProjectHeaderErrorBanner = ({
           type="p"
           color="white"
           font="Minecraft"
-          text="Your project has been decline for the following reason:"
+          text="Your project has been declined for the following reason: "
         />
         <BedrockText textAlign="start" type="p" color="white" text={message} />
       </>

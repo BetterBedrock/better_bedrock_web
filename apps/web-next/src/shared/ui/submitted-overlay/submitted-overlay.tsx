@@ -4,7 +4,8 @@ import styles from "./submitted-overlay.module.scss";
 
 export const SubmittedOverlay = () => (
   <div className={styles.overlay}>
-    <SubmittedOverlayTitle />
-    <SubmittedOverlayDescription />
+    {/* note: maybe its better without these texts, less clutter etc. also it scrolls to the top where info is basicaly the same like below. */}
+    {/* <SubmittedOverlayTitle />
+    <SubmittedOverlayDescription /> */}
   </div>
 );

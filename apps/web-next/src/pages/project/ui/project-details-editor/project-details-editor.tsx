@@ -1,6 +1,4 @@
-import clsx from "clsx";
-
-import { Card, CardDivider } from "@/shared/ui/card";
+import { Card, CardBody, CardDivider } from "@/shared/ui/card";
 import { DetailedProjectDto, UserDto } from "@/shared/lib/openapi";
 import { SubmittedOverlay } from "@/shared/ui/submitted-overlay";
 import { ProjectHeaderTitle } from "@/pages/project/ui/project-header";
@@ -22,22 +20,35 @@ export const ProjectDetailsEditor = ({
 }: ProjectDetailsEditorProps) => {
   return (
     <>
-      <Card sub className={styles.information}>
+      <Card className={styles.information}>
         {detailedProject.submitted && <SubmittedOverlay />}
-        <div className={clsx(styles.editor)}>
+        <CardBody>
           <ProjectHeaderTitle title="Details" />
-        </div>
+        </CardBody>
 
-        <CardDivider sub />
-        <ProjectDetailsEditorProjectType />
+        <CardDivider />
+        <CardBody smallerGap>
+          <ProjectDetailsEditorProjectType />
+        </CardBody>
 
-        <CardDivider sub />
-        <ProjectDetailsEditorTags />
+        <CardDivider />
+        <CardBody smallerGap>
+          <ProjectDetailsEditorTags />
+        </CardBody>
 
-        {user?.admin && <ProjectDetailsEditorBetterBedrockContent />}
+        {user?.admin && (
+          <>
+            <CardDivider />
+            <CardBody smallerGap>
+              <ProjectDetailsEditorBetterBedrockContent />
+            </CardBody>
+          </>
+        )}
 
-        <CardDivider sub />
-        <ProjectDetailsEditorDownloadFile />
+        <CardDivider />
+        <CardBody smallerGap>
+          <ProjectDetailsEditorDownloadFile />
+        </CardBody>
       </Card>
     </>
   );

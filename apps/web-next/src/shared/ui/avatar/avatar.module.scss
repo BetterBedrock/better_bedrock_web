@@ -22,7 +22,7 @@
 .avatar {
   display: flex;
   flex-direction: row;
-  gap: g.$padding-xxsm;
+  gap: calc(g.$padding-xsm * 1.25);
 }
 
 .details {

@@ -21,8 +21,8 @@ export const ProjectDetailsEditorTags = () => {
   } = useDetailsEditorTags();
 
   return (
-    <div className={clsx(styles.editor, styles.size)}>
-      <BedrockText text="Tags" type="p" color="white" textAlign="left" />
+    <>
+      <BedrockText text="Tags, no need to add #" type="p" color="white" textAlign="left" />
       {selectedProject!.tags.length >= 5 ? (
         <Banner
           type="neutral"
@@ -31,6 +31,7 @@ export const ProjectDetailsEditorTags = () => {
       ) : (
         <ButtonGroup className={styles.creator}>
           <Input
+            sub
             className={styles.input}
             placeholder="Tag Name"
             maxLength={15}
@@ -53,6 +54,6 @@ export const ProjectDetailsEditorTags = () => {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 };
