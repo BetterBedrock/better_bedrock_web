@@ -32,7 +32,7 @@ export const ProjectDetailsEditorProjectType = () => {
   ));
 
   return (
-    <div className={clsx(styles.editor, styles.size)}>
+    <>
       <BedrockText
         text="Project Type"
         type="p"
@@ -54,6 +54,6 @@ export const ProjectDetailsEditorProjectType = () => {
       <ButtonGroup direction="horizontal" className={styles.group}>
         {types}
       </ButtonGroup>
-    </div>
+    </>
   );
 };

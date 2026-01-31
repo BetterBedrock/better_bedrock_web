@@ -14,7 +14,7 @@ export const ProjectDetailsEditorDownloadFile = () => {
     useDetailsEditorDownloadFile();
 
   return (
-    <div className={clsx(styles.editor, styles.size)}>
+    <>
       <BedrockText
         text={
           selectedProject?.downloadFile
@@ -45,6 +45,6 @@ export const ProjectDetailsEditorDownloadFile = () => {
           <BedrockText text="Upload Download File" type="p" color="white" />
         </Button>
       )}
-    </div>
+    </>
   );
 };
