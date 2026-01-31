@@ -41,7 +41,7 @@ export const ImagePlaceholder = ({
   };
 
   return (
-    <Card className={styles.placeholder} onClick={handleCardClick}>
+    <Card sub className={styles.placeholder} onClick={handleCardClick}>
       {src ? (
         <img src={src} className={styles.thumbnail} />
       ) : !loading ? (
