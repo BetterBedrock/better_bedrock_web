@@ -24,7 +24,7 @@ export const ProjectCommentsPost = ({
   });
 
   return (
-    <div className={styles.editor}>
+    <div>
       {!user ? (
         <Banner
           message="You need to be logged in to comment and rate projects"
@@ -33,6 +33,7 @@ export const ProjectCommentsPost = ({
       ) : (
         <ButtonGroup>
           <Input
+            sub
             className={styles.input}
             ref={commentInputRef}
             placeholder="Your Comment..."

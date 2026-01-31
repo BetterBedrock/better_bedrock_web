@@ -1,4 +1,4 @@
-import { Card, CardDivider } from "@/shared/ui/card";
+import { Card, CardBody, CardDivider } from "@/shared/ui/card";
 import { DetailedProjectDto } from "@/shared/lib/openapi";
 import { fetchComments } from "@/entities/project";
 import { ProjectHeaderTitle } from "@/pages/project/ui/project-header";
@@ -18,13 +18,15 @@ export const ProjectComments = async ({
   const comments = await fetchComments(detailedProject.id);
   const user = await fetchLoggedUser();
   return (
-    <Card sub>
+    <Card>
       <div className={styles.editor}>
         <ProjectHeaderTitle title="Comments" />
       </div>
-      <CardDivider sub />
-      <ProjectCommentsPost user={user} detailedProject={detailedProject} />
-      <ProjectCommentsList comments={comments} user={user} />
+      <CardDivider />
+      <CardBody gap>
+        <ProjectCommentsPost user={user} detailedProject={detailedProject} />
+        <ProjectCommentsList comments={comments} user={user} />
+      </CardBody>
     </Card>
   );
 };

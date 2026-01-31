@@ -15,7 +15,7 @@ export const ProjectCommentsList = async ({
   comments,
   user,
 }: ProjectCommentsListProps) => (
-  <div className={styles.editor}>
+  <div>
     <div className={styles.comments}>
       {comments?.length === 0 && (
         <Banner type="neutral" message="No comments yet" />
