@@ -25,10 +25,9 @@ export const UserProfileActions = async ({
       {canRate && (
         <UserActionReport id={selectedUser.id} name={selectedUser.name} />
       )}
-      {detailedSelectedUser && (
-        // TODO: doesnt show when normal user is logged in??? it should display settings
+      {(detailedSelectedUser || user?.name === selectedUser.name) && (
         <UserActionSettings
-          detailedSelectedUser={detailedSelectedUser}
+          detailedSelectedUser={detailedSelectedUser ?? user}
           admin={user?.admin ?? false}
           ownsProfile={ownsProfile}
         />
