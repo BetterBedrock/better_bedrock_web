@@ -1,6 +1,5 @@
 "use client";
 
-import clsx from "clsx";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
 import { CircularProgressIndicator } from "@/shared/ui/circular-progress-indicator";
