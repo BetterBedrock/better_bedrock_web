@@ -6,6 +6,7 @@ import ReportGlyph from "@/public/images/glyphs/WarningGlyph.png";
 
 import styles from "./user.module.scss";
 import { PopupReport } from "@/features/report";
+import Image from "next/image";
 
 interface UserActionReportProps {
   name: string;
@@ -19,7 +20,14 @@ export const UserActionReport = ({ name, id }: UserActionReportProps) => (
     )}
   >
     <SimpleButton transparent>
-      <img src={ReportGlyph.src} className={styles.report} />
+      <Image
+        height={24}
+        width={16}
+        unoptimized
+        src={ReportGlyph.src}
+        className={styles.report}
+        alt="Report Glyph Button"
+      />
     </SimpleButton>
   </PopupWrapper>
 );

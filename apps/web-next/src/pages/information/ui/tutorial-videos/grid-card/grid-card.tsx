@@ -4,6 +4,7 @@ import tutorialThumbnail from "@/public/images/tutorial-thumbnail-placeholder.pn
 import { tagData } from "@/pages/information/model/information-data";
 
 import { styles } from ".";
+import Image from "next/image";
 
 interface GridCardProps {
   title?: string;
@@ -37,14 +38,26 @@ export const GridCard = ({
     {useCustomThumbnail && (
       <div className={styles.thumbnailWrapper}>
         {customThumbnailImageUrl && (
-          <img src={customThumbnailImageUrl} alt="" />
+          <Image
+            width={426}
+            height={240}
+            className={styles.image}
+            src={customThumbnailImageUrl}
+            alt="Grid Card Custom Thumbnail"
+          />
         )}
       </div>
     )}
     {!useCustomThumbnail && (
       <a href={link} rel="noopener noreferrer" target="_blank">
         <div>
-          <img src={tutorialThumbnail.src} alt="" />
+          <Image
+            width={426}
+            height={240}
+            src={tutorialThumbnail.src}
+            className={styles.image}
+            alt="Grid Card Custom Thumbnail"
+          />
           {index && (
             <div className={styles.imgWrapper}>
               <BedrockText

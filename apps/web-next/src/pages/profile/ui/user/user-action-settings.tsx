@@ -7,6 +7,7 @@ import SettingsGlyph from "@/public/images/settings_glyph.png";
 import { UserSettingsForm } from "./user-settings-form";
 
 import styles from "./user.module.scss";
+import Image from "next/image";
 
 interface UserActionSettingsProps {
   detailedSelectedUser: DetailedUserDto;
@@ -30,7 +31,14 @@ export const UserActionSettings = ({
     )}
   >
     <SimpleButton transparent>
-      <img src={SettingsGlyph.src} className={styles.settings} />
+      <Image
+        height={24}
+        width={24}
+        unoptimized
+        alt="Settings Glyph"
+        src={SettingsGlyph.src}
+        className={styles.settings}
+      />
     </SimpleButton>
   </PopupWrapper>
 );

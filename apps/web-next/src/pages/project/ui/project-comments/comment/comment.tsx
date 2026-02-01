@@ -20,6 +20,7 @@ import { Tooltip } from "@/shared/ui/tooltip";
 import { ProjectCommentDto, UserDto } from "@/shared/lib/openapi";
 import { reportUser } from "@/entities/report";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface CommentProps {
   comment: ProjectCommentDto;
@@ -103,7 +104,14 @@ export const Comment = ({
                       router.refresh();
                     }}
                   >
-                    <img src={Trash.src} className={styles.more} />
+                    <Image
+                      unoptimized
+                      width={18}
+                      height={24}
+                      src={Trash.src}
+                      className={styles.more}
+                      alt="Trash Icon"
+                    />
                   </SimpleButton>
                 </Tooltip>
               </PopupConfirmation>
@@ -122,7 +130,14 @@ export const Comment = ({
                       await reportUser(commentUserId, { message });
                     }}
                   >
-                    <img src={ReportGlyph.src} className={styles.more} />
+                    <Image
+                      height={24}
+                      width={16}
+                      unoptimized
+                      alt="Report Glyph Button"
+                      src={ReportGlyph.src}
+                      className={styles.more}
+                    />
                   </SimpleButton>
                 </Tooltip>
               </PopupConfirmation>
@@ -156,7 +171,14 @@ export const Comment = ({
                 <BedrockText color="white" type="p" text="Post" />
               </Button>
               <Button type="dark" center onClick={() => setIsReplying(false)}>
-                <img alt="Close" src={Exit.src} className={styles.icon} />
+                <Image
+                  width={25}
+                  height={25}
+                  unoptimized
+                  alt="Close Icon"
+                  src={Exit.src}
+                  className={styles.icon}
+                />
               </Button>
             </ButtonGroup>
           </div>

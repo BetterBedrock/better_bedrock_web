@@ -4,6 +4,7 @@ import { BedrockText } from "@/shared/ui/bedrock-text";
 import { CreatorsListElement } from "../creators-data";
 
 import styles from "./module.module.scss";
+import Image from "next/image";
 
 interface ModuleCardProp {
   data: CreatorsListElement;
@@ -19,12 +20,15 @@ export const ModuleCard = ({ data }: ModuleCardProp) => (
     className={styles.card}
   >
     <div className={styles.content}>
-      <img
-        alt="Minecraft Profile Picture"
+      <Image
+        width={72}
+        height={72}
+        unoptimized
+        alt={`Minecraft Profile Picture Of ${data.name}`}
         src={
           data.profileId
             ? `https://mc-heads.net/avatar/${data.profileId}/8/8`
-            : data.skin
+            : (data.skin ?? "")
         }
       />
       <div className={styles.description}>

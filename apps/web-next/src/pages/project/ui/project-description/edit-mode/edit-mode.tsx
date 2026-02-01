@@ -11,6 +11,7 @@ import { useEditMode } from "../../../model/use-edit-mode";
 import { SubmittedOverlay } from "@/shared/ui/submitted-overlay";
 
 import styles from "./edit-mode.module.scss";
+import Image from "next/image";
 
 interface EditModeProps {
   detailedProject: DetailedProjectDto;
@@ -30,7 +31,14 @@ export const EditMode = ({ detailedProject }: EditModeProps) => {
             onClick={handleFullScreen}
             className={styles.mode}
           >
-            <img src={FullScreen.src} className={styles.icon} />
+            <Image
+              width={24}
+              height={24}
+              unoptimized
+              alt="Full Screen Icon"
+              src={FullScreen.src}
+              className={styles.icon}
+            />
           </SimpleButton>
         </div>
       </CardBody>

@@ -33,6 +33,7 @@
   display: flex;
   justify-content: center;
   margin: 0 g.$padding-md;
+  aspect-ratio: 16/9;
 
   @media (max-width: g.$breakpoint-tablet) {
     margin: 0;
@@ -56,4 +57,9 @@
     padding-top: g.$padding-sm;
     margin: 0;
   }
+}
+
+.hoverLeft,
+.hoverRight {
+  height: auto;
 }
