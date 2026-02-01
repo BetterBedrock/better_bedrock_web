@@ -11,7 +11,7 @@
 
 .content img {
   flex-shrink: 0;
-  width: clamp(1rem, 4.5rem, 6rem);
+  width: g.$minecraft-head-size;
   aspect-ratio: 1 / 1;
   image-rendering: pixelated;
 }
