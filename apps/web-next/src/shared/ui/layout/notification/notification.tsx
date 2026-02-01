@@ -7,6 +7,7 @@ import {
 import styles from "./notification.module.scss";
 import clsx from "clsx";
 import Exit from "@/public/images/exit.png";
+import Image from "next/image";
 
 interface NotificationProps {
   notification: BaseNotification;
@@ -39,8 +40,11 @@ export const Notification = ({ notification }: NotificationProps) => {
               color={color}
               textAlign="left"
             />
-            <img
-              alt="Close"
+            <Image
+              width={25}
+              height={25}
+              unoptimized
+              alt="Close Icon"
               src={Exit.src}
               className={styles.close}
               onClick={handleExit}
