@@ -2,7 +2,7 @@
 
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { CardDivider } from "@/shared/ui/card";
 import { Popup } from "@/shared/ui/popup";
 import { BasePopupWrapperProps } from "@/shared/ui/popup";
 import { SimpleButton } from "@/shared/ui/simple-button";
@@ -39,31 +39,28 @@ export const GalleryPopup = ({
     <Popup title="Edit Gallery" onClose={close}>
       <Popup.Wrapper>
         {images.length > 0 && (
-          <>
-            <Popup.Part>
-              <div className={styles.list}>
-                {images.map((src, idx) => (
-                  <div key={src} className={styles.wrapper}>
-                    <img
-                      src={baseUrl + "/" + src}
-                      alt={`Edit ${idx + 1}`}
-                      className={styles.image}
-                    />
-                    <SimpleButton
-                      onClick={() => onDeleteImage?.(idx)}
-                      transparent
-                      className={styles.delete}
-                      width="100%"
-                      height="100%"
-                    >
-                      <img alt="Close" src={Exit.src} className={styles.icon} />
-                    </SimpleButton>
-                  </div>
-                ))}
-              </div>
-            </Popup.Part>
-            <CardDivider />
-          </>
+          <Popup.Part>
+            <div className={styles.list}>
+              {images.map((src, idx) => (
+                <div key={src} className={styles.wrapper}>
+                  <img
+                    src={baseUrl + "/" + src}
+                    alt={`Edit ${idx + 1}`}
+                    className={styles.image}
+                  />
+                  <SimpleButton
+                    onClick={() => onDeleteImage?.(idx)}
+                    transparent
+                    className={styles.delete}
+                    width="100%"
+                    height="100%"
+                  >
+                    <img alt="Close" src={Exit.src} className={styles.icon} />
+                  </SimpleButton>
+                </div>
+              ))}
+            </div>
+          </Popup.Part>
         )}
         <Popup.Part>
           <input
