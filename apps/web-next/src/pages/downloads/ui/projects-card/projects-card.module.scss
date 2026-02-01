@@ -19,6 +19,7 @@
 
 .group {
   display: flex;
+  overflow: auto;
 
   @media (max-width: g.$breakpoint-tablet) {
     display: none !important;
