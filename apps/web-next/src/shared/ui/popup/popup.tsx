@@ -5,6 +5,7 @@ import { SimpleButton } from "@/shared/ui/simple-button";
 
 import styles from "./popup.module.scss";
 import { Card, CardBody } from "@/shared/ui/card";
+import Image from "next/image";
 
 interface PopupComponent extends FC<PopupProps> {
   Part: FC<PopupWrapperProps>;
@@ -25,7 +26,14 @@ export const Popup = (({ children, onClose, className, title }: PopupProps) => (
       <div className={styles.headerContainer}>
         <div className={styles.header}>
           <SimpleButton onClick={onClose} transparent className={styles.close}>
-            <img alt="Close" src={Exit.src} className={styles.icon} />
+            <Image
+              width={25}
+              height={25}
+              unoptimized
+              alt="Close Icon"
+              src={Exit.src}
+              className={styles.icon}
+            />
           </SimpleButton>
           {title && (
             <BedrockText
