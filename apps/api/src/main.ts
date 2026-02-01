@@ -76,7 +76,11 @@ async function bootstrap() {
     );
 
     app.enableCors({
-        origin: ["https://betterbedrock.com", "https://dev.betterbedrock.com"],
+        origin: [
+            "https://betterbedrock.com",
+            "https://dev.betterbedrock.com",
+            "http://localhost:3000",
+        ],
         credentials: true,
     });
 
