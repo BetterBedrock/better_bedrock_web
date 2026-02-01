@@ -1,3 +1,5 @@
+import type { JSONContent } from "@tiptap/core"
+
 export const singularize = (word: string) => {
     const endings = {
         ves: 'fe',
@@ -17,8 +19,6 @@ export const singularize = (word: string) => {
 export const capitalizeFirstLetter = (val: string) => {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
-
-import type { JSONContent } from "@tiptap/core"
 
 export const extractFirstLinesFromTiptap = (
     doc: JSONContent | undefined | null,
