@@ -2,9 +2,11 @@ import { useProjectManager } from "@/app/providers/project-manager";
 import { useNotification } from "../../../../app/providers/notification";
 import { useRef, useState } from "react";
 import { uploadFile } from "@/entities/project";
+import { useRouter } from "next/navigation";
 
 export const useDetailsEditorDownloadFile = () => {
     const uploadFileRef = useRef<HTMLInputElement>(null);
+    const router = useRouter();
 
     const { sendNotification, throwError } = useNotification();
     const {
@@ -44,6 +46,7 @@ export const useDetailsEditorDownloadFile = () => {
 
         await handleSaveProject(selectedProject);
         setIsUploading(false);
+        router.refresh();
     };
 
     return { uploadDownloadFile, selectedProject, uploadFileRef, isUploading };
