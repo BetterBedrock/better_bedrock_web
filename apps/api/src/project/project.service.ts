@@ -21,6 +21,7 @@ import { BaseProjectDto } from "~/project/dto/base-project.dto";
 import { SearchProjectsDto } from "~/project/dto/search-project.dto";
 import { SearchOrder } from "~/project/dto/search-order.dto";
 import { AnalyticsService } from "~/analytics/analytics.service";
+import { extractFirstLinesFromTiptap } from "~/utils/string";
 
 const restrictedNames = [
     "better_bedrock",
@@ -73,7 +74,7 @@ export class ProjectService {
         private prismaService: PrismaService,
         private ratingService: RatingService,
         private analyticsService: AnalyticsService,
-    ) { }
+    ) {}
 
     async create(data: CreateProjectDto, admin: boolean) {
         const { title, userId } = data;
@@ -303,7 +304,7 @@ export class ProjectService {
                     b.score !== a.score
                         ? b.score - a.score
                         : new Date(b.proj.lastChanged).getTime() -
-                        new Date(a.proj.lastChanged).getTime(),
+                          new Date(a.proj.lastChanged).getTime(),
                 );
         }
 
@@ -392,8 +393,8 @@ export class ProjectService {
             description: data.description as Prisma.InputJsonValue | undefined,
             ...(data.tags !== undefined
                 ? {
-                    tags: await this.buildTagUpdate(project.id, tags),
-                }
+                      tags: await this.buildTagUpdate(project.id, tags),
+                  }
                 : { tags: undefined }),
         };
 
@@ -424,6 +425,16 @@ export class ProjectService {
 
         if (!(await this.existsDownloadFile(project.id))) {
             throw new NotFoundException("Project does not have downloadable file");
+        }
+
+        if (!project.thumbnail) {
+            throw new BadRequestException("Project must have a thumbnail before submission");
+        }
+
+        const description = extractFirstLinesFromTiptap(project.description);
+
+        if (!description || description.trim().length < 100) {
+            throw new BadRequestException("Project description is too short for submission");
         }
 
         const submittedProject = await this.prismaService.project.update({
@@ -473,15 +484,15 @@ export class ProjectService {
         const updatedDescription = this.replaceDraftImageSrcs(draftProject.description, id);
         const updatedThumbnail = draftProject.thumbnail
             ? draftProject.thumbnail.replace(
-                new RegExp(`static/public/${id}/draft/`, "g"),
-                `static/public/${id}/release/`,
-            )
+                  new RegExp(`static/public/${id}/draft/`, "g"),
+                  `static/public/${id}/release/`,
+              )
             : null;
         const updatedDownloadFile = draftProject.downloadFile
             ? draftProject.downloadFile.replace(
-                new RegExp(`static/private/${id}/draft/`, "g"),
-                `static/private/${id}/release/`,
-            )
+                  new RegExp(`static/private/${id}/draft/`, "g"),
+                  `static/private/${id}/release/`,
+              )
             : null;
 
         const { id: projectId, tags, ...rest } = draftProject;
