@@ -3,19 +3,21 @@ import { FAQ } from "@/pages/information/ui/faq/faq";
 import { TutorialVideos } from "@/pages/information/ui/tutorial-videos/tutorial-videos";
 
 import { informationData } from "@/pages/information/model/information-data";
+import { redirect } from "next/navigation";
+import { Routes } from "@/shared/lib/utils";
 
 interface InformationPageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string[] }>;
 }
 
 export const InformationPage = async ({ params }: InformationPageProps) => {
   const loadedParams = await params;
   const selectedCategory = informationData.find(
-    (c) => c.id === loadedParams.slug,
+    (c) => c.id === loadedParams?.slug?.[0],
   );
 
   if (!selectedCategory) {
-    return;
+    redirect(`${Routes.INFORMATION}/${informationData[0].id}`);
   }
 
   return (
