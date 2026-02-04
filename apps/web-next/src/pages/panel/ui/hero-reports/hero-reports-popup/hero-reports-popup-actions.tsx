@@ -11,7 +11,7 @@ export const HeroReportsPopupActions = ({
   handleResolveButton,
   resolved,
 }: HeroReportsPopupActionsProps) => (
-  <Popup.Part>
+  <Popup.Footer>
     <Button
       type={resolved ? "white" : "green"}
       center
@@ -24,5 +24,5 @@ export const HeroReportsPopupActions = ({
         color={resolved ? "black" : "white"}
       />
     </Button>
-  </Popup.Part>
+  </Popup.Footer>
 );
