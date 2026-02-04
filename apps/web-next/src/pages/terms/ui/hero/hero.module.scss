@@ -1,0 +1,17 @@
+@use "@/shared/ui" as g;
+
+.markdown {
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    text-align: left;
+    font-family: Minecraft;
+    padding: g.$padding-lg 0 g.$padding-xxsm 0;
+  }
+
+  strong {
+    text-decoration: underline;
+    font-weight: 500;
+  }
+}

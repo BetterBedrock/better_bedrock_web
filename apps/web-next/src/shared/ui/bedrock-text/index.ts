@@ -1,0 +1,1 @@
+export { BedrockText } from "./bedrock-text";

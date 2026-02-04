@@ -1,0 +1,6 @@
+@use "@/shared/ui" as g;
+
+.icon {
+  height: g.$icon-sm;
+  image-rendering: pixelated;
+}

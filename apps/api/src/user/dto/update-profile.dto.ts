@@ -6,5 +6,7 @@ export class UpdateProfileDto extends PickType(UserDto, [
     "name",
     "linkvertiseId",
     "linkvertiseSecret",
-    "customLinkvertise",
+    "lootlabsSecret",
+    "lootlabsLinkId",
+    "monetizationType",
 ] as const) {}

@@ -1,0 +1,45 @@
+@use "@/shared/ui" as g;
+
+.rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: g.$padding-xxxsm;
+}
+
+.selectable {
+  flex-direction: column !important;
+}
+
+.text {
+  line-height: g.$icon-sm;
+  color: g.$color-sbtn-click-on-focus-visible !important;
+}
+
+.button {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.star {
+  image-rendering: pixelated;
+  width: g.$icon-sm;
+  height: g.$icon-sm;
+  aspect-ratio: 1/1;
+
+  &.small {
+    width: g.$icon-sm;
+    height: g.$icon-sm;
+  }
+
+  &.medium {
+    width: g.$icon-md;
+    height: g.$icon-md;
+  }
+
+  &.large {
+    width: g.$icon-lg;
+    height: g.$icon-lg;
+  }
+}

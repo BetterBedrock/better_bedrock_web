@@ -1,0 +1,85 @@
+@use "@/shared/ui" as g;
+
+.card {
+  @include g.card-padding();
+}
+
+.header {
+  align-items: start;
+  justify-content: start;
+  padding-block: g.$padding-xxsm;
+
+  &:not(:first-child) {
+    padding-left: g.$padding-xl;
+    @media (max-width: g.$breakpoint-tablet) {
+      padding-left: g.$padding-lg;
+    }
+
+    @media (max-width: g.$breakpoint-mobileL) {
+      padding-left: g.$padding-sm;
+    }
+
+    @media (max-width: g.$breakpoint-mobileM) {
+      padding-left: g.$padding-xxsm;
+    }
+  }
+}
+
+.wrap {
+  overflow-wrap: anywhere;
+}
+
+.avatar {
+  width: g.$icon-md;
+  height: g.$icon-md;
+  image-rendering: pixelated;
+}
+
+.comment {
+  word-break: break-word;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.reply {
+  color: g.$color-green !important;
+}
+
+.icon {
+  position: relative;
+  height: g.$exit-button-size;
+  width: g.$exit-button-size;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.list {
+  @media (min-width: g.$breakpoint-mobileL) {
+    display: flex;
+    gap: g.$padding-xxsm;
+  }
+}
+
+.details {
+  width: 100%;
+}
+
+.name {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.more {
+  position: relative;
+  height: g.$icon-sm;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  cursor: pointer;
+}

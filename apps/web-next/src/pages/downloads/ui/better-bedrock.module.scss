@@ -1,0 +1,25 @@
+@use "@/shared/ui" as g;
+
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  gap: g.$padding-sm;
+
+  @media (max-width: g.$breakpoint-laptop) {
+    gap: g.$padding-xxsm;
+  }
+}
+
+.hide {
+  width: 100%;
+  text-decoration: none;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: g.$padding-xxxsm;
+}

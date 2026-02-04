@@ -1,0 +1,64 @@
+@use "@/shared/ui" as g;
+
+.buttons {
+  display: grid;
+  grid-template-areas: "bb side";
+  grid-template-columns: 1fr 1fr;
+  gap: calc(g.$padding-xxsm * 2.5);
+
+  @media (max-width: g.$breakpoint-tablet) {
+    grid-template-areas: "bb" "side";
+    grid-template-columns: 1fr;
+  }
+}
+
+.banner {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  &.bb {
+    grid-area: bb;
+  }
+
+  &.extensions {
+    grid-area: extensions;
+  }
+
+  &.side {
+    grid-area: side;
+  }
+
+  .image {
+    object-fit: cover;
+    filter: brightness(40%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.15s ease;
+
+    &:hover {
+      scale: 1.1;
+      filter: brightness(50%);
+    }
+  }
+
+  .caption {
+    position: relative;
+    z-index: 1;
+    padding: g.$padding-lg;
+    text-shadow: 0 calc(g.$minecraftdepth * 2) black;
+
+    pointer-events: none;
+  }
+}
+
+.link {
+  text-decoration: none;
+}

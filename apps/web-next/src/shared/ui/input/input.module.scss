@@ -1,0 +1,47 @@
+@use "@/shared/ui" as g;
+
+.input {
+  background-color: #313233;
+  border: g.$minecraftdepth solid #1e1e1f;
+  box-shadow: 0 g.$minecraftdepth 0 0 #242425 inset;
+  outline: none;
+  color: white;
+  padding: g.$padding-xxsm;
+  caret-color: g.$color-selection;
+  caret-shape: 1px;
+  font-family: Mojangles;
+  font-size: 1.25rem;
+  min-height: g.$buttonHeight;
+}
+
+.input::placeholder {
+  color: #b1b2b5;
+}
+
+.sub {
+  background-color: #3d3e3f;
+  box-shadow:
+    0 g.$minecraftdepth 0 0 #313233 inset,
+    0 calc(g.$minecraftdepth * -1) 0 0 #565759 inset;
+
+  &::placeholder {
+    color: #c5c5c5;
+  }
+}
+
+.switch {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  width: min-content;
+  align-items: center !important;
+  justify-content: start;
+  height: calc(16 * g.$minecraftdepth);
+  // width: auto !important;
+  aspect-ratio: 30 / 16;
+
+  .image {
+    @include g.no-drag();
+    image-rendering: pixelated;
+  }
+}

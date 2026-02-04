@@ -1,8 +1,0 @@
-@use "~/utils" as g;
-
-.hero {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: g.$padding-sm;
-}

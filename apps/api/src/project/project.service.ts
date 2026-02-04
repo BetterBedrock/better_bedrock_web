@@ -21,6 +21,7 @@ import { BaseProjectDto } from "~/project/dto/base-project.dto";
 import { SearchProjectsDto } from "~/project/dto/search-project.dto";
 import { SearchOrder } from "~/project/dto/search-order.dto";
 import { AnalyticsService } from "~/analytics/analytics.service";
+import { extractFirstLinesFromTiptap } from "~/utils/string";
 
 const restrictedNames = [
     "better_bedrock",
@@ -424,6 +425,16 @@ export class ProjectService {
 
         if (!(await this.existsDownloadFile(project.id))) {
             throw new NotFoundException("Project does not have downloadable file");
+        }
+
+        if (!project.thumbnail) {
+            throw new BadRequestException("Project must have a thumbnail before submission");
+        }
+
+        const description = extractFirstLinesFromTiptap(project.description);
+
+        if (!description || description.trim().length < 100) {
+            throw new BadRequestException("Project description is too short for submission");
         }
 
         const submittedProject = await this.prismaService.project.update({

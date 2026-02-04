@@ -1,4 +1,4 @@
-import { DownloadsCategoryDto } from "~/assets/content/dto/downloads-category.dto";
+import { DownloadsCategoryDto } from "@/public/content/dto/downloads-category.dto";
 
 export enum SEARCH_PROJECT_TYPES {
     all = "All",
@@ -25,6 +25,15 @@ export type SearchProjectTypeKey = keyof typeof SEARCH_PROJECT_TYPES;
 export const SIDE_PROJECTS_LIST = [
     "murder_detector",
     "custom_sky_overlay",
+    "settings_gap_remover",
+    "animated_hotbar_selector",
+    "marketplace_button_remover",
+    "durability_viewer",
+    "inventory_durability_viewer",
+    "better_chat",
+    "inventory_hud",
+    "dark_mode",
+    "hd_font"
 ];
 
 export const MAIN_LIST: DownloadsCategoryDto = {
@@ -47,14 +56,54 @@ export const MAIN_LIST: DownloadsCategoryDto = {
         {
             title: "Extensions",
             description:
-                "Extra packs that enhance your gameplay even further. Make sure to put these packs in correct order. Yellow ones require main BB pack to work, while orange ones can be used without it.",
+                "Exploer extra packs that enhance your gameplay even further. Make sure to put these packs in correct order. Yellow ones require main BB pack to work, while orange ones can be used without it.",
             items: [
+                {
+                    description:
+                        "Adds ability to create vertical beams around world to improve positioning",
+                    projectId: "waypoints",
+                    buttonType: "dark",
+                    type: "yellow",
+                },
+                {
+                    description:
+                        "Improves gameplay by adding extra particles each time the player is hit!",
+                    projectId: "hit_particles",
+                    buttonType: "dark",
+                    type: "yellow",
+                },
+                {
+                    description:
+                        "Changes all fogs to make them unlimited and better for visibility",
+                    projectId: "better_fogs",
+                    buttonType: "dark",
+                    type: "yellow",
+                },
                 {
                     description:
                         "Brings special filter to the Lightener module, providing better visibility, similar to night vision! Doesn't work with all devices/graphic engines",
                     projectId: "lightener_night_vision",
                     buttonType: "dark",
                     type: "yellow",
+                },
+                {
+                    description: "Changes most BB textures to darker ones",
+                    projectId: "dark_ui",
+                    buttonType: "dark",
+                    type: "yellow",
+                },
+                {
+
+                    description: "Changes water textures to make them more clean and visible",
+                    projectId: "clean_water",
+                    buttonType: "dark",
+                    type: "yellow",
+                },
+                {
+                    description: "Darker alternative to the vanilla textures",
+                    projectId: "dark_mode",
+                    buttonType: "dark",
+                    type: "orange",
                 },
                 {
                     description: "Adds lower fire texture on HUD to improve visibility",
@@ -70,16 +119,11 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     type: "orange",
                 },
                 {
-                    description: "Darker alternative to the vanilla textures",
-                    projectId: "dark_mode",
+                    description:
+                        "Gives ability to adjust colors of the enchant glint!",
+                    projectId: "enchant_glint_switcher",
                     buttonType: "dark",
                     type: "orange",
-                },
-                {
-                    description: "Changes most BB textures to darker ones",
-                    projectId: "dark_ui",
-                    buttonType: "dark",
-                    type: "yellow",
                 },
                 {
                     description: "Changes grass textures to make them look connected",
@@ -89,39 +133,12 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                 },
                 {
                     description:
-                        "Changes all fogs to make them unlimited and better for visibility",
-                    projectId: "better_fogs",
-                    buttonType: "dark",
-                    type: "yellow",
-                },
-                {
-                    description:
                         "Changes glass textures to make them look connected and less distracting",
                     projectId: "clean_glass",
                     buttonType: "dark",
                     type: "orange",
                 },
-                {
-
-                    description: "Changes water textures to make them more clean and visible",
-                    projectId: "clean_water",
-                    buttonType: "dark",
-                    type: "yellow",
-                },
-                {
-                    description:
-                        "Adds ability to create vertical beams around world to improve positioning",
-                    projectId: "waypoints",
-                    buttonType: "dark",
-                    type: "yellow",
-                },
-                {
-                    description:
-                        "Improves gameplay by adding extra particles each time the player is hit!",
-                    projectId: "hit_particles",
-                    buttonType: "dark",
-                    type: "yellow",
-                },
+                
             ],
         },
         {

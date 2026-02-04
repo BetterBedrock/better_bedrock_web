@@ -1,0 +1,78 @@
+import { ReactNode } from "react";
+import { Section } from "@/shared/ui/section";
+
+import { Tabs } from "@/pages/profile/ui/tabs/tabs";
+import { User } from "@/pages/profile/ui/user/user";
+
+import { notFound } from "next/navigation";
+import { Card } from "@/shared/ui/card";
+
+import { styles } from "@/pages/profile/index";
+import { fetchLoggedUser } from "@/entities/auth";
+import { fetchUserByName } from "@/entities/user";
+
+interface ProfileProps {
+  children: ReactNode;
+  params?: Promise<{ name: string }>;
+}
+
+export const generateMetadata = async ({ params }: ProfileProps) => {
+  const loadedParams = await params;
+  if (!loadedParams) {
+    notFound();
+  }
+
+  const name = loadedParams.name;
+
+  const user = await fetchUserByName(name);
+
+  if (!user) {
+    notFound();
+  }
+
+  const title = user.name;
+  const description =
+    user.bio ??
+    "The best texture packs, scripts, maps, skins, and more for Minecraft PE on Better Bedrock.";
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+    },
+  };
+};
+
+export default async function LayoutProfile({
+  children,
+  params,
+}: ProfileProps) {
+  const resolvedParams = await params;
+
+  const user = await fetchLoggedUser();
+  const name = resolvedParams?.name;
+
+  const visible = user?.name === name || user?.admin;
+
+  return (
+    <Section
+      extraClassName={styles.padding}
+      fixed
+      src="/images/crosshair_backgrounds/15.webp"
+    >
+      <Card fullWidth>
+        <Card.Body>
+          <User params={resolvedParams} />
+        </Card.Body>
+      </Card>
+
+      <Card fullWidth>
+        <Card.Body>{visible && <Tabs params={resolvedParams} />}</Card.Body>
+        {visible && <Card.Divider />}
+        <Card.Body>{children}</Card.Body>
+      </Card>
+    </Section>
+  );
+}

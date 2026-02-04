@@ -1,0 +1,30 @@
+@use "@/shared/ui" as g;
+
+.editor {
+  @include g.card-margin();
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: g.$padding-xxsm;
+}
+
+.text {
+  margin-right: auto;
+  word-break: break-word;
+}
+
+.popup {
+  width: auto;
+}
+
+.icon {
+  height: g.$icon-sm;
+  image-rendering: pixelated;
+}
+
+.rating {
+  width: fit-content;
+}

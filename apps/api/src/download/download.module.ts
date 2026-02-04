@@ -8,6 +8,7 @@ import { VoucherService } from "~/voucher/voucher.service";
 import { ProjectService } from "~/project/project.service";
 import { UserService } from "~/user/user.service";
 import { RatingService } from "~/rating/rating.service";
+import { MonetizationService } from "~/monetization/monetization.service";
 
 @Module({
     imports: [
@@ -25,6 +26,7 @@ import { RatingService } from "~/rating/rating.service";
         ProjectService,
         UserService,
         RatingService,
+        MonetizationService,
     ],
 })
 export class DownloadModule {}

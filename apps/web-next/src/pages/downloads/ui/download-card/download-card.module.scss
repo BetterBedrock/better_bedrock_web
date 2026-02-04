@@ -1,0 +1,70 @@
+@use "@/shared/ui" as g;
+
+.content {
+  width: 100%;
+  padding: calc(g.$minecraftdepth * 2);
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+.content img {
+  flex-shrink: 0;
+  width: g.$minecraft-head-size;
+  aspect-ratio: 1 / 1;
+  image-rendering: pixelated;
+}
+
+.description {
+  margin-left: calc(g.$minecraftdepth * 3);
+  width: 100%;
+}
+
+.description p {
+  display: flex;
+  flex-direction: column;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main p:nth-child(2) {
+  white-space: nowrap;
+}
+
+.title {
+  padding: 0 g.$padding-xxsm 0 0;
+
+  &.orange {
+    color: rgb(255, 165, 0) !important;
+  }
+  &.yellow {
+    color: rgb(255, 255, 85) !important;
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+  gap: 0.5rem;
+}
+
+.tags .tag {
+  color: white;
+  padding: 0 0.5rem;
+  background-color: rgb(35, 35, 35);
+  display: inline;
+}
+
+.tag {
+  &.green {
+    background-color: rgb(29, 77, 19);
+  }
+}

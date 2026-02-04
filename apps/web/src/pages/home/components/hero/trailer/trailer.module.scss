@@ -1,8 +1,0 @@
-@use "~/utils/_variables" as g;
-
-.video {
-    aspect-ratio: 16 / 9;
-    background-color: rgb(41, 41, 41);
-    margin-top: g.$padding-sm;
-    width: 100%;
-}

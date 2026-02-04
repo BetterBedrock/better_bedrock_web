@@ -1,0 +1,2 @@
+export const baseUrl = process.env.NEXT_PUBLIC_DEBUG == "true" ? process.env.NEXT_PUBLIC_LOCAL_BACKEND_URL : process.env.NEXT_PUBLIC_BACKEND_URL;
+export const baseFrontendUrl = process.env.NEXT_PUBLIC_DEBUG == "true" ? process.env.NEXT_PUBLIC_LOCAL_FRONTEND_URL : process.env.NEXT_PUBLIC_FRONTEND_URL;

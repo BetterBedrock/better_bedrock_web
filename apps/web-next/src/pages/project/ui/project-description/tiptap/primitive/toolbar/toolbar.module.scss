@@ -1,0 +1,20 @@
+@use "@/shared/ui" as g;
+
+.card {
+  position: absolute;
+  visibility: hidden;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: g.$color-overlay-dark;
+
+  transition:
+    top 0.2s ease,
+    transform 0.2s ease;
+  overflow: hidden;
+}
+
+.group {
+  display: inline-flex;
+}

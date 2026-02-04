@@ -1,0 +1,14 @@
+@use "@/shared/ui" as g;
+
+.padding {
+  @include g.section-padding((top, bottom));
+  overflow: unset !important;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  gap: g.$padding-lg;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,9 @@
+@use "@/shared/ui" as g;
+
+.period {
+  padding-bottom: g.$padding-sm;
+}
+
+.group {
+  gap: g.$padding-xxsm;
+}

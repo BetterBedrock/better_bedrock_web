@@ -1,0 +1,77 @@
+$background-linear-gradient: linear-gradient(
+  rgba(0, 0, 0, 0.3),
+  rgba(0, 0, 0, 0.6)
+);
+$background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+
+$minecraftdepth: 2.5px;
+$sectionsPadding: 4.5rem;
+$buttonHeight: 3.5rem;
+$sectionsDividerPadding: 12.5rem;
+$navbar-height: 65px;
+$exit-button-size: 25px;
+
+$minecraft-head-size: 72px;
+
+$breakpoint-mobileS: 320px;
+$breakpoint-mobileM: 375px;
+$breakpoint-mobileL: 425px;
+$breakpoint-tablet: 768px;
+$breakpoint-laptop: 1024px;
+$breakpoint-laptopL: 1440px;
+
+$padding-xxxsm: 0.25rem;
+$padding-xxsm: 0.5rem;
+$padding-xsm: 0.65rem;
+$padding-sm: 1rem;
+$padding-md: 1.25rem;
+$padding-lg: 2rem;
+$padding-xl: 3rem;
+
+$line-height-sm: 1.2em;
+$line-height-md: 1.4em;
+$line-height-lg: 1.6em;
+
+$icon-sm: 24px;
+$icon-md: 48px;
+$icon-lg: 72px;
+
+/* Colors */
+
+$color-label-white-bright: rgb(230, 232, 235);
+$color-label-white-dark: rgb(145, 145, 145);
+
+$color-label-green-bright: rgb(82, 165, 53);
+$color-label-green-dark: rgb(29, 77, 19);
+
+$color-label-dark-bright: #313233;
+$color-label-dark-dark: #1e1e1f;
+
+$color-sbtn-click: #d0d1d4;
+$color-sbtn-background: #e6e8eb;
+$color-sbtn-click-on-focus-visible: rgb(170, 170, 170);
+
+$color-card-background: rgb(47, 47, 48);
+
+$color-selection: rgba(85, 183, 55, 1);
+
+$color-overlay-dark: rgba(0, 0, 0, 0.6);
+$color-overlay-card-light: rgba(0, 0, 0, 0.25);
+$color-overlay-card-dark: rgba(0, 0, 0, 0.15);
+$color-light-grey: #d0d1d4;
+$color-grey: #48494a;
+$color-green: #00a000;
+$color-blue: #0094ff;
+$color-orange: #ff6a00;
+$color-red: #d82828;
+
+$color-background-blue: #2e6be5;
+$color-background-dark: #1e1e1e;
+$color-background-yellow: #ffe866;
+$color-background-red: $color-red;
+
+$color-tag-default: rgb(140, 179, 255);
+$color-tag-special: $color-background-yellow;
+$color-tag-bb: $color-card-background;
+
+$text-shadow: 0 0.25rem 0 black;

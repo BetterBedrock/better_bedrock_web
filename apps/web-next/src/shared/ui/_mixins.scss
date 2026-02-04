@@ -1,0 +1,50 @@
+@use "@/shared/ui/_variables" as g;
+@use "sass:meta";
+
+@mixin darken-background() {
+  background: linear-gradient(g.$color-overlay-dark, g.$color-overlay-dark);
+}
+
+@mixin page-background($background, $img-url) {
+  background-image: $background, url(#{$img-url});
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@mixin section-padding($sides: null, $padding: g.$sectionsPadding) {
+  @if $sides {
+    @if meta.type-of($sides) == "list" {
+      @each $side in $sides {
+        padding-#{$side}: $padding;
+      }
+    } @else if $sides == top or $sides == bottom {
+      padding-#{$sides}: $padding;
+    }
+  }
+}
+
+@mixin card-margin() {
+  margin-inline: g.$padding-md;
+  margin-block: g.$padding-xxsm;
+}
+
+@mixin card-padding() {
+  padding-inline: g.$padding-md;
+  padding-block: g.$padding-md;
+}
+
+@mixin card-padding-x() {
+  padding-inline: g.$padding-md;
+}
+
+@mixin card-padding-y() {
+  padding-block: g.$padding-md;
+}
+
+@mixin no-drag() {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

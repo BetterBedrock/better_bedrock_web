@@ -17,3 +17,32 @@ export const extractTokenFromHeader = (request: Request): string | undefined => 
     const [type, token] = request.headers.authorization?.split(" ") ?? [];
     return type === "Bearer" ? token : undefined;
 };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const extractFirstLinesFromTiptap = (doc: any): string => {
+    if (!doc) return "";
+
+    if (typeof doc === "string") {
+        return (doc as string).split("\n").join(" ").trim();
+    }
+
+    const lines: string[] = [];
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const walk = (node: any) => {
+        if (typeof node?.text === "string") {
+            lines.push(node?.text);
+            return;
+        }
+
+        if (Array.isArray(node?.content)) {
+            for (const child of node?.content ?? []) {
+                walk(child);
+            }
+        }
+    };
+
+    walk(doc);
+
+    return lines.join(" ").trim();
+};

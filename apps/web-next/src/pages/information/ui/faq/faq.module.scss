@@ -1,0 +1,21 @@
+@use "@/shared/ui" as g;
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .heading {
+    padding-bottom: g.$padding-sm;
+  }
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  gap: calc(g.$padding-xxsm * 1.25);
+
+  @media (max-width: g.$breakpoint-laptop) {
+    gap: g.$padding-xxxsm;
+  }
+}

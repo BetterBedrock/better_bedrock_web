@@ -1,0 +1,22 @@
+@use "@/shared/ui" as g;
+
+.editor {
+  // @include g.card-margin();
+  @include g.card-padding();
+
+  &.size {
+    display: flex;
+    flex-direction: column;
+    gap: g.$padding-xxxsm;
+  }
+}
+
+.input {
+  width: 100%;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: calc(g.$padding-xxsm * 1.25);
+}

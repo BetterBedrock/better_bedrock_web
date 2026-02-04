@@ -6,6 +6,8 @@ export class ManageProfileDto extends PickType(UserDto, [
     "name",
     "linkvertiseId",
     "linkvertiseSecret",
-    "customLinkvertise",
+    "lootlabsSecret",
+    "lootlabsLinkId",
+    "monetizationType",
     "banned",
 ] as const) {}

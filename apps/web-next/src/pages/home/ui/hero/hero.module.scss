@@ -1,0 +1,30 @@
+@use "@/shared/ui" as g;
+
+$trailer-padding: 5dvh;
+$header-height: 65dvh;
+
+@mixin flex-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.padding {
+  @include g.section-padding(bottom, g.$sectionsDividerPadding);
+}
+
+.header {
+  gap: 1rem;
+  @include flex-container();
+  height: $header-height;
+}
+
+.trailer {
+  @include flex-container();
+}
+
+.videoContainer {
+  margin-top: calc(g.$padding-xxsm * 2.5);
+}

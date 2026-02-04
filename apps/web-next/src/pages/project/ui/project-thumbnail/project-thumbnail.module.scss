@@ -1,0 +1,9 @@
+@use "@/shared/ui" as g;
+
+.overlay {
+  position: relative;
+}
+
+.editor {
+  @include g.card-margin();
+}

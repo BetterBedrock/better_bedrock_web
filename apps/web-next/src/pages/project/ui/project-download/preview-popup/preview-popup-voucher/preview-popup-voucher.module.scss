@@ -1,0 +1,16 @@
+@use "@/shared/ui" as g;
+
+.voucher {
+  padding-top: 1rem;
+  width: 100%;
+  display: inline-flex;
+  gap: g.$padding-xxsm;
+}
+
+.apply {
+  padding-bottom: g.$padding-xxsm;
+}
+
+.input {
+  width: 100%;
+}

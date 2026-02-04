@@ -1,0 +1,7 @@
+@use "@/shared/ui" as g;
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-sm;
+}
