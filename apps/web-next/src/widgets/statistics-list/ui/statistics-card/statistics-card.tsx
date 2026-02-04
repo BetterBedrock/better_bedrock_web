@@ -21,6 +21,7 @@ export const DATA_RANGE_OPTIONS = [
   { label: "14d", text: "Last 14 Days" },
   { label: "30d", text: "Last 30 Days" },
   { label: "6m", text: "Last 6 Months" },
+  { label: "12m", text: "Last 12 Months" },
   { label: "ytd", text: "This Year" },
   { label: "all", text: "All Time" },
 ];
