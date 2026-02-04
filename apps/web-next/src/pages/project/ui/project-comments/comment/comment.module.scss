@@ -57,6 +57,13 @@
   cursor: pointer;
 }
 
+.list {
+  @media (min-width: g.$breakpoint-mobileL) {
+    display: flex;
+    gap: g.$padding-xxsm;
+  }
+}
+
 .details {
   width: 100%;
 }

@@ -88,7 +88,7 @@ export const Comment = ({
             )}
           </Avatar.Details>
 
-          <div className={styles.icons}>
+          <div className={styles.list}>
             {canDelete && (
               <PopupConfirmation
                 description={`Are you sure you want to delete ${user?.name === commentUser ? "this comment" : `${commentUser}'s comment`}?`}
