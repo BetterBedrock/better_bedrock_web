@@ -1,0 +1,7 @@
+@use "@/shared/ui" as g;
+
+.loader {
+  margin-block: g.$padding-sm;
+  align-items: center;
+  width: 100%;
+}
