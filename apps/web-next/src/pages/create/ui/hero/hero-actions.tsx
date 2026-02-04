@@ -7,14 +7,14 @@ import { ButtonGroup } from "@/shared/ui/button-group";
 import { Input } from "@/shared/ui/input";
 
 import { createProject } from "@/entities/project";
-import styles from "./hero.module.scss";
 import { useNotification } from "@/app/providers/notification";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { Routes } from "@/shared/lib/utils";
+
+import styles from "./hero.module.scss";
 
 export const HeroActions = () => {
   const { throwError } = useNotification();
-  const router = useRouter();
   const [title, setTitle] = useState("");
 
   const handleCreateProject = async () => {
@@ -23,7 +23,7 @@ export const HeroActions = () => {
       throwError(null, error);
     }
     if (!data) return;
-    router.push(Routes.PROJECT_EDIT + "/" + data.id);
+    redirect(Routes.PROJECT_EDIT + "/" + data.id);
   };
 
   return (
