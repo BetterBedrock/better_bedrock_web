@@ -10,7 +10,7 @@ import { Tooltip } from "@/shared/ui/tooltip";
 import { useActionsDeletePopup } from "../../model/use-actions-delete-popup";
 
 import styles from "./project-actions.module.scss";
-import { ButtonGroup } from "@/shared/ui/button-group/button-group";
+import { ButtonGroup } from "@/shared/ui/button-group";
 
 export const ProjectActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
   const {

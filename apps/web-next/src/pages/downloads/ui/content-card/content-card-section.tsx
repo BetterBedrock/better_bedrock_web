@@ -12,7 +12,6 @@ import styles from "./featured-card.module.scss";
 import { GridDownloadCard } from "@/shared/ui/grid-download-card";
 import { Button } from "@/shared/ui/button";
 import { BedrockText } from "@/shared/ui/bedrock-text";
-import { CardBody, CardDivider } from "@/shared/ui/card";
 
 interface ContentCardSectionProps {
   items: SimpleProjectDto[];
