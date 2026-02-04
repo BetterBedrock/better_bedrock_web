@@ -19,19 +19,17 @@ export const extractTokenFromHeader = (request: Request): string | undefined => 
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const extractFirstLinesFromTiptap = (doc: any, count = 3): string => {
+export const extractFirstLinesFromTiptap = (doc: any): string => {
     if (!doc) return "";
 
     if (typeof doc === "string") {
-        return (doc as string).split("\n").slice(0, count).join(" ").trim();
+        return (doc as string).split("\n").join(" ").trim();
     }
 
     const lines: string[] = [];
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const walk = (node: any) => {
-        if (lines.length >= count) return;
-
         if (typeof node?.text === "string") {
             lines.push(node?.text);
             return;
@@ -39,7 +37,6 @@ export const extractFirstLinesFromTiptap = (doc: any, count = 3): string => {
 
         if (Array.isArray(node?.content)) {
             for (const child of node?.content ?? []) {
-                if (lines.length >= count) break;
                 walk(child);
             }
         }
@@ -47,5 +44,5 @@ export const extractFirstLinesFromTiptap = (doc: any, count = 3): string => {
 
     walk(doc);
 
-    return lines.slice(0, count).join(" ").trim();
+    return lines.join(" ").trim();
 };
