@@ -191,7 +191,7 @@ export const UserSettingsForm = ({
 
             {monetizationType === "linkvertise" && (
               <>
-                <Popup.Part>
+                <Popup.Item>
                   <BedrockText
                     textAlign="start"
                     text="Linkvertise User Id"
@@ -213,8 +213,8 @@ export const UserSettingsForm = ({
                       textAlign="start"
                     />
                   )}
-                </Popup.Part>
-                <Popup.Part>
+                </Popup.Item>
+                <Popup.Item>
                   <BedrockText
                     textAlign="start"
                     text="Linkvertise Anti-bypass Token"
@@ -237,7 +237,7 @@ export const UserSettingsForm = ({
                       textAlign="start"
                     />
                   )}
-                </Popup.Part>
+                </Popup.Item>
               </>
             )}
 
