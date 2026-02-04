@@ -1,6 +1,5 @@
 "use client";
 
-import { CardDivider } from "@/shared/ui/card";
 import { Popup } from "@/shared/ui/popup";
 import { ProjectDto } from "@/shared/lib/openapi";
 import { useVoucherManager } from "@/pages/project/model/use-voucher-manager";
@@ -29,7 +28,7 @@ export const PreviewPopup = ({ onClose, project }: PreviewPopupProps) => {
 
   return (
     <Popup onClose={onClose} title="Download Method">
-      <Popup.Wrapper>
+      <Popup.Body>
         <Popup.Part>
           <PreviewPopupTabs
             categories={categories}
@@ -44,14 +43,13 @@ export const PreviewPopup = ({ onClose, project }: PreviewPopupProps) => {
           />
           <PreviewPopupRecommended categories={categories} />
         </Popup.Part>
-
         <PreviewPopupPlans
           categories={categories}
           selectedTimeframe={selectedTimeframe}
           download={download}
         />
         <PreviewPopupFooter />
-      </Popup.Wrapper>
+      </Popup.Body>
     </Popup>
   );
 };

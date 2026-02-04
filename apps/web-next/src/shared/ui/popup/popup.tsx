@@ -1,26 +1,26 @@
 import Exit from "@/public/images/exit.png";
-import { FC, HTMLAttributes, ReactNode } from "react";
+import { Children, FC, Fragment, HTMLAttributes, ReactNode } from "react";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { SimpleButton } from "@/shared/ui/simple-button";
 
 import styles from "./popup.module.scss";
-import { Card, CardBody } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import Image from "next/image";
-
-interface PopupComponent extends FC<PopupProps> {
-  Part: FC<PopupWrapperProps>;
-  Footer: FC<PopupWrapperProps>;
-  Wrapper: FC<PopupWrapperProps>;
-}
 
 interface PopupProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
-  className?: string;
   title?: string;
   onClose?: () => void;
 }
 
-export const Popup = (({ children, onClose, className, title }: PopupProps) => (
+interface PopupComponent extends FC<PopupProps> {
+  Body: FC<PopupWrapperProps>;
+  Part: FC<PopupWrapperProps>;
+  Item: FC<PopupWrapperProps>;
+  Footer: FC<PopupWrapperProps>;
+}
+
+export const Popup = (({ children, onClose, title }: PopupProps) => (
   <div className={styles.popup} onClick={onClose}>
     <div className={styles.body} onClick={(e) => e.stopPropagation()}>
       <div className={styles.headerContainer}>
@@ -55,28 +55,41 @@ interface PopupWrapperProps {
   children: ReactNode;
 }
 
-Popup.Wrapper = ({ children }: PopupWrapperProps) => (
-  <div className={styles.container}>{children}</div>
+const PopupBody = ({ children }: PopupWrapperProps) => (
+  <Card negativeMarginBottom>
+    {Children.toArray(children).map((c, i) => (
+      <Fragment key={i}>
+        {i !== 0 && <Card.Divider />}
+        {c}
+      </Fragment>
+    ))}
+  </Card>
 );
 
-Popup.Part = ({ children }: PopupWrapperProps) => (
-  <div className={styles.part}>{children}</div>
-  // <Card negativeMarginBottom>
-  //   <CardBody>
-  //     <div className={styles.part}>{children}</div>
-  //   </CardBody>
-  // </Card>
-);
+PopupBody.displayName = "Popup.Body";
 
-Popup.Footer = ({ children }: PopupWrapperProps) => (
-  <div className={styles.part}>{children}</div>
-  // <Card sub>
-  //   <CardBody>
-  //     <div className={styles.part}>{children}</div>
-  //   </CardBody>
-  // </Card>
+const PopupPart = ({ children }: PopupWrapperProps) => (
+  <Card.Body>
+    <div className={styles.part}>{children}</div>
+  </Card.Body>
 );
+PopupPart.displayName = "Popup.Part";
 
-Popup.Wrapper.displayName = "Popup.Wrapper";
-Popup.Part.displayName = "Popup.Part";
-Popup.Footer.displayName = "Popup.Footer";
+const PopupItem = ({ children }: PopupWrapperProps) => (
+  <div className={styles.item}>{children}</div>
+);
+PopupItem.displayName = "Popup.Item";
+
+const PopupFooter = ({ children }: PopupWrapperProps) => (
+  <Card sub>
+    <Card.Body>
+      <div className={styles.part}>{children}</div>
+    </Card.Body>
+  </Card>
+);
+PopupFooter.displayName = "Popup.Footer";
+
+Popup.Body = PopupBody;
+Popup.Part = PopupPart;
+Popup.Item = PopupItem;
+Popup.Footer = PopupFooter;

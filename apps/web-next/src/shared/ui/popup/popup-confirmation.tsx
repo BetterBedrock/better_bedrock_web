@@ -16,7 +16,6 @@ import { ButtonGroup } from "@/shared/ui/button-group";
 import { Popup } from "@/shared/ui/popup";
 
 import styles from "./popup.module.scss";
-import { Card, CardBody } from "../card/card";
 
 type ClickableElementProps = {
   onClick?: (e: MouseEvent) => void;
@@ -102,36 +101,35 @@ export const PopupConfirmation = ({
       {enhancedChildren}
       {open && (
         <Popup title={title} onClose={handleCancel}>
-          <Card negativeMarginBottom>
-            <CardBody>
-              <BedrockText
-                type="p"
-                text={description}
-                textAlign="start"
-                color="white"
-              />
-            </CardBody>
-          </Card>
-          <Card sub>
-            <CardBody>
-              <ButtonGroup className={styles.group}>
-                <Button onClick={handleCancel} type="white" center width="100%">
-                  <BedrockText type="p" text={cancelText} color="black" />
-                </Button>
-                <Button
-                  onClick={handleConfirm}
-                  type={confirmType}
-                  center
-                  width="100%"
-                >
-                  <BedrockText type="p" text={confirmText} color="white" />
-                </Button>
-              </ButtonGroup>
-            </CardBody>
-          </Card>
+          <Popup.Body>
+            <Popup.Part>
+              <Popup.Item>
+                <BedrockText
+                  type="p"
+                  text={description}
+                  textAlign="start"
+                  color="white"
+                />
+              </Popup.Item>
+            </Popup.Part>
+          </Popup.Body>
+          <Popup.Footer>
+            <ButtonGroup className={styles.group}>
+              <Button onClick={handleCancel} type="white" center width="100%">
+                <BedrockText type="p" text={cancelText} color="black" />
+              </Button>
+              <Button
+                onClick={handleConfirm}
+                type={confirmType}
+                center
+                width="100%"
+              >
+                <BedrockText type="p" text={confirmText} color="white" />
+              </Button>
+            </ButtonGroup>
+          </Popup.Footer>
         </Popup>
-      )
-      }
-    </div >
+      )}
+    </div>
   );
 };

@@ -2,7 +2,6 @@
 
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
-import { Card, CardBody } from "@/shared/ui/card";
 import { Input } from "@/shared/ui/input";
 import { Popup } from "@/shared/ui/popup";
 import { reportUser, reportProject } from "@/entities/report";
@@ -55,22 +54,28 @@ const PopupReportComponent = ({
 
   return (
     <Popup title="Report" onClose={onClose}>
-      <Popup.Wrapper>
+      <Popup.Body>
         <Popup.Part>
-          <BedrockText
-            type="p"
-            text={`You are about to report ${name}, what is your reasoning behind this report?`}
-            textAlign="start"
-            color="white"
-          />
-          <Input ref={inputRef} placeholder="Message" value={defaultMessage} />
+          <Popup.Item>
+            <BedrockText
+              type="p"
+              text={`You are about to report ${name}, what is your reasoning behind this report?`}
+              textAlign="start"
+              color="white"
+            />
+            <Input
+              ref={inputRef}
+              placeholder="Message"
+              value={defaultMessage}
+            />
+          </Popup.Item>
         </Popup.Part>
-        <Popup.Part>
-          <Button onClick={handleReport} type="green" center width="100%">
-            <BedrockText type="p" text="Report" color="white" />
-          </Button>
-        </Popup.Part>
-      </Popup.Wrapper>
+      </Popup.Body>
+      <Popup.Footer>
+        <Button onClick={handleReport} type="green" center width="100%">
+          <BedrockText type="p" text="Report" color="white" />
+        </Button>
+      </Popup.Footer>
     </Popup>
   );
 };

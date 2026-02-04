@@ -2,7 +2,6 @@
 
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
-import { CardDivider } from "@/shared/ui/card";
 import { Popup } from "@/shared/ui/popup";
 import { BasePopupWrapperProps } from "@/shared/ui/popup";
 import { SimpleButton } from "@/shared/ui/simple-button";
@@ -37,32 +36,36 @@ export const GalleryPopup = ({
 
   return (
     <Popup title="Edit Gallery" onClose={close}>
-      <Popup.Wrapper>
+      <Popup.Body>
         {images.length > 0 && (
           <Popup.Part>
-            <div className={styles.list}>
-              {images.map((src, idx) => (
-                <div key={src} className={styles.wrapper}>
-                  <img
-                    src={baseUrl + "/" + src}
-                    alt={`Edit ${idx + 1}`}
-                    className={styles.image}
-                  />
-                  <SimpleButton
-                    onClick={() => onDeleteImage?.(idx)}
-                    transparent
-                    className={styles.delete}
-                    width="100%"
-                    height="100%"
-                  >
-                    <img alt="Close" src={Exit.src} className={styles.icon} />
-                  </SimpleButton>
-                </div>
-              ))}
-            </div>
+            <Popup.Item>
+              <div className={styles.list}>
+                {images.map((src, idx) => (
+                  <div key={src} className={styles.wrapper}>
+                    <img
+                      src={baseUrl + "/" + src}
+                      alt={`Edit ${idx + 1}`}
+                      className={styles.image}
+                    />
+                    <SimpleButton
+                      onClick={() => onDeleteImage?.(idx)}
+                      transparent
+                      className={styles.delete}
+                      width="100%"
+                      height="100%"
+                    >
+                      <img alt="Close" src={Exit.src} className={styles.icon} />
+                    </SimpleButton>
+                  </div>
+                ))}
+              </div>
+            </Popup.Item>
           </Popup.Part>
         )}
-        <Popup.Part>
+      </Popup.Body>
+      <Popup.Footer>
+        <Popup.Item>
           <input
             ref={fileInputRef}
             type="file"
@@ -82,8 +85,8 @@ export const GalleryPopup = ({
               color="white"
             />
           </Button>
-        </Popup.Part>
-      </Popup.Wrapper>
+        </Popup.Item>
+      </Popup.Footer>
     </Popup>
   );
 };

@@ -88,3 +88,16 @@
 .selectable {
   cursor: pointer;
 }
+
+.part {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: g.$padding-xsm;
+}
+
+.item {
+  gap: g.$padding-xxxsm;
+  display: flex;
+  flex-direction: column;
+}
