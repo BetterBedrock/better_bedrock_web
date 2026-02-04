@@ -77,23 +77,27 @@ export const HeroReportsPopup = () => {
   const displayProjectCard = !isUserReport && project;
   return (
     <Popup title="Report" onClose={() => setSelectedReport(null)}>
-      {!fetched && (
-        <Popup.Part>
-          <CircularProgressIndicator className={styles.loader} />
-        </Popup.Part>
-      )}
+      <Popup.Body>
+        {!fetched && (
+          <Popup.Part>
+            <CircularProgressIndicator className={styles.loader} />
+          </Popup.Part>
+        )}
 
-      {displayBase && (
-        <HeroReportsPopupBase
-          message={selectedReport!.message}
-          reporter={reporter!}
-        />
-      )}
+        {displayBase && (
+          <HeroReportsPopupBase
+            message={selectedReport!.message}
+            reporter={reporter!}
+          />
+        )}
 
-      {displayUserAvatar && <HeroReportsPopupUserAvatar reported={reported!} />}
-      {displayProjectCard && (
-        <HeroReportsPopupGridDownloadCard project={project!} />
-      )}
+        {displayUserAvatar && (
+          <HeroReportsPopupUserAvatar reported={reported!} />
+        )}
+        {displayProjectCard && (
+          <HeroReportsPopupGridDownloadCard project={project!} />
+        )}
+      </Popup.Body>
 
       {fetched && selectedReport && (
         <HeroReportsPopupActions
