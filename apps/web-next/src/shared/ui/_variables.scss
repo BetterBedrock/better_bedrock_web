@@ -1,4 +1,7 @@
-$background-linear-gradient: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+$background-linear-gradient: linear-gradient(
+  rgba(0, 0, 0, 0.3),
+  rgba(0, 0, 0, 0.6)
+);
 $background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
 
 $minecraftdepth: 2.5px;
@@ -44,7 +47,7 @@ $color-label-green-dark: rgb(29, 77, 19);
 $color-label-dark-bright: #313233;
 $color-label-dark-dark: #1e1e1f;
 
-$color-sbtn-click: #D0D1D4;
+$color-sbtn-click: #d0d1d4;
 $color-sbtn-background: #e6e8eb;
 $color-sbtn-click-on-focus-visible: rgb(170, 170, 170);
 
