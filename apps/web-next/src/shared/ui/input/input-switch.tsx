@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import styles from "./input.module.scss";
 import { ChangeEvent, InputHTMLAttributes, useState } from "react";
@@ -17,9 +17,16 @@ interface InputSwitchProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 
-export const InputSwitch = ({ checked, onChange, className, ...props }: InputSwitchProps) => {
+export const InputSwitch = ({
+  checked,
+  onChange,
+  className,
+  ...props
+}: InputSwitchProps) => {
   const [hover, setHover] = useState(false);
-  const [playClickSound] = useSound("/sounds/minecraft_click.mp3", { volume: 0.25 });
+  const [playClickSound] = useSound("/sounds/minecraft_click.mp3", {
+    volume: 0.25,
+  });
 
   const handleClick = () => {
     playClickSound();
@@ -47,11 +54,7 @@ export const InputSwitch = ({ checked, onChange, className, ...props }: InputSwi
       onMouseEnter={handleEnter}
       {...props}
     >
-      <img
-        className={clsx(styles.image)}
-        src={hovering.src}
-        height="100%"
-      />
+      <img className={clsx(styles.image)} src={hovering.src} height="100%" />
     </div>
   );
 };

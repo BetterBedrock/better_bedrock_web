@@ -1,6 +1,5 @@
 "use client";
 
-import clsx from "clsx";
 import { Banner } from "@/shared/ui/banner";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
@@ -10,7 +9,7 @@ import { Tag } from "@/shared/ui/tag";
 import { useDetailsEditorTags } from "@/pages/project/model/use-details-editor-tags";
 
 import styles from "./project-details-editor.module.scss";
-import { CardWrapper } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 
 export const ProjectDetailsEditorTags = () => {
   const {
@@ -22,8 +21,13 @@ export const ProjectDetailsEditorTags = () => {
   } = useDetailsEditorTags();
 
   return (
-    <CardWrapper>
-      <BedrockText text="Tags, no need to add #" type="p" color="white" textAlign="left" />
+    <Card.Item>
+      <BedrockText
+        text="Tags, no need to add #"
+        type="p"
+        color="white"
+        textAlign="left"
+      />
       {selectedProject!.tags.length >= 5 ? (
         <Banner
           type="neutral"
@@ -55,6 +59,6 @@ export const ProjectDetailsEditorTags = () => {
           />
         ))}
       </div>
-    </CardWrapper>
+    </Card.Item>
   );
 };

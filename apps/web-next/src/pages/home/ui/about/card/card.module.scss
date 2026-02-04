@@ -32,7 +32,7 @@
 
   display: flex;
   justify-content: center;
-  margin: 0 g.$padding-md;
+  margin: 0 g.$padding-lg;
   aspect-ratio: 16/9;
 
   @media (max-width: g.$breakpoint-tablet) {
@@ -51,7 +51,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 g.$padding-md;
+  padding: 0 g.$padding-lg;
 
   @media (max-width: g.$breakpoint-tablet) {
     padding-top: g.$padding-sm;

@@ -1,12 +1,12 @@
 import { HeaderTitle } from "./header-title";
 import { HeaderDescription } from "./header-description";
-import { Card, CardBody } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 
 export const Header = () => (
   <Card fullWidth>
-    <CardBody>
+    <Card.Body>
       <HeaderTitle />
       <HeaderDescription />
-    </CardBody>
+    </Card.Body>
   </Card>
 );

@@ -2,7 +2,6 @@
 
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
-import { Card, CardBody, CardWrapper } from "@/shared/ui/card";
 import { CircularProgressIndicator } from "@/shared/ui/circular-progress-indicator";
 import { InputSwitch } from "@/shared/ui/input";
 import { Popup } from "@/shared/ui/popup";
@@ -28,22 +27,23 @@ export const ProjectActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
 
   return (
     <Popup title="Delete Options" onClose={close}>
-      <Card negativeMarginBottom>
-        <CardBody gapSize="lg">
-
+      <Popup.Body>
+        <Popup.Part>
           {isLoading ? (
             <CircularProgressIndicator center />
           ) : (
             <>
               {existsProductionProject ? (
                 <>
-                  <BedrockText
-                    text="What part of this project would you like to delete?"
-                    type="p"
-                    color="white"
-                    textAlign="start"
-                  />
-                  <CardWrapper>
+                  <Popup.Item>
+                    <BedrockText
+                      text="What part of this project would you like to delete?"
+                      type="p"
+                      color="white"
+                      textAlign="start"
+                    />
+                  </Popup.Item>
+                  <Popup.Item>
                     <BedrockText
                       textAlign="start"
                       text="Selecting this option will delete this entire project (you will lose access to both draft & published versions)"
@@ -58,9 +58,9 @@ export const ProjectActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
                         setDeletePublishedOnly(false);
                       }}
                     />
-                  </CardWrapper>
+                  </Popup.Item>
 
-                  <CardWrapper>
+                  <Popup.Item>
                     <BedrockText
                       textAlign="start"
                       text="Selecting this option will delete only published version of this project. Your draft will remain untouched."
@@ -75,49 +75,47 @@ export const ProjectActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
                         setDeleteEverything(false);
                       }}
                     />
-                  </CardWrapper>
+                  </Popup.Item>
                 </>
               ) : (
-                <CardWrapper>
+                <Popup.Item>
                   <BedrockText
                     text="This project has no published version. Deleting will remove the entire project."
                     type="p"
                     color="white"
                     textAlign="start"
                   />
-                </CardWrapper>
+                </Popup.Item>
               )}
             </>
           )}
-        </CardBody>
-      </Card>
+        </Popup.Part>
+      </Popup.Body>
 
-      <Card sub>
-        <CardBody>
-          <ButtonGroup>
-            <Button type="white" center width="100%" onClick={close}>
-              <BedrockText text="Cancel" type="p" color="black" />
-            </Button>
-            <Tooltip
-              hidden={!disableDeleteButton}
-              text="You need to choose delete option"
-              className={styles.tooltip}
+      <Popup.Footer>
+        <ButtonGroup>
+          <Button type="white" center width="100%" onClick={close}>
+            <BedrockText text="Cancel" type="p" color="black" />
+          </Button>
+          <Tooltip
+            hidden={!disableDeleteButton}
+            text="You need to choose delete option"
+            className={styles.tooltip}
+          >
+            <Button
+              type={disableDeleteButton ? "dark" : "red"}
+              center
+              width="100%"
+              lockClicking={disableDeleteButton}
+              isToggled={disableDeleteButton}
+              isClicked={disableDeleteButton}
+              onClick={async () => await handleDelete(deleteOption)}
             >
-              <Button
-                type={disableDeleteButton ? "dark" : "red"}
-                center
-                width="100%"
-                lockClicking={disableDeleteButton}
-                isToggled={disableDeleteButton}
-                isClicked={disableDeleteButton}
-                onClick={async () => await handleDelete(deleteOption)}
-              >
-                <BedrockText text="Delete" type="p" color="white" />
-              </Button>
-            </Tooltip>
-          </ButtonGroup>
-        </CardBody>
-      </Card>
+              <BedrockText text="Delete" type="p" color="white" />
+            </Button>
+          </Tooltip>
+        </ButtonGroup>
+      </Popup.Footer>
     </Popup>
   );
 };

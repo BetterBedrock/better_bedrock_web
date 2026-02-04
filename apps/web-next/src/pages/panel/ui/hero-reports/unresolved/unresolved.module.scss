@@ -3,6 +3,6 @@
 .projects {
   width: 100%;
   display: grid;
-  gap: calc(g.$padding-xsm * 2.5);
+  gap: calc(g.$padding-xxsm * 2.5);
   grid-template-columns: repeat(2, 1fr);
 }

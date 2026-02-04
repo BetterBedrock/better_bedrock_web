@@ -1,15 +1,15 @@
 import { HeroLoginButton } from "@/pages/login/ui/hero/hero-login-button";
 import { HeroHeader } from "./hero-header";
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 
 export const Hero = () => (
   <Card fullWidth>
-    <CardBody>
+    <Card.Body>
       <HeroHeader />
-    </CardBody>
-    <CardDivider />
-    <CardBody>
+    </Card.Body>
+    <Card.Divider />
+    <Card.Body>
       <HeroLoginButton />
-    </CardBody>
+    </Card.Body>
   </Card>
 );

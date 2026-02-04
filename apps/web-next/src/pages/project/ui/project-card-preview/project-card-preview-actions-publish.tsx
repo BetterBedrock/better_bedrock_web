@@ -45,7 +45,7 @@ export const ProjectCardPreviewActionsPublish = () => {
           router.push(Routes.PANEL_PROJECTS);
         }}
       >
-        <BedrockText text="Publish" type="p" color="black" />
+        <BedrockText text="Publish" type="p" color="white" />
       </Button>
     </PopupConfirmation>
   );

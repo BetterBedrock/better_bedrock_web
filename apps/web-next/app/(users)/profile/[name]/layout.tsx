@@ -5,7 +5,7 @@ import { Tabs } from "@/pages/profile/ui/tabs/tabs";
 import { User } from "@/pages/profile/ui/user/user";
 
 import { notFound } from "next/navigation";
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 
 import { styles } from "@/pages/profile/index";
 import { fetchLoggedUser } from "@/entities/auth";
@@ -63,15 +63,15 @@ export default async function LayoutProfile({
       src="/images/crosshair_backgrounds/15.webp"
     >
       <Card fullWidth>
-        <CardBody>
+        <Card.Body>
           <User params={resolvedParams} />
-        </CardBody>
+        </Card.Body>
       </Card>
 
       <Card fullWidth>
-        <CardBody>{visible && <Tabs params={resolvedParams} />}</CardBody>
-        {visible && <CardDivider />}
-        <CardBody>{children}</CardBody>
+        <Card.Body>{visible && <Tabs params={resolvedParams} />}</Card.Body>
+        {visible && <Card.Divider />}
+        <Card.Body>{children}</Card.Body>
       </Card>
     </Section>
   );

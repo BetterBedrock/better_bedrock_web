@@ -26,7 +26,7 @@ $card-min-width: 150px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
-  gap: calc(g.$padding-xsm * 2.5);
+  gap: calc(g.$padding-xxsm * 2.5);
   padding-top: g.$padding-sm;
 
   @media (max-width: g.$breakpoint-tablet) {
@@ -37,7 +37,7 @@ $card-min-width: 150px;
 .content {
   @include flex-container(row, flex-start, flex-start);
   width: 100%;
-  padding: g.$padding-xxsm;
+  padding: g.$padding-xxxsm;
   box-sizing: border-box;
   position: relative;
 
@@ -58,7 +58,7 @@ $card-min-width: 150px;
 }
 
 .description {
-  padding-inline-start: g.$padding-xsm;
+  padding-inline-start: g.$padding-xxsm;
   width: 100%;
 
   p {

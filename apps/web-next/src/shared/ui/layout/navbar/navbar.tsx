@@ -14,6 +14,7 @@ import { Link } from "@/shared/ui/link";
 import { useAuth } from "../../../../../app/providers/auth";
 import { Routes } from "@/shared/lib/utils";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export const Navbar = () => {
   const [expandedNavbar, setExpandedNavbar] = useState(false);
@@ -74,7 +75,7 @@ export const Navbar = () => {
               className={styles.menuButton}
               isClicked={expandedNavbar}
             >
-              <div className={clsx("material-icons", styles.menu)}>menu</div>
+              <Image src="/svgs/menu.svg" height={24} width={24} alt="menu" />
             </SimpleButton>
           </div>
 

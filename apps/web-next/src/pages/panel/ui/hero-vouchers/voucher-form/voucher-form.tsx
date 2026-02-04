@@ -2,7 +2,7 @@
 
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
-import { Card, CardBody } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { Popup } from "@/shared/ui/popup";
 import { VoucherDto, CreateVoucher } from "@/shared/lib/openapi";
 import { useVoucherForm } from "../../../model/use-voucher-form";
@@ -31,7 +31,7 @@ export const VoucherForm = ({
     >
       <form onSubmit={onClickSubmit}>
         <Card negativeMarginBottom>
-          <CardBody gapSize="lg">
+          <Card.Body gap="lg">
             {fields.map(({ name, label, type, placeholder }) => (
               <VoucherFormField
                 key={label}
@@ -43,15 +43,15 @@ export const VoucherForm = ({
                 placeholder={placeholder}
               />
             ))}
-          </CardBody>
+          </Card.Body>
         </Card>
 
         <Card sub >
-          <CardBody gapSize="md">
+          <Card.Body gap="md">
             <Button buttonType="submit" type="green" center>
               <BedrockText color="white" type="p" text="Confirm" />
             </Button>
-          </CardBody>
+          </Card.Body>
         </Card>
       </form>
     </Popup>

@@ -8,7 +8,7 @@ $profile-image-size-mobile: 80px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: g.$padding-md;
+  gap: g.$padding-lg;
 }
 
 .profile {
@@ -46,7 +46,7 @@ $profile-image-size-mobile: 80px;
 .name {
   display: inline-flex;
   align-items: center;
-  gap: g.$padding-xsm;
+  gap: g.$padding-xxsm;
 }
 
 .settings {
@@ -58,7 +58,7 @@ $profile-image-size-mobile: 80px;
 .part {
   display: flex;
   flex-direction: column;
-  gap: g.$padding-xsm;
+  gap: g.$padding-xxsm;
   padding: g.$padding-sm;
 }
 
@@ -123,11 +123,11 @@ $profile-image-size-mobile: 80px;
 .container {
   display: flex;
   flex-direction: column;
-  gap: calc(g.$padding-xsm * 2.5);
+  gap: calc(g.$padding-xxsm * 2.5);
 }
 
 .profileCardBody {
-  padding-right: calc(g.$padding-xsm * 1.25) !important;
+  padding-right: calc(g.$padding-xxsm * 1.25) !important;
 }
 
 .bannerText {
@@ -141,5 +141,5 @@ $profile-image-size-mobile: 80px;
 .monetizationTypeCollapsible {
   display: flex;
   flex-direction: column;
-  gap: calc(g.$padding-xsm * 1.25);
+  gap: calc(g.$padding-xxsm * 1.25);
 }

@@ -1,7 +1,7 @@
 import { GridDownloadCardList } from "@/shared/ui/grid-download-card-list";
 import { SideProjectsHeading } from "@/pages/downloads/ui/side-projects-heading";
 import { SideProjectsBanner } from "@/pages/downloads/ui/side-projects-banner";
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { loadDownloadsSideProjectsPageData } from "@/pages/downloads/api/load-downloads-side-projects-page-data";
 
 export const revalidate = 300;
@@ -15,13 +15,13 @@ export const SideProjectsPage = async () => {
 
   return (
     <Card fullWidth>
-      <CardBody>
+      <Card.Body>
         <SideProjectsHeading />
-      </CardBody>
-      <CardDivider />
-      <CardBody>
+      </Card.Body>
+      <Card.Divider />
+      <Card.Body>
         <GridDownloadCardList projects={projects} />
-      </CardBody>
+      </Card.Body>
     </Card>
   );
 };

@@ -10,7 +10,7 @@
   background-color: rgba(0, 0, 0, 0.65);
   display: flex;
   justify-content: center;
-  padding: g.$padding-lg 0;
+  padding: g.$padding-xl 0;
   align-items: flex-start;
   max-height: 100%;
   overflow: auto;
@@ -61,7 +61,7 @@
 
 .header {
   position: relative;
-  padding-block: g.$padding-xsm;
+  padding-block: g.$padding-xxsm;
   display: flex;
   width: 100%;
   border: g.$minecraftdepth solid rgb(86, 87, 89);
@@ -87,4 +87,17 @@
 
 .selectable {
   cursor: pointer;
+}
+
+.part {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: g.$padding-xsm;
+}
+
+.item {
+  gap: g.$padding-xxxsm;
+  display: flex;
+  flex-direction: column;
 }

@@ -8,7 +8,7 @@
   gap: g.$padding-sm;
 
   @media (max-width: g.$breakpoint-laptop) {
-    gap: g.$padding-xsm;
+    gap: g.$padding-xxsm;
   }
 }
 
@@ -21,5 +21,5 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: g.$padding-xxsm;
+  gap: g.$padding-xxxsm;
 }

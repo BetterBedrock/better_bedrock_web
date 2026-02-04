@@ -15,8 +15,8 @@
   display: flex;
   flex-direction: row;
   height: 200px;
-  gap: g.$padding-xsm;
-  margin: calc(g.$padding-xsm * 1.25);
+  gap: g.$padding-xxsm;
+  margin: calc(g.$padding-xxsm * 1.25);
 
   background: repeating-linear-gradient(
     to bottom,
@@ -27,7 +27,7 @@
   );
 
   @media (max-width: g.$breakpoint-tablet) {
-    gap: g.$padding-xxsm;
+    gap: g.$padding-xxxsm;
   }
 }
 

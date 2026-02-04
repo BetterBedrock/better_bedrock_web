@@ -28,7 +28,7 @@
 
 .loader {
   width: 100%;
-  gap: g.$padding-xsm;
+  gap: g.$padding-xxsm;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,7 +38,7 @@
 .list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: calc(g.$padding-xsm * 2.5);
+  gap: calc(g.$padding-xxsm * 2.5);
 
   @media (max-width: g.$breakpoint-tablet) {
     grid-template-columns: 1fr;
@@ -48,7 +48,7 @@
 .filters {
   display: flex;
   flex-direction: column;
-  gap: (g.$padding-xsm * 1.25);
+  gap: (g.$padding-xxsm * 1.25);
 }
 
 .searchbarContainer {

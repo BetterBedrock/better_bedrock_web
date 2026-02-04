@@ -3,7 +3,7 @@
 .feedContainer {
   display: flex;
   flex-direction: column;
-  gap: calc(g.$padding-xsm * 1.25);
+  gap: calc(g.$padding-xxsm * 1.25);
 }
 
 .feedProgress {
@@ -11,7 +11,7 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  gap: calc(g.$padding-xsm * 1.25);
+  gap: calc(g.$padding-xxsm * 1.25);
 }
 
 .arrowButton {

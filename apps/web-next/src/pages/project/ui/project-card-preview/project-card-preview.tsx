@@ -1,11 +1,10 @@
 "use client";
 
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { GridDownloadCard } from "@/shared/ui/grid-download-card";
 import { ProjectHeaderTitle } from "@/pages/project/ui/project-header";
 import { ProjectCardPreviewActions } from "./project-card-preview-actions";
 
-import styles from "./project-card-preview.module.scss";
 import { useProjectManager } from "@/app/providers/project-manager";
 
 export const ProjectCardPreview = () => {
@@ -13,19 +12,19 @@ export const ProjectCardPreview = () => {
 
   return (
     <Card>
-      <CardBody>
+      <Card.Body>
         <ProjectHeaderTitle title="Review" />
-      </CardBody>
-      <CardDivider />
-      <CardBody>
+      </Card.Body>
+      <Card.Divider />
+      <Card.Body>
         {selectedProject && (
           <GridDownloadCard project={{ ...selectedProject }} />
         )}
-      </CardBody>
-      <CardDivider />
-      <CardBody>
+      </Card.Body>
+      <Card.Divider />
+      <Card.Body>
         <ProjectCardPreviewActions />
-      </CardBody>
+      </Card.Body>
     </Card>
   );
 };

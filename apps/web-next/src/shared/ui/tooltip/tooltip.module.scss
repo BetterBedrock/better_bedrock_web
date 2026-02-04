@@ -8,7 +8,7 @@
 .box {
   max-width: g.$breakpoint-mobileS;
   min-width: 50px;
-  padding: calc((g.$minecraftdepth * 2) + g.$padding-xxsm + 1px);
+  padding: calc((g.$minecraftdepth * 2) + g.$padding-xxxsm + 1px);
   image-rendering: pixelated;
   border-image-slice: 4 4 4 4 fill;
   border-image-width: 10px 10px 10px 10px;

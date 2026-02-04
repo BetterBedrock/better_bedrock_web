@@ -1,7 +1,7 @@
 @use "@/shared/ui" as g;
 
 .grid {
-  gap: calc(g.$padding-xsm * 2.5);
+  gap: calc(g.$padding-xxsm * 2.5);
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);

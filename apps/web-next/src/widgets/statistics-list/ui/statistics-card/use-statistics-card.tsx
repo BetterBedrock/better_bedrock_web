@@ -97,6 +97,19 @@ export const getRangeConfig = (
       };
     }
 
+    case "12m": {
+      const months = 12;
+      const labels = Array.from({ length: months }).map((_, i) =>
+        now.subtract(months - 1 - i, "month").format("MMM YYYY"),
+      );
+      return {
+        unit: "month",
+        labels,
+        start: now.subtract(months - 1, "month").startOf("month"),
+        categoryName: range,
+      };
+    }
+
     case "ytd": {
       const start = now.startOf("year");
       const months = now.month() + 1;
@@ -171,7 +184,10 @@ export const transformToFData = (
         key = date.format("MMM Do");
       }
     } else if (unit === "month") {
-      key = range === "6m" ? date.format("MMM YYYY") : date.format("MMM");
+      key =
+        range === "6m" || range === "12m"
+          ? date.format("MMM YYYY")
+          : date.format("MMM");
     } else {
       key = date.year().toString();
     }

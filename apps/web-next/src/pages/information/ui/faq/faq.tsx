@@ -1,4 +1,4 @@
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { InformationTab } from "@/shared/lib/information";
 
 import { FAQCollapsibleList } from "./faq-collapsible-list";
@@ -11,13 +11,13 @@ interface FAQProps {
 
 export const FAQ = ({ selectedCategory }: FAQProps) => (
   <Card fullWidth>
-    <CardBody>
+    <Card.Body>
       <FAQTitle />
       <FAQDescription />
-    </CardBody>
-    <CardDivider />
-    <CardBody>
+    </Card.Body>
+    <Card.Divider />
+    <Card.Body>
       <FAQCollapsibleList selectedCategory={selectedCategory} />
-    </CardBody>
+    </Card.Body>
   </Card>
 );

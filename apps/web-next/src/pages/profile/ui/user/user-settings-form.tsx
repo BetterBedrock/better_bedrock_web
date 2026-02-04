@@ -18,17 +18,16 @@ import { manageProfile, updateProfile } from "@/entities/user";
 import styles from "./user.module.scss";
 import { Collapsible } from "@/shared/ui/collapsible";
 import { ButtonGroup } from "@/shared/ui/button-group";
-import { Card, CardBody, CardDivider, CardWrapper } from "@/shared/ui/card";
 import { Banner } from "@/shared/ui/banner";
 
 const schema = z.object({
-  name: z.string(),
-  bio: z.string(),
+  name: z.string().trim(),
+  bio: z.string().trim(),
   monetizationType: z.enum(MonetizationType).nullable(),
-  linkvertiseId: z.string().nullable(),
-  linkvertiseSecret: z.string().nullable(),
-  lootlabsLinkId: z.string().nullable(),
-  lootlabsSecret: z.string().nullable(),
+  linkvertiseId: z.string().trim().nullable(),
+  linkvertiseSecret: z.string().trim().nullable(),
+  lootlabsLinkId: z.string().trim().nullable(),
+  lootlabsSecret: z.string().trim().nullable(),
   banned: z.boolean(),
 });
 
@@ -82,11 +81,11 @@ export const UserSettingsForm = ({
   });
 
   return (
-    <Popup onClose={onClose} title="Account Settings">
-      <form onSubmit={onClickSubmit}>
-        <Card negativeMarginBottom>
-          <CardBody gapSize="lg">
-            <CardWrapper>
+    <form onSubmit={onClickSubmit}>
+      <Popup onClose={onClose} title="Account Settings">
+        <Popup.Body>
+          <Popup.Part>
+            <Popup.Item>
               <BedrockText
                 textAlign="start"
                 text="Username"
@@ -107,9 +106,9 @@ export const UserSettingsForm = ({
                   textAlign="start"
                 />
               )}
-            </CardWrapper>
+            </Popup.Item>
 
-            <CardWrapper>
+            <Popup.Item>
               <BedrockText
                 textAlign="start"
                 text="Bio"
@@ -131,12 +130,10 @@ export const UserSettingsForm = ({
                   textAlign="start"
                 />
               )}
-            </CardWrapper>
-          </CardBody>
+            </Popup.Item>
+          </Popup.Part>
 
-          <CardDivider />
-
-          <CardBody gapSize="lg">
+          <Popup.Part>
             <Banner
               type="info"
               message={
@@ -150,8 +147,7 @@ export const UserSettingsForm = ({
                 </div>
               }
             />
-
-            <CardWrapper>
+            <Popup.Item>
               <BedrockText
                 textAlign="start"
                 text="Monetization Type"
@@ -167,10 +163,9 @@ export const UserSettingsForm = ({
                       monetizationType ?? "None",
                     )}
                   >
-                    <div className={styles.monetizationTypeCollapsible}>
-                      {Object.values(MonetizationType).map((mT, key) => (
+                    {Object.values(MonetizationType).map((mT, key) => (
+                      <ButtonGroup key={key}>
                         <Button
-                          key={key}
                           onClick={() => {
                             field.onChange(mT);
                             setMonetizationType(mT);
@@ -187,16 +182,16 @@ export const UserSettingsForm = ({
                             text={capitalizeFirstLetter(mT)}
                           />
                         </Button>
-                      ))}
-                    </div>
+                      </ButtonGroup>
+                    ))}
                   </Collapsible>
                 )}
               />
-            </CardWrapper>
+            </Popup.Item>
 
             {monetizationType === "linkvertise" && (
               <>
-                <CardWrapper>
+                <Popup.Part>
                   <BedrockText
                     textAlign="start"
                     text="Linkvertise User Id"
@@ -218,9 +213,8 @@ export const UserSettingsForm = ({
                       textAlign="start"
                     />
                   )}
-                </CardWrapper>
-
-                <CardWrapper>
+                </Popup.Part>
+                <Popup.Part>
                   <BedrockText
                     textAlign="start"
                     text="Linkvertise Anti-bypass Token"
@@ -243,13 +237,13 @@ export const UserSettingsForm = ({
                       textAlign="start"
                     />
                   )}
-                </CardWrapper>
+                </Popup.Part>
               </>
             )}
 
             {monetizationType === "lootlabs" && (
               <>
-                <CardWrapper>
+                <Popup.Item>
                   <BedrockText
                     textAlign="start"
                     text="Lootlabs Link Id"
@@ -271,9 +265,8 @@ export const UserSettingsForm = ({
                       textAlign="start"
                     />
                   )}
-                </CardWrapper>
-
-                <CardWrapper>
+                </Popup.Item>
+                <Popup.Item>
                   <BedrockText
                     textAlign="start"
                     text="Lootlabs API Token"
@@ -296,46 +289,44 @@ export const UserSettingsForm = ({
                       textAlign="start"
                     />
                   )}
-                </CardWrapper>
+                </Popup.Item>
               </>
             )}
-          </CardBody>
-        </Card>
+          </Popup.Part>
+        </Popup.Body>
 
-        <Card sub >
-          <CardBody smallerGap>
-            {admin && (
-              <Controller
-                name="banned"
-                control={control}
-                render={({ field }) => (
-                  <Button
-                    type={field.value ? "dark" : "red"}
-                    width="100%"
-                    center
-                    onClick={() => field.onChange(!field.value)}
-                    buttonType="submit"
-                  >
-                    <BedrockText
-                      type="p"
-                      text={field.value ? "Unban" : "Ban"}
-                      color="white"
-                    />
-                  </Button>
-                )}
-              />
-            )}
-            <Button type="green" buttonType="submit" center width="100%">
-              <BedrockText type="p" text="Save Settings" color="white" />
+        <Popup.Footer>
+          {admin && (
+            <Controller
+              name="banned"
+              control={control}
+              render={({ field }) => (
+                <Button
+                  type={field.value ? "dark" : "red"}
+                  width="100%"
+                  center
+                  onClick={() => field.onChange(!field.value)}
+                  buttonType="submit"
+                >
+                  <BedrockText
+                    type="p"
+                    text={field.value ? "Unban" : "Ban"}
+                    color="white"
+                  />
+                </Button>
+              )}
+            />
+          )}
+          <Button type="green" buttonType="submit" center width="100%">
+            <BedrockText type="p" text="Save Settings" color="white" />
+          </Button>
+          {!admin && (
+            <Button type="red" width="100%" center onClick={logout}>
+              <BedrockText type="p" text="Logout" color="white" />
             </Button>
-            {!admin && (
-              <Button type="red" width="100%" center onClick={logout}>
-                <BedrockText type="p" text="Logout" color="white" />
-              </Button>
-            )}
-          </CardBody>
-        </Card>
-      </form>
-    </Popup>
+          )}
+        </Popup.Footer>
+      </Popup>
+    </form>
   );
 };

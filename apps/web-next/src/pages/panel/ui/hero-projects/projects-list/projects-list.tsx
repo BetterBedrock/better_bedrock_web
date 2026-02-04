@@ -3,7 +3,7 @@
 import { ProjectsListEmpty } from "./projects-list-empty";
 
 import { GridDownloadCardList } from "@/shared/ui/grid-download-card-list";
-import { Card, CardBody } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { fetchSubmittedProjects } from "@/entities/project";
 
 export const ProjectsList = async () => {
@@ -11,13 +11,13 @@ export const ProjectsList = async () => {
 
   return (
     <Card fullWidth>
-      <CardBody>
+      <Card.Body>
         {projects.length === 0 ? (
           <ProjectsListEmpty />
         ) : (
           <GridDownloadCardList projects={projects} mode="review" />
         )}
-      </CardBody>
+      </Card.Body>
     </Card>
   );
 };

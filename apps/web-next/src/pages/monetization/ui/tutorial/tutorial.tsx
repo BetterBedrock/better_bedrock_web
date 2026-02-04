@@ -1,18 +1,18 @@
 import { TutorialParts } from "./tutorial-parts";
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 
 import { TutorialTitle } from "./tutorial-title";
 import { TutorialDescription } from "./tutorial-description";
 
 export const Tutorial = () => (
   <Card fullWidth>
-    <CardBody>
+    <Card.Body>
       <TutorialTitle />
       <TutorialDescription />
-    </CardBody>
-    <CardDivider />
-    <CardBody>
+    </Card.Body>
+    <Card.Divider />
+    <Card.Body>
       <TutorialParts />
-    </CardBody>
+    </Card.Body>
   </Card>
 );

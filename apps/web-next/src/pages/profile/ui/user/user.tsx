@@ -1,5 +1,5 @@
 import { BedrockText } from "@/shared/ui/bedrock-text";
-import { Card, CardBody } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { UserLinkvertiseInfo } from "./user-linkvertise-info";
 import clsx from "clsx";
 import { UserProfileActions } from "./user-profile-actions";
@@ -33,7 +33,7 @@ export const User = async ({ params }: UserProps) => {
     <div className={styles.container}>
       <UserLinkvertiseInfo selectedUser={selectedUser} />
       <Card sub>
-        <CardBody className={styles.profileCardBody} smallerPadding>
+        <Card.Body className={styles.profileCardBody}>
           <div className={styles.profile}>
             <UserProfilePicture name={selectedUser!.name} />
             <div className={styles.info}>
@@ -54,7 +54,7 @@ export const User = async ({ params }: UserProps) => {
               />
             </div>
           </div>
-        </CardBody>
+        </Card.Body>
         <div className={styles.bio}>
           <BedrockText
             type="p"
