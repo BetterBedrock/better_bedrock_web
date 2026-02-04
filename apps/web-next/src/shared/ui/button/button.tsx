@@ -1,10 +1,17 @@
-"use client"
+"use client";
 
-import { HTMLAttributes, ReactNode, useState, forwardRef, MouseEvent } from "react";
+import {
+  HTMLAttributes,
+  ReactNode,
+  useState,
+  forwardRef,
+  MouseEvent,
+} from "react";
 import clsx from "clsx";
 import useSound from "use-sound";
 
 import styles from "./button.module.scss";
+import { useImagePreload } from "@/shared/model";
 
 export type ButtonType = "green" | "white" | "dark" | "gold" | "red";
 
@@ -24,7 +31,10 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   buttonType?: "button" | "reset" | "submit" | undefined;
 }
 
-export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps>(
+export const Button = forwardRef<
+  HTMLButtonElement | HTMLMapElement,
+  ButtonProps
+>(
   (
     {
       width,
@@ -48,7 +58,9 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
     const [clicked, setClicked] = useState(false);
     const [isHeld, setIsHeld] = useState(false);
 
-    const [playClickSound] = useSound("/sounds/minecraft_click.mp3", { volume: 0.25 });
+    const [playClickSound] = useSound("/sounds/minecraft_click.mp3", {
+      volume: 0.25,
+    });
 
     const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
       if (lockClicking) return;
@@ -150,10 +162,22 @@ export const Button = forwardRef<HTMLButtonElement | HTMLMapElement, ButtonProps
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const Component: any = summary ? "summary" : "button";
 
+    useImagePreload([
+      unchecked,
+      uncheckedHover,
+      checked,
+      checkedHover,
+      toggled,
+    ]);
+
     return (
       <Component
         ref={ref}
-        className={clsx(styles.wrapper, finalClicked && styles.selected, className)}
+        className={clsx(
+          styles.wrapper,
+          finalClicked && styles.selected,
+          className,
+        )}
         onMouseEnter={handleEnter}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleLeave}
