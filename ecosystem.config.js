@@ -19,14 +19,14 @@ module.exports = {
       script: "yarn",
       cwd: "./apps/web-next",
       args: "preview",
-      watch: true,
+      watch: false,
     },
     {
       name: "better-bedrock-api-dev",
       script: "yarn",
       cwd: "./apps/api",
       args: "preview",
-      watch: true,
+      watch: false,
     },
   ],
 };
