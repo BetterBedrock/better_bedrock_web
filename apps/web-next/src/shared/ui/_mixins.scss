@@ -24,21 +24,21 @@
 }
 
 @mixin card-margin() {
-  margin-inline: calc(g.$padding-xsm * 2.5);
-  margin-block: g.$padding-xsm;
+  margin-inline: g.$padding-md;
+  margin-block: g.$padding-xxsm;
 }
 
 @mixin card-padding() {
-  padding-inline: calc(g.$padding-xsm * 2.5);
-  padding-block: calc(g.$padding-xsm * 2.5);
+  padding-inline: g.$padding-md;
+  padding-block: g.$padding-md;
 }
 
 @mixin card-padding-x() {
-  padding-inline: calc(g.$padding-xsm * 2.5);
+  padding-inline: g.$padding-md;
 }
 
 @mixin card-padding-y() {
-  padding-block: calc(g.$padding-xsm * 2.5);
+  padding-block: g.$padding-md;
 }
 
 @mixin no-drag() {

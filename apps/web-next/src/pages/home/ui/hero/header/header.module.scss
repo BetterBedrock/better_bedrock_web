@@ -11,7 +11,7 @@ $title-height: clamp(2.7em, 7vw, 6em);
 
 .heading {
   @include flex-container();
-  gap: g.$padding-xxsm;
+  gap: g.$padding-xxxsm;
   // height: $title-height;
 
   @media (max-width: g.$breakpoint-mobileL) {
@@ -83,7 +83,7 @@ $title-height: clamp(2.7em, 7vw, 6em);
 .stripes {
   display: flex;
   flex-direction: column;
-  gap: g.$padding-xsm;
+  gap: g.$padding-xxsm;
   width: 100%;
 
   /* Lazy fix for firefox not implementing text-box-trim /shrug*/

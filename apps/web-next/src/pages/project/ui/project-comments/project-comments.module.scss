@@ -7,7 +7,7 @@
   &.size {
     display: flex;
     flex-direction: column;
-    gap: g.$padding-xxsm;
+    gap: g.$padding-xxxsm;
   }
 }
 
@@ -18,5 +18,5 @@
 .comments {
   display: flex;
   flex-direction: column;
-  gap: calc(g.$padding-xsm * 1.25);
+  gap: calc(g.$padding-xxsm * 1.25);
 }

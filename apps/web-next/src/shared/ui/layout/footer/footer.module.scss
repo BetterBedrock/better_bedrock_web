@@ -8,8 +8,8 @@
   text-align: center;
   width: 100%;
   margin: 0;
-  padding: g.$padding-sm g.$padding-xsm;
-  gap: g.$padding-xsm;
+  padding: g.$padding-sm g.$padding-xxsm;
+  gap: g.$padding-xxsm;
 }
 
 .text {
@@ -18,5 +18,5 @@
 
 .links {
   display: inline-flex;
-  gap: g.$padding-xsm;
+  gap: g.$padding-xxsm;
 }

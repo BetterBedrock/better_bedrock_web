@@ -7,12 +7,12 @@
 .header {
   align-items: start;
   justify-content: start;
-  padding-block: g.$padding-xsm;
+  padding-block: g.$padding-xxsm;
 
   &:not(:first-child) {
-    padding-left: g.$padding-lg;
+    padding-left: g.$padding-xl;
     @media (max-width: g.$breakpoint-tablet) {
-      padding-left: g.$padding-md;
+      padding-left: g.$padding-lg;
     }
 
     @media (max-width: g.$breakpoint-mobileL) {
@@ -20,7 +20,7 @@
     }
 
     @media (max-width: g.$breakpoint-mobileM) {
-      padding-left: g.$padding-xsm;
+      padding-left: g.$padding-xxsm;
     }
   }
 }
