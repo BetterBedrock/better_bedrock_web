@@ -1,9 +1,7 @@
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { DetailedProjectDto } from "@/shared/lib/openapi";
 import { TiptapPreview } from "../tiptap/preview";
 import { ProjectHeaderTitle } from "@/pages/project/ui/project-header";
-
-import styles from "./view-mode.module.scss";
 
 interface ViewModeProps {
   detailedProject: DetailedProjectDto;
@@ -11,15 +9,15 @@ interface ViewModeProps {
 
 export const ViewMode = ({ detailedProject }: ViewModeProps) => (
   <Card>
-    <CardBody>
+    <Card.Body>
       <ProjectHeaderTitle title="Description" />
-    </CardBody>
-    <CardDivider />
-    <CardBody>
+    </Card.Body>
+    <Card.Divider />
+    <Card.Body>
       <TiptapPreview
         detailedProject={detailedProject}
         content={detailedProject?.description}
       />
-    </CardBody>
+    </Card.Body>
   </Card>
 );

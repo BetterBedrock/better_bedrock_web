@@ -7,14 +7,14 @@ import { calculateItemDisplayWeight } from "@/shared/lib/utils";
 import { useDetailsEditorDownloadFile } from "@/pages/project/model/use-details-editor-download-file";
 
 import styles from "./project-details-editor.module.scss";
-import { CardWrapper } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 
 export const ProjectDetailsEditorDownloadFile = () => {
   const { selectedProject, uploadFileRef, uploadDownloadFile, isUploading } =
     useDetailsEditorDownloadFile();
 
   return (
-    <CardWrapper>
+    <Card.Item>
       <BedrockText
         text={
           selectedProject?.downloadFile
@@ -45,6 +45,6 @@ export const ProjectDetailsEditorDownloadFile = () => {
           <BedrockText text="Upload Download File" type="p" color="white" />
         </Button>
       )}
-    </CardWrapper>
+    </Card.Item>
   );
 };

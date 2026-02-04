@@ -1,17 +1,17 @@
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { FAQList } from "./faq-list";
 import { FAQTitle } from "./faq-title";
 import { FAQDescription } from "./faq-description";
 
 export const FAQ = () => (
   <Card fullWidth>
-    <CardBody>
+    <Card.Body>
       <FAQTitle />
       <FAQDescription />
-    </CardBody>
-    <CardDivider />
-    <CardBody>
+    </Card.Body>
+    <Card.Divider />
+    <Card.Body>
       <FAQList />
-    </CardBody>
+    </Card.Body>
   </Card>
 );

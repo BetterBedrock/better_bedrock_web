@@ -6,7 +6,7 @@ import { VoucherForm } from "../voucher-form/voucher-form";
 import { useVouchers } from "./use-vouchers";
 import { VouchersAction } from "./vouchers-action";
 import { VouchersList } from "./vouchers-list";
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 
 export const Vouchers = () => {
   const {
@@ -21,7 +21,7 @@ export const Vouchers = () => {
 
   return (
     <Card fullWidth>
-      <CardBody>
+      <Card.Body>
         {open && (
           <VoucherForm
             key={voucher?.code ?? ""}
@@ -31,9 +31,9 @@ export const Vouchers = () => {
           />
         )}
         <VouchersAction handleCreateVoucherClick={handleCreateVoucherClick} />
-      </CardBody>
-      <CardDivider />
-      <CardBody smallerGap>
+      </Card.Body>
+      <Card.Divider />
+      <Card.Body>
         {vouchers?.length === 0 && (
           <Banner message="No vouchers found." type="neutral" />
         )}
@@ -45,7 +45,7 @@ export const Vouchers = () => {
         ) : (
           <CircularProgressIndicator center />
         )}
-      </CardBody>
+      </Card.Body>
     </Card>
   );
 };

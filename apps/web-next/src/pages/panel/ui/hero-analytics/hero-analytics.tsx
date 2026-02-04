@@ -1,16 +1,16 @@
 import { Header } from "./header/header";
 import { Statistics } from "./statistics/statistics";
 
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 
 export const HeroAnalytics = () => (
   <Card fullWidth>
-    <CardBody>
+    <Card.Body>
       <Header />
-    </CardBody>
-    <CardDivider />
-    <CardBody>
+    </Card.Body>
+    <Card.Divider />
+    <Card.Body>
       <Statistics />
-    </CardBody>
+    </Card.Body>
   </Card>
 );

@@ -1,19 +1,16 @@
 "use client";
 
-import clsx from "clsx";
 import { BedrockText } from "@/shared/ui/bedrock-text";
-import { CardDivider } from "@/shared/ui/card";
 import { InputSwitch } from "@/shared/ui/input";
 import { useDetailsEditorBetterBedrockContent } from "../../model/use-details-editor-better-bedrock-content";
-
-import styles from "./project-details-editor.module.scss";
+import { Card } from "@/shared/ui/card";
 
 export const ProjectDetailsEditorBetterBedrockContent = () => {
   const { handleSwitchBetterBedrock, selectedProject } =
     useDetailsEditorBetterBedrockContent();
 
   return (
-    <>
+    <Card.Item>
       <BedrockText
         text="Better Bedrock Content"
         type="p"
@@ -26,6 +23,6 @@ export const ProjectDetailsEditorBetterBedrockContent = () => {
         checked={selectedProject!.betterBedrockContent}
         onChange={handleSwitchBetterBedrock}
       />
-    </>
+    </Card.Item>
   );
 };

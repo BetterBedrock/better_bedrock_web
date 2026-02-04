@@ -1,29 +1,29 @@
 import Markdown from "react-markdown";
-import { Card, CardBody } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 
 import styles from "./tutorial.module.scss";
 
 export const TutorialParts = () => (
   <div className={styles.parts}>
     <Card sub className={styles.sub}>
-      <CardBody>
+      <Card.Body>
         <Markdown>{tutorialPart1}</Markdown>
-      </CardBody>
+      </Card.Body>
     </Card>
     <Card sub className={styles.sub}>
-      <CardBody>
+      <Card.Body>
         <Markdown>{tutorialPart2}</Markdown>
-      </CardBody>
+      </Card.Body>
     </Card>
     <Card sub className={styles.sub}>
-      <CardBody>
+      <Card.Body>
         <Markdown>{tutorialPart3}</Markdown>
-      </CardBody>
+      </Card.Body>
     </Card>
     <Card sub className={styles.sub}>
-      <CardBody>
+      <Card.Body>
         <Markdown>{tutorialPart4}</Markdown>
-      </CardBody>
+      </Card.Body>
     </Card>
   </div>
 );

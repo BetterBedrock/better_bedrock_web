@@ -1,17 +1,17 @@
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { HeroVideo } from "./hero-video";
 import { HeroTitle } from "./hero-title";
 import { HeroDescription } from "./hero-description";
 
 export const Hero = () => (
   <Card fullWidth>
-    <CardBody>
+    <Card.Body>
       <HeroTitle />
       <HeroDescription />
-    </CardBody>
-    <CardDivider />
-    <CardBody>
+    </Card.Body>
+    <Card.Divider />
+    <Card.Body>
       <HeroVideo />
-    </CardBody>
+    </Card.Body>
   </Card>
 );

@@ -1,7 +1,7 @@
 import { Banner } from "@/shared/ui/banner";
 import { CircularProgressIndicator } from "@/shared/ui/circular-progress-indicator";
 import { useReportsManager } from "@/pages/panel/model/reports-manager";
-import { Card, CardBody } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { ReportCard } from "@/pages/panel/ui/hero-reports/report-card";
 
 import styles from "./unresolved.module.scss";
@@ -11,7 +11,7 @@ export const Unresolved = () => {
 
   return (
     <Card fullWidth>
-      <CardBody>
+      <Card.Body>
         {!reports && <CircularProgressIndicator center />}
         {reports && reports.length === 0 ? (
           <Banner message="No unresolved reports." type="neutral" />
@@ -28,7 +28,7 @@ export const Unresolved = () => {
               ))}
           </div>
         )}
-      </CardBody>
+      </Card.Body>
     </Card>
   );
 };

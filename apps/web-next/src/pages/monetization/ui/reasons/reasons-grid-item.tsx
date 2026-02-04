@@ -1,7 +1,5 @@
 import { BedrockText } from "@/shared/ui/bedrock-text";
-import { Card, CardBody } from "@/shared/ui/card";
-
-import styles from "./reasons.module.scss";
+import { Card } from "@/shared/ui/card";
 
 interface ReasonsGridItemProps {
   title: string;
@@ -13,7 +11,7 @@ export const ReasonsGridItem = ({
   description,
 }: ReasonsGridItemProps) => (
   <Card sub>
-    <CardBody>
+    <Card.Body>
       <BedrockText
         type="h3"
         text={title}
@@ -22,6 +20,6 @@ export const ReasonsGridItem = ({
         font="Minecraft"
       />
       <BedrockText type="p" text={description} textAlign="left" color="white" />
-    </CardBody>
+    </Card.Body>
   </Card>
 );

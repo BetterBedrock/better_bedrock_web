@@ -1,4 +1,4 @@
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { ProjectsCardBanner } from "./projects-card-banner";
 import { ProjectsCardInfiniteContainer } from "./projects-card-infinite-container";
 import { ProjectsCardOrder } from "./projects-card-order";
@@ -27,19 +27,19 @@ export const ProjectsCard = async ({ params }: ProjectsCardProps) => {
   return (
     <Card fullWidth>
       <ProjectsCardSearchProvider>
-        <CardBody gap>
+        <Card.Body gap="md">
           <ProjectsCardTitle />
-        </CardBody>
-        <CardDivider />
-        <CardBody gap>
+        </Card.Body>
+        <Card.Divider />
+        <Card.Body gap="md">
           <div className={styles.filters}>
             <ProjectsCardSearchBar />
             <ProjectsCardType />
             <ProjectsCardOrder className={styles.orderFull} />
           </div>
-        </CardBody>
-        <CardDivider />
-        <CardBody gap style={{ paddingBottom: "0" }}>
+        </Card.Body>
+        <Card.Divider />
+        <Card.Body gap="md">
           <ProjectsCardBanner />
           {isBot ? (
             <ProjectsCardPageContainer
@@ -49,7 +49,7 @@ export const ProjectsCard = async ({ params }: ProjectsCardProps) => {
           ) : (
             <ProjectsCardInfiniteContainer searchResults={searchResults} />
           )}
-        </CardBody>
+        </Card.Body>
       </ProjectsCardSearchProvider>
     </Card>
   );

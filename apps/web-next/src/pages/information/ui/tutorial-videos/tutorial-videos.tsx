@@ -1,4 +1,4 @@
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { InformationVideos } from "@/shared/lib/information";
 import { TutorialVideosDescription } from "./tutorial-videos-description";
 import { TutorialVideosGrid } from "./tutorial-videos-grid";
@@ -10,13 +10,13 @@ export interface TutorialVideosProps {
 
 export const TutorialVideos = ({ videos }: TutorialVideosProps) => (
   <Card fullWidth>
-    <CardBody>
+    <Card.Body>
       <TutorialVideosTitle />
       <TutorialVideosDescription />
-    </CardBody>
-    <CardDivider />
-    <CardBody>
+    </Card.Body>
+    <Card.Divider />
+    <Card.Body>
       <TutorialVideosGrid videos={videos.videos} />
-    </CardBody>
+    </Card.Body>
   </Card>
 );

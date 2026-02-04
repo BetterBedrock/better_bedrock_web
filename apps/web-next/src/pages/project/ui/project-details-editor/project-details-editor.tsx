@@ -1,4 +1,4 @@
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { DetailedProjectDto, UserDto } from "@/shared/lib/openapi";
 import { SubmittedOverlay } from "@/shared/ui/submitted-overlay";
 import { ProjectHeaderTitle } from "@/pages/project/ui/project-header";
@@ -22,23 +22,31 @@ export const ProjectDetailsEditor = ({
     <>
       <Card className={styles.information}>
         {detailedProject.submitted && <SubmittedOverlay />}
-        <CardBody>
+        <Card.Body>
           <ProjectHeaderTitle title="Details" />
-        </CardBody>
+        </Card.Body>
 
-        <CardDivider />
-        <CardBody gapSize="lg">
+        <Card.Divider />
+        <Card.Body gap="sm">
           <ProjectDetailsEditorProjectType />
+        </Card.Body>
+
+        <Card.Divider />
+        <Card.Body>
           <ProjectDetailsEditorTags />
+        </Card.Body>
+
+        <Card.Divider />
+        <Card.Body>
           <ProjectDetailsEditorDownloadFile />
-        </CardBody>
+        </Card.Body>
 
         {user?.admin && (
           <>
-            <CardDivider />
-            <CardBody gapSize="sm">
+            <Card.Divider />
+            <Card.Body gap="sm">
               <ProjectDetailsEditorBetterBedrockContent />
-            </CardBody>
+            </Card.Body>
           </>
         )}
       </Card>

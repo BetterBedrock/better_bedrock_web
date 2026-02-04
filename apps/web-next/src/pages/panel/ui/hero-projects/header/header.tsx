@@ -1,9 +1,9 @@
 import { BedrockText } from "@/shared/ui/bedrock-text";
-import { Card, CardBody } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 
 export const Header = () => (
   <Card fullWidth>
-    <CardBody>
+    <Card.Body>
       <BedrockText
         text="Projects For Review"
         type="h1"
@@ -15,6 +15,6 @@ export const Header = () => (
         type="p"
         color="white"
       />
-    </CardBody>
+    </Card.Body>
   </Card>
 );

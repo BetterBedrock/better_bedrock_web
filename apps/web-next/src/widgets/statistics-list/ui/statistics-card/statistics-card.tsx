@@ -11,7 +11,7 @@ import {
 import { BarChart } from "../bar-chart/bar-chart";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { Collapsible } from "@/shared/ui/collapsible";
 
 import styles from "./statistics-card.module.scss";
@@ -64,7 +64,7 @@ export const StatisticsCard = ({
 
   return (
     <Card {...props} sub>
-      <CardBody smallerPadding>
+      <Card.Body>
         <BedrockText
           extraClassName={styles.name}
           type="h3"
@@ -81,11 +81,11 @@ export const StatisticsCard = ({
           color="white"
           extraClassName={styles.highlight}
         />
-      </CardBody>
+      </Card.Body>
       {fdata && loaded && (
         <>
-          <CardDivider sub />
-          <CardBody gap>
+          <Card.Divider sub />
+          <Card.Body gap="lg">
             <div className={styles.buttons}>
               <Collapsible
                 className={styles.collapsible}
@@ -135,7 +135,7 @@ export const StatisticsCard = ({
                 category={category}
               />
             )}
-          </CardBody>
+          </Card.Body>
         </>
       )}
     </Card>

@@ -1,10 +1,9 @@
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { InformationTab } from "@/shared/lib/information";
 
 import { HeaderDescription } from "./header-description";
 import { HeaderTabs } from "./header-tabs";
 import { HeaderTitle } from "./header-title";
-import { PartnerImage } from "@/shared/ui/partner-image";
 
 interface HeaderProps {
   selectedCategory: InformationTab;
@@ -12,17 +11,18 @@ interface HeaderProps {
 
 export const Header = ({ selectedCategory }: HeaderProps) => (
   <Card fullWidth>
-    <CardBody>
+    <Card.Body>
       <HeaderTitle />
       <HeaderDescription />
-    </CardBody>
-    <CardDivider />
-    <CardBody>
+    </Card.Body>
+    <Card.Divider />
+    <Card.Body>
       <HeaderTabs selectedCategory={selectedCategory} />
-    </CardBody>
+    </Card.Body>
     {/* <CardDivider />
     <CardBody>
       <PartnerImage />
     </CardBody> */}
   </Card>
 );
+  

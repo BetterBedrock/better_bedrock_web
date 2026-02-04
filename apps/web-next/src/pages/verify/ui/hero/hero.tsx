@@ -10,7 +10,7 @@ import styles from "./hero.module.scss";
 import { redirect } from "next/navigation";
 import { Routes } from "@/shared/lib/utils";
 import { fetchUserById } from "@/entities/user";
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { useEffect, useState } from "react";
 import { ProjectDto, SimpleUserDto } from "@/shared/lib/openapi";
 import { CircularProgressIndicator } from "@/shared/ui/circular-progress-indicator";
@@ -49,11 +49,11 @@ export const Hero = ({ hash, voucher }: HeroProps) => {
 
   return (
     <Card fullWidth>
-      <CardBody>
+      <Card.Body>
         <HeroHeader project={downloadItem!} creator={author} />
-      </CardBody>
-      <CardDivider />
-      <CardBody>
+      </Card.Body>
+      <Card.Divider />
+      <Card.Body>
         <div className={styles.content}>
           {/* <HeroCreatorBanner creatorName={"TODO"} /> */}
           <DownloadProvider downloadItem={downloadItem!}>
@@ -62,7 +62,7 @@ export const Hero = ({ hash, voucher }: HeroProps) => {
             <HeroRedownloadMessage />
           </DownloadProvider>
         </div>
-      </CardBody>
+      </Card.Body>
     </Card>
   );
 };

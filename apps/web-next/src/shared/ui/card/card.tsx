@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { forwardRef, HTMLAttributes, ReactNode } from "react";
+import { FC, HTMLAttributes, ReactNode } from "react";
 
 import styles from "./card.module.scss";
 
@@ -12,19 +12,41 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   negativeMarginBottom?: boolean;
 }
 
-export const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className, children, sub, fullWidth, negativeMarginTop, negativeMarginBottom, ...rest }, ref) => (
-    <div ref={ref} className={clsx(styles.container, sub && styles.sub, fullWidth && styles.fullWidth, negativeMarginTop && styles.negativeMarginTop, negativeMarginBottom && styles.negativeMarginBottom, className)} {...rest}>
-      {children}
-    </div>
-  ),
-);
+interface CardComponent extends FC<CardProps> {
+  Divider: React.FC<CardDividerProps>;
+  Body: React.FC<CardBodyProps>;
+  Item: React.FC<CardItemProps>;
+}
+
+export const Card = (({
+  className,
+  children,
+  sub,
+  fullWidth,
+  negativeMarginTop,
+  negativeMarginBottom,
+  ...rest
+}: CardProps) => (
+  <div
+    className={clsx(
+      styles.container,
+      sub && styles.sub,
+      fullWidth && styles.fullWidth,
+      negativeMarginTop && styles.negativeMarginTop,
+      negativeMarginBottom && styles.negativeMarginBottom,
+      className,
+    )}
+    {...rest}
+  >
+    {children}
+  </div>
+)) as CardComponent;
 
 interface CardDividerProps {
   sub?: boolean;
 }
 
-export const CardDivider = ({ sub }: CardDividerProps) => (
+const CardDivider = ({ sub }: CardDividerProps) => (
   <div>
     <div className={clsx(styles.top, sub && styles.light)} />
     <div className={clsx(styles.bottom, sub && styles.light)} />
@@ -33,27 +55,41 @@ export const CardDivider = ({ sub }: CardDividerProps) => (
 
 interface CardBodyProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
-  gapSize?: "sm" | "md" | "lg";
-  gap?: boolean;
-  smallerGap?: boolean;
-  smallerPadding?: boolean;
-  noPaddingBottom?: boolean;
+  gap?: "xsm" | "sm" | "md" | "lg";
   className?: string;
 }
 
-export const CardBody = ({ children, gap, smallerGap, smallerPadding, noPaddingBottom, className, gapSize, ...rest }: CardBodyProps) => (
-  <div className={clsx(children && styles.body, gap && styles.gap, smallerGap && styles.smallerGap, smallerPadding && styles.smallerPadding, noPaddingBottom && styles.noPaddingBottom, className, gapSize && styles[`cardBodyGapSize${gapSize}`])} {...rest}>{children}</div>
-);
-
-interface CardWrapperProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
-  gapSize?: "sm" | "md" | "lg";
-}
-
-export const CardWrapper = ({ children, gapSize = "sm", ...rest }: CardWrapperProps) => (
-  <div className={clsx(styles.cardWrapper, gapSize && styles[`cardWrapperGapSize${gapSize}`])} {...rest}>
+const CardBody = ({
+  children,
+  className,
+  gap = "xsm",
+  ...rest
+}: CardBodyProps) => (
+  <div
+    {...rest}
+    className={clsx(
+      children && styles.body,
+      gap && styles[gap],
+      className,
+    )}
+  >
     {children}
   </div>
 );
+
+interface CardItemProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+  gapSize?: "xsm" | "sm" | "md" | "lg";
+}
+
+const CardItem = ({ children, gapSize = "xsm", ...rest }: CardItemProps) => (
+  <div className={clsx(styles.item, gapSize && styles[gapSize])} {...rest}>
+    {children}
+  </div>
+);
+
+Card.Divider = CardDivider;
+Card.Body = CardBody;
+Card.Item = CardItem;
 
 Card.displayName = "Card";

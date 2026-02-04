@@ -4,7 +4,7 @@ import { BetterBedrockBanner } from "@/pages/downloads/ui/better-bedrock-banner"
 import { BetterBedrockItemsList } from "@/pages/downloads/ui/better-bedrock-items-list";
 import { DownloadsHeading } from "@/shared/ui/downloads-heading";
 
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 
 import styles from "./better-bedrock.module.scss";
 import { loadDownloadsBetterBedrockPageData } from "@/pages/downloads/api/load-downloads-better-bedrock-page-data";
@@ -35,19 +35,19 @@ export const BetterBedrockPage = async ({
     <>
       {simpleCategories.map((category) => (
         <Card key={category.title} fullWidth>
-          <CardBody>
+          <Card.Body>
             <DownloadsHeading
               title={category.title}
               description={category.description}
             />
-          </CardBody>
-          <CardDivider />
-          <CardBody>
+          </Card.Body>
+          <Card.Divider />
+          <Card.Body>
             <BetterBedrockItemsList
               categoryId={categoryDownloads.id}
               category={category}
             />
-          </CardBody>
+          </Card.Body>
         </Card>
       ))}
 

@@ -1,4 +1,4 @@
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { ContentCardSection } from "./content-card-section";
 import { ContentCardTitle } from "./content-card-title";
 import { fetchInitialProjects } from "@/entities/project";
@@ -11,13 +11,13 @@ export const ContentCard = async () => {
 
   return (
     <Card fullWidth>
-      <CardBody>
+      <Card.Body>
         <ContentCardTitle />
-      </CardBody>
-      <CardDivider />
-      <CardBody>
+      </Card.Body>
+      <Card.Divider />
+      <Card.Body>
         <ContentCardSection items={items} />
-      </CardBody>
+      </Card.Body>
     </Card>
   );
 };

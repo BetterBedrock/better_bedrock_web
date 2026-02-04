@@ -1,16 +1,16 @@
-import { Card, CardBody, CardDivider } from "@/shared/ui/card";
+import { Card } from "@/shared/ui/card";
 import { FeaturedCardButtons } from "@/pages/downloads/ui/featured-card/featured-card-buttons";
 import { FeaturedCardTitle } from "@/pages/downloads/ui/featured-card/featured-card-title";
 
 export const FeaturedCard = async () => (
   <Card fullWidth>
-    <CardBody>
+    <Card.Body>
       <FeaturedCardTitle />
-    </CardBody>
-    <CardDivider />
-    <CardBody>
+    </Card.Body>
+    <Card.Divider />
+    <Card.Body>
       <FeaturedCardButtons />
-    </CardBody>
+    </Card.Body>
     {/* <CardDivider />
       <CardBody>
         <PartnerImage />
