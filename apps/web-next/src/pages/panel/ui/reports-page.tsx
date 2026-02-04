@@ -2,7 +2,7 @@
 
 import { useReportsManager } from "@/pages/panel/model/reports-manager";
 import { HeroReports } from "@/pages/panel/ui/hero-reports/hero-reports";
-import { HeroReportsPopup } from "@/pages/panel/ui/hero-reports/hero-reports-popup";
+import { HeroReportsPopup } from "@/pages/panel/ui/hero-reports/hero-reports-popup/hero-reports-popup";
 
 export const ReportsPage = () => {
   const { selectedReport } = useReportsManager();
