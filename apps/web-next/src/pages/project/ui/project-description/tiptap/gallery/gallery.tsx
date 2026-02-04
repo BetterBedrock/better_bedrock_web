@@ -11,7 +11,7 @@ import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
 import { PopupWrapper } from "@/shared/ui/popup";
 import { baseUrl } from "@/shared/lib/utils";
-import Image from "next/image";
+import {default as NextImage} from "next/image";
 
 interface GalleryProps {
   images: string[];
@@ -94,7 +94,7 @@ export const Gallery = ({
       >
         {fullscreen && (
           <button onClick={onClose} className={styles.closeButton}>
-            <Image
+            <NextImage
               width={25}
               height={25}
               unoptimized
