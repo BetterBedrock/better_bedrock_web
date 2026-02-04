@@ -116,6 +116,7 @@ export const GridDownloadCard = ({
                 )}
                 <BedrockText
                   text={project.title}
+                  extraClassName={styles.titleText}
                   type="h3"
                   font="Minecraft"
                   textAlign="left"
