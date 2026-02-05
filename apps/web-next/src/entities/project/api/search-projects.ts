@@ -9,7 +9,6 @@ export const searchProjects = async (
     text?: string,
     page?: number,
 ) => {
-    const { data } = await searchProjectsRequest(type, order, text, page);
-
+    const { data, error } = await searchProjectsRequest(type, order, text, page);
     return data;
 };
