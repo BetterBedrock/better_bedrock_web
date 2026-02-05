@@ -16,21 +16,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     let totalPages = 1;
 
     do {
-      const { items: nextItems, page: nextPage, totalPages: nextTotalPages } = await searchProjects(
-        undefined,
-        undefined,
-        undefined,
-        page,
-      );
-      projects.push(...nextItems);
-      nextItems.map((i) => creators.add(i.user.name));
+      try {
+        const { items: nextItems, page: nextPage, totalPages: nextTotalPages } =
+          await searchProjects(undefined, undefined, undefined, page);
 
-      page = nextPage + 1;
-      totalPages = nextTotalPages;
+        projects.push(...nextItems);
+        nextItems.forEach((i) => creators.add(i.user.name));
+
+        page = nextPage + 1;
+        totalPages = nextTotalPages;
+      } catch (err) {
+        console.error("Failed to fetch projects for sitemap:", err);
+        break;
+      }
     } while (page < totalPages);
 
     return { creators, projects };
-  }
+  };
+
 
   const data = await fetchPagesData();
 
