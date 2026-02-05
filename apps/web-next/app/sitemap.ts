@@ -7,6 +7,8 @@ import type { MetadataRoute } from "next";
 
 const SITE_URL = "https://betterbedrock.com";
 
+export const revalidate = 60 * 5;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const fetchPagesData = async () => {
     const projects: SimpleProjectDto[] = [];
@@ -29,7 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         console.error("Failed to fetch projects for sitemap:", err);
         break;
       }
-    } while (page < totalPages);
+    } while (page <= totalPages);
 
     return { creators, projects };
   };
