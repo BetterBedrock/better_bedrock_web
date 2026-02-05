@@ -68,6 +68,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
+      url: `${SITE_URL}${Routes.LATEST}`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+    {
       url: `${SITE_URL}${Routes.DOWNLOADS_BETTERBEDROCK}`,
       lastModified: new Date(),
       changeFrequency: "weekly",
