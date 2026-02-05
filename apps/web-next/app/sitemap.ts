@@ -7,7 +7,7 @@ import type { MetadataRoute } from "next";
 
 const SITE_URL = "https://betterbedrock.com";
 
-export const revalidate = 60 * 5;
+export const revalidate = 300;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const fetchPagesData = async () => {
