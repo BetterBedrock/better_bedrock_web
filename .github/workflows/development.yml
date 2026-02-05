@@ -57,6 +57,7 @@ jobs:
             pm2 delete better-bedrock-api-dev || true
             echo "🔨 Building application..."
             npx yarn build
+            npx yarn postbuild
             echo "🔄 Starting services..."
             pm2 start ecosystem.config.js --only "better-bedrock-web-dev,better-bedrock-api-dev"
             pm2 save
