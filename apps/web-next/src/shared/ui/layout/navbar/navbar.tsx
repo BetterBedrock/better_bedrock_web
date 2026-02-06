@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { Label } from "../../label";
 import { Banner } from "@/shared/ui/banner";
 import { NavbarNavItems } from "./navbar-nav-items";
@@ -16,6 +16,23 @@ export const Navbar = () => {
   const handleExpand = useCallback((value?: boolean) => {
     setExpanded((prev) => (value !== undefined ? value : !prev));
   }, []);
+
+  // Auto-collapse on breakpoint changes to prevent state persistence issues
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 768px)'); // tablet breakpoint
+    
+    const handleBreakpointChange = (e: MediaQueryListEvent) => {
+      if (e.matches && expanded) {
+        setExpanded(false);
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleBreakpointChange);
+    
+    return () => {
+      mediaQuery.removeEventListener('change', handleBreakpointChange);
+    };
+  }, [expanded]);
 
   return (
     <>
