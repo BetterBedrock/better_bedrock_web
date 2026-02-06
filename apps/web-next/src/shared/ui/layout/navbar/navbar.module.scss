@@ -1,12 +1,38 @@
 @use "@/shared/ui" as g;
 
-.wrapper {
+.container {
   position: sticky;
   top: 0;
   width: 100%;
-  // HACK: -1px fixes issue of the gap between header and body
   height: calc(g.$navbar-height - 1px);
   z-index: 91;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  height: g.$navbar-height;
+  justify-content: space-between;
+}
+
+// section: logo
+.logoWrapper {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+
+  align-items: center;
+  justify-content: start;
+}
+
+.image {
+  height: round(calc(100% - 1.25 * g.$padding-xsm));
+  image-rendering: pixelated;
+  padding-right: calc(g.$padding-xsm * 1.25);
+}
+
+.imageContainer {
+  padding-left: calc(g.$padding-xsm * 1.25);
 }
 
 .heading {
@@ -18,19 +44,27 @@
   }
 }
 
-.item {
-  gap: 0.5rem;
+// section: nav_buttons
+.buttonsWrapper {
   display: flex;
   flex-direction: row;
   height: 100%;
 
   align-items: center;
   justify-content: start;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 }
 
-.mobile {
-  width: 100%;
-  justify-content: space-between;
+.buttonContainer {
+  height: 100%;
+  display: flex;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 }
 
 .button {
@@ -38,8 +72,43 @@
   color: unset;
   padding: 0;
   text-decoration: none;
-  @media (max-width: g.$breakpoint-tablet) {
-    display: none;
+
+  @media (max-width: 900px) {
+    padding: 1rem;
+  }
+}
+
+// section: navigation
+.nav {
+  height: 100%;
+
+  @media (max-width: 900px) {
+    height: auto;
+    width: 100%;
+  }
+}
+
+// section: mobile_layout
+.mobile {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.mobileMenu {
+  height: 100%;
+  display: none;
+
+  @media (max-width: 900px) {
+    display: flex;
+  }
+}
+
+.menuButton {
+  display: none !important;
+  margin-left: auto;
+
+  @media (max-width: 900px) {
+    display: flex !important;
   }
 }
 
@@ -47,67 +116,58 @@
   padding: 0.25rem;
 }
 
-.menuButton {
-  display: none !important;
-  margin-left: auto;
+.expandedMenu {
+  position: absolute;
+  background-color: g.$color-label-white-bright;
+  width: 100%;
+  z-index: 99;
+  display: flex;
+  height: 100vh !important;
 
-  @media (max-width: g.$breakpoint-tablet) {
-    display: flex !important;
-  }
-}
-
-.links {
-  @media (max-width: g.$breakpoint-tablet) {
+  @media (min-width: 900px) {
     display: none;
   }
 }
 
-.label {
+.expandedMenuLayout {
   display: flex;
-  flex-direction: row;
-  padding: g.$padding-xxsm;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
-  &.expanded {
-    @media (max-width: g.$breakpoint-tablet) {
-      .wrapper {
-        position: fixed;
-      }
+// section: dividers
+.verticalDivider {
+  border-left: g.$minecraftdepth solid #a1a3a5;
+  border-right: g.$minecraftdepth solid #ffffff;
+}
 
-      flex-direction: column;
-      height: 100dvh !important;
-      overflow: hidden;
-      justify-content: start;
+.horizontalDivider {
+  width: 100%;
+  border-top: g.$minecraftdepth solid #a1a3a5;
+  border-bottom: g.$minecraftdepth solid #ffffff;
+}
 
-      .nav {
-        width: 100%;
-      }
-
-      .text {
-        width: 100%;
-        font-size: 2rem !important;
-      }
-
-      .item {
-        width: 100%;
-        justify-content: start;
-
-        height: auto;
-      }
-
-      .button {
-        display: flex;
-        height: auto;
-      }
-
-      .links {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-      }
-    }
+// section: rest
+.expandedBorder {
+  position: relative;
+  border-bottom: none !important;
+  padding-bottom: calc(g.$minecraftdepth * 2);
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(g.$minecraftdepth * 2);
+    pointer-events: none;
+    display: block;
+    background: linear-gradient(
+      to bottom,
+      #a1a3a5 0 calc(g.$minecraftdepth * 1),
+      #ffffff calc(g.$minecraftdepth * 1) calc(g.$minecraftdepth * 2)
+    );
+    z-index: 2;
   }
 }
