@@ -1,18 +1,3 @@
-@use "@/shared/ui" as g;
-
-.wrapper {
+.link {
   width: 100%;
-
-  .header {
-    margin-bottom: g.$padding-sm;
-  }
-
-  .actions {
-    width: 100%;
-  }
-
-  .input {
-    width: 100%;
-    margin-bottom: g.$padding-xxsm;
-  }
 }
