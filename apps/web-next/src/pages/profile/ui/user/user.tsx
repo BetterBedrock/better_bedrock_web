@@ -54,16 +54,16 @@ export const User = async ({ params }: UserProps) => {
               />
             </div>
           </div>
+          <div className={styles.bio}>
+            <BedrockText
+              type="p"
+              text={selectedUser!.bio}
+              color="white"
+              textAlign="left"
+              extraClassName={styles.wrap}
+            />
+          </div>
         </Card.Body>
-        <div className={styles.bio}>
-          <BedrockText
-            type="p"
-            text={selectedUser!.bio}
-            color="white"
-            textAlign="left"
-            extraClassName={styles.wrap}
-          />
-        </div>
       </Card>
     </div>
   );
