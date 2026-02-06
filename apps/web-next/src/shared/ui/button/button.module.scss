@@ -63,3 +63,11 @@
     margin-inline: g.$padding-xxsm;
   }
 }
+
+.loading * {
+  cursor: not-allowed !important;
+}
+
+.indicator {
+  filter: invert(100%);
+}
