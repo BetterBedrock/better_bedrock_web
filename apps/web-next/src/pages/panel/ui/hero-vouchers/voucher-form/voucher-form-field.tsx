@@ -3,7 +3,7 @@ import { BedrockText } from "@/shared/ui/bedrock-text";
 import { VoucherDto } from "@/shared/lib/openapi";
 import { VoucherFormFieldController } from "./voucher-form-field-controller";
 import { VoucherFormError } from "./voucher-form-error";
-import { Popup } from "@/shared/ui/popup/popup";
+import { Popup } from "@/shared/ui/popup";
 
 interface VoucherFormFieldProps {
   name: keyof VoucherDto;
