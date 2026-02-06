@@ -1,8 +1,8 @@
-import { HeroTitle } from "./hero-title";
-import { HeroDescription } from "./hero-description";
 import { HeroActions } from "./hero-actions";
-import { Section } from "@/shared/ui/section";
+import { HeroHeader } from "./hero-header";
+import { Card } from "@/shared/ui/card";
 import styles from "./hero.module.scss";
+import { Section } from "@/shared/ui/section";
 
 export const Hero = () => (
   <Section
@@ -11,10 +11,14 @@ export const Hero = () => (
     center
     src="/images/crosshair_backgrounds/6.webp"
   >
-    <div>
-      <HeroTitle />
-      <HeroDescription />
-      <HeroActions />
-    </div>
+    <Card fullWidth>
+      <Card.Body>
+        <HeroHeader />
+      </Card.Body>
+      <Card.Divider />
+      <Card.Body>
+        <HeroActions />
+      </Card.Body>
+    </Card>
   </Section>
 );
