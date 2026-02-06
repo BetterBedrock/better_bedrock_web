@@ -81,7 +81,6 @@ export const NavbarNavItems = ({
               {!isMobile && <NavbarDivider />}
               <SimpleButton
                 navPaddings
-                key={name}
                 width="100%"
                 isClicked={isActive}
                 className={styles.button}
@@ -90,7 +89,6 @@ export const NavbarNavItems = ({
                 <BedrockText
                   text={name}
                   type="p"
-                  extraClassName={styles.text}
                 />
               </SimpleButton>
               {isMobile && <NavbarDivider type="horizontal" />}

@@ -23,7 +23,7 @@ export const NavbarLogo = ({
       link={Routes.HOME}
       hideStyles
     >
-      <img alt="logo" src={FavIcon.src} className={styles.image} />
+      <img alt="Better Bedrock logo image" src={FavIcon.src} className={styles.image} />
       <BedrockText
         text="Better Bedrock"
         type="p"

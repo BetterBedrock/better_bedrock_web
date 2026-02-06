@@ -8,7 +8,7 @@ import { NavbarLogo } from "./navbar-logo";
 import styles from "./navbar.module.scss";
 import clsx from "clsx";
 
-const IS_DEV = process.env.NEXT_PUBLIC_FRONTEND_URL === "dev.betterbedrock.com";
+const IS_DEV = process.env.NEXT_PUBLIC_FRONTEND_URL?.includes("dev.betterbedrock.com") ?? false;
 
 export const Navbar = () => {
   const [expanded, setExpanded] = useState(false);
@@ -16,8 +16,6 @@ export const Navbar = () => {
   const handleExpand = useCallback((value?: boolean) => {
     setExpanded((prev) => (value !== undefined ? value : !prev));
   }, []);
-
-  const closeNavbar = useCallback(() => handleExpand(false), [handleExpand]);
 
   return (
     <>
@@ -30,20 +28,20 @@ export const Navbar = () => {
 
       <header className={styles.container}>
         <Label
-          height=""
+          height="100%"
           className={clsx(styles.wrapper, expanded && styles.expandedBorder)}
         >
           <NavbarLogo expandedNavbar={expanded} handleExpandNavbar={handleExpand} />
 
-          <div className={clsx(styles.buttonsWrapper, styles.links)}>
-            <NavbarNavItems onNavClick={closeNavbar} isMobile={false} />
+          <div className={styles.buttonsWrapper}>
+            <NavbarNavItems onNavClick={() => setExpanded(false)} isMobile={false} />
           </div>
         </Label>
 
         {expanded && (
           <div className={styles.expandedMenu}>
             <div className={clsx(styles.buttonsWrapper, styles.expandedMenuLayout)}>
-              <NavbarNavItems onNavClick={closeNavbar} isMobile />
+              <NavbarNavItems onNavClick={() => setExpanded(false)} isMobile />
             </div>
           </div>
         )}
