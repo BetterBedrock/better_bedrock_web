@@ -12,6 +12,7 @@ import useSound from "use-sound";
 
 import styles from "./button.module.scss";
 import { useImagePreload } from "@/shared/model";
+import { CircularProgressIndicator } from "@/shared/ui/circular-progress-indicator";
 
 export type ButtonType = "green" | "white" | "dark" | "gold" | "red";
 
@@ -54,6 +55,7 @@ export const Button = forwardRef<
     },
     ref,
   ) => {
+    const [loading, setLoading] = useState(false);
     const [hover, setHover] = useState(false);
     const [clicked, setClicked] = useState(false);
     const [isHeld, setIsHeld] = useState(false);
@@ -62,14 +64,18 @@ export const Button = forwardRef<
       volume: 0.25,
     });
 
-    const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-      if (lockClicking) return;
+    const handleClick = async (e: MouseEvent<HTMLButtonElement>) => {
+      if (lockClicking || loading) return;
 
       setIsHeld(true);
       handleSetIsToggled(false);
 
       if (playSound) playClickSound();
-      if (onClick) onClick(e);
+      if (onClick) {
+        setLoading(true);
+        await onClick(e);
+        setLoading(false);
+      }
     };
 
     const handleSetIsToggled = (value: boolean) => {
@@ -78,19 +84,19 @@ export const Button = forwardRef<
     };
 
     const handlePointerDown = () => {
-      if (lockClicking) return;
+      if (lockClicking || loading) return;
       setIsHeld(true);
       setHover(true);
       handleSetIsToggled(!clicked);
     };
 
     const handleMouseUp = () => {
-      if (lockClicking) return;
+      if (lockClicking || loading) return;
       if (isHeld) setIsHeld(false);
     };
 
     const handleTouchEnd = () => {
-      if (lockClicking) return;
+      if (lockClicking || loading) return;
       setHover(false);
 
       if (isHeld) {
@@ -101,7 +107,7 @@ export const Button = forwardRef<
 
     const handleLeave = () => {
       setHover(false);
-      if (isHeld && !lockClicking) {
+      if (isHeld && !lockClicking && !loading) {
         setIsHeld(false);
         handleSetIsToggled(false);
       }
@@ -176,6 +182,7 @@ export const Button = forwardRef<
         className={clsx(
           styles.wrapper,
           finalClicked && styles.selected,
+          loading && styles.loading,
           className,
         )}
         onMouseEnter={handleEnter}
@@ -198,11 +205,19 @@ export const Button = forwardRef<
           className={clsx(
             styles.button,
             finalClicked && styles.clicked,
-            center && styles.center,
+            (center || loading) && styles.center,
             lockClicking && styles.lock,
           )}
         >
-          {children}
+          {loading ? (
+            <CircularProgressIndicator
+              className={clsx(
+                (type === "white" || type === "gold") && styles.indicator,
+              )}
+            />
+          ) : (
+            children
+          )}
         </div>
       </Component>
     );
