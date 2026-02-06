@@ -1,12 +1,15 @@
-import { HeroTitle } from "./hero-title";
-import { HeroDescription } from "./hero-description";
 import { HeroActions } from "./hero-actions";
-import styles from "./hero.module.scss";
+import { Card } from "@/shared/ui/card";
+import { HeroHeader } from "./hero-header";
 
 export const Hero = () => (
-  <div className={styles.hero}>
-    <HeroTitle />
-    <HeroDescription />
-    <HeroActions />
-  </div>
+  <Card fullWidth>
+    <Card.Body>
+      <HeroHeader />
+    </Card.Body>
+    <Card.Divider />
+    <Card.Body>
+      <HeroActions />
+    </Card.Body>
+  </Card>
 );
