@@ -23,4 +23,5 @@ export enum Routes {
     TERMS = "/terms",
     CREATE = "/create",
     DISCORD = "/discord",
+    LATEST = "/latest",
 }

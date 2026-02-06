@@ -30,7 +30,8 @@ export const HeroActions = () => {
   return (
     <ButtonGroup className={styles.actions}>
       <Input
-        placeholder="Project Title"
+        sub
+        placeholder="Project name"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         className={styles.input}

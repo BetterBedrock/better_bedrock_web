@@ -1,13 +1,3 @@
-@use "@/shared/ui" as g;
-
-.padding {
-  @include g.section-padding((top, bottom));
-}
-
-.actions {
-  padding-top: g.$padding-sm;
-}
-
 .link {
   width: 100%;
 }

@@ -3,7 +3,7 @@ import { BedrockText } from "@/shared/ui/bedrock-text";
 import { VoucherDto } from "@/shared/lib/openapi";
 import { VoucherFormFieldController } from "./voucher-form-field-controller";
 import { VoucherFormError } from "./voucher-form-error";
-import { Card } from "@/shared/ui/card";
+import { Popup } from "@/shared/ui/popup";
 
 interface VoucherFormFieldProps {
   name: keyof VoucherDto;
@@ -23,7 +23,7 @@ export const VoucherFormField = ({
   control,
   errors,
 }: VoucherFormFieldProps) => (
-  <Card.Item key={name}>
+  <Popup.Item key={name}>
     <BedrockText textAlign="start" text={label} type="p" color="white" />
     <VoucherFormFieldController
       name={name}
@@ -35,5 +35,5 @@ export const VoucherFormField = ({
     {errors[name] && (
       <VoucherFormError message={errors[name]?.message as string} />
     )}
-  </Card.Item>
+  </Popup.Item>
 );
