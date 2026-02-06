@@ -25,8 +25,8 @@ export const metadata: Metadata = {
     url: "https://betterbedrock.com/",
   },
   icons: {
-    icon: "/favicon.png",
-    apple: "/apple-icon.png",
+    icon: "/images/favicon.ico",
+    apple: "/images/apple-icon.png",
   },
 };
 
