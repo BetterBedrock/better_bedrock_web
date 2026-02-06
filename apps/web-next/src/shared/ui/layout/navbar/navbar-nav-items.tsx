@@ -3,7 +3,7 @@ import { SimpleButton } from "@/shared/ui/simple-button";
 import { Link } from "@/shared/ui/link";
 import { NavbarDivider } from "./navbar-divider";
 import styles from "./navbar.module.scss";
-import { useAuth } from "../../../../../app/providers/auth";
+import { useAuth } from "@/app/providers/auth";
 import { usePathname } from "next/navigation";
 import { UserDto } from "@/shared/lib/openapi";
 
@@ -17,9 +17,9 @@ interface NavbarNavItemsProps {
   isMobile?: boolean;
 }
 
-const getNavItems = (location: string, user?: UserDto): NavItem[] => {
-  const isPanelSection =
-    location === "/panel" || location.startsWith("/panel/");
+const getNavItems = (pathname: string, user?: UserDto): NavItem[] => {
+  const isPanelSection = pathname === "/panel" || pathname.startsWith("/panel/");
+
   if (isPanelSection && user?.admin) {
     return [
       { name: "Dashboard", path: "/panel/dashboard" },
@@ -28,32 +28,32 @@ const getNavItems = (location: string, user?: UserDto): NavItem[] => {
       { name: "Projects", path: "/panel/projects" },
       { name: "Reports", path: "/panel/reports" },
     ];
-  } else {
-    return [
-      { name: "Home", path: "/" },
-      { name: "Downloads", path: "/downloads/main" },
-      { name: "Information", path: "/information/:general" },
-      user
-        ? { name: "Profile", path: `/profile/${user.name}/:projects` }
-        : { name: "Login", path: "/login" },
-    ];
   }
+
+  return [
+    ...(user?.admin ? [{ name: "Panel", path: "/panel" }] : []),
+    { name: "Home", path: "/" },
+    { name: "Downloads", path: "/downloads/main" },
+    { name: "Information", path: "/information/:general" },
+    user
+      ? { name: "Profile", path: `/profile/${user.name}/:projects` }
+      : { name: "Login", path: "/login" },
+  ];
 };
 
-const getFinalNavPath = (path: string, location: string) => {
-  const navPaths = path.split("/");
-  const locationPaths = location.split("/");
-  if (navPaths[1] === locationPaths[1]) {
-    return navPaths
-      .map((p, index) =>
-        p.startsWith(":") ? (locationPaths[index] ?? p.replace(":", "")) : p,
-      )
-      .join("/");
-  } else {
-    return navPaths
-      .map((p) => (p.startsWith(":") ? p.replace(":", "") : p))
-      .join("/");
-  }
+const resolveDynamicSegment = (segment: string, fallback?: string): string =>
+  segment.startsWith(":") ? (fallback ?? segment.replace(":", "")) : segment;
+
+const getFinalNavPath = (path: string, location: string): string => {
+  const navSegments = path.split("/");
+  const locationSegments = location.split("/");
+  const isSameSection = navSegments[1] === locationSegments[1];
+
+  return navSegments
+    .map((segment, i) =>
+      resolveDynamicSegment(segment, isSameSection ? locationSegments[i] : undefined)
+    )
+    .join("/");
 };
 
 export const NavbarNavItems = ({
@@ -69,6 +69,7 @@ export const NavbarNavItems = ({
       {navItems.map(({ name, path }, index) => {
         const finalNavPath = getFinalNavPath(path, location);
         const isActive = location === finalNavPath;
+
         return (
           <nav key={path} className={styles.nav}>
             <Link
@@ -80,7 +81,6 @@ export const NavbarNavItems = ({
               {!isMobile && <NavbarDivider />}
               <SimpleButton
                 navPaddings
-                key={name}
                 width="100%"
                 isClicked={isActive}
                 className={styles.button}
@@ -89,7 +89,6 @@ export const NavbarNavItems = ({
                 <BedrockText
                   text={name}
                   type="p"
-                  extraClassName={styles.text}
                 />
               </SimpleButton>
               {isMobile && <NavbarDivider type="horizontal" />}
