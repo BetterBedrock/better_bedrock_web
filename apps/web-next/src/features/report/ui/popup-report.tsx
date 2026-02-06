@@ -64,6 +64,7 @@ const PopupReportComponent = ({
               color="white"
             />
             <Input
+              sub 
               ref={inputRef}
               placeholder="Message"
               value={defaultMessage}
