@@ -8,4 +8,6 @@ export enum AnalyticsNames {
     submittedProjects = "Submitted Projects",
     publishedProjects = "Published Projects",
     declinedProjects = "Declined Projects",
+    adsRevenue = "Ads Revenue",
+    adsImpressions = "Ads Impressions",
 }

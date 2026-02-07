@@ -7,8 +7,10 @@ import { AnalyticsService } from "~/analytics/analytics.service";
 import { MailService } from "~/mail/mail.service";
 import { ProjectService } from "~/project/project.service";
 import { RatingService } from "~/rating/rating.service";
+import { HttpModule } from "@nestjs/axios";
 
 @Module({
+    imports: [HttpModule],
     controllers: [CheckoutController],
     providers: [
         CheckoutService,

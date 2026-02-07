@@ -1,3 +1,4 @@
+import { HttpModule } from "@nestjs/axios";
 import { Module } from "@nestjs/common";
 import { AnalyticsService } from "~/analytics/analytics.service";
 import { PrismaService } from "~/prisma.service";
@@ -8,6 +9,7 @@ import { ReportService } from "~/report/report.service";
 import { UserService } from "~/user/user.service";
 
 @Module({
+    imports: [HttpModule],
     controllers: [ReportController],
     providers: [
         ProjectService,
