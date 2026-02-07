@@ -1,0 +1,8 @@
+@use "@/shared/ui" as g;
+
+.offers {
+    display: flex;
+    flex-direction: column;
+    gap: g.$padding-sm;
+    padding-top: g.$padding-sm;
+}
