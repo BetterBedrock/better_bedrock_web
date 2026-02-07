@@ -1,0 +1,33 @@
+@use "@/shared/ui" as g;
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: calc(g.$minecraftdepth * 2);
+  gap: g.$padding-sm;
+}
+
+.header,
+.benefits {
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-xxxsm;
+}
+
+.benefit {
+  display: inline;
+}
+
+.title {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.strikeThrough {
+  text-decoration: line-through;
+  opacity: 0.75;
+  font-weight: 400;
+}
