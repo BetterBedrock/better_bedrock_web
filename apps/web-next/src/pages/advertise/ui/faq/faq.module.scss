@@ -1,0 +1,7 @@
+@use "@/shared/ui" as g;
+
+.questions {
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-xxsm;
+}
