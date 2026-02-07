@@ -1,6 +1,5 @@
 import { AnalyticsDto, VoucherDto, AnalyticsNames } from "@/shared/lib/openapi";
 import { StatisticsCard } from "@/widgets/statistics-list";
-import { calculateEstimatedProfit } from "@/pages/panel/lib/calculate-estimated-profit";
 import { calculateVouchersStatistics } from "@/pages/panel/lib/calculate-vouchers-statistics";
 
 import styles from "./statistics.module.scss";
@@ -23,7 +22,6 @@ export const StatisticsList = ({
   } = calculateVouchersStatistics({ vouchers });
 
   const data = simplifyAnalytics({ analytics, type: "general" });
-  const estimatedProfit = calculateEstimatedProfit({ data });
 
   return (
     <>
@@ -32,14 +30,18 @@ export const StatisticsList = ({
         data={data[AnalyticsNames.Visits]}
         className={styles.card}
       />
-      <StatisticsCard
-        name="Ads Estimated Revenue"
-        data={parseFloat(estimatedProfit.toFixed(2))}
-        suffix="€"
-        showGraph={false}
-        className={styles.card}
-      />
       <div className={styles.list}>
+        <StatisticsCard
+          name="Ads Revenue"
+          data={data[AnalyticsNames.AdsRevenue]}
+          suffix="€"
+          className={styles.card}
+        />
+        <StatisticsCard
+          name="Ads Impressions"
+          data={data[AnalyticsNames.AdsImpressions]}
+          className={styles.card}
+        />
         <StatisticsCard
           name="Total Downloads"
           data={data[AnalyticsNames.TotalDownloads]}
