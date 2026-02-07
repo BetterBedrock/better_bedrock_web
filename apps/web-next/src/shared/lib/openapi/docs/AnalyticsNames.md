@@ -21,4 +21,8 @@
 
 * `DeclinedProjects` (value: `'Declined Projects'`)
 
+* `AdsRevenue` (value: `'Ads Revenue'`)
+
+* `AdsImpressions` (value: `'Ads Impressions'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

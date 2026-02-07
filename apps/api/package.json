@@ -21,6 +21,7 @@
         "@nestjs/serve-static": "^5.0.3",
         "@nestjs/swagger": "^11.1.4",
         "@nestjs/throttler": "^6.4.0",
+        "@paralleldrive/cuid2": "^3.3.0",
         "@prisma/client": "^6.9.0",
         "axios": "^1.10.0",
         "class-transformer": "^0.5.1",
