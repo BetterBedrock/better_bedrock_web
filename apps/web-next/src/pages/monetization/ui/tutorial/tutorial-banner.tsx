@@ -2,7 +2,7 @@
 
 import { Banner } from "@/shared/ui/banner";
 import { BedrockText } from "@/shared/ui/bedrock-text";
-import Link from "next/link";
+import { Link } from "@/shared/ui/link";
 
 export const TutorialBanner = ({ selectedProvider }: { selectedProvider: 'linkvertise' | 'lootlabs' }) => (
   <Banner
@@ -15,7 +15,7 @@ export const TutorialBanner = ({ selectedProvider }: { selectedProvider: 'linkve
           : "💡 Pro tip: Consider choosing Lootlabs for better revenue. "
         }
       >
-        <Link href={selectedProvider === 'lootlabs' ? "https://lootlabs.gg/sign-up?rpid=516698" : "https://publisher.linkvertise.com/ac/401625"} style={{ color: "inherit", textDecoration: "underline" }}>
+        <Link link={selectedProvider === 'lootlabs' ? "https://lootlabs.gg/sign-up?rpid=516698" : "https://publisher.linkvertise.com/ac/401625"} isExternalLink underlined>
           <BedrockText
             text={selectedProvider === 'lootlabs'
               ? "Create your Lootlabs account here!"
