@@ -6,30 +6,31 @@ import { BedrockText } from "@/shared/ui/bedrock-text";
 
 import { Link } from "@/shared/ui/link";
 
-interface UserLinkvertiseInfoProps {
+interface UserNewsInfoProps {
   selectedUser?: SimpleUserDto;
 }
 
-export const UserLinkvertiseInfo = async ({
+export const UserNewsInfo = async ({
   selectedUser,
-}: UserLinkvertiseInfoProps) => {
+}: UserNewsInfoProps) => {
   const user = await fetchLoggedUser();
   const isOwnProfile = user?.id === selectedUser?.id;
-  const missingAdProvider = !selectedUser?.linkvertiseId && !selectedUser?.lootlabsLinkId;
-  const shouldShow = isOwnProfile && missingAdProvider;
+
+  const hideAfterDate = new Date('2026-02-15');
+  const currentDate = new Date();
+  const isExpired = currentDate > hideAfterDate;
+
+  const shouldShow = isOwnProfile && !isExpired;
 
   if (!shouldShow) return null;
 
   return (
     <Banner
-      type="info"
+      type="important"
       message={
-        <BedrockText textAlign="center" color="white">
-          Almost there! Unlock 100% of your ad revenue now. Finish your AD
-          provider setup in profile settings and start earning from your
-          downloads!{" "}
+        <BedrockText textAlign="center" color="black" text="We have added new monetization type: LOOTLABS - AD provider with better potential! For more information visit ">
           <Link link={Routes.MONETIZATION} underlined>
-            Check this tutorial page to learn how!
+            this page.
           </Link>
         </BedrockText>
       }

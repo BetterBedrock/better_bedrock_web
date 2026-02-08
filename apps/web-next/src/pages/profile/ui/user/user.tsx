@@ -10,6 +10,7 @@ import { UserProfileRating } from "./user-profile-rating";
 import { loadUserProfile, loadUserRating } from "@/entities/user";
 
 import styles from "./user.module.scss";
+import { UserNewsInfo } from "./user-news-info";
 
 interface UserProps {
   params?: { name: string };
@@ -31,6 +32,7 @@ export const User = async ({ params }: UserProps) => {
 
   return (
     <div className={styles.container}>
+      <UserNewsInfo selectedUser={selectedUser} />
       <UserLinkvertiseInfo selectedUser={selectedUser} />
       <Card sub>
         <Card.Body className={styles.profileCardBody}>

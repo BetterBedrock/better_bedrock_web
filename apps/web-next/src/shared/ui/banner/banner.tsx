@@ -4,7 +4,7 @@ import { BedrockText } from "@/shared/ui/bedrock-text";
 
 import styles from "./banner.module.scss";
 
-type BannerType = "info" | "neutral" | "important" | "error";
+type BannerType = "info" | "neutral" | "important" | "error" | "success";
 
 interface BannerProps {
   type: BannerType;

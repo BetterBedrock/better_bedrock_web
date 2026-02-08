@@ -5,6 +5,6 @@ export const TrailerDescription = () => (
     type="p"
     textAlign="center"
     color="white"
-    text="Create, share, and get paid. With earning potential up to $70 CPM and a massive audience of Bedrock players, there is no better place to publish your Addons and Texture Packs. See how easy it is to get started:"
+    text="Create, share, and get paid. Unlock high-efficiency monetization with dynamic rates from leading ad providers. With a massive audience of Bedrock players, this is the ultimate place to publish and monetize your Addons and Texture Packs."
   />
 );
