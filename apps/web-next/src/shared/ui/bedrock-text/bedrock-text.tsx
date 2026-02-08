@@ -19,7 +19,7 @@ export interface BedrockTextProps {
   selectable?: boolean;
   shadow?: boolean;
   strong?: boolean;
-  type?: "h1" | "h2" | "h3" | "h4" | "p" | "p2";
+  type?: "h1" | "h2" | "h3" | "h4" | "p" | "p2" | "span";
   headerSize?: boolean;
   paragraphSize?: boolean;
   style?: CSSProperties;
