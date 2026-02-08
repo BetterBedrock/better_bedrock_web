@@ -11,7 +11,7 @@ export const Changelog = () => (
     center
     dark
     gradientBackground={false}
-    src="/images/crosshair_backgrounds/14.webp"
+    src="/images/crosshair_backgrounds/12.webp"
   >
     <ChangelogTrailer />
     <ChangelogResources />
