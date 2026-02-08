@@ -5,9 +5,9 @@ import { reasonsData } from "../../model/reasons-data";
 
 export const ReasonsGridList = () => (
   <div className={styles.grid}>
-    {reasonsData.map((reason, idx) => (
+    {reasonsData.map((reason) => (
       <ReasonsGridItem
-        key={idx}
+        key={reason.title}
         title={reason.title}
         description={reason.description}
       />
