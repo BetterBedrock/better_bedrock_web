@@ -77,7 +77,7 @@ export const tutorialData: Record<
 *Step 2:* Generate API Token
 1. Open [Advanced tab](https://creators.lootlabs.gg/advanced).
 2. Click button to generate token - below **Generate API token** option.
-4. Copy this "**API Token**".`,
+3. Copy this "**API Token**".`,
       },
       {
         title: "Finalizing Integration",
