@@ -22,7 +22,7 @@ export const generateMetadata = async ({ params }: ProfileProps) => {
     notFound();
   }
 
-  const name = loadedParams.name;
+  const name = decodeURIComponent(loadedParams.name);
 
   const user = await fetchUserByName(name);
 
