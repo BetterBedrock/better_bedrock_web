@@ -75,7 +75,7 @@ export const informationData: InformationTab[] = [
             "No, our main focus is on providing texture packs for Minecraft Bedrock Edition.",
         },
         {
-          question: "Why does some mods break?",
+          question: "Why do some mods break?",
           answer:
             "Usually the heavy mods may disappear or not not function properly. It's mostly because of using many texture packs at once, if it's a thing then try to disable these packs or use BB alone. Usually it's related with compelx packs and unfortuantely there is not any fix for this. Also make sure to follow correct packs order - visible in resource packs settings tab.",
         },
