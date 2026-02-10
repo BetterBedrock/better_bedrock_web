@@ -7,6 +7,6 @@ import { fetchSecret } from "@/shared/lib/auth";
 export const manageProfile = async (id: string, profile: ManageProfileDto) => {
     const secret = await fetchSecret();
 
-    const { data } = await manageProfileRequest(id, profile, secret);
-    return data;
+    const { data, error } = await manageProfileRequest(id, profile, secret);
+    return { data, error };
 };

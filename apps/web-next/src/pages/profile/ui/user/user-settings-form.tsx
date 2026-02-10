@@ -19,6 +19,7 @@ import styles from "./user.module.scss";
 import { Collapsible } from "@/shared/ui/collapsible";
 import { ButtonGroup } from "@/shared/ui/button-group";
 import { Banner } from "@/shared/ui/banner";
+import { useNotification } from "@/app/providers/notification";
 
 const schema = z.object({
   name: z.string().trim(),
@@ -49,6 +50,7 @@ export const UserSettingsForm = ({
 }: UserSettingsFormProps) => {
   const router = useRouter();
   const { logout, setUser } = useAuth();
+  const { throwError } = useNotification();
   const [monetizationType, setMonetizationType] = useState(
     user.monetizationType,
   );
@@ -64,12 +66,15 @@ export const UserSettingsForm = ({
   });
 
   const onClickSubmit = handleSubmit(async (profile) => {
-    if (ownsProfile) {
-      const user = await updateProfile(profile);
-      setUser(user);
-    } else {
-      await manageProfile(user.id, profile);
+    const { data, error } = ownsProfile
+      ? await updateProfile(profile)
+      : await manageProfile(user.id, profile);
+    if (error) {
+      throwError(null, error);
+      return;
     }
+
+    if (ownsProfile) setUser(data);
 
     if (profile.name !== user.name) {
       router.push(Routes.PROFILE + "/" + profile.name + "/projects");
