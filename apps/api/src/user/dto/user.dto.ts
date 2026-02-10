@@ -8,6 +8,7 @@ import {
     IsEnum,
     IsOptional,
     IsString,
+    Matches,
     MaxLength,
     MinLength,
 } from "class-validator";
@@ -23,6 +24,9 @@ export class UserDto {
     email: string;
 
     @IsString()
+    @Matches(/^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$/, {
+        message: "Only letters/numbers with single spaces between words allowed",
+    })
     @MinLength(3)
     @MaxLength(20)
     name: string;
