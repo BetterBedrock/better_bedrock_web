@@ -17,7 +17,8 @@ interface UserProps {
 }
 
 export const generateMetadata = async ({ params }: UserProps) => {
-  const selectedUser = await loadUserProfile(params?.name);
+  const name = decodeURIComponent(params?.name ?? "");
+  const selectedUser = await loadUserProfile(name);
   return {
     title: selectedUser ? `${selectedUser.name} - Profile` : "User Profile",
     description:
@@ -27,7 +28,8 @@ export const generateMetadata = async ({ params }: UserProps) => {
 };
 
 export const User = async ({ params }: UserProps) => {
-  const selectedUser = await loadUserProfile(params?.name);
+  const name = decodeURIComponent(params?.name ?? "");
+  const selectedUser = await loadUserProfile(name);
   const rating = await loadUserRating(selectedUser.id);
 
   return (
