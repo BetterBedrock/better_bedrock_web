@@ -95,3 +95,34 @@
     display: flex !important;
   }
 }
+
+.description {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: g.$padding-xsm;
+}
+
+.description:has(.singleLine) {
+  flex-direction: row;
+}
+
+.expand {
+  white-space: nowrap;
+  color: g.$color-label-green-bright !important;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.less {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+}
+
+.singleLine {
+  white-space: nowrap;
+}
+
+.more {
+}

@@ -3,7 +3,7 @@ import { BedrockText } from "@/shared/ui/bedrock-text";
 export const FeaturedCardTitle = () => (
   <BedrockText
     text="Featured"
-    type="h1"
+    type="h2"
     color="white"
     font="Minecraft"
     textAlign="start"
