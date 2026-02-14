@@ -12,7 +12,7 @@ import localFont from "next/font/local";
 export const metadata: Metadata = {
   title: {
     default:
-      "Minecraft PE Texture Packs, Scripts, Maps, Skins & More | Better Bedrock",
+      "Minecraft Bedrock Mods, Texture Packs, Scripts, Maps, Skins & More | Better Bedrock",
     template: "%s | Better Bedrock",
   },
   description:
