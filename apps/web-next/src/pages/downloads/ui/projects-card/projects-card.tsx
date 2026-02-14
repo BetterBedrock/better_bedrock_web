@@ -5,6 +5,7 @@ import { ProjectsCardOrder } from "./projects-card-order";
 import { ProjectsCardPageContainer } from "./projects-card-page-container";
 import { ProjectsCardSearchBar } from "./projects-card-search-bar";
 import { ProjectsCardTitle } from "./projects-card-title";
+import { ProjectsCardDescription } from "./projects-card-description";
 import { ProjectsCardType } from "./projects-card-type";
 import { fetchInitialProjects } from "@/entities/project";
 import { ProjectsCardSearchProvider } from "@/pages/downloads/model/projects-card-search";
@@ -29,6 +30,7 @@ export const ProjectsCard = async ({ params }: ProjectsCardProps) => {
       <ProjectsCardSearchProvider>
         <Card.Body gap="md">
           <ProjectsCardTitle />
+          <ProjectsCardDescription />
         </Card.Body>
         <Card.Divider />
         <Card.Body gap="md">
