@@ -11,7 +11,7 @@ export const HeroActions = () => (
     <ButtonGroup direction="responsive">
       <Link href={Routes.DOWNLOADS_MAIN} className={styles.link}>
         <Button width="100%" type="green" center>
-          <BedrockText text="Explore Projects" type="p" color="white" />
+          <BedrockText text="Explore Bedrock Mods" type="p" color="white" />
         </Button>
       </Link>
       <Link href={Routes.DOWNLOADS_BETTERBEDROCK} className={styles.link}>
