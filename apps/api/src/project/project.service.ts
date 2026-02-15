@@ -695,17 +695,23 @@ export class ProjectService {
                 newNode.attrs?.src &&
                 typeof newNode.attrs.src === "string"
             ) {
+                const node = newNode.attrs.src as string;
                 const fileName = String(newNode.attrs.src).split("/").pop();
-                newNode.attrs = {
-                    ...newNode.attrs,
-                    src: `static/public/${projectId}/release/${fileName}`,
-                };
+
+                if (node.startsWith("/static")) {
+                    newNode.attrs = {
+                        ...newNode.attrs,
+                        src: `static/public/${projectId}/release/${fileName}`,
+                    };
+                }
             }
 
             if (newNode.type === "gallery" && Array.isArray(newNode.attrs?.images)) {
                 newNode.attrs = {
                     ...newNode.attrs,
                     images: newNode.attrs.images.map((img: string) => {
+                        if (!img.startsWith("/static")) return img;
+
                         const fileName = String(img).split("/").pop();
                         return `static/public/${projectId}/release/${fileName}`;
                     }),
