@@ -6,9 +6,8 @@ import { ProjectRateProject } from "@/pages/project/ui/project-rate-project";
 import { notFound } from "next/navigation";
 import { baseUrl } from "@/shared/lib/utils";
 import {
-  capitalizeFirstLetter,
+  
   extractFirstLinesFromTiptap,
-  singularize,
 } from "@/shared/lib/utils";
 import { ProjectDownload } from "./project-download/project-download";
 import { ProjectPageProps } from "@/app/providers/project-manager";
@@ -20,10 +19,10 @@ export const generateMetadata = async ({ params }: ProjectPageProps) => {
 
   if (!data) return notFound();
 
-  const title = `${data.title} - ${capitalizeFirstLetter(singularize(data.type))}`;
+  const title = `${data.title} - Minecraft Bedrock Mod`;
   const description =
     extractFirstLinesFromTiptap(data.description) ??
-    "The best texture packs, scripts, maps, skins, and more for Minecraft PE on Better Bedrock.";
+    "The best minecraft bedrock mods, texture packs, scripts, maps, skins, and more.";
 
   return {
     title,
