@@ -1,6 +1,6 @@
 "use client";
 
-import { fetchCheckoutOffers } from "@/entities/checkout/api/fetch-checkout-offers";
+import { fetchCheckoutOffersRequest } from "@/entities/checkout/api/checkout-service";
 import { CheckoutOffersDto } from "@/shared/lib/openapi";
 import {
   createContext,
@@ -11,7 +11,6 @@ import {
 } from "react";
 
 interface CheckoutContextProps {
-  fetchCheckoutOffers: () => void;
   offers: CheckoutOffersDto | undefined;
 }
 
@@ -28,7 +27,9 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
     undefined,
   );
   const fetchOffers = async () => {
-    setOffers(await fetchCheckoutOffers());
+    const { data } = await fetchCheckoutOffersRequest();
+
+    setOffers(data);
   };
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
   }, []);
 
   return (
-    <CheckoutContext.Provider value={{ fetchCheckoutOffers, offers }}>
+    <CheckoutContext.Provider value={{ offers }}>
       {children}
     </CheckoutContext.Provider>
   );
