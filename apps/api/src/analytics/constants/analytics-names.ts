@@ -1,6 +1,7 @@
 export enum AnalyticsNames {
     boughtVouchers = "Bought Vouchers",
     visits = "Visits",
+    uniqueVisits = "Unique Visits",
     totalDownloads = "Total Downloads",
     voucherDownloads = "Voucher Downloads",
     adDownloads = "Ad Downloads",

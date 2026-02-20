@@ -7,6 +7,8 @@
 
 * `Visits` (value: `'Visits'`)
 
+* `UniqueVisits` (value: `'Unique Visits'`)
+
 * `TotalDownloads` (value: `'Total Downloads'`)
 
 * `VoucherDownloads` (value: `'Voucher Downloads'`)
