@@ -23,7 +23,7 @@ export const ProjectDownloadPopup = ({
   user,
   voucher,
 }: ProjectDownloadPopupProps) => {
-  const { handleClick, instantDownload } = useDownloadButton(
+  const { handleClick, openPopup, handleClosePopup } = useDownloadButton(
     user!,
     detailedProject,
     voucher,
@@ -33,14 +33,13 @@ export const ProjectDownloadPopup = ({
 
   if (!detailedProject?.downloadFile) return <></>;
 
+  //instantDownload
   return (
-    <Card className={styles.card} sub ref={ref}>
-      <PopupWrapper
-        ignore={instantDownload}
-        popup={(close) => (
-          <PreviewPopup onClose={close} project={detailedProject!} />
-        )}
-      >
+    <>
+      {openPopup && (
+        <PreviewPopup onClose={handleClosePopup} project={detailedProject!} />
+      )}
+      <Card className={styles.card} sub ref={ref}>
         <Button
           id="download"
           width="100%"
@@ -51,7 +50,7 @@ export const ProjectDownloadPopup = ({
         >
           <BedrockText text="Download" type="p" color="white" />
         </Button>
-      </PopupWrapper>
-    </Card>
+      </Card>
+    </>
   );
 };
