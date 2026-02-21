@@ -9,6 +9,10 @@
 }
 
 .smooth {
+  @media (max-width: g.$breakpoint-tablet) {
+    display: none;
+  }
+
   scroll-behavior: smooth;
   * {
     scroll-behavior: smooth;
