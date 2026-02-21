@@ -3,7 +3,6 @@
 .anchor {
   scroll-margin-top: 50vh;
 }
-
 .card {
   @media (min-width: g.$breakpoint-tablet) {
     border: none;
@@ -18,6 +17,16 @@
     left: 0;
     width: 100%;
     overflow: hidden;
-    z-index: 1001;
+    z-index: 90;
+
+    transition:
+      opacity 0.15s ease,
+      transform 0.15s ease;
+
+    &.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+    }
   }
 }

@@ -10,6 +10,7 @@ import { PreviewPopup } from "@/pages/project/ui/project-download/preview-popup/
 
 import styles from "./project-download.module.scss";
 import { Card } from "@/shared/ui/card";
+import { useDisappearDownloadButton } from "@/pages/project/model/use-disappear-download-button";
 
 interface ProjectDownloadPopupProps {
   voucher?: VoucherDto;
@@ -28,10 +29,12 @@ export const ProjectDownloadPopup = ({
     voucher,
   );
 
+  const ref = useDisappearDownloadButton();
+
   if (!detailedProject?.downloadFile) return <></>;
 
   return (
-    <Card className={styles.card} sub>
+    <Card className={styles.card} sub ref={ref}>
       <PopupWrapper
         ignore={instantDownload}
         popup={(close) => (
