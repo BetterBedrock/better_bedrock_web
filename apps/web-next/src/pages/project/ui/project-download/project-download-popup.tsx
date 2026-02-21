@@ -85,14 +85,13 @@ export const ProjectDownloadPopup = ({
             center
             className={`${styles.anchor} ${styles.mobileExtraButton}`}
           >
-            <div className={styles.iconWrapper}>
-              <Image
-                src="/icons/rate2.png"
-                alt="Rate"
-                fill
-                className={styles.iconImage}
-              />
-            </div>
+            <Image
+              src="/icons/rate2.png"
+              alt="Rate"
+              width={24}
+              height={24}
+              className={styles.iconImage}
+            />
           </Button>
           <Button
             id="comment"
@@ -102,14 +101,13 @@ export const ProjectDownloadPopup = ({
             center
             className={`${styles.anchor} ${styles.mobileExtraButton}`}
           >
-            <div className={styles.iconWrapper}>
-              <Image
-                src="/icons/comment2.png"
-                alt="Comment"
-                fill
-                className={styles.iconImage}
-              />
-            </div>
+            <Image
+              src="/icons/comment2.png"
+              alt="Comment"
+              width={24}
+              height={24}
+              className={styles.iconImage}
+            />
           </Button>
         </Card.Body>
       </Card>
