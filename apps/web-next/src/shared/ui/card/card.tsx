@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { FC, HTMLAttributes, ReactNode } from "react";
+import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
 
 import styles from "./card.module.scss";
 
@@ -12,39 +12,58 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   negativeMarginBottom?: boolean;
 }
 
-interface CardComponent extends FC<CardProps> {
-  Divider: React.FC<CardDividerProps>;
-  Body: React.FC<CardBodyProps>;
-  Item: React.FC<CardItemProps>;
-}
-
-export const Card = (({
-  className,
-  children,
-  sub,
-  fullWidth,
-  negativeMarginTop,
-  negativeMarginBottom,
-  ...rest
-}: CardProps) => (
-  <div
-    className={clsx(
-      styles.container,
-      sub && styles.sub,
-      fullWidth && styles.fullWidth,
-      negativeMarginTop && styles.negativeMarginTop,
-      negativeMarginBottom && styles.negativeMarginBottom,
-      className,
-    )}
-    {...rest}
-  >
-    {children}
-  </div>
-)) as CardComponent;
-
 interface CardDividerProps {
   sub?: boolean;
 }
+
+interface CardBodyProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+  gap?: "xsm" | "sm" | "md" | "lg";
+  className?: string;
+}
+
+interface CardItemProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+  gapSize?: "xsm" | "sm" | "md" | "lg";
+}
+
+type CardComponent = React.ForwardRefExoticComponent<
+  CardProps & React.RefAttributes<HTMLDivElement>
+> & {
+  Divider: React.FC<CardDividerProps>;
+  Body: React.FC<CardBodyProps>;
+  Item: React.FC<CardItemProps>;
+};
+
+export const Card = forwardRef<HTMLDivElement, CardProps>(
+  (
+    {
+      className,
+      children,
+      sub,
+      fullWidth,
+      negativeMarginTop,
+      negativeMarginBottom,
+      ...rest
+    },
+    ref,
+  ) => (
+    <div
+      ref={ref}
+      className={clsx(
+        styles.container,
+        sub && styles.sub,
+        fullWidth && styles.fullWidth,
+        negativeMarginTop && styles.negativeMarginTop,
+        negativeMarginBottom && styles.negativeMarginBottom,
+        className,
+      )}
+      {...rest}
+    >
+      {children}
+    </div>
+  ),
+) as CardComponent;
 
 const CardDivider = ({ sub }: CardDividerProps) => (
   <div>
@@ -52,12 +71,6 @@ const CardDivider = ({ sub }: CardDividerProps) => (
     <div className={clsx(styles.bottom, sub && styles.light)} />
   </div>
 );
-
-interface CardBodyProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
-  gap?: "xsm" | "sm" | "md" | "lg";
-  className?: string;
-}
 
 const CardBody = ({
   children,
@@ -67,20 +80,11 @@ const CardBody = ({
 }: CardBodyProps) => (
   <div
     {...rest}
-    className={clsx(
-      children && styles.body,
-      gap && styles[gap],
-      className,
-    )}
+    className={clsx(children && styles.body, gap && styles[gap], className)}
   >
     {children}
   </div>
 );
-
-interface CardItemProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
-  gapSize?: "xsm" | "sm" | "md" | "lg";
-}
 
 const CardItem = ({ children, gapSize = "xsm", ...rest }: CardItemProps) => (
   <div className={clsx(styles.item, gapSize && styles[gapSize])} {...rest}>
