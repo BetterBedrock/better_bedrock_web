@@ -3,3 +3,21 @@
 .anchor {
   scroll-margin-top: 50vh;
 }
+
+.card {
+  @media (min-width: g.$breakpoint-tablet) {
+    border: none;
+    background: none !important;
+    box-shadow: none;
+  }
+
+  @media (max-width: g.$breakpoint-tablet) {
+    padding: g.$padding-sm;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1001;
+  }
+}

@@ -9,6 +9,7 @@ import { useDownloadButton } from "@/pages/project/model/use-download-button";
 import { PreviewPopup } from "@/pages/project/ui/project-download/preview-popup/preview-popup";
 
 import styles from "./project-download.module.scss";
+import { Card } from "@/shared/ui/card";
 
 interface ProjectDownloadPopupProps {
   voucher?: VoucherDto;
@@ -30,22 +31,24 @@ export const ProjectDownloadPopup = ({
   if (!detailedProject?.downloadFile) return <></>;
 
   return (
-    <PopupWrapper
-      ignore={instantDownload}
-      popup={(close) => (
-        <PreviewPopup onClose={close} project={detailedProject!} />
-      )}
-    >
-      <Button
-        id="download"
-        width="100%"
-        type="green"
-        onClick={handleClick}
-        center
-        className={styles.anchor}
+    <Card className={styles.card} sub>
+      <PopupWrapper
+        ignore={instantDownload}
+        popup={(close) => (
+          <PreviewPopup onClose={close} project={detailedProject!} />
+        )}
       >
-        <BedrockText text="Download" type="p" color="white" />
-      </Button>
-    </PopupWrapper>
+        <Button
+          id="download"
+          width="100%"
+          type="green"
+          onClick={handleClick}
+          center
+          className={styles.anchor}
+        >
+          <BedrockText text="Download" type="p" color="white" />
+        </Button>
+      </PopupWrapper>
+    </Card>
   );
 };
