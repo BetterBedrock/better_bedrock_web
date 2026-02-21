@@ -3,6 +3,14 @@
 .anchor {
   scroll-margin-top: 50vh;
 }
+
+.cardBody {
+  flex-direction: row;
+  @media (min-width: g.$breakpoint-tablet) {
+    padding: 0 !important;
+  }
+}
+
 .card {
   @media (min-width: g.$breakpoint-tablet) {
     border: none;
@@ -11,7 +19,6 @@
   }
 
   @media (max-width: g.$breakpoint-tablet) {
-    padding: g.$padding-sm;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -29,4 +36,30 @@
       transform: translateY(20px);
     }
   }
+}
+
+.mobileExtraButton {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.iconWrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconImage {
+  position: relative !important;
+  object-fit: contain;
 }
