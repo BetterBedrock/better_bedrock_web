@@ -18,15 +18,17 @@ export const ProjectComments = async ({
   const comments = await fetchComments(detailedProject.id);
   const user = await fetchLoggedUser();
   return (
-    <Card>
-      <div className={styles.editor}>
-        <ProjectHeaderTitle title="Comments" />
-      </div>
-      <Card.Divider />
-      <Card.Body gap="md">
-        <ProjectCommentsPost user={user} detailedProject={detailedProject} />
-        <ProjectCommentsList comments={comments} user={user} />
-      </Card.Body>
-    </Card>
+    <div id="project-comments-section">
+      <Card>
+        <div className={styles.editor}>
+          <ProjectHeaderTitle title="Comments" />
+        </div>
+        <Card.Divider />
+        <Card.Body gap="md">
+          <ProjectCommentsPost user={user} detailedProject={detailedProject} />
+          <ProjectCommentsList comments={comments} user={user} />
+        </Card.Body>
+      </Card>
+    </div>
   );
 };
