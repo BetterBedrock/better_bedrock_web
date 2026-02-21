@@ -10,6 +10,7 @@ import {
 import { useNotification } from "@/app/providers/notification";
 import { baseUrl } from "@/shared/lib/utils";
 import { ProjectDto } from "@/shared/lib/openapi";
+import { saveAs } from "file-saver";
 
 interface DownloadContextProps {
   downloading: boolean;
@@ -80,18 +81,11 @@ export const DownloadProvider = ({
     const filenameMatch = /filename\*=UTF-8''([^;]+)|filename="([^"]+)"/.exec(
       disposition,
     );
-    const filename = filenameMatch
+    const fileName = filenameMatch
       ? decodeURIComponent(filenameMatch[1] || filenameMatch[2])
       : "download";
 
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
+    saveAs(blob, fileName);
 
     setDownloadProgress(100);
     setDownloading(false);
