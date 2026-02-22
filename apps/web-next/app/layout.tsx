@@ -11,12 +11,11 @@ import localFont from "next/font/local";
 
 export const metadata: Metadata = {
   title: {
-    default:
-      "Minecraft Bedrock Mods, Texture Packs, Scripts, Maps, Skins & More | Better Bedrock",
+    default: "Better Bedrock - Minecraft Bedrock Mods, Texture Packs & More",
     template: "%s | Better Bedrock",
   },
   description:
-    "Discover the best Minecraft PE texture packs, scripts, maps, skins, and more on Better Bedrock. Enhance your gaming experience with high-quality mods and resources.",
+    "Better Bedrock is your ultimate hub for Minecraft Bedrock mods, texture packs, scripts, maps, and skins. Explore thousands of high-quality mods and enhancements for Bedrock Edition.",
   manifest: "/manifest.json",
   openGraph: {
     type: "website",
