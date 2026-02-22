@@ -33,7 +33,7 @@ export const Hero = ({ hash, voucher }: HeroProps) => {
       const creator = await fetchUserById(item?.userId ?? "");
 
       if (!item || !creator) {
-        redirect(Routes.DOWNLOADS_MAIN);
+        redirect(Routes.DOWNLOADS_BEDROCK_MODS);
       }
 
       setAuthor(creator);

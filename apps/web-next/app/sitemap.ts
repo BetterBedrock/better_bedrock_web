@@ -86,7 +86,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
-      url: `${SITE_URL}${Routes.DOWNLOADS_MAIN}`,
+      url: `${SITE_URL}${Routes.DOWNLOADS_BEDROCK_MODS}`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.8,

@@ -6,6 +6,7 @@ import styles from "./navbar.module.scss";
 import { useAuth } from "@/app/providers/auth";
 import { usePathname } from "next/navigation";
 import { UserDto } from "@/shared/lib/openapi";
+import { Routes } from "@/shared/lib/utils";
 
 interface NavItem {
   name: string;
@@ -33,7 +34,7 @@ const getNavItems = (pathname: string, user?: UserDto): NavItem[] => {
   return [
     ...(user?.admin ? [{ name: "Panel", path: "/panel" }] : []),
     { name: "Home", path: "/" },
-    { name: "Downloads", path: "/downloads/main" },
+    { name: "Downloads", path: Routes.DOWNLOADS_BEDROCK_MODS },
     { name: "Information", path: "/information/:general" },
     user
       ? { name: "Profile", path: `/profile/${user.name}/:projects` }
