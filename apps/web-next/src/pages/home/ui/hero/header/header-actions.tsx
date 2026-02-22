@@ -9,7 +9,7 @@ import styles from "./header.module.scss";
 export const HeroActions = () => (
   <div className={styles.actions}>
     <ButtonGroup direction="responsive">
-      <Link href={Routes.DOWNLOADS_MAIN} className={styles.link}>
+      <Link href={Routes.DOWNLOADS_BEDROCK_MODS} className={styles.link}>
         <Button width="100%" type="green" center>
           <BedrockText text="Explore Bedrock Mods" type="p" color="white" />
         </Button>

@@ -13,7 +13,7 @@ export const ProjectsCardPagePrevButton = ({
   currentPage,
 }: ProjectsCardPagePrevButtonProps) => (
   <Link
-    link={Routes.DOWNLOADS_MAIN + "/page/" + (currentPage - 1)}
+    link={Routes.DOWNLOADS_BEDROCK_MODS + "/page/" + (currentPage - 1)}
     hideStyles
     className={styles.action}
   >
