@@ -59,7 +59,6 @@ export const ProjectDownloadPopup = ({
 
   if (!detailedProject?.downloadFile) return null;
 
-  //instantDownload
   return (
     <>
       {openPopup && (
