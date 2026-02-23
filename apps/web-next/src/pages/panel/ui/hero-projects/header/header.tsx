@@ -11,7 +11,7 @@ export const Header = () => (
         font="Minecraft"
       />
       <BedrockText
-        text="View all submitted projects awaiting for admin review."
+        text="View all submitted projects awaiting admin review."
         type="p"
         color="white"
       />

@@ -67,7 +67,7 @@ export const informationData: InformationTab[] = [
         {
           question: "What type of content we provide?",
           answer:
-            "Our main focus is Better Bedrock Texture pack and it's extension packs. We offer just texture packs - no apps for any device. We also allow people to post their projects directly on our platform - by ADs system crators receive revenue. Check betterbedrock.com/monetization for more information.",
+            "Our main focus is Better Bedrock Texture pack and its extension packs. We offer just texture packs - no apps for any device. We also allow people to post their projects directly on our platform - through our ads system creators receive revenue. Check betterbedrock.com/monetization for more information.",
         },
         {
           question: "Is there any app for Phone or Computer?",
@@ -77,12 +77,12 @@ export const informationData: InformationTab[] = [
         {
           question: "Why do some mods break?",
           answer:
-            "Usually the heavy mods may disappear or not not function properly. It's mostly because of using many texture packs at once, if it's a thing then try to disable these packs or use BB alone. Usually it's related with compelx packs and unfortuantely there is not any fix for this. Also make sure to follow correct packs order - visible in resource packs settings tab.",
+            "Usually the heavy mods may disappear or not function properly. It's mostly because of using many texture packs at once; if that's the case, try to disable some packs or use BB alone. Usually it's related to complex packs and unfortunately there is no fix for this. Also make sure to follow the correct pack order - visible in the resource packs settings tab.",
         },
         {
           question: "Does the Better Bedrock Texture Pack break achievements?",
           answer:
-            "No, due fact that it's just texture pack, it doesn't affect achievements in any way. You can use it without worry. It applies to main texture pack and extensions.",
+            "No, due to the fact that it's just a texture pack, it doesn't affect achievements in any way. You can use it without worry. It applies to the main texture pack and extensions.",
         },
         {
           question: "Which devices support Better Bedrock?",
@@ -182,7 +182,7 @@ export const informationData: InformationTab[] = [
         {
           question: "I can't use data folder during config editing?",
           answer:
-            "This is a strict limit of phone operating system - they don't allow access to certain directories. Therefore, you need to use pre-config editing method. It's available below as tutorial video.",
+            "This is a strict limit of phone operating system - they don't allow access to certain directories. Therefore, you need to use the pre-config editing method. It's available below as a tutorial video.",
         },
         {
           question: "How to fix inventory not opening?",

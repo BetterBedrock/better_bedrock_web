@@ -12,7 +12,7 @@ export const ProjectActionsSubmission = () => {
 
   return (
     <PopupConfirmation
-      description="You are about to submit your project for verification process which will take up to 24h, if you are unsure, or want to make a change, you can alaways cancel the submission."
+      description="You are about to submit your project for the verification process, which may take up to 24 hours. If you are unsure or want to make a change, you can cancel the submission."
       confirmText="Submit"
       ignore={selectedProject?.submitted}
       className={styles.button}
@@ -27,7 +27,7 @@ export const ProjectActionsSubmission = () => {
         <BedrockText
           text={
             selectedProject?.submitted
-              ? "Cancel Submission"
+              ? "Cancel submission"
               : "Submit for review"
           }
           type="p"

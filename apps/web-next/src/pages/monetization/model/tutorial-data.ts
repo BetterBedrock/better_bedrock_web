@@ -42,7 +42,7 @@ export const tutorialData: Record<
       {
         title: "Finalizing Integration",
         content: `1. Return to your **Profile**.
-2. Click the **Settings (Gear Icon)** in top right corner.
+2. Click the **Settings (Gear Icon)** in the top right corner.
 3. Input your credentials:
    - **Linkvertise User ID**, from step 1.
    - **Anti-bypass Token**, from step 2.
@@ -68,7 +68,7 @@ export const tutorialData: Record<
         title: "Extracting Technical Credentials",
         content: `*Step 1:* Create a project
 1. Log in to your [Lootlabs Dashboard](https://creators.lootlabs.gg/dashboard).
-2. Click "**Create Single Monetized Links**" in top left corner and Fill up the required information.
+2. Click "**Create Single Monetized Links**" in the top left corner and fill in the required information.
 3. Identify your new link in the list below, and check **Short Link ID** column.
    - Format: *https://loot-link.com/s?szzMUrlD*
    - The string at the end (**szzMUrlD**) is your unique **LootLabs Link ID**.
@@ -76,13 +76,13 @@ export const tutorialData: Record<
 
 *Step 2:* Generate API Token
 1. Open [Advanced tab](https://creators.lootlabs.gg/advanced).
-2. Click button to generate token - below **Generate API token** option.
+2. Click the button to generate the token - below the **Generate API token** option.
 3. Copy this "**API Token**".`,
       },
       {
         title: "Finalizing Integration",
         content: `1. Return to your **Profile**.
-2. Click the **Settings (Gear Icon)** in top right corner.
+2. Click the **Settings (Gear Icon)** in the top right corner.
 3. Input your credentials:
    - **Lootlabs Link ID**, from step 1.
    - **API Token**, from step 2.
