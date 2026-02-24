@@ -8,6 +8,9 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import type { Metadata } from "next";
 import { CookiesProvider } from "next-client-cookies/server";
 import localFont from "next/font/local";
+import Script from "next/script";
+
+const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || "AW-17799390098";
 
 export const metadata: Metadata = {
   title: {
@@ -72,6 +75,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${ADS_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${ADS_ID}');
+          `}
+        </Script>
+      </head>
       <body
         className={`relative ${mojangles.className} ${mojanglesBold.className} ${minecraft.className} ${minecraftFive.className}`}
       >

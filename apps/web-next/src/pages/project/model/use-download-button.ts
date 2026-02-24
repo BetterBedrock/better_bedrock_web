@@ -45,7 +45,7 @@ export const useDownloadButton = (
       sendNotification({
         title: "Cannot Apply Voucher",
         label:
-          "Your voucher allows to download only better bedrock content without ads.",
+          "Your voucher allows you to download only Better Bedrock content without ads.",
         type: "info",
       });
       return;

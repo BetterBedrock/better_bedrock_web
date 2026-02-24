@@ -297,7 +297,7 @@ export interface components {
              */
             text: string;
             /**
-             * @description Link of redirection on button click (can be left if notification is prefered)
+             * @description Link of redirection on button click (can be left if notification is preferred)
              * @example https://google.com
              */
             link?: string;
