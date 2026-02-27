@@ -4,19 +4,11 @@
   position: relative;
   display: flex;
   flex-direction: column;
-
   width: 100%;
   height: 100%;
-
   overflow: hidden;
-
-  background-color: g.$color-card-background;
-  padding: g.$padding-sm;
+  background-color: rgb(45, 45, 46);
   gap: g.$padding-sm;
-
-  @media (max-width: g.$breakpoint-tablet) {
-    flex-direction: column;
-  }
 }
 
 .fullscreen {
@@ -40,18 +32,68 @@
     background-color: rgb(30, 30, 31);
     aspect-ratio: 16 / 9;
     border: g.$minecraftdepth solid rgb(30, 30, 31);
+    object-fit: contain;
+    image-rendering: pixelated;
+  }
+}
+
+.thumbnailRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: g.$padding-sm;
+  width: 100%;
+}
+
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  align-self: stretch;
+  background: none;
+  border: g.$minecraftdepth solid white;
+  cursor: pointer;
+  filter: brightness(0.6);
+
+  &:hover {
+    filter: brightness(1);
+  }
+
+  img {
+    @include g.no-drag();
+    image-rendering: pixelated;
+    height: g.$icon-md;
+    width: g.$icon-md;
+    object-fit: contain;
+  }
+
+  @media (max-width: g.$breakpoint-tablet) {
+    display: none;
   }
 }
 
 .images {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    max-width: calc(3 * (4.5rem * 16 / 9) + 2 * #{g.$padding-xxsm});
+  }
+
+  @media (min-width: g.$breakpoint-laptop) {
+    max-width: calc(5 * (6rem * 16 / 9) + 4 * #{g.$padding-xxsm});
+  }
+}
+
+.track {
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-direction: row;
-  width: 100%;
-  height: 5rem;
   gap: g.$padding-xxsm;
-  white-space: nowrap;
+  width: max-content;
+  transition: transform 0.3s ease;
 }
 
 .input {
@@ -59,63 +101,46 @@
 }
 
 .preview {
+  position: relative;
   display: flex;
-  cursor: auto;
-  height: 100%;
-  aspect-ratio: 16/9;
+  cursor: pointer;
+  height: 6rem;
+  aspect-ratio: 16 / 9;
+  flex-shrink: 0;
   overflow: hidden;
+  background-color: rgb(60, 60, 61);
   filter: brightness(0.6);
-  background-color: #444;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    height: 4.5rem;
+  }
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    height: 3.5rem;
+  }
+
+  &:hover {
+    filter: brightness(1);
+  }
+
+  &.selected {
+    filter: brightness(1);
+    cursor: default;
+    outline: g.$minecraftdepth solid white;
+    outline-offset: -(g.$minecraftdepth);
+  }
 
   img {
     @include g.no-drag();
     display: block;
     width: 100%;
-  }
-}
-
-.preview:hover {
-  cursor: pointer;
-  filter: brightness(1);
-}
-
-.selected {
-  filter: brightness(1);
-}
-
-.selected:hover {
-  cursor: auto;
-}
-
-.arrow {
-  filter: brightness(0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: g.$minecraftdepth solid white;
-  height: 100%;
-
-  img {
-    @include g.no-drag();
-
-    image-rendering: pixelated;
-    aspect-ratio: 1/1;
-    height: g.$icon-md;
-    width: g.$icon-md;
+    height: 100%;
     object-fit: contain;
+    image-rendering: pixelated;
   }
 }
 
-.arrow:hover {
-  cursor: pointer;
-  filter: brightness(1);
-}
-
-.imageIndex {
-  background-color: rgba(0, 0, 0, 0.25);
-  padding: 0.125rem 0.125rem 0.125rem 0.25rem;
-  position: absolute;
-}
+// Gallery popup styles
 
 .list {
   display: grid;
@@ -129,28 +154,32 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
+
+  img {
+    image-rendering: pixelated;
+  }
 }
 
 .image {
   object-fit: cover;
-  object-position: 50% 50%;
+  object-position: center;
   width: 100%;
   height: 100%;
   filter: brightness(40%);
+  image-rendering: pixelated;
 }
 
 .delete {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  transform: translate(-50%, -50%);
 
   .icon {
     position: relative;
     height: g.$icon-md;
     width: g.$icon-md;
     image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
     filter: invert(1);
     cursor: pointer;
@@ -158,11 +187,15 @@
 }
 
 .empty {
-  background-color: rgb(30, 30, 31);
   display: flex;
-  width: 100%;
-  aspect-ratio: 16/9;
-
   align-items: center;
   justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: rgb(30, 30, 31);
+}
+
+.popupWrapper {
+  display: flex;
+  width: auto;
 }
