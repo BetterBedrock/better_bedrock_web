@@ -9,7 +9,15 @@ import { useProjectsCardSearch } from "@/pages/downloads/model/projects-card-sea
 import styles from "./projects-card.module.scss";
 import { clsx } from "clsx";
 
-export const ProjectsCardOrder = ({ className }: { className?: string }) => {
+export const ProjectsCardOrder = ({
+  className,
+  onOpenChange,
+  closeTrigger,
+}: {
+  className?: string;
+  onOpenChange?: (open: boolean) => void;
+  closeTrigger?: number;
+}) => {
   const { selectedOrder } = useProjectsCardSearch();
 
   return (
@@ -19,6 +27,8 @@ export const ProjectsCardOrder = ({ className }: { className?: string }) => {
       floating
       className={clsx(styles.collapsible, className)}
       limit={true}
+      onOpenChange={onOpenChange}
+      closeTrigger={closeTrigger}
     >
       <ButtonGroup direction="vertical">
         {Object.values(SearchOrder).map((type, index) => (

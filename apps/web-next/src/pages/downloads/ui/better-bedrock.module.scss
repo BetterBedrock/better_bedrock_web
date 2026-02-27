@@ -6,10 +6,6 @@
   width: 100%;
 
   gap: g.$padding-sm;
-
-  @media (max-width: g.$breakpoint-laptop) {
-    gap: g.$padding-xxsm;
-  }
 }
 
 .hide {
