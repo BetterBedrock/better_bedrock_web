@@ -94,6 +94,8 @@
   gap: g.$padding-xxsm;
   width: max-content;
   transition: transform 0.3s ease;
+  justify-content: center;
+  min-width: 100%;
 }
 
 .input {

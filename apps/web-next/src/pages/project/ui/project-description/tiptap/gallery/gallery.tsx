@@ -63,8 +63,16 @@ export const Gallery = ({
     if (!container || !track || !thumb) return;
 
     const containerWidth = container.offsetWidth;
+    const trackWidth = track.scrollWidth;
+    
+    // If all thumbnails fit, don't scroll
+    if (trackWidth <= containerWidth) {
+      setOffset(0);
+      return;
+    }
+
     const thumbCenter = thumb.offsetLeft + thumb.offsetWidth / 2;
-    const maxOffset = Math.max(0, track.scrollWidth - containerWidth);
+    const maxOffset = Math.max(0, trackWidth - containerWidth);
 
     const target = Math.max(
       0,
