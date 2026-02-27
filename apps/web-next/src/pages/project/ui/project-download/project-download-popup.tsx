@@ -17,6 +17,8 @@ interface ProjectDownloadPopupProps {
   voucher?: VoucherDto;
   user?: UserDto;
   detailedProject: DetailedProjectDto;
+  hideExtraButtons?: boolean;
+  showPublishButton?: boolean;
 }
 
 const scrollToElement = (id: string, offset: number = 80) => {
@@ -31,6 +33,8 @@ export const ProjectDownloadPopup = ({
   detailedProject,
   user,
   voucher,
+  hideExtraButtons = false,
+  showPublishButton = false,
 }: ProjectDownloadPopupProps) => {
   const { handleClick, openPopup, handleClosePopup } = useDownloadButton(
     user!,
@@ -57,6 +61,10 @@ export const ProjectDownloadPopup = ({
     scrollToElement("project-comments-section");
   };
 
+  const handleScrollToPublish = () => {
+    scrollToElement("publish-button");
+  };
+
   if (!detailedProject?.downloadFile) return null;
 
   return (
@@ -76,38 +84,60 @@ export const ProjectDownloadPopup = ({
           >
             <BedrockText text="Download" type="p" color="white" />
           </Button>
-          <Button
-            id="rate"
-            width="auto"
-            type="dark"
-            onClick={handleScrollToRate}
-            center
-            className={`${styles.anchor} ${styles.mobileExtraButton}`}
-          >
-            <Image
-              src="/icons/rate2.png"
-              alt="Rate"
-              width={24}
-              height={24}
-              className={styles.iconImage}
-            />
-          </Button>
-          <Button
-            id="comment"
-            width="auto"
-            type="dark"
-            onClick={handleScrollToComment}
-            center
-            className={`${styles.anchor} ${styles.mobileExtraButton}`}
-          >
-            <Image
-              src="/icons/comment2.png"
-              alt="Comment"
-              width={24}
-              height={24}
-              className={styles.iconImage}
-            />
-          </Button>
+          {!hideExtraButtons && (
+            <>
+              <Button
+                id="rate"
+                width="auto"
+                type="dark"
+                onClick={handleScrollToRate}
+                center
+                className={`${styles.anchor} ${styles.mobileExtraButton}`}
+              >
+                <Image
+                  src="/icons/rate2.png"
+                  alt="Rate"
+                  width={24}
+                  height={24}
+                  className={styles.iconImage}
+                />
+              </Button>
+              <Button
+                id="comment"
+                width="auto"
+                type="dark"
+                onClick={handleScrollToComment}
+                center
+                className={`${styles.anchor} ${styles.mobileExtraButton}`}
+              >
+                <Image
+                  src="/icons/comment2.png"
+                  alt="Comment"
+                  width={24}
+                  height={24}
+                  className={styles.iconImage}
+                />
+              </Button>
+            </>
+          )}
+          {showPublishButton && (
+            <Button
+              id="publish-scroll"
+              width="auto"
+              type="dark"
+              onClick={handleScrollToPublish}
+              center
+              className={`${styles.anchor} ${styles.mobileExtraButton}`}
+            >
+              <Image
+                src="/icons/rate2.png"
+                alt="Publish"
+                width={24}
+                height={24}
+                className={styles.iconImage}
+              />
+            </Button>
+          )}
         </Card.Body>
       </Card>
     </>
