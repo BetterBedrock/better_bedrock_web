@@ -28,7 +28,7 @@ export const ReviewPage = async ({ params }: ProjectPageProps) => {
     <>
       <ProjectHeader mode="view" selectedProject={project} />
       <ProjectDescription mode="view" detailedProject={project} />
-      <ProjectDownload detailedProject={project} user={user} />
+      <ProjectDownload detailedProject={project} user={user} hideExtraButtons={true} showPublishButton={true} />
       <ProjectManagerProvider detailedProject={project}>
         <ProjectCardPreview />
       </ProjectManagerProvider>
