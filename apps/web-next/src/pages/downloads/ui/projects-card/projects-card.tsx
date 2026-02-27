@@ -1,12 +1,10 @@
 import { Card } from "@/shared/ui/card";
 import { ProjectsCardBanner } from "./projects-card-banner";
 import { ProjectsCardInfiniteContainer } from "./projects-card-infinite-container";
-import { ProjectsCardOrder } from "./projects-card-order";
 import { ProjectsCardPageContainer } from "./projects-card-page-container";
-import { ProjectsCardSearchBar } from "./projects-card-search-bar";
 import { ProjectsCardTitle } from "./projects-card-title";
 import { ProjectsCardDescription } from "./projects-card-description";
-import { ProjectsCardType } from "./projects-card-type";
+import { ProjectsCardFilters } from "./projects-card-filters";
 import { fetchInitialProjects } from "@/entities/project";
 import { ProjectsCardSearchProvider } from "@/pages/downloads/model/projects-card-search";
 
@@ -34,11 +32,7 @@ export const ProjectsCard = async ({ params }: ProjectsCardProps) => {
         </Card.Body>
         <Card.Divider />
         <Card.Body gap="md">
-          <div className={styles.filters}>
-            <ProjectsCardSearchBar />
-            <ProjectsCardType />
-            <ProjectsCardOrder className={styles.orderFull} />
-          </div>
+          <ProjectsCardFilters />
         </Card.Body>
         <Card.Divider />
         <Card.Body gap="md">

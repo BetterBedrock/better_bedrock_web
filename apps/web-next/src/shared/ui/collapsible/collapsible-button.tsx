@@ -10,7 +10,7 @@ interface CollapsibleButtonProps {
   headerText: string;
   type: ButtonType;
   isCollapsed: boolean;
-  setCollapsed: Dispatch<SetStateAction<boolean>>;
+  setCollapsed: (value: boolean) => void;
 }
 
 export const CollapsibleButton = ({
@@ -25,7 +25,10 @@ export const CollapsibleButton = ({
     width="100%"
     summary={true}
     type={type}
-    onClick={() => setCollapsed((prev) => !prev)}
+    onClick={(e) => {
+      e.preventDefault();
+      setCollapsed(!isCollapsed);
+    }}
     center
     className={styles.button}
   >

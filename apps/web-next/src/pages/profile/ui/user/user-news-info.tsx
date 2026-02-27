@@ -16,7 +16,7 @@ export const UserNewsInfo = async ({
   const user = await fetchLoggedUser();
   const isOwnProfile = user?.id === selectedUser?.id;
 
-  const hideAfterDate = new Date('2026-02-15');
+  const hideAfterDate = new Date('2026-03-07');
   const currentDate = new Date();
   const isExpired = currentDate > hideAfterDate;
 
