@@ -2,7 +2,7 @@ import Exit from "@/public/images/exit.png";
 import { Children, FC, Fragment, HTMLAttributes, ReactNode, useEffect, useRef } from "react";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { SimpleButton } from "@/shared/ui/simple-button";
-import { useFocusTrap } from "@/features/popup/lib/hooks/useFocusTrap";
+import { useFocusTrap } from "@/shared/hooks/useFocusTrap";
 
 import styles from "./popup.module.scss";
 import { Card } from "@/shared/ui/card";
