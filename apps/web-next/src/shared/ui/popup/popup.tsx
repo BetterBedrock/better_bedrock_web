@@ -1,7 +1,8 @@
 import Exit from "@/public/images/exit.png";
-import { Children, FC, Fragment, HTMLAttributes, ReactNode, useEffect } from "react";
+import { Children, FC, Fragment, HTMLAttributes, ReactNode, useEffect, useRef } from "react";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { SimpleButton } from "@/shared/ui/simple-button";
+import { useFocusTrap } from "@/shared/lib/hooks";
 
 import styles from "./popup.module.scss";
 import { Card } from "@/shared/ui/card";
@@ -21,10 +22,14 @@ interface PopupComponent extends FC<PopupProps> {
 }
 
 export const Popup = (({ children, onClose, title }: PopupProps) => {
+  const popupRef = useRef<HTMLDivElement>(null);
+
+  useFocusTrap(popupRef);
+
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    
+
     return () => {
       document.body.style.overflow = originalOverflow;
     };
@@ -32,7 +37,7 @@ export const Popup = (({ children, onClose, title }: PopupProps) => {
 
   return (
     <div className={styles.popup} onClick={onClose}>
-      <div className={styles.body} onClick={(e) => e.stopPropagation()}>
+      <div ref={popupRef} className={styles.body} onClick={(e) => e.stopPropagation()}>
         <div className={styles.headerContainer}>
           <div className={styles.header}>
             <SimpleButton onClick={onClose} transparent className={styles.close}>
@@ -48,8 +53,7 @@ export const Popup = (({ children, onClose, title }: PopupProps) => {
             {title && (
               <BedrockText
                 text={title}
-                font="Minecraft"
-                type="h3"
+                type="p"
                 color="white"
                 textAlign="center"
               />

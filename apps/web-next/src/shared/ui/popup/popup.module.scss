@@ -7,25 +7,36 @@
   z-index: 100 !important;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.65);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
-  padding: g.$padding-xl 0;
+  padding-top: g.$padding-xl;
   align-items: flex-start;
   max-height: 100%;
   overflow: auto;
+
+  @media (max-width: g.$breakpoint-laptopL) {
+    padding-top: g.$padding-lg;
+  }
+  
+  @media (max-width: g.$breakpoint-mobileL) {
+    padding-top: g.$padding-md;
+  }
 }
 
 .body {
   z-index: 93;
   pointer-events: auto;
   height: auto;
-
+  margin: auto 0;
   width: 40%;
   max-width: g.$breakpoint-laptopL;
+  padding-bottom: g.$padding-xl;
+  overflow: visible;
 
   @media (max-width: g.$breakpoint-laptopL) {
     width: 55%;
+    padding-bottom: g.$padding-lg;
   }
 
   @media (max-width: g.$breakpoint-laptop) {
@@ -38,6 +49,7 @@
 
   @media (max-width: g.$breakpoint-mobileL) {
     width: 90%;
+    padding-bottom: g.$padding-md;
   }
 }
 
@@ -45,7 +57,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: 0;
+  right: 5px;
 
   .icon {
     position: relative;
@@ -61,7 +73,8 @@
 
 .header {
   position: relative;
-  padding-block: g.$padding-xxsm;
+  // padding-block: g.$padding-xxsm;
+  min-height: g.$buttonHeight;
   display: flex;
   width: 100%;
   border: g.$minecraftdepth solid rgb(86, 87, 89);
@@ -93,11 +106,11 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: g.$padding-xsm;
+  gap: g.$padding-sm;
 }
 
 .item {
-  gap: g.$padding-xxsm;
+  gap: g.$padding-xxxsm;
   display: flex;
   flex-direction: column;
 }
