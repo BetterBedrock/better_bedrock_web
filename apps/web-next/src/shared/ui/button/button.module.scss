@@ -16,6 +16,14 @@
   }
 }
 
+.wrapper:focus {
+  outline: none;
+}
+
+.wrapper:focus-visible .button {
+  outline: g.$minecraftdepth solid white;
+}
+
 .button {
   cursor: pointer;
 
