@@ -37,7 +37,7 @@ export const User = async ({ params }: UserProps) => {
       <UserNewsInfo selectedUser={selectedUser} />
       <UserLinkvertiseInfo selectedUser={selectedUser} />
       <Card sub>
-        <Card.Body className={styles.profileCardBody}>
+        <Card.Body>
           <div className={styles.profile}>
             <UserProfilePicture name={selectedUser!.name} />
             <div className={styles.info}>
