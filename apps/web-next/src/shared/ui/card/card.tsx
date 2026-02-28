@@ -18,13 +18,13 @@ interface CardDividerProps {
 
 interface CardBodyProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
-  gap?: "xsm" | "sm" | "md" | "lg";
+  gap?: "xxsm" | "xsm" | "sm" | "md" | "lg";
   className?: string;
 }
 
 interface CardItemProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
-  gapSize?: "xsm" | "sm" | "md" | "lg";
+  gapSize?: "xxsm" | "xsm" | "sm" | "md" | "lg";
 }
 
 type CardComponent = React.ForwardRefExoticComponent<
@@ -75,7 +75,7 @@ const CardDivider = ({ sub }: CardDividerProps) => (
 const CardBody = ({
   children,
   className,
-  gap = "xsm",
+  gap,
   ...rest
 }: CardBodyProps) => (
   <div
