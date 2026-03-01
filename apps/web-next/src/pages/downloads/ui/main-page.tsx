@@ -1,14 +1,6 @@
-import { FeaturedCard } from "@/pages/downloads/ui/featured-card/featured-card";
-import { ProjectsCard } from "@/pages/downloads/ui/projects-card/projects-card";
+import { Routes } from "@/shared/lib/utils";
+import { permanentRedirect } from "next/navigation";
 
-export interface MainPageProps {
-  params: Promise<{ page?: string[] }>;
+export const MainPage = async () => {
+  permanentRedirect(Routes.DOWNLOADS_BEDROCK_MODS);
 }
-
-export const MainPage = async ({ params }: MainPageProps) => (
-  <>
-    <FeaturedCard />
-    {/* <ContentCard /> */}
-    <ProjectsCard params={params} />
-  </>
-);
