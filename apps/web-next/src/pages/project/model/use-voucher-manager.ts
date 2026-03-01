@@ -26,14 +26,18 @@ export const useVoucherManager = ({
   >(categories ? categories[0].title : undefined);
 
   const download = async () => {
+    const newTab = window.open('', '_blank');
+
     const data = await generateDownload(project.id);
 
     if (!data.url) {
+      if (newTab) newTab.close();
       throwError(null, "There was a problem with the download link. Please report it on our discord.");
       return;
     }
 
-    window.open(data.url.toString(), "_blank");
+    if (!newTab) return;
+    newTab.location = data.url.toString();
   };
 
   const activate = async () => {
