@@ -13,10 +13,7 @@ import Script from "next/script";
 const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || "AW-17799390098";
 
 export const metadata: Metadata = {
-  title: {
-    default: "Better Bedrock - Minecraft Bedrock Mods, Texture Packs & More",
-    template: "%s | Better Bedrock",
-  },
+  title: "Better Bedrock - Minecraft Bedrock Mods, Texture Packs & More",
   description:
     "Better Bedrock is your ultimate hub for Minecraft Bedrock mods, texture packs, scripts, maps, and skins. Explore thousands of high-quality mods and enhancements for Bedrock Edition.",
   manifest: "/manifest.json",
