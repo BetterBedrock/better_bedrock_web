@@ -13,7 +13,7 @@ const { web: webPort, api: apiPort } = ports[slot + (debug ? "Dev" : "")];
 module.exports = {
   apps: [
     {
-      name: `better-bedrock-web-${debug ? "dev" : "" + slot}`,
+      name: `better-bedrock-web-${debug ? "dev" : ""}-${slot}`,
       script: "yarn",
       cwd: "./apps/web-next",
       args: "serve",
@@ -21,7 +21,7 @@ module.exports = {
       env: { PORT: webPort },
     },
     {
-      name: `better-bedrock-api-${debug ? "dev" : "" + slot}`,
+      name: `better-bedrock-api-${debug ? "dev" : ""}-${slot}`,
       script: "yarn",
       args: "serve",
       cwd: "./apps/api",
