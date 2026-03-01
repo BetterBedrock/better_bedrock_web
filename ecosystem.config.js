@@ -23,7 +23,7 @@ module.exports = {
     {
       name: `better-bedrock-api-${debug ? "dev" : ""}-${slot}`,
       script: "yarn",
-      args: `serve${debug ? "-dev" : ""}`,
+      args: `serve`,
       cwd: "./apps/api",
       watch: false,
       env: { PORT: apiPort },
