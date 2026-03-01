@@ -168,9 +168,10 @@ export const UserSettingsForm = ({
                       monetizationType ?? "None",
                     )}
                   >
-                    {Object.values(MonetizationType).map((mT, key) => (
-                      <ButtonGroup key={key}>
+                    <ButtonGroup direction="vertical">
+                      {Object.values(MonetizationType).map((mT, key) => (
                         <Button
+                          key={key}
                           onClick={() => {
                             field.onChange(mT);
                             setMonetizationType(mT);
@@ -183,12 +184,12 @@ export const UserSettingsForm = ({
                         >
                           <BedrockText
                             type="p"
-                            color="#000"
+                            color="black"
                             text={capitalizeFirstLetter(mT)}
                           />
                         </Button>
-                      </ButtonGroup>
-                    ))}
+                      ))}
+                    </ButtonGroup>
                   </Collapsible>
                 )}
               />
@@ -301,35 +302,37 @@ export const UserSettingsForm = ({
         </Popup.Body>
 
         <Popup.Footer>
-          {admin && (
-            <Controller
-              name="banned"
-              control={control}
-              render={({ field }) => (
-                <Button
-                  type={field.value ? "dark" : "red"}
-                  width="100%"
-                  center
-                  onClick={() => field.onChange(!field.value)}
-                  buttonType="submit"
-                >
-                  <BedrockText
-                    type="p"
-                    text={field.value ? "Unban" : "Ban"}
-                    color="white"
-                  />
-                </Button>
-              )}
-            />
-          )}
-          <Button type="green" buttonType="submit" center width="100%">
-            <BedrockText type="p" text="Save Settings" color="white" />
-          </Button>
-          {!admin && (
-            <Button type="red" width="100%" center onClick={logout}>
-              <BedrockText type="p" text="Logout" color="white" />
+          <ButtonGroup direction={admin ? "vertical" : "horizontal"}>
+            {admin && (
+              <Controller
+                name="banned"
+                control={control}
+                render={({ field }) => (
+                  <Button
+                    type={field.value ? "dark" : "red"}
+                    width="100%"
+                    center
+                    onClick={() => field.onChange(!field.value)}
+                    buttonType="submit"
+                  >
+                    <BedrockText
+                      type="p"
+                      text={field.value ? "Unban" : "Ban"}
+                      color="white"
+                    />
+                  </Button>
+                )}
+              />
+            )}
+            <Button type="green" buttonType="submit" center width="100%">
+              <BedrockText type="p" text="Save Settings" color="white" />
             </Button>
-          )}
+            {!admin && (
+              <Button type="red" width="100%" center onClick={logout}>
+                <BedrockText type="p" text="Logout" color="white" />
+              </Button>
+            )}
+          </ButtonGroup>
         </Popup.Footer>
       </Popup>
     </form>

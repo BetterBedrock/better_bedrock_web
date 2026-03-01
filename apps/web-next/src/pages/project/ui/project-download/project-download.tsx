@@ -5,11 +5,15 @@ import { ProjectDownloadPopup } from "./project-download-popup";
 interface ProjectDownloadProps {
   user?: UserDto;
   detailedProject: DetailedProjectDto;
+  hideExtraButtons?: boolean;
+  showPublishButton?: boolean;
 }
 
 export const ProjectDownload = async ({
   detailedProject,
   user,
+  hideExtraButtons = false,
+  showPublishButton = false,
 }: ProjectDownloadProps) => {
   if (!detailedProject?.downloadFile) return <></>;
 
@@ -20,6 +24,8 @@ export const ProjectDownload = async ({
       detailedProject={detailedProject}
       user={user}
       voucher={voucher?.error ? undefined : voucher?.data}
+      hideExtraButtons={hideExtraButtons}
+      showPublishButton={showPublishButton}
     />
   );
 };

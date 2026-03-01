@@ -30,7 +30,7 @@ export const EditPage = async ({ params }: ProjectPageProps) => {
   return (
     <>
       <ProjectHeader mode="edit" selectedProject={project} />
-      <ProjectDownload detailedProject={project} user={user} />
+      <ProjectDownload detailedProject={project} user={user} hideExtraButtons={true} />
       <ProjectManagerProvider detailedProject={project}>
         <ProjectDetailsEditor detailedProject={project} user={user} />
         <ProjectThumbnail detailedProject={project} />

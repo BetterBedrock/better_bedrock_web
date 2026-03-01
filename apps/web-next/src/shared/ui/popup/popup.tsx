@@ -1,7 +1,8 @@
 import Exit from "@/public/images/exit.png";
-import { Children, FC, Fragment, HTMLAttributes, ReactNode } from "react";
+import { Children, FC, Fragment, HTMLAttributes, ReactNode, useEffect, useRef } from "react";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { SimpleButton } from "@/shared/ui/simple-button";
+import { useFocusTrap } from "@/shared/lib/hooks";
 
 import styles from "./popup.module.scss";
 import { Card } from "@/shared/ui/card";
@@ -20,36 +21,50 @@ interface PopupComponent extends FC<PopupProps> {
   Footer: FC<PopupWrapperProps>;
 }
 
-export const Popup = (({ children, onClose, title }: PopupProps) => (
-  <div className={styles.popup} onClick={onClose}>
-    <div className={styles.body} onClick={(e) => e.stopPropagation()}>
-      <div className={styles.headerContainer}>
-        <div className={styles.header}>
-          <SimpleButton onClick={onClose} transparent className={styles.close}>
-            <Image
-              width={25}
-              height={25}
-              unoptimized
-              alt="Close Icon"
-              src={Exit.src}
-              className={styles.icon}
-            />
-          </SimpleButton>
-          {title && (
-            <BedrockText
-              text={title}
-              font="Minecraft"
-              type="h3"
-              color="white"
-              textAlign="center"
-            />
-          )}
+export const Popup = (({ children, onClose, title }: PopupProps) => {
+  const popupRef = useRef<HTMLDivElement>(null);
+
+  useFocusTrap(popupRef);
+
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
+
+  return (
+    <div className={styles.popup} onClick={onClose}>
+      <div ref={popupRef} className={styles.body} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.headerContainer}>
+          <div className={styles.header}>
+            <SimpleButton onClick={onClose} transparent className={styles.close}>
+              <Image
+                width={25}
+                height={25}
+                unoptimized
+                alt="Close Icon"
+                src={Exit.src}
+                className={styles.icon}
+              />
+            </SimpleButton>
+            {title && (
+              <BedrockText
+                text={title}
+                type="p"
+                color="white"
+                textAlign="center"
+              />
+            )}
+          </div>
         </div>
+        {children}
       </div>
-      {children}
     </div>
-  </div>
-)) as PopupComponent;
+  );
+}) as PopupComponent;
 
 interface PopupWrapperProps {
   children: ReactNode;
