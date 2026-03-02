@@ -1,4 +1,4 @@
-const debug = process.env.DEBUG === "true";
+const debug = process.env.DEBUG !== "false";
 const slot = process.env.DEPLOY_SLOT || "blue";
 
 if (debug) {
