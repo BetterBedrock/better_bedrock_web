@@ -75,7 +75,7 @@ export const ProjectDownloadPopup = ({
       )}
       <Card className={styles.card} sub ref={ref}>
         <Card.Body className={styles.cardBody}>
-          <ButtonGroup>
+          <ButtonGroup direction="horizontal">
             <Button
               id="download"
               width="100%"
