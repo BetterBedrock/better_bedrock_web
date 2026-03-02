@@ -8,8 +8,10 @@ import { notFound } from "next/navigation";
 import { Card } from "@/shared/ui/card";
 
 import { styles } from "@/pages/profile/index";
+import { ProfileTabHeader } from "@/pages/profile/ui/profile-tab-header/profile-tab-header";
 import { fetchLoggedUser } from "@/entities/auth";
 import { fetchUserByName } from "@/entities/user";
+import { BedrockText } from "@/shared/ui/bedrock-text";
 
 interface ProfileProps {
   children: ReactNode;
@@ -68,10 +70,35 @@ export default async function LayoutProfile({
         </Card.Body>
       </Card>
 
+      {visible && <Card fullWidth>
+        <Card.Body gap="sm">
+          <div>
+            <BedrockText
+              text="Dashboard"
+              color="white"
+              type="h1"
+              font="Minecraft"
+            />
+            <BedrockText
+              text="Manage your profile and projects"
+              color="white"
+              type="p"
+            />
+          </div>
+          <Tabs params={resolvedParams} />
+        </Card.Body>
+      </Card>}
+
       <Card fullWidth>
-        <Card.Body>{visible && <Tabs params={resolvedParams} />}</Card.Body>
-        {visible && <Card.Divider />}
-        <Card.Body>{children}</Card.Body>
+        <Card.Body gap="sm">
+          <ProfileTabHeader visible={visible} />
+        </Card.Body>
+
+        <Card.Divider />
+
+        <Card.Body>
+          {children}
+        </Card.Body>
       </Card>
     </Section>
   );
