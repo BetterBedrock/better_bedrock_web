@@ -285,7 +285,7 @@ export class ProjectController {
     @ApiBearerAuth()
     @Throttle({
         default: {
-            ttl: 60000,
+            ttl: 5000,
             limit: 1,
         },
     })
