@@ -26,12 +26,12 @@ export const ProjectsCard = async ({ params }: ProjectsCardProps) => {
   return (
     <Card fullWidth>
       <ProjectsCardSearchProvider>
-        <Card.Body gap="md">
+        <Card.Body>
           <ProjectsCardTitle />
           <ProjectsCardDescription />
         </Card.Body>
         <Card.Divider />
-        <Card.Body gap="md">
+        <Card.Body gap="sm">
           <ProjectsCardFilters />
         </Card.Body>
         <Card.Divider />

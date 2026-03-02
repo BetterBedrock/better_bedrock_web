@@ -24,7 +24,7 @@ export const ProjectsCardFilters = () => {
   };
 
   return (
-    <div className={styles.filters}>
+    <>
       <ProjectsCardSearchBar />
       <ProjectsCardType
         onOpenChange={handleTypeOpenChange}
@@ -35,6 +35,6 @@ export const ProjectsCardFilters = () => {
         onOpenChange={handleOrderOpenChange}
         closeTrigger={orderCloseTrigger}
       />
-    </div>
+    </>
   );
 };
