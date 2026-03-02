@@ -30,7 +30,7 @@ jobs:
           timeout: 300s
           script_stop: true
           script: |
-            bash /home/${{ secrets.USERNAME }}/deploy.sh
+            bash /root/deploy.sh
 
       - name: Update Deployment Status (Success)
         if: success()
