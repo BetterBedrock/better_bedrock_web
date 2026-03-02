@@ -54,6 +54,10 @@
 .searchbarContainer {
   display: flex;
   align-items: center;
+
+  input {
+    height: stretch;
+  }
 }
 
 .searchbar {
