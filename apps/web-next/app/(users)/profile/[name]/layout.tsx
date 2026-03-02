@@ -7,7 +7,8 @@ import { User } from "@/pages/profile/ui/user/user";
 import { notFound } from "next/navigation";
 import { Card } from "@/shared/ui/card";
 
-import { styles, ProfileTabHeader } from "@/pages/profile/index";
+import { styles } from "@/pages/profile/index";
+import { ProfileTabHeader } from "@/pages/profile/ui/profile-tab-header/profile-tab-header";
 import { fetchLoggedUser } from "@/entities/auth";
 import { fetchUserByName } from "@/entities/user";
 import { BedrockText } from "@/shared/ui/bedrock-text";
