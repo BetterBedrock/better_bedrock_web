@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev --port 3000",
     "build": "next build",
-    "serve-dev": "next start",
-    "serve": "next start --port 3002",
+    "serve": "next start",
     "lint": "eslint",
     "steiger": "steiger ./src",
     "generate:api": "openapi-generator-cli generate -g typescript-axios -i http://localhost:8084/documentation/json -o ./src/shared/lib/openapi --skip-validate-spec"
