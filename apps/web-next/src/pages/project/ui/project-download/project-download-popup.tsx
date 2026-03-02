@@ -12,6 +12,7 @@ import { useNotification } from "@/app/providers/notification";
 import styles from "./project-download.module.scss";
 import { Card } from "@/shared/ui/card";
 import { useDisappearDownloadButton } from "@/pages/project/model/use-disappear-download-button";
+import { ButtonGroup } from "@/shared/ui/button-group";
 
 interface ProjectDownloadPopupProps {
   voucher?: VoucherDto;
@@ -74,70 +75,72 @@ export const ProjectDownloadPopup = ({
       )}
       <Card className={styles.card} sub ref={ref}>
         <Card.Body className={styles.cardBody}>
-          <Button
-            id="download"
-            width="100%"
-            type="green"
-            onClick={handleClick}
-            center
-            className={styles.anchor}
-          >
-            <BedrockText text="Download" type="p" color="white" />
-          </Button>
-          {!hideExtraButtons && (
-            <>
+          <ButtonGroup>
+            <Button
+              id="download"
+              width="100%"
+              type="green"
+              onClick={handleClick}
+              center
+              className={styles.anchor}
+            >
+              <BedrockText text="Download" type="p" color="white" />
+            </Button>
+            {!hideExtraButtons && (
+              <>
+                <Button
+                  id="rate"
+                  width="auto"
+                  type="dark"
+                  onClick={handleScrollToRate}
+                  center
+                  className={`${styles.anchor} ${styles.mobileExtraButton}`}
+                >
+                  <Image
+                    src="/icons/rate2.png"
+                    alt="Rate"
+                    width={24}
+                    height={24}
+                    className={styles.iconImage}
+                  />
+                </Button>
+                <Button
+                  id="comment"
+                  width="auto"
+                  type="dark"
+                  onClick={handleScrollToComment}
+                  center
+                  className={`${styles.anchor} ${styles.mobileExtraButton}`}
+                >
+                  <Image
+                    src="/icons/comment2.png"
+                    alt="Comment"
+                    width={24}
+                    height={24}
+                    className={styles.iconImage}
+                  />
+                </Button>
+              </>
+            )}
+            {showPublishButton && (
               <Button
-                id="rate"
+                id="publish-scroll"
                 width="auto"
                 type="dark"
-                onClick={handleScrollToRate}
+                onClick={handleScrollToPublish}
                 center
                 className={`${styles.anchor} ${styles.mobileExtraButton}`}
               >
                 <Image
                   src="/icons/rate2.png"
-                  alt="Rate"
+                  alt="Publish"
                   width={24}
                   height={24}
                   className={styles.iconImage}
                 />
               </Button>
-              <Button
-                id="comment"
-                width="auto"
-                type="dark"
-                onClick={handleScrollToComment}
-                center
-                className={`${styles.anchor} ${styles.mobileExtraButton}`}
-              >
-                <Image
-                  src="/icons/comment2.png"
-                  alt="Comment"
-                  width={24}
-                  height={24}
-                  className={styles.iconImage}
-                />
-              </Button>
-            </>
-          )}
-          {showPublishButton && (
-            <Button
-              id="publish-scroll"
-              width="auto"
-              type="dark"
-              onClick={handleScrollToPublish}
-              center
-              className={`${styles.anchor} ${styles.mobileExtraButton}`}
-            >
-              <Image
-                src="/icons/rate2.png"
-                alt="Publish"
-                width={24}
-                height={24}
-                className={styles.iconImage}
-              />
-            </Button>
-          )}
+            )}
+          </ButtonGroup>
         </Card.Body>
       </Card>
     </>

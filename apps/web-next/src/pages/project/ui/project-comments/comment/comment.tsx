@@ -21,13 +21,21 @@ import { ProjectCommentDto, UserDto } from "@/shared/lib/openapi";
 import { reportUser } from "@/entities/report";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useNotification } from "@/app/providers/notification";
 
 interface CommentProps {
   comment: ProjectCommentDto;
   user: UserDto | undefined;
   className?: string;
   subComments?: CommentProps[]; // For future use with nested comments
-  onReply?: (projectId: string, parentId: string, comment: string) => void;
+  onReply?: (
+    projectId: string,
+    parentId: string,
+    comment: string,
+  ) => Promise<{
+    data: ProjectCommentDto;
+    error: string | undefined;
+  }>;
   onDelete?: (commentId: string) => Promise<void>;
 }
 
@@ -40,6 +48,7 @@ export const Comment = ({
   className,
 }: CommentProps) => {
   const router = useRouter();
+  const { throwError } = useNotification();
   const [isReplying, setIsReplying] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -158,12 +167,20 @@ export const Comment = ({
               <Button
                 type="green"
                 center
-                onClick={() => {
-                  onReply?.(
+                onClick={async () => {
+                  if (!onReply) return;
+
+                  const { data, error } = await onReply(
                     comment.projectId,
                     comment.id,
                     inputRef.current?.value ?? "",
                   );
+
+                  if (error || !data) {
+                    if (error) throwError(null, error);
+                    return;
+                  }
+                  
                   setIsReplying(false);
                   router.refresh();
                 }}
