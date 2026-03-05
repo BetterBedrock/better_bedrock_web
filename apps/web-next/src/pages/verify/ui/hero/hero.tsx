@@ -66,7 +66,7 @@ export const Hero = ({ hash, voucher }: HeroProps) => {
       </Card.Body>
       <Card.Divider />
       <Card.Body>
-        <ShareIcons center />
+        <ShareIcons projectId={downloadItem?.id} center />
       </Card.Body>
     </Card>
   );
