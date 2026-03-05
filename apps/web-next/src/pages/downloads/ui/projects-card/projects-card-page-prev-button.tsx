@@ -5,6 +5,10 @@ import { Routes } from "@/shared/lib/utils";
 
 import styles from "./projects-card.module.scss";
 
+import PreviousIcon from "@/public/images/w_left_arrow.png";
+import Image from "next/image";
+import clsx from "clsx";
+
 interface ProjectsCardPagePrevButtonProps {
   currentPage: number;
 }
@@ -17,7 +21,15 @@ export const ProjectsCardPagePrevButton = ({
     hideStyles
     className={styles.action}
   >
-    <Button type="white" width="100%" center>
+    <Button type="white" width="100%" center className={styles.button}>
+      <Image
+        height={31}
+        width={31}
+        src={PreviousIcon.src}
+        className={clsx(styles.icon, styles.dark)}
+        alt="Previous Page Icon"
+        unoptimized
+      />
       <BedrockText text="Previous Page" type="p" color="black" />
     </Button>
   </Link>

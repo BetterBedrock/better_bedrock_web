@@ -128,5 +128,13 @@
   white-space: nowrap;
 }
 
-.more {
+.icon {
+  image-rendering: pixelated;
+  &.dark {
+    filter: invert(1);
+  }
+}
+
+.button * {
+  margin: 0 !important;
 }
