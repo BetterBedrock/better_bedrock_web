@@ -1,6 +1,6 @@
 import { FeaturedCard } from "@/pages/downloads/ui/featured-card/featured-card";
 import { ProjectsCard } from "@/pages/downloads/ui/projects-card/projects-card";
-import { getCurrentPaginationPage } from "@/shared/lib/utils/math";
+import { getCurrentPaginationPage } from "@/shared/lib/utils";
 
 export interface BedrockModsProps {
   params: Promise<{ page?: string[] }>;
