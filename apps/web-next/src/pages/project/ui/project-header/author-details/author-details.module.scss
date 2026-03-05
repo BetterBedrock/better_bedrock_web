@@ -1,5 +1,11 @@
 @use "@/shared/ui" as g;
 
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: g.$padding-xxsm;
+}
+
 .editor {
   @include g.card-margin();
 }
