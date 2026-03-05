@@ -8,29 +8,38 @@
   gap: g.$padding-xxsm;
 }
 
-.retryLabel {
-  @include g.no-drag();
-}
-
 .bar {
   max-width: 100%;
   height: 20px;
 }
 
+.link {
+  color: white !important;
+}
+
 .redownload {
+  @include g.no-drag();
+  height: 0;
+
   opacity: 0;
   pointer-events: none;
   animation: fadeIn 0.25s ease forwards;
-  animation-delay: 0.25s;
-}
+  animation-delay: 4.75s;
 
-@keyframes fadeIn {
-  to {
-    opacity: 0.7;
-    pointer-events: auto;
+  &.visible {
+    animation: fadeIn 0.25s ease forwards;
+    animation-delay: 2s;
   }
 }
 
-.link {
-  color: white !important;
+@keyframes fadeIn {
+  from {
+    height: auto;
+  }
+  to {
+    height: auto;
+    display: block !important;
+    opacity: 0.7;
+    pointer-events: auto;
+  }
 }
