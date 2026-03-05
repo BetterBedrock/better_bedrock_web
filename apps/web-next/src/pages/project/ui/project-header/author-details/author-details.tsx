@@ -3,13 +3,15 @@ import { DetailedProjectDto } from "@/shared/lib/openapi";
 import { AuthorDetailsAvatar } from "@/pages/project/ui/project-header/author-details/author-details-avatar";
 import { AuthorDetailsSkipButton } from "@/pages/project/ui/project-header/author-details/author-details-skip-button";
 
+import styles from "./author-details.module.scss";
+
 interface AuthorDetails {
   mode: ProjectMode;
   selectedProject: DetailedProjectDto;
 }
 
 export const AuthorDetails = ({ mode, selectedProject }: AuthorDetails) => (
-  <div>
+  <div className={styles.details}>
     <AuthorDetailsAvatar selectedProject={selectedProject} />
     {mode === "view" && <AuthorDetailsSkipButton />}
   </div>
