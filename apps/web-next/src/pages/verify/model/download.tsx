@@ -16,7 +16,7 @@ interface DownloadContextProps {
   downloading: boolean;
   downloadProgress: number;
   downloadItem: ProjectDto | undefined;
-  download: (code?: string) => Promise<void>;
+  download: () => Promise<void>;
 }
 
 interface DownloadProviderProps {
