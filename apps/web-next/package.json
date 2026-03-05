@@ -39,6 +39,7 @@
     "react-hook-form": "^7.60.0",
     "react-markdown": "^10.1.0",
     "react-responsive": "^10.0.1",
+    "react-share": "https://github.com/iDarkQ/react-share.git",
     "sass": "^1.93.2",
     "use-sound": "^5.0.0",
     "uuid": "^13.0.0",
