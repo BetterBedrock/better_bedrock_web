@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { ProjectMode } from "@/shared/ui/grid-download-card";
 import { Rating } from "@/shared/ui/rating";
 import { DetailedProjectDto } from "@/shared/lib/openapi";
@@ -8,6 +7,7 @@ import { ProjectDetailsEditButton } from "@/pages/project/ui/project-header/proj
 
 import styles from "./project-details.module.scss";
 import { fetchLoggedUser } from "@/entities/auth";
+import { ShareIcons } from "@/shared/ui/share-icons";
 
 interface ProjectDetailsProps {
   mode: ProjectMode;
@@ -26,7 +26,7 @@ export const ProjectDetails = async ({
     mode === "view" && user && user?.id !== detailedProject.userId;
 
   return (
-    <div >
+    <div className={styles.details}>
       <div className={styles.title}>
         <ProjectDetailsTitle detailedProject={detailedProject} />
         {canReport && (
@@ -36,6 +36,7 @@ export const ProjectDetails = async ({
           <ProjectDetailsEditButton detailedProject={detailedProject} />
         )}
       </div>
+      {mode === "view" && <ShareIcons projectId={detailedProject.id} />}
       {mode === "view" && (
         <Rating
           rating={detailedProject.rating.average}

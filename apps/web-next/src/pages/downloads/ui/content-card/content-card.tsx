@@ -4,9 +4,7 @@ import { ContentCardTitle } from "./content-card-title";
 import { fetchInitialProjects } from "@/entities/project";
 
 export const ContentCard = async () => {
-  const { searchResults } = await fetchInitialProjects({
-    params: { page: [] },
-  });
+  const { searchResults } = await fetchInitialProjects(1);
   const items = searchResults.items.slice(0, 5);
 
   return (
