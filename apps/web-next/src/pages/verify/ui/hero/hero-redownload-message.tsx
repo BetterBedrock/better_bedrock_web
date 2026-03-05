@@ -7,46 +7,29 @@ import clsx from "clsx";
 
 import styles from "./hero.module.scss";
 
-interface HeroRedownloadMessageProps {
-  voucher?: string;
-}
-
-export const HeroRedownloadMessage = ({
-  voucher,
-}: HeroRedownloadMessageProps) => {
+export const HeroRedownloadMessage = () => {
   const { download, downloadProgress } = useDownload();
   const [visible, setVisible] = useState(false);
-  const [delayed, setDelayed] = useState(false);
-  const [animationKey, setAnimationKey] = useState(0);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setDelayed(true), 4750);
-    return () => clearTimeout(timeout);
-  }, []);
 
   useEffect(() => {
     if (downloadProgress === 100) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setVisible(true);
     }
   }, [downloadProgress]);
 
   const handleRetry = () => {
     setVisible(false);
-    setDelayed(false);
-    setAnimationKey((prev) => prev + 1);
-    download(voucher);
+    download();
   };
 
-  const htmlElement = (
+  return (
     <BedrockText
-      key={animationKey}
       type="p"
       color="white"
-      extraClassName={clsx(styles.retryLabel, styles.redownload)}
+      extraClassName={clsx(styles.redownload, visible && styles.visible)}
       text="Problems with the download? Click to retry!"
       onClick={handleRetry}
     />
   );
-
-  return <>{(visible || delayed) && htmlElement}</>;
 };
