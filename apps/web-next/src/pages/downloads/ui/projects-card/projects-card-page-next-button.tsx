@@ -21,15 +21,17 @@ export const ProjectsCardPageNextButton = ({
     className={styles.action}
   >
     <Button type="green" width="100%" center className={styles.button}>
-      <BedrockText text="Next Page" type="p" color="white" />
-      <Image
-        height={31}
-        width={31}
-        src={NextIcon.src}
-        className={styles.icon}
-        alt="Previous Page Icon"
-        unoptimized
-      />
+      <div className={styles.items}>
+        <BedrockText text="Next Page" type="p" color="white" />
+        <Image
+          height={31}
+          width={31}
+          src={NextIcon.src}
+          className={styles.icon}
+          alt="Previous Page Icon"
+          unoptimized
+        />
+      </div>
     </Button>
   </Link>
 );
