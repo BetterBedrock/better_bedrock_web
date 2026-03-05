@@ -22,15 +22,17 @@ export const ProjectsCardPagePrevButton = ({
     className={styles.action}
   >
     <Button type="white" width="100%" center className={styles.button}>
-      <Image
-        height={31}
-        width={31}
-        src={PreviousIcon.src}
-        className={clsx(styles.icon, styles.dark)}
-        alt="Previous Page Icon"
-        unoptimized
-      />
-      <BedrockText text="Previous Page" type="p" color="black" />
+      <div className={styles.items}>
+        <Image
+          height={31}
+          width={31}
+          src={PreviousIcon.src}
+          className={clsx(styles.icon, styles.dark)}
+          alt="Previous Page Icon"
+          unoptimized
+        />
+        <BedrockText text="Previous Page" type="p" color="black" />
+      </div>
     </Button>
   </Link>
 );
