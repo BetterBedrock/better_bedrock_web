@@ -1,0 +1,16 @@
+@use "@/shared/ui" as g;
+
+.list {
+  display: flex;
+  gap: g.$padding-xxsm;
+
+  .center {
+    justify-content: center;
+  }
+}
+
+.icon {
+  height: g.$icon-sm;
+  width: g.$icon-sm;
+  border: g.$minecraftdepth solid rgb(30, 30, 31);
+}
