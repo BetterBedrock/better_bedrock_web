@@ -2,7 +2,7 @@ export enum Routes {
     HOME = "/",
     DOWNLOADS_BETTERBEDROCK = "/downloads/better-bedrock",
     DOWNLOADS_SIDE_PROJECTS = "/downloads/side-projects",
-    DOWNLOADS_MAIN = "/downloads/main",
+    DOWNLOADS_BEDROCK_MODS = "/downloads/bedrock-mods",
     PANEL = "/panel",
     PANEL_DASHBOARD = "/panel/dashboard",
     PANEL_ANALYTICS = "/panel/analytics",

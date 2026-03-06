@@ -7,7 +7,6 @@ const stripePromise = loadStripe(
 
 export const createStripeSession = async (priceId: string) => {
     try {
-        console.log("Creating Stripe session for priceId:", priceId);
         const session = await createSession(priceId);
         if (!session || !session.checkoutId) {
             console.error("Failed to create a checkout session.");

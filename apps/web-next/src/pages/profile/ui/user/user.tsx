@@ -10,13 +10,15 @@ import { UserProfileRating } from "./user-profile-rating";
 import { loadUserProfile, loadUserRating } from "@/entities/user";
 
 import styles from "./user.module.scss";
+import { UserNewsInfo } from "./user-news-info";
 
 interface UserProps {
   params?: { name: string };
 }
 
 export const generateMetadata = async ({ params }: UserProps) => {
-  const selectedUser = await loadUserProfile(params?.name);
+  const name = decodeURIComponent(params?.name ?? "");
+  const selectedUser = await loadUserProfile(name);
   return {
     title: selectedUser ? `${selectedUser.name} - Profile` : "User Profile",
     description:
@@ -26,14 +28,16 @@ export const generateMetadata = async ({ params }: UserProps) => {
 };
 
 export const User = async ({ params }: UserProps) => {
-  const selectedUser = await loadUserProfile(params?.name);
+  const name = decodeURIComponent(params?.name ?? "");
+  const selectedUser = await loadUserProfile(name);
   const rating = await loadUserRating(selectedUser.id);
 
   return (
     <div className={styles.container}>
+      <UserNewsInfo selectedUser={selectedUser} />
       <UserLinkvertiseInfo selectedUser={selectedUser} />
       <Card sub>
-        <Card.Body className={styles.profileCardBody}>
+        <Card.Body>
           <div className={styles.profile}>
             <UserProfilePicture name={selectedUser!.name} />
             <div className={styles.info}>

@@ -74,7 +74,7 @@ We may update our Privacy Policy from time to time. We will notify you of any ch
 If you have any questions about this Privacy Policy, you can contact us:
 
 * By email: idarkq.dev@gmail.com
-* By contacting via discord: idarkq
+* By contacting via Discord: idarkq
         `}
   </ReactMarkdown>
 );

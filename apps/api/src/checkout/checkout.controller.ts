@@ -8,6 +8,8 @@ import {
     Query,
     NotFoundException,
     BadRequestException,
+    Inject,
+    Ip,
 } from "@nestjs/common";
 import { CheckoutService } from "~/checkout/checkout.service";
 import { ActivateVoucherDto } from "~/checkout/dto/activate-voucher.dto";
@@ -22,6 +24,8 @@ import { AnalyticsService } from "~/analytics/analytics.service";
 import { AnalyticsNames } from "~/analytics/constants/analytics-names";
 import { Throttle } from "@nestjs/throttler";
 import { MailService } from "~/mail/mail.service";
+import { Cache, CACHE_MANAGER } from "@nestjs/cache-manager";
+import dayjs from "dayjs";
 
 @Controller("checkout")
 export class CheckoutController {
@@ -30,11 +34,31 @@ export class CheckoutController {
         private voucherService: VoucherService,
         private analyticsService: AnalyticsService,
         private mailService: MailService,
+        @Inject(CACHE_MANAGER) private cacheManager: Cache,
     ) {}
 
     @Get("offers")
-    async offers(): Promise<CheckoutOffersDto> {
-        await this.analyticsService.incrementAnalytics(AnalyticsNames.visits, "general");
+    async offers(@Ip() ip: string): Promise<CheckoutOffersDto> {
+        const now = dayjs();
+
+        const minuteKey = `pageLoad:minute:${ip}:${now.format("YYYY-MM-DD:HH:mm")}`;
+        const dailyKey = `pageLoad:daily:${ip}:${now.format("YYYY-MM-DD")}`;
+
+        const minuteCounted = await this.cacheManager.get(minuteKey);
+        if (!minuteCounted) {
+            await this.analyticsService.incrementAnalytics(AnalyticsNames.visits, "general");
+
+            await this.cacheManager.set(minuteKey, true, 60_000);
+        }
+
+        const dailyCounted = await this.cacheManager.get(dailyKey);
+        if (!dailyCounted) {
+            await this.analyticsService.incrementAnalytics(AnalyticsNames.uniqueVisits, "general");
+
+            const msUntilMidnight = now.endOf("day").diff(now) + 1;
+
+            await this.cacheManager.set(dailyKey, true, msUntilMidnight);
+        }
 
         return CHECKOUT_OFFERS;
     }

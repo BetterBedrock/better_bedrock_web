@@ -1,4 +1,3 @@
-import { DraftsAction } from "./drafts-action";
 import { GridDownloadCardList } from "@/shared/ui/grid-download-card-list";
 import { Banner } from "@/shared/ui/banner";
 
@@ -10,11 +9,10 @@ interface DraftsPageProps {
 }
 
 export const DraftsPage = async ({ params }: DraftsPageProps) => {
-  const { isOwner, drafts } = await loadProfileDraftsPageData(params);
+  const { drafts } = await loadProfileDraftsPageData(params);
 
   return (
     <div className={styles.list}>
-      {isOwner && <DraftsAction />}
       {drafts.length > 0 ? (
         <GridDownloadCardList projects={drafts} mode="edit" />
       ) : (

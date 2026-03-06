@@ -12,7 +12,13 @@ import { useProjectsCardSearch } from "@/pages/downloads/model/projects-card-sea
 
 import styles from "./projects-card.module.scss";
 
-export const ProjectsCardType = () => {
+export const ProjectsCardType = ({
+  onOpenChange,
+  closeTrigger,
+}: {
+  onOpenChange?: (open: boolean) => void;
+  closeTrigger?: number;
+}) => {
   const { selectedType } = useProjectsCardSearch();
 
   const types = Object.entries(SEARCH_PROJECT_TYPES).map(([key, label]) => (
@@ -28,6 +34,8 @@ export const ProjectsCardType = () => {
         className={styles.types}
         limit={true}
         type="green"
+        onOpenChange={onOpenChange}
+        closeTrigger={closeTrigger}
       >
         <ButtonGroup direction="vertical">{types}</ButtonGroup>
       </Collapsible>

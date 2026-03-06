@@ -12,7 +12,7 @@ interface TabsProps {
 
 export const Tabs = async ({ params }: TabsProps) => {
   const user = await fetchLoggedUser();
-  const name = params?.name;
+  const name = decodeURIComponent(params?.name ?? "");
 
   if (user?.name !== name && !user?.admin) {
     return null;

@@ -24,6 +24,7 @@ export const ProjectCardPreviewActionsPublish = () => {
       className={styles.button}
     >
       <Button
+        id="publish-button"
         width="100%"
         height="100%"
         type="gold"

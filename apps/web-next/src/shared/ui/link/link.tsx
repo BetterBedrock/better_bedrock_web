@@ -11,6 +11,7 @@ interface LinkProps {
   className?: string;
   onClick?: () => void;
   scroll?: boolean;
+  underlined?: boolean;
 }
 
 export const Link = ({
@@ -21,13 +22,14 @@ export const Link = ({
   className,
   onClick,
   scroll,
+  underlined = false
 }: LinkProps) => {
   if (!link) return children;
 
   return isExternalLink ? (
     <a
       href={link}
-      className={clsx(className && className, hideStyles && styles.hide)}
+      className={clsx(className && className, hideStyles && styles.hide, underlined && styles.underlined)}
       target="_blank"
       rel="noopener noreferrer"
       onClick={onClick}
@@ -37,7 +39,7 @@ export const Link = ({
   ) : (
     <NextRouterLink
       href={link}
-      className={clsx(className && className, hideStyles && styles.hide)}
+      className={clsx(className && className, hideStyles && styles.hide, underlined && styles.underlined)}
       onClick={onClick}
       scroll={scroll}
     >

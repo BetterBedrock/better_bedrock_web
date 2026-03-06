@@ -6,12 +6,14 @@ import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 import { useNotification } from "@/app/providers/notification";
 import { Routes } from "@/shared/lib/utils";
+import { useState } from "react";
 
 export const useDownloadButton = (
   user: UserDto,
   detailedProject: DetailedProjectDto,
   voucher?: VoucherDto,
 ) => {
+  const [openPopup, setOpenPopup] = useState(false);
   const { sendNotification } = useNotification();
   const router = useRouter();
 
@@ -31,7 +33,7 @@ export const useDownloadButton = (
   const instantDownload =
     isCreatorOrAdmin ||
     (isVoucherValidType && !hasVoucherExpired && !isVoucherUsed);
-    
+
   const handleClick = async () => {
     if (isVoucherValidType) {
       sendNotification({
@@ -43,17 +45,23 @@ export const useDownloadButton = (
       sendNotification({
         title: "Cannot Apply Voucher",
         label:
-          "Your voucher allows to download only better bedrock content without ads.",
+          "Your voucher allows you to download only Better Bedrock content without ads.",
         type: "info",
       });
       return;
     }
 
-    if (!instantDownload) return;
+    if (!instantDownload) {
+      setOpenPopup(true);
+      return;
+    }
 
     await generateDownload(detailedProject.id);
+
     router.push(Routes.FETCH);
   };
 
-  return { handleClick, instantDownload };
+  const handleClosePopup = () => setOpenPopup(false);
+
+  return { handleClick, openPopup, handleClosePopup };
 };

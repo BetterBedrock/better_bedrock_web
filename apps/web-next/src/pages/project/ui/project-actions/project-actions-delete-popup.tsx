@@ -63,7 +63,7 @@ export const ProjectActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
                   <Popup.Item>
                     <BedrockText
                       textAlign="start"
-                      text="Selecting this option will delete only published version of this project. Your draft will remain untouched."
+                      text="Selecting this option will delete only the published version of this project. Your draft will remain untouched."
                       type="p"
                       color="white"
                     />
@@ -99,7 +99,7 @@ export const ProjectActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
           </Button>
           <Tooltip
             hidden={!disableDeleteButton}
-            text="You need to choose delete option"
+            text="You need to choose a delete option"
             className={styles.tooltip}
           >
             <Button

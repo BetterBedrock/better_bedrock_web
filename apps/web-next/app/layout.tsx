@@ -8,15 +8,14 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import type { Metadata } from "next";
 import { CookiesProvider } from "next-client-cookies/server";
 import localFont from "next/font/local";
+import Script from "next/script";
+
+const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || "AW-17799390098";
 
 export const metadata: Metadata = {
-  title: {
-    default:
-      "Minecraft PE Texture Packs, Scripts, Maps, Skins & More | Better Bedrock",
-    template: "%s | Better Bedrock",
-  },
+  title: "Better Bedrock - Minecraft Bedrock Mods, Texture Packs & More",
   description:
-    "Discover the best Minecraft PE texture packs, scripts, maps, skins, and more on Better Bedrock. Enhance your gaming experience with high-quality mods and resources.",
+    "Better Bedrock is your ultimate hub for Minecraft Bedrock mods, texture packs, scripts, maps, and skins. Explore thousands of high-quality mods and enhancements for Bedrock Edition.",
   manifest: "/manifest.json",
   openGraph: {
     type: "website",
@@ -73,6 +72,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${ADS_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${ADS_ID}');
+          `}
+        </Script>
+      </head>
       <body
         className={`relative ${mojangles.className} ${mojanglesBold.className} ${minecraft.className} ${minecraftFive.className}`}
       >

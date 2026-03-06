@@ -140,7 +140,8 @@ ul {
 p,
 code,
 ul,
-li {
+li,
+input {
   font-family: "Mojangles";
   text-align: left;
   font-size: 1.25rem;
@@ -213,4 +214,9 @@ h2 {
     font-size: 1.75rem;
     line-height: 2rem;
   }
+}
+
+a:focus-visible {
+  outline: none;
+  filter: brightness(0.75);
 }

@@ -14,7 +14,7 @@ export const ProjectRateProject = async ({
   const userRating = await fetchUserProjectRating(detailedProject.id);
 
   return (
-    <div className={styles.center}>
+    <div id="project-rate-section" className={styles.center}>
       <ProjectRateRating id={detailedProject.id} userRating={userRating} />
     </div>
   );

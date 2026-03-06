@@ -12,9 +12,9 @@
     0px g.$minecraftdepth 0px 0px inset #5a5a5a,
     0px calc(g.$minecraftdepth * -1) 0px 0px inset #323232;
 
-  .body {
-    padding-block: calc(g.$padding-xsm) !important;
-  }
+  // .body {
+  //   padding-block: calc(g.$padding-xsm) !important;
+  // }
 }
 
 .fullWidth {
@@ -62,8 +62,12 @@
   flex-direction: column;
 }
 
-.xsm {
+.xxsm {
   gap: g.$padding-xxsm;
+}
+
+.xsm {
+  gap: g.$padding-xsm;
 }
 
 .sm {

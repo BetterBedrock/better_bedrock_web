@@ -4,12 +4,12 @@ import { ProjectDescription } from "@/pages/project/ui/project-description";
 import { ProjectHeader } from "@/pages/project/ui/project-header";
 import { ProjectRateProject } from "@/pages/project/ui/project-rate-project";
 import { notFound } from "next/navigation";
-import { baseUrl } from "@/shared/lib/utils";
 import {
+  baseUrl,
   capitalizeFirstLetter,
-  extractFirstLinesFromTiptap,
   singularize,
 } from "@/shared/lib/utils";
+import { extractFirstLinesFromTiptap } from "@/shared/lib/utils";
 import { ProjectDownload } from "./project-download/project-download";
 import { ProjectPageProps } from "@/app/providers/project-manager";
 import { fetchLoggedUser } from "@/entities/auth";
@@ -20,10 +20,10 @@ export const generateMetadata = async ({ params }: ProjectPageProps) => {
 
   if (!data) return notFound();
 
-  const title = `${data.title} - ${capitalizeFirstLetter(singularize(data.type))}`;
+  const title = `${data.title} - Minecraft Bedrock ${capitalizeFirstLetter(singularize(data.type))}`;
   const description =
     extractFirstLinesFromTiptap(data.description) ??
-    "The best texture packs, scripts, maps, skins, and more for Minecraft PE on Better Bedrock.";
+    "The best minecraft bedrock mods, texture packs, scripts, maps, skins, and more.";
 
   return {
     title,

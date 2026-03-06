@@ -10,6 +10,6 @@ export const replyToComment = async (
 ) => {
     const secret = await fetchSecret();
 
-    const { data } = await replyToCommentRequest(id, parentId, content, secret);
-    return data;
+    const { data, error } = await replyToCommentRequest(id, parentId, content, secret);
+    return { data, error };
 };

@@ -4,7 +4,6 @@ import { fetchLoggedUser } from "@/entities/auth";
 import { Routes } from "@/shared/lib/utils";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 
-import styles from "./user.module.scss";
 import { Link } from "@/shared/ui/link";
 
 interface UserLinkvertiseInfoProps {
@@ -22,20 +21,18 @@ export const UserLinkvertiseInfo = async ({
   if (!shouldShow) return null;
 
   return (
-    <div className={styles.AdBanner}>
-      <Banner
-        type="info"
-        message={
-          <BedrockText textAlign="center" color="white">
-            Almost there! Unlock 100% of your ad revenue now. Finish your AD
-            provider setup in profile settings and start earning from your
-            downloads!{" "}
-            <Link link={Routes.MONETIZATION} className={styles.link}>
-              Check this tutorial page to learn how!
-            </Link>
-          </BedrockText>
-        }
-      />
-    </div>
+    <Banner
+      type="info"
+      message={
+        <BedrockText textAlign="center" color="white">
+          Almost there! Unlock 100% of your ad revenue now. Finish your AD
+          provider setup in profile settings and start earning from your
+          downloads!{" "}
+          <Link link={Routes.MONETIZATION} underlined>
+            Check this tutorial page to learn how!
+          </Link>
+        </BedrockText>
+      }
+    />
   );
 };

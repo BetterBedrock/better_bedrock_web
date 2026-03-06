@@ -10,6 +10,7 @@ import {
     IsNumber,
     IsOptional,
     IsString,
+    Matches,
     MaxLength,
     MinLength,
     ValidateNested,
@@ -18,6 +19,9 @@ import { TagNameDto } from "~/project/dto/tag-name.dto";
 
 export class ProjectDto {
     @IsString()
+    @Matches(/^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$/, {
+        message: "Only letters/numbers with single spaces between words allowed",
+    })
     @MinLength(3)
     @MaxLength(50)
     title: string;

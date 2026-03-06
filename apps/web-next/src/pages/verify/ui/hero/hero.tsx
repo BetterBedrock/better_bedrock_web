@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { ProjectDto, SimpleUserDto } from "@/shared/lib/openapi";
 import { CircularProgressIndicator } from "@/shared/ui/circular-progress-indicator";
 import { HeroCreatorBanner } from "@/pages/verify/ui/hero/hero-creator-banner";
+import { ShareIcons } from "@/shared/ui/share-icons";
 
 interface HeroProps {
   hash?: string;
@@ -33,7 +34,7 @@ export const Hero = ({ hash, voucher }: HeroProps) => {
       const creator = await fetchUserById(item?.userId ?? "");
 
       if (!item || !creator) {
-        redirect(Routes.DOWNLOADS_MAIN);
+        redirect(Routes.DOWNLOADS_BEDROCK_MODS);
       }
 
       setAuthor(creator);
@@ -62,6 +63,10 @@ export const Hero = ({ hash, voucher }: HeroProps) => {
             <HeroRedownloadMessage />
           </DownloadProvider>
         </div>
+      </Card.Body>
+      <Card.Divider />
+      <Card.Body>
+        <ShareIcons projectId={downloadItem?.id} center />
       </Card.Body>
     </Card>
   );

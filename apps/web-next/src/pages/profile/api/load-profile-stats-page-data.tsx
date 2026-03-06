@@ -14,8 +14,9 @@ export const loadProfileStatsPageData = async (
     notFound();
   }
 
+  const name = decodeURIComponent(loadedParams.name);
   const user = await fetchLoggedUser();
-  const selectedUser = await fetchUserByName(loadedParams.name);
+  const selectedUser = await fetchUserByName(name);
 
   if (!selectedUser) {
     notFound();

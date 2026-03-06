@@ -43,7 +43,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
         {
             title: "Featured",
             description:
-                "Enjoy playing Minecraft on a whole new level using latest version of the main texture pack!",
+                "Enjoy playing Minecraft on a whole new level using the latest version of the main texture pack!",
             items: [
                 {
                     description: "Enhance your gameplay with multiple mods and adjustable options!",
@@ -56,11 +56,11 @@ export const MAIN_LIST: DownloadsCategoryDto = {
         {
             title: "Extensions",
             description:
-                "Exploer extra packs that enhance your gameplay even further. Make sure to put these packs in correct order. Yellow ones require main BB pack to work, while orange ones can be used without it.",
+                "Explore extra packs that enhance your gameplay even further. Make sure to put these packs in the correct order. Yellow ones require the main BB pack to work, while orange ones can be used without it.",
             items: [
                 {
                     description:
-                        "Adds ability to create vertical beams around world to improve positioning",
+                        "Adds the ability to create vertical beams around the world to improve positioning",
                     projectId: "waypoints",
                     buttonType: "dark",
                     type: "yellow",
@@ -74,14 +74,14 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                 },
                 {
                     description:
-                        "Changes all fogs to make them unlimited and better for visibility",
+                        "Changes all fogs to make them unlimited and improve visibility",
                     projectId: "better_fogs",
                     buttonType: "dark",
                     type: "yellow",
                 },
                 {
                     description:
-                        "Brings special filter to the Lightener module, providing better visibility, similar to night vision! Doesn't work with all devices/graphic engines",
+                        "Brings a special filter to the Lightener module, providing better visibility, similar to night vision! It doesn't work with all devices/graphics engines",
                     projectId: "lightener_night_vision",
                     buttonType: "dark",
                     type: "yellow",
@@ -94,7 +94,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                 },
                 {
 
-                    description: "Changes water textures to make them more clean and visible",
+                    description: "Changes water textures to make them cleaner and more visible",
                     projectId: "clean_water",
                     buttonType: "dark",
                     type: "yellow",
@@ -144,7 +144,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
         {
             title: "Archived",
             description:
-                "If you want to try older versions and enjoy old-school Better Bedrock B) then you have that possibility! Note that these packs, and software, are deprecated, and may not be stable. We also save main content, so you cannot find here older extension packs.",
+                "If you want to try older versions and enjoy old-school Better Bedrock B), then you have that option! Note that these packs and software are deprecated and may not be stable. We also save only the main content, so you cannot find older extension packs here.",
             items: [
                 {
                     description: "Archived and discontinued.",

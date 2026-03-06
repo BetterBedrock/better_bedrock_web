@@ -5,8 +5,8 @@ import banner4 from "@/public/images/banners/bb4.webp";
 import banner5 from "@/public/images/banners/bb5.webp";
 import banner6 from "@/public/images/banners/bb6.webp";
 
-import crosshairBackground12 from "@/public/images/crosshair_backgrounds/12.webp";
 import crosshairBackground13 from "@/public/images/crosshair_backgrounds/13.webp";
+import crosshairBackground14 from "@/public/images/crosshair_backgrounds/14.webp";
 
 export interface AboutSectionElement {
   title: string;
@@ -41,7 +41,7 @@ export const aboutSectionsData: AboutSectionData[] = [
         image: banner3.src,
       },
     ],
-    backgroundImage: crosshairBackground12.src,
+    backgroundImage: crosshairBackground13.src,
   },
   {
     elements: [
@@ -64,6 +64,6 @@ export const aboutSectionsData: AboutSectionData[] = [
         image: banner6.src,
       },
     ],
-    backgroundImage: crosshairBackground13.src,
+    backgroundImage: crosshairBackground14.src,
   },
 ];

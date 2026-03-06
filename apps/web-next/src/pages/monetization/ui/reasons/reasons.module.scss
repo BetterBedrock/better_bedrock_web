@@ -33,4 +33,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: calc(g.$padding-xxsm * 2.5);
+
+  @media (max-width: 560px) {
+  grid-template-columns: 1fr;
+  }
 }

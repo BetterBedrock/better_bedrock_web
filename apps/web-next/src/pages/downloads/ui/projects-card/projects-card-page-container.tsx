@@ -27,7 +27,7 @@ export const ProjectsCardPageContainer = ({
     <>
       {!hasItems && <ProjectsCardEmpty />}
       {hasItems && <ProjectsCardList searchResults={projects!} />}
-      <ButtonGroup className={styles.actions}>
+      <ButtonGroup direction="horizontal">
         {currentPage > 1 && (
           <ProjectsCardPagePrevButton currentPage={currentPage} />
         )}

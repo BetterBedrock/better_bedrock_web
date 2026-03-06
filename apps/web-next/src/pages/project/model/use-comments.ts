@@ -1,5 +1,6 @@
 "use client";
 
+import { useNotification } from "@/app/providers/notification";
 import { postComment } from "@/entities/project";
 import { replyToComment } from "@/entities/project";
 import { DetailedProjectDto, ProjectCommentDto } from "@/shared/lib/openapi";
@@ -12,6 +13,7 @@ interface UseCommentsProps {
 
 export const useComments = ({ detailedProject }: UseCommentsProps) => {
     const router = useRouter();
+    const { throwError } = useNotification();
 
     const commentInputRef = useRef<HTMLInputElement>(null);
     const [comments, setComments] = useState<ProjectCommentDto[] | undefined>(
@@ -21,8 +23,12 @@ export const useComments = ({ detailedProject }: UseCommentsProps) => {
     const handlePostComment = async () => {
         const content = commentInputRef.current?.value.trim();
 
-        const comment = await postComment(detailedProject.id, content!);
-        if (!comment) return;
+        const { data, error } = await postComment(detailedProject.id, content!);
+        if (error || !data) {
+            if (error)
+                throwError(null, error);
+            return;
+        }
 
         if (commentInputRef.current) {
             commentInputRef.current!.value = "";

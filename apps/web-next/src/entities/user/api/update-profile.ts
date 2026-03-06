@@ -7,6 +7,6 @@ import { fetchSecret } from "@/shared/lib/auth";
 export const updateProfile = async (profile: UpdateProfileDto) => {
     const secret = await fetchSecret();
 
-    const { data } = await updateProfileRequest(profile, secret);
-    return data;
+    const { data, error } = await updateProfileRequest(profile, secret);
+    return { data, error };
 };

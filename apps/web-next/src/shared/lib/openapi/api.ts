@@ -71,6 +71,7 @@ export interface AnalyticsDto {
 export const AnalyticsNames = {
     BoughtVouchers: 'Bought Vouchers',
     Visits: 'Visits',
+    UniqueVisits: 'Unique Visits',
     TotalDownloads: 'Total Downloads',
     VoucherDownloads: 'Voucher Downloads',
     AdDownloads: 'Ad Downloads',

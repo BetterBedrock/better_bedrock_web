@@ -14,11 +14,11 @@ export const HomePage = () => (
   <>
     <Hero />
     <SectionDivider image={water} />
-    <About sectionIndex={0} />
-    <SectionDivider image={sand} />
-    <About sectionIndex={1} />
-    <SectionDivider image={stone} />
     <Changelog />
+    <SectionDivider image={sand} />
+    <About sectionIndex={0} />
+    <SectionDivider image={stone} />
+    <About sectionIndex={1} />
     <SectionDivider image={netherrack} />
     <Creators />
   </>

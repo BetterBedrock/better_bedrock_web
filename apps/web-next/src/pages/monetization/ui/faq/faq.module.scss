@@ -3,9 +3,5 @@
 .question {
   display: flex;
   flex-direction: column;
-  gap: calc(g.$padding-xxsm * 1.25);
-
-  @media (max-width: g.$breakpoint-laptop) {
-    gap: g.$padding-xxxsm;
-  }
+  gap: g.$padding-xsm;
 }

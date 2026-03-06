@@ -1,0 +1,10 @@
+@use "@/shared/ui" as g;
+
+.link {
+  width: 100%;
+  text-decoration: none;
+}
+
+.buttonGroup {
+  margin-top: g.$padding-md;
+}

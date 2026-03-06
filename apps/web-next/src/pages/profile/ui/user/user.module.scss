@@ -66,10 +66,6 @@ $profile-image-size-mobile: 80px;
   width: 100%;
 }
 
-.link {
-  color: g.$color-selection !important;
-}
-
 .error {
   color: g.$color-red !important;
 }
@@ -124,10 +120,6 @@ $profile-image-size-mobile: 80px;
   display: flex;
   flex-direction: column;
   gap: calc(g.$padding-xxsm * 2.5);
-}
-
-.profileCardBody {
-  padding-right: calc(g.$padding-xxsm * 1.25) !important;
 }
 
 .bannerText {

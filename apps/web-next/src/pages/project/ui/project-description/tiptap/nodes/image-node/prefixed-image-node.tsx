@@ -28,6 +28,6 @@ export const PrefixedImage = Image.extend<PrefixedImageOptions>({
     const prefixedSrc =
       typeof src === "string" && !src.startsWith("http") ? `${prefix}${src}` : src;
 
-    return ["img", mergeAttributes(rest, { src: prefixedSrc, class: styles.image })];
+    return ["img", mergeAttributes(rest, { src: prefixedSrc, class: styles.image, title: "" })];
   },
 });

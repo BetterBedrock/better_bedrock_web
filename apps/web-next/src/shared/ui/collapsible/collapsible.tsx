@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import styles from "./collapsible.module.scss";
 
 import clsx from "clsx";
@@ -19,6 +19,8 @@ interface CollapsibleProp {
   limit?: boolean;
   className?: string;
   type?: ButtonType;
+  onOpenChange?: (open: boolean) => void;
+  closeTrigger?: number;
 }
 
 export const Collapsible = ({
@@ -32,8 +34,21 @@ export const Collapsible = ({
   className,
   limit = false,
   type = "dark",
+  onOpenChange,
+  closeTrigger,
 }: CollapsibleProp) => {
   const [isCollapsed, setCollapsed] = useState(false);
+
+  useEffect(() => {
+    if (closeTrigger && isCollapsed) {
+      setCollapsed(false);
+    }
+  }, [closeTrigger]);
+
+  const handleToggle = (open: boolean) => {
+    setCollapsed(open);
+    onOpenChange?.(open);
+  };
 
   return (
     <div
@@ -45,6 +60,7 @@ export const Collapsible = ({
       style={{ width: width }}
     >
       <details
+        open={isCollapsed}
         className={styles.details}
         itemScope
         itemProp="mainEntity"
@@ -53,7 +69,7 @@ export const Collapsible = ({
         <CollapsibleButton
           headerText={headerText}
           isCollapsed={isCollapsed}
-          setCollapsed={setCollapsed}
+          setCollapsed={handleToggle}
           indexTextRef={indexTextRef}
           type={type}
         />

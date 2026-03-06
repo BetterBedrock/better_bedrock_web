@@ -10,9 +10,10 @@ export const loadProfileDraftsPageData = async (
     const loadedParams = await params;
 
     if (!loadedParams) notFound();
-
+    
+    const name = decodeURIComponent(loadedParams.name);
     const user = await fetchLoggedUser();
-    const selectedUser = await loadUserProfile(loadedParams.name);
+    const selectedUser = await loadUserProfile(name);
 
     if (user?.id !== selectedUser.id && !user?.admin) {
         redirect(Routes.PROFILE + `/${loadedParams.name}/projects`);

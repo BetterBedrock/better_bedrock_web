@@ -29,7 +29,7 @@ export const MC_EXTENSIONS = [
 ];
 
 const MAX_FOLDER_SIZE_MB = {
-    public: 10,
+    public: 25,
     private: 40,
 };
 const MAX_FOLDER_SIZE = {

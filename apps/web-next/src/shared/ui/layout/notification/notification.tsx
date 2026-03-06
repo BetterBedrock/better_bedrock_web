@@ -8,6 +8,7 @@ import styles from "./notification.module.scss";
 import clsx from "clsx";
 import Exit from "@/public/images/exit.png";
 import Image from "next/image";
+import { capitalizeFirstLetter } from "@/shared/lib/utils";
 
 interface NotificationProps {
   notification: BaseNotification;
@@ -51,7 +52,7 @@ export const Notification = ({ notification }: NotificationProps) => {
             />
           </div>
           <BedrockText
-            text={notification.label}
+            text={capitalizeFirstLetter(notification.label)}
             type="p"
             color="white"
             textAlign="left"

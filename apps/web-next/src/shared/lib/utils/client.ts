@@ -7,7 +7,9 @@ export const axiosCustomInstance: AxiosInstance = axios.create();
 axiosCustomInstance.interceptors.response.use(
     (response: AxiosResponse) => response,
     (error: AxiosError) => {
-        return { error: (error.response?.data as { message?: string })?.message };
+        const errorMessage = (error.response?.data as { message?: string })?.message;
+        
+        return { error: typeof(errorMessage) === "string" ? errorMessage : errorMessage?.[0] };
     },
 );
 

@@ -30,6 +30,11 @@ export const StatisticsList = ({
         data={data[AnalyticsNames.Visits]}
         className={styles.card}
       />
+      <StatisticsCard
+        name={AnalyticsNames.UniqueVisits}
+        data={data[AnalyticsNames.UniqueVisits]}
+        className={styles.card}
+      />
       <div className={styles.list}>
         <StatisticsCard
           name="Ads Revenue"

@@ -8,9 +8,10 @@ import { MailService } from "~/mail/mail.service";
 import { ProjectService } from "~/project/project.service";
 import { RatingService } from "~/rating/rating.service";
 import { HttpModule } from "@nestjs/axios";
+import { CacheModule } from "@nestjs/cache-manager";
 
 @Module({
-    imports: [HttpModule],
+    imports: [HttpModule, CacheModule.register()],
     controllers: [CheckoutController],
     providers: [
         CheckoutService,
