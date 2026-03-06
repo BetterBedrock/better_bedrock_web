@@ -60,7 +60,7 @@ jobs:
             echo "🔨 Building application..."
             npx yarn build
             echo "🔄 Starting services..."
-            pm2 start ecosystem.config.js --only "better-bedrock-web-dev,better-bedrock-api-dev"
+            pm2 start ecosystem.config.js --only "better-bedrock-storybook-dev,better-bedrock-web-dev,better-bedrock-api-dev"
             pm2 save
             pm2 startup -u $USER --hp $HOME
             echo "✅ Deployment completed successfully!"
