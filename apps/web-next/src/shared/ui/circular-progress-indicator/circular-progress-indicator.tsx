@@ -1,4 +1,3 @@
-import CircularProgressIndicatorSVG from "@/public/svgs/circularProgressIndicator.svg";
 import { HTMLAttributes } from "react";
 import clsx from "clsx";
 import { BedrockComponentProps } from "@/shared/lib/utils";
@@ -26,6 +25,6 @@ export const CircularProgressIndicator = ({
     )}
     {...props}
   >
-    <img src={CircularProgressIndicatorSVG.src} className={styles.svg} />
+    <img src="/svgs/circularProgressIndicator.svg" className={styles.svg} />
   </div>
 );
