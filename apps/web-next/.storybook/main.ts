@@ -24,6 +24,9 @@ const config: StorybookConfig = {
   "framework": getAbsolutePath('@storybook/nextjs-vite'),
   staticDirs: [path.resolve(__dirname, '../public')],
   viteFinal: async (config) => {
+    config.server ??= {};
+    config.server.allowedHosts = ["storybook.betterbedrock.com"];
+
     return mergeConfig(config, {
       resolve: {
         alias: {

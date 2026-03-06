@@ -10,7 +10,8 @@
     "steiger": "steiger ./src",
     "generate:api": "openapi-generator-cli generate -g typescript-axios -i http://localhost:8084/documentation/json -o ./src/shared/lib/openapi --skip-validate-spec",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "serve-storybook": "npx serve storybook-static -l 6006"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

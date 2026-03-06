@@ -8,9 +8,8 @@ if (debug) {
         name: "better-bedrock-storybook-dev",
         script: "yarn",
         cwd: "./apps/web-next",
-        args: "storybook",
+        args: "serve-storybook",
         watch: false,
-        env: { HTTPS: true },
       },
       {
         name: "better-bedrock-web-dev",
