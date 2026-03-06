@@ -10,6 +10,7 @@ if (debug) {
         cwd: "./apps/web-next",
         args: "storybook",
         watch: false,
+        env: { HTTPS: true },
       },
       {
         name: "better-bedrock-web-dev",
