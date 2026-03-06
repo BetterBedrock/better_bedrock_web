@@ -9,7 +9,7 @@ interface ProjectsCardListProps {
 
 export const ProjectsCardList = ({ searchResults }: ProjectsCardListProps) => (
   <div className={styles.list}>
-    {searchResults!.items.map((project, index) => (
+    {searchResults?.items.map((project, index) => (
       <GridDownloadCard
         key={project.id ?? index}
         project={project}
