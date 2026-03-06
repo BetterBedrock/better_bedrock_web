@@ -28,6 +28,7 @@
     "@tiptap/react": "^3.10.7",
     "@tiptap/starter-kit": "^3.10.7",
     "@tiptap/static-renderer": "^3.10.2",
+    "axios": "^1.13.6",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.19",
     "file-saver": "^2.0.5",
@@ -48,6 +49,7 @@
   },
   "devDependencies": {
     "@feature-sliced/steiger-plugin": "^0.5.7",
+    "@storybook/nextjs-vite": "^10.2.15",
     "@types/file-saver": "^2.0.7",
     "@types/lodash.throttle": "^4.1.9",
     "@types/node": "^20",
@@ -57,11 +59,10 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
     "eslint-plugin-boundaries": "^5.3.1",
+    "eslint-plugin-storybook": "^10.2.15",
     "steiger": "^0.5.11",
-    "typescript": "^5",
     "storybook": "^10.2.15",
-    "@storybook/nextjs-vite": "^10.2.15",
-    "vite": "^7.3.1",
-    "eslint-plugin-storybook": "^10.2.15"
+    "typescript": "^5",
+    "vite": "^7.3.1"
   }
 }
