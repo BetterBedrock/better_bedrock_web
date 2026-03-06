@@ -13,6 +13,7 @@ import useSound from "use-sound";
 import styles from "./button.module.scss";
 import { useImagePreload } from "@/shared/model";
 import { CircularProgressIndicator } from "@/shared/ui/circular-progress-indicator";
+import { BedrockText } from "@/shared/ui/bedrock-text";
 
 export type ButtonType = "green" | "white" | "dark" | "gold" | "red";
 
@@ -21,7 +22,7 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   width?: string;
   height?: string;
   className?: string;
-  children?: ReactNode;
+  children?: ReactNode | string;
 
   playSound?: boolean;
   center?: boolean;
@@ -215,6 +216,12 @@ export const Button = forwardRef<
                 (type === "white" || type === "gold") && styles.indicator,
               )}
             />
+          ) : typeof children === "string" ? (
+            <BedrockText
+              color={type === "white" || type === "gold" ? "black" : "white"}
+            >
+              {children}
+            </BedrockText>
           ) : (
             children
           )}
