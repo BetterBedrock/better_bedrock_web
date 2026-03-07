@@ -11,7 +11,7 @@ export const monetizationFAQQuestions: InformationFAQQuestion[] = [
   },
   {
     question: "How can I pay for my campaign?",
-    answer: "We offer several secure ways to fund your advertising. Stripe is our preferred method as it provides automated invoicing for your convenience. Alternatively, you can use Revolut or Wise for direct currency transfers to minimize fees. PayPal is also available if no other options are accessible."
+    answer: "We offer several secure ways to fund your advertising. Stripe is our preferred method as it provides automated invoicing for your convenience. Alternatively, you can use Revolut or Wise or Paypal, but need to directly contact us."
   },
   {
     question: "What are the banner requirements?",
@@ -19,11 +19,11 @@ export const monetizationFAQQuestions: InformationFAQQuestion[] = [
   },
   {
     question: "How does the \"Anti-Bypass\" (AdBlock Resistance) work?",
-    answer: "Our advertising system is built directly into the site’s native architecture rather than using external tracking scripts. Internal tests show that our banners remain visible in 99% of cases, even for users with active filters like uBlock Origin."
+    answer: "Our advertising system is built directly into the site's native architecture rather than using external tracking scripts. Internal tests show that our banners remain visible in 99% of cases, even for users with active filters like uBlock Origin."
   },
   {
     question: "Can I change my banner graphics after the campaign starts?",
-    answer: "Yes, we offer campaign flexibility. You can update your creative assets at any time during the emission period, provided the new graphics pass our technical verification regarding the 8:2 ratio and file size limits."
+    answer: "Yes, we offer campaign flexibility. You can update your creative assets at any time during the emission period, provided the new graphics pass our technical verification and file size limits."
   },
   {
     question: "How quickly will my campaign go live?",
