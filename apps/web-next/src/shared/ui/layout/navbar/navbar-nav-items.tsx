@@ -26,6 +26,7 @@ const getNavItems = (pathname: string, user?: UserDto): NavItem[] => {
       { name: "Dashboard", path: "/panel/dashboard" },
       { name: "Analytics", path: "/panel/analytics" },
       { name: "Vouchers", path: "/panel/vouchers" },
+      { name: "Ads", path: "/panel/ads" },
       { name: "Projects", path: "/panel/projects" },
       { name: "Reports", path: "/panel/reports" },
     ];
@@ -36,6 +37,7 @@ const getNavItems = (pathname: string, user?: UserDto): NavItem[] => {
     { name: "Home", path: "/" },
     { name: "Downloads", path: Routes.DOWNLOADS_BEDROCK_MODS },
     { name: "Information", path: "/information/:general" },
+    ...(user ? [{ name: "Advertiser", path: `/advertiser/${user.name}` }] : []), //add extra check to display this option for people that bought ads
     user
       ? { name: "Profile", path: `/profile/${user.name}/:projects` }
       : { name: "Login", path: "/login" },
