@@ -19,7 +19,7 @@ export const monetizationFAQQuestions: InformationFAQQuestion[] = [
   },
   {
     question: "How does the \"Anti-Bypass\" (AdBlock Resistance) work?",
-    answer: "Our advertising system is built directly into the site's native architecture rather than using external tracking scripts. Internal tests show that our banners remain visible in 99% of cases, even for users with active filters like uBlock Origin."
+    answer: "Our advertising system is fully integrated into the site's native architecture. Through proprietary solutions and clean code, banners are treated as an integral part of the service rather than external tracking scripts. Extensive testing against filters like uBlock Origin shows our ads remain visible in 99% of cases. This means your offer effectively reaches nearly 100% of our user base, including technical individuals using ad-blocking extensions."
   },
   {
     question: "Can I change my banner graphics after the campaign starts?",
