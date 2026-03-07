@@ -1,0 +1,11 @@
+@use "@/shared/ui" as g;
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
