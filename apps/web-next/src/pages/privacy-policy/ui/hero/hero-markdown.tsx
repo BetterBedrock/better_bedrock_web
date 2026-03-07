@@ -75,6 +75,14 @@ If you have any questions about this Privacy Policy, you can contact us:
 
 * By email: idarkq.dev@gmail.com
 * By contacting via Discord: idarkq
+
+## 11. Advertising Terms of Service (ToS)
+
+1. **Payment Terms:** All campaigns operate on a Pre-paid model (payment in advance). The campaign launch occurs only after the payment has been processed and the creative assets have passed technical verification.
+2. **Campaign Duration:** The advertising period begins at the moment the banners actually appear on the website. Delays in delivering graphics by the client do not result in an extension of the campaign duration.
+3. **No-Refund Policy:** Due to the nature of the service (reservation of limited advertising space), no refunds are granted once the campaign has launched, even in the case of client resignation.
+4. **Right to Refusal:** We reserve the right to reject any advertising creative without stating a reason. This specifically applies to content promoting gambling, scams, NSFW materials, or anything violating the Better Bedrock service policy. In the event of such a rejection, a full refund of the paid funds will be issued.
+5. **Liability:** The Advertiser bears full responsibility for the content displayed on the banners and the websites to which they redirect.
         `}
   </ReactMarkdown>
 );
