@@ -17,11 +17,11 @@ export const bookingTexts: BookingStep[] = [
   {
     title: "Asset Verification",
     description:
-      "Submit your banner graphics for technical approval (must meet 8:2 ratio and HD quality standards).",
+      "Submit your banner graphics for technical approval (must meet required quality standards).",
   },
   {
     title: "Campaign Launch",
     description:
-      "Your ads go live on-site and Discord benefits are activated within 0-48 hours.",
+      "After our approval, your ad will be displayed on the website and you will receive the benefits of your chosen plan.",
   },
 ];

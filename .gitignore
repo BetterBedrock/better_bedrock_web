@@ -46,6 +46,7 @@ apps/api/static/public/*
 github_action
 github_action.pub
 todo.md
+page-texts.md
 package-lock.json
 apps/web-next/public/sitemap.xml
 apps/web-next/public/robots.txt
