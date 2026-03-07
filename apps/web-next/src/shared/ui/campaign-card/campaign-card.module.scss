@@ -1,0 +1,34 @@
+@use "@/shared/ui" as g;
+
+.bannerWrapper {
+    width: 100%;
+    border-bottom: g.$minecraftdepth solid rgb(30, 30, 31);
+    background-color: #1a1a1a;
+
+    img {
+        width: 100%;
+        aspect-ratio: 4 / 1; // 8:2
+        object-fit: cover;
+        display: block;
+    }
+}
+
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    gap: g.$padding-xxxsm;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: g.$padding-xxxsm;
+}
+
+.actions {
+    width: 100%;
+}
+
+.statusText {
+    font-weight: bold;
+}
