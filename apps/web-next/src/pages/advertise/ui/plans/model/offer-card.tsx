@@ -36,25 +36,30 @@ export const OfferCard = ({ data, plan }: OfferCardProps) => {
               font="Minecraft"
               textAlign="left"
               color={textColor}
+              extraClassName={styles.inlineText}
             />
-
-            {isMonthly && (
-              <BedrockText
-                text={`${data.monthlyPrice}€`}
-                type="h3"
-                font="Minecraft"
-                textAlign="left"
-                color={textColor}
-                extraClassName={styles.strikeThrough}
-              />
+            {" "}
+            {isMonthly && data.id !== "exclusive" && (
+              <>
+                <BedrockText
+                  text={`${data.monthlyPrice}€`}
+                  type="h3"
+                  font="Minecraft"
+                  textAlign="left"
+                  color={textColor}
+                  extraClassName={`${styles.strikeThrough} ${styles.inlineText}`}
+                />
+                {" "}
+              </>
             )}
 
             <BedrockText
-              text={`${currentPrice}€`}
+              text={data.id === "exclusive" ? "Contact Us" : `${currentPrice}€`}
               type="h2"
               font="Minecraft"
               textAlign="left"
               color={textColor}
+              extraClassName={styles.inlineText}
             />
           </div>
 
@@ -95,6 +100,15 @@ export const OfferCard = ({ data, plan }: OfferCardProps) => {
             </BedrockText>
           ))}
         </div>
+
+        {isMonthly && (
+          <BedrockText
+            text="-20%"
+            type="h2"
+            font="Minecraft"
+            extraClassName={styles.discountBadge}
+          />
+        )}
       </div>
     </Button>
   );

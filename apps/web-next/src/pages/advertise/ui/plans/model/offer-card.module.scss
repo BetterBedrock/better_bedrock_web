@@ -6,6 +6,32 @@
   width: 100%;
   padding: calc(g.$minecraftdepth * 2);
   gap: g.$padding-sm;
+  position: relative;
+}
+
+@keyframes pulseDiscount {
+  0% {
+    transform: rotate(45deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(45deg) scale(1.15);
+  }
+
+  100% {
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+.discountBadge {
+  position: absolute;
+  top: 0.5rem;
+  right: -1rem;
+  animation: pulseDiscount 1.5s infinite ease-in-out;
+  color: #ff0000 !important;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 1) !important;
+  pointer-events: none;
+  z-index: 10;
 }
 
 .header,
@@ -20,10 +46,16 @@
 }
 
 .title {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  flex-wrap: wrap;
+  text-align: left;
+  padding-right: 4.5rem;
+
+  @media (max-width: g.$breakpoint-tablet) {
+    padding-right: 3.5rem;
+  }
+}
+
+.inlineText {
+  display: inline;
 }
 
 .strikeThrough {

@@ -8,42 +8,49 @@ export interface OfferBenefit {
 }
 
 export interface OfferData {
+  id: string;
   title: string;
   description: string;
-  weeklyPrice: number;
-  monthlyPrice: number;
-  monthlySalePrice: number;
+  weeklyPrice?: number;
+  monthlyPrice?: number;
+  monthlySalePrice?: number;
   benefits: OfferBenefit[];
   color: ButtonType;
 }
 
 export const offersData: OfferData[] = [
   {
+    id: "basic",
     title: "BASIC PLAN",
     description:
       "Smart choice for growing communities, new servers and creators.",
-    weeklyPrice: 40,
-    monthlyPrice: 160,
-    monthlySalePrice: 130,
+    weeklyPrice: 30,
+    monthlyPrice: 120,
+    monthlySalePrice: 100,
     benefits: [
       { label: "Essential Visibility", value: "Project & Information pages." },
       {
         label: "High Traffic",
         value: "Captures ~60% of total site visitors.",
       },
-      { label: "Budget Friendly", value: "Best CPM for Growth." },
+      { label: "Budget Friendly", value: "Best CPM for growth." },
+      {
+        label: "Partner Status",
+        value: "PARTNER role & top member list spot.",
+      },
     ],
     color: "white",
   },
   {
+    id: "standard",
     title: "STANDARD PLAN",
     description:
       "High-performance tier designed for Hosting Services & Marketplaces demanding conversion.",
-    weeklyPrice: 60,
-    monthlyPrice: 240,
-    monthlySalePrice: 200,
+    weeklyPrice: 50,
+    monthlyPrice: 200,
+    monthlySalePrice: 160,
     benefits: [
-      { label: "High-Intent Placements", value: "Download, Projects, Info" },
+      { label: "High-Intent Placements", value: "Download, Projects, Information pages." },
       {
         label: "Top ROI",
         value: "Ads displayed at the critical download moment (90% reach).",
@@ -60,16 +67,14 @@ export const offersData: OfferData[] = [
     color: "green",
   },
   {
+    id: "exclusive",
     title: "EXCLUSIVE PLAN",
     description:
       "The ultimate choice for market leaders seeking total brand dominance.",
-    weeklyPrice: 120,
-    monthlyPrice: 480,
-    monthlySalePrice: 380,
     benefits: [
       {
         label: "Total Takeover",
-        value: "All pages + Static Banner in Home (No Rotation).",
+        value: "All pages (Home, Download, Projects, Information) + Static Banner in Home (No Rotation).",
       },
       {
         label: "Maximum ROI",
@@ -82,7 +87,7 @@ export const offersData: OfferData[] = [
       },
       {
         label: "VIP Status",
-        value: "EXCLUSIVE role & top spot on member list.",
+        value: "EXCLUSIVE PARTNER role & top spot on member list.",
       },
     ],
     color: "gold",
