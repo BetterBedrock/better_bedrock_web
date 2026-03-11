@@ -1,3 +1,4 @@
+// This file has been automatically migrated to valid ESM format by Storybook.
 import type { StorybookConfig } from '@storybook/nextjs-vite';
 
 import path, { dirname } from "path"
@@ -20,7 +21,11 @@ const config: StorybookConfig = {
   "stories": [
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
-  "addons": [],
+  "addons": [
+    "@storybook/addon-docs",
+    "@storybook/addon-essentials",
+    "storybook-dark-mode",
+  ],
   "framework": getAbsolutePath('@storybook/nextjs-vite'),
   staticDirs: [path.resolve(__dirname, '../public')],
   viteFinal: async (config) => {
