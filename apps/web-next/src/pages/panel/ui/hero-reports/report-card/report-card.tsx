@@ -17,15 +17,12 @@ import { fetchUserById } from "@/entities/user";
 
 interface ReportCardProps {
   report: ReportDto;
-  playSound?: boolean;
-  lockClicking?: boolean;
   height?: string;
   onClick?: () => Promise<void>;
 }
 
 export const ReportCard = ({
   report,
-  lockClicking,
   height = "auto",
   onClick,
 }: ReportCardProps) => {
@@ -74,8 +71,6 @@ export const ReportCard = ({
       width="100%"
       height={height}
       type={report.resolved ? "green" : "white"}
-      lockClicking={lockClicking}
-      playSound={true}
       onClick={onClick}
     >
       {!fetched ? (

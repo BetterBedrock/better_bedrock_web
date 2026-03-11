@@ -16,7 +16,6 @@ interface DownloadCardProp {
   downloadSize?: string;
   buttonType?: ButtonType;
   playSound?: boolean;
-  lockClicking?: boolean;
   height?: string;
   onClick?: () => Promise<void>;
   tags?: string[];
@@ -28,8 +27,6 @@ const DownloadCard = ({
   description,
   downloadSize,
   buttonType = "white",
-  playSound = true,
-  lockClicking,
   height = "auto",
   onClick,
   tags,
@@ -46,8 +43,6 @@ const DownloadCard = ({
       width="100%"
       height={height}
       type={buttonType as ButtonType}
-      lockClicking={lockClicking}
-      playSound={playSound}
       onClick={onClick}
     >
       <div className={styles.content}>

@@ -7,15 +7,12 @@ import { styles } from ".";
 interface VoucherCardProps {
   voucher: VoucherDto;
   playSound?: boolean;
-  lockClicking?: boolean;
   height?: string;
   onClick?: () => Promise<void>;
 }
 
 export const VoucherCard = ({
   voucher,
-  playSound = true,
-  lockClicking,
   height = "auto",
   onClick,
 }: VoucherCardProps) => {
@@ -26,8 +23,6 @@ export const VoucherCard = ({
       width="100%"
       height={height}
       type={isExpired ? "red" : "white"}
-      lockClicking={lockClicking}
-      playSound={playSound}
       onClick={onClick}
     >
       <div className={styles.content}>
