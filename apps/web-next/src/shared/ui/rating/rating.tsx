@@ -153,7 +153,7 @@ export const Rating = ({
                   <img
                     key={i}
                     className={starStyles}
-                    src={src.src}
+                    src={src}
                     alt={`${i + 1} star`}
                   />
                 );
