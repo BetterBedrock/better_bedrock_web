@@ -15,7 +15,8 @@ import { useImagePreload } from "@/shared/model";
 import { CircularProgressIndicator } from "@/shared/ui/circular-progress-indicator";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 
-export type ButtonType = "green" | "white" | "dark" | "gold" | "red";
+export const buttonTypes = ["green", "white", "dark", "gold", "red"] as const;
+export type ButtonType = (typeof buttonTypes)[number];
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   as?: string;
@@ -66,7 +67,7 @@ export const Button = forwardRef<
     });
 
     const handleClick = async (e: MouseEvent<HTMLButtonElement>) => {
-      if (disabled || loading || isClicked) return;
+      if (disabled || loading) return;
 
       setIsHeld(true);
       handleSetIsToggled(false);
@@ -80,7 +81,6 @@ export const Button = forwardRef<
     };
 
     const handleSetIsToggled = (value: boolean) => {
-      if (isClicked === true) return;
       setClicked(value);
     };
 
