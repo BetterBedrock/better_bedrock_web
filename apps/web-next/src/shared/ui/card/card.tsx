@@ -3,7 +3,10 @@ import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
 
 import styles from "./card.module.scss";
 
-interface CardProps extends HTMLAttributes<HTMLDivElement> {
+export const gapSizes = ["xxsm", "xsm", "sm", "md", "lg"] as const;
+export type GapSize = (typeof gapSizes)[number];
+
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
   children?: ReactNode;
   sub?: boolean;
@@ -16,15 +19,15 @@ interface CardDividerProps {
   sub?: boolean;
 }
 
-interface CardBodyProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardBodyProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
-  gap?: "xxsm" | "xsm" | "sm" | "md" | "lg";
+  gap?: GapSize;
   className?: string;
 }
 
-interface CardItemProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardItemProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
-  gapSize?: "xxsm" | "xsm" | "sm" | "md" | "lg";
+  gap?: GapSize;
 }
 
 type CardComponent = React.ForwardRefExoticComponent<
@@ -66,18 +69,13 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 ) as CardComponent;
 
 const CardDivider = ({ sub }: CardDividerProps) => (
-  <div>
+  <div className={styles.divider}>
     <div className={clsx(styles.top, sub && styles.light)} />
     <div className={clsx(styles.bottom, sub && styles.light)} />
   </div>
 );
 
-const CardBody = ({
-  children,
-  className,
-  gap,
-  ...rest
-}: CardBodyProps) => (
+const CardBody = ({ children, className, gap, ...rest }: CardBodyProps) => (
   <div
     {...rest}
     className={clsx(children && styles.body, gap && styles[gap], className)}
@@ -86,8 +84,8 @@ const CardBody = ({
   </div>
 );
 
-const CardItem = ({ children, gapSize = "xsm", ...rest }: CardItemProps) => (
-  <div className={clsx(styles.item, gapSize && styles[gapSize])} {...rest}>
+const CardItem = ({ children, gap = "xsm", ...rest }: CardItemProps) => (
+  <div className={clsx(styles.item, gap && styles[gap])} {...rest}>
     {children}
   </div>
 );
