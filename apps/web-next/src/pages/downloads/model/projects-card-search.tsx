@@ -1,7 +1,7 @@
 "use client";
 
 import { SearchOrder } from "@/shared/lib/openapi";
-import { SearchProjectTypeKey } from "@/public/content/better-bedrock";
+import { SearchProjectTypeKey } from "@/shared/config";
 import {
   createContext,
   Dispatch,
