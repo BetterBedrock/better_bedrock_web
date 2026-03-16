@@ -4,7 +4,7 @@ import { PlansDescription } from "./plans-description";
 import { PlansTitle } from "./plans-title";
 
 export const Plans = () => (
-  <Card fullWidth>
+  <Card fullWidth id="plans">
     <Card.Body>
       <PlansTitle />
       <PlansDescription />
