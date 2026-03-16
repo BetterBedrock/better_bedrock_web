@@ -19,12 +19,12 @@ export const Tutorial = () => {
         <TutorialDescription />
       </Card.Body>
       <Card.Divider />
-      <Card.Body gap="md">
+      <Card.Body gap="sm">
+        <TutorialBanner selectedProvider={selectedProvider} />
         <TutorialActions 
           selectedProvider={selectedProvider}
           onProviderChange={setSelectedProvider}
         />
-        <TutorialBanner selectedProvider={selectedProvider} />
         <TutorialParts selectedProvider={selectedProvider} />
       </Card.Body>
     </Card>
