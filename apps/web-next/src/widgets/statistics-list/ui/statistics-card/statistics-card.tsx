@@ -85,7 +85,7 @@ export const StatisticsCard = ({
       </Card.Body>
       {fdata && loaded && (
         <>
-          <Card.Divider sub />
+          <Card.Divider />
           <Card.Body gap="lg">
             <div className={styles.buttons}>
               <Collapsible

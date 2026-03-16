@@ -5,7 +5,7 @@ import { Button } from "@/shared/ui/button";
 import { ButtonGroup } from "@/shared/ui/button-group";
 import { Collapsible } from "@/shared/ui/collapsible";
 import { ProjectType } from "@/shared/lib/openapi";
-import { PROJECT_TYPES } from "@/public/content/better-bedrock";
+import { PROJECT_TYPES } from "@/shared/config";
 import { useDetailsEditorProjectType } from "@/pages/project/model/use-details-editor-project-type";
 
 import styles from "./project-details-editor.module.scss";
@@ -54,6 +54,6 @@ export const ProjectDetailsEditorProjectType = () => {
       <ButtonGroup direction="horizontal" className={styles.group}>
         {types}
       </ButtonGroup>
-    </Card.Item >
+    </Card.Item>
   );
 };

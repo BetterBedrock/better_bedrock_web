@@ -1,1 +1,2 @@
-export { Card } from "./card"
+export { Card, gapSizes } from "./card";
+export type { GapSize } from "./card";

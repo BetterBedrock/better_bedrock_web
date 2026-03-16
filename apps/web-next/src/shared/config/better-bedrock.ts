@@ -1,4 +1,4 @@
-import { DownloadsCategoryDto } from "@/public/content/dto/downloads-category.dto";
+import { DownloadsCategoryDto } from "@/shared/config/dto/downloads-category.dto";
 
 export enum SEARCH_PROJECT_TYPES {
     all = "All",
@@ -138,7 +138,7 @@ export const MAIN_LIST: DownloadsCategoryDto = {
                     buttonType: "dark",
                     type: "orange",
                 },
-                
+
             ],
         },
         {

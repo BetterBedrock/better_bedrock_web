@@ -106,7 +106,7 @@ export const ProjectActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
               type={disableDeleteButton ? "dark" : "red"}
               center
               width="100%"
-              lockClicking={disableDeleteButton}
+              disabled={disableDeleteButton}
               isToggled={disableDeleteButton}
               isClicked={disableDeleteButton}
               onClick={async () => await handleDelete(deleteOption)}

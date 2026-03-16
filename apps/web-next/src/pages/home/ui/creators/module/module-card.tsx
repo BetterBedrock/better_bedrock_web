@@ -15,8 +15,7 @@ export const ModuleCard = ({ data }: ModuleCardProp) => (
     width="auto"
     height="auto"
     type={data.creator ? "green" : "white"}
-    lockClicking={true}
-    playSound={false}
+    disabled={true}
     className={styles.card}
   >
     <div className={styles.content}>

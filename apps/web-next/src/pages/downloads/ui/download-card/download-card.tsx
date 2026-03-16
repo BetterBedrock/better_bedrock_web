@@ -5,7 +5,7 @@ import Icon3 from "@/public/images/logo3.png";
 import clsx from "clsx";
 import { ButtonType, Button } from "@/shared/ui/button";
 
-import { DownloadsItemTypeKey } from "@/public/content/dto/downloads-item.dto";
+import { DownloadsItemTypeKey } from "@/shared/config";
 
 import { styles } from ".";
 import Image from "next/image";
@@ -16,7 +16,6 @@ interface DownloadCardProp {
   downloadSize?: string;
   buttonType?: ButtonType;
   playSound?: boolean;
-  lockClicking?: boolean;
   height?: string;
   onClick?: () => Promise<void>;
   tags?: string[];
@@ -28,8 +27,6 @@ const DownloadCard = ({
   description,
   downloadSize,
   buttonType = "white",
-  playSound = true,
-  lockClicking,
   height = "auto",
   onClick,
   tags,
@@ -46,12 +43,16 @@ const DownloadCard = ({
       width="100%"
       height={height}
       type={buttonType as ButtonType}
-      lockClicking={lockClicking}
-      playSound={playSound}
       onClick={onClick}
     >
       <div className={styles.content}>
-        <Image height={72} width={72} unoptimized alt="Download Content Image" src={iconPath.src} />
+        <Image
+          height={72}
+          width={72}
+          unoptimized
+          alt="Download Content Image"
+          src={iconPath.src}
+        />
         <div className={styles.description}>
           <div className={styles.main}>
             <BedrockText

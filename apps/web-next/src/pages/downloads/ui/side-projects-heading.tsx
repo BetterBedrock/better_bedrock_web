@@ -1,4 +1,4 @@
-import { DownloadsHeading } from "@/shared/ui/downloads-heading";
+import { DownloadsHeading } from "@/pages/downloads/ui/downloads-heading";
 
 export const SideProjectsHeading = () => (
   <DownloadsHeading

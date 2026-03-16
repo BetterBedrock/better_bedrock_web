@@ -1,12 +1,9 @@
 import { BedrockText } from "../bedrock-text/bedrock-text";
 
 import clsx from "clsx";
-import CardLayout from "@/public/ui/card/card_button.png";
-import BBLogo from "@/public/images/logo.png";
 
-import { ReactNode } from "react";
 import { SimpleProjectDto } from "@/shared/lib/openapi";
-import { PROJECT_TYPES } from "@/public/content/better-bedrock";
+import { PROJECT_TYPES } from "@/shared/config/better-bedrock";
 import { Routes } from "@/shared/lib/utils";
 import { baseUrl } from "@/shared/lib/utils";
 
@@ -25,14 +22,7 @@ export type ProjectMode = "edit" | "view" | "review";
 interface GridDownloadCardProps {
   project: SimpleProjectDto;
   mode?: ProjectMode;
-
-  title?: string;
-  downloadSize?: string;
-  thumbnail?: string;
-  description?: ReactNode;
-  actions?: ReactNode;
   className?: string;
-  useTopDivider?: boolean;
 }
 
 export const GridDownloadCard = ({
@@ -99,7 +89,7 @@ export const GridDownloadCard = ({
         <div className={styles.footer}>
           <div
             className={clsx(styles.foreground, styles.bottom)}
-            style={{ borderImage: `url(${CardLayout.src})` }}
+            style={{ borderImage: `url(ui/card/card_button.png)` }}
           >
             <div className={styles.information}>
               <div className={styles.title}>
@@ -109,7 +99,10 @@ export const GridDownloadCard = ({
                       className={styles.bb}
                       border={[]}
                       name={
-                        <img src={BBLogo.src} className={styles.logo}></img>
+                        <img
+                          src="images/logo.png"
+                          className={styles.logo}
+                        ></img>
                       }
                     />
                   </Tooltip>

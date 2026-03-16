@@ -1,6 +1,6 @@
 import { fetchProjectsBasicInfo } from "@/entities/project";
 import { SimpleCategory } from "@/shared/lib/information";
-import { MAIN_LIST } from "@/public/content/better-bedrock";
+import { MAIN_LIST } from "@/shared/config";
 
 interface LoadDownloadsBetterBedrockPageDataProps {
   loadedParams?: { archived?: boolean };
