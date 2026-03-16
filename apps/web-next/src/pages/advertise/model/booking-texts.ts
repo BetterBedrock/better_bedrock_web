@@ -5,23 +5,23 @@ export interface BookingStep {
 
 export const bookingTexts: BookingStep[] = [
   {
-    title: "Plan Selection",
+    title: "Select Your Plan",
     description:
-      "Choose your preferred tier (Basic, Standard, or Exclusive) and duration (weekly or monthly).",
+      "Choose your preferred tier (Basic, Standard, or Exclusive) and lock in your campaign duration (7 or 30 days).",
   },
   {
-    title: "Payment",
+    title: "Secure Your Slot",
     description:
-      "Secure your slot using Stripe, Revolut, or PayPal via our pre-paid model.",
+      "Complete your payment instantly via Stripe to reserve your ad space, or contact us for alternative methods.",
   },
   {
-    title: "Asset Verification",
+    title: "Upload Assets",
     description:
-      "Submit your banner graphics for technical approval (must meet required quality standards).",
+      "Submit your banner graphics. Our team will run a quick verification to ensure they meet the display requirements.",
   },
   {
-    title: "Campaign Launch",
+    title: "Go Live & Track Results",
     description:
-      "After our approval, your ad will be displayed on the website and you will receive the benefits of your chosen plan.",
+      "Once approved, your campaign goes live. Log into your dashboard to monitor your Views, Clicks, and CTR in real-time.",
   },
 ];
