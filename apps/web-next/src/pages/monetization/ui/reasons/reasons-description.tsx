@@ -4,6 +4,6 @@ export const ReasonsDescription = () => (
   <BedrockText
     type="p"
     color="white"
-    text="High CPM, industry-leading anti-bypass protection, and a 100% focus on the Minecraft Bedrock ecosystem."
+    text="High CPM, industry-leading Anti-Bypass, and 100% focus on the Minecraft Bedrock ecosystem."
   />
 );
