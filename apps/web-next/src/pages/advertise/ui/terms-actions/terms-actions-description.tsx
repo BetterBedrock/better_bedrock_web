@@ -4,6 +4,6 @@ export const TermsActionsDescription = () => (
   <BedrockText
     type="p"
     color="white"
-    text="Review our advertising terms, payment policies, and data handling practices to ensure full transparency before launching your campaign."
+    text="Review our advertising terms, payment rules, and data policies. We operate with strict transparency - zero hidden fees and no fine print surprises."
   />
 );
