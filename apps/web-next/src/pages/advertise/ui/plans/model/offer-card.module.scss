@@ -1,5 +1,20 @@
 @use "@/shared/ui" as g;
 
+.offerCard {
+  transition: transform 0.15s ease;
+
+  will-change: transform;
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translate(
+        calc(g.$minecraftdepth * -2),
+        calc(g.$minecraftdepth * -2)
+      );
+    }
+  }
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -38,7 +53,27 @@
 .benefits {
   display: flex;
   flex-direction: column;
-  gap: g.$padding-xxxsm;
+}
+
+.benefitRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.iconImage {
+  width: 100%;
+  height: 100%;
+  max-width: 24px;
+  max-height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+  image-rendering: pixelated;
+}
+
+.iconBlack {
+  filter: brightness(0);
 }
 
 .benefit {
@@ -62,4 +97,29 @@
   text-decoration: line-through;
   opacity: 0.75;
   font-weight: 400;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-block: g.$padding-xxxsm;
+  gap: 0.5rem;
+}
+
+.tag {
+  padding: 0 0.5rem;
+  background-color: rgb(35, 35, 35);
+  display: inline;
+  font-family: "Mojangles", sans-serif;
+  margin: 0;
+
+  &.green {
+    background-color: rgb(29, 77, 19);
+  }
+  &.gold {
+    background-color: rgb(145, 94, 5);
+  }
+  &.white {
+    background-color: rgb(64, 64, 64);
+  }
 }

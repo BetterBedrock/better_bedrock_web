@@ -2,6 +2,7 @@ import { Button } from "@/shared/ui/button";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { OfferData, PlanDuration } from "../../../model/offers-data";
 import styles from "./offer-card.module.scss";
+import Image from "next/image";
 
 interface OfferCardProps {
   data: OfferData;
@@ -21,11 +22,11 @@ export const OfferCard = ({ data, plan }: OfferCardProps) => {
 
   return (
     <Button
+      className={`${styles.offerCard}`}
       width="100%"
       height="auto"
       type={data.color}
-      lockClicking={true}
-      playSound={false}
+      disabled={false}
     >
       <div className={styles.content}>
         <div className={styles.header}>
@@ -62,6 +63,16 @@ export const OfferCard = ({ data, plan }: OfferCardProps) => {
               extraClassName={styles.inlineText}
             />
           </div>
+          
+          {data.tags && data.tags.length > 0 && (
+            <div className={styles.tagsContainer}>
+              {data.tags.map((tag) => (
+                <p key={tag} className={`${styles.tag} ${styles[data.color] || ''}`}>
+                  {tag}
+                </p>
+              ))}
+            </div>
+          )}
 
           <BedrockText
             text={data.description}
@@ -81,27 +92,35 @@ export const OfferCard = ({ data, plan }: OfferCardProps) => {
           />
 
           {data.benefits.map((benefit, index) => (
-            <BedrockText
-              key={index}
-              text={`- ${benefit.label}:`}
-              color={textColor}
-              type="p"
-              font="MojanglesBold"
-              textAlign="left"
-              extraClassName={styles.benefit}
-            >
+            <div key={index} className={styles.benefitRow}>
+              <Image
+                src="/icons/checkmark2.png"
+                alt="Checkmark"
+                width={24}
+                height={24}
+                className={`${styles.iconImage} ${data.color !== "green" ? styles.iconBlack : ''}`}
+              />
               <BedrockText
-                text={` ${benefit.value}`}
+                text={`${benefit.label}:`}
                 color={textColor}
-                type="span"
+                type="p"
+                font="MojanglesBold"
                 textAlign="left"
                 extraClassName={styles.benefit}
-              />
-            </BedrockText>
+              >
+                <BedrockText
+                  text={` ${benefit.value}`}
+                  color={textColor}
+                  type="span"
+                  textAlign="left"
+                  extraClassName={styles.benefit}
+                />
+              </BedrockText>
+            </div>
           ))}
         </div>
 
-        {isMonthly && (
+        {isMonthly && !(data.id === "exclusive") && (
           <BedrockText
             text="-20%"
             type="h2"
