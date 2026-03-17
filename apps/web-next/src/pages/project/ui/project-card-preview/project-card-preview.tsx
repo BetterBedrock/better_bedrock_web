@@ -6,6 +6,7 @@ import { ProjectHeaderTitle } from "@/pages/project/ui/project-header";
 import { ProjectCardPreviewActions } from "./project-card-preview-actions";
 
 import { useProjectManager } from "@/app/providers/project-manager";
+import { pick } from "lodash";
 
 export const ProjectCardPreview = () => {
   const { selectedProject } = useProjectManager();
@@ -18,7 +19,22 @@ export const ProjectCardPreview = () => {
       <Card.Divider />
       <Card.Body>
         {selectedProject && (
-          <GridDownloadCard project={{ ...selectedProject }} />
+          <GridDownloadCard
+            {...pick(
+              selectedProject,
+              "id",
+              "title",
+              "submitted",
+              "lastChanged",
+              "thumbnail",
+              "type",
+              "betterBedrockContent",
+              "tags",
+            )}
+            userName={selectedProject.user.name}
+            tags={selectedProject.tags.map((tag) => tag.name)}
+            averageRating={selectedProject.rating.average}
+          />
         )}
       </Card.Body>
       <Card.Divider />
