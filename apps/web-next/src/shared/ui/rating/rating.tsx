@@ -85,9 +85,9 @@ export const Rating = ({
   const text = `${formatNumber(preview ?? selected, 2)}/${max}${suffix ? ` ${suffix}` : ""}`;
   const starStyles = clsx(styles.star, styles[size]);
 
-  const filledStar = "ui/star/filledStar.png";
-  const emptyStar = "ui/star/emptyStar.png";
-  const halfFilledStar = "ui/star/halfFilledStar.png";
+  const filledStar = "/ui/star/filledStar.png";
+  const emptyStar = "/ui/star/emptyStar.png";
+  const halfFilledStar = "/ui/star/halfFilledStar.png";
 
   return (
     <Tooltip text={text} className={extraClassName}>
