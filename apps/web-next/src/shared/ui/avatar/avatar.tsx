@@ -41,7 +41,7 @@ export const Avatar = (({ children, name, className }) => (
 )) as AvatarComponent;
 
 Avatar.Profile = ({
-  size = "small",
+  size,
   name,
   className,
   link = true,
@@ -54,8 +54,8 @@ Avatar.Profile = ({
       alt={name + " profile"}
       src={
         name === "sumssatsuma"
-          ? "images/avatars/sumssatsuma.png"
-          : "images/avatars/Steve.png"
+          ? "/images/avatars/sumssatsuma.png"
+          : "/images/avatars/Steve.png"
       }
       className={clsx(
         styles.picture,
