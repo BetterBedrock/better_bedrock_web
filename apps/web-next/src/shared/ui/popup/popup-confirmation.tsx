@@ -47,7 +47,7 @@ export const useEnhanceTree = (
   return enhanceTree;
 };
 
-interface PopupConfirmationProps {
+export interface PopupConfirmationProps {
   title?: string;
   description: string;
   children: ReactNode;
