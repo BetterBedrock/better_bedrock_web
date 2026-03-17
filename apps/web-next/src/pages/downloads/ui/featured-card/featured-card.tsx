@@ -11,9 +11,5 @@ export const FeaturedCard = async () => (
     <Card.Body>
       <FeaturedCardButtons />
     </Card.Body>
-    {/* <CardDivider />
-      <CardBody>
-        <PartnerImage />
-      </CardBody> */}
   </Card>
 );

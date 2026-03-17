@@ -1,5 +1,4 @@
 import { Card } from "@/shared/ui/card";
-import { PartnerImage } from "@/shared/ui/partner-image";
 import { PartnerCardTitle } from "./partner-card-title";
 
 interface PartnerCardProps {
@@ -16,8 +15,5 @@ export const PartnerCard = ({ onlyImage = false }: PartnerCardProps) => (
         <Card.Divider />
       </>
     )}
-    <Card.Body>
-      <PartnerImage />
-    </Card.Body>
   </Card>
 );
