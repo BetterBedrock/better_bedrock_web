@@ -12,7 +12,7 @@ const argTypes: Partial<
 };
 
 const meta = {
-  title: "Components/CircularProgressIndicator",
+  title: "Feedback/CircularProgressIndicator",
   component: CircularProgressIndicator,
   parameters: {
     layout: "centered",

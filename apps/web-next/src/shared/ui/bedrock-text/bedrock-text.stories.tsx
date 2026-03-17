@@ -23,7 +23,7 @@ const argTypes: Partial<ArgTypes<React.ComponentProps<typeof BedrockText>>> = {
 };
 
 const meta = {
-  title: "Components/BedrockText",
+  title: "Primitives/BedrockText",
   component: BedrockText,
   parameters: {
     layout: "centered",

@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { fn } from "storybook/test";
 
 const meta: Meta<typeof Collapsible> = {
-  title: "Components/Collapsible",
+  title: "Layout/Collapsible",
   component: Collapsible,
   parameters: {
     layout: "centered",
