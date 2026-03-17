@@ -1,4 +1,3 @@
-import Exit from "@/public/images/exit.png";
 import { Children, FC, Fragment, HTMLAttributes, ReactNode, useEffect, useRef } from "react";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { SimpleButton } from "@/shared/ui/simple-button";
@@ -8,7 +7,7 @@ import styles from "./popup.module.scss";
 import { Card } from "@/shared/ui/card";
 import Image from "next/image";
 
-interface PopupProps extends HTMLAttributes<HTMLDivElement> {
+export interface PopupProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
   title?: string;
   onClose?: () => void;
@@ -37,16 +36,24 @@ export const Popup = (({ children, onClose, title }: PopupProps) => {
 
   return (
     <div className={styles.popup} onClick={onClose}>
-      <div ref={popupRef} className={styles.body} onClick={(e) => e.stopPropagation()}>
+      <div
+        ref={popupRef}
+        className={styles.body}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className={styles.headerContainer}>
           <div className={styles.header}>
-            <SimpleButton onClick={onClose} transparent className={styles.close}>
+            <SimpleButton
+              onClick={onClose}
+              transparent
+              className={styles.close}
+            >
               <Image
                 width={25}
                 height={25}
                 unoptimized
                 alt="Close Icon"
-                src={Exit.src}
+                src="/images/exit.png"
                 className={styles.icon}
               />
             </SimpleButton>

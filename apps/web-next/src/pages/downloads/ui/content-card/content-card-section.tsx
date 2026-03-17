@@ -12,6 +12,7 @@ import styles from "./featured-card.module.scss";
 import { GridDownloadCard } from "@/shared/ui/grid-download-card";
 import { Button } from "@/shared/ui/button";
 import { BedrockText } from "@/shared/ui/bedrock-text";
+import { pick } from "lodash";
 
 interface ContentCardSectionProps {
   items: SimpleProjectDto[];
@@ -40,7 +41,22 @@ export const ContentCardSection = ({ items }: ContentCardSectionProps) => {
             {/* todo: in the future, create code to display 5 items that are top views per week */}
             {items.map((item) => (
               <div className={styles.carouselItem} key={item.id}>
-                <GridDownloadCard project={item} mode="view" />
+                <GridDownloadCard
+                  {...pick(
+                    item,
+                    "id",
+                    "title",
+                    "submitted",
+                    "lastChanged",
+                    "thumbnail",
+                    "type",
+                    "betterBedrockContent",
+                  )}
+                  userName={item.user.name}
+                  averageRating={item.rating.average}
+                  tags={item.tags.map((tag) => tag.name)}
+                  mode="view"
+                />
               </div>
             ))}
           </div>

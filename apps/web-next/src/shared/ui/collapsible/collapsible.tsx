@@ -20,7 +20,7 @@ interface CollapsibleProp {
   className?: string;
   type?: ButtonType;
   onOpenChange?: (open: boolean) => void;
-  closeTrigger?: number;
+  open?: boolean;
 }
 
 export const Collapsible = ({
@@ -35,15 +35,13 @@ export const Collapsible = ({
   limit = false,
   type = "dark",
   onOpenChange,
-  closeTrigger,
+  open = false,
 }: CollapsibleProp) => {
-  const [isCollapsed, setCollapsed] = useState(false);
+  const [isCollapsed, setCollapsed] = useState(open);
 
   useEffect(() => {
-    if (closeTrigger && isCollapsed) {
-      setCollapsed(false);
-    }
-  }, [closeTrigger]);
+    setCollapsed(open);
+  }, [open]);
 
   const handleToggle = (open: boolean) => {
     setCollapsed(open);

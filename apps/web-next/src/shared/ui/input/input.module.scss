@@ -33,8 +33,7 @@
   width: min-content;
   align-items: center !important;
   justify-content: start;
-  height: calc(16 * g.$minecraftdepth);
-  // width: auto !important;
+  height: g.$switchHeight;
   aspect-ratio: 30 / 16;
 
   .image {

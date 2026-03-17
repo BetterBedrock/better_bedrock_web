@@ -19,10 +19,6 @@ export const Header = ({ selectedCategory }: HeaderProps) => (
     <Card.Body>
       <HeaderTabs selectedCategory={selectedCategory} />
     </Card.Body>
-    {/* <CardDivider />
-    <CardBody>
-      <PartnerImage />
-    </CardBody> */}
   </Card>
 );
   

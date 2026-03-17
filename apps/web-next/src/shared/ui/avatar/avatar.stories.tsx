@@ -9,7 +9,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 type AvatarStoryArgs = AvatarProps & AvatarProfileProps & AvatarDetailsProps;
 
 const meta: Meta<AvatarStoryArgs> = {
-  title: "Components/Avatar",
+  title: "Primitives/Avatar",
   component: Avatar,
   parameters: { layout: "centered" },
   argTypes: {

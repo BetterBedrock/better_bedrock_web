@@ -4,6 +4,10 @@ import './fonts.scss';
 import { themes } from 'storybook/theming';
 
 const preview: Preview = {
+  argTypes: {
+    className: { table: { disable: true } },
+    extraClassName: { table: { disable: true } },
+  },
   parameters: {
     backgrounds: { default: 'dark' },
     docs: {

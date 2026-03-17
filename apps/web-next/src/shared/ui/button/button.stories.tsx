@@ -4,7 +4,7 @@ import { fn } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta = {
-  title: "Components/Button",
+  title: "Primitives/Button",
   component: Button,
   parameters: {
     layout: "centered",
