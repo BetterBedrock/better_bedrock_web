@@ -4,20 +4,17 @@ import { ButtonGroup } from "@/shared/ui/button-group";
 import { Collapsible } from "@/shared/ui/collapsible";
 import { ProjectsCardTypeButton } from "./projects-card-type-button";
 
-import {
-  SEARCH_PROJECT_TYPES,
-  SearchProjectTypeKey,
-} from "@/shared/config";
+import { SEARCH_PROJECT_TYPES, SearchProjectTypeKey } from "@/shared/config";
 import { useProjectsCardSearch } from "@/pages/downloads/model/projects-card-search";
 
 import styles from "./projects-card.module.scss";
 
 export const ProjectsCardType = ({
   onOpenChange,
-  closeTrigger,
+  open,
 }: {
   onOpenChange?: (open: boolean) => void;
-  closeTrigger?: number;
+  open?: boolean;
 }) => {
   const { selectedType } = useProjectsCardSearch();
 
@@ -35,7 +32,7 @@ export const ProjectsCardType = ({
         limit={true}
         type="green"
         onOpenChange={onOpenChange}
-        closeTrigger={closeTrigger}
+        open={open}
       >
         <ButtonGroup direction="vertical">{types}</ButtonGroup>
       </Collapsible>
