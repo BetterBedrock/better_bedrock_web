@@ -39,7 +39,7 @@ const restrictedNames = [
     // "particle_limiter",
     // "waypoints",
 ];
-const maxProjects = 5;
+const maxProjects = 25;
 
 export const projectCreatorInclude = {
     user: {
