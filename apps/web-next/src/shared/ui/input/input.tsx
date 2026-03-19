@@ -79,12 +79,12 @@ const InputSwitch = ({
   const handleLeave = () => setHover(false);
 
   let hovering = hover
-    ? "public/ui/toggle/off_hover.png"
-    : "public/ui/toggle/off.png";
+    ? "/ui/toggle/off_hover.png"
+    : "/ui/toggle/off.png";
   if (toggled) {
     hovering = hover
-      ? "public/ui/toggle/on_hover.png"
-      : "public/ui/toggle/on.png";
+      ? "/ui/toggle/on_hover.png"
+      : "/ui/toggle/on.png";
   }
 
   return (
