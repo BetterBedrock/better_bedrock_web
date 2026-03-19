@@ -1,4 +1,4 @@
-import { ProjectsCardSearchProvider } from "@/pages/downloads/model/projects-card-search";
+import { ProjectsCardSearchProvider } from "@/pages/downloads";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 
