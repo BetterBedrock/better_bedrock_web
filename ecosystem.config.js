@@ -5,6 +5,13 @@ if (debug) {
   module.exports = {
     apps: [
       {
+        name: "better-bedrock-storybook-dev",
+        script: "yarn",
+        cwd: "./apps/web-next",
+        args: "serve-storybook",
+        watch: false,
+      },
+      {
         name: "better-bedrock-web-dev",
         script: "yarn",
         cwd: "./apps/web-next",

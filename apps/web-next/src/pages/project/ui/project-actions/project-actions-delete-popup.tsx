@@ -3,7 +3,6 @@
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
 import { CircularProgressIndicator } from "@/shared/ui/circular-progress-indicator";
-import { InputSwitch } from "@/shared/ui/input";
 import { Popup } from "@/shared/ui/popup";
 import { BasePopupWrapperProps } from "@/shared/ui/popup";
 import { Tooltip } from "@/shared/ui/tooltip";
@@ -11,6 +10,7 @@ import { useActionsDeletePopup } from "../../model/use-actions-delete-popup";
 
 import styles from "./project-actions.module.scss";
 import { ButtonGroup } from "@/shared/ui/button-group";
+import { Input } from "@/shared/ui/input";
 
 export const ProjectActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
   const {
@@ -50,7 +50,7 @@ export const ProjectActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
                       type="p"
                       color="white"
                     />
-                    <InputSwitch
+                    <Input.Switch
                       placeholder="Draft & Published Version"
                       checked={deleteEverything}
                       onChange={() => {
@@ -67,7 +67,7 @@ export const ProjectActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
                       type="p"
                       color="white"
                     />
-                    <InputSwitch
+                    <Input.Switch
                       placeholder="Published Version Only"
                       checked={deletePublishedOnly}
                       onChange={() => {
@@ -106,7 +106,7 @@ export const ProjectActionsDeletePopup = ({ close }: BasePopupWrapperProps) => {
               type={disableDeleteButton ? "dark" : "red"}
               center
               width="100%"
-              lockClicking={disableDeleteButton}
+              disabled={disableDeleteButton}
               isToggled={disableDeleteButton}
               isClicked={disableDeleteButton}
               onClick={async () => await handleDelete(deleteOption)}

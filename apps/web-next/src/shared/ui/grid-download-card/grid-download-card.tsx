@@ -1,12 +1,11 @@
 import { BedrockText } from "../bedrock-text/bedrock-text";
 
 import clsx from "clsx";
-import CardLayout from "@/public/ui/card/card_button.png";
-import BBLogo from "@/public/images/logo.png";
 
-import { ReactNode } from "react";
-import { SimpleProjectDto } from "@/shared/lib/openapi";
-import { PROJECT_TYPES } from "@/public/content/better-bedrock";
+import {
+  ProjectType,
+} from "@/shared/lib/openapi";
+import { PROJECT_TYPES } from "@/shared/config/better-bedrock";
 import { Routes } from "@/shared/lib/utils";
 import { baseUrl } from "@/shared/lib/utils";
 
@@ -23,49 +22,61 @@ import Image from "next/image";
 export type ProjectMode = "edit" | "view" | "review";
 
 interface GridDownloadCardProps {
-  project: SimpleProjectDto;
-  mode?: ProjectMode;
-
+  id?: string;
   title?: string;
-  downloadSize?: string;
-  thumbnail?: string;
-  description?: ReactNode;
-  actions?: ReactNode;
+  submitted?: boolean;
+  lastChanged: string;
+  userName: string;
+  thumbnail: string | null;
+  type: ProjectType;
+  betterBedrockContent?: boolean;
+  tags?: string[];
+  averageRating?: number;
+
+  mode?: ProjectMode;
   className?: string;
-  useTopDivider?: boolean;
 }
 
 export const GridDownloadCard = ({
+  id,
+  title,
+  submitted,
+  lastChanged,
+  userName,
+  thumbnail,
+  type,
+  betterBedrockContent,
+  tags,
+  averageRating,
   className,
-  project,
   mode,
 }: GridDownloadCardProps) => {
   const tagName =
-    mode === "edit" && project.submitted
+    mode === "edit" && submitted
       ? "Submitted"
       : mode === "review"
-        ? `${calculateLastChangedHours(project.lastChanged)}h ago`
+        ? `${calculateLastChangedHours(lastChanged)}h ago`
         : null;
 
   const link = () => {
     if (!mode) return;
-    if (mode === "edit") return Routes.PROJECT_EDIT + "/" + project.id;
-    if (mode === "review") return Routes.PROJECT_REVIEW + "/" + project.id;
-    return Routes.PROJECT_PREVIEW + "/" + project.id;
+    if (mode === "edit") return Routes.PROJECT_EDIT + "/" + id;
+    if (mode === "review") return Routes.PROJECT_REVIEW + "/" + id;
+    return Routes.PROJECT_PREVIEW + "/" + id;
   };
 
   return (
     <div className={clsx(styles.container, className)}>
       <div className={styles.author}>
-        <Avatar className={styles.header} name={project.user.name}>
-          <Avatar.Profile name={project.user.name} size="small" link={false} />
+        <Avatar className={styles.header} name={userName}>
+          <Avatar.Profile name={userName} size="small" link={false} />
 
-          <Avatar.Details name={project.user.name} link={false} at />
+          <Avatar.Details name={userName} link={false} at />
         </Avatar>
       </div>
       <Link link={link()} className={clsx(styles.link, styles.body)}>
         <div className={styles.background}>
-          {!project.thumbnail || project.thumbnail === "" ? (
+          {!thumbnail || thumbnail === "" ? (
             <div className={styles.empty}>
               <BedrockText
                 text="404 No Thumbnail"
@@ -79,14 +90,14 @@ export const GridDownloadCard = ({
             <Image
               width={960}
               height={540}
-              src={baseUrl + "/" + project.thumbnail}
-              alt={`Thumbnail for ${project.title}`}
+              src={baseUrl + "/" + thumbnail}
+              alt={`Thumbnail for ${title}`}
               className={styles.thumbnail}
             />
           )}
 
           <div className={styles.details}>
-            <Tag border={["top", "right"]} name={PROJECT_TYPES[project.type]} />
+            <Tag border={["top", "right"]} name={PROJECT_TYPES[type]} />
             {tagName && (
               <Tag
                 border={["top", "right"]}
@@ -99,23 +110,26 @@ export const GridDownloadCard = ({
         <div className={styles.footer}>
           <div
             className={clsx(styles.foreground, styles.bottom)}
-            style={{ borderImage: `url(${CardLayout.src})` }}
+            style={{ borderImage: `url(/ui/card/card_button.png)` }}
           >
             <div className={styles.information}>
               <div className={styles.title}>
-                {project.betterBedrockContent && (
+                {betterBedrockContent && (
                   <Tooltip text="Official Better Bedrock Content">
                     <Tag
                       className={styles.bb}
                       border={[]}
                       name={
-                        <img src={BBLogo.src} className={styles.logo}></img>
+                        <img
+                          src="/images/logo.png"
+                          className={styles.logo}
+                        ></img>
                       }
                     />
                   </Tooltip>
                 )}
                 <BedrockText
-                  text={project.title}
+                  text={title}
                   extraClassName={styles.titleText}
                   type="h3"
                   font="Minecraft"
@@ -124,10 +138,10 @@ export const GridDownloadCard = ({
                 />
               </div>
               <div className={styles.tags2}>
-                {project.tags?.map((tag, index) => (
+                {tags?.map((tag, index) => (
                   <BedrockText
-                    key={`${tag.name}${index}`}
-                    text={`#${tag.name}`}
+                    key={`${tag}${index}`}
+                    text={`#${tag}`}
                     type="p2"
                     textAlign="left"
                     extraClassName={styles.tag}
@@ -136,7 +150,7 @@ export const GridDownloadCard = ({
               </div>
             </div>
 
-            {<Rating simple rating={project.rating.average} />}
+            {<Rating simple rating={averageRating} />}
           </div>
         </div>
       </Link>

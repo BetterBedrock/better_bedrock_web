@@ -9,7 +9,6 @@ import styles from "./image-placeholder.module.scss";
 
 interface ImagePlaceholderProps {
   onUpload?: (file: File) => Promise<void>;
-  pass?: boolean;
   placeholder?: string;
   src?: string;
 }
@@ -17,18 +16,15 @@ interface ImagePlaceholderProps {
 export const ImagePlaceholder = ({
   onUpload,
   src,
-  pass,
   placeholder,
 }: ImagePlaceholderProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [loading, setLoading] = useState(false);
   const handleCardClick = () => {
-    if (pass) return;
     inputRef.current?.click();
   };
 
   const handleInputChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    if (pass) return;
     const file = e.target.files?.item(0);
 
     if (!file) {
@@ -67,6 +63,7 @@ export const ImagePlaceholder = ({
       <input
         ref={inputRef}
         type="file"
+        accept="image/png, image/jpeg, image/gif, image/webp"
         className={styles.hidden}
         onChange={handleInputChange}
       />

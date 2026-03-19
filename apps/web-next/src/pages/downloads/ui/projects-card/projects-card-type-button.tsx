@@ -2,7 +2,7 @@
 
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
-import { SearchProjectTypeKey } from "@/public/content/better-bedrock";
+import { SearchProjectTypeKey } from "@/shared/config";
 import { useProjectsCardSearch } from "@/pages/downloads/model/projects-card-search";
 
 interface ProjectsCardTypeButtonProps {

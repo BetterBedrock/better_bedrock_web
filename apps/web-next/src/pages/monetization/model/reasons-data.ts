@@ -6,26 +6,26 @@ export interface Reason {
 export const reasonsData: Reason[] = [
   {
     title: "Proven Experience",
-    description: "3 years of active development and platform optimization."
+    description: "3+ years of active development and platform optimization for the Bedrock community."
   },
   {
     title: "Advanced Anti-bypass",
-    description: "Built-in protection against bypasses to maximize earnings."
+    description: "Built-in protection against link bypassers to maximize your real conversion rate."
   },
   {
-    title: "Top-Tier CPM",
-    description: "High-efficiency monetization with competitive rates determined by leading ad providers."
+    title: "High-Tier CPM",
+    description: "High-efficiency monetization with competitive rates from industry-leading ad providers."
   },
   {
     title: "Global Traffic Hub",
-    description: "Reach a massive audience with a large number of unique visits per month."
+    description: "Reach a massive audience of active Bedrock players looking for high-quality mods."
   },
   {
     title: "Verified Industry Leader",
-    description: "A reputation built on years of delivering elite Minecraft Bedrock content."
+    description: "A reputation built on years of delivering elite content and reliable creator tools."
   },
   {
     title: "Bedrock Dedicated",
-    description: "Zero distractions. We are fully specialized in the Minecraft Bedrock ecosystem."
+    description: "Zero distractions. We are 100% specialized in the Minecraft Bedrock ecosystem."
   }
 ];

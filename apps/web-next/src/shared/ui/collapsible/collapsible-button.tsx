@@ -1,6 +1,5 @@
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { ButtonType, Button } from "@/shared/ui/button";
-import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 
 import styles from "./collapsible.module.scss";
@@ -21,9 +20,9 @@ export const CollapsibleButton = ({
   type,
 }: CollapsibleButtonProps) => (
   <Button
+    as="summary"
     isClicked={isCollapsed}
     width="100%"
-    summary={true}
     type={type}
     onClick={(e) => {
       e.preventDefault();

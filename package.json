@@ -9,6 +9,9 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "generate:api": "npx openapi-typescript ./apps/web/src/lib/api/api.json -o ./apps/web/src/lib/api/schema.ts"
   },
+  "resolutions": {
+    "unfetch": "4.2.0"
+  },
   "devDependencies": {
     "prettier": "^3.2.5",
     "turbo": "^2.3.3",
@@ -18,8 +21,13 @@
     "node": ">=20"
   },
   "packageManager": "yarn@1.22.19",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ],
+    "nohoist": [
+      "**"
+    ]
+  }
 }

@@ -1,9 +1,6 @@
 "use client";
 
 import { KeyboardEvent, MouseEvent, useEffect, useState } from "react";
-import FilledStar from "@/public/ui/star/filledStar.png";
-import EmptyStar from "@/public/ui/star/emptyStar.png";
-import HalfFilledStar from "@/public/ui/star/halfFilledStar.png";
 import clsx from "clsx";
 import { BedrockComponentProps } from "@/shared/lib/utils";
 import { BedrockText } from "@/shared/ui/bedrock-text";
@@ -88,6 +85,10 @@ export const Rating = ({
   const text = `${formatNumber(preview ?? selected, 2)}/${max}${suffix ? ` ${suffix}` : ""}`;
   const starStyles = clsx(styles.star, styles[size]);
 
+  const filledStar = "/ui/star/filledStar.png";
+  const emptyStar = "/ui/star/emptyStar.png";
+  const halfFilledStar = "/ui/star/halfFilledStar.png";
+
   return (
     <Tooltip text={text} className={extraClassName}>
       <div
@@ -113,10 +114,10 @@ export const Rating = ({
                     : null
                 }
               >
-                <img className={starStyles} src={FilledStar.src} alt="star" />
+                <img className={starStyles} src={filledStar} alt="star" />
               </button>
             ) : (
-              <img className={starStyles} src={FilledStar.src} alt="star" />
+              <img className={starStyles} src={filledStar} alt="star" />
             )}
           </>
         ) : (
@@ -126,10 +127,10 @@ export const Rating = ({
                 const fill = getFill(i, current);
                 const src =
                   fill === "full"
-                    ? FilledStar
+                    ? filledStar
                     : fill === "half"
-                      ? HalfFilledStar
-                      : EmptyStar;
+                      ? halfFilledStar
+                      : emptyStar;
                 return selectable ? (
                   <button
                     key={i}
@@ -144,7 +145,7 @@ export const Rating = ({
                   >
                     <img
                       className={starStyles}
-                      src={src.src}
+                      src={src}
                       alt={`${i + 1} star`}
                     />
                   </button>
@@ -152,7 +153,7 @@ export const Rating = ({
                   <img
                     key={i}
                     className={starStyles}
-                    src={src.src}
+                    src={src}
                     alt={`${i + 1} star`}
                   />
                 );

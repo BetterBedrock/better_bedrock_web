@@ -64,7 +64,7 @@ const PopupReportComponent = ({
               color="white"
             />
             <Input
-              sub 
+              sub
               ref={inputRef}
               placeholder="Message"
               value={defaultMessage}
@@ -74,7 +74,7 @@ const PopupReportComponent = ({
       </Popup.Body>
       <Popup.Footer>
         <Button onClick={handleReport} type="green" center width="100%">
-          <BedrockText type="p" text="Report" color="white" />
+          Report
         </Button>
       </Popup.Footer>
     </Popup>

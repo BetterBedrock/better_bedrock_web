@@ -13,23 +13,26 @@ import useSound from "use-sound";
 import styles from "./button.module.scss";
 import { useImagePreload } from "@/shared/model";
 import { CircularProgressIndicator } from "@/shared/ui/circular-progress-indicator";
+import { BedrockText } from "@/shared/ui/bedrock-text";
 
-export type ButtonType = "green" | "white" | "dark" | "gold" | "red";
+export const buttonTypes = ["green", "white", "dark", "gold", "red"] as const;
+export type ButtonType = (typeof buttonTypes)[number];
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+  as?: string;
   type?: ButtonType;
   width?: string;
   height?: string;
   className?: string;
-  children?: ReactNode;
+  children?: ReactNode | string;
 
-  playSound?: boolean;
   center?: boolean;
-  lockClicking?: boolean;
+  disabled?: boolean;
   isClicked?: boolean;
-  summary?: boolean;
-  isToggled?: boolean;
   buttonType?: "button" | "reset" | "submit" | undefined;
+
+  /** isToggle is only available when used with isClicked={true} */
+  isToggled?: boolean;
 }
 
 export const Button = forwardRef<
@@ -38,16 +41,15 @@ export const Button = forwardRef<
 >(
   (
     {
+      as = "button",
       width,
       height,
       children,
       className,
-      playSound = true,
       type = "green",
       center = false,
-      lockClicking = false,
+      disabled = false,
       isClicked,
-      summary = false,
       buttonType,
       isToggled = false,
       onClick,
@@ -65,12 +67,12 @@ export const Button = forwardRef<
     });
 
     const handleClick = async (e: MouseEvent<HTMLButtonElement>) => {
-      if (lockClicking || loading) return;
+      if (disabled || loading) return;
 
       setIsHeld(true);
       handleSetIsToggled(false);
+      playClickSound();
 
-      if (playSound) playClickSound();
       if (onClick) {
         setLoading(true);
         await onClick(e);
@@ -79,24 +81,23 @@ export const Button = forwardRef<
     };
 
     const handleSetIsToggled = (value: boolean) => {
-      if (isClicked === true) return;
       setClicked(value);
     };
 
     const handlePointerDown = () => {
-      if (lockClicking || loading) return;
+      if (disabled || loading) return;
       setIsHeld(true);
       setHover(true);
       handleSetIsToggled(!clicked);
     };
 
     const handleMouseUp = () => {
-      if (lockClicking || loading) return;
+      if (disabled || loading) return;
       if (isHeld) setIsHeld(false);
     };
 
     const handleTouchEnd = () => {
-      if (lockClicking || loading) return;
+      if (disabled || loading) return;
       setHover(false);
 
       if (isHeld) {
@@ -107,7 +108,7 @@ export const Button = forwardRef<
 
     const handleLeave = () => {
       setHover(false);
-      if (isHeld && !lockClicking && !loading) {
+      if (isHeld && !disabled && !loading) {
         setIsHeld(false);
         handleSetIsToggled(false);
       }
@@ -166,7 +167,7 @@ export const Button = forwardRef<
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const Component: any = summary ? "summary" : "button";
+    const Component: any = as;
 
     useImagePreload([
       unchecked,
@@ -205,8 +206,10 @@ export const Button = forwardRef<
           className={clsx(
             styles.button,
             finalClicked && styles.clicked,
-            (center || loading) && styles.center,
-            lockClicking && styles.lock,
+            (center || loading || typeof children === "string") &&
+              styles.center,
+            disabled && styles.lock,
+            isClicked && styles.lock,
           )}
         >
           {loading ? (
@@ -215,6 +218,12 @@ export const Button = forwardRef<
                 (type === "white" || type === "gold") && styles.indicator,
               )}
             />
+          ) : typeof children === "string" ? (
+            <BedrockText
+              color={type === "white" || type === "gold" ? "black" : "white"}
+            >
+              {children}
+            </BedrockText>
           ) : (
             children
           )}

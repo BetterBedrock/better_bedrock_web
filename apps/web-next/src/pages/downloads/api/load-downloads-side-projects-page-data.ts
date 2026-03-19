@@ -1,6 +1,6 @@
 import { fetchProjectsBasicInfo } from "@/entities/project";
 import { SimpleProjectDto } from "@/shared/lib/openapi";
-import { SIDE_PROJECTS_LIST } from "@/public/content/better-bedrock";
+import { SIDE_PROJECTS_LIST } from "@/shared/config";
 
 export const loadDownloadsSideProjectsPageData = async (): Promise<
   SimpleProjectDto[]

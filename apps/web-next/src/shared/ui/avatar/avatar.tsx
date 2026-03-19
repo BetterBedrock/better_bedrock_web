@@ -1,5 +1,3 @@
-import Steve from "@/public/images/avatars/Steve.png";
-import Summsatsuma from "@/public/images/avatars/sumssatsuma.png";
 import clsx from "clsx";
 import { FC, ReactNode } from "react";
 import { BedrockComponentProps } from "@/shared/lib/utils";
@@ -14,14 +12,13 @@ interface AvatarComponent extends FC<AvatarProps> {
   Details: FC<AvatarDetailsProps>;
 }
 
-interface AvatarProfileProps extends BedrockComponentProps {
+export interface AvatarProfileProps extends BedrockComponentProps {
   name: string;
   link?: boolean;
-  profilePage?: boolean;
   className?: string;
 }
 
-interface AvatarDetailsProps {
+export interface AvatarDetailsProps {
   name: string;
   bold?: boolean;
   at?: boolean;
@@ -31,7 +28,7 @@ interface AvatarDetailsProps {
   className?: string;
 }
 
-interface AvatarProps {
+export interface AvatarProps {
   children?: ReactNode;
   name?: string;
   className?: string;
@@ -55,7 +52,11 @@ Avatar.Profile = ({
   >
     <img
       alt={name + " profile"}
-      src={name === "sumssatsuma" ? Summsatsuma.src : Steve.src}
+      src={
+        name === "sumssatsuma"
+          ? "/images/avatars/sumssatsuma.png"
+          : "/images/avatars/Steve.png"
+      }
       className={clsx(
         styles.picture,
         size && styles[size],

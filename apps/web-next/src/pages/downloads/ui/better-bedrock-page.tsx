@@ -1,8 +1,8 @@
-import { MAIN_LIST } from "@/public/content/better-bedrock";
+import { MAIN_LIST } from "@/shared/config";
 import { BetterBedrockArchiveButton } from "@/pages/downloads/ui/better-bedrock-archive-button";
 import { BetterBedrockBanner } from "@/pages/downloads/ui/better-bedrock-banner";
 import { BetterBedrockItemsList } from "@/pages/downloads/ui/better-bedrock-items-list";
-import { DownloadsHeading } from "@/shared/ui/downloads-heading";
+import { DownloadsHeading } from "@/pages/downloads/ui/downloads-heading";
 
 import { Card } from "@/shared/ui/card";
 

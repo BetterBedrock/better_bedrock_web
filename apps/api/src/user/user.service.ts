@@ -69,6 +69,18 @@ export class UserService {
             throw new BadRequestException("User with this name already exists");
         }
 
+        if (Boolean(data.linkvertiseId) !== Boolean(data.linkvertiseSecret)) {
+            throw new BadRequestException(
+                "You didn't finish providing data for linkvertise account. Please provide both fields or delete all fields if you don't want to use it.",
+            );
+        }
+
+        if (Boolean(data.lootlabsLinkId) !== Boolean(data.lootlabsSecret)) {
+            throw new BadRequestException(
+                "You didn't finish providing data for lootlabs account. Please provide both fields or delete all fields if you don't want to use it.",
+            );
+        }
+
         return this.prismaService.user.update({ where: { id }, data: data });
     }
 }
