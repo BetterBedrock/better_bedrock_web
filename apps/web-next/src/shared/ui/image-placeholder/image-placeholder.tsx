@@ -63,6 +63,7 @@ export const ImagePlaceholder = ({
       <input
         ref={inputRef}
         type="file"
+        accept="image/png, image/jpeg, image/gif, image/webp"
         className={styles.hidden}
         onChange={handleInputChange}
       />
