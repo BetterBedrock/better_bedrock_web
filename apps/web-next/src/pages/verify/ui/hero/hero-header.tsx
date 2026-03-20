@@ -1,4 +1,5 @@
 import { ProjectDto, SimpleUserDto } from "@/shared/lib/openapi";
+import { Avatar } from "@/shared/ui/avatar";
 import { BedrockText } from "@/shared/ui/bedrock-text";
 
 interface HeroHeaderProps {
@@ -12,7 +13,9 @@ export const HeroHeader = ({ project, creator }: HeroHeaderProps) => (
     <BedrockText
       type="p"
       color="white"
-      text={`${project.title} by @${creator.name}`}
-    />
+    >
+      {`${project.title} by `}
+      <Avatar.Details at name={creator.name} />
+    </BedrockText>
   </div>
 );
