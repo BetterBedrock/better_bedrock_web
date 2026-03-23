@@ -27,4 +27,8 @@
 
 * `AdsImpressions` (value: `'Ads Impressions'`)
 
+* `StripeRevenue` (value: `'Stripe Revenue'`)
+
+* `StripePurchases` (value: `'Stripe Purchases'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
