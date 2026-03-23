@@ -92,6 +92,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${SITE_URL}${Routes.DOWNLOADS_BEDROCK_TEXTURE_PACKS}`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}${Routes.DOWNLOADS_BEDROCK_SCRIPTS}`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}${Routes.DOWNLOADS_BEDROCK_ADDONS}`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}${Routes.DOWNLOADS_BEDROCK_MAPS}`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}${Routes.DOWNLOADS_BEDROCK_SKIN_PACKS}`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}${Routes.DOWNLOADS_BEDROCK_OTHERS}`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
       url: `${SITE_URL}${Routes.LOGIN}`,
       lastModified: new Date(),
       changeFrequency: "weekly",
