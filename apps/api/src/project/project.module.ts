@@ -8,9 +8,10 @@ import { AnalyticsService } from "~/analytics/analytics.service";
 import { MailService } from "~/mail/mail.service";
 import { UserService } from "~/user/user.service";
 import { HttpModule } from "@nestjs/axios";
+import { CacheModule } from "@nestjs/cache-manager";
 
 @Module({
-    imports: [HttpModule],
+    imports: [HttpModule, CacheModule.register()],
     controllers: [ProjectController],
     providers: [
         ProjectService,
