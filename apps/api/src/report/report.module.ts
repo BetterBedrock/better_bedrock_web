@@ -1,4 +1,5 @@
 import { HttpModule } from "@nestjs/axios";
+import { CacheModule } from "@nestjs/cache-manager/dist";
 import { Module } from "@nestjs/common";
 import { AnalyticsService } from "~/analytics/analytics.service";
 import { PrismaService } from "~/prisma.service";
@@ -9,7 +10,7 @@ import { ReportService } from "~/report/report.service";
 import { UserService } from "~/user/user.service";
 
 @Module({
-    imports: [HttpModule],
+    imports: [HttpModule, CacheModule.register()],
     controllers: [ReportController],
     providers: [
         ProjectService,
