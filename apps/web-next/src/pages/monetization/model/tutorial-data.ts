@@ -14,81 +14,67 @@ export const tutorialData: Record<
   linkvertise: {
     steps: [
       {
-        title: "Better Bedrock Authentication",
+        title: "Better Bedrock Setup",
         content: `- Access the [Login Page](https://betterbedrock.com/login).
-- Create a **Better Bedrock account** using Google services.`,
+- Create your **Better Bedrock account** using Google for a secure, one-click setup.`,
       },
       {
-        title: "Linkvertise Publisher Setup",
-        content: `- Register an account at the [Linkvertise Publisher Page](https://publisher.linkvertise.com/ac/401625).
-- This account acts as your **primary wallet** where all ad revenue is accumulated.`,
+        title: "AD Provider Registration",
+        content: `- Sign up at [Linkvertise Publisher](https://publisher.linkvertise.com/ac/401625).
+- This serves as your **primary wallet** where all ad revenue is securely accumulated.`,
       },
       {
-        title: "Extracting Technical Credentials",
-        content: `*Step 1:* Locate your Linkvertise User ID
+        title: "Extracting Security Credentials",
+        content: `**Step A: Get your User ID**
 1. Log in to your [Publisher Dashboard](https://publisher.linkvertise.com/).
-2. Navigate to the [Affiliate Program](https://publisher.linkvertise.com/dashboard#affiliate) tab.
-3. Identify your **Affiliate URL**.
-   - Format: https://publisher.linkvertise.com/ac/1382868
-   - The string at the end (**1382868**) is your unique **User ID**.
-4. Copy this "**Linkvertise User ID**".
+2. Go to the [Affiliate Program](https://publisher.linkvertise.com/dashboard#affiliate) tab.
+3. Your **User ID** is the number at the end of your Affiliate URL (e.g., in ac/1382868, **your ID is 1382868**).
 
-*Step 2:* Generate Anti-Bypass Security Token
-1. Open your [Account Settings](https://publisher.linkvertise.com/dashboard#account).
-2. Locate and toggle the "**Use anti-bypassing**" option.
-3. **Save settings** to commit changes.
-4. Copy this "**Anti-bypass Token**".`,
+**Step B: Generate Anti-Bypass Token**
+1. Open [Account Settings](https://publisher.linkvertise.com/dashboard#account).
+2. Enable the **"Use anti-bypassing"** toggle and **Save**.
+3. Copy the generated **Anti-bypass Token**.`,
       },
       {
-        title: "Finalizing Integration",
-        content: `1. Return to your **Profile**.
-2. Click the **Settings (Gear Icon)** in the top right corner.
-3. Input your credentials:
-   - **Linkvertise User ID**, from step 1.
-   - **Anti-bypass Token**, from step 2.
-4. Click **Save Profile Settings**.
+        title: "Finalizing Connection",
+        content: `1. Go to your **Better Bedrock Profile Settings**.
+2. Enter your **Linkvertise User ID** and **Anti-bypass Token**.
+3. Click **Save Settings**.
 
-**Configuration Complete.** Your projects are now protected and monetized! This is a one-time setup that applies to all future projects automatically.`,
+**All set!** Your projects are now protected and monetized! This is a one-time setup that applies to every project automatically.`,
       },
     ],
   },
   lootlabs: {
     steps: [
       {
-        title: "Better Bedrock Authentication",
+        title: "Better Bedrock Setup",
         content: `- Access the [Login Page](https://betterbedrock.com/login).
 - Create a **Better Bedrock account** using Google services.`,
       },
       {
-        title: "Lootlabs Setup",
-        content: `- Register an account at the [Lootlabs Register Page](https://lootlabs.gg/sign-up?rpid=516698).
-- This account acts as your **primary wallet** where all ad revenue is accumulated.`,
+        title: "AD Provider Registration",
+        content: `- Sign up at [LootLabs](https://lootlabs.gg/sign-up?rpid=516698).
+- This serves as your **primary wallet** where all ad revenue is securely accumulated.`,
       },
       {
-        title: "Extracting Technical Credentials",
-        content: `*Step 1:* Create a project
-1. Log in to your [Lootlabs Dashboard](https://creators.lootlabs.gg/dashboard).
-2. Click "**Create Single Monetized Links**" in the top left corner and fill in the required information.
-3. Identify your new link in the list below, and check **Short Link ID** column.
-   - Format: *https://loot-link.com/s?szzMUrlD*
-   - The string at the end (**szzMUrlD**) is your unique **LootLabs Link ID**.
-4. Copy this "**LootLabs Link ID**".
+        title: "Extracting Security Credentials",
+        content: `**Step A: Create Your First Link**
+1. In the [LootLabs Dashboard](https://creators.lootlabs.gg/dashboard), click "**Create Single Monetized Links**".
+2. Fill in the required information. **IMPORTANT: destination URL can be anything**.
+3. Once created, find the **Short Link ID** at the end of your URL (e.g., **szzMUrlD**) This is your **LootLabs Link ID**.
 
-*Step 2:* Generate API Token
-1. Open [Advanced tab](https://creators.lootlabs.gg/advanced).
-2. Click the button to generate the token - below the **Generate API token** option.
-3. Copy this "**API Token**".`,
+**Step B: API Token Generation**
+1. Navigate to the [Advanced Tab](https://creators.lootlabs.gg/advanced).
+2. Click **Generate API Token** and copy the resulting string.`,
       },
       {
-        title: "Finalizing Integration",
-        content: `1. Return to your **Profile**.
-2. Click the **Settings (Gear Icon)** in the top right corner.
-3. Input your credentials:
-   - **Lootlabs Link ID**, from step 1.
-   - **API Token**, from step 2.
-4. Click **Save Settings**.
+        title: "Finalizing Connection",
+        content: `1. Go to your **Better Bedrock Profile Settings**.
+2. Enter your **LootLabs Link ID** and **API Token**. Make sure that **LootLabs Link ID** uses only letters without the question mark!
+3. Click **Save Settings**.
 
-**Configuration Complete.** Your projects are now protected and monetized! This is a one-time setup that applies to all future projects automatically.`,
+**All set!** Your projects are now protected and monetized! This is a one-time setup that applies to every project automatically.`,
       },
     ],
   },

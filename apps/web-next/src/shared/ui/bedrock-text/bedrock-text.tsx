@@ -52,7 +52,6 @@ export const BedrockText = ({
     <Tag
       className={clsx(
         paragraphType,
-        styles.text,
         selectable === false ? styles.non_selectable : "",
         onClick && styles.underline,
         strong && styles.strong,

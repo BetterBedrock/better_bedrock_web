@@ -5,37 +5,36 @@ import { ProjectsCardTitle } from "./projects-card-title";
 import { ProjectsCardDescription } from "./projects-card-description";
 import { ProjectsCardFilters } from "./projects-card-filters";
 import { fetchInitialProjects } from "@/entities/project";
-import { ProjectsCardSearchProvider } from "@/pages/downloads/model/projects-card-search";
+import { ProjectType } from "@/shared/lib/openapi";
 
 export const revalidate = 60;
 
 export interface ProjectsCardProps {
   page: number;
+  type?: ProjectType;
 }
 
-export const ProjectsCard = async ({ page }: ProjectsCardProps) => {
-  const { currentPage, searchResults } = await fetchInitialProjects(page);
+export const ProjectsCard = async ({ page, type }: ProjectsCardProps) => {
+  const { currentPage, searchResults } = await fetchInitialProjects(page, type);
 
   return (
     <Card fullWidth>
-      <ProjectsCardSearchProvider>
-        <Card.Body>
-          <ProjectsCardTitle />
-          <ProjectsCardDescription />
-        </Card.Body>
-        <Card.Divider />
-        <Card.Body gap="sm">
-          <ProjectsCardFilters />
-        </Card.Body>
-        <Card.Divider />
-        <Card.Body gap="md">
-          <ProjectsCardBanner />
-          <ProjectsCardPageContainer
-            currentPage={currentPage}
-            searchResults={searchResults}
-          />
-        </Card.Body>
-      </ProjectsCardSearchProvider>
+      <Card.Body>
+        <ProjectsCardTitle type={type} />
+        <ProjectsCardDescription type={type} />
+      </Card.Body>
+      <Card.Divider />
+      <Card.Body gap="sm">
+        <ProjectsCardFilters />
+      </Card.Body>
+      <Card.Divider />
+      <Card.Body gap="md">
+        <ProjectsCardBanner />
+        <ProjectsCardPageContainer
+          currentPage={currentPage}
+          searchResults={searchResults}
+        />
+      </Card.Body>
     </Card>
   );
 };

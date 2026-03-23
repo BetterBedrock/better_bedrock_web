@@ -4,6 +4,6 @@ export const TutorialDescription = () => (
   <BedrockText
     type="p"
     color="white"
-    text="Watch the video tutorial above or follow the step-by-step guide below to configure your monetization settings."
+    text="Watch the tutorial or follow our guide to link your provider and start earning instantly."
   />
 );

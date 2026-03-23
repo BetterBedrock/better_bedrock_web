@@ -1,1 +1,0 @@
-export { PartnerImage } from "./partner-image";

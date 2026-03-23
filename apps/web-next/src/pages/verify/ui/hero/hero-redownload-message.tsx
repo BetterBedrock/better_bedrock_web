@@ -6,9 +6,10 @@ import { BedrockText } from "@/shared/ui/bedrock-text";
 import clsx from "clsx";
 
 import styles from "./hero.module.scss";
+import { baseUrl } from "@/shared/lib/utils";
 
 export const HeroRedownloadMessage = () => {
-  const { download, downloadProgress } = useDownload();
+  const { downloadProgress } = useDownload();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -19,8 +20,7 @@ export const HeroRedownloadMessage = () => {
   }, [downloadProgress]);
 
   const handleRetry = () => {
-    setVisible(false);
-    download();
+    window.open(baseUrl + "/download", "_self");
   };
 
   return (

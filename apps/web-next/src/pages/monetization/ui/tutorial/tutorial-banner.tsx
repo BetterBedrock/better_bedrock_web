@@ -11,8 +11,8 @@ export const TutorialBanner = ({ selectedProvider }: { selectedProvider: 'linkve
       <BedrockText
         color="white"
         text={selectedProvider === 'lootlabs'
-          ? "✅ Smart choice! Lootlabs provides better revenue! "
-          : "💡 Pro tip: Consider choosing Lootlabs for better revenue. "
+          ? "✅ Smart Choice! LootLabs currently offers the highest revenue potential for Bedrock creators "
+          : "💡 Pro tip: Consider choosing Lootlabs to increase your revenue instantly. "
         }
       >
         <Link link={selectedProvider === 'lootlabs' ? "https://lootlabs.gg/sign-up?rpid=516698" : "https://publisher.linkvertise.com/ac/401625"} isExternalLink underlined>

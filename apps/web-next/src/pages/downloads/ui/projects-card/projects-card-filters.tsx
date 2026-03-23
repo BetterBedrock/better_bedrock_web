@@ -8,19 +8,17 @@ import { ProjectsCardOrder } from "./projects-card-order";
 import styles from "./projects-card.module.scss";
 
 export const ProjectsCardFilters = () => {
-  const [typeCloseTrigger, setTypeCloseTrigger] = useState(0);
-  const [orderCloseTrigger, setOrderCloseTrigger] = useState(0);
+  const [typeOpen, setTypeOpen] = useState(false);
+  const [orderOpen, setOrderOpen] = useState(false);
 
   const handleTypeOpenChange = (isOpen: boolean) => {
-    if (isOpen) {
-      setOrderCloseTrigger((prev) => prev + 1);
-    }
+    setTypeOpen(isOpen);
+    setOrderOpen(false);
   };
 
   const handleOrderOpenChange = (isOpen: boolean) => {
-    if (isOpen) {
-      setTypeCloseTrigger((prev) => prev + 1);
-    }
+    setTypeOpen(false);
+    setOrderOpen(isOpen);
   };
 
   return (
@@ -28,12 +26,12 @@ export const ProjectsCardFilters = () => {
       <ProjectsCardSearchBar />
       <ProjectsCardType
         onOpenChange={handleTypeOpenChange}
-        closeTrigger={typeCloseTrigger}
+        open={typeOpen}
       />
       <ProjectsCardOrder
         className={styles.orderFull}
         onOpenChange={handleOrderOpenChange}
-        closeTrigger={orderCloseTrigger}
+        open={orderOpen}
       />
     </>
   );

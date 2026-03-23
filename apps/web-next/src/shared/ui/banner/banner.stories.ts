@@ -10,7 +10,7 @@ const bannerArgTypes: Partial<ArgTypes<React.ComponentProps<typeof Banner>>> = {
 };
 
 const meta = {
-    title: "Components/Banner",
+    title: "Feedback/Banner",
     component: Banner,
     parameters: {
         layout: "centered",

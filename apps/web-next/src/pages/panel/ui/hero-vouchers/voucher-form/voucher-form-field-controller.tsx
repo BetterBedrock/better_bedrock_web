@@ -1,5 +1,4 @@
 import { Control, Controller } from "react-hook-form";
-import { InputSwitch } from "@/shared/ui/input";
 import { Input } from "@/shared/ui/input";
 
 import styles from "./voucher-form.module.scss";
@@ -29,7 +28,7 @@ export const VoucherFormFieldController = ({
             typeof field.value === "boolean")
         ) {
           return (
-            <InputSwitch
+            <Input.Switch
               type="checkbox"
               className={styles.input}
               placeholder={placeholder}

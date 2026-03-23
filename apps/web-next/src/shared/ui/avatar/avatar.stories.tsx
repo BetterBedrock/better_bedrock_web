@@ -9,7 +9,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 type AvatarStoryArgs = AvatarProps & AvatarProfileProps & AvatarDetailsProps;
 
 const meta: Meta<AvatarStoryArgs> = {
-  title: "Components/Avatar",
+  title: "Primitives/Avatar",
   component: Avatar,
   parameters: { layout: "centered" },
   argTypes: {
@@ -101,101 +101,3 @@ export const Details: Story = {
     size: { table: { disable: true } },
   },
 };
-
-// const profileArgTypes: Partial<
-//   ArgTypes<React.ComponentProps<typeof Avatar.Profile>>
-// > = {
-//   size: {
-//     control: "select",
-//     options: ["small", "medium", "large"],
-//   },
-//   link: { control: "boolean" },
-//   profilePage: { control: "boolean" },
-// };
-
-// const detailsArgTypes: Partial<
-//   ArgTypes<React.ComponentProps<typeof Avatar.Details>>
-// > = {
-//   at: { control: "boolean" },
-//   bold: { control: "boolean" },
-//   center: { control: "boolean" },
-//   link: { control: "boolean" },
-// };
-
-// // --- Avatar.Profile ---
-
-// export const ProfileSteve: StoryObj<typeof Avatar.Profile> = {
-//   render: (args) => <Avatar.Profile {...args} />,
-//   argTypes: profileArgTypes,
-//   args: {
-//     name: "Steve",
-//     link: false,
-//     size: "large",
-//     profilePage: false,
-//   },
-// };
-
-// // --- Avatar.Details ---
-
-// export const DetailsDefault: StoryObj<typeof Avatar.Details> = {
-//   render: (args) => <Avatar.Details {...args} />,
-//   argTypes: detailsArgTypes,
-//   args: {
-//     name: "Steve",
-//     link: false,
-//     at: false,
-//     bold: false,
-//     center: false,
-//   },
-// };
-
-// export const DetailsWithAt: StoryObj<typeof Avatar.Details> = {
-//   render: (args) => <Avatar.Details {...args} />,
-//   argTypes: detailsArgTypes,
-//   args: {
-//     name: "Steve",
-//     at: true,
-//     bold: false,
-//     center: false,
-//     link: false,
-//   },
-// };
-
-// export const DetailsBold: StoryObj<typeof Avatar.Details> = {
-//   render: (args) => <Avatar.Details {...args} />,
-//   argTypes: detailsArgTypes,
-//   args: {
-//     name: "Steve",
-//     bold: true,
-//     at: false,
-//     center: false,
-//     link: false,
-//   },
-// };
-
-// export const DetailsWithChildren: StoryObj<typeof Avatar.Details> = {
-//   render: (args) => (
-//     <Avatar.Details {...args}>
-//       <Rating simple rating={4.5} />
-//     </Avatar.Details>
-//   ),
-//   argTypes: detailsArgTypes,
-//   args: {
-//     name: "Steve",
-//     link: false,
-//     at: false,
-//     bold: false,
-//     center: false,
-//   },
-// };
-
-// // --- Combined Profile + Details ---
-
-// export const FullAvatarSteve: Story = {
-//   render: () => (
-//     <Avatar name="Steve">
-//       <Avatar.Profile name="Steve" link={false} size="large" />
-//       <Avatar.Details name="Steve" bold link={false} />
-//     </Avatar>
-//   ),
-// };

@@ -80,7 +80,9 @@ export const AnalyticsNames = {
     PublishedProjects: 'Published Projects',
     DeclinedProjects: 'Declined Projects',
     AdsRevenue: 'Ads Revenue',
-    AdsImpressions: 'Ads Impressions'
+    AdsImpressions: 'Ads Impressions',
+    StripeRevenue: 'Stripe Revenue',
+    StripePurchases: 'Stripe Purchases'
 } as const;
 
 export type AnalyticsNames = typeof AnalyticsNames[keyof typeof AnalyticsNames];

@@ -18,7 +18,9 @@ export const ProjectDetailsEditorProjectType = () => {
     <Button
       key={key}
       type={key === selectedProject!.type ? "green" : "white"}
-      onClick={async () => await handleUpdateType(key)}
+      onClick={() => {
+        handleUpdateType(key);
+      }}
       isClicked={key === selectedProject!.type}
       isToggled={key === selectedProject!.type}
       center

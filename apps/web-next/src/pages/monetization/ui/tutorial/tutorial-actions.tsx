@@ -19,7 +19,7 @@ export const TutorialActions = ({ selectedProvider, onProviderChange }: Tutorial
       isClicked={selectedProvider === "lootlabs"}
       onClick={() => onProviderChange('lootlabs')}
     >
-      <BedrockText text="Lootlabs (Increase revenue)" color={"white"} type="p" />
+      <BedrockText text="LootLabs (Higher CPM)" color={"white"} type="p" />
     </Button>
     <Button
       width="100%"
@@ -29,7 +29,7 @@ export const TutorialActions = ({ selectedProvider, onProviderChange }: Tutorial
       isClicked={selectedProvider === "linkvertise"}
       onClick={() => onProviderChange('linkvertise')}
     >
-      <BedrockText text="Linkvertise" color={"white"} type="p" />
+      <BedrockText text="Linkvertise (Standard)" color={"white"} type="p" />
     </Button>
   </ButtonGroup>
 );

@@ -3,7 +3,8 @@ import styles from "./tag.module.scss";
 import clsx from "clsx";
 import { ReactNode } from "react";
 
-type Border = "left" | "right" | "bottom" | "top" | "all";
+export const borders = ["left", "right", "bottom", "top", "all"];
+export type Border = (typeof borders)[number];
 
 interface TagProps {
   name: string | ReactNode;

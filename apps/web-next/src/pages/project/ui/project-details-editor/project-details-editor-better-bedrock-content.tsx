@@ -1,7 +1,7 @@
 "use client";
 
 import { BedrockText } from "@/shared/ui/bedrock-text";
-import { InputSwitch } from "@/shared/ui/input";
+import { Input } from "@/shared/ui/input";
 import { useDetailsEditorBetterBedrockContent } from "../../model/use-details-editor-better-bedrock-content";
 import { Card } from "@/shared/ui/card";
 
@@ -18,7 +18,7 @@ export const ProjectDetailsEditorBetterBedrockContent = () => {
         textAlign="left"
       />
 
-      <InputSwitch
+      <Input.Switch
         placeholder="Better Bedrock Content"
         checked={selectedProject!.betterBedrockContent}
         onChange={handleSwitchBetterBedrock}

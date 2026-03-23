@@ -12,11 +12,11 @@ import { clsx } from "clsx";
 export const ProjectsCardOrder = ({
   className,
   onOpenChange,
-  closeTrigger,
+  open,
 }: {
   className?: string;
   onOpenChange?: (open: boolean) => void;
-  closeTrigger?: number;
+  open?: boolean;
 }) => {
   const { selectedOrder } = useProjectsCardSearch();
 
@@ -28,7 +28,7 @@ export const ProjectsCardOrder = ({
       className={clsx(styles.collapsible, className)}
       limit={true}
       onOpenChange={onOpenChange}
-      closeTrigger={closeTrigger}
+      open={open}
     >
       <ButtonGroup direction="vertical">
         {Object.values(SearchOrder).map((type, index) => (

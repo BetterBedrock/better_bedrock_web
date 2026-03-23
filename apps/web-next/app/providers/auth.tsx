@@ -8,16 +8,13 @@ import {
   Dispatch,
   ReactNode,
   SetStateAction,
-  useCallback,
   useContext,
   useEffect,
   useState,
 } from "react";
-import { useCookies } from "next-client-cookies";
-import {
-  authenticateRequest,
-  googleAuthorizeRequest,
-} from "@/entities/auth/api/auth-service";
+import { googleAuthorizeRequest } from "@/entities/auth/api/auth-service";
+import { authenticateToken } from "@/entities/auth/api/authenticate-token";
+import { logoutToken } from "@/entities/auth/api/logout-token";
 
 interface AuthContextProps {
   fetched: boolean;
@@ -34,7 +31,6 @@ interface AuthProviderProps {
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const cookies = useCookies();
   const { throwError, sendNotification } = useNotification();
   const [fetched, setFetched] = useState(false);
   const [user, setUser] = useState<UserDto | undefined>();
@@ -45,11 +41,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         const { data } = await googleAuthorizeRequest(
           tokenResponse.access_token,
         );
-        cookies.set("secret", data.token, {
-          path: "/",
-          secure: true,
-          sameSite: "strict",
-        });
+
         authenticate(data.token);
       } catch (err) {
         throwError(err, "Failed to login with Google");
@@ -59,8 +51,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       throwError(errorResponse, "Failed to login with Google"),
   });
 
-  const logout = useCallback(() => {
-    cookies.remove("secret");
+  const logout = async () => {
+    await logoutToken();
     setUser(undefined);
 
     sendNotification({
@@ -70,32 +62,23 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     });
 
     window.location.reload();
-  }, [setUser, sendNotification, cookies]);
+  };
 
-  const authenticate = useCallback(
-    async (secret: string) => {
-      setFetched(false);
-      try {
-        const { data } = await authenticateRequest(secret);
-        setUser(data);
-      } catch (err) {
-        throwError(err, "Failed to authenticate");
-        logout();
-      } finally {
-        setFetched(true);
-      }
-    },
-    [setFetched, setUser, throwError, logout],
-  );
+  const authenticate = async (secret?: string) => {
+    const { data: userData, error } = await authenticateToken(secret);
+
+    if (error) {
+      throwError(null, error);
+      return;
+    }
+
+    setUser(userData);
+    setFetched(true);
+  };
 
   useEffect(() => {
-    const secret = cookies.get("secret");
-    if (secret && secret !== "") {
-      authenticate(secret);
-    } else {
-      setFetched(true);
-    }
-  }, [authenticate, cookies]);
+    authenticate();
+  }, []);
 
   return (
     <AuthContext.Provider

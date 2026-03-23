@@ -9,6 +9,7 @@ import { ProjectService } from "~/project/project.service";
 import { UserService } from "~/user/user.service";
 import { RatingService } from "~/rating/rating.service";
 import { MonetizationService } from "~/monetization/monetization.service";
+import { CacheModule } from "@nestjs/cache-manager";
 
 @Module({
     imports: [
@@ -16,6 +17,7 @@ import { MonetizationService } from "~/monetization/monetization.service";
             timeout: 5000,
             maxRedirects: 5,
         }),
+        CacheModule.register(),
     ],
     controllers: [DownloadController],
     providers: [
