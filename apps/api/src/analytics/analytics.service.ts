@@ -25,7 +25,7 @@ export class AnalyticsService {
     ) {}
 
     async onModuleInit() {
-        await Promise.all([this.refreshLootlabsCache(), this.refreshStripeCache()]);
+        Promise.all([this.refreshLootlabsCache(), this.refreshStripeCache()]);
     }
 
     async analytics() {
