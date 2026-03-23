@@ -37,9 +37,20 @@ export const StatisticsList = ({
       />
       <div className={styles.list}>
         <StatisticsCard
+          name="Stripe Revenue"
+          data={data[AnalyticsNames.StripeRevenue]}
+          suffix="€"
+          className={styles.card}
+        />
+        <StatisticsCard
+          name="Stripe Purchases"
+          data={data[AnalyticsNames.StripePurchases]}
+          className={styles.card}
+        />
+        <StatisticsCard
           name="Ads Revenue"
           data={data[AnalyticsNames.AdsRevenue]}
-          suffix="€"
+          suffix="$"
           className={styles.card}
         />
         <StatisticsCard
