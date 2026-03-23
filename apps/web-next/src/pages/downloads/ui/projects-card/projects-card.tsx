@@ -5,21 +5,23 @@ import { ProjectsCardTitle } from "./projects-card-title";
 import { ProjectsCardDescription } from "./projects-card-description";
 import { ProjectsCardFilters } from "./projects-card-filters";
 import { fetchInitialProjects } from "@/entities/project";
+import { ProjectType } from "@/shared/lib/openapi";
 
 export const revalidate = 60;
 
 export interface ProjectsCardProps {
   page: number;
+  type?: ProjectType;
 }
 
-export const ProjectsCard = async ({ page }: ProjectsCardProps) => {
-  const { currentPage, searchResults } = await fetchInitialProjects(page);
+export const ProjectsCard = async ({ page, type }: ProjectsCardProps) => {
+  const { currentPage, searchResults } = await fetchInitialProjects(page, type);
 
   return (
     <Card fullWidth>
       <Card.Body>
-        <ProjectsCardTitle />
-        <ProjectsCardDescription />
+        <ProjectsCardTitle type={type} />
+        <ProjectsCardDescription type={type} />
       </Card.Body>
       <Card.Divider />
       <Card.Body gap="sm">

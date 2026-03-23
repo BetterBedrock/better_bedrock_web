@@ -1,6 +1,12 @@
 export { MainPage } from "./ui/main-page";
 export { ProjectsCardSearchProvider } from "./model/projects-card-search";
 export { BedrockModsPage } from "./ui/bedrock-mods-page";
+export { BedrockAddonsPage } from "./ui/bedrock-addons-page";
+export { BedrockScriptsPage } from "./ui/bedrock-scripts-page";
+export { BedrockTexturePacksPage } from "./ui/bedrock-texture-packs-page";
+export { BedrockMapsPage } from "./ui/bedrock-maps-page";
+export { BedrockSkinPacksPage } from "./ui/bedrock-skin-packs-page";
+export { BedrockOtherPage } from "./ui/bedrock-other-page";
 export { BetterBedrockPage } from "./ui/better-bedrock-page";
 export { SideProjectsPage } from "./ui/side-projects-page";
 export { default as styles } from "./ui/downloads.module.scss";

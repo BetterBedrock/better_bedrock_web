@@ -7,7 +7,6 @@ import { ProjectsCardList } from "./projects-card-list";
 import { ProjectsCardPageNextButton } from "./projects-card-page-next-button";
 import { ProjectsCardPagePrevButton } from "./projects-card-page-prev-button";
 
-import styles from "./projects-card.module.scss";
 import { usePageProjectsFetch } from "@/pages/downloads/model/use-page-projects-fetch";
 
 interface ProjectsCardPageContainerProps {
