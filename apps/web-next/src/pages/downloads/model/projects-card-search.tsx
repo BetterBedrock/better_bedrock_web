@@ -1,6 +1,6 @@
 "use client";
 
-import { SearchOrder } from "@/shared/lib/openapi";
+import { ProjectType, SearchOrder } from "@/shared/lib/openapi";
 import { SearchProjectTypeKey } from "@/shared/config";
 import {
   createContext,
@@ -25,6 +25,7 @@ interface ProjectsCardSearchContextProps {
 
 interface ProjectsCardSearchProvider {
   children: ReactNode;
+  defaultType?: ProjectType;
 }
 
 const ProjectsCardSearchContext = createContext<
@@ -33,9 +34,10 @@ const ProjectsCardSearchContext = createContext<
 
 export const ProjectsCardSearchProvider = ({
   children,
+  defaultType,
 }: ProjectsCardSearchProvider) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [selectedType, setSelectedType] = useState<SearchProjectTypeKey>("all");
+  const [selectedType, setSelectedType] = useState<SearchProjectTypeKey>(defaultType ?? "all");
   const [selectedOrder, setSelectedOrder] = useState<SearchOrder>(
     SearchOrder.Newest,
   );
