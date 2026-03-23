@@ -9,6 +9,7 @@ import { PrismaService } from "~/prisma.service";
 import { SearchOrder } from "~/project/dto/search-order.dto";
 import { createId } from "@paralleldrive/cuid2";
 import { AnalyticsNames } from "~/analytics/constants/analytics-names";
+import Stripe from "stripe";
 
 @Injectable()
 export class AnalyticsService {
@@ -30,6 +31,7 @@ export class AnalyticsService {
 
         const topFileNames = topFileProjects.map((p) => p.name);
         const lootlabsData = await this.lootlabsStatistics();
+        const stripeData = await this.stripeStatistics();
         const analytics = await this.prismaService.analytics.findMany({
             where: {
                 OR: [
@@ -43,7 +45,7 @@ export class AnalyticsService {
             orderBy: { date: "asc" },
         });
 
-        return [...analytics, ...lootlabsData];
+        return [...analytics, ...lootlabsData, ...stripeData];
     }
 
     async lootlabsStatistics() {
@@ -79,6 +81,54 @@ export class AnalyticsService {
                     value: result.total_impressions || 0,
                 });
             });
+
+            return analytics.sort((a, b) => a.date.getTime() - b.date.getTime());
+        } catch (_) {
+            return [];
+        }
+    }
+
+    async stripeStatistics() {
+        const token = process.env.STRIPE_SECRET_KEY;
+
+        if (!token) return [];
+
+        try {
+            const stripe = new Stripe(token);
+            const analytics: AnalyticsDto[] = [];
+            const groupedByDate = new Map<string, { revenue: number; purchases: number }>();
+
+            for await (const payment of stripe.paymentIntents.list({
+                created: {
+                    lte: dayjs().unix(),
+                },
+            })) {
+                if (payment.status !== "succeeded") continue;
+
+                const date = dayjs.unix(payment.created).format("YYYY-MM-DD");
+                if (!groupedByDate.has(date)) groupedByDate.set(date, { revenue: 0, purchases: 0 });
+
+                const entry = groupedByDate.get(date)!;
+                entry.revenue += payment.amount_received / 100;
+                entry.purchases += 1;
+            }
+
+            for (const [date, { revenue, purchases }] of groupedByDate.entries()) {
+                analytics.push({
+                    id: createId(),
+                    type: "general",
+                    date: dayjs(date).toDate(),
+                    name: AnalyticsNames.stripeRevenue,
+                    value: parseFloat(revenue.toFixed(2)),
+                });
+                analytics.push({
+                    id: createId(),
+                    type: "general",
+                    date: dayjs(date).toDate(),
+                    name: AnalyticsNames.stripePurchases,
+                    value: purchases,
+                });
+            }
 
             return analytics.sort((a, b) => a.date.getTime() - b.date.getTime());
         } catch (_) {

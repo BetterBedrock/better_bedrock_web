@@ -11,4 +11,6 @@ export enum AnalyticsNames {
     declinedProjects = "Declined Projects",
     adsRevenue = "Ads Revenue",
     adsImpressions = "Ads Impressions",
+    stripeRevenue = "Stripe Revenue",
+    stripePurchases = "Stripe Purchases",
 }
