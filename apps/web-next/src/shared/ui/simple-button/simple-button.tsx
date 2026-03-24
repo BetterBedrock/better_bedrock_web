@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   useState,
@@ -52,7 +52,7 @@ export const SimpleButton = forwardRef<
       navPaddings,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [clicked, setClicked] = useState<boolean>(isClicked ?? false);
 
@@ -64,6 +64,8 @@ export const SimpleButton = forwardRef<
     }, [isClicked]);
 
     const handleClick = () => {
+      if (isClicked !== undefined) return;
+      
       setClicked(true);
       if (onTap) onTap();
       setClicked(false);
@@ -79,11 +81,17 @@ export const SimpleButton = forwardRef<
       styles.wrapper,
       transparent && styles.transparent,
       clicked && styles.active,
-      className
+      className,
     );
 
     const child = (
-      <div className={clsx(navPaddings && styles.childNav, styles.child, extraClassName && extraClassName)}>
+      <div
+        className={clsx(
+          navPaddings && styles.childNav,
+          styles.child,
+          extraClassName && extraClassName,
+        )}
+      >
         {children}
       </div>
     );
@@ -101,7 +109,7 @@ export const SimpleButton = forwardRef<
         {child}
       </button>
     );
-  }
+  },
 );
 
 SimpleButton.displayName = "SimpleButton";
