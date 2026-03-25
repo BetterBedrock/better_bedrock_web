@@ -4,10 +4,10 @@ import { BedrockText } from "@/shared/ui/bedrock-text";
 import { useState } from "react";
 import styles from "./projects-card.module.scss";
 import clsx from "clsx";
-import { SearchProjectTypeKey } from "@/shared/config";
+import { ProjectType } from "@/shared/lib/openapi";
 
 interface ProjectsCardDescriptionProps {
-  type?: SearchProjectTypeKey;
+  type?: ProjectType;
 }
 
 export const ProjectsCardDescription = ({
@@ -46,7 +46,6 @@ export const ProjectsCardDescription = ({
   );
 
   const typeDescriptions = {
-    all: defaultType,
     texturepacks: (
       <>
         Minecraft Bedrock Edition texture packs let you completely transform the
