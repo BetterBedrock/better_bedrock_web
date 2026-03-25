@@ -1,13 +1,13 @@
 "use server";
 
 import { searchProjects } from "@/entities/project/api/search-projects";
-import { ProjectType } from "@/shared/lib/openapi";
+import { ProjectType, SearchOrder } from "@/shared/lib/openapi";
 
-export const fetchInitialProjects = async (page: number, type?: ProjectType) => {
+export const fetchInitialProjects = async (page: number, type?: ProjectType, order?: SearchOrder, search?: string) => {
     const searchResults = await searchProjects(
         type,
-        undefined,
-        undefined,
+        order,
+        search,
         page,
     );
 
