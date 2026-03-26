@@ -7,8 +7,6 @@ import { ProjectsCardList } from "./projects-card-list";
 import { ProjectsCardPageNextButton } from "./projects-card-page-next-button";
 import { ProjectsCardPagePrevButton } from "./projects-card-page-prev-button";
 
-import { usePageProjectsFetch } from "@/pages/downloads/model/use-page-projects-fetch";
-
 interface ProjectsCardPageContainerProps {
   searchResults: SearchProjectsDto;
   currentPage: number;
@@ -18,19 +16,18 @@ export const ProjectsCardPageContainer = ({
   currentPage,
   searchResults,
 }: ProjectsCardPageContainerProps) => {
-  const projects = usePageProjectsFetch({ searchResults });
-  const items = projects?.items ?? [];
+  const items = searchResults?.items ?? [];
   const hasItems = items.length > 0;
 
   return (
     <>
       {!hasItems && <ProjectsCardEmpty />}
-      {hasItems && <ProjectsCardList searchResults={projects!} />}
+      {hasItems && <ProjectsCardList searchResults={searchResults} />}
       <ButtonGroup direction="horizontal">
         {currentPage > 1 && (
           <ProjectsCardPagePrevButton currentPage={currentPage} />
         )}
-        {currentPage < projects.totalPages && (
+        {currentPage < searchResults.totalPages && (
           <ProjectsCardPageNextButton currentPage={currentPage} />
         )}
       </ButtonGroup>

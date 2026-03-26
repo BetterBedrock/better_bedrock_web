@@ -3,27 +3,38 @@
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
 import { SearchOrder } from "@/shared/lib/openapi";
-import { useProjectsCardSearch } from "@/pages/downloads/model/projects-card-search";
+import { Link } from "@/shared/ui/link";
+import { usePathname, useSearchParams } from "next/navigation";
+
+import styles from "./projects-card.module.scss";
 
 interface ProjectsCardOrderButtonProps {
-  type: SearchOrder;
+  order: SearchOrder;
+  defaultOrder: SearchOrder;
 }
 
 export const ProjectsCardOrderButton = ({
-  type,
+  order,
+  defaultOrder,
 }: ProjectsCardOrderButtonProps) => {
-  const { selectedOrder, setSelectedOrder } = useProjectsCardSearch();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+
+  const params = new URLSearchParams(searchParams?.toString());
+  params.set("o", order.replaceAll(" ", ""));
+  const href = `${pathname}?${params.toString()}`;
 
   return (
-    <Button
-      type="dark"
-      width="100%"
-      center
-      isClicked={type === selectedOrder}
-      isToggled={type === selectedOrder}
-      onClick={() => setSelectedOrder(type)}
-    >
-      <BedrockText type="p" text={type} color="white" />
-    </Button>
+    <Link link={href} hideStyles className={styles.action} scroll={false}>
+      <Button
+        type="dark"
+        width="100%"
+        center
+        isClicked={order === defaultOrder}
+        isToggled={order === defaultOrder}
+      >
+        <BedrockText type="p" text={order} color="white" />
+      </Button>
+    </Link>
   );
 };
