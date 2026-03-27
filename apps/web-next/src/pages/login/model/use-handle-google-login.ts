@@ -1,5 +1,5 @@
 import { useGoogleLogin } from "@react-oauth/google";
-import { googleAuthorizeRequest } from "@/entities/auth/api/auth-service";
+import { googleAuthorize } from "@/entities/auth";
 import { useAuth } from "@/app/providers/auth";
 import { useNotification } from "@/app/providers/notification";
 
@@ -10,7 +10,7 @@ export const useHandleGoogleLogin = () => {
     const login = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
             try {
-                const { data } = await googleAuthorizeRequest(
+                const { data } = await googleAuthorize(
                     tokenResponse.access_token,
                 );
 
