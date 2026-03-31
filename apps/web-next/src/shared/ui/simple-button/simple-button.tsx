@@ -64,8 +64,11 @@ export const SimpleButton = forwardRef<
     }, [isClicked]);
 
     const handleClick = () => {
-      if (isClicked !== undefined) return;
-      
+      if (isClicked !== undefined) {
+        if (onTap) onTap();
+        return;
+      }
+
       setClicked(true);
       if (onTap) onTap();
       setClicked(false);
