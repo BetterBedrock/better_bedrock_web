@@ -13,6 +13,7 @@ import { extractFirstLinesFromTiptap } from "@/shared/lib/utils";
 import { ProjectDownload } from "./project-download/project-download";
 import { ProjectPageProps } from "@/app/providers/project-manager";
 import { fetchLoggedUser } from "@/entities/auth";
+import { bedrockDownloadPages } from "@/shared/config";
 
 export const generateMetadata = async ({ params }: ProjectPageProps) => {
   const loadedParams = await params;
@@ -20,7 +21,17 @@ export const generateMetadata = async ({ params }: ProjectPageProps) => {
 
   if (!data) return notFound();
 
-  const title = `${data.title} - Minecraft Bedrock ${capitalizeFirstLetter(singularize(data.type))}`;
+  const downloadPage = bedrockDownloadPages.find(
+    (p) => p.details.type === data?.type,
+  );
+
+  const type = singularize(
+    downloadPage
+      ? downloadPage.details.clean
+      : capitalizeFirstLetter(data.type),
+  );
+
+  const title = `${data.title} - Minecraft Bedrock ${type}`;
   const description =
     extractFirstLinesFromTiptap(data.description) ??
     "The best minecraft bedrock mods, texture packs, scripts, maps, skins, and more.";

@@ -4,28 +4,39 @@ import { ButtonGroup } from "@/shared/ui/button-group";
 import { Collapsible } from "@/shared/ui/collapsible";
 import { ProjectsCardTypeButton } from "./projects-card-type-button";
 
-import { SEARCH_PROJECT_TYPES, SearchProjectTypeKey } from "@/shared/config";
-import { useProjectsCardSearch } from "@/pages/downloads/model/projects-card-search";
-
 import styles from "./projects-card.module.scss";
+import { bedrockDownloadPages } from "@/shared/config";
+import { ProjectType } from "@/shared/lib/openapi";
+
+interface ProjectsCardTypeProps {
+  onOpenChange?: (open: boolean) => void;
+  open?: boolean;
+  defaultType?: ProjectType;
+}
 
 export const ProjectsCardType = ({
   onOpenChange,
   open,
-}: {
-  onOpenChange?: (open: boolean) => void;
-  open?: boolean;
-}) => {
-  const { selectedType } = useProjectsCardSearch();
+  defaultType,
+}: ProjectsCardTypeProps) => {
+  const pageTypes = bedrockDownloadPages.flatMap((p) => p.details);
 
-  const types = Object.entries(SEARCH_PROJECT_TYPES).map(([key, label]) => (
-    <ProjectsCardTypeButton key={key} selectedKey={key as SearchProjectTypeKey} label={label} />
+  const selectedPageType =
+    pageTypes.find((p) => p.type === defaultType)?.clean ?? "All";
+
+  const types = pageTypes.map((details) => (
+    <ProjectsCardTypeButton
+      key={details.type ?? "all"}
+      selectedKey={details.type}
+      label={details.clean}
+      defaultType={defaultType}
+    />
   ));
 
   return (
     <>
       <Collapsible
-        headerText={SEARCH_PROJECT_TYPES[selectedType as SearchProjectTypeKey]}
+        headerText={selectedPageType}
         contentText=""
         floating
         className={styles.types}

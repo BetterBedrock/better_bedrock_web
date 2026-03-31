@@ -2,43 +2,45 @@
 
 import { BedrockText } from "@/shared/ui/bedrock-text";
 import { Button } from "@/shared/ui/button";
-import { SearchProjectTypeKey } from "@/shared/config";
-import { useProjectsCardSearch } from "@/pages/downloads/model/projects-card-search";
 import { Link } from "@/shared/ui/link";
+import { Routes } from "@/shared/lib/utils";
+import { bedrockDownloadPages } from "@/shared/config";
+import { ProjectType } from "@/shared/lib/openapi";
+import { useSearchParams } from "next/navigation";
 
 interface ProjectsCardTypeButtonProps {
-  selectedKey: SearchProjectTypeKey;
+  selectedKey: ProjectType | undefined;
   label: string;
+  defaultType?: ProjectType;
 }
 
 export const ProjectsCardTypeButton = ({
   selectedKey,
   label,
+  defaultType,
 }: ProjectsCardTypeButtonProps) => {
-  const { selectedType, setSelectedType } = useProjectsCardSearch();
+  const searchParams = useSearchParams();
 
-  const mappedTypes = {
-    all: "mods",
-    texturepacks: "texture-packs",
-    addons: "addons",
-    scripts: "scripts",
-    maps: "maps",
-    skinPacks: "skin-packs",
-    other: "other",
-  };
+  const page =
+    bedrockDownloadPages.find((p) => p.details.type === selectedKey) ??
+    undefined;
 
   return (
-    <Link link={`bedrock-${mappedTypes[selectedKey]}`} hideStyles>
+    <Link
+      scroll={false}
+      link={Routes.DOWNLOADS_BEDROCK + `/${page?.details.url ?? "mods"}` + `?${searchParams?.toString()}`}
+      hideStyles
+    >
       <Button
-        type={selectedKey === selectedType ? "green" : "white"}
-        onClick={() => setSelectedType(selectedKey as SearchProjectTypeKey)}
-        isClicked={selectedKey === selectedType}
-        isToggled={selectedKey === selectedType}
+        type={selectedKey === defaultType ? "green" : "white"}
+        isClicked={selectedKey === defaultType}
+        isToggled={selectedKey === defaultType}
         center
+        width="100%"
       >
         <BedrockText
           text={label}
-          color={selectedKey === selectedType ? "white" : "black"}
+          color={selectedKey === defaultType ? "white" : "black"}
           type="p"
         />
       </Button>

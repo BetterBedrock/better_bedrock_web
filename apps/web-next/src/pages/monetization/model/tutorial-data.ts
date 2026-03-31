@@ -28,7 +28,7 @@ export const tutorialData: Record<
         content: `**Step A: Get your User ID**
 1. Log in to your [Publisher Dashboard](https://publisher.linkvertise.com/).
 2. Go to the [Affiliate Program](https://publisher.linkvertise.com/dashboard#affiliate) tab.
-3. Your **User ID** is the number at the end of your Affiliate URL (e.g., in ac/1382868, **your ID is 1382868**).
+3. Your **User ID** is the number at the end of your **Affiliate URL** (e.g., in ...&affiliate_id=1382868, **your ID is 1382868**).
 
 **Step B: Generate Anti-Bypass Token**
 1. Open [Account Settings](https://publisher.linkvertise.com/dashboard#account).
@@ -62,7 +62,7 @@ export const tutorialData: Record<
         content: `**Step A: Create Your First Link**
 1. In the [LootLabs Dashboard](https://creators.lootlabs.gg/dashboard), click "**Create Single Monetized Links**".
 2. Fill in the required information. **IMPORTANT: destination URL can be anything**.
-3. Once created, find the **Short Link ID** at the end of your URL (e.g., **szzMUrlD**) This is your **LootLabs Link ID**.
+3. Once created, find the **Short Link ID** at the end of your newly created URL (e.g., ...com/s?szzMUrlD, **szzMUrlD** is your **LootLabs Link ID**)
 
 **Step B: API Token Generation**
 1. Navigate to the [Advanced Tab](https://creators.lootlabs.gg/advanced).
