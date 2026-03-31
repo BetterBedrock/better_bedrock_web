@@ -15,26 +15,24 @@ export const ProjectCommentsList = async ({
   comments,
   user,
 }: ProjectCommentsListProps) => (
-  <div>
-    <div className={styles.comments}>
-      {comments?.length === 0 && (
-        <Banner type="neutral" message="No comments yet" />
-      )}
-      {comments?.map((comment) => (
-        <Comment
-          key={comment.id}
-          comment={comment}
-          onReply={replyToComment}
-          user={user}
-          onDelete={deleteComment}
-          subComments={
-            comment.replies?.map((reply) => ({
-              comment: reply,
-              user: undefined,
-            })) ?? []
-          }
-        />
-      ))}
-    </div>
+  <div className={styles.comments}>
+    {comments?.length === 0 && (
+      <Banner type="neutral" message="No comments yet" />
+    )}
+    {comments?.map((comment) => (
+      <Comment
+        key={comment.id}
+        comment={comment}
+        onReply={replyToComment}
+        user={user}
+        onDelete={deleteComment}
+        subComments={
+          comment.replies?.map((reply) => ({
+            comment: reply,
+            user: undefined,
+          })) ?? []
+        }
+      />
+    ))}
   </div>
 );

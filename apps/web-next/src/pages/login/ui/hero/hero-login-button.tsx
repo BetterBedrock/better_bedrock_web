@@ -9,12 +9,13 @@ import styles from "./hero.module.scss";
 
 export const HeroLoginButton = () => {
   useRedirectLoggedUser();
-  const handleGoogleLoginButtonClick = useHandleGoogleLogin();
+
+  const login = useHandleGoogleLogin();
 
   return (
     <Button
       type="green"
-      onClick={handleGoogleLoginButtonClick}
+      onClick={login}
       className={styles.actions}
       center
     >

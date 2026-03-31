@@ -1,11 +1,27 @@
-import { useAuth } from "../../../../app/providers/auth";
+import { useGoogleLogin } from "@react-oauth/google";
+import { googleAuthorizeRequest } from "@/entities/auth/api/auth-service";
+import { useAuth } from "@/app/providers/auth";
+import { useNotification } from "@/app/providers/notification";
 
 export const useHandleGoogleLogin = () => {
-    const { googleLogin } = useAuth();
+    const { throwError } = useNotification();
+    const { authenticate } = useAuth();
 
-    const handleGoogleLoginButtonClick = async () => {
-        googleLogin();
-    };
+    const login = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            try {
+                const { data } = await googleAuthorizeRequest(
+                    tokenResponse.access_token,
+                );
 
-    return handleGoogleLoginButtonClick;
+                authenticate(data.token);
+            } catch (err) {
+                throwError(err, "Failed to login with Google");
+            }
+        },
+        onError: (errorResponse) =>
+            throwError(errorResponse, "Failed to login with Google"),
+    });
+
+    return () => login();
 };
