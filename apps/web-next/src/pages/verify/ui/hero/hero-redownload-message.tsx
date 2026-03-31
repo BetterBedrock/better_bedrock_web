@@ -7,6 +7,7 @@ import clsx from "clsx";
 
 import styles from "./hero.module.scss";
 import { baseUrl } from "@/shared/lib/utils";
+import { Link } from "@/shared/ui/link";
 
 export const HeroRedownloadMessage = () => {
   const { downloadProgress } = useDownload();
@@ -19,17 +20,14 @@ export const HeroRedownloadMessage = () => {
     }
   }, [downloadProgress]);
 
-  const handleRetry = () => {
-    window.open(baseUrl + "/download", "_self");
-  };
-
   return (
-    <BedrockText
-      type="p"
-      color="white"
-      extraClassName={clsx(styles.redownload, visible && styles.visible)}
-      text="Problems with the download? Click to retry!"
-      onClick={handleRetry}
-    />
+    <Link link={baseUrl + "/download"} className={styles.link}>
+      <BedrockText
+        type="p"
+        color="white"
+        extraClassName={clsx(styles.redownload, visible && styles.visible)}
+        text="Problems with the download? Click to retry!"
+      />
+    </Link>
   );
 };

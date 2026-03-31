@@ -1,4 +1,3 @@
-import { ProjectsCardSearchProvider } from "@/pages/downloads";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 
@@ -15,9 +14,5 @@ export const metadata: Metadata = {
 export default function DownloadsBedrockTexturePacksLayout({
   children,
 }: DownloadsBedrockTexturePacksLayoutProps) {
-  return (
-    <ProjectsCardSearchProvider defaultType="texturepacks">
-      {children}
-    </ProjectsCardSearchProvider>
-  );
+  return children;
 }

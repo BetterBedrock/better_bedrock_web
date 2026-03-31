@@ -1,15 +1,5 @@
 import { DownloadsCategoryDto } from "@/shared/config/dto/downloads-category.dto";
 
-export enum SEARCH_PROJECT_TYPES {
-    all = "All",
-    texturepacks = "Texture packs",
-    addons = "Addons",
-    scripts = "Scripts",
-    maps = "Maps",
-    skinPacks = "Skin packs",
-    other = "Other",
-}
-
 export enum PROJECT_TYPES {
     texturepacks = "Texture packs",
     addons = "Addons",
@@ -20,7 +10,92 @@ export enum PROJECT_TYPES {
 }
 
 export type ProjectTypeKey = keyof typeof PROJECT_TYPES;
-export type SearchProjectTypeKey = keyof typeof SEARCH_PROJECT_TYPES;
+
+export interface BedrockDownloadPage {
+    details: {
+        type: ProjectTypeKey | undefined;
+        url: string;
+        clean: string;
+    };
+    title: string;
+    description: string;
+}
+
+export const bedrockDownloadPages: BedrockDownloadPage[] = [
+    {
+        details: {
+            type: undefined,
+            url: "mods",
+            clean: "All",
+        },
+        title: "Minecraft Bedrock Mods, Texture Packs, Maps, Skins & More",
+        description:
+            "Discover and download the best Minecraft Bedrock mods, addons, and modifications. Browse our extensive collection of quality content for Bedrock Edition.",
+    },
+    {
+        details: {
+            type: "texturepacks",
+            url: "texture-packs",
+            clean: "Texture Packs",
+        },
+        title: "Minecraft Bedrock Texture Packs | Resource Packs Download",
+        description:
+            "Download Minecraft Bedrock texture packs and resource packs. Improve graphics, change textures, and customize the look of Minecraft Bedrock Edition with high-quality packs.",
+    },
+    {
+        details: {
+            type: "addons",
+            url: "addons",
+            clean: "Addons",
+        },
+        title: "Minecraft Bedrock Addons | Mods & Add-Ons Download",
+        description:
+            "Download the best Minecraft Bedrock addons and mods. Add new mobs, items, biomes, and gameplay features to Minecraft Bedrock Edition with free add-ons.",
+    },
+    {
+        details: {
+            type: "scripts",
+            url: "scripts",
+            clean: "Scripts",
+        },
+        title: "Minecraft Bedrock Scripts | Behavior Packs & Script API",
+        description:
+            "Download Minecraft Bedrock scripts and behavior packs using the Script API. Add custom mechanics, commands, automation, and server features to Minecraft Bedrock Edition.",
+    },
+    {
+        details: {
+            type: "maps",
+            url: "maps",
+            clean: "Maps",
+        },
+        title:
+            "Minecraft Bedrock Maps | Adventure, Survival, Parkour & Minigame Maps",
+        description:
+            "Download Minecraft Bedrock maps including adventure, survival, parkour, and minigame maps. Explore new worlds and custom creations for Minecraft Bedrock Edition.",
+
+    },
+    {
+        details: {
+            type: "skinPacks",
+            url: "skin-packs",
+            clean: "Skin Packs",
+        },
+        title: "Minecraft Bedrock Skins & Skin Packs | Download Custom Skins",
+        description:
+            "Download Minecraft Bedrock skins and skin packs. Customize your character with cool, cute, HD, and themed skins for Minecraft Bedrock Edition.",
+
+    },
+    {
+        details: {
+            type: "other",
+            url: "other",
+            clean: "Other",
+        },
+        title: "Minecraft Bedrock Mods, Shaders, Seeds, UI Packs & More",
+        description:
+            "Discover Minecraft Bedrock shaders, UI packs, seeds, tools, and other content. Find more ways to customize Minecraft Bedrock Edition.",
+    }
+];
 
 export const SIDE_PROJECTS_LIST = [
     "murder_detector",
