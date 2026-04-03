@@ -688,7 +688,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **projectControllerPublish**
-> projectControllerPublish()
+> projectControllerPublish(publishProjectDto)
 
 
 ### Example
@@ -696,16 +696,19 @@ No authorization required
 ```typescript
 import {
     ProjectApi,
-    Configuration
+    Configuration,
+    PublishProjectDto
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new ProjectApi(configuration);
 
 let id: string; // (default to undefined)
+let publishProjectDto: PublishProjectDto; //
 
 const { status, data } = await apiInstance.projectControllerPublish(
-    id
+    id,
+    publishProjectDto
 );
 ```
 
@@ -713,6 +716,7 @@ const { status, data } = await apiInstance.projectControllerPublish(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
+| **publishProjectDto** | **PublishProjectDto**|  | |
 | **id** | [**string**] |  | defaults to undefined|
 
 
@@ -726,7 +730,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 
