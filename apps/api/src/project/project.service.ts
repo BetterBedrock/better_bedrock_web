@@ -21,7 +21,7 @@ import { BaseProjectDto } from "~/project/dto/base-project.dto";
 import { SearchProjectsDto } from "~/project/dto/search-project.dto";
 import { SearchOrder } from "~/project/dto/search-order.dto";
 import { AnalyticsService } from "~/analytics/analytics.service";
-import { extractFirstLinesFromTiptap } from "~/utils/string";
+import { extractFirstLinesFromTiptap, extractImagesCount } from "~/utils/tiptap";
 
 const restrictedNames = [
     "better_bedrock",
@@ -432,9 +432,14 @@ export class ProjectService {
         }
 
         const description = extractFirstLinesFromTiptap(project.description);
+        const imageCount = extractImagesCount(project.description);
 
         if (!description || description.trim().length < 100) {
             throw new BadRequestException("Project description is too short for submission");
+        }
+
+        if (imageCount < 2) {
+            throw new BadRequestException("Project description needs to include at least 2 images");
         }
 
         const submittedProject = await this.prismaService.project.update({
