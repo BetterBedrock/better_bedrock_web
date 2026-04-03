@@ -460,7 +460,7 @@ export class ProjectService {
         });
     }
 
-    async publish(id: string) {
+    async publish(id: string, updateLastChanged: boolean = true) {
         const draftProject = await this.prismaService.project.findUnique({
             where: { id_draft: { id, draft: true } },
             include: { tags: true },
@@ -501,13 +501,18 @@ export class ProjectService {
         }));
 
         await this.prismaService.tag.deleteMany({ where: { projectId: id, projectDraft: false } });
+        const lastChanged = updateLastChanged
+            ? new Date()
+            : oldReleasedProject
+              ? oldReleasedProject.createdAt
+              : new Date();
 
         const releaseProjectData = {
             ...rest,
             draft: false,
             submitted: false,
             createdAt: oldReleasedProject ? oldReleasedProject.createdAt : new Date(),
-            lastChanged: new Date(),
+            lastChanged,
             description: updatedDescription,
             thumbnail: updatedThumbnail,
             downloadFile: updatedDownloadFile,

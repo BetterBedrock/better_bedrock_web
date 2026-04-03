@@ -45,6 +45,7 @@ import { MailService } from "~/mail/mail.service";
 import { UserService } from "~/user/user.service";
 import { AnalyticsService } from "~/analytics/analytics.service";
 import { AnalyticsNames } from "~/analytics/constants/analytics-names";
+import { PublishProjectDto } from "~/project/dto/publish-project.dto";
 
 @Controller("project")
 export class ProjectController {
@@ -173,16 +174,22 @@ export class ProjectController {
     @Patch("publish/:id")
     @UseGuards(AdminAuthGuard, ProjectOwnerGuard)
     @ApiBearerAuth()
-    async publish(@Param("id") _: string, @Req() req: ProjectRequest) {
-        await this.projectService.publish(req.project.id);
+    async publish(
+        @Param("id") _: string,
+        @Req() req: ProjectRequest,
+        @Body() data: PublishProjectDto,
+    ) {
+        await this.projectService.publish(req.project.id, data.updateLastChanged ?? true);
 
         const user = await this.userService.detailedUserInfo(req.project.userId);
 
-        await this.mailService.sendProjectApprovedEmail(
-            user.email,
-            req.project.id,
-            req.project.title,
-        );
+        if (data.notify ?? true) {
+            await this.mailService.sendProjectApprovedEmail(
+                user.email,
+                req.project.id,
+                req.project.title,
+            );
+        }
 
         await this.analyticsService.incrementAnalytics(AnalyticsNames.publishedProjects, "general");
         return;

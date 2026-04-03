@@ -35,6 +35,7 @@ docs/ProjectCreatorDto.md
 docs/ProjectDto.md
 docs/ProjectRatingDto.md
 docs/ProjectType.md
+docs/PublishProjectDto.md
 docs/ReportApi.md
 docs/ReportDto.md
 docs/ReportProjectBodyDto.md

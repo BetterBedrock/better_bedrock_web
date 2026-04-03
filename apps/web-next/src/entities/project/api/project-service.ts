@@ -119,10 +119,11 @@ export const declineProjectRequest = async (
         { error },
         { headers: { Authorization: `Bearer ${secret}` } },
     );
-export const publishProjectRequest = async (id: string, secret: string) =>
-    projectApi.projectControllerPublish(id, {
-        headers: { Authorization: `Bearer ${secret}` },
-    });
+export const publishProjectRequest = async (id: string, secret: string, notify?: boolean, updateLastChanged?: boolean) =>
+    projectApi.projectControllerPublish(id, { notify, updateLastChanged },
+        {
+            headers: { Authorization: `Bearer ${secret}` },
+        });
 
 export const deleteProjectRequest = async (id: string, secret: string) =>
     projectApi.projectControllerDelete(id, {
