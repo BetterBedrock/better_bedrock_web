@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { HeroSuccessPageAction } from "./hero-success-page-action";
 import { HeroSuccessPageDescription } from "./hero-success-page-description";
 import { HeroSuccessPageTitle } from "./hero-success-page-title";
-import { setCookieVoucher } from "@/entities/checkout/api/set-cookie-voucher";
+import { setCookieVoucher } from "@/entities/checkout";
 
 interface HeroSuccessPageProps {
   code: string;
