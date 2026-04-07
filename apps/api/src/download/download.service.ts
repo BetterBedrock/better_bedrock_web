@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma.service";
 import { Prisma } from "@prisma/client";
+import { Cron, CronExpression } from "@nestjs/schedule";
 
 @Injectable()
 export class DownloadService {
@@ -49,6 +50,18 @@ export class DownloadService {
     async deleteDownload(where: Prisma.DownloadWhereUniqueInput) {
         return this.prismaService.download.delete({
             where,
+        });
+    }
+
+    @Cron(CronExpression.EVERY_HOUR)
+    async cleanupOldDownloads() {
+        const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+        await this.prismaService.download.deleteMany({
+            where: {
+                createdAt: {
+                    lt: oneDayAgo,
+                },
+            },
         });
     }
 }

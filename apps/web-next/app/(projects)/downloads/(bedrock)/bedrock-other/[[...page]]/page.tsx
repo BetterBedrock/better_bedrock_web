@@ -1,1 +1,1 @@
-export { BedrockOtherPage as default } from "@/pages/downloads";
+export { BedrockOthersPage as default } from "@/pages/downloads";

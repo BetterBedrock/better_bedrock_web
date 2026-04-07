@@ -5,7 +5,7 @@ import clsx from "clsx";
 import {
   ProjectType,
 } from "@/shared/lib/openapi";
-import { PROJECT_TYPES } from "@/shared/config/better-bedrock";
+import { PROJECT_TYPES } from "@/shared/config";
 import { Routes } from "@/shared/lib/utils";
 import { baseUrl } from "@/shared/lib/utils";
 

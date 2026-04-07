@@ -892,6 +892,25 @@ export type ProjectType = typeof ProjectType[keyof typeof ProjectType];
 /**
  * 
  * @export
+ * @interface PublishProjectDto
+ */
+export interface PublishProjectDto {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PublishProjectDto
+     */
+    'notify'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PublishProjectDto
+     */
+    'updateLastChanged'?: boolean;
+}
+/**
+ * 
+ * @export
  * @interface ReportDto
  */
 export interface ReportDto {
@@ -2863,12 +2882,15 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {string} id 
+         * @param {PublishProjectDto} publishProjectDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectControllerPublish: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        projectControllerPublish: async (id: string, publishProjectDto: PublishProjectDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('projectControllerPublish', 'id', id)
+            // verify required parameter 'publishProjectDto' is not null or undefined
+            assertParamExists('projectControllerPublish', 'publishProjectDto', publishProjectDto)
             const localVarPath = `/project/publish/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2888,9 +2910,12 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(publishProjectDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3401,11 +3426,12 @@ export const ProjectApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} id 
+         * @param {PublishProjectDto} publishProjectDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async projectControllerPublish(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerPublish(id, options);
+        async projectControllerPublish(id: string, publishProjectDto: PublishProjectDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerPublish(id, publishProjectDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerPublish']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -3645,11 +3671,12 @@ export const ProjectApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {string} id 
+         * @param {PublishProjectDto} publishProjectDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectControllerPublish(id: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.projectControllerPublish(id, options).then((request) => request(axios, basePath));
+        projectControllerPublish(id: string, publishProjectDto: PublishProjectDto, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.projectControllerPublish(id, publishProjectDto, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3888,12 +3915,13 @@ export class ProjectApi extends BaseAPI {
     /**
      * 
      * @param {string} id 
+     * @param {PublishProjectDto} publishProjectDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApi
      */
-    public projectControllerPublish(id: string, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerPublish(id, options).then((request) => request(this.axios, this.basePath));
+    public projectControllerPublish(id: string, publishProjectDto: PublishProjectDto, options?: RawAxiosRequestConfig) {
+        return ProjectApiFp(this.configuration).projectControllerPublish(id, publishProjectDto, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

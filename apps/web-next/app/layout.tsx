@@ -3,7 +3,6 @@ import { AuthProvider } from "./providers/auth";
 import { CheckoutProvider } from "./providers/checkout";
 import { NotificationProvider } from "./providers/notification";
 import "@/public/styles/global.scss";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -71,17 +70,15 @@ export default function RootLayout({
       <body
         className={`relative ${mojangles.className} ${mojanglesBold.className} ${minecraft.className} ${minecraftFive.className}`}
       >
-        <GoogleOAuthProvider clientId="268821429400-jlf4995gbmur5m3a3hg8qrpuu33dv0rs.apps.googleusercontent.com">
-          <NotificationProvider>
-            <CheckoutProvider>
-              <AuthProvider>
-                <Layout>
-                  <main>{children}</main>
-                </Layout>
-              </AuthProvider>
-            </CheckoutProvider>
-          </NotificationProvider>
-        </GoogleOAuthProvider>
+        <NotificationProvider>
+          <CheckoutProvider>
+            <AuthProvider>
+              <Layout>
+                <main>{children}</main>
+              </Layout>
+            </AuthProvider>
+          </CheckoutProvider>
+        </NotificationProvider>
       </body>
     </html>
   );

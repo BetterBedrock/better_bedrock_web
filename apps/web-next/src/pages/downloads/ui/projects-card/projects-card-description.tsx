@@ -1,24 +1,13 @@
-"use client";
-
-import { BedrockText } from "@/shared/ui/bedrock-text";
-import { useState } from "react";
-import styles from "./projects-card.module.scss";
-import clsx from "clsx";
-import { SearchProjectTypeKey } from "@/shared/config";
+import { ProjectType } from "@/shared/lib/openapi";
+import { CollapsibleText } from "@/shared/ui/collapsible-text";
 
 interface ProjectsCardDescriptionProps {
-  type?: SearchProjectTypeKey;
+  type?: ProjectType;
 }
 
 export const ProjectsCardDescription = ({
   type,
 }: ProjectsCardDescriptionProps) => {
-  const [showMore, setShowMore] = useState(true);
-
-  const handleClickLink = () => {
-    setShowMore((prev) => !prev);
-  };
-
   const defaultType = (
     <>
       Minecraft Bedrock Edition delivers the creative sandbox experience
@@ -46,7 +35,6 @@ export const ProjectsCardDescription = ({
   );
 
   const typeDescriptions = {
-    all: defaultType,
     texturepacks: (
       <>
         Minecraft Bedrock Edition texture packs let you completely transform the
@@ -142,20 +130,8 @@ export const ProjectsCardDescription = ({
   };
 
   return (
-    <div className={clsx(styles.description)}>
-      <BedrockText
-        type="p"
-        color="white"
-        textAlign="start"
-        extraClassName={clsx(styles.less, showMore && styles.singleLine)}
-      >
-        {type ? typeDescriptions[type] : defaultType}
-      </BedrockText>
-      <BedrockText
-        text={showMore ? "Read more" : "Read less"}
-        extraClassName={styles.expand}
-        onClick={handleClickLink}
-      />
-    </div>
+    <CollapsibleText>
+      {type ? typeDescriptions[type] : defaultType}
+    </CollapsibleText>
   );
 };

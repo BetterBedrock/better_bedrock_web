@@ -1,19 +1,6 @@
-import { FeaturedCard } from "@/pages/downloads/ui/featured-card/featured-card";
-import { ProjectsCard } from "@/pages/downloads/ui/projects-card/projects-card";
-import { getCurrentPaginationPage } from "@/shared/lib/utils";
+import { Routes } from "@/shared/lib/utils";
+import { permanentRedirect } from "next/navigation";
 
-export interface BedrockAddonsPageProps {
-  params: Promise<{ page?: string[] }>;
-}
-
-export const BedrockAddonsPage = async ({ params }: BedrockAddonsPageProps) => {
-  const { page } = await params;
-  const currentPage = getCurrentPaginationPage(page);
-
-  return (
-    <>
-      {currentPage <= 1 && <FeaturedCard />}
-      <ProjectsCard type="addons" page={currentPage} />
-    </>
-  );
+export const BedrockAddonsPage = async () => {
+  permanentRedirect(Routes.DOWNLOADS_BEDROCK_ADDONS);
 };
