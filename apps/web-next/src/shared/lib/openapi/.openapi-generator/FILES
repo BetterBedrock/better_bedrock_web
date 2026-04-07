@@ -24,6 +24,7 @@ docs/DetailedUserDto.md
 docs/DownloadApi.md
 docs/GenerateDownloadResponseDto.md
 docs/JwtTokenDto.md
+docs/LiveCountDto.md
 docs/ManageProfileDto.md
 docs/MonetizationType.md
 docs/PostCommentParamsDto.md
