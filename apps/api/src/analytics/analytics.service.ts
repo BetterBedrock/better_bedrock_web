@@ -35,13 +35,6 @@ export class AnalyticsService {
     }
 
     getLiveCount() {
-        const ttl = 2 * 60 * 1000;
-        const now = Date.now();
-
-        for (const [ip, lastSeen] of this.onlineUsers) {
-            if (now - lastSeen > ttl) this.onlineUsers.delete(ip);
-        }
-
         return this.onlineUsers.size;
     }
 
