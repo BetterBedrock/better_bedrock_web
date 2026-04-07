@@ -5,6 +5,7 @@ import { StatisticsList } from "@/pages/panel/ui/hero-analytics/statistics/stati
 import styles from "./statistics.module.scss";
 import { fetchAllAnalytics } from "@/entities/analytic";
 import { fetchAllVouchers } from "@/pages/panel/api/fetch-all-vouchers";
+import { StatisticsLive } from "@/pages/panel/ui/hero-analytics/statistics/statistics-live";
 
 export const Statistics = async () => {
   const vouchers = await fetchAllVouchers();
@@ -12,6 +13,7 @@ export const Statistics = async () => {
 
   return (
     <div className={styles.data}>
+      <StatisticsLive />
       <StatisticsList analytics={analytics} vouchers={vouchers} />
     </div>
   );
