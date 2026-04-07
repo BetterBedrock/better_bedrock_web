@@ -28,6 +28,23 @@ export class AnalyticsService {
         Promise.all([this.refreshLootlabsCache(), this.refreshStripeCache()]);
     }
 
+    private onlineUsers = new Map<string, number>();
+
+    ping(ip: string) {
+        this.onlineUsers.set(ip, Date.now());
+    }
+
+    getLiveCount() {
+        const ttl = 2 * 60 * 1000;
+        const now = Date.now();
+
+        for (const [ip, lastSeen] of this.onlineUsers) {
+            if (now - lastSeen > ttl) this.onlineUsers.delete(ip);
+        }
+
+        return this.onlineUsers.size;
+    }
+
     async analytics() {
         const topFileProjects = await this.prismaService.analytics.groupBy({
             by: ["name"],
@@ -196,6 +213,15 @@ export class AnalyticsService {
             await this.cacheManager.set("stripe-data", stripeData, cacheDataTtl);
         } catch (_) {
             /* empty */
+        }
+    }
+
+    @Cron(CronExpression.EVERY_MINUTE)
+    evictStaleUsers() {
+        const ttl = 2 * 60 * 1000;
+        const now = Date.now();
+        for (const [ip, lastSeen] of this.onlineUsers) {
+            if (now - lastSeen > ttl) this.onlineUsers.delete(ip);
         }
     }
 }
