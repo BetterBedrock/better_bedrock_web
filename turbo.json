@@ -10,7 +10,7 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
-    "preview": {
+    "serve": {
       "cache": false,
       "persistent": true
     },
