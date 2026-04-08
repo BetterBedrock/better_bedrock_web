@@ -11,7 +11,7 @@ export const HeroDownloadProgress = () => {
   return downloadProgress == 100 ? (
     <Banner
       message="File sent successfully! Please confirm the incoming transfer on your device."
-      type="important"
+      variant="important"
     />
   ) : (
     <LoadingBar className={styles.bar} percentage={downloadProgress} />

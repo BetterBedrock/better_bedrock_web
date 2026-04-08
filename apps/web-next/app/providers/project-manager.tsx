@@ -1,7 +1,7 @@
 "use client";
 
 import { DetailedProjectDto, UpdateProjectDto } from "@/shared/lib/openapi";
-import { updateProject } from "@/entities/project/api/update-project";
+import { updateProject } from "@/entities/project";
 import { useNotification } from "./notification";
 import { Content } from "@tiptap/react";
 import {

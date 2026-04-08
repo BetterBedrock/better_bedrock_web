@@ -11,12 +11,12 @@ interface HeroCreatorBannerProps {
 
 export const HeroCreatorBanner = ({ creatorName }: HeroCreatorBannerProps) => (
   <Banner
-    type="info"
+    variant="info"
     message={
       <BedrockText textAlign="center" type="p" color="white">
         Monetize your content and earn revenue from ADs like{" "}
-        <Avatar.Details at name={creatorName ?? "Unknown"} />. You can do the same - upload your project
-        and start earning now!{" "}
+        <Avatar.Details at name={creatorName ?? "Unknown"} />. You can do the
+        same - upload your project and start earning now!{" "}
         <Link link={Routes.MONETIZATION} className={styles.link}>
           Check this tutorial to see how.
         </Link>

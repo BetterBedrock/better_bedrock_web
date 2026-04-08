@@ -16,7 +16,7 @@ export const DraftsPage = async ({ params }: DraftsPageProps) => {
       {drafts.length > 0 ? (
         <GridDownloadCardList projects={drafts} mode="edit" />
       ) : (
-        <Banner type="neutral" message="No draft projects available" />
+        <Banner variant="neutral" message="No draft projects available" />
       )}
     </div>
   );

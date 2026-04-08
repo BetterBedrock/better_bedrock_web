@@ -17,7 +17,7 @@ export const ProjectCommentsList = async ({
 }: ProjectCommentsListProps) => (
   <div className={styles.comments}>
     {comments?.length === 0 && (
-      <Banner type="neutral" message="No comments yet" />
+      <Banner variant="neutral" message="No comments yet" />
     )}
     {comments?.map((comment) => (
       <Comment

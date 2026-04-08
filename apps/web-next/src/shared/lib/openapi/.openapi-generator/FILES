@@ -10,6 +10,7 @@ docs/AnalyticsNames.md
 docs/AnalyticsType.md
 docs/AuthApi.md
 docs/AuthorizeDto.md
+docs/BannerVariant.md
 docs/CheckoutApi.md
 docs/CheckoutOffersDto.md
 docs/CheckoutOptionEntryDto.md
@@ -41,6 +42,8 @@ docs/ReportDto.md
 docs/ReportProjectBodyDto.md
 docs/SearchOrder.md
 docs/SearchProjectsDto.md
+docs/SettingsApi.md
+docs/SettingsDto.md
 docs/SimpleProjectDto.md
 docs/SimpleUserDto.md
 docs/TagNameDto.md

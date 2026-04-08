@@ -10,7 +10,7 @@ export const ProjectsPage = async ({ params }: ProjectsPageProps) => {
   const projects = await loadProfileProjectsPageData(params);
 
   if (projects.length < 1) {
-    return <Banner type="neutral" message="No public projects available" />;
+    return <Banner variant="neutral" message="No public projects available" />;
   }
 
   return <GridDownloadCardList projects={projects} />;

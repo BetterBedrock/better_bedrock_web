@@ -9,7 +9,7 @@ export const ProjectHeaderErrorBanner = ({
   message,
 }: ProjectHeaderErrorBannerProps) => (
   <Banner
-    type="error"
+    variant="error"
     message={
       <>
         <BedrockText
