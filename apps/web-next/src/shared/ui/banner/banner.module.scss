@@ -10,7 +10,7 @@
   }
   &.neutral, &.info {
     & > * {
-      color: white;
+      color: white !important;
     }
   }
 }

@@ -5,6 +5,8 @@ All URIs are relative to *http://localhost*
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
 |[**analyticsControllerAnalytics**](#analyticscontrolleranalytics) | **GET** /analytics | |
+|[**analyticsControllerLiveCount**](#analyticscontrollerlivecount) | **GET** /analytics/live | |
+|[**analyticsControllerPing**](#analyticscontrollerping) | **GET** /analytics/ping | |
 |[**analyticsControllerUser**](#analyticscontrolleruser) | **GET** /analytics/user/{id} | |
 
 # **analyticsControllerAnalytics**
@@ -41,6 +43,92 @@ This endpoint does not have any parameters.
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **analyticsControllerLiveCount**
+> LiveCountDto analyticsControllerLiveCount()
+
+
+### Example
+
+```typescript
+import {
+    AnalyticsApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new AnalyticsApi(configuration);
+
+const { status, data } = await apiInstance.analyticsControllerLiveCount();
+```
+
+### Parameters
+This endpoint does not have any parameters.
+
+
+### Return type
+
+**LiveCountDto**
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **analyticsControllerPing**
+> analyticsControllerPing()
+
+
+### Example
+
+```typescript
+import {
+    AnalyticsApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new AnalyticsApi(configuration);
+
+const { status, data } = await apiInstance.analyticsControllerPing();
+```
+
+### Parameters
+This endpoint does not have any parameters.
+
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
 
 
 ### HTTP response details

@@ -17,3 +17,7 @@ export const fetchUserAnalyticsRequest = async (id: string, secret: string) =>
     analyticsApi.analyticsControllerUser(id, {
         headers: { Authorization: `Bearer ${secret}` },
     });
+
+export const fetchLiveCountRequest = async (secret: string) => analyticsApi.analyticsControllerLiveCount({ headers: { Authorization: `Bearer ${secret}` } });
+
+export const pingRequest = async () => analyticsApi.analyticsControllerPing();

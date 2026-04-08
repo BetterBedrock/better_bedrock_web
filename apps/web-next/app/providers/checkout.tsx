@@ -1,5 +1,6 @@
 "use client";
 
+import { pingRequest } from "@/entities/analytic/api/analytics-service";
 import { fetchCheckoutOffersRequest } from "@/entities/checkout/api/checkout-service";
 import { CheckoutOffersDto } from "@/shared/lib/openapi";
 import {
@@ -37,6 +38,10 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
     // It is left like this to make sure visitors count updates
     // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchOffers();
+    pingRequest();
+
+    const interval = setInterval(pingRequest, 60_000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
