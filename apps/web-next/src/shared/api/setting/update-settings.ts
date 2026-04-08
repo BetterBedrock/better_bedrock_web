@@ -2,6 +2,7 @@
 
 import { updateSettingsRequest } from "./settings-service"
 import { SettingsDto } from "@/shared/lib/openapi";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 export const updateSettings = async (newSettings: SettingsDto) => {
@@ -13,6 +14,7 @@ export const updateSettings = async (newSettings: SettingsDto) => {
     }
 
     const { data, error } = await updateSettingsRequest(newSettings, secret);
+    revalidatePath("/", "layout");
 
     return { data, error };
 }

@@ -39,7 +39,7 @@ const mojanglesBold = localFont({
   src: [
     {
       path: "../public/fonts/mojangles/MojanglesBold.otf",
-      style: "bold",
+      weight: "bold",
     },
   ],
 });
@@ -57,7 +57,7 @@ const minecraftFive = localFont({
   src: [
     {
       path: "../public/fonts/minecraft/MinecraftFive.ttf",
-      style: "bold",
+      weight: "bold",
     },
   ],
 });
@@ -68,8 +68,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const { data } = await fetchSettings();
-
-  console.log({ data });
 
   return (
     <html lang="en">
