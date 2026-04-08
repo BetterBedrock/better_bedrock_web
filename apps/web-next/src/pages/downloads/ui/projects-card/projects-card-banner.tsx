@@ -12,11 +12,11 @@ export const ProjectsCardBanner = async (
 
   return (
     <Banner
-      type="info"
+      variant="info"
       message={
         <p style={{ textAlign: "center" }}>
-          Creators keep 100% of ad revenue and benefit from our anti-bypass system
-          to maximize earnings.{" "}
+          Creators keep 100% of ad revenue and benefit from our anti-bypass
+          system to maximize earnings.{" "}
           <Link
             href={Routes.MONETIZATION}
             style={{ color: "inherit", textDecoration: "underline" }}

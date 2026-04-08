@@ -22,7 +22,7 @@ export const UserLinkvertiseInfo = async ({
 
   return (
     <Banner
-      type="info"
+      variant="info"
       message={
         <BedrockText textAlign="center" color="white">
           Almost there! Unlock 100% of your ad revenue now. Finish your AD

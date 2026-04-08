@@ -26,9 +26,13 @@ export const UserNewsInfo = async ({
 
   return (
     <Banner
-      type="important"
+      variant="important"
       message={
-        <BedrockText textAlign="center" color="black" text="We have added new monetization type: LOOTLABS - AD provider with better potential! For more information visit ">
+        <BedrockText
+          textAlign="center"
+          color="black"
+          text="We have added new monetization type: LOOTLABS - AD provider with better potential! For more information visit "
+        >
           <Link link={Routes.MONETIZATION} underlined>
             this page.
           </Link>

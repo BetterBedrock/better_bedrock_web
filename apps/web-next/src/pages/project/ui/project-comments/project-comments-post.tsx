@@ -28,7 +28,7 @@ export const ProjectCommentsPost = ({
       {!user ? (
         <Banner
           message="You need to be logged in to comment and rate projects"
-          type="neutral"
+          variant="neutral"
         />
       ) : (
         <ButtonGroup>

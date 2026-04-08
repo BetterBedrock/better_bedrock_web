@@ -140,7 +140,7 @@ export const UserSettingsForm = ({
 
           <Popup.Part>
             <Banner
-              type="info"
+              variant="info"
               message={
                 <div>
                   <p className={styles.bannerText}>
