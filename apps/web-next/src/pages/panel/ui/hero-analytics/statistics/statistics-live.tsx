@@ -1,6 +1,6 @@
 "use client";
 
-import { fetchLiveCount } from "@/entities/analytic/api/fetch-live-count";
+import { fetchLiveCount } from "@/entities/analytic";
 import { StatisticsCard } from "@/widgets/statistics-list";
 import { useEffect, useState } from "react";
 
