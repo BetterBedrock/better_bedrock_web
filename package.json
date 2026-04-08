@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "preview": "turbo preview",
+    "serve": "turbo serve",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
@@ -15,7 +15,8 @@
   "devDependencies": {
     "prettier": "^3.2.5",
     "turbo": "^2.3.3",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "wait-on": "^9.0.4"
   },
   "engines": {
     "node": ">=20"
