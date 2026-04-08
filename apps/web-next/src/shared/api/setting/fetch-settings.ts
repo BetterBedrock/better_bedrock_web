@@ -1,6 +1,6 @@
 "use server";
 
-import { fetchSettingsRequest } from "./api/settings-service"
+import { fetchSettingsRequest } from "./settings-service"
 
 export const fetchSettings = async () => {
     const { data, error } = await fetchSettingsRequest();
