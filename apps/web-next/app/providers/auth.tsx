@@ -12,8 +12,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { authenticateToken } from "@/entities/auth/api/authenticate-token";
-import { logoutToken } from "@/entities/auth/api/logout-token";
+import { authenticateToken, logoutToken } from "@/entities/auth";
 
 interface AuthContextProps {
   fetched: boolean;
