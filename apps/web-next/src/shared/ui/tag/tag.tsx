@@ -3,6 +3,9 @@ import styles from "./tag.module.scss";
 import clsx from "clsx";
 import { ReactNode } from "react";
 
+export const tagVariants = ["neutral", "blue", "special"] as const;
+export type TagVariant = (typeof tagVariants)[number];
+
 export const borders = ["left", "right", "bottom", "top", "all"];
 export type Border = (typeof borders)[number];
 
@@ -12,6 +15,7 @@ interface TagProps {
   onDelete?: () => void;
   deletable?: boolean;
   className?: string;
+  variant?: TagVariant;
 }
 
 export const Tag = ({
@@ -20,16 +24,18 @@ export const Tag = ({
   border,
   onDelete,
   deletable,
+  variant = "neutral",
 }: TagProps) => (
   <div
     className={clsx(
       styles.tag,
       Array.isArray(border) ? border.map((b) => styles[b]) : styles[border],
+      styles["variant-" + variant],
       className && className,
     )}
   >
     {typeof name === "string" ? (
-      <BedrockText text={name} type="p" textAlign="center" color="black" />
+      <BedrockText text={name} type="p" textAlign="center" />
     ) : (
       name
     )}
@@ -38,7 +44,6 @@ export const Tag = ({
         text="x"
         type="p"
         textAlign="center"
-        color="black"
         onClick={onDelete}
         extraClassName={styles.delete}
       />

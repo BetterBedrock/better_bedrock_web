@@ -3,7 +3,6 @@
 $border: g.$minecraftdepth solid rgb(30, 30, 31);
 
 .tag {
-  background-color: g.$color-tag-default;
   padding: g.$padding-xxxsm;
   width: fit-content;
   display: inline-flex;
@@ -33,4 +32,20 @@ $border: g.$minecraftdepth solid rgb(30, 30, 31);
 .delete {
   cursor: pointer;
   text-decoration: none;
+}
+
+.variant-neutral {
+  background-color: g.$color-tag-bb;
+  
+  & > * {
+    color: white !important;
+  }
+}
+
+.variant-blue {
+  background-color: g.$color-tag-blue;
+}
+
+.variant-special {
+  background-color: g.$color-tag-special;
 }
