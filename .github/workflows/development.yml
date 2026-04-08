@@ -50,7 +50,7 @@ jobs:
             npx yarn prisma migrate deploy
             cd ${{ secrets.DEV_APP_DIR }}
             cd apps/web-next
-            
+
             echo "📐 Running Linters & Steiger..."
             npx yarn steiger
             cd ${{ secrets.DEV_APP_DIR }}
@@ -62,7 +62,7 @@ jobs:
             pm2 delete better-bedrock-storybook-dev || true
             pm2 delete better-bedrock-web-dev || true
             pm2 delete better-bedrock-api-dev || true
-            
+
             echo "🔨 Building application..."
             npx yarn build --filter=api
 
@@ -70,7 +70,7 @@ jobs:
             pm2 start ecosystem.config.js --only "better-bedrock-api-dev"
 
             echo "⏳ Waiting for API to be ready..."
-            npx wait-on http://localhost:8084/settings --timeout 30000
+            npx wait-on http://localhost:4002/settings --timeout 30000
 
             echo "🔨 Building Next.js..."
             npx yarn build --filter=web-next
