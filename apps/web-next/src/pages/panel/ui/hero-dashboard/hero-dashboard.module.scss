@@ -1,0 +1,12 @@
+@use "@/shared/ui" as g;
+
+.wrapper {
+  width: 100%;
+}
+
+.mods {
+    display:grid;
+    gap: g.$padding-sm;
+    grid-template-columns: repeat(2, 1fr);
+
+}

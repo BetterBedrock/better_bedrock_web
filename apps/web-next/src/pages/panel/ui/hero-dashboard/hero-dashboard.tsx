@@ -1,10 +1,10 @@
-import { BedrockText } from "@/shared/ui/bedrock-text";
+import { HeroDashboardBanner } from "./hero-dashboard-banner";
+import { HeroDashboardHeader } from "./hero-dashboard-header";
+import styles from "./hero-dashboard.module.scss";
 
 export const HeroDashboard = () => (
-  <BedrockText
-    text="Welcome To Admin Panel"
-    type="h1"
-    color="white"
-    font="Minecraft"
-  />
+  <div className={styles.wrapper}>
+    <HeroDashboardHeader />
+    <HeroDashboardBanner />
+  </div>
 );
