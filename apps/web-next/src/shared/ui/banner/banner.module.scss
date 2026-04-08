@@ -3,6 +3,16 @@
 .banner {
   width: 100%;
   padding: g.$padding-xxsm;
+
+  & > * {
+    color: black;
+    text-align: center;
+  }
+  &.neutral {
+    & > * {
+      color: white;
+    }
+  }
 }
 
 .info {
