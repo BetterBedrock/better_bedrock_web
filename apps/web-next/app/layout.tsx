@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { SettingsProvider } from "@/app/providers/settings";
 import { fetchSettings } from "@/shared/api/setting";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Better Bedrock - Minecraft Bedrock Mods, Texture Packs & More",
@@ -71,6 +72,20 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-ZT0YW8EKMG"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZT0YW8EKMG');
+  `}
+        </Script>
+      </head>
       <body
         className={`relative ${mojangles.className} ${mojanglesBold.className} ${minecraft.className} ${minecraftFive.className}`}
       >
