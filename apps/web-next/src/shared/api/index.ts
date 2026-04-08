@@ -1,0 +1,1 @@
+export { fetchSettings, updateSettings } from "./setting";

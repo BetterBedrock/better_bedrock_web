@@ -2,7 +2,7 @@ import { Banner } from "./banner";
 import type { ArgTypes, Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const bannerArgTypes: Partial<ArgTypes<React.ComponentProps<typeof Banner>>> = {
-    type: {
+    variant: {
         control: "select",
         options: ["info", "neutral", "important", "error", "success"],
     },
@@ -24,35 +24,35 @@ type Story = StoryObj<typeof meta>;
 
 export const Info: Story = {
     args: {
-        type: "info",
+        variant: "info",
         message: "This is an info banner.",
     },
 };
 
 export const Neutral: Story = {
     args: {
-        type: "neutral",
+        variant: "neutral",
         message: "This is a neutral banner.",
     },
 };
 
 export const Important: Story = {
     args: {
-        type: "important",
+        variant: "important",
         message: "This is an important banner.",
     },
 };
 
 export const Error: Story = {
     args: {
-        type: "error",
+        variant: "error",
         message: "Something went wrong. Please try again.",
     },
 };
 
 export const Success: Story = {
     args: {
-        type: "success",
+        variant: "success",
         message: "Action completed successfully!",
     },
 };

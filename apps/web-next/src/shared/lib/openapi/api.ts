@@ -118,6 +118,23 @@ export interface AuthorizeDto {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const BannerVariant = {
+    Info: 'info',
+    Neutral: 'neutral',
+    Important: 'important',
+    Error: 'error',
+    Success: 'success'
+} as const;
+
+export type BannerVariant = typeof BannerVariant[keyof typeof BannerVariant];
+
+
+/**
+ * 
+ * @export
  * @interface CheckoutOffersDto
  */
 export interface CheckoutOffersDto {
@@ -1024,6 +1041,39 @@ export interface SearchProjectsDto {
      */
     'totalPages': number;
 }
+/**
+ * 
+ * @export
+ * @interface SettingsDto
+ */
+export interface SettingsDto {
+    /**
+     * 
+     * @type {BannerVariant}
+     * @memberof SettingsDto
+     */
+    'bannerVariant': BannerVariant;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SettingsDto
+     */
+    'banner': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof SettingsDto
+     */
+    'bannerText': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SettingsDto
+     */
+    'bannerExpirationDate': string | null;
+}
+
+
 /**
  * 
  * @export
@@ -4412,6 +4462,174 @@ export class ReportApi extends BaseAPI {
      */
     public reportControllerResolveReport(id: string, options?: RawAxiosRequestConfig) {
         return ReportApiFp(this.configuration).reportControllerResolveReport(id, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * SettingsApi - axios parameter creator
+ * @export
+ */
+export const SettingsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        settingsControllerSettings: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/settings`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {SettingsDto} settingsDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        settingsControllerUpdateSettings: async (settingsDto: SettingsDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'settingsDto' is not null or undefined
+            assertParamExists('settingsControllerUpdateSettings', 'settingsDto', settingsDto)
+            const localVarPath = `/settings`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(settingsDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SettingsApi - functional programming interface
+ * @export
+ */
+export const SettingsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SettingsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async settingsControllerSettings(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SettingsDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.settingsControllerSettings(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SettingsApi.settingsControllerSettings']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {SettingsDto} settingsDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async settingsControllerUpdateSettings(settingsDto: SettingsDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.settingsControllerUpdateSettings(settingsDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SettingsApi.settingsControllerUpdateSettings']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * SettingsApi - factory interface
+ * @export
+ */
+export const SettingsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SettingsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        settingsControllerSettings(options?: RawAxiosRequestConfig): AxiosPromise<SettingsDto> {
+            return localVarFp.settingsControllerSettings(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {SettingsDto} settingsDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        settingsControllerUpdateSettings(settingsDto: SettingsDto, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.settingsControllerUpdateSettings(settingsDto, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SettingsApi - object-oriented interface
+ * @export
+ * @class SettingsApi
+ * @extends {BaseAPI}
+ */
+export class SettingsApi extends BaseAPI {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SettingsApi
+     */
+    public settingsControllerSettings(options?: RawAxiosRequestConfig) {
+        return SettingsApiFp(this.configuration).settingsControllerSettings(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {SettingsDto} settingsDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SettingsApi
+     */
+    public settingsControllerUpdateSettings(settingsDto: SettingsDto, options?: RawAxiosRequestConfig) {
+        return SettingsApiFp(this.configuration).settingsControllerUpdateSettings(settingsDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

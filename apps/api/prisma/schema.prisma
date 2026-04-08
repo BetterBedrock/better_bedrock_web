@@ -15,6 +15,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum BannerVariant {
+  info
+  neutral
+  important
+  error
+  success
+}
+
+model Settings {
+  id String @id @default("singleton")
+
+  banner Boolean @default(false)
+  bannerText String @default("")
+  bannerExpirationDate DateTime? @default(now())
+  bannerVariant BannerVariant @default(neutral)
+}
+
 model Download {
   ipAddress String   @id
   hash      String?  @default(uuid())

@@ -30,7 +30,7 @@ export const ProjectDetailsEditorTags = () => {
       />
       {selectedProject!.tags.length >= 5 ? (
         <Banner
-          type="neutral"
+          variant="neutral"
           message="You have reached the limit of tags, please remove older tags before creating new ones."
         />
       ) : (
@@ -53,6 +53,7 @@ export const ProjectDetailsEditorTags = () => {
           <Tag
             key={tag.name + index}
             border="all"
+            variant="blue"
             name={tag.name}
             deletable
             onDelete={() => handleDeleteTag(tag)}

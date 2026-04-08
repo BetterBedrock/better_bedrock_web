@@ -35,7 +35,7 @@ export const Vouchers = () => {
       <Card.Divider />
       <Card.Body gap="xsm">
         {vouchers?.length === 0 && (
-          <Banner message="No vouchers found." type="neutral" />
+          <Banner message="No vouchers found." variant="neutral" />
         )}
         {vouchers ? (
           <VouchersList

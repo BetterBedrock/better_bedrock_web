@@ -15,5 +15,5 @@ export const SuccessPage = async ({ searchParams }: SuccessPageProps) => {
     redirect(Routes.CHECKOUT_CANCEL);
   }
 
-  return <HeroSuccessPage />;
+  return <HeroSuccessPage code={data.code} />;
 };

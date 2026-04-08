@@ -6,6 +6,8 @@ import "@/public/styles/global.scss";
 
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { SettingsProvider } from "@/app/providers/settings";
+import { fetchSettings } from "@/shared/api/setting";
 
 export const metadata: Metadata = {
   title: "Better Bedrock - Minecraft Bedrock Mods, Texture Packs & More",
@@ -37,7 +39,7 @@ const mojanglesBold = localFont({
   src: [
     {
       path: "../public/fonts/mojangles/MojanglesBold.otf",
-      style: "bold",
+      weight: "bold",
     },
   ],
 });
@@ -55,29 +57,33 @@ const minecraftFive = localFont({
   src: [
     {
       path: "../public/fonts/minecraft/MinecraftFive.ttf",
-      style: "bold",
+      weight: "bold",
     },
   ],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { data } = await fetchSettings();
+
   return (
     <html lang="en">
       <body
         className={`relative ${mojangles.className} ${mojanglesBold.className} ${minecraft.className} ${minecraftFive.className}`}
       >
         <NotificationProvider>
-          <CheckoutProvider>
-            <AuthProvider>
-              <Layout>
-                <main>{children}</main>
-              </Layout>
-            </AuthProvider>
-          </CheckoutProvider>
+          <SettingsProvider defaultSettings={data}>
+            <CheckoutProvider>
+              <AuthProvider>
+                <Layout>
+                  <main>{children}</main>
+                </Layout>
+              </AuthProvider>
+            </CheckoutProvider>
+          </SettingsProvider>
         </NotificationProvider>
       </body>
     </html>

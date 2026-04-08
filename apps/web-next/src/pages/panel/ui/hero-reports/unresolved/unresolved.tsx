@@ -14,7 +14,7 @@ export const Unresolved = () => {
       <Card.Body>
         {!reports && <CircularProgressIndicator center />}
         {reports && reports.length === 0 ? (
-          <Banner message="No unresolved reports." type="neutral" />
+          <Banner message="No unresolved reports." variant="neutral" />
         ) : (
           <div className={styles.projects}>
             {reports
