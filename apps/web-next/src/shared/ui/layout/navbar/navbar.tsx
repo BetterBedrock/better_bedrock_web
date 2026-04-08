@@ -40,6 +40,8 @@ export const Navbar = () => {
     settings ?? {};
   const hasBannerExpired = dayjs(bannerExpirationDate).isBefore(new Date());
 
+  console.log({ bannerData: settings });
+
   return (
     <>
       {banner && !hasBannerExpired && (

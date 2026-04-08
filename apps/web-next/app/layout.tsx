@@ -69,6 +69,8 @@ export default async function RootLayout({
 }>) {
   const { data } = await fetchSettings();
 
+  console.log({ data });
+
   return (
     <html lang="en">
       <body
