@@ -2,9 +2,7 @@ import { BedrockText } from "../bedrock-text/bedrock-text";
 
 import clsx from "clsx";
 
-import {
-  ProjectType,
-} from "@/shared/lib/openapi";
+import { ProjectType } from "@/shared/lib/openapi";
 import { PROJECT_TYPES } from "@/shared/config";
 import { Routes } from "@/shared/lib/utils";
 import { baseUrl } from "@/shared/lib/utils";
@@ -97,13 +95,13 @@ export const GridDownloadCard = ({
           )}
 
           <div className={styles.details}>
-            <Tag border={["top", "right"]} name={PROJECT_TYPES[type]} />
+            <Tag
+              border={["top", "right"]}
+              name={PROJECT_TYPES[type]}
+              variant="blue"
+            />
             {tagName && (
-              <Tag
-                border={["top", "right"]}
-                name={tagName}
-                className={styles.special}
-              />
+              <Tag border={["top", "right"]} name={tagName} variant="special" />
             )}
           </div>
         </div>
@@ -119,6 +117,7 @@ export const GridDownloadCard = ({
                     <Tag
                       className={styles.bb}
                       border={[]}
+                      variant="blue"
                       name={
                         <img
                           src="/images/logo.png"
