@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 3000",
-    "build": "next build && storybook build",
+    "build": "next build",
     "serve": "next start",
     "lint": "eslint",
     "steiger": "steiger ./src",

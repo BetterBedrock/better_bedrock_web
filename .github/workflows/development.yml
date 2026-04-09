@@ -75,6 +75,9 @@ jobs:
             echo "🔨 Building Next.js..."
             npx yarn build --filter=web-next
 
+            echo "🔨 Building Storybook..."
+            npx yarn build-storybook --filter=web-next
+
             echo "🔄 Starting remaining services..."
             pm2 start ecosystem.config.js --only "better-bedrock-storybook-dev,better-bedrock-web-dev"
 

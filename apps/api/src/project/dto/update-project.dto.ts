@@ -8,5 +8,6 @@ export class UpdateProjectDto extends PartialType(
         "thumbnail",
         "tags",
         "betterBedrockContent",
+        "summary",
     ] as const),
 ) {}

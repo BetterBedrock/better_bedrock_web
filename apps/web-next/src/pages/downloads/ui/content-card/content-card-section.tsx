@@ -51,6 +51,7 @@ export const ContentCardSection = ({ items }: ContentCardSectionProps) => {
                     "thumbnail",
                     "type",
                     "betterBedrockContent",
+                    "summary",
                   )}
                   userName={item.user.name}
                   averageRating={item.rating.average}

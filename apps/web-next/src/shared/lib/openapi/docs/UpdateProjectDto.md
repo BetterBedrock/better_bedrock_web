@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **thumbnail** | **string** |  | [optional] [default to undefined]
 **tags** | [**Array&lt;TagNameDto&gt;**](TagNameDto.md) |  | [optional] [default to undefined]
 **betterBedrockContent** | **boolean** |  | [optional] [default to undefined]
+**summary** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -22,6 +23,7 @@ const instance: UpdateProjectDto = {
     thumbnail,
     tags,
     betterBedrockContent,
+    summary,
 };
 ```
 

@@ -10,7 +10,7 @@ import { AuthenticatedRequest } from "~/common/types/authenticated-request.type"
 
 @Controller("analytics")
 export class AnalyticsController {
-    constructor(private analyticsService: AnalyticsService) { }
+    constructor(private analyticsService: AnalyticsService) {}
 
     @Get()
     @UseGuards(AdminAuthGuard)

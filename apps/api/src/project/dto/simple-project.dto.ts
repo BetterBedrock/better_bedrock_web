@@ -15,6 +15,7 @@ export class SimpleProjectDto extends IntersectionType(
         "userId",
         "itemWeight",
         "submitted",
+        "summary",
     ] as const),
     ProjectDetailsDto,
 ) {}

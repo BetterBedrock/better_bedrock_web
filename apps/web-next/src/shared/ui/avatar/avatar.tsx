@@ -35,7 +35,7 @@ export interface AvatarProps {
 }
 
 export const Avatar = (({ children, name, className }) => (
-  <Link link={name && Routes.PROFILE + "/" + name + "/projects"} hideStyles>
+  <Link link={name && Routes.PROFILE + "/" + name + "/projects"} title={`Go To ${name} Profile Page`} hideStyles>
     <div className={clsx(styles.avatar, className)}>{children}</div>
   </Link>
 )) as AvatarComponent;

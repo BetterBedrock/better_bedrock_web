@@ -22,6 +22,7 @@ export const HeroReportsPopupGridDownloadCard = ({
         "type",
         "betterBedrockContent",
         "tags",
+        "summary",
       )}
       userName={project.user.name}
       averageRating={project.rating.average}

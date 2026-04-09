@@ -34,6 +34,9 @@ export class ProjectDto {
     @IsBoolean()
     submitted: boolean;
 
+    @IsString()
+    summary: string | null;
+
     @ApiProperty({ type: "object", nullable: true, additionalProperties: true })
     description: JsonValue;
 

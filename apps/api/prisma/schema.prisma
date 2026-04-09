@@ -26,10 +26,10 @@ enum BannerVariant {
 model Settings {
   id String @id @default("singleton")
 
-  banner Boolean @default(false)
-  bannerText String @default("")
-  bannerExpirationDate DateTime? @default(now())
-  bannerVariant BannerVariant @default(neutral)
+  banner               Boolean       @default(false)
+  bannerText           String        @default("")
+  bannerExpirationDate DateTime?     @default(now())
+  bannerVariant        BannerVariant @default(neutral)
 }
 
 model Download {
@@ -115,6 +115,7 @@ model Project {
   draft     Boolean @default(true)
   submitted Boolean @default(false)
 
+  summary              String?
   description          Json
   itemWeight           Float // In MB (e.g. 11.5)
   betterBedrockContent Boolean  @default(false)
