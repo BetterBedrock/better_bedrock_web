@@ -144,7 +144,7 @@ export class ProjectService {
 
     async search(query: SearchProjectsQueryDto): Promise<SearchProjectsDto> {
         const { text, type, page = 1 } = query;
-        const limit = 10;
+        const limit = 20;
         const candidateLimit = 200;
 
         const baseWhere: Prisma.ProjectWhereInput = { draft: false };
