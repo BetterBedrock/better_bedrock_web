@@ -8,6 +8,7 @@ import { ProjectDetailsEditorBetterBedrockContent } from "./project-details-edit
 import { ProjectDetailsEditorDownloadFile } from "./project-details-editor-download-file";
 
 import styles from "./project-details-editor.module.scss";
+import { ProjectDetailsSummary } from "@/pages/project/ui/project-details-editor/project-details-editor-summary";
 
 interface ProjectDetailsEditorProps {
   detailedProject: DetailedProjectDto;
@@ -24,6 +25,11 @@ export const ProjectDetailsEditor = ({
         {detailedProject.submitted && <SubmittedOverlay />}
         <Card.Body>
           <ProjectHeaderTitle title="Details" />
+        </Card.Body>
+
+        <Card.Divider />
+        <Card.Body gap="sm">
+          <ProjectDetailsSummary />
         </Card.Body>
 
         <Card.Divider />
