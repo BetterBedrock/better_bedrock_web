@@ -27,6 +27,7 @@ export const GridDownloadCardList = ({
           "type",
           "betterBedrockContent",
           "tags",
+          "summary",
         )}
         userName={project.user.name}
         tags={project.tags.map((tag) => tag.name)}

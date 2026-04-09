@@ -23,6 +23,7 @@ export const ProjectsCardList = ({ searchResults }: ProjectsCardListProps) => (
           "type",
           "betterBedrockContent",
           "tags",
+          "summary",
         )}
         userName={project.user.name}
         averageRating={project.rating.average}

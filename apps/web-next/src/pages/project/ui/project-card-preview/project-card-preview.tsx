@@ -30,6 +30,7 @@ export const ProjectCardPreview = () => {
               "type",
               "betterBedrockContent",
               "tags",
+              "summary",
             )}
             userName={selectedProject.user.name}
             tags={selectedProject.tags.map((tag) => tag.name)}

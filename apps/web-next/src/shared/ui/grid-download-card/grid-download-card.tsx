@@ -30,6 +30,7 @@ interface GridDownloadCardProps {
   betterBedrockContent?: boolean;
   tags?: string[];
   averageRating?: number;
+  summary: string | null;
 
   mode?: ProjectMode;
   className?: string;
@@ -48,6 +49,7 @@ export const GridDownloadCard = ({
   averageRating,
   className,
   mode,
+  summary
 }: GridDownloadCardProps) => {
   const tagName =
     mode === "edit" && submitted
@@ -72,7 +74,11 @@ export const GridDownloadCard = ({
           <Avatar.Details name={userName} link={false} at />
         </Avatar>
       </div>
-      <Link link={link()} className={clsx(styles.link, styles.body)}>
+      <Link
+        link={link()}
+        className={clsx(styles.link, styles.body)}
+        title={`Go To ${title} Projects Page`}
+      >
         <div className={styles.background}>
           {!thumbnail || thumbnail === "" ? (
             <div className={styles.empty}>
@@ -137,15 +143,24 @@ export const GridDownloadCard = ({
                 />
               </div>
               <div className={styles.tags2}>
-                {tags?.map((tag, index) => (
+                {summary ? (
                   <BedrockText
-                    key={`${tag}${index}`}
-                    text={`#${tag}`}
+                    text={summary}
                     type="p2"
                     textAlign="left"
                     extraClassName={styles.tag}
                   />
-                ))}
+                ) : (
+                  tags?.map((tag, index) => (
+                    <BedrockText
+                      key={`${tag}${index}`}
+                      text={`#${tag}`}
+                      type="p2"
+                      textAlign="left"
+                      extraClassName={styles.tag}
+                    />
+                  ))
+                )}
               </div>
             </div>
 

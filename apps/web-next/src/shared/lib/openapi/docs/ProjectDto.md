@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **id** | **string** |  | [default to undefined]
 **draft** | **boolean** |  | [default to undefined]
 **submitted** | **boolean** |  | [default to undefined]
+**summary** | **string** |  | [default to undefined]
 **itemWeight** | **number** |  | [default to undefined]
 **betterBedrockContent** | **boolean** |  | [default to undefined]
 **lastChanged** | **string** |  | [default to undefined]
@@ -33,6 +34,7 @@ const instance: ProjectDto = {
     id,
     draft,
     submitted,
+    summary,
     itemWeight,
     betterBedrockContent,
     lastChanged,

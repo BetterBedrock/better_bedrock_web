@@ -321,6 +321,12 @@ export interface DetailedProjectDto {
     'submitted': boolean;
     /**
      * 
+     * @type {string}
+     * @memberof DetailedProjectDto
+     */
+    'summary': string | null;
+    /**
+     * 
      * @type {number}
      * @memberof DetailedProjectDto
      */
@@ -827,6 +833,12 @@ export interface ProjectDto {
     'submitted': boolean;
     /**
      * 
+     * @type {string}
+     * @memberof ProjectDto
+     */
+    'summary': string | null;
+    /**
+     * 
      * @type {number}
      * @memberof ProjectDto
      */
@@ -1161,6 +1173,12 @@ export interface SimpleProjectDto {
     'submitted': boolean;
     /**
      * 
+     * @type {string}
+     * @memberof SimpleProjectDto
+     */
+    'summary': string | null;
+    /**
+     * 
      * @type {ProjectCreatorDto}
      * @memberof SimpleProjectDto
      */
@@ -1323,6 +1341,12 @@ export interface UpdateProjectDto {
      * @memberof UpdateProjectDto
      */
     'betterBedrockContent'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateProjectDto
+     */
+    'summary'?: string | null;
 }
 
 

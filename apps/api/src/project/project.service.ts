@@ -54,6 +54,7 @@ export const projectTagsInclude = {
 const simpleProjectSelect = {
     id: true,
     title: true,
+    summary: true,
     thumbnail: true,
     tags: { select: { name: true } },
     type: true,
@@ -74,7 +75,7 @@ export class ProjectService {
         private prismaService: PrismaService,
         private ratingService: RatingService,
         private analyticsService: AnalyticsService,
-    ) {}
+    ) { }
 
     async create(data: CreateProjectDto, admin: boolean) {
         const { title, userId } = data;
@@ -144,7 +145,7 @@ export class ProjectService {
 
     async search(query: SearchProjectsQueryDto): Promise<SearchProjectsDto> {
         const { text, type, page = 1 } = query;
-        const limit = 10;
+        const limit = 20;
         const candidateLimit = 200;
 
         const baseWhere: Prisma.ProjectWhereInput = { draft: false };
@@ -304,7 +305,7 @@ export class ProjectService {
                     b.score !== a.score
                         ? b.score - a.score
                         : new Date(b.proj.lastChanged).getTime() -
-                          new Date(a.proj.lastChanged).getTime(),
+                        new Date(a.proj.lastChanged).getTime(),
                 );
         }
 
@@ -393,8 +394,8 @@ export class ProjectService {
             description: data.description as Prisma.InputJsonValue | undefined,
             ...(data.tags !== undefined
                 ? {
-                      tags: await this.buildTagUpdate(project.id, tags),
-                  }
+                    tags: await this.buildTagUpdate(project.id, tags),
+                }
                 : { tags: undefined }),
         };
 
@@ -433,6 +434,15 @@ export class ProjectService {
 
         const description = extractFirstLinesFromTiptap(project.description);
         const imageCount = extractImagesCount(project.description);
+        const summaryLength = project.summary?.trim()?.length ?? 0;
+
+        if (summaryLength < 60) {
+            throw new BadRequestException("Project description is too short for submission");
+        }
+
+        if (summaryLength > 120) {
+            throw new BadRequestException("Project description is too long for submission");
+        }
 
         if (!description || description.trim().length < 100) {
             throw new BadRequestException("Project description is too short for submission");
@@ -489,15 +499,15 @@ export class ProjectService {
         const updatedDescription = this.replaceDraftImageSrcs(draftProject.description, id);
         const updatedThumbnail = draftProject.thumbnail
             ? draftProject.thumbnail.replace(
-                  new RegExp(`static/public/${id}/draft/`, "g"),
-                  `static/public/${id}/release/`,
-              )
+                new RegExp(`static/public/${id}/draft/`, "g"),
+                `static/public/${id}/release/`,
+            )
             : null;
         const updatedDownloadFile = draftProject.downloadFile
             ? draftProject.downloadFile.replace(
-                  new RegExp(`static/private/${id}/draft/`, "g"),
-                  `static/private/${id}/release/`,
-              )
+                new RegExp(`static/private/${id}/draft/`, "g"),
+                `static/private/${id}/release/`,
+            )
             : null;
 
         const { id: projectId, tags, ...rest } = draftProject;
@@ -509,8 +519,8 @@ export class ProjectService {
         const lastChanged = updateLastChanged
             ? new Date()
             : oldReleasedProject
-              ? oldReleasedProject.createdAt
-              : new Date();
+                ? oldReleasedProject.createdAt
+                : new Date();
 
         const releaseProjectData = {
             ...rest,
