@@ -4,6 +4,18 @@ p.p2 {
   font-size: 1.2rem;
   letter-spacing: 0.3px;
   line-height: 1.2em;
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+    line-height: 1em;
+  }
+
+  @media (max-width: g.$breakpoint-mobileL) {
+    font-size: 0.8rem;
+    letter-spacing: 0.3px;
+    line-height: 0.8em;
+  }
 }
 
 .header {
