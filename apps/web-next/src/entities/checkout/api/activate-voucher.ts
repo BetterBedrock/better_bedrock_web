@@ -14,10 +14,9 @@ export const activateVoucher = async (checkoutId?: string, code?: string) => {
 
     if (!checkoutId && !code && !existingVoucher) return { error: "You did not use a valid code or checkout ID, and you do not have an existing voucher to activate." }
 
-
     const { data, error } = await activateVoucherRequest(
         undefined,
-        code,
+        code ?? existingVoucher,
     );
 
     return { data, error };
