@@ -1,6 +1,6 @@
 "use client";
 
-import { activateVoucher } from "@/entities/checkout";
+import { activateVoucher, setCookieVoucher } from "@/entities/checkout";
 import { ProjectDto } from "@/shared/lib/openapi";
 import { useCheckout } from "@/app/providers/checkout";
 import { useNotification } from "@/app/providers/notification";
@@ -27,9 +27,9 @@ export const useVoucherManager = ({
 
   const download = async () => {
     const newTab = window.open('', '_blank');
-
+    
     const data = await generateDownload(project.id);
-
+    
     if (!data.url) {
       if (newTab) newTab.close();
       throwError(null, "There was a problem with the download link. Please report it on our discord.");
@@ -55,8 +55,11 @@ export const useVoucherManager = ({
         type: "success",
       });
 
+      if (voucher.data.code) {
+        await setCookieVoucher(voucher.data.code);
+      }
+
       onClose?.();
-      // router.refresh();
     }
   };
 

@@ -162,7 +162,6 @@ export class MonetizationService {
                 },
             );
             const { data, status } = await lastValueFrom(response$);
-            Logger.error({ data, status });
 
             if (status !== 200 || !data.message) {
                 throw new HttpException(
