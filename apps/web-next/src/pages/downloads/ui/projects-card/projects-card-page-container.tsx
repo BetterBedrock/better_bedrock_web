@@ -27,7 +27,7 @@ export const ProjectsCardPageContainer = ({
         {currentPage > 1 && (
           <ProjectsCardPagePrevButton currentPage={currentPage} />
         )}
-        {currentPage < searchResults.totalPages && (
+        {currentPage < searchResults?.totalPages && (
           <ProjectsCardPageNextButton currentPage={currentPage} />
         )}
       </ButtonGroup>
