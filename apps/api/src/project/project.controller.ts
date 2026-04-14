@@ -46,6 +46,8 @@ import { UserService } from "~/user/user.service";
 import { AnalyticsService } from "~/analytics/analytics.service";
 import { AnalyticsNames } from "~/analytics/constants/analytics-names";
 import { PublishProjectDto } from "~/project/dto/publish-project.dto";
+import { ProjectCommentsListDto } from "~/comment/dto/project-comments-list.dto";
+import { FetchCommentsParamsDto } from "~/project/dto/fetch-comments-params.dto";
 
 @Controller("project")
 export class ProjectController {
@@ -265,9 +267,10 @@ export class ProjectController {
         return this.ratingService.deleteUsersRating(req.user.id, projectId);
     }
 
-    @Get("comments/:projectId")
-    comments(@Param("projectId") projectId: string): Promise<ProjectCommentDto[]> {
-        return this.commentService.getComments(projectId);
+    @Get("comments/:projectId/:page")
+    comments(@Param() params: FetchCommentsParamsDto): Promise<ProjectCommentsListDto> {
+        const { projectId, page } = params;
+        return this.commentService.getComments(projectId, page);
     }
 
     @Post("comment/:projectId")
