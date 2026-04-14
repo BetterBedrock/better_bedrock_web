@@ -1,0 +1,14 @@
+@use "@/shared/ui" as g;
+
+.list {
+  display: flex;
+  gap: g.$padding-xxsm;
+
+  &.vertical {
+    flex-direction: column;
+  }
+
+  &.horizontal {
+    flex-direction: row;
+  }
+}
