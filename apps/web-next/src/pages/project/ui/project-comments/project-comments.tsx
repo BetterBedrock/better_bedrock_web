@@ -15,8 +15,9 @@ interface ProjectCommentsProps {
 export const ProjectComments = async ({
   detailedProject,
 }: ProjectCommentsProps) => {
-  const comments = await fetchComments(detailedProject.id);
+  const commentsData = await fetchComments(detailedProject.id, 1);
   const user = await fetchLoggedUser();
+
   return (
     <div id="project-comments-section">
       <Card>
@@ -26,7 +27,11 @@ export const ProjectComments = async ({
         <Card.Divider />
         <Card.Body gap="md">
           <ProjectCommentsPost user={user} detailedProject={detailedProject} />
-          <ProjectCommentsList comments={comments} user={user} />
+          <ProjectCommentsList
+            id={detailedProject.id}
+            commentsData={commentsData}
+            user={user}
+          />
         </Card.Body>
       </Card>
     </div>
