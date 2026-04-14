@@ -48,7 +48,6 @@ export const useDownloadButton = (
           "Your voucher allows you to download only Better Bedrock content without ads.",
         type: "info",
       });
-      return;
     }
 
     if (!instantDownload) {
