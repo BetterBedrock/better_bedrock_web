@@ -773,6 +773,31 @@ export interface ProjectCommentDtoAuthor {
 /**
  * 
  * @export
+ * @interface ProjectCommentsListDto
+ */
+export interface ProjectCommentsListDto {
+    /**
+     * 
+     * @type {Array<ProjectCommentDto>}
+     * @memberof ProjectCommentsListDto
+     */
+    'comments': Array<ProjectCommentDto>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProjectCommentsListDto
+     */
+    'page': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProjectCommentsListDto
+     */
+    'maxPages': number;
+}
+/**
+ * 
+ * @export
  * @interface ProjectCreatorDto
  */
 export interface ProjectCreatorDto {
@@ -1666,11 +1691,13 @@ export const AnalyticsApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @param {string} [id] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        analyticsControllerPing: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/analytics/ping`;
+        analyticsControllerPing: async (id?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/analytics/ping/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1764,11 +1791,12 @@ export const AnalyticsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} [id] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async analyticsControllerPing(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.analyticsControllerPing(options);
+        async analyticsControllerPing(id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.analyticsControllerPing(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AnalyticsApi.analyticsControllerPing']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1813,11 +1841,12 @@ export const AnalyticsApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @param {string} [id] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        analyticsControllerPing(options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.analyticsControllerPing(options).then((request) => request(axios, basePath));
+        analyticsControllerPing(id?: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.analyticsControllerPing(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1860,12 +1889,13 @@ export class AnalyticsApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} [id] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AnalyticsApi
      */
-    public analyticsControllerPing(options?: RawAxiosRequestConfig) {
-        return AnalyticsApiFp(this.configuration).analyticsControllerPing(options).then((request) => request(this.axios, this.basePath));
+    public analyticsControllerPing(id?: string, options?: RawAxiosRequestConfig) {
+        return AnalyticsApiFp(this.configuration).analyticsControllerPing(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2645,14 +2675,18 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {string} projectId 
+         * @param {number} page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectControllerComments: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        projectControllerComments: async (projectId: string, page: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'projectId' is not null or undefined
             assertParamExists('projectControllerComments', 'projectId', projectId)
-            const localVarPath = `/project/comments/{projectId}`
-                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+            // verify required parameter 'page' is not null or undefined
+            assertParamExists('projectControllerComments', 'page', page)
+            const localVarPath = `/project/comments/{projectId}/{page}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"page"}}`, encodeURIComponent(String(page)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3487,11 +3521,12 @@ export const ProjectApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} projectId 
+         * @param {number} page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async projectControllerComments(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ProjectCommentDto>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerComments(projectId, options);
+        async projectControllerComments(projectId: string, page: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProjectCommentsListDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerComments(projectId, page, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerComments']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -3768,11 +3803,12 @@ export const ProjectApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {string} projectId 
+         * @param {number} page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectControllerComments(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<ProjectCommentDto>> {
-            return localVarFp.projectControllerComments(projectId, options).then((request) => request(axios, basePath));
+        projectControllerComments(projectId: string, page: number, options?: RawAxiosRequestConfig): AxiosPromise<ProjectCommentsListDto> {
+            return localVarFp.projectControllerComments(projectId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3988,12 +4024,13 @@ export class ProjectApi extends BaseAPI {
     /**
      * 
      * @param {string} projectId 
+     * @param {number} page 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApi
      */
-    public projectControllerComments(projectId: string, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerComments(projectId, options).then((request) => request(this.axios, this.basePath));
+    public projectControllerComments(projectId: string, page: number, options?: RawAxiosRequestConfig) {
+        return ProjectApiFp(this.configuration).projectControllerComments(projectId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

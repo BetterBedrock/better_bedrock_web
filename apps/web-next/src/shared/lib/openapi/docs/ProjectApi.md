@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost*
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
 |[**projectControllerCancelSubmission**](#projectcontrollercancelsubmission) | **PATCH** /project/submit/cancel/{id} | |
-|[**projectControllerComments**](#projectcontrollercomments) | **GET** /project/comments/{projectId} | |
+|[**projectControllerComments**](#projectcontrollercomments) | **GET** /project/comments/{projectId}/{page} | |
 |[**projectControllerCreate**](#projectcontrollercreate) | **POST** /project | |
 |[**projectControllerDecline**](#projectcontrollerdecline) | **PATCH** /project/decline/{id} | |
 |[**projectControllerDelete**](#projectcontrollerdelete) | **DELETE** /project/{id} | |
@@ -78,7 +78,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **projectControllerComments**
-> Array<ProjectCommentDto> projectControllerComments()
+> ProjectCommentsListDto projectControllerComments()
 
 
 ### Example
@@ -93,9 +93,11 @@ const configuration = new Configuration();
 const apiInstance = new ProjectApi(configuration);
 
 let projectId: string; // (default to undefined)
+let page: number; // (default to undefined)
 
 const { status, data } = await apiInstance.projectControllerComments(
-    projectId
+    projectId,
+    page
 );
 ```
 
@@ -104,11 +106,12 @@ const { status, data } = await apiInstance.projectControllerComments(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | [**string**] |  | defaults to undefined|
+| **page** | [**number**] |  | defaults to undefined|
 
 
 ### Return type
 
-**Array<ProjectCommentDto>**
+**ProjectCommentsListDto**
 
 ### Authorization
 
