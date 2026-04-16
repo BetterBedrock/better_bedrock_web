@@ -1,4 +1,3 @@
-export { MainPage } from "./ui/main-page";
 export { BedrockPage } from "./ui/bedrock-page";
 export { BedrockModsPage } from "./ui/bedrock-mods-page";
 export { BedrockAddonsPage } from "./ui/bedrock-addons-page";
@@ -9,4 +8,5 @@ export { BedrockSkinPacksPage } from "./ui/bedrock-skin-packs-page";
 export { BedrockOthersPage } from "./ui/bedrock-others-page";
 export { BetterBedrockPage } from "./ui/better-bedrock-page";
 export { SideProjectsPage } from "./ui/side-projects-page";
+export { DownloadsPage } from "./ui/downloads-page";
 export { default as styles } from "./ui/downloads.module.scss";
