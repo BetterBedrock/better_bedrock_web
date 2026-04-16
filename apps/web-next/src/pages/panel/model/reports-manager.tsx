@@ -2,39 +2,30 @@
 
 import {
   ReportDto,
-  DetailedUserDto,
-  DetailedProjectDto,
 } from "@/shared/lib/openapi";
-import { fetchAllReports } from "@/entities/report";
 import {
   createContext,
   Dispatch,
   ReactNode,
   SetStateAction,
   useContext,
-  useEffect,
   useState,
 } from "react";
 
 interface ReportsManagerContextProps {
-  reports: ReportDto[] | undefined;
-  setReports: Dispatch<SetStateAction<ReportDto[] | undefined>>;
+  resolvedReports: ReportDto[];
+  unresolvedReports: ReportDto[];
+
+  reports: ReportDto[];
+  setReports: Dispatch<SetStateAction<ReportDto[]>>;
 
   selectedReport: ReportDto | null;
   setSelectedReport: Dispatch<SetStateAction<ReportDto | null>>;
-
-  reporter: DetailedUserDto | undefined;
-  setReporter: Dispatch<SetStateAction<DetailedUserDto | undefined>>;
-
-  reported: DetailedUserDto | undefined;
-  setReported: Dispatch<SetStateAction<DetailedUserDto | undefined>>;
-
-  project: DetailedProjectDto | undefined;
-  setProject: Dispatch<SetStateAction<DetailedProjectDto | undefined>>;
 }
 
 interface ReportsManagerProviderProps {
   children: ReactNode;
+  defaultReports: ReportDto[];
 }
 
 const ReportsManagerContext = createContext<
@@ -43,31 +34,31 @@ const ReportsManagerContext = createContext<
 
 export const ReportsManagerProvider = ({
   children,
+  defaultReports,
 }: ReportsManagerProviderProps) => {
-  const [reports, setReports] = useState<ReportDto[]>();
+  const [reports, setReports] = useState<ReportDto[]>(defaultReports);
 
   const [selectedReport, setSelectedReport] = useState<ReportDto | null>(null);
-  const [reporter, setReporter] = useState<DetailedUserDto | undefined>();
-  const [reported, setReported] = useState<DetailedUserDto | undefined>();
-  const [project, setProject] = useState<DetailedProjectDto | undefined>();
 
-  useEffect(() => {
-    fetchAllReports().then((data) => setReports(data));
-  }, []);
+  const [resolvedReports, unresolvedReports] = reports.reduce<
+    [ReportDto[], ReportDto[]]
+  >(
+    (acc, report) => {
+      acc[report.resolved ? 0 : 1].push(report);
+      return acc;
+    },
+    [[], []],
+  );
 
   return (
     <ReportsManagerContext.Provider
       value={{
+        resolvedReports,
+        unresolvedReports,
         reports,
         setReports,
         selectedReport,
         setSelectedReport,
-        reporter,
-        setReporter,
-        reported,
-        setReported,
-        project,
-        setProject,
       }}
     >
       {children}
