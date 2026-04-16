@@ -9,6 +9,8 @@ import localFont from "next/font/local";
 import { SettingsProvider } from "@/app/providers/settings";
 import { fetchSettings } from "@/shared/api/setting";
 import Script from "next/script";
+import { fetchLocalSession } from "@/shared/lib/local-session/fetch-local-session";
+import { SessionProvider } from "@/app/providers/session";
 
 export const metadata: Metadata = {
   title: "Better Bedrock - Minecraft Bedrock Mods, Texture Packs & More",
@@ -69,6 +71,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const { data } = await fetchSettings();
+  const localSession = await fetchLocalSession();
 
   return (
     <html lang="en">
@@ -90,15 +93,17 @@ export default async function RootLayout({
         className={`relative ${mojangles.className} ${mojanglesBold.className} ${minecraft.className} ${minecraftFive.className}`}
       >
         <NotificationProvider>
-          <SettingsProvider defaultSettings={data}>
-            <CheckoutProvider>
-              <AuthProvider>
-                <Layout>
-                  <main>{children}</main>
-                </Layout>
-              </AuthProvider>
-            </CheckoutProvider>
-          </SettingsProvider>
+          <SessionProvider localSession={localSession}>
+            <SettingsProvider defaultSettings={data}>
+              <CheckoutProvider>
+                <AuthProvider>
+                  <Layout>
+                    <main>{children}</main>
+                  </Layout>
+                </AuthProvider>
+              </CheckoutProvider>
+            </SettingsProvider>
+          </SessionProvider>
         </NotificationProvider>
       </body>
     </html>
