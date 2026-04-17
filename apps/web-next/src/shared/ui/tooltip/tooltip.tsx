@@ -3,7 +3,7 @@
 import { CSSProperties, MouseEvent, ReactNode, useState } from "react";
 import styles from "./tooltip.module.scss";
 import clsx from "clsx";
-import { BedrockText } from "@/shared/ui/bedrock-text";
+import { TooltipText } from "@/shared/ui/tooltip/tooltip-text";
 
 interface TooltipProps {
   children: ReactNode;
@@ -45,17 +45,7 @@ export const Tooltip = ({
     >
       {children}
 
-      {!hidden && (
-        <div style={tooltipStyle} className={styles.box}>
-          <BedrockText
-            text={text ?? "Tooltip text"}
-            extraClassName={styles.text}
-            color="white"
-            type="p"
-            textAlign="center"
-          />
-        </div>
-      )}
+      {!hidden && <TooltipText tooltipStyle={tooltipStyle} text={text} />}
     </div>
   );
 };
