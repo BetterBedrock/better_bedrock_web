@@ -24,28 +24,20 @@ interface ShareIconsProps {
 
 export const ShareIcons = ({ projectId, center }: ShareIconsProps) => {
   const url = `${process.env.NEXT_PUBLIC_FRONTEND_URL}${Routes.PROJECT_PREVIEW}/${projectId}`;
+  const title = "Hey, checkout this Minecraft Bedrock Mod";
 
   return (
     <div className={clsx(styles.list, center && styles.center)}>
       <FacebookShareButton url={url} title="Test" hashtag="#betterbedrock">
         <FacebookIcon className={styles.icon} />
       </FacebookShareButton>
-      <TwitterShareButton
-        url={url}
-        title="Hey, checkout this Minecraft Bedrock Mod"
-      >
+      <TwitterShareButton url={url} title={title}>
         <XIcon className={styles.icon} />
       </TwitterShareButton>
-      <RedditShareButton
-        url={url}
-        title="Hey, checkout this Minecraft Bedrock Mod"
-      >
+      <RedditShareButton url={url} title={title}>
         <RedditIcon className={styles.icon} />
       </RedditShareButton>
-      <WhatsappShareButton
-        url={url}
-        title="Hey, checkout this Minecraft Bedrock Mod"
-      >
+      <WhatsappShareButton url={url} title={title}>
         <WhatsappIcon className={styles.icon} />
       </WhatsappShareButton>
       <VKShareButton url={url} title="Эй, загляни в Minecraft Bedrock">
