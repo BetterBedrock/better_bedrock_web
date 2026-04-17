@@ -7,6 +7,7 @@ import { useAuth } from "@/app/providers/auth";
 import { usePathname } from "next/navigation";
 import { UserDto } from "@/shared/lib/openapi";
 import { Routes } from "@/shared/lib/utils";
+import clsx from "clsx";
 
 interface NavItem {
   name: string;
@@ -16,10 +17,12 @@ interface NavItem {
 interface NavbarNavItemsProps {
   onNavClick: () => void;
   isMobile?: boolean;
+  className?: string;
 }
 
 const getNavItems = (pathname: string, user?: UserDto): NavItem[] => {
-  const isPanelSection = pathname === "/panel" || pathname.startsWith("/panel/");
+  const isPanelSection =
+    pathname === "/panel" || pathname.startsWith("/panel/");
 
   if (isPanelSection && user?.admin) {
     return [
@@ -52,7 +55,10 @@ const getFinalNavPath = (path: string, location: string): string => {
 
   return navSegments
     .map((segment, i) =>
-      resolveDynamicSegment(segment, isSameSection ? locationSegments[i] : undefined)
+      resolveDynamicSegment(
+        segment,
+        isSameSection ? locationSegments[i] : undefined,
+      ),
     )
     .join("/");
 };
@@ -60,13 +66,14 @@ const getFinalNavPath = (path: string, location: string): string => {
 export const NavbarNavItems = ({
   onNavClick,
   isMobile = false,
+  className,
 }: NavbarNavItemsProps) => {
   const location = usePathname()!;
   const { user } = useAuth();
   const navItems = getNavItems(location, user);
 
   return (
-    <>
+    <div className={clsx(styles.buttonsWrapper, className && className)}>
       {navItems.map(({ name, path }, index) => {
         const finalNavPath = getFinalNavPath(path, location);
         const isActive = location === finalNavPath;
@@ -87,16 +94,13 @@ export const NavbarNavItems = ({
                 className={styles.button}
                 onTap={onNavClick}
               >
-                <BedrockText
-                  text={name}
-                  type="p"
-                />
+                <BedrockText text={name} type="p" />
               </SimpleButton>
               {isMobile && <NavbarDivider type="horizontal" />}
             </Link>
           </nav>
         );
       })}
-    </>
+    </div>
   );
 };
