@@ -12,12 +12,10 @@ export const PopoverContent = ({
   sideOffset = 4,
   ...props
 }: ComponentProps<typeof PopoverPrimitive.Content>) => (
-  // <PopoverPrimitive.Portal>
   <PopoverPrimitive.Content
     align={align}
     sideOffset={sideOffset}
     className={cn(styles.popover, className)}
     {...props}
   />
-  // </PopoverPrimitive.Portal>
 );
