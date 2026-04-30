@@ -42,12 +42,28 @@ export class CommentService {
         });
     }
 
-    async getComments(projectId: string) {
-        return this.prismaService.comment.findMany({
+    async getComments(projectId: string, page: number) {
+        const limit = 10;
+
+        const total = await this.prismaService.comment.count({
+            where: { projectId, projectDraft: false, deleted: false, parentId: null },
+        });
+
+        const maxPages = Math.ceil(total / limit);
+
+        const comments = await this.prismaService.comment.findMany({
             where: { projectId, projectDraft: false, deleted: false, parentId: null },
             orderBy: { createdAt: "desc" },
             include: commentInclude,
+            skip: (page - 1) * limit,
+            take: limit,
         });
+
+        return {
+            page,
+            maxPages,
+            comments,
+        };
     }
 
     async deleteComment(commentId: string, user: UserDto) {

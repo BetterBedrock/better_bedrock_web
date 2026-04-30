@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState } from "react";
 import { Label } from "../../label";
 import { Banner } from "@/shared/ui/banner";
 import { NavbarNavItems } from "./navbar-nav-items";
@@ -19,23 +19,6 @@ export const Navbar = () => {
     setExpanded((prev) => (value !== undefined ? value : !prev));
   }, []);
 
-  // Auto-collapse on breakpoint changes to prevent state persistence issues
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)"); // tablet breakpoint
-
-    const handleBreakpointChange = (e: MediaQueryListEvent) => {
-      if (e.matches && expanded) {
-        setExpanded(false);
-      }
-    };
-
-    mediaQuery.addEventListener("change", handleBreakpointChange);
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleBreakpointChange);
-    };
-  }, [expanded]);
-
   const { banner, bannerText, bannerVariant, bannerExpirationDate } =
     settings ?? {};
   const hasBannerExpired = dayjs(bannerExpirationDate).isBefore(new Date());
@@ -45,13 +28,7 @@ export const Navbar = () => {
       {banner && !hasBannerExpired && (
         <Banner
           variant={bannerVariant ?? "info"}
-          message={
-            banner ? (
-              <Markdown>{bannerText}</Markdown>
-            ) : (
-              "This is a developer version of Better Bedrock Website"
-            )
-          }
+          message={<Markdown>{bannerText}</Markdown>}
         />
       )}
 
@@ -65,21 +42,19 @@ export const Navbar = () => {
             handleExpandNavbar={handleExpand}
           />
 
-          <div className={styles.buttonsWrapper}>
-            <NavbarNavItems
-              onNavClick={() => setExpanded(false)}
-              isMobile={false}
-            />
-          </div>
+          <NavbarNavItems
+            onNavClick={() => setExpanded(false)}
+            isMobile={false}
+          />
         </Label>
 
         {expanded && (
           <div className={styles.expandedMenu}>
-            <div
-              className={clsx(styles.buttonsWrapper, styles.expandedMenuLayout)}
-            >
-              <NavbarNavItems onNavClick={() => setExpanded(false)} isMobile />
-            </div>
+            <NavbarNavItems
+              className={styles.expandedMenuLayout}
+              onNavClick={() => setExpanded(false)}
+              isMobile
+            />
           </div>
         )}
       </header>

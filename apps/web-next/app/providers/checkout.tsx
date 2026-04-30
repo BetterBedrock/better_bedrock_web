@@ -1,6 +1,5 @@
 "use client";
 
-import { pingRequest } from "@/entities/analytic/api/analytics-service";
 import { fetchCheckoutOffersRequest } from "@/entities/checkout/api/checkout-service";
 import { CheckoutOffersDto } from "@/shared/lib/openapi";
 import {
@@ -27,21 +26,18 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
   const [offers, setOffers] = useState<CheckoutOffersDto | undefined>(
     undefined,
   );
-  const fetchOffers = async () => {
-    const { data } = await fetchCheckoutOffersRequest();
-
-    setOffers(data);
-  };
 
   useEffect(() => {
+    const fetchOffers = async () => {
+      const { data } = await fetchCheckoutOffersRequest();
+
+      setOffers(data);
+    };
+
     // Leave this as the only case where we pre-fetch something from the server on web load
     // It is left like this to make sure visitors count updates
     // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchOffers();
-    pingRequest();
-
-    const interval = setInterval(pingRequest, 60_000);
-    return () => clearInterval(interval);
   }, []);
 
   return (

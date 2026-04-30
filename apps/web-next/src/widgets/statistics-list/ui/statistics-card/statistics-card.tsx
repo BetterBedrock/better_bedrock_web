@@ -69,7 +69,7 @@ export const StatisticsCard = ({
         <BedrockText
           extraClassName={styles.name}
           type="h3"
-          text={name.replace("_", " ")}
+          text={name.replaceAll("_", " ")}
           textAlign="left"
           color="white"
           font="Minecraft"

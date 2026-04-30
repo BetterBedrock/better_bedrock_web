@@ -1,34 +1,12 @@
-import { Banner } from "@/shared/ui/banner";
-import { CircularProgressIndicator } from "@/shared/ui/circular-progress-indicator";
-import { useReportsManager } from "@/pages/panel/model/reports-manager";
 import { Card } from "@/shared/ui/card";
-import { ReportCard } from "@/pages/panel/ui/hero-reports/report-card";
+import { UnresolvedEmpty } from "@/pages/panel/ui/hero-reports/unresolved/unresolved-empty";
+import { UnresolvedList } from "@/pages/panel/ui/hero-reports/unresolved/unresolved-list";
 
-import styles from "./unresolved.module.scss";
-
-export const Unresolved = () => {
-  const { setSelectedReport, reports } = useReportsManager();
-
-  return (
-    <Card fullWidth>
-      <Card.Body>
-        {!reports && <CircularProgressIndicator center />}
-        {reports && reports.length === 0 ? (
-          <Banner message="No unresolved reports." variant="neutral" />
-        ) : (
-          <div className={styles.projects}>
-            {reports
-              ?.filter((r) => !r.resolved)
-              .map((report, index) => (
-                <ReportCard
-                  key={index}
-                  report={report}
-                  onClick={async () => setSelectedReport(report)}
-                />
-              ))}
-          </div>
-        )}
-      </Card.Body>
-    </Card>
-  );
-};
+export const Unresolved = () => (
+  <Card fullWidth>
+    <Card.Body>
+      <UnresolvedEmpty />
+      <UnresolvedList />
+    </Card.Body>
+  </Card>
+);

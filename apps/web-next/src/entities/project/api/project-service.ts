@@ -71,8 +71,8 @@ export const updateProjectRequest = async (
         headers: { Authorization: `Bearer ${secret}` },
     });
 
-export const fetchCommentsRequest = async (id: string) =>
-    projectApi.projectControllerComments(id);
+export const fetchCommentsRequest = async (id: string, page: number) =>
+    projectApi.projectControllerComments(id, page);
 export const deleteCommentRequest = async (id: string, secret: string) =>
     projectApi.projectControllerDeleteComment(id, {
         headers: { Authorization: `Bearer ${secret}` },

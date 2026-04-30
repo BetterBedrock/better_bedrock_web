@@ -30,8 +30,8 @@ export class AnalyticsService {
 
     private onlineUsers = new Map<string, number>();
 
-    ping(ip: string) {
-        this.onlineUsers.set(ip, Date.now());
+    ping(ip: string, id?: string) {
+        this.onlineUsers.set(`${ip}-${id}`, Date.now());
     }
 
     getLiveCount() {

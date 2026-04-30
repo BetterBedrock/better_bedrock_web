@@ -4,7 +4,7 @@ import { PopupWrapper } from "@/shared/ui/popup";
 import { SimpleButton } from "@/shared/ui/simple-button";
 import { DetailedUserDto } from "@/shared/lib/openapi";
 import SettingsGlyph from "@/public/images/settings_glyph.png";
-import { UserSettingsForm } from "./user-settings-form";
+import { UserSettingsPopup } from "./user-settings-popup/user-settings-popup";
 
 import styles from "./user.module.scss";
 import Image from "next/image";
@@ -22,7 +22,7 @@ export const UserActionSettings = ({
 }: UserActionSettingsProps) => (
   <PopupWrapper
     popup={(close) => (
-      <UserSettingsForm
+      <UserSettingsPopup
         user={detailedSelectedUser}
         onClose={close}
         admin={!ownsProfile && admin}

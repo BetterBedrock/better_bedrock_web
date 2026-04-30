@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import z from "zod";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BedrockText } from "@/shared/ui/bedrock-text";
@@ -15,24 +14,14 @@ import { Link } from "@/shared/ui/link";
 import { useRouter } from "next/navigation";
 import { manageProfile, updateProfile } from "@/entities/user";
 
-import styles from "./user.module.scss";
+import styles from "./user-settings-popup.module.scss";
 import { Collapsible } from "@/shared/ui/collapsible";
 import { ButtonGroup } from "@/shared/ui/button-group";
 import { Banner } from "@/shared/ui/banner";
 import { useNotification } from "@/app/providers/notification";
-
-const schema = z.object({
-  name: z.string().trim(),
-  bio: z.string().trim(),
-  monetizationType: z.enum(MonetizationType).nullable(),
-  linkvertiseId: z.string().trim().nullable(),
-  linkvertiseSecret: z.string().trim().nullable(),
-  lootlabsLinkId: z.string().trim().nullable(),
-  lootlabsSecret: z.string().trim().nullable(),
-  banned: z.boolean(),
-});
-
-type FormValues = z.infer<typeof schema>;
+import { Field } from "@/shared/ui/field";
+import { UserSettingsFormNameItem } from "@/pages/profile/ui/user/user-settings-popup/user-settings-popup-name-item";
+import { UserSettingsPopupSchema, userSettingsPopupSchema } from "@/pages/profile/ui/user/user-settings-popup/user-settings-popup-schema";
 
 interface UserSettingsFormProps {
   onClose: () => void;
@@ -41,9 +30,8 @@ interface UserSettingsFormProps {
   admin?: boolean;
 }
 
-export const UserSettingsForm = ({
+export const UserSettingsPopup = ({
   onClose,
-  // onSave,
   ownsProfile,
   user,
   admin = false,
@@ -60,9 +48,9 @@ export const UserSettingsForm = ({
     register,
     control,
     formState: { errors },
-  } = useForm<FormValues>({
+  } = useForm<UserSettingsPopupSchema>({
     defaultValues: user,
-    resolver: zodResolver(schema),
+    resolver: zodResolver(userSettingsPopupSchema),
   });
 
   const onClickSubmit = handleSubmit(async (profile) => {
@@ -90,51 +78,17 @@ export const UserSettingsForm = ({
       <Popup onClose={onClose} title="Account Settings">
         <Popup.Body>
           <Popup.Part>
-            <Popup.Item>
-              <BedrockText
-                textAlign="start"
-                text="Username"
-                type="p"
-                color="white"
-              />
-              <Input
-                sub
-                placeholder="Name"
-                className={styles.input}
-                {...register("name")}
-              />
-              {errors["name"] && (
-                <BedrockText
-                  type="p2"
-                  extraClassName={styles.error}
-                  text={errors["name"]?.message as string}
-                  textAlign="start"
-                />
-              )}
-            </Popup.Item>
+            <UserSettingsFormNameItem register={register} error={errors.name} />
 
             <Popup.Item>
-              <BedrockText
-                textAlign="start"
-                text="Bio"
-                type="p"
-                color="white"
-              />
-              <Input
-                sub
-                placeholder="Description"
-                className={styles.input}
-                {...register("bio")}
-              />
-
-              {errors["bio"] && (
-                <BedrockText
-                  type="p2"
-                  extraClassName={styles.error}
-                  text={errors["bio"]?.message as string}
-                  textAlign="start"
+              <Field name="Bio" error={errors.bio}>
+                <Input
+                  sub
+                  placeholder="Description"
+                  className={styles.input}
+                  {...register("bio")}
                 />
-              )}
+              </Field>
             </Popup.Item>
           </Popup.Part>
 
@@ -142,14 +96,12 @@ export const UserSettingsForm = ({
             <Banner
               variant="info"
               message={
-                <div>
-                  <p className={styles.bannerText}>
-                    Monetization System - receive 100% revenue from ADs.{" "}
-                    <Link link={Routes.MONETIZATION} className={styles.link}>
-                      Check this tutorial for more information!
-                    </Link>
-                  </p>
-                </div>
+                <p className={styles.bannerText}>
+                  Monetization System - receive 100% revenue from ADs.{" "}
+                  <Link link={Routes.MONETIZATION} className={styles.link}>
+                    Check this tutorial for more information!
+                  </Link>
+                </p>
               }
             />
             <Popup.Item>
@@ -198,51 +150,31 @@ export const UserSettingsForm = ({
             {monetizationType === "linkvertise" && (
               <>
                 <Popup.Item>
-                  <BedrockText
-                    textAlign="start"
-                    text="Linkvertise User Id"
-                    type="p"
-                    color="white"
-                  />
-                  <Input
-                    sub
-                    placeholder="Id"
-                    className={styles.input}
-                    {...register("linkvertiseId")}
-                  />
-
-                  {errors["linkvertiseId"] && (
-                    <BedrockText
-                      type="p2"
-                      extraClassName={styles.error}
-                      text={errors["linkvertiseId"]?.message as string}
-                      textAlign="start"
+                  <Field
+                    name="Linkvertise User Id"
+                    error={errors.linkvertiseId}
+                  >
+                    <Input
+                      sub
+                      placeholder="Id"
+                      className={styles.input}
+                      {...register("linkvertiseId")}
                     />
-                  )}
+                  </Field>
                 </Popup.Item>
                 <Popup.Item>
-                  <BedrockText
-                    textAlign="start"
-                    text="Linkvertise Anti-bypass Token"
-                    type="p"
-                    color="white"
-                  />
-                  <Input
-                    sub
-                    placeholder="Token"
-                    className={styles.input}
-                    type="password"
-                    {...register("linkvertiseSecret")}
-                  />
-
-                  {errors["linkvertiseSecret"] && (
-                    <BedrockText
-                      type="p2"
-                      extraClassName={styles.error}
-                      text={errors["linkvertiseSecret"]?.message as string}
-                      textAlign="start"
+                  <Field
+                    name="Linkvertise Anti-bypass Token"
+                    error={errors.linkvertiseSecret}
+                  >
+                    <Input
+                      sub
+                      placeholder="Token"
+                      className={styles.input}
+                      type="password"
+                      {...register("linkvertiseSecret")}
                     />
-                  )}
+                  </Field>
                 </Popup.Item>
               </>
             )}
@@ -250,51 +182,28 @@ export const UserSettingsForm = ({
             {monetizationType === "lootlabs" && (
               <>
                 <Popup.Item>
-                  <BedrockText
-                    textAlign="start"
-                    text="Lootlabs Link Id"
-                    type="p"
-                    color="white"
-                  />
-                  <Input
-                    sub
-                    placeholder="Id"
-                    className={styles.input}
-                    {...register("lootlabsLinkId")}
-                  />
-
-                  {errors["lootlabsLinkId"] && (
-                    <BedrockText
-                      type="p2"
-                      extraClassName={styles.error}
-                      text={errors["lootlabsLinkId"]?.message as string}
-                      textAlign="start"
+                  <Field name="Lootlabs Link Id" error={errors.lootlabsLinkId}>
+                    <Input
+                      sub
+                      placeholder="Id"
+                      className={styles.input}
+                      {...register("lootlabsLinkId")}
                     />
-                  )}
+                  </Field>
                 </Popup.Item>
                 <Popup.Item>
-                  <BedrockText
-                    textAlign="start"
-                    text="Lootlabs API Token"
-                    type="p"
-                    color="white"
-                  />
-                  <Input
-                    sub
-                    placeholder="Token"
-                    className={styles.input}
-                    type="password"
-                    {...register("lootlabsSecret")}
-                  />
-
-                  {errors["lootlabsSecret"] && (
-                    <BedrockText
-                      type="p2"
-                      extraClassName={styles.error}
-                      text={errors["lootlabsSecret"]?.message as string}
-                      textAlign="start"
+                  <Field
+                    name="Lootlabs API Token"
+                    error={errors.lootlabsSecret}
+                  >
+                    <Input
+                      sub
+                      placeholder="Token"
+                      className={styles.input}
+                      type="password"
+                      {...register("lootlabsSecret")}
                     />
-                  )}
+                  </Field>
                 </Popup.Item>
               </>
             )}
