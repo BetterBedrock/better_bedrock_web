@@ -1,7 +1,7 @@
 "use client";
 
 import { pingRequest } from "@/entities/analytic/api/analytics-service";
-import { initializeLocalSession } from "@/shared/lib/local-session/initialize-local-session";
+import { initializeLocalSession } from "@/shared/lib/local-session";
 import {
   createContext,
   ReactNode,

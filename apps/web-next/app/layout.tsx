@@ -9,7 +9,7 @@ import localFont from "next/font/local";
 import { SettingsProvider } from "@/app/providers/settings";
 import { fetchSettings } from "@/shared/api/setting";
 import Script from "next/script";
-import { fetchLocalSession } from "@/shared/lib/local-session/fetch-local-session";
+import { fetchLocalSession } from "@/shared/lib/local-session";
 import { SessionProvider } from "@/app/providers/session";
 
 export const metadata: Metadata = {
