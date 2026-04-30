@@ -6,7 +6,7 @@ All URIs are relative to *http://localhost*
 |------------- | ------------- | -------------|
 |[**analyticsControllerAnalytics**](#analyticscontrolleranalytics) | **GET** /analytics | |
 |[**analyticsControllerLiveCount**](#analyticscontrollerlivecount) | **GET** /analytics/live | |
-|[**analyticsControllerPing**](#analyticscontrollerping) | **GET** /analytics/ping | |
+|[**analyticsControllerPing**](#analyticscontrollerping) | **GET** /analytics/ping/{id} | |
 |[**analyticsControllerUser**](#analyticscontrolleruser) | **GET** /analytics/user/{id} | |
 
 # **analyticsControllerAnalytics**
@@ -110,11 +110,18 @@ import {
 const configuration = new Configuration();
 const apiInstance = new AnalyticsApi(configuration);
 
-const { status, data } = await apiInstance.analyticsControllerPing();
+let id: string; // (optional) (default to undefined)
+
+const { status, data } = await apiInstance.analyticsControllerPing(
+    id
+);
 ```
 
 ### Parameters
-This endpoint does not have any parameters.
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] |  | (optional) defaults to undefined|
 
 
 ### Return type

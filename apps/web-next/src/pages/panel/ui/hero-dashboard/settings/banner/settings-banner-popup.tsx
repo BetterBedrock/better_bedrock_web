@@ -73,8 +73,7 @@ export const SettingsBannerPopup = ({ onClose }: SettingsBannerPopupProps) => {
             <Popup.Item>
               <Field
                 name="Banner Text (supports markdown)"
-                id="bannerText"
-                errors={errors}
+                error={errors.bannerText}
               >
                 <Input
                   type="text"
@@ -86,8 +85,7 @@ export const SettingsBannerPopup = ({ onClose }: SettingsBannerPopupProps) => {
             <Popup.Item>
               <Field
                 name="Banner Expiration Date"
-                id="bannerExpirationDate"
-                errors={errors}
+                error={errors.bannerExpirationDate}
               >
                 <Input
                   type="datetime-local"
@@ -97,7 +95,7 @@ export const SettingsBannerPopup = ({ onClose }: SettingsBannerPopupProps) => {
               </Field>
             </Popup.Item>
             <Popup.Item>
-              <Field name="Banner Variant" id="bannerVariant" errors={errors}>
+              <Field name="Banner Variant" error={errors.bannerVariant}>
                 <Controller
                   name="bannerVariant"
                   control={control}

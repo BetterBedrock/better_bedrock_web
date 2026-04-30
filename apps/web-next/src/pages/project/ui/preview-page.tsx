@@ -37,7 +37,7 @@ export const generateMetadata = async ({ params }: ProjectPageProps) => {
       : capitalizeFirstLetter(data.type),
   );
 
-  const title = `${data.title} - Minecraft Bedrock ${type}`;
+  const title = `${data.title} (@${data.user.name}) - Minecraft Bedrock ${type}`;
   const description =
     extractFirstLinesFromTiptap(data.description) ??
     "The best minecraft bedrock mods, texture packs, scripts, maps, skins, and more.";

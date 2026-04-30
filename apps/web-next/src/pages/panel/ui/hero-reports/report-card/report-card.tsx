@@ -35,7 +35,7 @@ export const ReportCard = ({
   useEffect(() => {
     const fetchDetails = async () => {
       setReporter(await fetchUserById(report.reporterId));
-      if (report.reportedUserId) {
+      if (report?.reportedUserId) {
         setReported(await fetchUserById(report.reportedUserId));
       }
 

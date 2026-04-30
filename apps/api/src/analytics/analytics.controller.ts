@@ -4,6 +4,7 @@ import { Throttle } from "@nestjs/throttler";
 import { AnalyticsService } from "~/analytics/analytics.service";
 import { AnalyticsDto } from "~/analytics/dto/analytics.dto";
 import { LiveCountDto } from "~/analytics/dto/live-count.dto";
+import { PingDto } from "~/analytics/dto/ping.dto";
 import { AdminAuthGuard } from "~/auth/admin-auth.guard";
 import { UserAuthGuard } from "~/auth/user-auth.guard";
 import { AuthenticatedRequest } from "~/common/types/authenticated-request.type";
@@ -19,15 +20,15 @@ export class AnalyticsController {
         return this.analyticsService.analytics();
     }
 
-    @Get("ping")
+    @Get("ping/:id")
     @Throttle({
         default: {
             ttl: 30_000,
             limit: 3,
         },
     })
-    ping(@Ip() ip: string) {
-        this.analyticsService.ping(ip);
+    ping(@Ip() ip: string, @Param() params: PingDto) {
+        this.analyticsService.ping(ip, params.id);
     }
 
     @Get("live")

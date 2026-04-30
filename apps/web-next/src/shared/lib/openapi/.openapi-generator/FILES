@@ -33,6 +33,7 @@ docs/ProjectApi.md
 docs/ProjectBasicInfoBodyDto.md
 docs/ProjectCommentDto.md
 docs/ProjectCommentDtoAuthor.md
+docs/ProjectCommentsListDto.md
 docs/ProjectCreatorDto.md
 docs/ProjectDto.md
 docs/ProjectRatingDto.md
