@@ -38,9 +38,9 @@ export const SessionProvider = ({
       return session;
     };
 
-    if(!localSession) {
-        initializeSession();
-        return;
+    if (!localSession) {
+      initializeSession();
+      return;
     }
 
     pingRequest(localSession);
