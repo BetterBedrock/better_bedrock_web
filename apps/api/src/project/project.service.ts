@@ -75,7 +75,7 @@ export class ProjectService {
         private prismaService: PrismaService,
         private ratingService: RatingService,
         private analyticsService: AnalyticsService,
-    ) { }
+    ) {}
 
     async create(data: CreateProjectDto, admin: boolean) {
         const { title, userId } = data;
@@ -305,7 +305,7 @@ export class ProjectService {
                     b.score !== a.score
                         ? b.score - a.score
                         : new Date(b.proj.lastChanged).getTime() -
-                        new Date(a.proj.lastChanged).getTime(),
+                          new Date(a.proj.lastChanged).getTime(),
                 );
         }
 
@@ -394,8 +394,8 @@ export class ProjectService {
             description: data.description as Prisma.InputJsonValue | undefined,
             ...(data.tags !== undefined
                 ? {
-                    tags: await this.buildTagUpdate(project.id, tags),
-                }
+                      tags: await this.buildTagUpdate(project.id, tags),
+                  }
                 : { tags: undefined }),
         };
 
@@ -441,7 +441,9 @@ export class ProjectService {
         }
 
         if (summaryLength > 120) {
-            throw new BadRequestException("Project description is too long for submission");
+            throw new BadRequestException(
+                `Project description is too long for submission. The limit is 120 characters, but you have ${summaryLength}.`,
+            );
         }
 
         if (!description || description.trim().length < 100) {
@@ -499,15 +501,15 @@ export class ProjectService {
         const updatedDescription = this.replaceDraftImageSrcs(draftProject.description, id);
         const updatedThumbnail = draftProject.thumbnail
             ? draftProject.thumbnail.replace(
-                new RegExp(`static/public/${id}/draft/`, "g"),
-                `static/public/${id}/release/`,
-            )
+                  new RegExp(`static/public/${id}/draft/`, "g"),
+                  `static/public/${id}/release/`,
+              )
             : null;
         const updatedDownloadFile = draftProject.downloadFile
             ? draftProject.downloadFile.replace(
-                new RegExp(`static/private/${id}/draft/`, "g"),
-                `static/private/${id}/release/`,
-            )
+                  new RegExp(`static/private/${id}/draft/`, "g"),
+                  `static/private/${id}/release/`,
+              )
             : null;
 
         const { id: projectId, tags, ...rest } = draftProject;
@@ -519,8 +521,8 @@ export class ProjectService {
         const lastChanged = updateLastChanged
             ? new Date()
             : oldReleasedProject
-                ? oldReleasedProject.createdAt
-                : new Date();
+              ? oldReleasedProject.createdAt
+              : new Date();
 
         const releaseProjectData = {
             ...rest,
