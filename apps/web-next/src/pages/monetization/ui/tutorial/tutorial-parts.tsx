@@ -16,7 +16,7 @@ export const TutorialParts = ({ selectedProvider }: TutorialPartsProps) => {
       {providerData.steps.map((step, index) => (
         <Card key={step.title} sub className={styles.sub}>
           <Card.Body>
-            <Markdown>{`## ${index + 1}. ${step.title}\n${step.content}`}</Markdown>
+            <Markdown>{`### ${index + 1}. ${step.title}\n${step.content}`}</Markdown>
           </Card.Body>
         </Card>
       ))}
