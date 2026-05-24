@@ -22,7 +22,6 @@ export const ProjectDetailsSummary = () => {
         sub
         className={styles.input}
         placeholder="Briefly describe what your project adds or changes..."
-        maxLength={120}
         value={summary}
         onChange={(e) => setSummary(e.target.value)}
       />
