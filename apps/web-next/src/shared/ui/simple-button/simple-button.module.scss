@@ -39,14 +39,14 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding: calc(g.$padding-xxsm * 1.25);
+  padding: g.$padding-xsm;
 }
 
 .childNav {
-  padding-inline: calc(g.$padding-xxsm * 2.5);
+  padding-inline: g.$padding-md;
   padding-block: 0;
   @media (max-width: g.$breakpoint-tablet) {
-    padding-inline: calc(g.$padding-xxsm * 1.25);
+    padding-inline: g.$padding-xsm;
   }
 }
 
