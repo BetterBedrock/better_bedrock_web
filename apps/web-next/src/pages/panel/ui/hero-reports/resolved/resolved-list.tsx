@@ -1,9 +1,13 @@
+"use client";
+
 import { useReportsManager } from "@/pages/panel/model/reports-manager";
 import { ReportCard } from "@/pages/panel/ui/hero-reports/report-card";
 import styles from "./resolved.module.scss";
 
 export const ResolvedList = () => {
   const { resolvedReports, setSelectedReport } = useReportsManager();
+
+  if (resolvedReports.length == 0) return;
 
   return (
     <div className={styles.projects}>
